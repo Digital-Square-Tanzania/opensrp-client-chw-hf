@@ -785,7 +785,6 @@
     <string name="tb">TB</string>
     <string name="gbv">GBV</string>
     <string name="pep">PEP</string>
-    <string name="vmmc">VMMC</string>
     <string name="cacx">CaCx</string>
     <string name="drug_use_disorder">Drug use disorder</string>
     <string name="hiv_aids">HIV and AIDS couple</string>
@@ -1247,5 +1246,9 @@
     <string name="global_search_description"><![CDATA[Fill in client’s name & search through UCS’s global database]]></string>
     <string name="select_issued_condoms">Select Condoms issued report</string>
     <string name="cdp_issuing_report">CDP Issuing Report</string>
+
+
+    <!--    VMMC-->
+    <string name="vmmc">VMMC</string>
 
 </resources>

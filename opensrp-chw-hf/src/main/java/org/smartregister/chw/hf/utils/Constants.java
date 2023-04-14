@@ -118,6 +118,8 @@ public class Constants extends CoreConstants {
         private static final String NEXT_FACILITY_VISIT_FORM = "next_facility_visit_date_form";
         private static final String PMTCT_REGISTRATION = "pmtct_registration";
         private static final String PMTCT_REGISTRATION_FOR_CLIENTS_KNOWN_ON_ART_FORM = "pmtct_registration_for_clients_known_on_art";
+        private static final String VMMC_REGISTRATION_FOR_CLIENTS_KNOWN_ON_ART_FORM = "vmmc_registration_for_clients_known_on_art";
+
         private static final String COUNSELLING = "anc_counselling";
         private static final String HIV_INDEX_CONTACT_CTC_ENROLLMENT = "hiv_index_contact_ctc_enrollment";
         private static final String PARTNER_REGISTRATION_FORM = "male_partner_registration_form";
@@ -268,6 +270,10 @@ public class Constants extends CoreConstants {
 
         public static String getPmtctRegistrationForClientsKnownOnArtForm() {
             return PMTCT_REGISTRATION_FOR_CLIENTS_KNOWN_ON_ART_FORM;
+        }
+
+        public static String getVmmcRegistrationForClientsKnownOnArtForm() {
+            return VMMC_REGISTRATION_FOR_CLIENTS_KNOWN_ON_ART_FORM;
         }
 
         public static String getHvlTestResultsForm() {

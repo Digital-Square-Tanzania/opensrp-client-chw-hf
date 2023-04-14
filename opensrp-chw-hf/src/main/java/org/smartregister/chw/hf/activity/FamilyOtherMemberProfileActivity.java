@@ -39,6 +39,7 @@ import org.smartregister.chw.hiv.dao.HivIndexDao;
 import org.smartregister.chw.hivst.dao.HivstDao;
 import org.smartregister.chw.kvp.dao.KvpDao;
 import org.smartregister.chw.malaria.dao.MalariaDao;
+import org.smartregister.chw.vmmc.dao.VmmcDao;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.family.fragment.BaseFamilyOtherMemberProfileFragment;
 import org.smartregister.family.model.BaseFamilyOtherMemberProfileActivityModel;
@@ -101,6 +102,11 @@ public class FamilyOtherMemberProfileActivity extends CoreFamilyOtherMemberProfi
     @Override
     protected void startMalariaRegister() {
         //TODO implement start malaria register for HF
+    }
+
+    @Override
+    protected void startVmmcRegister() {
+
     }
 
     @Override
@@ -288,6 +294,9 @@ public class FamilyOtherMemberProfileActivity extends CoreFamilyOtherMemberProfi
 
         if (HealthFacilityApplication.getApplicationFlavor().hasMalaria())
             menu.findItem(R.id.action_malaria_diagnosis).setVisible(!MalariaDao.isRegisteredForMalaria(baseEntityId));
+
+        if (HealthFacilityApplication.getApplicationFlavor().hasVmmc())
+            menu.findItem(R.id.action_vmmc_registration).setVisible(!VmmcDao.isRegisteredForVmmc(baseEntityId));
 
         if (isOfReproductiveAge(commonPersonObject, gender)) {
             if (gender.equalsIgnoreCase("female") && !AncDao.isANCMember(baseEntityId)) {
