@@ -24,17 +24,5 @@ public class VmmcRegisterPresenter extends BaseVmmcRegisterPresenter {
 
         JSONObject form = model.getFormAsJson(formName, entityId, currentLocationId);
 
-//        if (formName.equals(Constants.JsonForm.getVmmcRegistrationForClientsKnownOnArtForm())) {
-//            String ctcNumber = ((VmmcRegisterActivity) getView()).getCtcNumber();
-//            if (ctcNumber == null) {
-//                ctcNumber = HfAncDao.getClientCtcNumber(entityId);
-//            }
-//
-//            if (ctcNumber == null) {
-//                return;
-//            }
-//            form.getJSONObject("global").put("ctc_number", ctcNumber);
-//        }
-//        getView().startFormActivity(form);
     }
 }

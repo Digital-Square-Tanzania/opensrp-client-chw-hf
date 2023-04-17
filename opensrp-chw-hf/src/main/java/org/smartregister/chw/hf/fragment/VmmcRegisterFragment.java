@@ -1,15 +1,10 @@
 package org.smartregister.chw.hf.fragment;
 
-import org.smartregister.chw.core.fragment.CoreMalariaRegisterFragment;
 import org.smartregister.chw.core.fragment.CoreVmmcRegisterFragment;
-import org.smartregister.chw.core.model.CoreMalariaRegisterFragmentModel;
 import org.smartregister.chw.core.model.CoreVmmcRegisterFragmentModel;
-import org.smartregister.chw.core.provider.ChwMalariaRegisterProvider;
 import org.smartregister.chw.core.provider.ChwVmmcRegisterProvider;
-import org.smartregister.chw.hf.activity.MalariaProfileActivity;
-import org.smartregister.chw.hf.presenter.MalariaRegisterFragmentPresenter;
+import org.smartregister.chw.hf.activity.VmmcProfileActivity;
 import org.smartregister.chw.hf.presenter.VmmcRegisterFragmentPresenter;
-import org.smartregister.chw.hf.provider.HfMalariaRegisterProvider;
 import org.smartregister.chw.hf.provider.HfVmmcRegisterProvider;
 import org.smartregister.configurableviews.model.View;
 import org.smartregister.cursoradapter.RecyclerViewPaginatedAdapter;
@@ -38,6 +33,6 @@ public class VmmcRegisterFragment extends CoreVmmcRegisterFragment {
 
     @Override
     protected void openProfile(String baseEntityId) {
-        MalariaProfileActivity.startMalariaActivity(getActivity(), baseEntityId);
+        VmmcProfileActivity.startVmmcActivity(getActivity(), baseEntityId);
     }
 }
