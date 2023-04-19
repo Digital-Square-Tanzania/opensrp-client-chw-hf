@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.content.Intent;
 import org.smartregister.chw.core.activity.CoreVmmcRegisterActivity;
 import org.smartregister.chw.hf.fragment.VmmcRegisterFragment;
-import org.smartregister.helper.BottomNavigationHelper;
 import org.smartregister.view.fragment.BaseRegisterFragment;
 
 public class VmmcRegisterActivity extends CoreVmmcRegisterActivity {
@@ -16,14 +15,6 @@ public class VmmcRegisterActivity extends CoreVmmcRegisterActivity {
         intent.putExtra(org.smartregister.chw.vmmc.util.Constants.ACTIVITY_PAYLOAD.ACTION, org.smartregister.chw.vmmc.util.Constants.ACTIVITY_PAYLOAD_TYPE.REGISTRATION);
 
         activity.startActivity(intent);
-    }
-
-    @Override
-    protected void registerBottomNavigation() {
-
-        bottomNavigationHelper = new BottomNavigationHelper();
-        bottomNavigationView = findViewById(org.smartregister.R.id.bottom_navigation);
-        FamilyRegisterActivity.registerBottomNavigation(bottomNavigationHelper, bottomNavigationView, this);
     }
 
     @Override

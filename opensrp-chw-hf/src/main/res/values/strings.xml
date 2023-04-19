@@ -468,6 +468,12 @@
     <string name="prep_initiation">PrEP Initiation</string>
     <string name="prep_screening">PrEP Screening</string>
 
+    <string name="vmmc_medical_history">Medical History</string>
+    <string name="vmmc_physical_examination">Physical Examination</string>
+    <string name="vmmc_hts">HTS</string>
+
+
+
     <string name="amtsl_uterotonic_title">Uterotonic</string>
     <string name="amtsl_placenta_and_membranes">Placenta and Membrane</string>
     <string name="amtsl_method_used_to_remove_the_placenta">The method used to remove/deliver the placenta</string>

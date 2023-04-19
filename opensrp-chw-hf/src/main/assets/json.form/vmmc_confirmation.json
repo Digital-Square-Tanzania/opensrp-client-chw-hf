@@ -1,8 +1,7 @@
 {
-  "count": "2",
+  "count": "1",
   "encounter_type": "Vmmc Confirmation",
   "entity_id": "",
-  "relational_id": "",
   "metadata": {
     "start": {
       "openmrs_entity_parent": "",
@@ -40,296 +39,105 @@
       "openmrs_data_type": "phonenumber",
       "openmrs_entity_id": "163152AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
     },
-    "encounter_location": "",
-    "look_up": {
-      "entity_id": "",
-      "value": ""
-    }
+    "encounter_location": ""
   },
+  "global": {},
   "step1": {
-    "title": "Vmmc Confirmation",
-    "next": "step2",
+    "title": "Vmmc Registration",
     "fields": [
       {
-        "key": "date_chw_malaria_test",
+        "key": "service_delivery_approach",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "162869AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "type": "hidden",
-        "calculation": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "malaria_confirmation_calculation.yml"
-            }
+        "openmrs_entity_id": "service_delivery_approach",
+        "label": "Service delivery approach",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "static",
+            "text": "Static/Routine",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "new_client"
+          },
+          {
+            "key": "outreach",
+            "text": "Outreach/ Mobile",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "returning_client"
           }
-        }
-      },
-      {
-        "key": "fever_malaria_chw",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "fever_malaria_chw",
-        "type": "spinner",
-        "hint": "Does this person have a fever or did they test positive for malaria in the last 14 days at a health facility?",
-        "values": [
-          "Has a fever",
-          "Tested positive for malaria in the last 14 days at a health facility"
         ],
         "v_required": {
           "value": "true",
-          "err": "Please select one choice"
-        },
-        "openmrs_choice_ids": {
-          "Has a fever": "has_fever_conceptID",
-          "Tested positive for malaria in the last 14 days at a health facility": "positive_for_malaria_conceptID"
+          "err": "Please select an answer"
         }
       },
       {
-        "key": "fever_duration",
+        "key": "reffered_from",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "1731AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "type": "spinner",
-        "hint": "Duration of fever?",
-        "values": [
-          "Less than 24 hrs",
-          "More than 24 hrs"
+        "openmrs_entity_id": "reffered_from",
+        "label": "Reffered from",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "self_referral",
+            "text": "Self-referral",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "self_referral"
+          },
+          {
+            "key": "community_demand_creation",
+            "text": "Community demand creation",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "community_demand_creation"
+          },
+          {
+            "key": "opd",
+            "text": "OPD",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "opd"
+          },
+          {
+            "key": "ipd",
+            "text": "IPD",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "ipd"
+          },
+          {
+            "key": "hts",
+            "text": "HTS",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "hts"
+          },
+          {
+            "key": "others",
+            "text": "Others",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "others"
+          }
         ],
-        "openmrs_choice_ids": {
-          "Less than 24 hrs": "164449AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "More than 24 hrs": "164449AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-        },
         "v_required": {
           "value": "true",
-          "err": "Please select one choice"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "malaria_confirmation_relevance.yml"
-            }
-          }
+          "err": "Please select an answer"
         }
       },
       {
-        "key": "malaria_results",
+        "key": "client_id_number",
+        "type": "edit_text",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "1643AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "type": "spinner",
-        "hint": "mRDT results",
-        "values": [
-          "Positive",
-          "Negative",
-          "Not done"
-        ],
-        "openmrs_choice_ids": {
-          "Positive": "703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "Negative": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "Not done": "160414AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Please select one choice"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "malaria_confirmation_relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "date_hf_malaria_test",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "date_hf_malaria_test",
-        "type": "date_picker",
-        "hint": "Date of malaria test at health facility",
-        "expanded": false,
-        "max_date": "today",
-        "v_required": {
-          "value": "true",
-          "err": "Please enter the date of malaria test at health facility"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "malaria_confirmation_relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "malaria_test_date",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "163724AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "type": "hidden",
-        "calculation": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "malaria_confirmation_calculation.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "malaria",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "163725AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "type": "hidden",
-        "calculation": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "malaria_confirmation_calculation.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "malaria_treat",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "malaria_treat",
-        "type": "spinner",
-        "hint": "Treatment given",
-        "values": [
-          "ALU 6",
-          "ALU 12",
-          "ALU 18",
-          "ALU 24",
-          "Not given",
-          "Other treatment"
-        ],
-        "openmrs_choice_ids": {
-          "ALU 6": "1072AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "ALU 12": "1072AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "ALU 18": "1072AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "ALU 24": "1072AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "Not given": "164369AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "Other treatment": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Please select one choice"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "malaria_confirmation_relevance.yml"
-            }
-          }
-        }
-      }
-    ]
-  },
-  "step2": {
-    "title": "Malaria Prevention",
-    "fields": [
-      {
-        "key": "fam_llin",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "fam_llin",
-        "type": "spinner",
-        "hint": "Do you have a long lasting insecticide net (LLIN)?",
-        "values": [
-          "Yes",
-          "No"
-        ],
-        "openmrs_choice_ids": {
-          "Yes": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "No": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Please select one choice"
-        }
-      },
-      {
-        "key": "llin_2days",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "llin_2days",
-        "type": "spinner",
-        "hint": "Did you sleep under the LLIN last night?",
-        "values": [
-          "Yes",
-          "No"
-        ],
-        "openmrs_choice_ids": {
-          "Yes": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "No": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Please select one choice"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "malaria_confirmation_relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "llin_condition",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "llin_condition",
-        "type": "spinner",
-        "hint": "LLIN condition",
-        "values": [
-          "Okay",
-          "Bad"
-        ],
-        "openmrs_choice_ids": {
-          "Okay": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "Bad": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Please select one choice"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "malaria_confirmation_relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "malaria_edu_chw",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "1379AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "type": "spinner",
-        "hint": "Malaria topics covered",
-        "values": [
-          "Overview on malaria",
-          "Malaria prevention",
-          "Uncomplicated malaria",
-          "Severe malaria",
-          "Malaria in pregnancy",
-          "None"
-        ],
-        "openmrs_choice_ids": {
-          "Overview on malaria": "116128AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "Malaria prevention": "164884AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "Uncomplicated malaria": "159950AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "Severe malaria": "160155AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "Malaria in pregnancy": "135361AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "None": "164369AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Please select one choice"
-        }
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "hint": "111111-1111 2022"
       }
     ]
   }

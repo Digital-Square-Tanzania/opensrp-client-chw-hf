@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
-import android.util.Log;
+import android.os.Bundle;
 
 import com.vijay.jsonwizard.constants.JsonFormConstants;
 import com.vijay.jsonwizard.domain.Form;
@@ -12,33 +12,32 @@ import com.vijay.jsonwizard.domain.Form;
 import org.json.JSONObject;
 import org.smartregister.chw.core.task.RunnableTask;
 import org.smartregister.chw.hf.R;
-import org.smartregister.chw.hf.interactor.PrEPVisitInteractor;
+import org.smartregister.chw.hf.interactor.VmmcVisitInteractor;
 import org.smartregister.chw.hf.schedulers.HfScheduleTaskExecutor;
-import org.smartregister.chw.kvp.activity.BaseKvpVisitActivity;
-import org.smartregister.chw.kvp.model.BaseKvpVisitAction;
-import org.smartregister.chw.kvp.presenter.BaseKvpVisitPresenter;
-import org.smartregister.chw.kvp.util.Constants;
+import org.smartregister.chw.vmmc.model.BaseVmmcVisitAction;
+import org.smartregister.chw.vmmc.presenter.BaseVmmcVisitPresenter;
+import org.smartregister.chw.vmmc.util.Constants;
+import org.smartregister.chw.vmmc.activity.BaseVmmcVisitActivity;
 import org.smartregister.family.util.JsonFormUtils;
 import org.smartregister.family.util.Utils;
 import org.smartregister.util.LangUtils;
-
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class PrEPVisitActivity extends BaseKvpVisitActivity {
 
-    public static void startPrEPVisitActivity(Activity activity, String baseEntityId, Boolean editMode) {
-        Intent intent = new Intent(activity, PrEPVisitActivity.class);
-        intent.putExtra(Constants.ACTIVITY_PAYLOAD.BASE_ENTITY_ID, baseEntityId);
-        intent.putExtra(Constants.ACTIVITY_PAYLOAD.EDIT_MODE, editMode);
-        intent.putExtra(Constants.ACTIVITY_PAYLOAD.PROFILE_TYPE, Constants.PROFILE_TYPES.PrEP_PROFILE);
+public class VmmcServiceActivity extends BaseVmmcVisitActivity {
+    public static void startVmmcVisitActivity(Activity activity, String baseEntityId, Boolean editMode) {
+        Intent intent = new Intent(activity, VmmcServiceActivity.class);
+        intent.putExtra(org.smartregister.chw.vmmc.util.Constants.ACTIVITY_PAYLOAD.BASE_ENTITY_ID, baseEntityId);
+        intent.putExtra(org.smartregister.chw.vmmc.util.Constants.ACTIVITY_PAYLOAD.EDIT_MODE, editMode);
+        intent.putExtra(org.smartregister.chw.vmmc.util.Constants.ACTIVITY_PAYLOAD.PROFILE_TYPE, Constants.PROFILE_TYPES.VMMC_PROFILE);
         activity.startActivity(intent);
     }
 
     @Override
     protected void registerPresenter() {
-        presenter = new BaseKvpVisitPresenter(memberObject, this, new PrEPVisitInteractor(Constants.EVENT_TYPE.PrEP_FOLLOWUP_VISIT));
+        presenter = new BaseVmmcVisitPresenter(memberObject, this, new VmmcVisitInteractor(Constants.EVENT_TYPE.VMMC_CONFIRMATION));
     }
 
     @Override
@@ -56,28 +55,28 @@ public class PrEPVisitActivity extends BaseKvpVisitActivity {
 
     @Override
     public void submittedAndClose() {
-        Runnable runnable = () -> HfScheduleTaskExecutor.getInstance().execute(memberObject.getBaseEntityId(), Constants.EVENT_TYPE.PrEP_FOLLOWUP_VISIT, new Date());
+        Runnable runnable = () -> HfScheduleTaskExecutor.getInstance().execute(memberObject.getBaseEntityId(), Constants.EVENT_TYPE.VMMC_FOLLOW_UP_VISIT, new Date());
         Utils.startAsyncTask(new RunnableTask(runnable), null);
         super.submittedAndClose();
     }
 
     @Override
-    public void initializeActions(LinkedHashMap<String, BaseKvpVisitAction> map) {
+    public void initializeActions(LinkedHashMap<String, BaseVmmcVisitAction> map) {
         actionList.clear();
 
         //Necessary evil to rearrange the actions according to a specific arrangement
 
-        if (map.containsKey(getString(R.string.prep_visit_type))) {
-            BaseKvpVisitAction visitTypeAction = map.get(getString(R.string.prep_visit_type));
-            actionList.put(getString(R.string.prep_visit_type), visitTypeAction);
+        if (map.containsKey(getString(R.string.vmmc_medical_history))) {
+            BaseVmmcVisitAction visitTypeAction = map.get(getString(R.string.vmmc_medical_history));
+            actionList.put(getString(R.string.vmmc_medical_history), visitTypeAction);
         }
-        if (map.containsKey(getString(R.string.prep_screening))) {
-            BaseKvpVisitAction prepScreeningAction = map.get(getString(R.string.prep_screening));
-            actionList.put(getString(R.string.prep_screening), prepScreeningAction);
+        if (map.containsKey(getString(R.string.vmmc_physical_examination))) {
+            BaseVmmcVisitAction vmmcExamAction = map.get(getString(R.string.vmmc_physical_examination));
+            actionList.put(getString(R.string.vmmc_physical_examination), vmmcExamAction);
         }
 
 
-        for (Map.Entry<String, BaseKvpVisitAction> entry : map.entrySet()) {
+        for (Map.Entry<String, BaseVmmcVisitAction> entry : map.entrySet()) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 actionList.putIfAbsent(entry.getKey(), entry.getValue());
             } else {
@@ -98,6 +97,4 @@ public class PrEPVisitActivity extends BaseKvpVisitActivity {
         String lang = LangUtils.getLanguage(base.getApplicationContext());
         super.attachBaseContext(LangUtils.setAppLocale(base, lang));
     }
-
 }
-

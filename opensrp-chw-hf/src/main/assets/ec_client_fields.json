@@ -2433,43 +2433,27 @@
           }
         },
         {
-          "column_name": "date_chw_malaria_test",
+          "column_name": "service_delivery_approach",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
-            "concept": "162869AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "concept": "service_delivery_approach"
           }
         },
         {
-          "column_name": "fever_malaria_chw",
+          "column_name": "client_id_number",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
-            "concept": "fever_malaria_chw"
+            "concept": "client_id_number"
           }
         },
         {
-          "column_name": "fever_duration",
+          "column_name": "reffered_from",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
-            "concept": "1731AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          }
-        },
-        {
-          "column_name": "malaria_results",
-          "type": "Event",
-          "json_mapping": {
-            "field": "obs.fieldCode",
-            "concept": "1643AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          }
-        },
-        {
-          "column_name": "date_hf_malaria_test",
-          "type": "Event",
-          "json_mapping": {
-            "field": "obs.fieldCode",
-            "formSubmissionField": "date_hf_malaria_test"
+            "concept": "reffered_from"
           }
         },
         {
@@ -2481,54 +2465,6 @@
           }
         },
         {
-          "column_name": "malaria",
-          "type": "Event",
-          "json_mapping": {
-            "field": "obs.fieldCode",
-            "concept": "163725AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          }
-        },
-        {
-          "column_name": "malaria_treat",
-          "type": "Event",
-          "json_mapping": {
-            "field": "obs.fieldCode",
-            "formSubmissionField": "malaria_treat"
-          }
-        },
-        {
-          "column_name": "fam_llin",
-          "type": "Event",
-          "json_mapping": {
-            "field": "obs.fieldCode",
-            "formSubmissionField": "fam_llin"
-          }
-        },
-        {
-          "column_name": "llin_2days",
-          "type": "Event",
-          "json_mapping": {
-            "field": "obs.fieldCode",
-            "formSubmissionField": "llin_2days"
-          }
-        },
-        {
-          "column_name": "llin_condition",
-          "type": "Event",
-          "json_mapping": {
-            "field": "obs.fieldCode",
-            "formSubmissionField": "llin_condition"
-          }
-        },
-        {
-          "column_name": "malaria_edu_chw",
-          "type": "Event",
-          "json_mapping": {
-            "field": "obs.fieldCode",
-            "concept": "1379AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          }
-        },
-        {
           "column_name": "last_interacted_with",
           "type": "Event",
           "json_mapping": {
@@ -2537,7 +2473,6 @@
         }
       ]
     },
-
     {
       "name": "ec_family_planning",
       "columns": [
@@ -8494,6 +8429,288 @@
           }
         }
       ]
+    },
+    {
+      "name": "ec_vmmc_medical_history",
+      "columns": [
+        {
+          "column_name": "base_entity_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "formSubmissionId"
+          }
+        },
+        {
+          "column_name": "entity_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "baseEntityId"
+          }
+        },
+        {
+          "column_name": "has_client_had_any_sti",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "has_client_had_any_sti"
+          }
+        },
+        {
+          "column_name": "any_complaints",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "any_complaints"
+          }
+        },
+        {
+          "column_name": "client_diagnosed",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "client_diagnosed"
+          }
+        },
+        {
+          "column_name": "diabetes_treatment",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "diabetes_treatment"
+          }
+        },
+        {
+          "column_name": "surgical_procedure",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "surgical_procedure"
+          }
+        },
+        {
+          "column_name": "complications_previous_surgical",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "complications_previous_surgical"
+          }
+        },
+        {
+          "column_name": "type_complication",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "type_complication"
+          }
+        },
+        {
+          "column_name": "hematological_disease",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "hematological_disease"
+          }
+        },
+        {
+          "column_name": "known_allergies",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "known_allergies"
+          }
+        },
+        {
+          "column_name": "tetanus_vaccination",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "tetanus_vaccination"
+          }
+        },
+        {
+          "column_name": "tetanus_booster_date",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "tetanus_booster_date"
+          }
+        }
+      ]
+    },
+    {
+      "name": "ec_vmmc_physical_examination",
+      "columns": [
+        {
+          "column_name": "base_entity_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "formSubmissionId"
+          }
+        },
+        {
+          "column_name": "entity_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "baseEntityId"
+          }
+        },
+        {
+          "column_name": "physical_abnormality",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "physical_abnormality"
+          }
+        },
+        {
+          "column_name": "client_weight",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "client_weight"
+          }
+        },
+        {
+          "column_name": "pulse_rate",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "pulse_rate"
+          }
+        },
+        {
+          "column_name": "systolic",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "systolic"
+          }
+        },
+        {
+          "column_name": "diastolic",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "diastolic"
+          }
+        },
+        {
+          "column_name": "temperature",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "temperature"
+          }
+        },
+        {
+          "column_name": "respiration_rate",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "respiration_rate"
+          }
+        },
+        {
+          "column_name": "genital_examination",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "genital_examination"
+          }
+        },
+        {
+          "column_name": "preferred_client",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "preferred_client"
+          }
+        }
+      ]
+    },
+    {
+      "name": "ec_vmmc_hts",
+      "columns": [
+        {
+          "column_name": "base_entity_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "formSubmissionId"
+          }
+        },
+        {
+          "column_name": "entity_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "baseEntityId"
+          }
+        },
+        {
+          "column_name": "tested_hiv",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "tested_hiv"
+          }
+        },
+        {
+          "column_name": "reasons",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "reasons"
+          }
+        },
+        {
+          "column_name": "self_test_kits",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "self_test_kits"
+          }
+        },
+        {
+          "column_name": "client_referred_to",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "client_referred_to"
+          }
+        },
+        {
+          "column_name": "client_medically_cleared",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "client_medically_cleared"
+          }
+        },
+        {
+          "column_name": "uds_managed",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "uds_managed"
+          }
+        },
+        {
+          "column_name": "pallor_managed",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "pallor_managed"
+          }
+        },
+        {
+          "column_name": "gud_managed",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "gud_managed"
+          }
+        }
+      ]
     }
+
   ]
 }

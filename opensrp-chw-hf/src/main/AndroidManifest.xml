@@ -78,6 +78,9 @@
             android:name=".activity.PrEPVisitActivity"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
+            android:name=".activity.VmmcServiceActivity"
+            android:theme="@style/HFTheme.NoActionBar" />
+        <activity
             android:name=".activity.CdpRegisterActivity"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
