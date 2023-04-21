@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
-import android.os.Bundle;
-import android.view.View;
 
 import com.vijay.jsonwizard.constants.JsonFormConstants;
 import com.vijay.jsonwizard.domain.Form;
@@ -13,32 +11,35 @@ import com.vijay.jsonwizard.domain.Form;
 import org.json.JSONObject;
 import org.smartregister.chw.core.task.RunnableTask;
 import org.smartregister.chw.hf.R;
-import org.smartregister.chw.hf.interactor.VmmcVisitInteractor;
+import org.smartregister.chw.hf.interactor.VmmcVisitDischargeInteractor;
+import org.smartregister.chw.hf.interactor.VmmcVisitProcedureInteractor;
 import org.smartregister.chw.hf.schedulers.HfScheduleTaskExecutor;
+import org.smartregister.chw.vmmc.activity.BaseVmmcVisitActivity;
 import org.smartregister.chw.vmmc.model.BaseVmmcVisitAction;
 import org.smartregister.chw.vmmc.presenter.BaseVmmcVisitPresenter;
 import org.smartregister.chw.vmmc.util.Constants;
-import org.smartregister.chw.vmmc.activity.BaseVmmcVisitActivity;
 import org.smartregister.family.util.JsonFormUtils;
 import org.smartregister.family.util.Utils;
 import org.smartregister.util.LangUtils;
+
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 
-public class VmmcServiceActivity extends BaseVmmcVisitActivity {
-    public static void startVmmcVisitActivity(Activity activity, String baseEntityId, Boolean editMode) {
-        Intent intent = new Intent(activity, VmmcServiceActivity.class);
-        intent.putExtra(org.smartregister.chw.vmmc.util.Constants.ACTIVITY_PAYLOAD.BASE_ENTITY_ID, baseEntityId);
-        intent.putExtra(org.smartregister.chw.vmmc.util.Constants.ACTIVITY_PAYLOAD.EDIT_MODE, editMode);
-        intent.putExtra(org.smartregister.chw.vmmc.util.Constants.ACTIVITY_PAYLOAD.PROFILE_TYPE, Constants.PROFILE_TYPES.VMMC_PROFILE);
+public class VmmcDischargeActivity extends BaseVmmcVisitActivity {
+
+    public static void startVmmcVisitDischargeActivity(Activity activity, String baseEntityId, Boolean editMode) {
+        Intent intent = new Intent(activity, VmmcDischargeActivity.class);
+        intent.putExtra(Constants.ACTIVITY_PAYLOAD.BASE_ENTITY_ID, baseEntityId);
+        intent.putExtra(Constants.ACTIVITY_PAYLOAD.EDIT_MODE, editMode);
+        intent.putExtra(Constants.ACTIVITY_PAYLOAD.PROFILE_TYPE, Constants.PROFILE_TYPES.VMMC_PROFILE);
         activity.startActivity(intent);
     }
 
     @Override
     protected void registerPresenter() {
-        presenter = new BaseVmmcVisitPresenter(memberObject, this, new VmmcVisitInteractor(Constants.EVENT_TYPE.VMMC_CONFIRMATION));
+        presenter = new BaseVmmcVisitPresenter(memberObject, this, new VmmcVisitDischargeInteractor(Constants.EVENT_TYPE.VMMC_CONFIRMATION));
     }
 
     @Override

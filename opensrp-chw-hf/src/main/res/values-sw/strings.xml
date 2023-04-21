@@ -370,11 +370,6 @@
     <string name="select_issued_condoms">Chagua taarifa ya kondomu zilizotolewa</string>
     <string name="cdp_issuing_report">Taarifa ya kondomu zilizotolewa</string>
 
-    <string name="vmmc_medical_history">Historia ya matibabu</string>
-    <string name="vmmc_physical_examination">Uchunguzi wa nje</string>
-    <string name="vmmc_hts">HTS</string>
-
-
     <!--    CDP-->
     <string name="add_outlet">Ongeza kituo</string>
     <string name="all_outlets">Vituo vyote</string>

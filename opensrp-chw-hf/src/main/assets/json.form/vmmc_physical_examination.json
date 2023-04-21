@@ -124,10 +124,6 @@
         "v_required": {
           "value": "true",
           "err": "Please enter the Client’s Weight (KG)"
-        },
-        "v_regex": {
-          "value": "[A-Za-z\\s\\.\\-]*",
-          "err": "Please enter a valid name"
         }
       },
       {
@@ -143,10 +139,6 @@
         "v_required": {
           "value": "true",
           "err": "Please enter the Pulse Rate (Beats per minute"
-        },
-        "v_regex": {
-          "value": "[A-Za-z\\s\\.\\-]*",
-          "err": "Please enter a valid name"
         }
       },
       {
@@ -162,10 +154,6 @@
         "v_required": {
           "value": "true",
           "err": "Please enter the Systolic (Blood Pressure)"
-        },
-        "v_regex": {
-          "value": "[A-Za-z\\s\\.\\-]*",
-          "err": "Please enter a valid name"
         }
       },
       {
@@ -181,10 +169,6 @@
         "v_required": {
           "value": "true",
           "err": "Please enter the Diastolic (Blood Pressure) "
-        },
-        "v_regex": {
-          "value": "[A-Za-z\\s\\.\\-]*",
-          "err": "Please enter a valid name"
         }
       },
       {
@@ -200,10 +184,6 @@
         "v_required": {
           "value": "true",
           "err": "Please enter the Temperature (°C)"
-        },
-        "v_regex": {
-          "value": "[A-Za-z\\s\\.\\-]*",
-          "err": "Please enter a valid name"
         }
       },
       {
@@ -219,10 +199,6 @@
         "v_required": {
           "value": "true",
           "err": "Please enter the Respiration rate (Breath per minute) "
-        },
-        "v_regex": {
-          "value": "[A-Za-z\\s\\.\\-]*",
-          "err": "Please enter a valid name"
         }
       },
       {

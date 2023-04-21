@@ -1,0 +1,163 @@
+{
+  "count": "1",
+  "encounter_type": "Discharge",
+  "validate_on_submit": true,
+  "entity_id": "",
+  "relational_id": "",
+  "metadata": {
+    "start": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "start",
+      "openmrs_entity_id": "165000AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "end": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "end",
+      "openmrs_entity_id": "165001AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "today": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "encounter",
+      "openmrs_entity_id": "encounter_date"
+    },
+    "deviceid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "deviceid",
+      "openmrs_entity_id": "165003AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "subscriberid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "subscriberid",
+      "openmrs_entity_id": "165004AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "simserial": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "simserial",
+      "openmrs_entity_id": "165005AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "phonenumber": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "phonenumber",
+      "openmrs_entity_id": "165006AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "encounter_location": "",
+    "look_up": {
+      "entity_id": "",
+      "value": ""
+    }
+  },
+  "step1": {
+    "title": "Discharge Form",
+    "fields": [
+      {
+        "key": "discharge_condition",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "165007AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "native_radio",
+        "label": "General condition at discharge",
+        "options": [
+          {
+            "key":"satisfactory",
+            "text": "Satisfactory"
+          },
+          {
+            "key":"needs",
+            "text": "Needs follow-up"
+          },
+          {
+            "key":"referred",
+            "text": "Referred (Specify)"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select the general condition at discharge"
+        }
+      },
+      {
+        "key": "analgesics_given",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "165008AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "native_radio",
+        "label": "General condition at discharge",
+        "options": [
+          {
+            "key":"1",
+            "text": "Yes"
+          },
+          {
+            "key":"0",
+            "text": "No"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select the analgesics given"
+        }
+      },
+      {
+        "key": "dosage_type",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "165009AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "edit_text",
+        "hint": "Specify type and dosage",
+        "edit_type": "text",
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the dosage type"
+        }
+      },
+      {
+        "key": "discharge_time",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "1650010AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "time_picker",
+        "hint": "Discharge Time",
+        "expandable": false,
+        "duration": {
+          "label": "Discharge Time"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please select the discharge time"
+        }
+      },
+      {
+        "key": "discharging_name",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "1650011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "edit_text",
+        "hint": "Discharging provider's name",
+        "edit_type": "text",
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the discharging provider's name"
+        }
+      },
+      {
+        "key": "provider_cadre",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "1650012AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "edit_text",
+        "hint": "Provider's Cadre",
+        "edit_type": "text",
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the provider's Cadre"
+        }
+      }
+    ]
+  }
+}

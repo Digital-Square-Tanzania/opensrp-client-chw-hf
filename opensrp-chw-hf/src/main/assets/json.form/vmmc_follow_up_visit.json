@@ -1,0 +1,514 @@
+{
+  "count": "1",
+  "encounter_type": "VMMC Follow-up Form",
+  "entity_id": "",
+  "metadata": {
+    "start": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "start",
+      "openmrs_entity_id": "163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "end": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "end",
+      "openmrs_entity_id": "163138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "deviceid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "deviceid",
+      "openmrs_entity_id": "163149AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "subscriberid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "subscriberid",
+      "openmrs_entity_id": "163150AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "simserial": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "simserial",
+      "openmrs_entity_id": "163151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "phonenumber": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "phonenumber",
+      "openmrs_entity_id": "163152AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "encounter_location": ""
+  },
+  "step1": {
+    "title": "Follow-up Form",
+    "fields": [
+
+      {
+        "key": "visit_type",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "visit_type",
+        "label": "Follo up visit type",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "routine",
+            "text": "Routine",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "routine"
+          },
+          {
+            "key": "emergence",
+            "text": "Emergence",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "emergence"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select the visit type"
+        }
+      },
+
+      {
+        "key": "comment_vmmc_followup",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "comment_vmmc_followup",
+        "type": "edit_text",
+        "hint": "Notes"
+      },
+
+      {
+        "key": "post_op_adverse_event_occur",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "post_op_adverse_event_occur",
+        "label": "Did post-operative adverse event occur ?",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "yes",
+            "text": "Yes",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "yes"
+          },
+          {
+            "key": "no",
+            "text": "No",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "no"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select at least one"
+        }
+      },
+
+      {
+        "key": "time_of_adverse_event_occured",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "time_of_adverse_event_occured",
+        "type": "time_picker",
+        "hint": "Time The adverse event occured ",
+        "expanded": false,
+        "v_required": {
+          "value": "true",
+          "err": "Please provide the time "
+        }
+      },
+
+      {
+        "key": "time_of_adverse_event_attended",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "time_of_adverse_event_attended",
+        "type": "time_picker",
+        "hint": "Time The adverse event was attended ",
+        "expanded": false,
+        "v_required": {
+          "value": "true",
+          "err": "Please provide the time "
+        }
+      },
+      {
+        "key": "type_of_adverse_event",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "type_of_adverse_event",
+        "type": "check_box",
+        "label": "Type of adverse event",
+        "label_text_style": "bold",
+        "options": [
+          {
+            "key": "bleeding",
+            "text": "Breeding or blood soiling of dressing",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": "bleeding",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "swelling",
+            "text": "Swelling of the penis or scrotum",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": "swelling",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "Persistent_pain",
+            "text": "Persistent pain",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": "Persistent_pain",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "infection",
+            "text": "Infection",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": "infection",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "failure_pass_urine",
+            "text": "Failure to pass urine",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": "failure_pass_urine",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "device_displacement",
+            "text": "Device displacement",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": "device_displacement",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "device_detachement",
+            "text": "Device detachement",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": "device_detachement",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "insufficient_skin_removal",
+            "text": "Insufficient skin removal",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": "insufficient_skin_removal",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "others",
+            "text": "Others",
+            "value": false,
+            "ignore": true,
+            "openmrs_entity": "",
+            "openmrs_entity_id": "others",
+            "openmrs_entity_parent": ""
+          }
+        ],
+        "v_required": {
+          "value": true,
+          "err": "Please select atleast one"
+        }
+      },
+
+      {
+        "key": "desc_of_post_op_adverse_event",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "desc_of_post_op_adverse_event",
+        "label": "Description of post-operative adverse events",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "3_or_4_on_pain_scale",
+            "text": "3 or 4 on pain scale",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "3_or_4_on_pain_scale"
+          },
+          {
+            "key": "5_or_6_on_pain_scale",
+            "text": "5 or 6 on pain scale",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "5_or_6_on_pain_scale"
+          },
+
+          {
+            "key": "7_on_pain_scale",
+            "text": "7 on pain scale",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "7_on_pain_scale"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select atleast one scale"
+        }
+      },
+
+      {
+        "key": "desc_pozt_op_toaster",
+        "type": "toaster_notes",
+        "text": "AE classified as MILD",
+        "openmrs_entity_id": "desc_pozt_op_toaster",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "warning",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "nature_of_ae",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "nature_of_ae",
+        "type": "edit_text",
+        "hint": "What was the nature of AE",
+        "v_required": {
+          "value": "true",
+          "err": "Please fill the field"
+        }
+      },
+
+      {
+        "key": "what_done",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "what_done",
+        "type": "edit_text",
+        "hint": "What was done",
+        "v_required": {
+          "value": "true",
+          "err": "Please fill the field"
+        }
+      },
+
+      {
+        "key": "treatment_outcome",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "treatment_outcome",
+        "label": "Treatment outcome",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "adverse_event_completely_resolved",
+            "text": "Adverse event completely resolved",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "adverse_event_completely_resolved"
+          },
+          {
+            "key": "adverse_event_partially_resolved",
+            "text": "Adverse event partially resolved",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "adverse_event_partially_resolved"
+          },
+          {
+            "key": "adverse_event_unchanged",
+            "text": "Adverse event unchanged",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "adverse_event_unchanged"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select atleast one outcome"
+        }
+      },
+
+      {
+        "key": "was_condom_provided",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "was_condom_provided",
+        "label": "Was condom provided ?",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "yes",
+            "text": "Yes",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "yes"
+          },
+          {
+            "key": "no",
+            "text": "No",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "no"
+          },
+          {
+            "key": "na",
+            "text": "N/A",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "na"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select at least one"
+        }
+      },
+
+      {
+        "key": "condoms_issued",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "condoms_issued",
+        "type": "check_box",
+        "label": "Select the type of the condoms issued",
+        "label_text_style": "bold",
+        "options": [
+          {
+            "key": "male_condoms",
+            "text": "Male condoms",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": "male_condoms",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "female_condoms",
+            "text": "Female condoms",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": "female_condoms",
+            "openmrs_entity_parent": ""
+          }
+        ],
+        "v_required": {
+          "value": true,
+          "err": "Please select atleast one"
+        }
+      },
+
+      {
+        "key": "number_of_male_condoms_issued",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "number_of_male_condoms_issued",
+        "type": "edit_text",
+        "hint": "Number of male condoms issued (Pieces)",
+        "v_required": {
+          "value": "true",
+          "err": "Please fill the field"
+        }
+      },
+      {
+        "key": "number_of_female_condoms_issued",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "number_of_female_condoms_issued",
+        "type": "edit_text",
+        "hint": "Number of female condoms issued (Pieces)",
+        "v_required": {
+          "value": "true",
+          "err": "Please fill the field"
+        }
+      },
+
+      {
+        "key": "was_bandage_given",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "was_bandage_given",
+        "label": "Was bandage given ?",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "yes",
+            "text": "Yes",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "yes"
+          },
+          {
+            "key": "no",
+            "text": "No",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "no"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select at least one"
+        }
+      },
+
+      {
+        "key": "number_of_bandage_given",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "number_of_bandage_given",
+        "type": "edit_text",
+        "hint": "Number of bandage given",
+        "v_required": {
+          "value": "true",
+          "err": "Please fill the field"
+        }
+      },
+
+      {
+        "key": "provider_name",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "provider_name",
+        "type": "edit_text",
+        "hint": "Provider's name",
+        "v_required": {
+          "value": "true",
+          "err": "Please fill the field"
+        }
+      },
+
+      {
+        "key": "provider_center",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "provider_center",
+        "type": "edit_text",
+        "hint": "Provider's center",
+        "v_required": {
+          "value": "true",
+          "err": "Please fill the field"
+        }
+      }
+    ]
+  }
+}

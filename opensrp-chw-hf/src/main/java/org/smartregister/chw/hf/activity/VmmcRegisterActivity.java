@@ -4,6 +4,8 @@ import static org.smartregister.chw.core.utils.CoreConstants.JSON_FORM.getVmmcCo
 import android.app.Activity;
 import android.content.Intent;
 import org.smartregister.chw.core.activity.CoreVmmcRegisterActivity;
+import org.smartregister.chw.core.custom_views.NavigationMenu;
+import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.hf.fragment.VmmcRegisterFragment;
 import org.smartregister.view.fragment.BaseRegisterFragment;
 
@@ -20,5 +22,14 @@ public class VmmcRegisterActivity extends CoreVmmcRegisterActivity {
     @Override
     protected BaseRegisterFragment getRegisterFragment() {
         return new VmmcRegisterFragment();
+    }
+
+    @Override
+    protected void onResumption() {
+        super.onResumption();
+        NavigationMenu menu = NavigationMenu.getInstance(this, null, null);
+        if (menu != null) {
+            menu.getNavigationAdapter().setSelectedView(CoreConstants.DrawerMenu.VMMC);
+        }
     }
 }

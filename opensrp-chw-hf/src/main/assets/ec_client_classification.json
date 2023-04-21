@@ -1000,6 +1000,20 @@
             "creates_case": [
               "ec_vmmc_hts"
             ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "VMMC Consent Form",
+            "creates_case": [
+              "ec_vmmc_consent_form"
+            ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "VMMC Procedure",
+            "creates_case": [
+              "ec_vmmc_procedure"
+            ]
           }
         ]
       }

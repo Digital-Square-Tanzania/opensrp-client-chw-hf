@@ -2433,6 +2433,14 @@
           }
         },
         {
+          "column_name": "relational_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "relational_id"
+          }
+        },
+        {
           "column_name": "service_delivery_approach",
           "type": "Event",
           "json_mapping": {
@@ -8710,7 +8718,86 @@
           }
         }
       ]
+    },
+    {
+      "name": "ec_vmmc_consent_form",
+      "columns": [
+        {
+          "column_name": "base_entity_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "formSubmissionId"
+          }
+        },
+        {
+          "column_name": "entity_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "baseEntityId"
+          }
+        },
+        {
+          "column_name": "client_consent_for_mc_procedure",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "client_consent_for_mc_procedure"
+          }
+        },
+        {
+          "column_name": "consent_form",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "consent_form"
+          }
+        },
+        {
+          "column_name": "health_care_provider",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "health_care_provider"
+          }
+        }
+      ]
+    },
+    {
+      "name": "ec_vmmc_procedure",
+      "columns": [
+        {
+          "column_name": "base_entity_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "formSubmissionId"
+          }
+        },
+        {
+          "column_name": "entity_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "baseEntityId"
+          }
+        },
+        {
+          "column_name": "is_male_procedure_circumcision_conducted",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "is_male_procedure_circumcision_conducted"
+          }
+        },
+        {
+          "column_name": "reason",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "reason"
+          }
+        }
+      ]
     }
+
 
   ]
 }

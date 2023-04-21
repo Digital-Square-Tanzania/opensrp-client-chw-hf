@@ -199,10 +199,6 @@
         "v_required": {
           "value": "true",
           "err": "Please enter the UDS  managed "
-        },
-        "v_regex": {
-          "value": "[A-Za-z\\s\\.\\-]*",
-          "err": "Please enter a valid name"
         }
       },
       {
@@ -218,10 +214,6 @@
         "v_required": {
           "value": "true",
           "err": "Please enter the Pallor  managed"
-        },
-        "v_regex": {
-          "value": "[A-Za-z\\s\\.\\-]*",
-          "err": "Please enter a valid name"
         }
       },
       {
@@ -237,10 +229,6 @@
         "v_required": {
           "value": "true",
           "err": "Please enter the GUD  managed"
-        },
-        "v_regex": {
-          "value": "[A-Za-z\\s\\.\\-]*",
-          "err": "Please enter a valid name"
         }
       }
     ]

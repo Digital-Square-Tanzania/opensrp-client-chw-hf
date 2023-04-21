@@ -477,30 +477,9 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "",
         "openmrs_entity_id": "",
-        "type": "edit_text",
-        "hint": "Date of most recent tetanus booster",
-        "edit_type": "name",
-        "v_regex": {
-          "value": "[A-Za-z\\s\\.\\-]*",
-          "err": "Please enter a valid name"
-        },
-        "v_max_length": {
-          "value": 11,
-          "err": "length not more then 11",
-          "is_fixed_size": true
-        }
-      },
-      {
-        "key": "tetanus_booster_date",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "",
         "type": "date_picker",
         "hint": "Date of most recent tetanus booster",
         "expanded": false,
-        "duration": {
-          "label": "Age"
-        },
         "max_date": "today"
       }
     ]

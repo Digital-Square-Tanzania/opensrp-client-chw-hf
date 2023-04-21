@@ -25,6 +25,7 @@ import org.smartregister.chw.hf.activity.LDProfileActivity;
 import org.smartregister.chw.hf.activity.MalariaProfileActivity;
 import org.smartregister.chw.hf.activity.PncMemberProfileActivity;
 import org.smartregister.chw.hf.activity.TbProfileActivity;
+import org.smartregister.chw.hf.activity.VmmcProfileActivity;
 import org.smartregister.chw.hf.dao.FamilyDao;
 import org.smartregister.chw.hf.dao.HfHivDao;
 import org.smartregister.chw.hf.dao.HfHtsDao;
@@ -93,6 +94,9 @@ public class AllClientsUtils {
                 case CoreConstants.REGISTER_TYPE.KVP:
                     AllClientsUtils.goToKVPProfile(activity, commonPersonObjectClient);
                     break;
+                case CoreConstants.REGISTER_TYPE.VMMC:
+                    AllClientsUtils.goToVmmcProfile(activity, commonPersonObjectClient);
+                    break;
                 default:
                     AllClientsUtils.goToOtherMemberProfile(activity, commonPersonObjectClient, bundle,
                             familyDetailsModel.getFamilyHead(), familyDetailsModel.getPrimaryCareGiver());
@@ -147,6 +151,10 @@ public class AllClientsUtils {
 
     public static void goToKVPProfile(Activity activity, CommonPersonObjectClient patient) {
         KvpProfileActivity.startProfile(activity, patient.getCaseId());
+    }
+
+    public static void goToVmmcProfile(Activity activity, CommonPersonObjectClient patient) {
+        VmmcProfileActivity.startProfileActivity(activity, patient.getCaseId());
     }
 
     private static Intent initProfileActivityIntent(Activity activity, CommonPersonObjectClient patient, Bundle bundle, Class clazz) {

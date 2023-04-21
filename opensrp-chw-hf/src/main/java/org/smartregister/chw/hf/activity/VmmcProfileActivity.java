@@ -10,19 +10,27 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.snackbar.Snackbar;
+
+import org.apache.commons.lang3.StringUtils;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.core.activity.CoreFamilyProfileActivity;
 import org.smartregister.chw.core.activity.CoreVmmcProfileActivity;
 import org.smartregister.chw.core.presenter.CoreFamilyOtherMemberActivityPresenter;
 import org.smartregister.chw.core.utils.CoreConstants;
+import org.smartregister.chw.core.utils.FormUtils;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.adapter.ReferralCardViewAdapter;
 import org.smartregister.chw.hf.contract.VmmcProfileContract;
 import org.smartregister.chw.hf.presenter.FamilyOtherMemberActivityPresenter;
+import org.smartregister.chw.hiv.dao.HivDao;
+import org.smartregister.chw.hivst.dao.HivstDao;
 import org.smartregister.chw.kvp.KvpLibrary;
 import org.smartregister.chw.vmmc.domain.Visit;
 import org.smartregister.chw.vmmc.util.Constants;
@@ -49,6 +57,19 @@ public class VmmcProfileActivity extends CoreVmmcProfileActivity {
         activity.startActivity(intent);
     }
 
+    @Override
+    public void startVmmcNotifiableForm(String baseEntityId) {
+        JSONObject form = FormUtils.getFormUtils().getFormJson(Constants.FORMS.VMMC_NOTIFIABLE);
+//        try {
+//            form.put(org.smartregister.util.JsonFormUtils.ENTITY_ID, baseEntityId);
+////            JSONObject global = form.getJSONObject("global");
+////            boolean knownPositiveFromHIV = HivDao.isRegisteredForHiv(baseEntityId) && StringUtils.isNotBlank(HivDao.getMember(baseEntityId).getCtcNumber());
+////            global.put("known_positive", HivstDao.isTheClientKnownPositiveAtReg(baseEntityId) || knownPositiveFromHIV);
+//        } catch (JSONException e) {
+//            Timber.e(e);
+//        }
+        startFormActivity(form);
+    }
 
     @Override
     public void openFollowupVisit() {
@@ -58,10 +79,19 @@ public class VmmcProfileActivity extends CoreVmmcProfileActivity {
     @Override
     public void onClick(View view) {
         int id = view.getId();
+        if (id == R.id.textview_discharge_vmmc) {
+//            Snackbar.make(view.findViewById(R.id.textview_procedure_vmmc),"Hello Dev",Snackbar.LENGTH_LONG).show();
+            VmmcDischargeActivity.startVmmcVisitDischargeActivity(this, baseEntityId, true);
+        }
         if (id == R.id.textview_record_vmmc) {
             VmmcServiceActivity.startVmmcVisitActivity(this, baseEntityId, true);
-        } else {
-            super.onClick(view);
+        }
+        if (id == R.id.textview_procedure_vmmc) {
+//            Snackbar.make(view.findViewById(R.id.textview_procedure_vmmc),"Hello Dev",Snackbar.LENGTH_LONG).show();
+            VmmcProcedureActivity.startVmmcVisitProcedureActivity(this, baseEntityId, true);
+        }
+        else {
+//            super.onClick(view);
         }
     }
 
@@ -101,18 +131,18 @@ public class VmmcProfileActivity extends CoreVmmcProfileActivity {
 
     }
 
-    @Override
-    public void refreshMedicalHistory(boolean hasHistory) {
-        Visit kvpBehavioralServices = getVisit(Constants.EVENT_TYPE.VMMC_CONFIRMATION);
-        if (kvpBehavioralServices != null) {
-            rlLastVisit.setVisibility(View.VISIBLE);
-            findViewById(R.id.view_notification_and_referral_row).setVisibility(View.VISIBLE);
-            ((TextView) findViewById(R.id.vViewHistory)).setText(R.string.visits_history);
-            ((TextView) findViewById(R.id.ivViewHistoryArrow)).setText(getString(R.string.view_visits_history));
-        } else {
-            rlLastVisit.setVisibility(View.GONE);
-        }
-    }
+//    @Override
+//    public void refreshMedicalHistory(boolean hasHistory) {
+//        Visit kvpBehavioralServices = getVisit(Constants.EVENT_TYPE.VMMC_CONFIRMATION);
+//        if (kvpBehavioralServices != null) {
+//            rlLastVisit.setVisibility(View.VISIBLE);
+//            findViewById(R.id.view_notification_and_referral_row).setVisibility(View.VISIBLE);
+//            ((TextView) findViewById(R.id.vViewHistory)).setText(R.string.visits_history);
+//            ((TextView) findViewById(R.id.ivViewHistoryArrow)).setText(getString(R.string.view_visits_history));
+//        } else {
+//            rlLastVisit.setVisibility(View.GONE);
+//        }
+//    }
 
 //    @Override
 //    public void openMedicalHistory() {
