@@ -90,6 +90,10 @@ public class VmmcProfileActivity extends CoreVmmcProfileActivity {
 //            Snackbar.make(view.findViewById(R.id.textview_procedure_vmmc),"Hello Dev",Snackbar.LENGTH_LONG).show();
             VmmcProcedureActivity.startVmmcVisitProcedureActivity(this, baseEntityId, true);
         }
+        if (id == R.id.textview_notifiable_vmmc) {
+//            Snackbar.make(view.findViewById(R.id.textview_procedure_vmmc),"Hello Dev",Snackbar.LENGTH_LONG).show();
+            startVmmcNotifiableForm( baseEntityId);
+        }
         else {
 //            super.onClick(view);
         }
