@@ -65,15 +65,21 @@
         "options": [
           {
             "key":"satisfactory",
-            "text": "Satisfactory"
+            "text": "Satisfactory",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "satisfactory"
           },
           {
             "key":"needs",
-            "text": "Needs follow-up"
+            "text": "Needs follow-up",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "needs"
           },
           {
-            "key":"referred",
-            "text": "Referred (Specify)"
+            "key":"not_discharged",
+            "text": "Not discharged",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "not_discharged"
           }
         ],
         "v_required": {
@@ -82,20 +88,43 @@
         }
       },
       {
+        "key": "discharged_reasons",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "discharged_reasons",
+        "type": "edit_text",
+        "hint": "Specify Discharge Reason",
+        "edit_type": "text",
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the reason"
+        },
+        "relevance": {
+          "step1:discharge_condition": {
+            "type": "string",
+            "ex": "equalTo(., \"not_discharged\")"
+          }
+        }
+      },
+      {
         "key": "analgesics_given",
         "openmrs_entity_parent": "",
         "openmrs_entity": "",
-        "openmrs_entity_id": "165008AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "openmrs_entity_id": "analgesics_given",
         "type": "native_radio",
-        "label": "General condition at discharge",
+        "label": "Analgesics Given",
         "options": [
           {
-            "key":"1",
-            "text": "Yes"
+            "key":"yes",
+            "text": "Yes",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "yes"
           },
           {
-            "key":"0",
-            "text": "No"
+            "key":"no",
+            "text": "No",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "no"
           }
         ],
         "v_required": {
@@ -104,16 +133,60 @@
         }
       },
       {
-        "key": "dosage_type",
+        "key": "analgenics_type",
         "openmrs_entity_parent": "",
         "openmrs_entity": "",
-        "openmrs_entity_id": "165009AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "openmrs_entity_id": "analgenics_type",
         "type": "edit_text",
-        "hint": "Specify type and dosage",
+        "hint": "Specify Analgesics Type",
         "edit_type": "text",
         "v_required": {
           "value": "true",
-          "err": "Please enter the dosage type"
+          "err": "Please enter the type"
+        },
+        "relevance": {
+          "step1:analgesics_given": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
+        }
+      },
+      {
+        "key": "analgenics_dosage",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "analgenics_dosage",
+        "type": "edit_text",
+        "hint": "Specify Analgesics Dosage",
+        "edit_type": "text",
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the dosage"
+        },
+        "relevance": {
+          "step1:analgesics_given": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
+        }
+      },
+      {
+        "key": "analgenics_reasons",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "analgenics_reasons",
+        "type": "edit_text",
+        "hint": "Specify Analgenics Reason",
+        "edit_type": "text",
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the reason"
+        },
+        "relevance": {
+          "step1:analgesics_given": {
+            "type": "string",
+            "ex": "equalTo(., \"no\")"
+          }
         }
       },
       {

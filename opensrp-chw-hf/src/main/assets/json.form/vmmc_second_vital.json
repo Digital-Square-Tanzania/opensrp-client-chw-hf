@@ -125,9 +125,12 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "",
         "openmrs_entity_id": "1650012AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "type": "edit_text",
+        "type": "time_picker",
         "hint": "Time taken",
-        "edit_type": "number",
+        "expandable": false,
+        "duration": {
+          "label": "Time taken"
+        },
         "v_required": {
           "value": "true",
           "err": "Please enter the time taken"
