@@ -68,7 +68,7 @@
         }
       },
       {
-        "key": "reasons",
+        "key": "hiv_reasons",
         "openmrs_entity_parent": "",
         "openmrs_entity": "",
         "openmrs_entity_id": "",
@@ -78,6 +78,12 @@
         "v_regex": {
           "value": "[A-Za-z\\s\\.\\-]*",
           "err": "Please enter a valid reason"
+        },
+        "relevance": {
+          "step1:tested_hiv": {
+            "type": "string",
+            "ex": "equalTo(., \"no\")"
+          }
         }
       },
       {
@@ -154,6 +160,29 @@
         }
       },
       {
+        "key": "client_referred_to_others",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "client_referred_to_others",
+        "type": "edit_text",
+        "hint": "Other(Specify)",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
+        "relevance": {
+          "step1:client_referred_to": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "other"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
         "key": "toaster_notes",
         "openmrs_entity_parent": "",
         "openmrs_entity": "person_attribute",
@@ -187,6 +216,25 @@
         }
       },
       {
+        "key": "mc_reasons",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "hint": "Reasons",
+        "edit_type": "name",
+        "v_regex": {
+          "value": "[A-Za-z\\s\\.\\-]*",
+          "err": "Please enter a valid reason"
+        },
+        "relevance": {
+          "step1:client_medically_cleared": {
+            "type": "string",
+            "ex": "equalTo(., \"no\")"
+          }
+        }
+      },
+      {
         "key": "uds_managed",
         "openmrs_entity_parent": "",
         "openmrs_entity": "",
@@ -199,6 +247,12 @@
         "v_required": {
           "value": "true",
           "err": "Please enter the UDS  managed "
+        },
+        "relevance": {
+          "step1:client_medically_cleared": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
         }
       },
       {
@@ -214,6 +268,12 @@
         "v_required": {
           "value": "true",
           "err": "Please enter the Pallor  managed"
+        },
+        "relevance": {
+          "step1:client_medically_cleared": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
         }
       },
       {
@@ -229,6 +289,12 @@
         "v_required": {
           "value": "true",
           "err": "Please enter the GUD  managed"
+        },
+        "relevance": {
+          "step1:client_medically_cleared": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
         }
       }
     ]

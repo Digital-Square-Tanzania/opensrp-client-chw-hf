@@ -128,7 +128,7 @@ public class VmmcVisitDischargeInteractor extends BaseVmmcVisitInteractor {
 
     @Override
     protected String getEncounterType() {
-        return Constants.EVENT_TYPE.VMMC_CONFIRMATION;
+        return Constants.EVENT_TYPE.VMMC_DISCHARGE;
     }
 
     @Override

@@ -38,7 +38,7 @@ public class VmmcProcedureActivity extends BaseVmmcVisitActivity {
 
     @Override
     protected void registerPresenter() {
-        presenter = new BaseVmmcVisitPresenter(memberObject, this, new VmmcVisitProcedureInteractor(Constants.EVENT_TYPE.VMMC_CONFIRMATION));
+        presenter = new BaseVmmcVisitPresenter(memberObject, this, new VmmcVisitProcedureInteractor(Constants.EVENT_TYPE.VMMC_PROCEDURE));
     }
 
     @Override
@@ -56,7 +56,7 @@ public class VmmcProcedureActivity extends BaseVmmcVisitActivity {
 
     @Override
     public void submittedAndClose() {
-        Runnable runnable = () -> HfScheduleTaskExecutor.getInstance().execute(memberObject.getBaseEntityId(), Constants.EVENT_TYPE.VMMC_CONFIRMATION, new Date());
+        Runnable runnable = () -> HfScheduleTaskExecutor.getInstance().execute(memberObject.getBaseEntityId(), Constants.EVENT_TYPE.VMMC_FOLLOW_UP_VISIT, new Date());
         Utils.startAsyncTask(new RunnableTask(runnable), null);
         super.submittedAndClose();
     }

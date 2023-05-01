@@ -39,7 +39,6 @@ public class VmmcVisitProcedureInteractor extends BaseVmmcVisitInteractor {
             try {
                 evaluateConsentForm(details);
                 evaluateMcProcedure(details);
-//                evaluateVmmcHTS(details);
 
             } catch (BaseVmmcVisitAction.ValidationException e) {
                 Timber.e(e);
@@ -52,7 +51,7 @@ public class VmmcVisitProcedureInteractor extends BaseVmmcVisitInteractor {
     }
 
     private void evaluateConsentForm(Map<String, List<VisitDetail>> details) throws BaseVmmcVisitAction.ValidationException {
-//        JSONObject prepVisitType = FormUtils.getFormUtils().getFormJson(Constants.VMMC_FOLLOWUP_FORMS.MEDICAL_HISTORY);
+        JSONObject consentVisitType = FormUtils.getFormUtils().getFormJson(Constants.VMMC_FOLLOWUP_FORMS.CONSENT_FORM);
 
 //        try {
 //            if (HfVmmcDao.hasPrepFollowup(memberObject.getBaseEntityId())) {
@@ -69,7 +68,7 @@ public class VmmcVisitProcedureInteractor extends BaseVmmcVisitInteractor {
         BaseVmmcVisitAction action = getBuilder(context.getString(R.string.vmmc_consent_form))
                 .withOptional(false)
                 .withDetails(details)
-//                .withJsonPayload(prepVisitType.toString())
+                .withJsonPayload(consentVisitType.toString())
 //                .withHelper(actionHelper)
                 .withFormName(Constants.VMMC_FOLLOWUP_FORMS.CONSENT_FORM)
                 .build();
@@ -78,61 +77,28 @@ public class VmmcVisitProcedureInteractor extends BaseVmmcVisitInteractor {
     }
 
     private void evaluateMcProcedure(Map<String, List<VisitDetail>> details) throws BaseVmmcVisitAction.ValidationException {
+        JSONObject procedureVisitType = FormUtils.getFormUtils().getFormJson(Constants.VMMC_FOLLOWUP_FORMS.MC_PROCEDURE);
+
+
         BaseVmmcVisitAction action = getBuilder(context.getString(R.string.vmmc_mc_procedure))
                 .withOptional(false)
                 .withDetails(details)
-//                .withJsonPayload(prepVisitType.toString())
+                .withJsonPayload(procedureVisitType.toString())
 //                .withHelper(actionHelper)
                 .withFormName(Constants.VMMC_FOLLOWUP_FORMS.MC_PROCEDURE)
                 .build();
         actionList.put(context.getString(R.string.vmmc_mc_procedure), action);
     }
 
-    private void evaluateVmmcHTS(Map<String, List<VisitDetail>> details) throws BaseVmmcVisitAction.ValidationException {
-        JSONObject prepInitiation = FormUtils.getFormUtils().getFormJson(Constants.VMMC_FOLLOWUP_FORMS.HTS);
-
-//        try {
-//            if (HfVmmcDao.isPrEPInitiated(memberObject.getBaseEntityId())) {
-//                JSONArray fields = prepInitiation.getJSONObject(STEP1).getJSONArray(FIELDS);
-//                JSONObject prepStatus = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "prep_status");
-//                prepStatus.getJSONArray("options").remove(3);
-//                prepStatus.getJSONArray("options").remove(0);
-//            }
-//        } catch (Exception e) {
-//            Timber.e(e);
-//        }
-
-        BaseVmmcVisitAction action = getBuilder(context.getString(R.string.vmmc_hts))
-                .withOptional(false)
-                .withDetails(details)
-//                .withJsonPayload(prepVisitType.toString())
-//                .withHelper(actionHelper)
-                .withFormName(Constants.VMMC_FOLLOWUP_FORMS.HTS)
-                .build();
-        actionList.put(context.getString(R.string.vmmc_hts), action);
-    }
-
-//    private void evaluateOtherServices(Map<String, List<VisitDetail>> details) throws BaseVmmcVisitAction.ValidationException {
-//
-//        PrEPOtherServicesActionHelper actionHelper = new PrEPOtherServicesActionHelper();
-//        BaseVmmcVisitAction action = getBuilder(context.getString(R.string.other_services))
-//                .withOptional(true)
-//                .withDetails(details)
-//                .withHelper(actionHelper)
-//                .withFormName(Constants.VMMC_FOLLOWUP_FORMS.HTS)
-//                .build();
-//
-//        actionList.put(context.getString(R.string.other_services), action);
-//    }
 
     @Override
     protected String getEncounterType() {
-        return Constants.EVENT_TYPE.VMMC_CONFIRMATION;
+        return Constants.EVENT_TYPE.VMMC_PROCEDURE;
     }
 
     @Override
     protected String getTableName() {
-        return Constants.TABLES.VMMC_CONFIRMATION;
+        return Constants.TABLES.VMMC_PROCEDURE;
     }
 
 //    private class VmmcVisitTypeActionHelper extends org.smartregister.chw.hf.actionhelper.vmmc.VmmcVisitTypeActionHelper {
@@ -178,3 +144,4 @@ public class VmmcVisitProcedureInteractor extends BaseVmmcVisitInteractor {
 //        }
 //    }
 }
+

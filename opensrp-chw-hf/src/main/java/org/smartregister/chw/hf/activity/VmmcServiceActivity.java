@@ -71,10 +71,10 @@ public class VmmcServiceActivity extends BaseVmmcVisitActivity {
             BaseVmmcVisitAction visitTypeAction = map.get(getString(R.string.vmmc_medical_history));
             actionList.put(getString(R.string.vmmc_medical_history), visitTypeAction);
         }
-        if (map.containsKey(getString(R.string.vmmc_physical_examination))) {
-            BaseVmmcVisitAction vmmcExamAction = map.get(getString(R.string.vmmc_physical_examination));
-            actionList.put(getString(R.string.vmmc_physical_examination), vmmcExamAction);
-        }
+//        if (map.containsKey(getString(R.string.vmmc_physical_examination))) {
+//            BaseVmmcVisitAction vmmcExamAction = map.get(getString(R.string.vmmc_physical_examination));
+//            actionList.put(getString(R.string.vmmc_physical_examination), vmmcExamAction);
+//        }
 
 
         for (Map.Entry<String, BaseVmmcVisitAction> entry : map.entrySet()) {

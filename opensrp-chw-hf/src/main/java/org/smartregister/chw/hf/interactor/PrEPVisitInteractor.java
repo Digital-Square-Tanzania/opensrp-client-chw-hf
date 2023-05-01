@@ -133,7 +133,6 @@ public class PrEPVisitInteractor extends BaseKvpVisitInteractor {
 
         actionList.put(context.getString(R.string.other_services), action);
     }
-
     @Override
     protected String getEncounterType() {
         return Constants.EVENT_TYPE.PrEP_FOLLOWUP_VISIT;

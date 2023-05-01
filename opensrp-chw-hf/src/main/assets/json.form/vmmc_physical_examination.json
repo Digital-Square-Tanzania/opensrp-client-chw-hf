@@ -52,6 +52,9 @@
         "type": "check_box",
         "label": "Any significant physical abnormality on general examination? (Check all applicable)",
         "text_color": "#000000",
+        "exclusive": [
+          "none"
+        ],
         "options": [
           {
             "key": "pallor",
@@ -68,14 +71,14 @@
             "openmrs_entity_id": ""
           },
           {
-            "key": "petechiae:",
+            "key": "petechiae",
             "text": "Petechiae/Ecchymosis/Epistaxis",
             "value": false,
             "openmrs_entity": "",
             "openmrs_entity_id": ""
           },
           {
-            "key": "joint_deformity ",
+            "key": "joint_deformity",
             "text": "Joint deformity ",
             "value": false,
             "openmrs_entity": "",
@@ -102,14 +105,52 @@
         }
       },
       {
-        "key": "toaster_notes",
+        "key": "physical_abnormality_others",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "physical_abnormality_others",
+        "type": "edit_text",
+        "hint": "Other(Specify)",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
+        "relevance": {
+          "step1:physical_abnormality": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "others"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "toaster_physical_abnormality",
         "openmrs_entity_parent": "",
         "openmrs_entity": "person_attribute",
         "openmrs_entity_id": "toaster_notes",
         "type": "toaster_notes",
         "text": "Do not perform Male circumcision link/refer to other service",
         "text_color": "#CF0800",
-        "toaster_type": "problem"
+        "toaster_type": "problem",
+        "relevance": {
+          "step1:physical_abnormality": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "pallor",
+                  "jaundice",
+                  "petechiae",
+                  "joint_deformity",
+                  "others"
+                ]
+              }
+            ]
+          }
+        }
       },
       {
         "key": "client_weight",
@@ -119,7 +160,7 @@
         "entity_id": "",
         "type": "edit_text",
         "hint": "Client’s Weight (KG)",
-        "edit_type": "name",
+        "edit_type": "number",
         "look_up": "true",
         "v_required": {
           "value": "true",
@@ -134,7 +175,7 @@
         "entity_id": "",
         "type": "edit_text",
         "hint": "Pulse Rate (Beats per minute",
-        "edit_type": "name",
+        "edit_type": "number",
         "look_up": "true",
         "v_required": {
           "value": "true",
@@ -149,7 +190,7 @@
         "entity_id": "",
         "type": "edit_text",
         "hint": "Systolic (Blood Pressure) ",
-        "edit_type": "name",
+        "edit_type": "number",
         "look_up": "true",
         "v_required": {
           "value": "true",
@@ -164,7 +205,7 @@
         "entity_id": "",
         "type": "edit_text",
         "hint": "Diastolic (Blood Pressure) ",
-        "edit_type": "name",
+        "edit_type": "number",
         "look_up": "true",
         "v_required": {
           "value": "true",
@@ -179,7 +220,7 @@
         "entity_id": "mother",
         "type": "edit_text",
         "hint": "Temperature (°C)",
-        "edit_type": "name",
+        "edit_type": "number",
         "look_up": "true",
         "v_required": {
           "value": "true",
@@ -194,7 +235,7 @@
         "entity_id": "",
         "type": "edit_text",
         "hint": "Respiration rate (Breath per minute) ",
-        "edit_type": "name",
+        "edit_type": "number",
         "look_up": "true",
         "v_required": {
           "value": "true",
@@ -209,6 +250,9 @@
         "type": "check_box",
         "label": "Genital examination",
         "text_color": "#000000",
+        "exclusive": [
+          "none"
+        ],
         "options": [
           {
             "key": "uds",
@@ -225,7 +269,7 @@
             "openmrs_entity_id": ""
           },
           {
-            "key": " smegma:",
+            "key": " smegma",
             "text": "Smegma under the foreskin",
             "value": false,
             "openmrs_entity": "",
@@ -314,16 +358,60 @@
           "err": "Please specify any other symptoms or select none"
         }
       },
-
       {
-        "key": "toaster_notes",
+        "key": "genital_examination_others",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "genital_examination_others",
+        "type": "edit_text",
+        "hint": "Other(Specify)",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
+        "relevance": {
+          "step1:genital_examination": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "others"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "toaster_genital_examination",
         "openmrs_entity_parent": "",
         "openmrs_entity": "person_attribute",
         "openmrs_entity_id": "toaster_notes",
         "type": "toaster_notes",
         "text": "Do not perform Male circumcision  until the issue is resolved/refer to other service",
         "text_color": "#CF0800",
-        "toaster_type": "problem"
+        "toaster_type": "problem",
+        "relevance": {
+          "step1:genital_examination": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "uds",
+                  "gud",
+                  "phimosis",
+                  "paraphimosis",
+                  "undescended_testicles",
+                  "condylomata_lata",
+                  "adhesion_prepuce",
+                  "hydrocele",
+                  "balanitis",
+                  "opening_abnormality",
+                  "chordae",
+                  "others"
+                ]
+              }
+            ]
+          }
+        }
       },
       {
         "key": "preferred_client",
