@@ -69,6 +69,22 @@
         }
       },
       {
+        "key": "toaster_notes",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person_attribute",
+        "openmrs_entity_id": "toaster_notes",
+        "type": "toaster_notes",
+        "text": "Do not perform Male circumcision link/refer to other service",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "step1:has_client_had_any_sti": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
+        }
+      },
+      {
         "key": "any_complaints",
         "openmrs_entity_parent": "",
         "openmrs_entity": "",
@@ -76,6 +92,9 @@
         "type": "check_box",
         "label": "Does the client currently have any of the following complaints?",
         "text_color": "#000000",
+        "exclusive": [
+          "none"
+        ],
         "options": [
           {
             "key": "urethral_discharge",
@@ -147,6 +166,57 @@
         }
       },
       {
+        "key": "any_complaints_others",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "any_complaints_others",
+        "type": "edit_text",
+        "hint": "Other(Specify)",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
+        "relevance": {
+          "step1:any_complaints": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "others"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "toaster_any_complaints",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person_attribute",
+        "openmrs_entity_id": "toaster_notes",
+        "type": "toaster_notes",
+        "text": "Do not perform Male circumcision link/refer to other service",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "step1:any_complaints": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "urethral_discharge",
+                  "pain_on_erection",
+                  "painful_micturition",
+                  "genital_warts",
+                  "genital_sore",
+                  "swelling_scrotum",
+                  "difficulty_retracting_foreskin",
+                  "others"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
         "key": "client_diagnosed",
         "openmrs_entity_parent": "",
         "openmrs_entity": "",
@@ -197,14 +267,27 @@
         }
       },
       {
-        "key": "toaster_notes",
+        "key": "client_diagnosed_others",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "person_attribute",
-        "openmrs_entity_id": "toaster_notes",
-        "type": "toaster_notes",
-        "text": "Do not perform Male circumcision link/refer to other service",
-        "text_color": "#CF0800",
-        "toaster_type": "problem"
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "client_diagnosed_others",
+        "type": "edit_text",
+        "hint": "Other(Specify)",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
+        "relevance": {
+          "step1:client_diagnosed": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "others"
+                ]
+              }
+            ]
+          }
+        }
       },
       {
         "key": "toaster_notes",
@@ -283,6 +366,12 @@
         "value": "",
         "v_required": {
           "value": true
+        },
+        "relevance": {
+          "step1:surgical_procedure": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
         }
       },
       {
@@ -319,6 +408,35 @@
         "v_required": {
           "value": true,
           "err": "Please specify any other symptoms or select none"
+        },
+        "relevance": {
+          "step1:complications_previous_surgical": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
+        }
+      },
+      {
+        "key": "type_complication_others",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "type_complication_others",
+        "type": "edit_text",
+        "hint": "Other(Specify)",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
+        "relevance": {
+          "step1:type_complication": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "others"
+                ]
+              }
+            ]
+          }
         }
       },
       {
@@ -426,7 +544,7 @@
             "openmrs_entity_id": ""
           },
           {
-            "key": " any_other_medications:",
+            "key": " any_other_medications",
             "text": "Any other medications (specify)",
             "value": false,
             "openmrs_entity": "",
@@ -445,7 +563,29 @@
           "err": "Please specify any other symptoms or select none"
         }
       },
-
+      {
+        "key": "known_allergies_others",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "known_allergies_others",
+        "type": "edit_text",
+        "hint": "other medication(Specify)",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
+        "relevance": {
+          "step1:known_allergies": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "any_other_medications"
+                ]
+              }
+            ]
+          }
+        }
+      },
       {
         "key": "tetanus_vaccination",
         "openmrs_entity_parent": "",
@@ -481,7 +621,13 @@
         "type": "date_picker",
         "hint": "Date of most recent tetanus booster",
         "expanded": false,
-        "max_date": "today"
+        "max_date": "today",
+        "relevance": {
+          "step1:tetanus_vaccination": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
+        }
       }
     ]
   }

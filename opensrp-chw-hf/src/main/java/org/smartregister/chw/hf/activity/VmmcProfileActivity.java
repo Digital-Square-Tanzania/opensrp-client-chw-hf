@@ -79,23 +79,27 @@ public class VmmcProfileActivity extends CoreVmmcProfileActivity {
     @Override
     public void onClick(View view) {
         int id = view.getId();
-        if (id == R.id.textview_discharge_vmmc) {
-//            Snackbar.make(view.findViewById(R.id.textview_procedure_vmmc),"Hello Dev",Snackbar.LENGTH_LONG).show();
-            VmmcDischargeActivity.startVmmcVisitDischargeActivity(this, baseEntityId, true);
-        }
-        if (id == R.id.textview_record_vmmc) {
-            VmmcServiceActivity.startVmmcVisitActivity(this, baseEntityId, true);
-        }
+//        if (id == R.id.textview_record_vmmc) {
+//            VmmcServiceActivity.startVmmcVisitActivity(this, baseEntityId, true);
+//        }
         if (id == R.id.textview_procedure_vmmc) {
 //            Snackbar.make(view.findViewById(R.id.textview_procedure_vmmc),"Hello Dev",Snackbar.LENGTH_LONG).show();
-            VmmcProcedureActivity.startVmmcVisitProcedureActivity(this, baseEntityId, true);
+            VmmcProcedureActivity.startVmmcVisitProcedureActivity(this, baseEntityId, false);
+        }
+//        if (id == R.id.textview_notifiable_vmmc) {
+////            Snackbar.make(view.findViewById(R.id.textview_procedure_vmmc),"Hello Dev",Snackbar.LENGTH_LONG).show();
+//            startVmmcNotifiableForm( baseEntityId);
+//        }
+        if (id == R.id.textview_discharge_vmmc) {
+//            Snackbar.make(view.findViewById(R.id.textview_procedure_vmmc),"Hello Dev",Snackbar.LENGTH_LONG).show();
+            VmmcDischargeActivity.startVmmcVisitDischargeActivity(this, baseEntityId, false);
         }
         if (id == R.id.textview_notifiable_vmmc) {
 //            Snackbar.make(view.findViewById(R.id.textview_procedure_vmmc),"Hello Dev",Snackbar.LENGTH_LONG).show();
             startVmmcNotifiableForm( baseEntityId);
         }
         else {
-//            super.onClick(view);
+            super.onClick(view);
         }
     }
 

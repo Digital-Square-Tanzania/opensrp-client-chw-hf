@@ -41,9 +41,9 @@
     },
     "encounter_location": ""
   },
-  "global": {},
+
   "step1": {
-    "title": "Vmmc Registration",
+    "title": "Vmmc",
     "fields": [
       {
         "key": "service_delivery_approach",
@@ -72,6 +72,31 @@
         "v_required": {
           "value": "true",
           "err": "Please select an answer"
+        }
+      },
+      {
+        "key": "client_id_number",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "client_id_number",
+        "type": "mask_edit_text",
+        "mask": "#######-####-####",
+        "mask_hint": "123456789123456",
+        "allowed_chars": "0123456789",
+        "hint": "Client Id Number",
+        "edit_type": "number",
+        "v_regex": {
+          "value": "(\\d{7}-\\d{4}-\\d{4})?",
+          "err": "Client Id Number should be of the format (XXXXXXX-XXXX-XXXX)"
+        },
+        "v_max_length": {
+          "value": "17",
+          "is_fixed_size": "true",
+          "err": "Please enter a valid Client Id Number"
+        },
+        "v_required": {
+          "value": true,
+          "err": "Please enter a valid Client Id Number"
         }
       },
       {
@@ -132,12 +157,22 @@
         }
       },
       {
-        "key": "client_id_number",
-        "type": "edit_text",
+        "key": "reffered_from_others",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "",
-        "hint": "111111-1111 2022"
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "reffered_from_others",
+        "type": "edit_text",
+        "hint": "Others",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
+        "relevance": {
+          "step1:reffered_from": {
+            "type": "string",
+            "ex": "equalTo(., \"others\")"
+          }
+        }
       }
     ]
   }
