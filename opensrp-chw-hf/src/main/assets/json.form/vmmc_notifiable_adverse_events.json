@@ -80,7 +80,6 @@
         "openmrs_entity_id": "did_client_experience_nae",
         "type": "check_box",
         "label": "Did the client experience a Notifiable Adverse Event",
-        "label_text_style": "bold",
         "options": [
           {
             "key": "tetanus_including_non_fatal_cases",
@@ -134,6 +133,13 @@
         "v_required": {
           "value": true,
           "err": "Please select atleast one"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_notifiable_adverse_event_relevance.yml"
+            }
+          }
         }
       },
       {
@@ -180,19 +186,6 @@
         }
       },
       {
-        "key": "time_nae_was_attended",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "time_nae_was_attended",
-        "type": "time_picker",
-        "hint": "Time Nae was attended ",
-        "expanded": false,
-        "v_required": {
-          "value": "true",
-          "err": "Please provide the time "
-        }
-      },
-      {
         "key": "nature_of_ae",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -214,6 +207,55 @@
         "v_required": {
           "value": "true",
           "err": "Please fill the field"
+        }
+      },
+      {
+        "key": "was_nae_attended",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "was_nae_attended",
+        "label": "Was NAE attended ?",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "yes",
+            "text": "Yes",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "yes"
+          },
+          {
+            "key": "no",
+            "text": "No",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "no"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select at least one"
+        }
+      },
+      {
+        "key": "time_nae_was_attended",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "time_nae_was_attended",
+        "type": "time_picker",
+        "hint": "Time Nae was attended ",
+        "expanded": false,
+        "v_required": {
+          "value": "true",
+          "err": "Please provide the time "
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_notifiable_adverse_event_relevance.yml"
+            }
+          }
         }
       },
       {
@@ -250,6 +292,29 @@
         "v_required": {
           "value": "true",
           "err": "Please select atleast one outcome"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_notifiable_adverse_event_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "toast_for_referral",
+        "type": "toaster_notes",
+        "text": "By selecting Adverse event partially resolved, Client will be reffered ",
+        "openmrs_entity_id": "toast_for_referral",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "warning",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_notifiable_adverse_event_relevance.yml"
+            }
+          }
         }
       }
     ]

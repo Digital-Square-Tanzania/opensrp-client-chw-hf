@@ -1,4 +1,5 @@
 {
+  "validate_on_submit": true,
   "count": "1",
   "encounter_type": "VMMC Consent form",
   "entity_id": "",
@@ -80,7 +81,14 @@
         "openmrs_entity_id": "provide_consent_form_signature",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
-        "toaster_type": "warning"
+        "toaster_type": "warning",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_consent_relevance.yml"
+            }
+          }
+        }
       },
       {
         "key": "consent_form",
@@ -116,6 +124,13 @@
         "v_required": {
           "value": "true",
           "err": "Please select at least one"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_consent_relevance.yml"
+            }
+          }
         }
       },
       {
@@ -124,7 +139,14 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "health_care_provider",
         "type": "edit_text",
-        "hint": "Health Care Provider's name"
+        "hint": "Health Care Provider's name",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_consent_relevance.yml"
+            }
+          }
+        }
       }
     ]
   }

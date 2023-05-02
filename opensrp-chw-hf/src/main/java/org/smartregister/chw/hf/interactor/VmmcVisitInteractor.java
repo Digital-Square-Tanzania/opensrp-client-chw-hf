@@ -62,23 +62,12 @@ public class VmmcVisitInteractor extends BaseVmmcVisitInteractor {
     private void evaluateVisitType(Map<String, List<VisitDetail>> details) throws BaseVmmcVisitAction.ValidationException {
         JSONObject vmmcMedicalHistory = FormUtils.getFormUtils().getFormJson(Constants.VMMC_FOLLOWUP_FORMS.MEDICAL_HISTORY);
 
-//        try {
-//            if (HfVmmcDao.hasPrepFollowup(memberObject.getBaseEntityId())) {
-////                JSONArray fields = prepVisitType.getJSONObject(STEP1).getJSONArray(FIELDS);
-////                JSONObject visitType = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "medical_history");
-////                visitType.getJSONArray("options").remove(2);
-////                visitType.getJSONArray("options").remove(0);
-//            }
-//        } catch (Exception e) {
-//            Timber.e(e);
-//        }
-
-//        VmmcVisitTypeActionHelper actionHelper = new VmmcVisitTypeActionHelper();
+        VmmcVisitTypeActionHelper actionHelper = new VmmcVisitTypeActionHelper();
         BaseVmmcVisitAction action = getBuilder(context.getString(R.string.vmmc_medical_history))
                 .withOptional(false)
                 .withDetails(details)
                 .withJsonPayload(vmmcMedicalHistory.toString())
-//                .withHelper(actionHelper)
+                .withHelper(actionHelper)
                 .withFormName(Constants.VMMC_FOLLOWUP_FORMS.MEDICAL_HISTORY)
                 .build();
         actionList.put(context.getString(R.string.vmmc_medical_history), action);
@@ -88,11 +77,12 @@ public class VmmcVisitInteractor extends BaseVmmcVisitInteractor {
     private void evaluateVmmcPhysicalExam(Map<String, List<VisitDetail>> details) throws BaseVmmcVisitAction.ValidationException {
         JSONObject vmmcPhysicalExam = FormUtils.getFormUtils().getFormJson(Constants.VMMC_FOLLOWUP_FORMS.PHYSICAL_EXAMINATION);
 
+        VmmcVisitTypeActionHelper actionHelper = new VmmcVisitTypeActionHelper();
         BaseVmmcVisitAction action = getBuilder(context.getString(R.string.vmmc_physical_examination))
                 .withOptional(false)
                 .withDetails(details)
                 .withJsonPayload(vmmcPhysicalExam.toString())
-//                .withHelper(actionHelper)
+                .withHelper(actionHelper)
                 .withFormName(Constants.VMMC_FOLLOWUP_FORMS.PHYSICAL_EXAMINATION)
                 .build();
         actionList.put(context.getString(R.string.vmmc_physical_examination), action);
@@ -101,22 +91,12 @@ public class VmmcVisitInteractor extends BaseVmmcVisitInteractor {
     private void evaluateVmmcHTS(Map<String, List<VisitDetail>> details) throws BaseVmmcVisitAction.ValidationException {
         JSONObject vmmcHTS = FormUtils.getFormUtils().getFormJson(Constants.VMMC_FOLLOWUP_FORMS.HTS);
 
-//        try {
-//            if (HfVmmcDao.isPrEPInitiated(memberObject.getBaseEntityId())) {
-//                JSONArray fields = prepInitiation.getJSONObject(STEP1).getJSONArray(FIELDS);
-//                JSONObject prepStatus = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "prep_status");
-//                prepStatus.getJSONArray("options").remove(3);
-//                prepStatus.getJSONArray("options").remove(0);
-//            }
-//        } catch (Exception e) {
-//            Timber.e(e);
-//        }
-
+        VmmcVisitTypeActionHelper actionHelper = new VmmcVisitTypeActionHelper();
         BaseVmmcVisitAction action = getBuilder(context.getString(R.string.vmmc_hts))
                 .withOptional(false)
                 .withDetails(details)
                 .withJsonPayload(vmmcHTS.toString())
-//                .withHelper(actionHelper)
+                .withHelper(actionHelper)
                 .withFormName(Constants.VMMC_FOLLOWUP_FORMS.HTS)
                 .build();
         actionList.put(context.getString(R.string.vmmc_hts), action);
@@ -145,9 +125,9 @@ public class VmmcVisitInteractor extends BaseVmmcVisitInteractor {
         return Constants.TABLES.VMMC_CONFIRMATION;
     }
 
-//    private class VmmcVisitTypeActionHelper extends org.smartregister.chw.hf.actionhelper.vmmc.VmmcVisitTypeActionHelper {
-//        @Override
-//        public String postProcess(String s) {
+    private class VmmcVisitTypeActionHelper extends org.smartregister.chw.hf.actionhelper.vmmc.VmmcVisitTypeActionHelper {
+        @Override
+        public String postProcess(String s) {
 //            if (StringUtils.isNotBlank(medical_history)) {
 //                try {
 //                    evaluatePrEPScreening(details);
@@ -159,11 +139,11 @@ public class VmmcVisitInteractor extends BaseVmmcVisitInteractor {
 ////                actionList.remove(context.getString(R.string.vmmc_physical_examination));
 ////                actionList.remove(context.getString(R.string.vmmc_hts));
 //            }
-//            new AppExecutors().mainThread().execute(() -> callBack.preloadActions(actionList));
-//            return super.postProcess(s);
-//        }
-//
-//    }
+            new AppExecutors().mainThread().execute(() -> callBack.preloadActions(actionList));
+            return super.postProcess(s);
+        }
+
+    }
 
 //    private class VmmcScreeningActionHelper extends org.smartregister.chw.hf.actionhelper.vmmc.VmmcScreeningActionHelper {
 //        public VmmcScreeningActionHelper(String baseEntityId) {

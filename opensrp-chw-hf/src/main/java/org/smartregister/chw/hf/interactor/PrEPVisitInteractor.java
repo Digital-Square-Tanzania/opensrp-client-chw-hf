@@ -60,16 +60,16 @@ public class PrEPVisitInteractor extends BaseKvpVisitInteractor {
     private void evaluateVisitType(Map<String, List<VisitDetail>> details) throws BaseKvpVisitAction.ValidationException {
         JSONObject prepVisitType = FormUtils.getFormUtils().getFormJson(Constants.PrEP_FOLLOWUP_FORMS.VISIT_TYPE);
 
-        try {
-            if (HfKvpDao.hasPrepFollowup(memberObject.getBaseEntityId())) {
-                JSONArray fields = prepVisitType.getJSONObject(STEP1).getJSONArray(FIELDS);
-                JSONObject visitType = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "visit_type");
-                visitType.getJSONArray("options").remove(2);
-                visitType.getJSONArray("options").remove(0);
-            }
-        } catch (Exception e) {
-            Timber.e(e);
-        }
+//        try {
+//            if (HfKvpDao.hasPrepFollowup(memberObject.getBaseEntityId())) {
+//                JSONArray fields = prepVisitType.getJSONObject(STEP1).getJSONArray(FIELDS);
+//                JSONObject visitType = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "visit_type");
+//                visitType.getJSONArray("options").remove(2);
+//                visitType.getJSONArray("options").remove(0);
+//            }
+//        } catch (Exception e) {
+//            Timber.e(e);
+//        }
 
         PrEPVisitTypeActionHelper actionHelper = new PrEPVisitTypeActionHelper();
         BaseKvpVisitAction action = getBuilder(context.getString(R.string.prep_visit_type))

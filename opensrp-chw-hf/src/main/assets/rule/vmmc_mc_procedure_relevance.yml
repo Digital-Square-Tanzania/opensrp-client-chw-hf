@@ -1,0 +1,161 @@
+---
+name: step1_reason
+description: reason relevance
+priority: 1
+condition: "step1_is_male_procedure_circumcision_conducted.equalsIgnoreCase('no')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_start_time
+description: start_time relevance
+priority: 1
+condition: "step1_is_male_procedure_circumcision_conducted.equalsIgnoreCase('yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_end_time
+description: end_time relevance
+priority: 1
+condition: "step1_is_male_procedure_circumcision_conducted.equalsIgnoreCase('yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_aneathesia_administered
+description: aneathesia_administered relevance
+priority: 1
+condition: "step1_is_male_procedure_circumcision_conducted.equalsIgnoreCase('yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_male_circumcision_method
+description: male_circumcision_method relevance
+priority: 1
+condition: "step1_is_male_procedure_circumcision_conducted.equalsIgnoreCase('yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_surgeon_name
+description: surgeon_name relevance
+priority: 1
+condition: "step1_is_male_procedure_circumcision_conducted.equalsIgnoreCase('yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_surgeons_cadre
+description: surgeons_cadre relevance
+priority: 1
+condition: "step1_is_male_procedure_circumcision_conducted.equalsIgnoreCase('yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_assistant_name
+description: assistant_name relevance
+priority: 1
+condition: "step1_is_male_procedure_circumcision_conducted.equalsIgnoreCase('yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_assistant_cadre
+description: assistant_cadre relevance
+priority: 1
+condition: "step1_is_male_procedure_circumcision_conducted.equalsIgnoreCase('yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_notes
+description: notes relevance
+priority: 1
+condition: "step1_is_male_procedure_circumcision_conducted.equalsIgnoreCase('yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_intraoperative_adverse_event_occured
+description: intraoperative_adverse_event_occured relevance
+priority: 1
+condition: "step1_is_male_procedure_circumcision_conducted.equalsIgnoreCase('yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_type_of_adverse_event
+description: type_of_adverse_event relevance
+priority: 1
+condition: "step1_is_male_procedure_circumcision_conducted.equalsIgnoreCase('yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_desc_intraoperative_ae
+description: desc_intraoperative_ae relevance
+priority: 1
+condition: "step1_is_male_procedure_circumcision_conducted.equalsIgnoreCase('yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_ae_classified_as_mild
+description: toaster for ae_classified_as_mild relevance
+priority: 1
+condition: "step1_desc_intraoperative_ae.equalsIgnoreCase('more_bleed_than_usual_but_easily_controlled')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_nature_of_ae
+description: nature_of_ae relevance
+priority: 1
+condition: "step1_is_male_procedure_circumcision_conducted.equalsIgnoreCase('yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_what_done
+description: what_done relevance
+priority: 1
+condition: "step1_is_male_procedure_circumcision_conducted.equalsIgnoreCase('yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_treatment_outcome
+description: treatment_outcome relevance
+priority: 1
+condition: "step1_is_male_procedure_circumcision_conducted.equalsIgnoreCase('yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_lignocaine_dosage
+description: lignocaine_dosage relevance
+priority: 1
+condition: "step1_aneathesia_administered.equalsIgnoreCase('injectables_lignocaine')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_bupivacaine_dosage
+description: bupivacaine_dosage relevance
+priority: 1
+condition: "step1_aneathesia_administered.equalsIgnoreCase('injectables_lignocaine')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_dosage
+description: dosage relevance
+priority: 1
+condition: "step1_aneathesia_administered.equalsIgnoreCase('topical_cream')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_select_size_place
+description: select_size_place relevance
+priority: 1
+condition: "step1_male_circumcision_method.equalsIgnoreCase('device')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_lot_number
+description: lot_number relevance
+priority: 1
+condition: "step1_male_circumcision_method.equalsIgnoreCase('device')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_device_name
+description: device_name relevance
+priority: 1
+condition: "step1_male_circumcision_method.equalsIgnoreCase('device')"
+actions:
+  - "isRelevant = true"
