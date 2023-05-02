@@ -6,14 +6,18 @@ import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.core.utils.CoreJsonFormUtils;
+import org.smartregister.chw.hf.dao.HfVmmcDao;
 import org.smartregister.chw.vmmc.domain.VisitDetail;
 import org.smartregister.chw.vmmc.model.BaseVmmcVisitAction;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
-public class VmmcVisitTypeActionHelper implements BaseVmmcVisitAction.VmmcVisitActionHelper {
+import timber.log.Timber;
 
+public class VmmcPhysicalExamActionHelper implements BaseVmmcVisitAction.VmmcVisitActionHelper {
     protected String medical_history;
     protected String jsonPayload;
 
@@ -38,7 +42,7 @@ public class VmmcVisitTypeActionHelper implements BaseVmmcVisitAction.VmmcVisitA
     public void onPayloadReceived(String jsonPayload) {
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
-            medical_history = CoreJsonFormUtils.getValue(jsonObject, "has_client_had_any_sti");
+            medical_history = CoreJsonFormUtils.getValue(jsonObject, "physical_abnormality");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -77,4 +81,5 @@ public class VmmcVisitTypeActionHelper implements BaseVmmcVisitAction.VmmcVisitA
     public void onPayloadReceived(BaseVmmcVisitAction baseVmmcVisitAction) {
         //overridden
     }
+
 }

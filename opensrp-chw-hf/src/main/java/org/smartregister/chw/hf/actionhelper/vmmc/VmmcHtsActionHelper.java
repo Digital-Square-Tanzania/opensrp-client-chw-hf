@@ -10,7 +10,6 @@ import org.smartregister.chw.core.utils.CoreJsonFormUtils;
 import org.smartregister.chw.vmmc.dao.VmmcDao;
 import org.smartregister.chw.vmmc.domain.VisitDetail;
 import org.smartregister.chw.vmmc.model.BaseVmmcVisitAction;
-import org.smartregister.chw.vmmc.model.BaseVmmcVisitAction;
 import org.smartregister.family.util.JsonFormUtils;
 
 import java.text.SimpleDateFormat;
@@ -22,16 +21,10 @@ import java.util.concurrent.TimeUnit;
 
 import timber.log.Timber;
 
-public class VmmcInitiationActionHelper implements BaseVmmcVisitAction.VmmcVisitActionHelper {
+public class VmmcHtsActionHelper implements BaseVmmcVisitAction.VmmcVisitActionHelper {
 
-    private String prep_status;
-    private String jsonPayload;
-    private String baseEntityId;
-    SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
-
-    public VmmcInitiationActionHelper(String baseEntityId) {
-        this.baseEntityId = baseEntityId;
-    }
+    protected String medical_history;
+    protected String jsonPayload;
 
     @Override
     public void onJsonFormLoaded(String jsonPayload, Context context, Map<String, List<VisitDetail>> map) {
@@ -42,23 +35,9 @@ public class VmmcInitiationActionHelper implements BaseVmmcVisitAction.VmmcVisit
     public String getPreProcessed() {
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
-            JSONArray fields = jsonObject.getJSONObject(org.smartregister.chw.hf.utils.Constants.JsonFormConstants.STEP1).getJSONArray(org.smartregister.chw.referral.util.JsonFormConstants.FIELDS);
-            JSONObject prepPillsNumber = JsonFormUtils.getFieldJSONObject(fields, "prep_pills_number");
-
-
-            String enrollmentDateString = VmmcDao.getPrepInitiationDate(baseEntityId);
-            if (enrollmentDateString != null) {
-                Date enrollmentDate = df.parse(enrollmentDateString);
-                if (enrollmentDate != null) {
-                    Date threeMonthsAgo = new Date(System.currentTimeMillis() - TimeUnit.DAYS.toMillis(90));
-                    if (enrollmentDate.before(threeMonthsAgo)) {
-                        prepPillsNumber.remove("v_max");
-                    }
-                }
-            }
             return jsonObject.toString();
-        } catch (Exception e) {
-            Timber.e(e);
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
 
         return null;
@@ -68,7 +47,7 @@ public class VmmcInitiationActionHelper implements BaseVmmcVisitAction.VmmcVisit
     public void onPayloadReceived(String jsonPayload) {
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
-            prep_status = CoreJsonFormUtils.getValue(jsonObject, "prep_status");
+            medical_history = CoreJsonFormUtils.getValue(jsonObject, "tested_hiv");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -96,7 +75,7 @@ public class VmmcInitiationActionHelper implements BaseVmmcVisitAction.VmmcVisit
 
     @Override
     public BaseVmmcVisitAction.Status evaluateStatusOnPayload() {
-        if (StringUtils.isBlank(prep_status))
+        if (StringUtils.isBlank(medical_history))
             return BaseVmmcVisitAction.Status.PENDING;
         else {
             return BaseVmmcVisitAction.Status.COMPLETED;
@@ -107,4 +86,5 @@ public class VmmcInitiationActionHelper implements BaseVmmcVisitAction.VmmcVisit
     public void onPayloadReceived(BaseVmmcVisitAction baseVmmcVisitAction) {
         //overridden
     }
+
 }

@@ -1,17 +1,12 @@
 package org.smartregister.chw.hf.interactor;
 
-import static org.smartregister.client.utils.constants.JsonFormConstants.FIELDS;
-import static org.smartregister.client.utils.constants.JsonFormConstants.STEP1;
-
 import org.apache.commons.lang3.StringUtils;
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.smartregister.chw.anc.util.AppExecutors;
 import org.smartregister.chw.core.utils.FormUtils;
 import org.smartregister.chw.hf.R;
-import org.smartregister.chw.hf.actionhelper.vmmc.VmmcInitiationActionHelper;
-import org.smartregister.chw.hf.actionhelper.prep.PrEPOtherServicesActionHelper;
-import org.smartregister.chw.hf.dao.HfVmmcDao;
+import org.smartregister.chw.hf.actionhelper.vmmc.VmmcHtsActionHelper;
+import org.smartregister.chw.hf.actionhelper.vmmc.VmmcPhysicalExamActionHelper;
 import org.smartregister.chw.vmmc.contract.BaseVmmcVisitContract;
 import org.smartregister.chw.vmmc.domain.VisitDetail;
 import org.smartregister.chw.vmmc.interactor.BaseVmmcVisitInteractor;
@@ -77,7 +72,7 @@ public class VmmcVisitInteractor extends BaseVmmcVisitInteractor {
     private void evaluateVmmcPhysicalExam(Map<String, List<VisitDetail>> details) throws BaseVmmcVisitAction.ValidationException {
         JSONObject vmmcPhysicalExam = FormUtils.getFormUtils().getFormJson(Constants.VMMC_FOLLOWUP_FORMS.PHYSICAL_EXAMINATION);
 
-        VmmcVisitTypeActionHelper actionHelper = new VmmcVisitTypeActionHelper();
+        VmmcPhysicalExamActionHelper actionHelper = new VmmcPhysicalExamActionHelper();
         BaseVmmcVisitAction action = getBuilder(context.getString(R.string.vmmc_physical_examination))
                 .withOptional(false)
                 .withDetails(details)
@@ -91,7 +86,7 @@ public class VmmcVisitInteractor extends BaseVmmcVisitInteractor {
     private void evaluateVmmcHTS(Map<String, List<VisitDetail>> details) throws BaseVmmcVisitAction.ValidationException {
         JSONObject vmmcHTS = FormUtils.getFormUtils().getFormJson(Constants.VMMC_FOLLOWUP_FORMS.HTS);
 
-        VmmcVisitTypeActionHelper actionHelper = new VmmcVisitTypeActionHelper();
+        VmmcHtsActionHelper actionHelper = new VmmcHtsActionHelper();
         BaseVmmcVisitAction action = getBuilder(context.getString(R.string.vmmc_hts))
                 .withOptional(false)
                 .withDetails(details)
@@ -145,8 +140,8 @@ public class VmmcVisitInteractor extends BaseVmmcVisitInteractor {
 
     }
 
-//    private class VmmcScreeningActionHelper extends org.smartregister.chw.hf.actionhelper.vmmc.VmmcScreeningActionHelper {
-//        public VmmcScreeningActionHelper(String baseEntityId) {
+//    private class VmmcPhysicalExamActionHelper extends org.smartregister.chw.hf.actionhelper.vmmc.VmmcPhysicalExamActionHelper {
+//        public VmmcPhysicalExamActionHelper(String baseEntityId) {
 //            super(baseEntityId);
 //        }
 //

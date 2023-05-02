@@ -4,6 +4,10 @@ import org.apache.commons.lang3.StringUtils;
 import org.json.JSONObject;
 import org.smartregister.chw.core.utils.FormUtils;
 import org.smartregister.chw.hf.R;
+import org.smartregister.chw.hf.actionhelper.vmmc.VmmcDischargeActionHelper;
+import org.smartregister.chw.hf.actionhelper.vmmc.VmmcFirstVitalActionHelper;
+import org.smartregister.chw.hf.actionhelper.vmmc.VmmcPostOpActionHelper;
+import org.smartregister.chw.hf.actionhelper.vmmc.VmmcSecondVitalActionHelper;
 import org.smartregister.chw.vmmc.contract.BaseVmmcVisitContract;
 import org.smartregister.chw.vmmc.domain.VisitDetail;
 import org.smartregister.chw.vmmc.interactor.BaseVmmcVisitInteractor;
@@ -55,23 +59,13 @@ public class VmmcVisitDischargeInteractor extends BaseVmmcVisitInteractor {
     private void evaluatePostForm(Map<String, List<VisitDetail>> details) throws BaseVmmcVisitAction.ValidationException {
 //        JSONObject prepVisitType = FormUtils.getFormUtils().getFormJson(Constants.VMMC_FOLLOWUP_FORMS.MEDICAL_HISTORY);
 
-//        try {
-//            if (HfVmmcDao.hasPrepFollowup(memberObject.getBaseEntityId())) {
-////                JSONArray fields = prepVisitType.getJSONObject(STEP1).getJSONArray(FIELDS);
-////                JSONObject visitType = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "medical_history");
-////                visitType.getJSONArray("options").remove(2);
-////                visitType.getJSONArray("options").remove(0);
-//            }
-//        } catch (Exception e) {
-//            Timber.e(e);
-//        }
 
-//        VmmcVisitTypeActionHelper actionHelper = new VmmcVisitTypeActionHelper();
+        VmmcPostOpActionHelper actionHelper = new VmmcPostOpActionHelper();
         BaseVmmcVisitAction action = getBuilder(context.getString(R.string.vmmc_post))
                 .withOptional(false)
                 .withDetails(details)
 //                .withJsonPayload(prepVisitType.toString())
-//                .withHelper(actionHelper)
+                .withHelper(actionHelper)
                 .withFormName(Constants.VMMC_FOLLOWUP_FORMS.POST_OP)
                 .build();
         actionList.put(context.getString(R.string.vmmc_post), action);
@@ -79,11 +73,13 @@ public class VmmcVisitDischargeInteractor extends BaseVmmcVisitInteractor {
     }
 
     private void evaluateFirstVitalProcedure(Map<String, List<VisitDetail>> details) throws BaseVmmcVisitAction.ValidationException {
+
+        VmmcFirstVitalActionHelper actionHelper = new VmmcFirstVitalActionHelper();
         BaseVmmcVisitAction action = getBuilder(context.getString(R.string.vmmc_first_vital))
                 .withOptional(false)
                 .withDetails(details)
 //                .withJsonPayload(prepVisitType.toString())
-//                .withHelper(actionHelper)
+                .withHelper(actionHelper)
                 .withFormName(Constants.VMMC_FOLLOWUP_FORMS.FIRST_VITAL_SIGN)
                 .build();
         actionList.put(context.getString(R.string.vmmc_first_vital), action);
@@ -92,22 +88,12 @@ public class VmmcVisitDischargeInteractor extends BaseVmmcVisitInteractor {
     private void evaluateSecondVital(Map<String, List<VisitDetail>> details) throws BaseVmmcVisitAction.ValidationException {
 //        JSONObject prepInitiation = FormUtils.getFormUtils().getFormJson(Constants.VMMC_FOLLOWUP_FORMS.HTS);
 
-//        try {
-//            if (HfVmmcDao.isPrEPInitiated(memberObject.getBaseEntityId())) {
-//                JSONArray fields = prepInitiation.getJSONObject(STEP1).getJSONArray(FIELDS);
-//                JSONObject prepStatus = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "prep_status");
-//                prepStatus.getJSONArray("options").remove(3);
-//                prepStatus.getJSONArray("options").remove(0);
-//            }
-//        } catch (Exception e) {
-//            Timber.e(e);
-//        }
-
+        VmmcSecondVitalActionHelper actionHelper = new VmmcSecondVitalActionHelper();
         BaseVmmcVisitAction action = getBuilder(context.getString(R.string.vmmc_second_vital))
                 .withOptional(false)
                 .withDetails(details)
 //                .withJsonPayload(prepVisitType.toString())
-//                .withHelper(actionHelper)
+                .withHelper(actionHelper)
                 .withFormName(Constants.VMMC_FOLLOWUP_FORMS.SECOND_VITAL_SIGN)
                 .build();
         actionList.put(context.getString(R.string.vmmc_second_vital), action);
@@ -115,15 +101,15 @@ public class VmmcVisitDischargeInteractor extends BaseVmmcVisitInteractor {
 
     private void evaluateVmmcDischarge(Map<String, List<VisitDetail>> details) throws BaseVmmcVisitAction.ValidationException {
 
-//        PrEPOtherServicesActionHelper actionHelper = new PrEPOtherServicesActionHelper();
+        VmmcDischargeActionHelper actionHelper = new VmmcDischargeActionHelper();
         BaseVmmcVisitAction action = getBuilder(context.getString(R.string.vmmc_post_discharge))
-                .withOptional(true)
+                .withOptional(false)
                 .withDetails(details)
-//                .withHelper(actionHelper)
+                .withHelper(actionHelper)
                 .withFormName(Constants.VMMC_FOLLOWUP_FORMS.DISCHARGE)
                 .build();
 
-        actionList.put(context.getString(R.string.vmmc_discharge), action);
+        actionList.put(context.getString(R.string.vmmc_post_discharge), action);
     }
 
     @Override
@@ -156,8 +142,8 @@ public class VmmcVisitDischargeInteractor extends BaseVmmcVisitInteractor {
 //
 //    }
 
-//    private class VmmcScreeningActionHelper extends org.smartregister.chw.hf.actionhelper.vmmc.VmmcScreeningActionHelper {
-//        public VmmcScreeningActionHelper(String baseEntityId) {
+//    private class VmmcPhysicalExamActionHelper extends org.smartregister.chw.hf.actionhelper.vmmc.VmmcPhysicalExamActionHelper {
+//        public VmmcPhysicalExamActionHelper(String baseEntityId) {
 //            super(baseEntityId);
 //        }
 //

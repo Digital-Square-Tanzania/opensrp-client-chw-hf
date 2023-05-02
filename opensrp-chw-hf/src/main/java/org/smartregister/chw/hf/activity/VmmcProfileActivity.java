@@ -72,6 +72,12 @@ public class VmmcProfileActivity extends CoreVmmcProfileActivity {
     }
 
     @Override
+    public void startVmmcFollowUp(String baseEntityId) {
+        JSONObject form = FormUtils.getFormUtils().getFormJson(Constants.FORMS.VMMC_FOLLOW_UP_VISIT);
+        startFormActivity(form);
+    }
+
+    @Override
     public void openFollowupVisit() {
         VmmcServiceActivity.startVmmcVisitActivity(this, baseEntityId, false);
     }
@@ -97,6 +103,10 @@ public class VmmcProfileActivity extends CoreVmmcProfileActivity {
         if (id == R.id.textview_notifiable_vmmc) {
 //            Snackbar.make(view.findViewById(R.id.textview_procedure_vmmc),"Hello Dev",Snackbar.LENGTH_LONG).show();
             startVmmcNotifiableForm( baseEntityId);
+        }
+        if (id == R.id.textview_followup_vmmc) {
+//            Snackbar.make(view.findViewById(R.id.textview_procedure_vmmc),"Hello Dev",Snackbar.LENGTH_LONG).show();
+            startVmmcFollowUp( baseEntityId);
         }
         else {
             super.onClick(view);

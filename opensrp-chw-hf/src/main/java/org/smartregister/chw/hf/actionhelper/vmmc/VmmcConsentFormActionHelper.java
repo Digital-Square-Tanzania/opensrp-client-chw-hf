@@ -12,7 +12,7 @@ import org.smartregister.chw.vmmc.model.BaseVmmcVisitAction;
 import java.util.List;
 import java.util.Map;
 
-public class VmmcVisitTypeActionHelper implements BaseVmmcVisitAction.VmmcVisitActionHelper {
+public class VmmcConsentFormActionHelper implements BaseVmmcVisitAction.VmmcVisitActionHelper {
 
     protected String medical_history;
     protected String jsonPayload;
@@ -38,7 +38,7 @@ public class VmmcVisitTypeActionHelper implements BaseVmmcVisitAction.VmmcVisitA
     public void onPayloadReceived(String jsonPayload) {
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
-            medical_history = CoreJsonFormUtils.getValue(jsonObject, "has_client_had_any_sti");
+            medical_history = CoreJsonFormUtils.getValue(jsonObject, "client_consent_for_mc_procedure");
         } catch (JSONException e) {
             e.printStackTrace();
         }
