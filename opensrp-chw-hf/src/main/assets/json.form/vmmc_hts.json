@@ -69,6 +69,35 @@
         }
       },
       {
+        "key": "hiv_result",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "native_radio",
+        "label": "HIV test result ",
+        "label_text_size": "18px",
+        "options": [
+          {
+            "key": "positive",
+            "text": "Positive"
+          },
+          {
+            "key": "negative",
+            "text": "Negative"
+          }
+        ],
+        "value": "",
+        "v_required": {
+          "value": true
+        },
+        "relevance": {
+          "step1:tested_hiv": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
+        }
+      },
+      {
         "key": "hiv_reasons",
         "openmrs_entity_parent": "",
         "openmrs_entity": "",
@@ -118,6 +147,9 @@
         "type": "check_box",
         "label": "Client referred to",
         "text_color": "#000000",
+        "exclusive": [
+          "client_not_referred"
+        ],
         "options": [
           {
             "key": "surgical",

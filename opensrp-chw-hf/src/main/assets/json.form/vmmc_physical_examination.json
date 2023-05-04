@@ -406,7 +406,6 @@
                   "hydrocele",
                   "balanitis",
                   "opening_abnormality",
-                  "chordae",
                   "others"
                 ]
               }
@@ -435,6 +434,153 @@
         "value": "",
         "v_required": {
           "value": true
+        }
+      },
+      {
+        "key": "penile_size",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "native_radio",
+        "label": "Select appropriate device size for client’s penile size",
+        "label_text_size": "18px",
+        "options": [
+          {
+            "key": "A4_40mm",
+            "text": "A4-40mm"
+          },
+          {
+            "key": "A3_39mm",
+            "text": "A3-39mm"
+          },
+          {
+            "key": "A2_38mm",
+            "text": "A2-38mm"
+          },
+          {
+            "key": "A1_37mm",
+            "text": "A1-37mm"
+          },
+          {
+            "key": "A_36mm",
+            "text": "A-36mm"
+          },
+          {
+            "key": "B_35mm",
+            "text": "B-35mm"
+          },
+          {
+            "key": "C_34mm",
+            "text": "C-34mm"
+          },
+          {
+            "key": "D_33mm",
+            "text": "D-33mm"
+          },
+          {
+            "key": "E_32mm",
+            "text": "E-32mm"
+          },
+          {
+            "key": "F_31mm",
+            "text": "F-31mm"
+          },
+          {
+            "key": "G_30mm",
+            "text": "G-30mm"
+          },
+          {
+            "key": "H_29mm",
+            "text": "H-29mm"
+          },
+          {
+            "key": "I_28mm",
+            "text": "I-28mm"
+          },
+          {
+            "key": "K_26mm",
+            "text": "K-26mm"
+          },
+          {
+            "key": "M_24mm",
+            "text": "M-24mm"
+          },
+          {
+            "key": "O_22mm",
+            "text": "O-22mm"
+          },
+          {
+            "key": "Q_20mm",
+            "text": "Q-20mm"
+          },
+          {
+            "key": "S_18mm",
+            "text": "S-18mm"
+          },
+          {
+            "key": "U_16mm",
+            "text": "U-16mm"
+          },
+          {
+            "key": "V_15mm",
+            "text": "V-15mm"
+          },
+          {
+            "key": "W_14mm",
+            "text": "W-14mm"
+          },
+          {
+            "key": "X_13mm",
+            "text": "X-13mm"
+          },
+          {
+            "key": "Y_12mm",
+            "text": "Y-12mm"
+          },
+          {
+            "key": "Z_11mm",
+            "text": "Z-11mm"
+          },
+          {
+            "key": "Z1_10mm",
+            "text": "Z1-10mm"
+          },
+          {
+            "key": "Z2_09mm",
+            "text": "Z2-09mm"
+          },
+          {
+            "key": "no_size",
+            "text": "No size(specify)"
+          }
+        ],
+        "value": "",
+        "v_required": {
+          "value": true
+        },
+        "relevance": {
+          "step1:preferred_client": {
+            "type": "string",
+            "ex": "equalTo(., \"shang_ring\")"
+          }
+        }
+      },
+      {
+        "key": "other_penis_size",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "other_penis_size",
+        "type": "edit_text",
+        "hint": "Other(Specify)",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
+        "relevance": {
+          "step1:penile_size": {
+            "type": "string",
+            "ex": "equalTo(., \"no_size\")"
+          }
         }
       }
     ]

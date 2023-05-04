@@ -43,7 +43,7 @@
     "encounter_location": ""
   },
   "step1": {
-    "title": "Consent Form",
+    "title": "Consent From",
     "fields": [
       {
         "key": "client_consent_for_mc_procedure",

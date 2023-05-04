@@ -111,8 +111,8 @@
             "openmrs_entity_id": ""
           },
           {
-            "key": " painful_micturition:",
-            "text": " Painful micturition:",
+            "key": "painful_micturition",
+            "text": "Painful micturition",
             "value": false,
             "openmrs_entity": "",
             "openmrs_entity_id": ""
@@ -370,7 +370,7 @@
         "openmrs_entity": "",
         "openmrs_entity_id": "",
         "type": "check_box",
-        "label": "Select the type complication",
+        "label": "Select the type of complication",
         "text_color": "#000000",
         "options": [
           {
@@ -437,6 +437,9 @@
         "type": "check_box",
         "label": "Any symptoms of hematological disease? (Check all applicable)",
         "text_color": "#000000",
+        "exclusive": [
+          "none"
+        ],
         "options": [
           {
             "key": "recurrent_blood_transfusion",
@@ -493,6 +496,13 @@
             "value": false,
             "openmrs_entity": "",
             "openmrs_entity_id": ""
+          },
+          {
+            "key": "none",
+            "text": "None",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
           }
         ],
         "v_required": {
@@ -518,6 +528,9 @@
         "type": "check_box",
         "label": "Any known allergies to any of these medications?",
         "text_color": "#000000",
+        "exclusive": [
+          "none"
+        ],
         "options": [
           {
             "key": "local_anesthetics",
