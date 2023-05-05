@@ -532,7 +532,7 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "",
         "openmrs_entity_id": "surgeons_cadre",
-        "type": "check_box",
+        "type": "native_radio",
         "label": "Surgeons cadre",
         "options": [
           {
@@ -608,7 +608,7 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "",
         "openmrs_entity_id": "assistant_cadre",
-        "type": "check_box",
+        "type": "native_radio",
         "label": "Assistant's cadre",
         "options": [
           {
