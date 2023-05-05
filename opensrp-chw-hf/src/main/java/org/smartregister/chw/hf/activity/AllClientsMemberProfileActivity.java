@@ -74,8 +74,10 @@ public class AllClientsMemberProfileActivity extends CoreAllClientsMemberProfile
             menu.findItem(R.id.action_anc_registration).setVisible(true);
             menu.findItem(R.id.action_pregnancy_out_come).setVisible(true);
             menu.findItem(R.id.action_pmtct_register).setVisible(true);
-        } else
+        } else{
             menu.findItem(R.id.action_anc_registration).setVisible(false);
+            menu.findItem(R.id.action_vmmc_registration).setVisible(true);
+        }
 
         if (HealthFacilityApplication.getApplicationFlavor().hasLD()) {
             menu.findItem(R.id.action_ld_registration).setVisible(isOfReproductiveAge(commonPersonObject, gender) && gender.equalsIgnoreCase("female") && !LDDao.isRegisteredForLD(baseEntityId));
@@ -85,7 +87,7 @@ public class AllClientsMemberProfileActivity extends CoreAllClientsMemberProfile
         if (HealthFacilityApplication.getApplicationFlavor().hasMalaria())
             menu.findItem(R.id.action_malaria_diagnosis).setVisible(!MalariaDao.isRegisteredForMalaria(baseEntityId));
 
-        if (HealthFacilityApplication.getApplicationFlavor().hasVmmc())
+        if (isOfReproductiveAge(commonPersonObject, gender) && gender.equalsIgnoreCase("male") && HealthFacilityApplication.getApplicationFlavor().hasVmmc())
             menu.findItem(R.id.action_vmmc_registration).setVisible(!VmmcDao.isRegisteredForVmmc(baseEntityId));
 
         if (HealthFacilityApplication.getApplicationFlavor().hasHivst()) {

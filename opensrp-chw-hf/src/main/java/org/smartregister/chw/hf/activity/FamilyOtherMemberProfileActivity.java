@@ -106,6 +106,7 @@ public class FamilyOtherMemberProfileActivity extends CoreFamilyOtherMemberProfi
 
     @Override
     protected void startVmmcRegister() {
+        VmmcRegisterActivity.startVmmcRegistrationActivity(FamilyOtherMemberProfileActivity.this, baseEntityId);
 
     }
 
@@ -295,7 +296,7 @@ public class FamilyOtherMemberProfileActivity extends CoreFamilyOtherMemberProfi
         if (HealthFacilityApplication.getApplicationFlavor().hasMalaria())
             menu.findItem(R.id.action_malaria_diagnosis).setVisible(!MalariaDao.isRegisteredForMalaria(baseEntityId));
 
-        if (HealthFacilityApplication.getApplicationFlavor().hasVmmc())
+        if (isOfReproductiveAge(commonPersonObject, gender) && gender.equalsIgnoreCase("male") && HealthFacilityApplication.getApplicationFlavor().hasVmmc())
             menu.findItem(R.id.action_vmmc_registration).setVisible(!VmmcDao.isRegisteredForVmmc(baseEntityId));
 
         if (isOfReproductiveAge(commonPersonObject, gender)) {
