@@ -170,62 +170,89 @@
       },
       {
         "key": "pulse_rate",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "",
-        "entity_id": "",
         "type": "edit_text",
-        "hint": "Pulse Rate (Beats per minute",
-        "edit_type": "number",
-        "look_up": "true",
-        "v_required": {
+        "hint": "Pulse Rate (Beats per minute)",
+        "openmrs_entity_id": "pulse_rate",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "v_numeric": {
           "value": "true",
-          "err": "Please enter the Pulse Rate (Beats per minute"
+          "err": "Please enter the pulse rate"
+        },
+        "v_min": {
+          "value": "0",
+          "err": "The pulse rate must be equal or greater than 0 (bpm)"
+        },
+        "v_max": {
+          "value": "200",
+          "err": "The pulse rate must be equal or less than 200 (bpm)"
         }
       },
       {
         "key": "systolic",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "",
-        "entity_id": "",
         "type": "edit_text",
-        "hint": "Systolic (Blood Pressure) ",
-        "edit_type": "number",
-        "look_up": "true",
-        "v_required": {
+        "hint": "Systolic (Blood Pressure)",
+        "openmrs_entity_id": "systolic",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "v_numeric": {
           "value": "true",
-          "err": "Please enter the Systolic (Blood Pressure)"
+          "err": "Please enter the systolic value"
+        },
+        "v_min": {
+          "value": "0",
+          "err": "Systolic value must be equal or greater than 0"
+        },
+        "v_max": {
+          "value": "320",
+          "err": "Systolic value must be equal or less than 320"
         }
       },
       {
         "key": "diastolic",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "",
-        "entity_id": "",
         "type": "edit_text",
-        "hint": "Diastolic (Blood Pressure) ",
-        "edit_type": "number",
-        "look_up": "true",
-        "v_required": {
+        "hint": "Diastolic (Blood Pressure)",
+        "openmrs_entity_id": "diastolic",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "v_numeric": {
           "value": "true",
-          "err": "Please enter the Diastolic (Blood Pressure) "
-        }
+          "err": "Please enter the diastolic value"
+        },
+        "v_min": {
+          "value": "0",
+          "err": "Diastolic value must be equal or greater than 0"
+        },
+        "v_max": {
+          "value": "200",
+          "err": "Diastolic value must be equal or less than 200"
+        },
+        "constraints": [
+          {
+            "type": "numeric",
+            "ex": "lessThan(., step1:systolic)",
+            "err": "The diastolic value must be less than the systolic value"
+          }
+        ]
       },
       {
         "key": "temperature",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "",
-        "entity_id": "mother",
         "type": "edit_text",
-        "hint": "Temperature (°C)",
-        "edit_type": "number",
-        "look_up": "true",
-        "v_required": {
+        "hint": "Temperature (\u2103)",
+        "openmrs_entity_id": "temperature",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "v_numeric": {
           "value": "true",
-          "err": "Please enter the Temperature (°C)"
+          "err": "Please enter the temperature"
+        },
+        "v_min": {
+          "value": "10",
+          "err": "Temperature must be equal or greater than 10"
+        },
+        "v_max": {
+          "value": "50",
+          "err": "Temperature must be equal or less than 50"
         }
       },
       {

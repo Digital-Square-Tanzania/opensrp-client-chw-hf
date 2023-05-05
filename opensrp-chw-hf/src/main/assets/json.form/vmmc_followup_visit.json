@@ -125,6 +125,12 @@
         "v_required": {
           "value": "true",
           "err": "Please provide the time "
+        },
+        "relevance": {
+          "step1:post_op_adverse_event_occur": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
         }
       },
 
@@ -139,6 +145,12 @@
         "v_required": {
           "value": "true",
           "err": "Please provide the time "
+        },
+        "relevance": {
+          "step1:post_op_adverse_event_occur": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
         }
       },
       {
@@ -227,6 +239,12 @@
         "v_required": {
           "value": true,
           "err": "Please select atleast one"
+        },
+        "relevance": {
+          "step1:post_op_adverse_event_occur": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
         }
       },
 
@@ -413,6 +431,12 @@
         "v_required": {
           "value": true,
           "err": "Please select atleast one"
+        },
+        "relevance": {
+          "step1:was_condom_provided": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
         }
       },
 
@@ -422,10 +446,22 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "number_of_male_condoms_issued",
         "type": "edit_text",
+        "edit_type": "number",
         "hint": "Number of male condoms issued (Pieces)",
         "v_required": {
           "value": "true",
           "err": "Please fill the field"
+        },
+        "relevance": {
+          "step1:condoms_issued": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "male_condoms"
+                ]
+              }
+            ]
+          }
         }
       },
       {
@@ -434,10 +470,22 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "number_of_female_condoms_issued",
         "type": "edit_text",
+        "edit_type": "number",
         "hint": "Number of female condoms issued (Pieces)",
         "v_required": {
           "value": "true",
           "err": "Please fill the field"
+        },
+        "relevance": {
+          "step1:condoms_issued": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "female_condoms"
+                ]
+              }
+            ]
+          }
         }
       },
 
@@ -477,10 +525,17 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "number_of_bandage_given",
         "type": "edit_text",
+        "edit_type": "number",
         "hint": "Number of bandage given",
         "v_required": {
           "value": "true",
           "err": "Please fill the field"
+        },
+        "relevance": {
+          "step1:was_bandage_given": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
         }
       },
 

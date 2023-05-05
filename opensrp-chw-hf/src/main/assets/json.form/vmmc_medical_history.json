@@ -61,6 +61,10 @@
           {
             "key": "no",
             "text": "No"
+          },
+          {
+            "key": "not_applicable",
+            "text": "Not Applicable"
           }
         ],
         "value": "",
@@ -69,7 +73,7 @@
         }
       },
       {
-        "key": "toaster_notes",
+        "key": "has_client_had_any_sti_note",
         "openmrs_entity_parent": "",
         "openmrs_entity": "person_attribute",
         "openmrs_entity_id": "toaster_notes",
@@ -240,8 +244,8 @@
             "openmrs_entity_id": ""
           },
           {
-            "key": " hiv:",
-            "text": " HIV",
+            "key": "hiv",
+            "text": "HIV",
             "value": false,
             "openmrs_entity": "",
             "openmrs_entity_id": ""
@@ -290,6 +294,29 @@
         }
       },
       {
+        "key": "hiv_viral_load_text",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "hiv_viral_load_text",
+        "type": "edit_text",
+        "hint": "Viral load",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
+        "relevance": {
+          "step1:client_diagnosed": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "hiv"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
         "key": "diabetes_treatment",
         "openmrs_entity_parent": "",
         "openmrs_entity": "",
@@ -310,6 +337,51 @@
         "value": "",
         "v_required": {
           "value": true
+        },
+        "relevance": {
+          "step1:client_diagnosed": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "diabetes"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "hypertension_treatment",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "native_radio",
+        "label": "Is client on treatment for hypertension?",
+        "label_text_size": "18px",
+        "options": [
+          {
+            "key": "yes",
+            "text": "Yes"
+          },
+          {
+            "key": "no",
+            "text": "No"
+          }
+        ],
+        "value": "",
+        "v_required": {
+          "value": true
+        },
+        "relevance": {
+          "step1:client_diagnosed": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "hypertension"
+                ]
+              }
+            ]
+          }
         }
       },
       {
@@ -456,8 +528,8 @@
             "openmrs_entity_id": ""
           },
           {
-            "key": " prolonged_bleeding:",
-            "text": " Prolonged bleeding (following tooth extraction, any surgery or minor trauma)",
+            "key": "prolonged_bleeding",
+            "text": "Prolonged bleeding (following tooth extraction, any surgery or minor trauma)",
             "value": false,
             "openmrs_entity": "",
             "openmrs_entity_id": ""
@@ -511,14 +583,32 @@
         }
       },
       {
-        "key": "toaster_notes",
+        "key": "hematological_disease_notes",
         "openmrs_entity_parent": "",
         "openmrs_entity": "person_attribute",
         "openmrs_entity_id": "toaster_notes",
         "type": "toaster_notes",
         "text": "Do not circumcise, refer the client to the facility with hematological services",
         "text_color": "#CF0800",
-        "toaster_type": "problem"
+        "toaster_type": "problem",
+        "relevance": {
+          "step1:hematological_disease": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "recurrent_blood_transfusion",
+                  "treated_anemia",
+                  "prolonged_bleeding",
+                  "yellowish_discoloration",
+                  "spontaneous_bleeding",
+                  "abnormal_bleeding_sites",
+                  "severe_swelling",
+                  "bleeding_tendencies"
+                ]
+              }
+            ]
+          }
+        }
       },
       {
         "key": "known_allergies",

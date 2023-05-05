@@ -173,6 +173,24 @@
         }
       },
       {
+        "key": "other_aneathesia_administered",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "other_aneathesia_administered",
+        "type": "edit_text",
+        "hint": "Other",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
+        "relevance": {
+          "step1:aneathesia_administered": {
+            "type": "string",
+            "ex": "equalTo(., \"others\")"
+          }
+        }
+      },
+      {
         "key": "lignocaine_dosage",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -674,7 +692,7 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "intraoperative_adverse_event_occured",
-        "label": "Did intraoperative adverse event occured ?",
+        "label": "Did intraoperative adverse event occur ?",
         "text_color": "#000000",
         "type": "native_radio",
         "options": [
@@ -767,10 +785,9 @@
           "err": "Please select atleast one"
         },
         "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "vmmc_mc_procedure_relevance.yml"
-            }
+          "step1:intraoperative_adverse_event_occured": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
           }
         }
       },
