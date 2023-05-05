@@ -154,7 +154,7 @@ public class AllClientsUtils {
     }
 
     public static void goToVmmcProfile(Activity activity, CommonPersonObjectClient patient) {
-        VmmcProfileActivity.startProfileActivity(activity, patient.getCaseId());
+        VmmcProfileActivity.startVmmcActivity(activity, patient.getCaseId());
     }
 
     private static Intent initProfileActivityIntent(Activity activity, CommonPersonObjectClient patient, Bundle bundle, Class clazz) {
