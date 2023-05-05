@@ -247,7 +247,6 @@
           }
         }
       },
-
       {
         "key": "desc_of_post_op_adverse_event",
         "openmrs_entity_parent": "",
