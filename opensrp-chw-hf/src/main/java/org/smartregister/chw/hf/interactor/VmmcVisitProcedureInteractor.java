@@ -1,11 +1,19 @@
 package org.smartregister.chw.hf.interactor;
 
+import static org.smartregister.client.utils.constants.JsonFormConstants.FIELDS;
+import static org.smartregister.client.utils.constants.JsonFormConstants.STEP1;
+
 import org.apache.commons.lang3.StringUtils;
+import org.json.JSONArray;
 import org.json.JSONObject;
+import org.smartregister.chw.anc.util.AppExecutors;
 import org.smartregister.chw.core.utils.FormUtils;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.actionhelper.vmmc.VmmcConsentFormActionHelper;
 import org.smartregister.chw.hf.actionhelper.vmmc.VmmcProcedureActionHelper;
+import org.smartregister.chw.hf.dao.HfKvpDao;
+import org.smartregister.chw.hf.dao.HfVmmcDao;
+import org.smartregister.chw.kvp.model.BaseKvpVisitAction;
 import org.smartregister.chw.vmmc.contract.BaseVmmcVisitContract;
 import org.smartregister.chw.vmmc.domain.VisitDetail;
 import org.smartregister.chw.vmmc.interactor.BaseVmmcVisitInteractor;
@@ -40,7 +48,6 @@ public class VmmcVisitProcedureInteractor extends BaseVmmcVisitInteractor {
         final Runnable runnable = () -> {
             try {
                 evaluateConsentForm(details);
-                evaluateMcProcedure(details);
 
             } catch (BaseVmmcVisitAction.ValidationException e) {
                 Timber.e(e);
@@ -93,47 +100,23 @@ public class VmmcVisitProcedureInteractor extends BaseVmmcVisitInteractor {
         return Constants.TABLES.VMMC_PROCEDURE;
     }
 
-//    private class VmmcVisitTypeActionHelper extends org.smartregister.chw.hf.actionhelper.vmmc.VmmcVisitTypeActionHelper {
-//        @Override
-//        public String postProcess(String s) {
-//            if (StringUtils.isNotBlank(medical_history)) {
-//                try {
-//                    evaluatePrEPScreening(details);
-//                } catch (BaseVmmcVisitAction.ValidationException e) {
-//                    e.printStackTrace();
-//                }
-//            } else {
-////                actionList.remove(context.getString(R.string.vmmc_medical_history));
-////                actionList.remove(context.getString(R.string.vmmc_physical_examination));
-////                actionList.remove(context.getString(R.string.vmmc_hts));
-//            }
-//            new AppExecutors().mainThread().execute(() -> callBack.preloadActions(actionList));
-//            return super.postProcess(s);
-//        }
-//
-//    }
+    private class VmmcConsentFormActionHelper extends org.smartregister.chw.hf.actionhelper.vmmc.VmmcConsentFormActionHelper {
+        @Override
+        public String postProcess(String s) {
+            if (StringUtils.isNotBlank(consent_form)) {
+                try {
+                    evaluateMcProcedure(details);
+                } catch (BaseVmmcVisitAction.ValidationException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                actionList.remove(context.getString(R.string.vmmc_mc_procedure));
+            }
+            new AppExecutors().mainThread().execute(() -> callBack.preloadActions(actionList));
+            return super.postProcess(s);
+        }
 
-//    private class VmmcPhysicalExamActionHelper extends org.smartregister.chw.hf.actionhelper.vmmc.VmmcPhysicalExamActionHelper {
-//        public VmmcPhysicalExamActionHelper(String baseEntityId) {
-//            super(baseEntityId);
-//        }
-//
-//        @Override
-//        public String postProcess(String s) {
-//            if (should_initiate.equalsIgnoreCase("yes")) {
-//                try {
-//                    evaluatePrEPInitiation(details);
-////                    evaluateOtherServices(details);
-//                } catch (BaseVmmcVisitAction.ValidationException e) {
-//                    e.printStackTrace();
-//                }
-//            } else {
-//                actionList.remove(context.getString(R.string.prep_initiation));
-//                actionList.remove(context.getString(R.string.other_services));
-//            }
-//            new AppExecutors().mainThread().execute(() -> callBack.preloadActions(actionList));
-//            return super.postProcess(s);
-//        }
-//    }
+    }
+
 }
 

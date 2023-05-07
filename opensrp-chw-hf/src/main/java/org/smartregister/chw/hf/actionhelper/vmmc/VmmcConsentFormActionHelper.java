@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class VmmcConsentFormActionHelper implements BaseVmmcVisitAction.VmmcVisitActionHelper {
 
-    protected String medical_history;
+    protected String consent_form;
     protected String jsonPayload;
 
     @Override
@@ -38,7 +38,7 @@ public class VmmcConsentFormActionHelper implements BaseVmmcVisitAction.VmmcVisi
     public void onPayloadReceived(String jsonPayload) {
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
-            medical_history = CoreJsonFormUtils.getValue(jsonObject, "client_consent_for_mc_procedure");
+            consent_form = CoreJsonFormUtils.getValue(jsonObject, "client_consent_for_mc_procedure");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -66,7 +66,7 @@ public class VmmcConsentFormActionHelper implements BaseVmmcVisitAction.VmmcVisi
 
     @Override
     public BaseVmmcVisitAction.Status evaluateStatusOnPayload() {
-        if (StringUtils.isBlank(medical_history))
+        if (StringUtils.isBlank(consent_form))
             return BaseVmmcVisitAction.Status.PENDING;
         else {
             return BaseVmmcVisitAction.Status.COMPLETED;
