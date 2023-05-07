@@ -26,8 +26,8 @@ public class HfVmmcDao extends VmmcDao {
         return "";
     }
 
-    public static boolean hasPrepFollowup(String baseEntityId) {
-        String sql = "SELECT visit_type FROM ec_prep_followup p " +
+    public static boolean hasVmmcFollowup(String baseEntityId) {
+        String sql = "SELECT visit_type FROM ec_vmmc_followup p " +
                 " WHERE p.entity_id = '" + baseEntityId + "'";
 
         DataMap<String> dataMap = cursor -> getCursorValue(cursor, "visit_type");
