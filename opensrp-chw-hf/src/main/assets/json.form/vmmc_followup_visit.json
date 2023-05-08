@@ -284,7 +284,6 @@
           "err": "Please select atleast one scale"
         }
       },
-
       {
         "key": "desc_pozt_op_toaster",
         "type": "toaster_notes",
@@ -296,7 +295,7 @@
         "relevance": {
           "rules-engine": {
             "ex-rules": {
-              "rules-file": "vmmc_relevance.yml"
+              "rules-file": "vmmc_followup_relevance.yml"
             }
           }
         }
