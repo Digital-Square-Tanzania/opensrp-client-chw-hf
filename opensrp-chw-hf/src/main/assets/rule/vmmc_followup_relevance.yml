@@ -1,7 +1,21 @@
 ---
-name: step1_desc_pozt_op_toaster
+name: step1_desc_mild_op_toaster
 description: toaster for ae_classified_as_mild relevance
 priority: 1
 condition: "step1_desc_of_post_op_adverse_event.equalsIgnoreCase('3_or_4_on_pain_scale')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_desc_moderate_op_toaster
+description: toaster for ae_classified_as_mild relevance
+priority: 1
+condition: "step1_desc_of_post_op_adverse_event.equalsIgnoreCase('5_or_6_on_pain_scale')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_desc_severe_op_toaster
+description: toaster for ae_classified_as_mild relevance
+priority: 1
+condition: "step1_desc_of_post_op_adverse_event.equalsIgnoreCase('7_on_pain_scale')"
 actions:
   - "isRelevant = true"

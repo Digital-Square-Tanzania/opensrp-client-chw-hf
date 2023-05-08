@@ -103,7 +103,7 @@ public class VmmcVisitProcedureInteractor extends BaseVmmcVisitInteractor {
     private class VmmcConsentFormActionHelper extends org.smartregister.chw.hf.actionhelper.vmmc.VmmcConsentFormActionHelper {
         @Override
         public String postProcess(String s) {
-            if (StringUtils.isNotBlank(consent_form)) {
+            if (StringUtils.isNotBlank(mc_procedure)) {
                 try {
                     evaluateMcProcedure(details);
                 } catch (BaseVmmcVisitAction.ValidationException e) {

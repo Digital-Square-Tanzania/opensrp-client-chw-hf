@@ -637,7 +637,7 @@
             "openmrs_entity_id": ""
           },
           {
-            "key": " any_other_medications",
+            "key": "any_other_medications",
             "text": "Any other medications (specify)",
             "value": false,
             "openmrs_entity": "",
@@ -662,7 +662,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "known_allergies_others",
         "type": "edit_text",
-        "hint": "other medication(Specify)",
+        "hint": "Other medication(Specify)",
         "v_required": {
           "value": "true",
           "err": "Please specify"

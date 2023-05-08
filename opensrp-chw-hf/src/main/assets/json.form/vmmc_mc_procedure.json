@@ -792,6 +792,29 @@
         }
       },
       {
+        "key": "type_of_adverse_event_others",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "type_of_adverse_event_others",
+        "type": "edit_text",
+        "hint": "Others (Specify)",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
+        "relevance": {
+          "step1:type_of_adverse_event": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "others"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
         "key": "desc_intraoperative_ae",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -802,20 +825,20 @@
         "options": [
           {
             "key": "more_bleed_than_usual_but_easily_controlled",
-            "text": "More bleeding than usual but easily controlled",
+            "text": "More than usual but easily controlled",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "more_bleed_than_usual_but_easily_controlled"
           },
           {
             "key": "bleed_require_pressure_dressing",
-            "text": "Bleeding that requires pressure dressing to control",
+            "text": "Requires pressure dressing to control",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "bleed_require_pressure_dressing"
           },
           {
-            "key": "Blood transfussion_or_transfered_another_facility",
+            "key": "Blood_transfussion_or_transfered_another_facility",
             "text": "Blood transfussion/transffered to another facility required",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
@@ -839,6 +862,38 @@
         "type": "toaster_notes",
         "text": "AE classified as MILD",
         "openmrs_entity_id": "ae_classified_as_mild",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "warning",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_mc_procedure_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "ae_classified_as_moderate",
+        "type": "toaster_notes",
+        "text": "AE classified as MODERATE",
+        "openmrs_entity_id": "ae_classified_as_moderate",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "warning",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_mc_procedure_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "ae_classified_as_severe",
+        "type": "toaster_notes",
+        "text": "AE classified as SEVERE",
+        "openmrs_entity_id": "ae_classified_as_severe",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "warning",

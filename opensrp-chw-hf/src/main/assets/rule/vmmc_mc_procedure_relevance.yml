@@ -86,7 +86,7 @@ actions:
 name: step1_desc_intraoperative_ae
 description: desc_intraoperative_ae relevance
 priority: 1
-condition: "step1_is_male_procedure_circumcision_conducted.equalsIgnoreCase('yes')"
+condition: "step1_intraoperative_adverse_event_occured.equalsIgnoreCase('yes')"
 actions:
   - "isRelevant = true"
 ---
@@ -94,6 +94,20 @@ name: step1_ae_classified_as_mild
 description: toaster for ae_classified_as_mild relevance
 priority: 1
 condition: "step1_desc_intraoperative_ae.equalsIgnoreCase('more_bleed_than_usual_but_easily_controlled')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_ae_classified_as_moderate
+description: toaster for ae_classified_as_mild relevance
+priority: 1
+condition: "step1_desc_intraoperative_ae.equalsIgnoreCase('bleed_require_pressure_dressing')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_ae_classified_as_severe
+description: toaster for ae_classified_as_mild relevance
+priority: 1
+condition: "step1_desc_intraoperative_ae.equalsIgnoreCase('Blood_transfussion_or_transfered_another_facility')"
 actions:
   - "isRelevant = true"
 ---

@@ -43,7 +43,7 @@
     "encounter_location": ""
   },
   "step1": {
-    "title": "Consent From",
+    "title": "Consent Form",
     "fields": [
       {
         "key": "client_consent_for_mc_procedure",
@@ -95,7 +95,7 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "consent_form",
-        "label": "Consent form ?",
+        "label": "Consent from ?",
         "text_color": "#000000",
         "type": "native_radio",
         "options": [

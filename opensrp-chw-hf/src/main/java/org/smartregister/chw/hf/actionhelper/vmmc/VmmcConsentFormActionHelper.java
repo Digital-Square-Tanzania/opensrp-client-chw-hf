@@ -16,6 +16,7 @@ public class VmmcConsentFormActionHelper implements BaseVmmcVisitAction.VmmcVisi
 
     protected String consent_form;
     protected String jsonPayload;
+    protected String mc_procedure;
 
     @Override
     public void onJsonFormLoaded(String jsonPayload, Context context, Map<String, List<VisitDetail>> map) {
@@ -39,6 +40,7 @@ public class VmmcConsentFormActionHelper implements BaseVmmcVisitAction.VmmcVisi
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
             consent_form = CoreJsonFormUtils.getValue(jsonObject, "client_consent_for_mc_procedure");
+            mc_procedure = CoreJsonFormUtils.getValue(jsonObject, "consent_form");
         } catch (JSONException e) {
             e.printStackTrace();
         }

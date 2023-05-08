@@ -248,6 +248,29 @@
         }
       },
       {
+        "key": "type_of_adverse_event_others",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "type_of_adverse_event_others",
+        "type": "edit_text",
+        "hint": "Others (Specify)",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
+        "relevance": {
+          "step1:type_of_adverse_event": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "others"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
         "key": "desc_of_post_op_adverse_event",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -282,13 +305,51 @@
         "v_required": {
           "value": "true",
           "err": "Please select atleast one scale"
+        },
+        "relevance": {
+          "step1:post_op_adverse_event_occur": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
         }
       },
       {
-        "key": "desc_pozt_op_toaster",
+        "key": "desc_mild_op_toaster",
         "type": "toaster_notes",
         "text": "AE classified as MILD",
-        "openmrs_entity_id": "desc_pozt_op_toaster",
+        "openmrs_entity_id": "desc_mild_op_toaster",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "warning",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_followup_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "desc_moderate_op_toaster",
+        "type": "toaster_notes",
+        "text": "AE classified as MODERATE",
+        "openmrs_entity_id": "desc_moderate_op_toaster",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "warning",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_followup_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "desc_severe_op_toaster",
+        "type": "toaster_notes",
+        "text": "AE classified as SEVERE",
+        "openmrs_entity_id": "desc_severe_op_toaster",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "warning",
