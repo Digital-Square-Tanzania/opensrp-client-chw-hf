@@ -175,6 +175,10 @@
         "openmrs_entity_id": "pulse_rate",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
+        "v_required": {
+          "value": true,
+          "err": "Please fill the field"
+        },
         "v_numeric": {
           "value": "true",
           "err": "Please enter the pulse rate"
@@ -195,6 +199,10 @@
         "openmrs_entity_id": "systolic",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
+        "v_required": {
+          "value": true,
+          "err": "Please fill the field"
+        },
         "v_numeric": {
           "value": "true",
           "err": "Please enter the systolic value"
@@ -215,6 +223,10 @@
         "openmrs_entity_id": "diastolic",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
+        "v_required": {
+          "value": true,
+          "err": "Please fill the field"
+        },
         "v_numeric": {
           "value": "true",
           "err": "Please enter the diastolic value"
@@ -242,6 +254,10 @@
         "openmrs_entity_id": "temperature",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
+        "v_required": {
+          "value": true,
+          "err": "Please fill the field"
+        },
         "v_numeric": {
           "value": "true",
           "err": "Please enter the temperature"

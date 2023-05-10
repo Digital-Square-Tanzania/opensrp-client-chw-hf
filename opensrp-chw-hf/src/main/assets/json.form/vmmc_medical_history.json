@@ -228,6 +228,9 @@
         "type": "check_box",
         "label": "Is client diagnosed with any of the following?",
         "text_color": "#000000",
+        "exclusive": [
+          "none"
+        ],
         "options": [
           {
             "key": "hypertension",

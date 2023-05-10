@@ -81,6 +81,10 @@
         "openmrs_entity_id": "reason",
         "type": "edit_text",
         "hint": "Reason",
+        "v_required": {
+          "value": "true",
+          "err": "Please select at one reason"
+        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -519,6 +523,10 @@
         "openmrs_entity_id": "surgeon_name",
         "type": "edit_text",
         "hint": "Surgeon's name",
+        "v_required": {
+          "value": "true",
+          "err": "Please fill the field"
+        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -595,6 +603,10 @@
         "openmrs_entity_id": "assistant_name",
         "type": "edit_text",
         "hint": "Assistant's name",
+        "v_required": {
+          "value": "true",
+          "err": "Please fill the field"
+        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {

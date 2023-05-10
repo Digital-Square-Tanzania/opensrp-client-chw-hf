@@ -140,6 +140,10 @@
         "openmrs_entity_id": "health_care_provider",
         "type": "edit_text",
         "hint": "Health Care Provider's name",
+        "v_required": {
+          "value": "true",
+          "err": "Please write the name"
+        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
