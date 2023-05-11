@@ -155,6 +155,13 @@
         "v_required": {
           "value": "true",
           "err": "Please enter the date"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_notifiable_adverse_event_relevance.yml"
+            }
+          }
         }
       },
       {
@@ -170,6 +177,13 @@
         "v_required": {
           "value": "true",
           "err": "Please enter the date"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_notifiable_adverse_event_relevance.yml"
+            }
+          }
         }
       },
       {
@@ -183,6 +197,13 @@
         "v_required": {
           "value": "true",
           "err": "Please provide the time "
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_notifiable_adverse_event_relevance.yml"
+            }
+          }
         }
       },
       {
@@ -195,6 +216,13 @@
         "v_required": {
           "value": "true",
           "err": "Please fill the field"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_notifiable_adverse_event_relevance.yml"
+            }
+          }
         }
       },
       {
@@ -207,6 +235,13 @@
         "v_required": {
           "value": "true",
           "err": "Please fill the field"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_notifiable_adverse_event_relevance.yml"
+            }
+          }
         }
       },
       {
@@ -236,6 +271,13 @@
         "v_required": {
           "value": "true",
           "err": "Please select at least one"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_notifiable_adverse_event_relevance.yml"
+            }
+          }
         }
       },
       {
@@ -298,6 +340,39 @@
             "ex-rules": {
               "rules-file": "vmmc_notifiable_adverse_event_relevance.yml"
             }
+          }
+        }
+      },
+      {
+        "key": "treatment_outcome_note",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person_attribute",
+        "openmrs_entity_id": "toaster_notes",
+        "type": "toaster_notes",
+        "text": "Refer the client for further managment",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "step1:treatment_outcome": {
+            "type": "string",
+            "ex": "equalTo(., \"adverse_event_partially_resolved\")"
+          }
+        }
+      },
+
+      {
+        "key": "treatment_outcome_unchanged_note",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person_attribute",
+        "openmrs_entity_id": "toaster_notes",
+        "type": "toaster_notes",
+        "text": "Refer the client for further managment",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "step1:treatment_outcome": {
+            "type": "string",
+            "ex": "equalTo(., \"adverse_event_unchanged\")"
           }
         }
       },

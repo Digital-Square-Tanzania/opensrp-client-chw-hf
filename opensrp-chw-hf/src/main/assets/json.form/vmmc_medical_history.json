@@ -297,16 +297,48 @@
         }
       },
       {
+        "key": "ctc_number",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "ctc_number",
+        "type": "mask_edit_text",
+        "mask": "##-##-####-######",
+        "mask_hint": "12345678912345",
+        "allowed_chars": "0123456789",
+        "hint": "CTC Number e.g 12-34-5678-912345",
+        "edit_type": "number",
+        "v_regex": {
+          "value": "(\\d{2}-\\d{2}-\\d{4}-\\d{6})?",
+          "err": "CTC Number should be of the format (XX-XX-XXXX-XXXXXX)"
+        },
+        "v_max_length": {
+          "value": "17",
+          "is_fixed_size": "true",
+          "err": "Please enter a valid ctc Number"
+        },
+        "v_required": {
+          "value": true,
+          "err": "Please enter a valid ctc Number"
+        },
+        "relevance": {
+          "step1:client_diagnosed": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "hiv"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
         "key": "hiv_viral_load_text",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "hiv_viral_load_text",
         "type": "edit_text",
         "hint": "Viral load",
-        "v_required": {
-          "value": "true",
-          "err": "Please specify"
-        },
         "relevance": {
           "step1:client_diagnosed": {
             "ex-checkbox": [

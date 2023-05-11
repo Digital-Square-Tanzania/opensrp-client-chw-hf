@@ -57,67 +57,150 @@
     "fields": [
       {
         "key": "pulse_rate",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "165007AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "type": "edit_text",
         "hint": "Pulse Rate (Beats per minute)",
-        "edit_type": "number",
-        "v_required": {
+        "openmrs_entity_id": "pulse_rate",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "v_numeric": {
           "value": "true",
           "err": "Please enter the pulse rate"
+        },
+        "v_min": {
+          "value": "60",
+          "err": "Manager according to the standard guideline"
+        },
+        "v_max": {
+          "value": "100",
+          "err": "The pulse rate is above"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Pulse Rate (Beats per minute)"
         }
       },
       {
         "key": "systolic",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "165008AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "type": "edit_text",
         "hint": "Systolic (Blood Pressure)",
-        "edit_type": "number",
+        "openmrs_entity_id": "systolic",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "v_numeric": {
+          "value": "true",
+          "err": "Please enter the systolic value"
+        },
+        "v_min": {
+          "value": "90",
+          "err": "Manager according to the standard guideline"
+        },
+        "v_max": {
+          "value": "139",
+          "err": "Manager according to the standard guideline"
+        },
         "v_required": {
           "value": "true",
-          "err": "Please enter the systolic"
+          "err": "Please enter the Systolic (Blood Pressure)"
         }
       },
       {
         "key": "diastolic",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "165009AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "type": "edit_text",
         "hint": "Diastolic (Blood Pressure)",
-        "edit_type": "number",
+        "openmrs_entity_id": "diastolic",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "v_numeric": {
+          "value": "true",
+          "err": "Please enter the diastolic value"
+        },
         "v_required": {
           "value": "true",
-          "err": "Please enter the diastolic"
-        }
+          "err": "Please enter the Diastolic (Blood Pressure)"
+        },
+        "v_min": {
+          "value": "60",
+          "err": "Manager according to the standard guideline"
+        },
+        "v_max": {
+          "value": "89",
+          "err": "Manager according to the standard guideline"
+        },
+        "constraints": [
+          {
+            "type": "numeric",
+            "ex": "lessThan(., step1:systolic)",
+            "err": "The diastolic value must be less than the systolic value"
+          }
+        ]
       },
       {
         "key": "temperature",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "1650010AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "type": "edit_text",
         "hint": "Temperature (\u2103)",
-        "edit_type": "number",
-        "v_required": {
+        "openmrs_entity_id": "temperature",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "v_numeric": {
           "value": "true",
           "err": "Please enter the temperature"
+        },
+        "v_min": {
+          "value": "10",
+          "err": "Temperature must be equal or greater than 10"
+        },
+        "v_max": {
+          "value": "50",
+          "err": "Temperature must be equal or less than 50"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the Temperature"
+        }
+      },
+      {
+        "key": "notify_client_has_fever",
+        "type": "toaster_notes",
+        "text": "Conduct relevant laboratory tests to elicit the cause of fever and manage according to standard guidelines ",
+        "openmrs_entity_id": "notify_client_has_fever",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "warning",
+        "relevance": {
+          "step1:temperature": {
+            "type": "numeric",
+            "ex": "greaterThan(.,\"37.8\")"
+          }
+        }
+      },
+      {
+        "key": "notify_client_has_hypothermia",
+        "type": "toaster_notes",
+        "text": "Manage the hypothermia according to standard guidelines",
+        "openmrs_entity_id": "notify_client_has_hypothermia",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "warning",
+        "relevance": {
+          "step1:temperature": {
+            "type": "numeric",
+            "ex": "lessThan(.,\"36.5\")"
+          }
         }
       },
       {
         "key": "respiration_rate",
         "openmrs_entity_parent": "",
         "openmrs_entity": "",
-        "openmrs_entity_id": "1650011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "openmrs_entity_id": "",
+        "entity_id": "",
         "type": "edit_text",
-        "hint": "Respiration rate (Breath per minute)",
+        "hint": "Respiration rate (Breath per minute) ",
         "edit_type": "number",
+        "look_up": "true",
         "v_required": {
           "value": "true",
-          "err": "Please enter the respiration rate"
+          "err": "Please enter the Respiration rate (Breath per minute) "
         }
       },
       {

@@ -371,6 +371,12 @@
         "v_required": {
           "value": "true",
           "err": "Please fill the field"
+        },
+        "relevance": {
+          "step1:post_op_adverse_event_occur": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
         }
       },
 
@@ -384,6 +390,12 @@
         "v_required": {
           "value": "true",
           "err": "Please fill the field"
+        },
+        "relevance": {
+          "step1:post_op_adverse_event_occur": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
         }
       },
 
@@ -421,6 +433,46 @@
         "v_required": {
           "value": "true",
           "err": "Please select atleast one outcome"
+        },
+        "relevance": {
+          "step1:post_op_adverse_event_occur": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
+        }
+      },
+
+      {
+        "key": "treatment_outcome_note",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person_attribute",
+        "openmrs_entity_id": "toaster_notes",
+        "type": "toaster_notes",
+        "text": "Refer the client for further managment",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "step1:treatment_outcome": {
+            "type": "string",
+            "ex": "equalTo(., \"adverse_event_partially_resolved\")"
+          }
+        }
+      },
+
+      {
+        "key": "treatment_outcome_unchanged_note",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person_attribute",
+        "openmrs_entity_id": "toaster_notes",
+        "type": "toaster_notes",
+        "text": "Refer the client for further managment",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "step1:treatment_outcome": {
+            "type": "string",
+            "ex": "equalTo(., \"adverse_event_unchanged\")"
+          }
         }
       },
 
@@ -612,15 +664,65 @@
       },
 
       {
-        "key": "provider_center",
+        "key": "provider_cadre",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "provider_center",
-        "type": "edit_text",
-        "hint": "Provider's center",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "provider_cadre",
+        "type": "native_radio",
+        "label": "Provider's cadre",
+        "options": [
+          {
+            "key": "assistant_medical_officer",
+            "text": "Medical officer",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": "assistant_medical_officer",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "assistant_assistant_medical_officer",
+            "text": "Assistant medical officer",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": "assistant_assistant_medical_officer",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "assistant_clinical_officer_or_assistant",
+            "text": "Clinical officer/Assistant clinical officer",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": "assistant_clinical_officer_or_assistant",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "assistant_enrolled_nurse",
+            "text": "Enrolled nurse",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": "assistant_enrolled_nurse",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "assistant_assistant_nursing_officer",
+            "text": "Assistant nursing officer",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": "assistant_assistant_nursing_officer",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "assistant_nursing_officer",
+            "text": "Nursing officer",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": "assistant_nursing_officer",
+            "openmrs_entity_parent": ""
+          }
+        ],
         "v_required": {
-          "value": "true",
-          "err": "Please fill the field"
+          "value": true,
+          "err": "Please select atleast one"
         }
       }
     ]
