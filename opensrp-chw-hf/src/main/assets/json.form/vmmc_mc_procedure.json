@@ -745,7 +745,7 @@
         "options": [
           {
             "key": "excessive_skin_removal",
-            "text": "Excessive skin remogal",
+            "text": "Excessive skin removal",
             "value": false,
             "openmrs_entity": "",
             "openmrs_entity_id": "excessive_skin_removal",
@@ -827,30 +827,30 @@
         }
       },
       {
-        "key": "desc_intraoperative_ae",
+        "key": "desc_intraoperative_ae_bleed",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "desc_intraoperative_ae",
-        "label": "Description of intraoperative adverse events",
+        "label": "Description of intraoperative adverse events (Excessive bleeding)",
         "text_color": "#000000",
         "type": "native_radio",
         "options": [
           {
             "key": "more_bleed_than_usual_but_easily_controlled",
-            "text": "More than usual but easily controlled",
+            "text": "More Bleeding than usual but easily controlled",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "more_bleed_than_usual_but_easily_controlled"
           },
           {
             "key": "bleed_require_pressure_dressing",
-            "text": "Requires pressure dressing to control",
+            "text": "Bleed Requires pressure dressing to control",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "bleed_require_pressure_dressing"
           },
           {
-            "key": "Blood_transfussion_or_transfered_another_facility",
+            "key": "blood_transfussion_or_transfered_another_facility",
             "text": "Blood transfussion/transffered to another facility required",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
@@ -862,10 +862,155 @@
           "err": "Please select at least one"
         },
         "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "vmmc_mc_procedure_relevance.yml"
-            }
+          "step1:type_of_adverse_event": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "excessive_bleeding"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "desc_intraoperative_ae_skin_removal",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "desc_intraoperative_ae",
+        "label": "Description of intraoperative adverse events (Excessive skin removal)",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "discernible_adverse_condition",
+            "text": "Adds time or material needs to the procedure, but does not result in any discernible adverse condition",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "discernible_adverse_condition"
+          },
+          {
+            "key": "skin_tight",
+            "text": "Skin is tight, but additional operative work not necessary",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "skin_tight"
+          },
+          {
+            "key": "requires_reoperation",
+            "text": "Requires re-operation or transfer to another facility to correct the problem",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "requires_reoperation"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select at least one"
+        },
+        "relevance": {
+          "step1:type_of_adverse_event": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "excessive_skin_removal"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "desc_intraoperative_ae_injury_to_penis",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "desc_intraoperative_ae",
+        "label": "Description of intraoperative adverse events (Injury to penis)",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "mild_bruising",
+            "text": "Mild bruising or abrasion, not requiring treatment",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "more_bleed_than_usual_but_easily_controlled"
+          },
+          {
+            "key": "bruising",
+            "text": "Bruising or abrasion of the glans or shaft of the penis requiring pressure dressing or additional surgery to control",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "bleed_require_pressure_dressing"
+          },
+          {
+            "key": "glans_or_shaft",
+            "text": "Part or all of the glans or shaft of the penis severed",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "transfussion_or_transfered_another_facility"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select at least one"
+        },
+        "relevance": {
+          "step1:type_of_adverse_event": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "injury_to_penis"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "desc_intraoperative_ae_anaesthetic_related_event",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "desc_intraoperative_ae",
+        "label": "Description of intraoperative adverse events (Anaesthetic-related event)",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "palpitations",
+            "text": "Palpitations, vaso-vagal reaction or emesis",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "more_bleed_than_usual_but_easily_controlled"
+          },
+          {
+            "key": "reaction_to_anaesthetic",
+            "text": "Reaction to anaesthetic requiring medical treatment in clinic, but not transfer to another facility",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "bleed_require_pressure_dressing"
+          },
+          {
+            "key": "anaphylaxis",
+            "text": "Anaphylaxis or other reaction requiring transfer to another facility",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "transfussion_or_transfered_another_facility"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select at least one"
+        },
+        "relevance": {
+          "step1:type_of_adverse_event": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "anesthetic_related_events"
+                ]
+              }
+            ]
           }
         }
       },

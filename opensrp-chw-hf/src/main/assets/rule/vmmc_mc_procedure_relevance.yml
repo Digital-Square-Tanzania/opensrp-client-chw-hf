@@ -83,31 +83,24 @@ condition: "step1_is_male_procedure_circumcision_conducted.equalsIgnoreCase('yes
 actions:
   - "isRelevant = true"
 ---
-name: step1_desc_intraoperative_ae
-description: desc_intraoperative_ae relevance
-priority: 1
-condition: "step1_intraoperative_adverse_event_occured.equalsIgnoreCase('yes')"
-actions:
-  - "isRelevant = true"
----
 name: step1_ae_classified_as_mild
 description: toaster for ae_classified_as_mild relevance
 priority: 1
-condition: "step1_desc_intraoperative_ae.equalsIgnoreCase('more_bleed_than_usual_but_easily_controlled')"
+condition: "step1_desc_intraoperative_ae_bleed.equalsIgnoreCase('more_bleed_than_usual_but_easily_controlled') || step1_desc_intraoperative_ae_skin_removal.equalsIgnoreCase('discernible_adverse_condition') || step1_desc_intraoperative_ae_injury_to_penis.equalsIgnoreCase('mild_bruising') || step1_desc_intraoperative_ae_anaesthetic_related_event.equalsIgnoreCase('palpitations')"
 actions:
   - "isRelevant = true"
 ---
 name: step1_ae_classified_as_moderate
 description: toaster for ae_classified_as_mild relevance
 priority: 1
-condition: "step1_desc_intraoperative_ae.equalsIgnoreCase('bleed_require_pressure_dressing')"
+condition: "step1_desc_intraoperative_ae_bleed.equalsIgnoreCase('bleed_require_pressure_dressing') || step1_desc_intraoperative_ae_skin_removal.equalsIgnoreCase('skin_tight') || step1_desc_intraoperative_ae_injury_to_penis.equalsIgnoreCase('bruising') || step1_desc_intraoperative_ae_anaesthetic_related_event.equalsIgnoreCase('reaction_to_anaesthetic')"
 actions:
   - "isRelevant = true"
 ---
 name: step1_ae_classified_as_severe
 description: toaster for ae_classified_as_mild relevance
 priority: 1
-condition: "step1_desc_intraoperative_ae.equalsIgnoreCase('Blood_transfussion_or_transfered_another_facility')"
+condition: "step1_desc_intraoperative_ae_bleed.equalsIgnoreCase('blood_transfussion_or_transfered_another_facility') || step1_desc_intraoperative_ae_skin_removal.equalsIgnoreCase('requires_reoperation') || step1_desc_intraoperative_ae_injury_to_penis.equalsIgnoreCase('glans_or_shaft') || step1_desc_intraoperative_ae_anaesthetic_related_event.equalsIgnoreCase('anaphylaxis')"
 actions:
   - "isRelevant = true"
 ---
