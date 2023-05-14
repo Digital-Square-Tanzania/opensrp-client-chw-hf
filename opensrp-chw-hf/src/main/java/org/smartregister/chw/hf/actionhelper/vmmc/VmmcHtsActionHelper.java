@@ -1,6 +1,7 @@
 package org.smartregister.chw.hf.actionhelper.vmmc;
 
 import android.content.Context;
+import android.util.Log;
 
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
@@ -37,7 +38,7 @@ public class VmmcHtsActionHelper implements BaseVmmcVisitAction.VmmcVisitActionH
             JSONObject jsonObject = new JSONObject(jsonPayload);
 
             String hiv_info = org.smartregister.chw.hf.actionhelper.vmmc.VmmcVisitTypeActionHelper.hiv_info;
-
+            Log.d("test-hiv",hiv_info);
             JSONObject global = jsonObject.getJSONObject("global");
             global.put("hiv_info", hiv_info);
 
