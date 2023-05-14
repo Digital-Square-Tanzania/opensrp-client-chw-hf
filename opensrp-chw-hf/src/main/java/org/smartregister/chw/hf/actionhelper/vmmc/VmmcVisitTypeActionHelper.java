@@ -16,6 +16,7 @@ public class VmmcVisitTypeActionHelper implements BaseVmmcVisitAction.VmmcVisitA
 
     protected String medical_history;
     protected String jsonPayload;
+    protected static String hiv_info;
 
     @Override
     public void onJsonFormLoaded(String jsonPayload, Context context, Map<String, List<VisitDetail>> map) {
@@ -38,6 +39,11 @@ public class VmmcVisitTypeActionHelper implements BaseVmmcVisitAction.VmmcVisitA
     public void onPayloadReceived(String jsonPayload) {
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
+            JSONObject global = jsonObject.getJSONObject("global");
+
+            hiv_info = CoreJsonFormUtils.getValue(jsonObject, "client_diagnosed");
+            global.put("hiv_info", hiv_info);
+
             medical_history = CoreJsonFormUtils.getValue(jsonObject, "has_client_had_any_sti");
         } catch (JSONException e) {
             e.printStackTrace();

@@ -35,6 +35,12 @@ public class VmmcHtsActionHelper implements BaseVmmcVisitAction.VmmcVisitActionH
     public String getPreProcessed() {
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
+
+            String hiv_info = org.smartregister.chw.hf.actionhelper.vmmc.VmmcVisitTypeActionHelper.hiv_info;
+
+            JSONObject global = jsonObject.getJSONObject("global");
+            global.put("hiv_info", hiv_info);
+
             return jsonObject.toString();
         } catch (JSONException e) {
             e.printStackTrace();
@@ -47,7 +53,7 @@ public class VmmcHtsActionHelper implements BaseVmmcVisitAction.VmmcVisitActionH
     public void onPayloadReceived(String jsonPayload) {
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
-            medical_history = CoreJsonFormUtils.getValue(jsonObject, "tested_hiv");
+            medical_history = CoreJsonFormUtils.getValue(jsonObject, "client_medically_cleared");
         } catch (JSONException e) {
             e.printStackTrace();
         }

@@ -1,0 +1,7 @@
+---
+name: step1_tested_hiv
+description: if step1_tested_hiv
+priority: 1
+condition: "!global_hiv_info.contains('hiv')"
+actions:
+  - "isRelevant = true "

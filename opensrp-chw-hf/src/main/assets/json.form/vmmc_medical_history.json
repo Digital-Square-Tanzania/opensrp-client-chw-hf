@@ -42,6 +42,7 @@
     },
     "encounter_location": ""
   },
+  "global": {},
   "step1": {
     "title": "Medical History",
     "fields": [
