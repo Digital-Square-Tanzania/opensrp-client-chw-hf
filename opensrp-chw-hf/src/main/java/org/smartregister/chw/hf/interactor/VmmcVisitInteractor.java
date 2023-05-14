@@ -57,7 +57,7 @@ public class VmmcVisitInteractor extends BaseVmmcVisitInteractor {
     private void evaluateVisitType(Map<String, List<VisitDetail>> details) throws BaseVmmcVisitAction.ValidationException {
         JSONObject vmmcMedicalHistory = FormUtils.getFormUtils().getFormJson(Constants.VMMC_FOLLOWUP_FORMS.MEDICAL_HISTORY);
 
-        VmmcVisitTypeActionHelper actionHelper = new VmmcVisitTypeActionHelper();
+        VmmcVisitTypeActionHelper actionHelper = new VmmcVisitTypeActionHelper(memberObject.getBaseEntityId());
         BaseVmmcVisitAction action = getBuilder(context.getString(R.string.vmmc_medical_history))
                 .withOptional(false)
                 .withDetails(details)
@@ -121,6 +121,11 @@ public class VmmcVisitInteractor extends BaseVmmcVisitInteractor {
     }
 
     private class VmmcVisitTypeActionHelper extends org.smartregister.chw.hf.actionhelper.vmmc.VmmcVisitTypeActionHelper {
+        public VmmcVisitTypeActionHelper(String baseEntityId) {
+            super(baseEntityId);
+        }
+
+
         @Override
         public String postProcess(String s) {
 //            if (StringUtils.isNotBlank(medical_history)) {

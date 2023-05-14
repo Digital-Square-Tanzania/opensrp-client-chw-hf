@@ -36,10 +36,11 @@ public class VmmcHtsActionHelper implements BaseVmmcVisitAction.VmmcVisitActionH
     public String getPreProcessed() {
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
+            JSONObject global = jsonObject.getJSONObject("global");
 
             String hiv_info = org.smartregister.chw.hf.actionhelper.vmmc.VmmcVisitTypeActionHelper.hiv_info;
             Log.d("test-hiv",hiv_info);
-            JSONObject global = jsonObject.getJSONObject("global");
+
             global.put("hiv_info", hiv_info);
 
             return jsonObject.toString();
