@@ -72,7 +72,7 @@ public class VmmcVisitInteractor extends BaseVmmcVisitInteractor {
     private void evaluateVmmcPhysicalExam(Map<String, List<VisitDetail>> details) throws BaseVmmcVisitAction.ValidationException {
         JSONObject vmmcPhysicalExam = FormUtils.getFormUtils().getFormJson(Constants.VMMC_FOLLOWUP_FORMS.PHYSICAL_EXAMINATION);
 
-        VmmcPhysicalExamActionHelper actionHelper = new VmmcPhysicalExamActionHelper();
+        VmmcPhysicalExamActionHelper actionHelper = new VmmcPhysicalExamActionHelper(memberObject.getBaseEntityId());
         BaseVmmcVisitAction action = getBuilder(context.getString(R.string.vmmc_physical_examination))
                 .withOptional(false)
                 .withDetails(details)
@@ -128,43 +128,45 @@ public class VmmcVisitInteractor extends BaseVmmcVisitInteractor {
 
         @Override
         public String postProcess(String s) {
-//            if (StringUtils.isNotBlank(medical_history)) {
-//                try {
-//                    evaluatePrEPScreening(details);
-//                } catch (BaseVmmcVisitAction.ValidationException e) {
-//                    e.printStackTrace();
-//                }
-//            } else {
+            if (StringUtils.isNotBlank(medical_history)) {
+                try {
+                    evaluateVmmcPhysicalExam(details);
+                    evaluateVmmcHTS(details);
+                } catch (BaseVmmcVisitAction.ValidationException e) {
+                    e.printStackTrace();
+                }
+            } else {
 ////                actionList.remove(context.getString(R.string.vmmc_medical_history));
 ////                actionList.remove(context.getString(R.string.vmmc_physical_examination));
 ////                actionList.remove(context.getString(R.string.vmmc_hts));
-//            }
+            }
             new AppExecutors().mainThread().execute(() -> callBack.preloadActions(actionList));
             return super.postProcess(s);
         }
 
     }
 
-//    private class VmmcPhysicalExamActionHelper extends org.smartregister.chw.hf.actionhelper.vmmc.VmmcPhysicalExamActionHelper {
-//        public VmmcPhysicalExamActionHelper(String baseEntityId) {
-//            super(baseEntityId);
-//        }
-//
-//        @Override
-//        public String postProcess(String s) {
-//            if (should_initiate.equalsIgnoreCase("yes")) {
-//                try {
-//                    evaluatePrEPInitiation(details);
-////                    evaluateOtherServices(details);
-//                } catch (BaseVmmcVisitAction.ValidationException e) {
-//                    e.printStackTrace();
-//                }
-//            } else {
-//                actionList.remove(context.getString(R.string.prep_initiation));
-//                actionList.remove(context.getString(R.string.other_services));
-//            }
-//            new AppExecutors().mainThread().execute(() -> callBack.preloadActions(actionList));
-//            return super.postProcess(s);
-//        }
-//    }
+    private class VmmcPhysicalExamActionHelper extends org.smartregister.chw.hf.actionhelper.vmmc.VmmcPhysicalExamActionHelper {
+        public VmmcPhysicalExamActionHelper(String baseEntityId) {
+            super(baseEntityId);
+        }
+
+        @Override
+        public String postProcess(String s) {
+            if (StringUtils.isNotBlank(medical_history)) {
+                try {
+                    evaluateVmmcHTS(details);
+                } catch (BaseVmmcVisitAction.ValidationException e) {
+                    e.printStackTrace();
+                }
+            } else {
+////                actionList.remove(context.getString(R.string.vmmc_medical_history));
+////                actionList.remove(context.getString(R.string.vmmc_physical_examination));
+////                actionList.remove(context.getString(R.string.vmmc_hts));
+            }
+            new AppExecutors().mainThread().execute(() -> callBack.preloadActions(actionList));
+            return super.postProcess(s);
+        }
+
+    }
 }

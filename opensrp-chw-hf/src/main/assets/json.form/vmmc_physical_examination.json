@@ -348,7 +348,7 @@
             "openmrs_entity_id": ""
           },
           {
-            "key": " smegma",
+            "key": "smegma",
             "text": "Smegma under the foreskin",
             "value": false,
             "openmrs_entity": "",

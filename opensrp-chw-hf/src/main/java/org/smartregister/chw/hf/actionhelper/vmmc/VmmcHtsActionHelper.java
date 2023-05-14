@@ -39,9 +39,12 @@ public class VmmcHtsActionHelper implements BaseVmmcVisitAction.VmmcVisitActionH
             JSONObject global = jsonObject.getJSONObject("global");
 
             String hiv_info = org.smartregister.chw.hf.actionhelper.vmmc.VmmcVisitTypeActionHelper.hiv_info;
-            Log.d("test-hiv",hiv_info);
-
             global.put("hiv_info", hiv_info);
+
+            String contraindication = org.smartregister.chw.hf.actionhelper.vmmc.VmmcPhysicalExamActionHelper.contraindication;
+            global.put("contraindication", contraindication);
+            Log.d("contraindication",contraindication);
+
 
             return jsonObject.toString();
         } catch (JSONException e) {

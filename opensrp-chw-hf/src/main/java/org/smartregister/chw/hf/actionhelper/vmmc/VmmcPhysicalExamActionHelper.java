@@ -1,6 +1,7 @@
 package org.smartregister.chw.hf.actionhelper.vmmc;
 
 import android.content.Context;
+import android.util.Log;
 
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
@@ -20,6 +21,13 @@ import timber.log.Timber;
 public class VmmcPhysicalExamActionHelper implements BaseVmmcVisitAction.VmmcVisitActionHelper {
     protected String medical_history;
     protected String jsonPayload;
+    private String baseEntityId;
+    protected static String contraindication;
+
+    public VmmcPhysicalExamActionHelper(String baseEntityId) {
+        this.baseEntityId = baseEntityId;
+    }
+
 
     @Override
     public void onJsonFormLoaded(String jsonPayload, Context context, Map<String, List<VisitDetail>> map) {
@@ -42,6 +50,13 @@ public class VmmcPhysicalExamActionHelper implements BaseVmmcVisitAction.VmmcVis
     public void onPayloadReceived(String jsonPayload) {
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
+            JSONObject global = jsonObject.getJSONObject("global");
+
+            contraindication = CoreJsonFormUtils.getValue(jsonObject, "genital_examination");
+            Log.d("physical",contraindication);
+            global.put("contraindication", contraindication);
+
+
             medical_history = CoreJsonFormUtils.getValue(jsonObject, "physical_abnormality");
         } catch (JSONException e) {
             e.printStackTrace();
