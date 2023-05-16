@@ -38,7 +38,7 @@ public class VmmcProcedureActionHelper implements BaseVmmcVisitAction.VmmcVisitA
     public void onPayloadReceived(String jsonPayload) {
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
-            medical_history = CoreJsonFormUtils.getValue(jsonObject, "aneathesia_administered");
+            medical_history = CoreJsonFormUtils.getValue(jsonObject, "is_male_procedure_circumcision_conducted");
         } catch (JSONException e) {
             e.printStackTrace();
         }

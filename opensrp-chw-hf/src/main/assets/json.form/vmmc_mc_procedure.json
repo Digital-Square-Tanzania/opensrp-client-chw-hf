@@ -1074,10 +1074,9 @@
           "err": "Please fill the field"
         },
         "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "vmmc_mc_procedure_relevance.yml"
-            }
+          "step1:intraoperative_adverse_event_occured": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
           }
         }
       },
@@ -1093,10 +1092,9 @@
           "err": "Please fill the field"
         },
         "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "vmmc_mc_procedure_relevance.yml"
-            }
+          "step1:intraoperative_adverse_event_occured": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
           }
         }
       },
@@ -1136,10 +1134,9 @@
           "err": "Please select atleast one outcome"
         },
         "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "vmmc_mc_procedure_relevance.yml"
-            }
+          "step1:intraoperative_adverse_event_occured": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
           }
         }
       }
