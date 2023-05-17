@@ -160,7 +160,6 @@
         "openmrs_entity_id": "type_of_adverse_event",
         "type": "check_box",
         "label": "Type of adverse event",
-        "label_text_style": "bold",
         "options": [
           {
             "key": "bleeding",
@@ -718,7 +717,6 @@
         "openmrs_entity_id": "condoms_issued",
         "type": "check_box",
         "label": "Select the type of the condoms issued",
-        "label_text_style": "bold",
         "options": [
           {
             "key": "male_condoms",
