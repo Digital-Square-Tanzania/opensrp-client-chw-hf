@@ -6,6 +6,13 @@ condition: "!global_hiv_info.contains('hiv')"
 actions:
   - "isRelevant = true "
 ---
+name: step1_hiv_viral_load_text
+description: if step1_hiv_viral_load_text
+priority: 1
+condition: "global_hiv_info.contains('hiv')"
+actions:
+  - "isRelevant = true "
+---
 name: step1_toaster_notes_uds
 description: if step1_tested_hiv
 priority: 1

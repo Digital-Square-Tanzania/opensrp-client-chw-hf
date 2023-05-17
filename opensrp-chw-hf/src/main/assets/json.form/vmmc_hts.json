@@ -180,6 +180,21 @@
         }
       },
       {
+        "key": "hiv_viral_load_text",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "hiv_viral_load_text",
+        "type": "edit_text",
+        "hint": "Viral load",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_hts_relevance.yml"
+            }
+          }
+        }
+      },
+      {
         "key": "self_test_kits",
         "openmrs_entity_parent": "",
         "openmrs_entity": "",
