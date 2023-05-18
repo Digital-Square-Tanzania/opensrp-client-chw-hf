@@ -8624,6 +8624,14 @@
           }
         },
         {
+          "column_name": "hiv_result",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "hiv_result"
+          }
+        },
+        {
           "column_name": "reasons",
           "type": "Event",
           "json_mapping": {
@@ -8677,6 +8685,13 @@
           "json_mapping": {
             "field": "obs.fieldCode",
             "concept": "gud_managed"
+          }
+        },
+        {
+          "column_name": "last_interacted_with",
+          "type": "Event",
+          "json_mapping": {
+            "field": "version"
           }
         }
       ]
