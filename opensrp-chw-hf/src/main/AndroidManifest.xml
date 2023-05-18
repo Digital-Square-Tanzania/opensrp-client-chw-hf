@@ -87,6 +87,9 @@
             android:name=".activity.VmmcDischargeActivity"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
+            android:name=".activity.VmmcReportsActivity"
+            android:theme="@style/HFTheme.NoActionBar" />
+        <activity
             android:name=".activity.CdpRegisterActivity"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
