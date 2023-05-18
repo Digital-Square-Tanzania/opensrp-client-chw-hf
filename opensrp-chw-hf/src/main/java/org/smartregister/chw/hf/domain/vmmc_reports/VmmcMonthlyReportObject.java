@@ -10,17 +10,16 @@ import java.util.Date;
 public class VmmcMonthlyReportObject extends ReportObject {
 
 
-    private final String[] kvpQuestionsGroups = new String[]{"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","18","19","20","21","22",
-            "17-a","17-b","17-c","17-d"
+    private final String[] vmmcQuestionsGroups = new String[]{"1","2","3-i","3-ii","4","5","6-a-i","6-a-ii","6-a-iii","6-a-iv","6-a-v","6-a-vi","6-a-vii",
+            "6-b-i","6-b-ii","6-b-iii","6-b-iv","6-b-v","6-b-vi","6-b-vii",
+            "7-i","7-ii","7-iii","7-iv","7-v","7-vi","7-vii","7-viii",
+            "8-i","8-ii","8-iii","8-iv","8-v"
     };
-    private final String[] kvpAgeGroups = new String[]{
-            "<10","10-14","15-19","20-24","25-29","30-34","35-39","40-44","45-49",">50"
+    private final String[] vmmcAgeGroups = new String[]{
+            "1","1-9","10-14","15-19","20-24","25-29","30-34","35-39","40-44","45-49","50"
     };
-    private final String[] kvpGroups = new String[]{
-            "pwid","pwud","fsw","msm","agyw","mobile_population","serodiscordant_couple","other_vulnerable_population"
-    };
-    private final String[] kvpGenderGroups = new String[]{
-            "ME","KE"
+    private final String[] vmmcGroups = new String[]{
+            "a","cm","dm"
     };
 
     private final Date reportDate;
@@ -34,47 +33,45 @@ public class VmmcMonthlyReportObject extends ReportObject {
     @Override
     public JSONObject getIndicatorData() throws JSONException {
         jsonObject = new JSONObject();
-        for (String questionGroup : kvpQuestionsGroups) {   //rows
-            for (String ageGroup : kvpAgeGroups) {  //columns
-                for (String kvpGroup : kvpGroups) {
-                    for (String genderGroup : kvpGenderGroups) {  //concstenate rows columns and gendergroup
-                        jsonObject.put("kvp" + "-" + questionGroup + "-" + ageGroup + "-" + kvpGroup + "-" + genderGroup,
-                                ReportDao.getReportPerIndicatorCode("kvp" + "-" + questionGroup + "-" + ageGroup +"-" + kvpGroup + "-" + genderGroup, reportDate));
+        for (String questionGroup : vmmcQuestionsGroups) {   //rows
+            for (String ageGroup : vmmcAgeGroups) {  //columns
+                    for (String vmmcGroups : vmmcGroups) {  //concstenate rows columns and gendergroup
+                        jsonObject.put("vmmc" + "-" + questionGroup + "-" + ageGroup + "-" + vmmcGroups,
+                                ReportDao.getReportPerIndicatorCode("vmmc" + "-" + questionGroup + "-" + ageGroup +"-" + vmmcGroups, reportDate));
                     }
-                }
             }
         }
         // get total of all Male & Female in Qn 2 & 7
         //and the whole total for both of them
-        funcGetTotal();
+//        funcGetTotal();
 
         return jsonObject;
     }
 
-    private int getTotalPerEachIndicator(String question,String kvpgroup) throws JSONException {
-        int  totalOfGenderGiven = 0;
-        int returnedValue = 0;
-        for (String age: kvpAgeGroups){
-                totalOfGenderGiven += (ReportDao.getReportPerIndicatorCode("kvp" + "-"
-                        + question + "-" + age + "-" + kvpgroup + "-" + "ME", reportDate)
-                +ReportDao.getReportPerIndicatorCode("kvp" + "-"
-                        + question + "-" + age + "-" + kvpgroup + "-" + "KE", reportDate));
-            jsonObject.put("kvp"+"-"+question+"-"+kvpgroup+"-jumla-both-ME-KE",totalOfGenderGiven);  //display the total for both gender
-            returnedValue = totalOfGenderGiven;
-        }
-        return returnedValue;
-    }
-
-
-    private void funcGetTotal() throws JSONException {
-        int totalofthewholekvpgroup = 0;
-        for (String question: kvpQuestionsGroups) {
-                for (String kvpGroup : kvpGroups) {
-                    totalofthewholekvpgroup+=getTotalPerEachIndicator(question,kvpGroup);
-                    jsonObject.put("kvp"+"-"+question+"-jumla-kuu",totalofthewholekvpgroup); //total for all kvp groups
-                }
-            totalofthewholekvpgroup = 0;
-        }
-    }
+//    private int getTotalPerEachIndicator(String question,String kvpgroup) throws JSONException {
+//        int  totalOfGenderGiven = 0;
+//        int returnedValue = 0;
+//        for (String age: vmmcAgeGroups){
+//                totalOfGenderGiven += (ReportDao.getReportPerIndicatorCode("kvp" + "-"
+//                        + question + "-" + age + "-" + kvpgroup + "-" + "ME", reportDate)
+//                +ReportDao.getReportPerIndicatorCode("kvp" + "-"
+//                        + question + "-" + age + "-" + kvpgroup + "-" + "KE", reportDate));
+//            jsonObject.put("kvp"+"-"+question+"-"+kvpgroup+"-jumla-both-ME-KE",totalOfGenderGiven);  //display the total for both gender
+//            returnedValue = totalOfGenderGiven;
+//        }
+//        return returnedValue;
+//    }
+//
+//
+//    private void funcGetTotal() throws JSONException {
+//        int totalofthewholekvpgroup = 0;
+//        for (String question: vmmcQuestionsGroups) {
+//                for (String kvpGroup : vmmcGroups) {
+//                    totalofthewholekvpgroup+=getTotalPerEachIndicator(question,kvpGroup);
+//                    jsonObject.put("kvp"+"-"+question+"-jumla-kuu",totalofthewholekvpgroup); //total for all kvp groups
+//                }
+//            totalofthewholekvpgroup = 0;
+//        }
+//    }
 
 }
