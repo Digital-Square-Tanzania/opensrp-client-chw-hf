@@ -692,6 +692,7 @@ public class Constants extends CoreConstants {
             String SELF_TESTING_REPORT = "self_testing_report";
             String CONDOM_DISTRIBUTION_REPORT = "condom_distribution_report";
             String KVP_REPORT = "kvp_report";
+            String VMMC_REPORT = "vmmc_report";
         }
 
         public interface ReportPaths {
