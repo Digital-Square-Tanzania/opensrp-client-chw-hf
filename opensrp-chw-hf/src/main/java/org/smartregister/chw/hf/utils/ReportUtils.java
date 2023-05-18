@@ -35,6 +35,7 @@ import org.smartregister.chw.hf.domain.pmtct_reports.Pmtct3MonthsReportObject;
 import org.smartregister.chw.hf.domain.pmtct_reports.PmtctEIDMonthlyReportObject;
 import org.smartregister.chw.hf.domain.pnc_reports.PncMonthlyReportObject;
 import org.smartregister.chw.hf.domain.self_testing_reports.SelfTestingMonthlyReportObject;
+import org.smartregister.chw.hf.domain.vmmc_reports.VmmcMonthlyReportObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -309,6 +310,19 @@ public class ReportUtils {
             KvpMonthlyReportObject kvpMonthlyReportObject = new KvpMonthlyReportObject(now);
             try {
                 report = kvpMonthlyReportObject.getIndicatorDataAsGson(kvpMonthlyReportObject.getIndicatorData());
+            } catch (Exception e) {
+                Timber.e(e);
+            }
+            return report;
+        }
+    }
+
+    public static class VmmcReport {
+        public static String computeReport(Date now) {
+            String report = "";
+            VmmcMonthlyReportObject vmmcMonthlyReportObject = new VmmcMonthlyReportObject(now);
+            try {
+                report = vmmcMonthlyReportObject.getIndicatorDataAsGson(vmmcMonthlyReportObject.getIndicatorData());
             } catch (Exception e) {
                 Timber.e(e);
             }
