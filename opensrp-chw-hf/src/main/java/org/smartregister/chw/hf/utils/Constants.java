@@ -711,6 +711,7 @@ public class Constants extends CoreConstants {
             String CONDOM_DISTRIBUTION_ISSUING_FROM_THE_FACILITY_REPORT_PATH = "condom-distribution-issuing-report-from-the-facility";
             String CONDOM_DISTRIBUTION_RECEIVING_REPORT_PATH = "condom-distribution-receiving-report";
             String KVP_REPORT_PATH = "kvp-report";
+            String VMMC_REPORT_PATH = "vmmc-report";
         }
     }
 
