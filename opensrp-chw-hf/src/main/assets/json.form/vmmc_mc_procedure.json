@@ -379,7 +379,7 @@
           },
           {
             "key": "e_32mm",
-            "text": "e-32mm",
+            "text": "E-32mm",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "e_32mm"

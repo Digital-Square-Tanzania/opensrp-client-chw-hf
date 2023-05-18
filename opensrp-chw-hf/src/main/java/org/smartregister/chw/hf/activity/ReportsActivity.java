@@ -31,6 +31,7 @@ public class ReportsActivity extends SecuredActivity implements View.OnClickList
     protected ConstraintLayout selfTestingReports;
     protected ConstraintLayout condomDistributionReports;
     protected ConstraintLayout kvpReports;
+    protected ConstraintLayout vmcReports;
 
     @Override
     protected void onCreation() {
@@ -51,6 +52,7 @@ public class ReportsActivity extends SecuredActivity implements View.OnClickList
         selfTestingReports = findViewById(R.id.self_testing_reports);
         condomDistributionReports = findViewById(R.id.cdp_reports);
         kvpReports = findViewById(R.id.kvp_reports);
+        vmcReports = findViewById(R.id.vmmc_reports);
 
         if (HealthFacilityApplication.getApplicationFlavor().hasLD())
             ldReportsLayout.setVisibility(View.VISIBLE);
@@ -75,6 +77,7 @@ public class ReportsActivity extends SecuredActivity implements View.OnClickList
         selfTestingReports.setOnClickListener(this);
         condomDistributionReports.setOnClickListener(this);
         kvpReports.setOnClickListener(this);
+        vmcReports.setOnClickListener(this);
     }
 
     public void setUpToolbar() {
