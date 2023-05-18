@@ -731,6 +731,8 @@
     <string name="cdp_receiving_report">CDP Receiving Report</string>
     <string name="kvp_reports">KVP REPORTS</string>
     <string name="kvp_reports_subtitle">View Reports For KVP</string>
+    <string name="vmmc_reports">VMMC REPORTS</string>
+    <string name="vmmc_reports_subtitle">View Reports For VMMC</string>
 
 
     <string name="view_visits_history">View Visits History</string>

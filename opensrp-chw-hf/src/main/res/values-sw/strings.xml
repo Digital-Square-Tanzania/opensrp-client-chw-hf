@@ -369,6 +369,8 @@
     <string name="global_search_description"><![CDATA[Jaza jina la mteja kisha Tafuta kwenye kanzi data ya kitaifa ya UCS]]></string>
     <string name="select_issued_condoms">Chagua taarifa ya kondomu zilizotolewa</string>
     <string name="cdp_issuing_report">Taarifa ya kondomu zilizotolewa</string>
+    <string name="vmmc_reports">Ripoti za VMMC</string>
+    <string name="vmmc_reports_subtitle">Tazama Ripoti za VMMC</string>
 
     <!--    CDP-->
     <string name="add_outlet">Ongeza kituo</string>
