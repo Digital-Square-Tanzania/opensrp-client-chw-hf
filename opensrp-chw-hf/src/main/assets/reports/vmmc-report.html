@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)file:///Users/macbookpro/Desktop/report.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <style>
+*{
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+.show-on-print {
+  display: none;
+}
+body{
+    font-family: Helvetica;
+    -webkit-font-smoothing: antialiased;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+
+/* Table Styles */
+
+.table-wrapper{
+    margin: 10px;
+    margin-right: 10px;
+}
+
+.fl-table {
+    border-radius: 5px;
+    font-size: 10px;
+    font-weight: normal;
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 100%;
+    background-color: white;
+}
+
+.fl-table td, .fl-table th {
+    padding: 5px;
+}
+
+.table-th-color {
+    background-color: #55efc4;
+}
+
+.table-total-color {
+    background-color: #74b9ff;
+}
+
+
+ul {
+    width: 100%;
+}
+ul li {
+    width: 49%;
+    display: inline-block;
+}
+
+ul li > * {
+    width: 30%;
+    margin-bottom: 5px;
+}
+
+.no-data {
+  background: #ccc;
+}
+
+#reporting_facility {
+  font-weight: 700;
+}
+#report_period {
+  font-weight: 700;
+}
+
+@media print {
+  .show-on-print {
+    display: block;
+  }
+
+  .child-table {
+    width: 50%;
+  }
+}
+</style>
+</head>
+
+<body onload="loadData(&#39;monthly&#39;, &#39;anc&#39;)">
+<div class="show-on-print" style="font-size:12px;">
+    <h1>FOMU YA RIPOTI YA UHAMASISHAJI, UFUATILIAJI WASHIRIKA NA HUDUMA ZA JIPIME
+        VVU NGAZI YA JAMII</h1>
+    <h2>TAARIFA YA [MWEZI/MWAKA]: <span id="report_period"></span></h2>
+    <h2>KITUO: <span id="reporting_facility"></span></h2>
+</div>
+<div class="table-wrapper">
+    <table class="fl-table">
+        <thead>
+        <tr>
+            <th>SN</th>
+            <th rowspan="1" colspan="3">INDICATOR</th>
+            <th>GRAND TOTAL</th>
+            <th>&lt;1</th>
+            <th>1-9</th>
+            <th>10-14</th>
+            <th>15-19</th>
+            <th>20-24</th>
+            <th>25-29</th>
+            <th>30-34</th>
+            <th>35-39</th>
+            <th>40-44</th>
+            <th>45-49</th>
+            <th>&gt;50</th>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th>1</th>
+            <td colspan="3">Number of Clients enrolled into VMMC Services</td>
+            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-1-ME"></td>
+            <td align="center" id="vmmc-1-1-9-ME"></td>
+            <td align="center" id="vmmc-1-10-14-ME"></td>
+            <td align="center" id="vmmc-1-15-19-ME"></td>
+            <td align="center" id="vmmc-1-20-24-ME"></td>
+            <td align="center" id="vmmc-1-25-29-ME"></td>
+            <td align="center" id="vmmc-1-30-34-ME"></td>
+            <td align="center" id="vmmc-1-35-39-ME"></td>
+            <td align="center" id="vmmc-1-40-44-ME"></td>
+            <td align="center" id="vmmc-1-45-49-ME"></td>
+            <td align="center" id="vmmc-1-&gt;50-ME"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+        </tr>
+        <tr>
+            <th rowspan="7">2</th>
+            <td align="left" colspan="1" rowspan="7">Referred from</td>
+        </tr><tr>
+            <th>2a.</th>
+            <td>Self-referral</td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+        </tr>
+        <tr>
+            <th>2b.</th>
+            <td>Community demand creation</td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+        </tr>
+        <tr>
+            <th>2c.</th>
+            <td>OPD</td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+        </tr>
+        <tr>
+            <th>2d.</th>
+            <td>IPD</td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+        </tr>
+        <tr>
+            <th>2e.</th>
+            <td>HTS</td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+        </tr>
+        <tr>
+            <th>2f.</th>
+            <td>Others</td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+        </tr>
+
+
+
+        <tr>
+            <th rowspan="3">3</th>
+            <td align="left" colspan="1" rowspan="3">Number of male counselled &amp; tested for HIV at MC site</td>
+        </tr><tr>
+            <td colspan="2">HIV positive</td>
+            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-4-hiv-positive-1-ME"></td>
+            <td align="center" id="vmmc-4-hiv-positive-1-9-ME"></td>
+            <td align="center" id="vmmc-4-hiv-positive-10-14-ME"></td>
+            <td align="center" id="vmmc-4-hiv-positive-15-19-ME"></td>
+            <td align="center" id="vmmc-4-hiv-positive-20-24-ME"></td>
+            <td align="center" id="vmmc-4-hiv-positive-25-29-ME"></td>
+            <td align="center" id="vmmc-4-hiv-positive-30-34-ME"></td>
+            <td align="center" id="vmmc-4-hiv-positive-35-39-ME"></td>
+            <td align="center" id="vmmc-4-hiv-positive-40-44-ME"></td>
+            <td align="center" id="vmmc-4-hiv-positive-45-49-ME"></td>
+            <td align="center" id="vmmc-4-hiv-positive-&gt;50-ME"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+        </tr>
+        <tr>
+            <td colspan="2">HIV negative</td>
+            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-4-hiv-negative-1-ME"></td>
+            <td align="center" id="vmmc-4-hiv-negative-1-9-ME"></td>
+            <td align="center" id="vmmc-4-hiv-negative-9-14-ME"></td>
+            <td align="center" id="vmmc-4-hiv-negative-15-19-ME"></td>
+            <td align="center" id="vmmc-4-hiv-negative-20-24-ME"></td>
+            <td align="center" id="vmmc-4-hiv-negative-25-29-ME"></td>
+            <td align="center" id="vmmc-4-hiv-negative-30-34-ME"></td>
+            <td align="center" id="vmmc-4-hiv-negative-35-39-ME"></td>
+            <td align="center" id="vmmc-4-hiv-negative-40-44-ME"></td>
+            <td align="center" id="vmmc-4-hiv-negative-45-49-ME"></td>
+            <td align="center" id="vmmc-4-hiv-negative-&gt;50-ME"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+        </tr>
+
+
+
+
+        <tr>
+            <th rowspan="5">4</th>
+            <td align="left" colspan="1" rowspan="5">Referred to</td>
+        </tr><tr>
+            <td colspan="2">Surgical/medical</td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+        </tr>
+        <tr>
+            <td colspan="2">CTC</td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+        </tr>
+        <tr>
+            <td colspan="2">Psychosocial support</td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+        </tr>
+        <tr>
+            <td colspan="2"> Other</td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+        </tr>
+
+
+
+        <tr>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+
+        </tr>
+
+        <tr>
+            <th rowspan="2"></th>
+            <th rowspan="2" colspan="4"></th>
+            <td colspan="12" align="center" class="table-th-color">Conventional method</td>
+            <td colspan="12" align="center" class="table-th-color">Device method</td>
+        </tr><tr>
+            <th>&lt;1</th>
+            <th>1-9</th>
+            <th>10-14</th>
+            <th>15-19</th>
+            <th>20-24</th>
+            <th>25-29</th>
+            <th>30-34</th>
+            <th>35-39</th>
+            <th>40-44</th>
+            <th>45-49</th>
+            <th>&gt;50</th>
+            <th class="table-total-color">TOTAL</th>
+            <th>&lt;1</th>
+            <th>1-9</th>
+            <th>10-14</th>
+            <th>15-19</th>
+            <th>20-24</th>
+            <th>25-29</th>
+            <th>30-34</th>
+            <th>35-39</th>
+            <th>40-44</th>
+            <th>45-49</th>
+            <th>&gt;50</th>
+            <th class="table-total-color">TOTAL</th>
+        </tr>
+
+
+
+        <tr>
+            <th>5</th>
+            <td colspan="3">Number of male circumcised</td>
+            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-5-i-1-ME"></td>
+            <td align="center" id="vmmc-5-i-1-9-ME"></td>
+            <td align="center" id="vmmc-5-i-10-14-ME"></td>
+            <td align="center" id="vmmc-5-i-15-19-ME"></td>
+            <td align="center" id="vmmc-5-i-20-24-ME"></td>
+            <td align="center" id="vmmc-5-i-25-29-ME"></td>
+            <td align="center" id="vmmc-5-i-30-34-ME"></td>
+            <td align="center" id="vmmc-5-i-35-39-ME"></td>
+            <td align="center" id="vmmc-5-i-40-44-ME"></td>
+            <td align="center" id="vmmc-5-i-45-49-ME"></td>
+            <td align="center" id="vmmc-5-i-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-5-i-TOTAL-ME"></td>
+
+            <td align="center" id="vmmc-5-ii-1-ME"></td>
+            <td align="center" id="vmmc-5-ii-1-9-ME"></td>
+            <td align="center" id="vmmc-5-ii-10-14-ME"></td>
+            <td align="center" id="vmmc-5-ii-15-19-ME"></td>
+            <td align="center" id="vmmc-5-ii-20-24-ME"></td>
+            <td align="center" id="vmmc-5-ii-25-29-ME"></td>
+            <td align="center" id="vmmc-5-ii-30-34-ME"></td>
+            <td align="center" id="vmmc-5-ii-35-39-ME"></td>
+            <td align="center" id="vmmc-5-ii-40-44-ME"></td>
+            <td align="center" id="vmmc-5-ii-45-49-ME"></td>
+            <td align="center" id="vmmc-5-ii-&gt;50-ME"></td>
+            <td align="center" id="vmmc-5-ii-TOTAL-ME"></td>
+
+        </tr>
+
+        <tr>
+            <th rowspan="16">6</th>
+            <td align="left" colspan="1" rowspan="16">Number of male circumcised who experienced one or more adverse events</td>
+            <td rowspan="8">Moderate</td>
+        </tr><tr>
+            <td>Bleeding or blood soiling of dressing</td>
+            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-6-moderate-bleed-i-1-ME"></td>
+            <td align="center" id="vmmc-6-moderate-bleed-i-1-9-ME"></td>
+            <td align="center" id="vmmc-6-moderate-bleed-i-9-14-ME"></td>
+            <td align="center" id="vmmc-6-moderate-bleed-i-15-19-ME"></td>
+            <td align="center" id="vmmc-6-moderate-bleed-i-20-24-ME"></td>
+            <td align="center" id="vmmc-6-moderate-bleed-i-25-29-ME"></td>
+            <td align="center" id="vmmc-6-moderate-bleed-i-30-34-ME"></td>
+            <td align="center" id="vmmc-6-moderate-bleed-i-35-39-ME"></td>
+            <td align="center" id="vmmc-6-moderate-bleed-i-40-44-ME"></td>
+            <td align="center" id="vmmc-6-moderate-bleed-i-45-49-ME"></td>
+            <td align="center" id="vmmc-6-moderate-bleed-i-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-6-moderate-bleed-i-TOTAL-ME"></td>
+
+            <td align="center" id="vmmc-6-moderate-bleed-ii-1-ME"></td>
+            <td align="center" id="vmmc-6-moderate-bleed-ii-1-9-ME"></td>
+            <td align="center" id="vmmc-6-moderate-bleed-ii-9-14-ME"></td>
+            <td align="center" id="vmmc-6-moderate-bleed-ii-15-19-ME"></td>
+            <td align="center" id="vmmc-6-moderate-bleed-ii-20-24-ME"></td>
+            <td align="center" id="vmmc-6-moderate-bleed-ii-25-29-ME"></td>
+            <td align="center" id="vmmc-6-moderate-bleed-ii-30-34-ME"></td>
+            <td align="center" id="vmmc-6-moderate-bleed-ii-35-39-ME"></td>
+            <td align="center" id="vmmc-6-moderate-bleed-ii-40-44-ME"></td>
+            <td align="center" id="vmmc-6-moderate-bleed-ii-45-49-ME"></td>
+            <td align="center" id="vmmc-6-moderate-bleed-ii-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-6-moderate-bleed-ii-TOTAL-ME"></td>
+        </tr>
+        <tr>
+            <td>Swelling of the penis or scrotum </td>
+            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-6-moderate-swelling-i-1-ME"></td>
+            <td align="center" id="vmmc-6-moderate-swelling-i-1-9-ME"></td>
+            <td align="center" id="vmmc-6-moderate-swelling-i-9-14-ME"></td>
+            <td align="center" id="vmmc-6-moderate-swelling-i-15-19-ME"></td>
+            <td align="center" id="vmmc-6-moderate-swelling-i-20-24-ME"></td>
+            <td align="center" id="vmmc-6-moderate-swelling-i-25-29-ME"></td>
+            <td align="center" id="vmmc-6-moderate-swelling-i-30-34-ME"></td>
+            <td align="center" id="vmmc-6-moderate-swelling-i-35-39-ME"></td>
+            <td align="center" id="vmmc-6-moderate-swelling-i-40-44-ME"></td>
+            <td align="center" id="vmmc-6-moderate-swelling-i-45-49-ME"></td>
+            <td align="center" id="vmmc-6-moderate-swelling-i-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-6-moderate-swelling-i-TOTAL-ME"></td>
+
+            <td align="center" id="vmmc-6-moderate-swelling-ii-1-ME"></td>
+            <td align="center" id="vmmc-6-moderate-swelling-ii-1-9-ME"></td>
+            <td align="center" id="vmmc-6-moderate-swelling-ii-9-14-ME"></td>
+            <td align="center" id="vmmc-6-moderate-swelling-ii-15-19-ME"></td>
+            <td align="center" id="vmmc-6-moderate-swelling-ii-20-24-ME"></td>
+            <td align="center" id="vmmc-6-moderate-swelling-ii-25-29-ME"></td>
+            <td align="center" id="vmmc-6-moderate-swelling-ii-30-34-ME"></td>
+            <td align="center" id="vmmc-6-moderate-swelling-ii-35-39-ME"></td>
+            <td align="center" id="vmmc-6-moderate-swelling-ii-40-44-ME"></td>
+            <td align="center" id="vmmc-6-moderate-swelling-ii-45-49-ME"></td>
+            <td align="center" id="vmmc-6-moderate-swelling-ii-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-6-moderate-swelling-ii-TOTAL-ME"></td>
+        </tr>
+        <tr>
+            <td>Persistent pain </td>
+            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-6-moderate-pain-i-1-ME"></td>
+            <td align="center" id="vmmc-6-moderate-pain-i-1-9-ME"></td>
+            <td align="center" id="vmmc-6-moderate-pain-i-9-14-ME"></td>
+            <td align="center" id="vmmc-6-moderate-pain-i-15-19-ME"></td>
+            <td align="center" id="vmmc-6-moderate-pain-i-20-24-ME"></td>
+            <td align="center" id="vmmc-6-moderate-pain-i-25-29-ME"></td>
+            <td align="center" id="vmmc-6-moderate-pain-i-30-34-ME"></td>
+            <td align="center" id="vmmc-6-moderate-pain-i-35-39-ME"></td>
+            <td align="center" id="vmmc-6-moderate-pain-i-40-44-ME"></td>
+            <td align="center" id="vmmc-6-moderate-pain-i-45-49-ME"></td>
+            <td align="center" id="vmmc-6-moderate-pain-i-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-6-moderate-pain-i-TOTAL-ME"></td>
+
+            <td align="center" id="vmmc-6-moderate-pain-ii-1-ME"></td>
+            <td align="center" id="vmmc-6-moderate-pain-ii-1-9-ME"></td>
+            <td align="center" id="vmmc-6-moderate-pain-ii-9-14-ME"></td>
+            <td align="center" id="vmmc-6-moderate-pain-ii-15-19-ME"></td>
+            <td align="center" id="vmmc-6-moderate-pain-ii-20-24-ME"></td>
+            <td align="center" id="vmmc-6-moderate-pain-ii-25-29-ME"></td>
+            <td align="center" id="vmmc-6-moderate-pain-ii-30-34-ME"></td>
+            <td align="center" id="vmmc-6-moderate-pain-ii-35-39-ME"></td>
+            <td align="center" id="vmmc-6-moderate-pain-ii-40-44-ME"></td>
+            <td align="center" id="vmmc-6-moderate-pain-ii-45-49-ME"></td>
+            <td align="center" id="vmmc-6-moderate-pain-ii-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-6-moderate-pain-ii-TOTAL-ME"></td>
+        </tr>
+        <tr>
+            <td>Infection</td>
+            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-6-moderate-infection-i-i-1-ME"></td>
+            <td align="center" id="vmmc-6-moderate-infection-i-1-9-ME"></td>
+            <td align="center" id="vmmc-6-moderate-infection-i-9-14-ME"></td>
+            <td align="center" id="vmmc-6-moderate-infection-i-15-19-ME"></td>
+            <td align="center" id="vmmc-6-moderate-infection-i-20-24-ME"></td>
+            <td align="center" id="vmmc-6-moderate-infection-i-25-29-ME"></td>
+            <td align="center" id="vmmc-6-moderate-infection-i-30-34-ME"></td>
+            <td align="center" id="vmmc-6-moderate-infection-i-35-39-ME"></td>
+            <td align="center" id="vmmc-6-moderate-infection-i-40-44-ME"></td>
+            <td align="center" id="vmmc-6-moderate-infection-i-45-49-ME"></td>
+            <td align="center" id="vmmc-6-moderate-infection-i-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-6-moderate-infection-i-TOTAL-ME"></td>
+
+            <td align="center" id="vmmc-6-moderate-infection-ii-1-ME"></td>
+            <td align="center" id="vmmc-6-moderate-infection-ii-1-9-ME"></td>
+            <td align="center" id="vmmc-6-moderate-infection-ii-9-14-ME"></td>
+            <td align="center" id="vmmc-6-moderate-infection-ii-15-19-ME"></td>
+            <td align="center" id="vmmc-6-moderate-infection-ii-20-24-ME"></td>
+            <td align="center" id="vmmc-6-moderate-infection-ii-25-29-ME"></td>
+            <td align="center" id="vmmc-6-moderate-infection-ii-30-34-ME"></td>
+            <td align="center" id="vmmc-6-moderate-infection-ii-35-39-ME"></td>
+            <td align="center" id="vmmc-6-moderate-infection-ii-40-44-ME"></td>
+            <td align="center" id="vmmc-6-moderate-infection-ii-45-49-ME"></td>
+            <td align="center" id="vmmc-6-moderate-infection-ii-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-6-moderate-infection-ii-TOTAL-ME"></td>
+        </tr>
+        <tr>
+            <td>Failure to pass urine </td>
+            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-6-moderate-urine-i-1-ME"></td>
+            <td align="center" id="vmmc-6-moderate-urine-i-1-9-ME"></td>
+            <td align="center" id="vmmc-6-moderate-urine-i-9-14-ME"></td>
+            <td align="center" id="vmmc-6-moderate-urine-i-15-19-ME"></td>
+            <td align="center" id="vmmc-6-moderate-urine-i-20-24-ME"></td>
+            <td align="center" id="vmmc-6-moderate-urine-i-25-29-ME"></td>
+            <td align="center" id="vmmc-6-moderate-urine-i-30-34-ME"></td>
+            <td align="center" id="vmmc-6-moderate-urine-i-35-39-ME"></td>
+            <td align="center" id="vmmc-6-moderate-urine-i-40-44-ME"></td>
+            <td align="center" id="vmmc-6-moderate-urine-i-45-49-ME"></td>
+            <td align="center" id="vmmc-6-moderate-urine-i-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-6-moderate-urine-i-TOTAL-ME"></td>
+
+            <td align="center" id="vmmc-6-moderate-urine-ii-1-ME"></td>
+            <td align="center" id="vmmc-6-moderate-urine-ii-1-9-ME"></td>
+            <td align="center" id="vmmc-6-moderate-urine-ii-9-14-ME"></td>
+            <td align="center" id="vmmc-6-moderate-urine-ii-15-19-ME"></td>
+            <td align="center" id="vmmc-6-moderate-urine-ii-20-24-ME"></td>
+            <td align="center" id="vmmc-6-moderate-urine-ii-25-29-ME"></td>
+            <td align="center" id="vmmc-6-moderate-urine-ii-30-34-ME"></td>
+            <td align="center" id="vmmc-6-moderate-urine-ii-35-39-ME"></td>
+            <td align="center" id="vmmc-6-moderate-urine-ii-40-44-ME"></td>
+            <td align="center" id="vmmc-6-moderate-urine-ii-45-49-ME"></td>
+            <td align="center" id="vmmc-6-moderate-urine-ii-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-6-moderate-urine-ii-TOTAL-ME"></td>
+        </tr>
+        <tr>
+            <td>Device displacement</td>
+            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-6-moderate-displacement-i-1-ME"></td>
+            <td align="center" id="vmmc-6-moderate-displacement-i-1-9-ME"></td>
+            <td align="center" id="vmmc-6-moderate-displacement-i-9-14-ME"></td>
+            <td align="center" id="vmmc-6-moderate-displacement-i-15-19-ME"></td>
+            <td align="center" id="vmmc-6-moderate-displacement-i-20-24-ME"></td>
+            <td align="center" id="vmmc-6-moderate-displacement-i-25-29-ME"></td>
+            <td align="center" id="vmmc-6-moderate-displacement-i-30-34-ME"></td>
+            <td align="center" id="vmmc-6-moderate-displacement-i-35-39-ME"></td>
+            <td align="center" id="vmmc-6-moderate-displacement-i-40-44-ME"></td>
+            <td align="center" id="vmmc-6-moderate-displacement-i-45-49-ME"></td>
+            <td align="center" id="vmmc-6-moderate-displacement-i-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-6-moderate-displacement-i-TOTAL-ME"></td>
+
+            <td align="center" id="vmmc-6-moderate-displacement-ii-1-ME"></td>
+            <td align="center" id="vmmc-6-moderate-displacement-ii-1-9-ME"></td>
+            <td align="center" id="vmmc-6-moderate-displacement-ii-9-14-ME"></td>
+            <td align="center" id="vmmc-6-moderate-displacement-ii-15-19-ME"></td>
+            <td align="center" id="vmmc-6-moderate-displacement-ii-20-24-ME"></td>
+            <td align="center" id="vmmc-6-moderate-displacement-ii-25-29-ME"></td>
+            <td align="center" id="vmmc-6-moderate-displacement-ii-30-34-ME"></td>
+            <td align="center" id="vmmc-6-moderate-displacement-ii-35-39-ME"></td>
+            <td align="center" id="vmmc-6-moderate-displacement-ii-40-44-ME"></td>
+            <td align="center" id="vmmc-6-moderate-displacement-ii-45-49-ME"></td>
+            <td align="center" id="vmmc-6-moderate-displacement-ii-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-6-moderate-displacement-ii-TOTAL-ME"></td>
+        </tr>
+        <tr>
+            <td>Device detachment </td>
+            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-6-moderate-detachment-i-1-ME"></td>
+            <td align="center" id="vmmc-6-moderate-detachment-i-1-9-ME"></td>
+            <td align="center" id="vmmc-6-moderate-detachment-i-9-14-ME"></td>
+            <td align="center" id="vmmc-6-moderate-detachment-i-15-19-ME"></td>
+            <td align="center" id="vmmc-6-moderate-detachment-i-20-24-ME"></td>
+            <td align="center" id="vmmc-6-moderate-detachment-i-25-29-ME"></td>
+            <td align="center" id="vmmc-6-moderate-detachment-i-30-34-ME"></td>
+            <td align="center" id="vmmc-6-moderate-detachment-i-35-39-ME"></td>
+            <td align="center" id="vmmc-6-moderate-detachment-i-40-44-ME"></td>
+            <td align="center" id="vmmc-6-moderate-detachment-i-45-49-ME"></td>
+            <td align="center" id="vmmc-6-moderate-detachment-i-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-6-moderate-detachment-i-TOTAL-ME"></td>
+
+            <td align="center" id="vmmc-6-moderate-detachment-ii-1-ME"></td>
+            <td align="center" id="vmmc-6-moderate-detachment-ii-1-9-ME"></td>
+            <td align="center" id="vmmc-6-moderate-detachment-ii-9-14-ME"></td>
+            <td align="center" id="vmmc-6-moderate-detachment-ii-15-19-ME"></td>
+            <td align="center" id="vmmc-6-moderate-detachment-ii-20-24-ME"></td>
+            <td align="center" id="vmmc-6-moderate-detachment-ii-25-29-ME"></td>
+            <td align="center" id="vmmc-6-moderate-detachment-ii-30-34-ME"></td>
+            <td align="center" id="vmmc-6-moderate-detachment-ii-35-39-ME"></td>
+            <td align="center" id="vmmc-6-moderate-detachment-ii-40-44-ME"></td>
+            <td align="center" id="vmmc-6-moderate-detachment-ii-45-49-ME"></td>
+            <td align="center" id="vmmc-6-moderate-detachment-ii-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-6-moderate-detachment-ii-TOTAL-ME"></td>
+        </tr>
+
+        <tr><td rowspan="8">Severe</td>
+        </tr><tr>
+            <td>Bleeding or blood soiling of dressing</td>
+            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-6-severe-bleed-i-1-ME"></td>
+            <td align="center" id="vmmc-6-severe-bleed-i-1-9-ME"></td>
+            <td align="center" id="vmmc-6-severe-bleed-i-9-14-ME"></td>
+            <td align="center" id="vmmc-6-severe-bleed-i-15-19-ME"></td>
+            <td align="center" id="vmmc-6-severe-bleed-i-20-24-ME"></td>
+            <td align="center" id="vmmc-6-severe-bleed-i-25-29-ME"></td>
+            <td align="center" id="vmmc-6-severe-bleed-i-30-34-ME"></td>
+            <td align="center" id="vmmc-6-severe-bleed-i-35-39-ME"></td>
+            <td align="center" id="vmmc-6-severe-bleed-i-40-44-ME"></td>
+            <td align="center" id="vmmc-6-severe-bleed-i-45-49-ME"></td>
+            <td align="center" id="vmmc-6-severe-bleed-i-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-6-severe-bleed-i-TOTAL-ME"></td>
+
+            <td align="center" id="vmmc-6-severe-bleed-ii-1-ME"></td>
+            <td align="center" id="vmmc-6-severe-bleed-ii-1-9-ME"></td>
+            <td align="center" id="vmmc-6-severe-bleed-ii-9-14-ME"></td>
+            <td align="center" id="vmmc-6-severe-bleed-ii-15-19-ME"></td>
+            <td align="center" id="vmmc-6-severe-bleed-ii-20-24-ME"></td>
+            <td align="center" id="vmmc-6-severe-bleed-ii-25-29-ME"></td>
+            <td align="center" id="vmmc-6-severe-bleed-ii-30-34-ME"></td>
+            <td align="center" id="vmmc-6-severe-bleed-ii-35-39-ME"></td>
+            <td align="center" id="vmmc-6-severe-bleed-ii-40-44-ME"></td>
+            <td align="center" id="vmmc-6-severe-bleed-ii-45-49-ME"></td>
+            <td align="center" id="vmmc-6-severe-bleed-ii-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-6-severe-bleed-ii-TOTAL-ME"></td>
+        </tr>
+        <tr>
+            <td>Swelling of the penis or scrotum </td>
+            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-6-severe-swelling-i-1-ME"></td>
+            <td align="center" id="vmmc-6-severe-swelling-i-1-9-ME"></td>
+            <td align="center" id="vmmc-6-severe-swelling-i-9-14-ME"></td>
+            <td align="center" id="vmmc-6-severe-swelling-i-15-19-ME"></td>
+            <td align="center" id="vmmc-6-severe-swelling-i-20-24-ME"></td>
+            <td align="center" id="vmmc-6-severe-swelling-i-25-29-ME"></td>
+            <td align="center" id="vmmc-6-severe-swelling-i-30-34-ME"></td>
+            <td align="center" id="vmmc-6-severe-swelling-i-35-39-ME"></td>
+            <td align="center" id="vmmc-6-severe-swelling-i-40-44-ME"></td>
+            <td align="center" id="vmmc-6-severe-swelling-i-45-49-ME"></td>
+            <td align="center" id="vmmc-6-severe-swelling-i-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-6-severe-swelling-i-TOTAL-ME"></td>
+
+            <td align="center" id="vmmc-6-severe-swelling-ii-1-ME"></td>
+            <td align="center" id="vmmc-6-severe-swelling-ii-1-9-ME"></td>
+            <td align="center" id="vmmc-6-severe-swelling-ii-9-14-ME"></td>
+            <td align="center" id="vmmc-6-severe-swelling-ii-15-19-ME"></td>
+            <td align="center" id="vmmc-6-severe-swelling-ii-20-24-ME"></td>
+            <td align="center" id="vmmc-6-severe-swelling-ii-25-29-ME"></td>
+            <td align="center" id="vmmc-6-severe-swelling-ii-30-34-ME"></td>
+            <td align="center" id="vmmc-6-severe-swelling-ii-35-39-ME"></td>
+            <td align="center" id="vmmc-6-severe-swelling-ii-40-44-ME"></td>
+            <td align="center" id="vmmc-6-severe-swelling-ii-45-49-ME"></td>
+            <td align="center" id="vmmc-6-severe-swelling-ii-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-6-severe-swelling-ii-TOTAL-ME"></td>
+        </tr>
+        <tr>
+            <td>Persistent pain </td>
+            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-6-severe-pain-i-1-ME"></td>
+            <td align="center" id="vmmc-6-severe-pain-i-1-9-ME"></td>
+            <td align="center" id="vmmc-6-severe-pain-i-9-14-ME"></td>
+            <td align="center" id="vmmc-6-severe-pain-i-15-19-ME"></td>
+            <td align="center" id="vmmc-6-severe-pain-i-20-24-ME"></td>
+            <td align="center" id="vmmc-6-severe-pain-i-25-29-ME"></td>
+            <td align="center" id="vmmc-6-severe-pain-i-30-34-ME"></td>
+            <td align="center" id="vmmc-6-severe-pain-i-35-39-ME"></td>
+            <td align="center" id="vmmc-6-severe-pain-i-40-44-ME"></td>
+            <td align="center" id="vmmc-6-severe-pain-i-45-49-ME"></td>
+            <td align="center" id="vmmc-6-severe-pain-i-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-6-severe-pain-i-TOTAL-ME"></td>
+
+            <td align="center" id="vmmc-6-severe-pain-ii-1-ME"></td>
+            <td align="center" id="vmmc-6-severe-pain-ii-1-9-ME"></td>
+            <td align="center" id="vmmc-6-severe-pain-ii-9-14-ME"></td>
+            <td align="center" id="vmmc-6-severe-pain-ii-15-19-ME"></td>
+            <td align="center" id="vmmc-6-severe-pain-ii-20-24-ME"></td>
+            <td align="center" id="vmmc-6-severe-pain-ii-25-29-ME"></td>
+            <td align="center" id="vmmc-6-severe-pain-ii-30-34-ME"></td>
+            <td align="center" id="vmmc-6-severe-pain-ii-35-39-ME"></td>
+            <td align="center" id="vmmc-6-severe-pain-ii-40-44-ME"></td>
+            <td align="center" id="vmmc-6-severe-pain-ii-45-49-ME"></td>
+            <td align="center" id="vmmc-6-severe-pain-ii-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-6-severe-pain-ii-TOTAL-ME"></td>
+        </tr>
+        <tr>
+            <td>Infection</td>
+            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-6-severe-infection-i-i-1-ME"></td>
+            <td align="center" id="vmmc-6-severe-infection-i-1-9-ME"></td>
+            <td align="center" id="vmmc-6-severe-infection-i-9-14-ME"></td>
+            <td align="center" id="vmmc-6-severe-infection-i-15-19-ME"></td>
+            <td align="center" id="vmmc-6-severe-infection-i-20-24-ME"></td>
+            <td align="center" id="vmmc-6-severe-infection-i-25-29-ME"></td>
+            <td align="center" id="vmmc-6-severe-infection-i-30-34-ME"></td>
+            <td align="center" id="vmmc-6-severe-infection-i-35-39-ME"></td>
+            <td align="center" id="vmmc-6-severe-infection-i-40-44-ME"></td>
+            <td align="center" id="vmmc-6-severe-infection-i-45-49-ME"></td>
+            <td align="center" id="vmmc-6-severe-infection-i-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-6-severe-infection-i-TOTAL-ME"></td>
+
+            <td align="center" id="vmmc-6-severe-infection-ii-1-ME"></td>
+            <td align="center" id="vmmc-6-severe-infection-ii-1-9-ME"></td>
+            <td align="center" id="vmmc-6-severe-infection-ii-9-14-ME"></td>
+            <td align="center" id="vmmc-6-severe-infection-ii-15-19-ME"></td>
+            <td align="center" id="vmmc-6-severe-infection-ii-20-24-ME"></td>
+            <td align="center" id="vmmc-6-severe-infection-ii-25-29-ME"></td>
+            <td align="center" id="vmmc-6-severe-infection-ii-30-34-ME"></td>
+            <td align="center" id="vmmc-6-severe-infection-ii-35-39-ME"></td>
+            <td align="center" id="vmmc-6-severe-infection-ii-40-44-ME"></td>
+            <td align="center" id="vmmc-6-severe-infection-ii-45-49-ME"></td>
+            <td align="center" id="vmmc-6-severe-infection-ii-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-6-severe-infection-ii-TOTAL-ME"></td>
+        </tr>
+        <tr>
+            <td>Failure to pass urine </td>
+            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-6-severe-urine-i-1-ME"></td>
+            <td align="center" id="vmmc-6-severe-urine-i-1-9-ME"></td>
+            <td align="center" id="vmmc-6-severe-urine-i-9-14-ME"></td>
+            <td align="center" id="vmmc-6-severe-urine-i-15-19-ME"></td>
+            <td align="center" id="vmmc-6-severe-urine-i-20-24-ME"></td>
+            <td align="center" id="vmmc-6-severe-urine-i-25-29-ME"></td>
+            <td align="center" id="vmmc-6-severe-urine-i-30-34-ME"></td>
+            <td align="center" id="vmmc-6-severe-urine-i-35-39-ME"></td>
+            <td align="center" id="vmmc-6-severe-urine-i-40-44-ME"></td>
+            <td align="center" id="vmmc-6-severe-urine-i-45-49-ME"></td>
+            <td align="center" id="vmmc-6-severe-urine-i-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-6-severe-urine-i-TOTAL-ME"></td>
+
+            <td align="center" id="vmmc-6-severe-urine-ii-1-ME"></td>
+            <td align="center" id="vmmc-6-severe-urine-ii-1-9-ME"></td>
+            <td align="center" id="vmmc-6-severe-urine-ii-9-14-ME"></td>
+            <td align="center" id="vmmc-6-severe-urine-ii-15-19-ME"></td>
+            <td align="center" id="vmmc-6-severe-urine-ii-20-24-ME"></td>
+            <td align="center" id="vmmc-6-severe-urine-ii-25-29-ME"></td>
+            <td align="center" id="vmmc-6-severe-urine-ii-30-34-ME"></td>
+            <td align="center" id="vmmc-6-severe-urine-ii-35-39-ME"></td>
+            <td align="center" id="vmmc-6-severe-urine-ii-40-44-ME"></td>
+            <td align="center" id="vmmc-6-severe-urine-ii-45-49-ME"></td>
+            <td align="center" id="vmmc-6-severe-urine-ii-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-6-severe-urine-ii-TOTAL-ME"></td>
+        </tr>
+        <tr>
+            <td>Device displacement</td>
+            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-6-severe-displacement-i-1-ME"></td>
+            <td align="center" id="vmmc-6-severe-displacement-i-1-9-ME"></td>
+            <td align="center" id="vmmc-6-severe-displacement-i-9-14-ME"></td>
+            <td align="center" id="vmmc-6-severe-displacement-i-15-19-ME"></td>
+            <td align="center" id="vmmc-6-severe-displacement-i-20-24-ME"></td>
+            <td align="center" id="vmmc-6-severe-displacement-i-25-29-ME"></td>
+            <td align="center" id="vmmc-6-severe-displacement-i-30-34-ME"></td>
+            <td align="center" id="vmmc-6-severe-displacement-i-35-39-ME"></td>
+            <td align="center" id="vmmc-6-severe-displacement-i-40-44-ME"></td>
+            <td align="center" id="vmmc-6-severe-displacement-i-45-49-ME"></td>
+            <td align="center" id="vmmc-6-severe-displacement-i-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-6-severe-displacement-i-TOTAL-ME"></td>
+
+            <td align="center" id="vmmc-6-severe-displacement-ii-1-ME"></td>
+            <td align="center" id="vmmc-6-severe-displacement-ii-1-9-ME"></td>
+            <td align="center" id="vmmc-6-severe-displacement-ii-9-14-ME"></td>
+            <td align="center" id="vmmc-6-severe-displacement-ii-15-19-ME"></td>
+            <td align="center" id="vmmc-6-severe-displacement-ii-20-24-ME"></td>
+            <td align="center" id="vmmc-6-severe-displacement-ii-25-29-ME"></td>
+            <td align="center" id="vmmc-6-severe-displacement-ii-30-34-ME"></td>
+            <td align="center" id="vmmc-6-severe-displacement-ii-35-39-ME"></td>
+            <td align="center" id="vmmc-6-severe-displacement-ii-40-44-ME"></td>
+            <td align="center" id="vmmc-6-severe-displacement-ii-45-49-ME"></td>
+            <td align="center" id="vmmc-6-severe-displacement-ii-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-6-severe-displacement-ii-TOTAL-ME"></td>
+        </tr>
+        <tr>
+            <td>Device detachment </td>
+            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-6-severe-detachment-i-1-ME"></td>
+            <td align="center" id="vmmc-6-severe-detachment-i-1-9-ME"></td>
+            <td align="center" id="vmmc-6-severe-detachment-i-9-14-ME"></td>
+            <td align="center" id="vmmc-6-severe-detachment-i-15-19-ME"></td>
+            <td align="center" id="vmmc-6-severe-detachment-i-20-24-ME"></td>
+            <td align="center" id="vmmc-6-severe-detachment-i-25-29-ME"></td>
+            <td align="center" id="vmmc-6-severe-detachment-i-30-34-ME"></td>
+            <td align="center" id="vmmc-6-severe-detachment-i-35-39-ME"></td>
+            <td align="center" id="vmmc-6-severe-detachment-i-40-44-ME"></td>
+            <td align="center" id="vmmc-6-severe-detachment-i-45-49-ME"></td>
+            <td align="center" id="vmmc-6-severe-detachment-i-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-6-severe-detachment-i-TOTAL-ME"></td>
+
+            <td align="center" id="vmmc-6-severe-detachment-ii-1-ME"></td>
+            <td align="center" id="vmmc-6-severe-detachment-ii-1-9-ME"></td>
+            <td align="center" id="vmmc-6-severe-detachment-ii-9-14-ME"></td>
+            <td align="center" id="vmmc-6-severe-detachment-ii-15-19-ME"></td>
+            <td align="center" id="vmmc-6-severe-detachment-ii-20-24-ME"></td>
+            <td align="center" id="vmmc-6-severe-detachment-ii-25-29-ME"></td>
+            <td align="center" id="vmmc-6-severe-detachment-ii-30-34-ME"></td>
+            <td align="center" id="vmmc-6-severe-detachment-ii-35-39-ME"></td>
+            <td align="center" id="vmmc-6-severe-detachment-ii-40-44-ME"></td>
+            <td align="center" id="vmmc-6-severe-detachment-ii-45-49-ME"></td>
+            <td align="center" id="vmmc-6-severe-detachment-ii-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-6-severe-detachment-ii-TOTAL-ME"></td>
+        </tr>
+
+
+
+
+
+        <tr>
+            <th rowspan="9">7</th>
+            <td align="left" colspan="1" rowspan="9">Number of notifieble adverse events reported</td>
+        </tr><tr>
+            <td colspan="2">Complete or partial amputation of the glans or shaft of the penis</td>
+            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-7-a-1-ME"></td>
+            <td align="center" id="vmmc-7-a-1-9-ME"></td>
+            <td align="center" id="vmmc-7-a-9-14-ME"></td>
+            <td align="center" id="vmmc-7-a-15-19-ME"></td>
+            <td align="center" id="vmmc-7-a-20-24-ME"></td>
+            <td align="center" id="vmmc-7-a-25-29-ME"></td>
+            <td align="center" id="vmmc-7-a-30-34-ME"></td>
+            <td align="center" id="vmmc-7-a-35-39-ME"></td>
+            <td align="center" id="vmmc-7-a-40-44-ME"></td>
+            <td align="center" id="vmmc-7-a-45-49-ME"></td>
+            <td align="center" id="vmmc-7-a-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-7-a-TOTAL-ME"></td>
+
+            <td align="center" id="vmmc-7-ai-1-ME"></td>
+            <td align="center" id="vmmc-7-ai-1-9-ME"></td>
+            <td align="center" id="vmmc-7-ai-9-14-ME"></td>
+            <td align="center" id="vmmc-7-ai-15-19-ME"></td>
+            <td align="center" id="vmmc-7-ai-20-24-ME"></td>
+            <td align="center" id="vmmc-7-ai-25-29-ME"></td>
+            <td align="center" id="vmmc-7-ai-30-34-ME"></td>
+            <td align="center" id="vmmc-7-ai-35-39-ME"></td>
+            <td align="center" id="vmmc-7-ai-40-44-ME"></td>
+            <td align="center" id="vmmc-7-ai-45-49-ME"></td>
+            <td align="center" id="vmmc-7-ai-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-7-ai-TOTAL-ME"></td>
+        </tr>
+        <tr>
+            <td colspan="2">Tetanus, including non-fatal cases </td>
+            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-7-b-1-ME"></td>
+            <td align="center" id="vmmc-7-b-1-9-ME"></td>
+            <td align="center" id="vmmc-7-b-9-14-ME"></td>
+            <td align="center" id="vmmc-7-b-15-19-ME"></td>
+            <td align="center" id="vmmc-7-b-20-24-ME"></td>
+            <td align="center" id="vmmc-7-b-25-29-ME"></td>
+            <td align="center" id="vmmc-7-b-30-34-ME"></td>
+            <td align="center" id="vmmc-7-b-35-39-ME"></td>
+            <td align="center" id="vmmc-7-b-40-44-ME"></td>
+            <td align="center" id="vmmc-7-b-45-49-ME"></td>
+            <td align="center" id="vmmc-7-b-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-7-b-TOTAL-ME"></td>
+
+            <td align="center" id="vmmc-7-bi-1-ME"></td>
+            <td align="center" id="vmmc-7-bi-1-9-ME"></td>
+            <td align="center" id="vmmc-7-bi-9-14-ME"></td>
+            <td align="center" id="vmmc-7-bi-15-19-ME"></td>
+            <td align="center" id="vmmc-7-bi-20-24-ME"></td>
+            <td align="center" id="vmmc-7-bi-25-29-ME"></td>
+            <td align="center" id="vmmc-7-bi-30-34-ME"></td>
+            <td align="center" id="vmmc-7-bi-35-39-ME"></td>
+            <td align="center" id="vmmc-7-bi-40-44-ME"></td>
+            <td align="center" id="vmmc-7-bi-45-49-ME"></td>
+            <td align="center" id="vmmc-7-bi-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-7-bi-TOTAL-ME"></td>
+        </tr>
+        <tr>
+            <td colspan="2">AE that results in disability that is likely permanent ( e.g glans numbness)</td>
+            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-7-c-1-ME"></td>
+            <td align="center" id="vmmc-7-c-1-9-ME"></td>
+            <td align="center" id="vmmc-7-c-9-14-ME"></td>
+            <td align="center" id="vmmc-7-c-15-19-ME"></td>
+            <td align="center" id="vmmc-7-c-20-24-ME"></td>
+            <td align="center" id="vmmc-7-c-25-29-ME"></td>
+            <td align="center" id="vmmc-7-c-30-34-ME"></td>
+            <td align="center" id="vmmc-7-c-35-39-ME"></td>
+            <td align="center" id="vmmc-7-c-40-44-ME"></td>
+            <td align="center" id="vmmc-7-c-45-49-ME"></td>
+            <td align="center" id="vmmc-7-c-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-7-c-TOTAL-ME"></td>
+
+            <td align="center" id="vmmc-7-ci-1-ME"></td>
+            <td align="center" id="vmmc-7-ci-1-9-ME"></td>
+            <td align="center" id="vmmc-7-ci-9-14-ME"></td>
+            <td align="center" id="vmmc-7-ci-15-19-ME"></td>
+            <td align="center" id="vmmc-7-ci-20-24-ME"></td>
+            <td align="center" id="vmmc-7-ci-25-29-ME"></td>
+            <td align="center" id="vmmc-7-ci-30-34-ME"></td>
+            <td align="center" id="vmmc-7-ci-35-39-ME"></td>
+            <td align="center" id="vmmc-7-ci-40-44-ME"></td>
+            <td align="center" id="vmmc-7-ci-45-49-ME"></td>
+            <td align="center" id="vmmc-7-ci-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-7-ci-TOTAL-ME"></td>
+        </tr>
+        <tr>
+            <td colspan="2">AE that results in anatomic deformity that is likely permanent (eg Keloid, scaring, penile torsion etc) </td>
+            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-7-d-1-ME"></td>
+            <td align="center" id="vmmc-7-d-1-9-ME"></td>
+            <td align="center" id="vmmc-7-d-9-14-ME"></td>
+            <td align="center" id="vmmc-7-d-15-19-ME"></td>
+            <td align="center" id="vmmc-7-d-20-24-ME"></td>
+            <td align="center" id="vmmc-7-d-25-29-ME"></td>
+            <td align="center" id="vmmc-7-d-30-34-ME"></td>
+            <td align="center" id="vmmc-7-d-35-39-ME"></td>
+            <td align="center" id="vmmc-7-d-40-44-ME"></td>
+            <td align="center" id="vmmc-7-d-45-49-ME"></td>
+            <td align="center" id="vmmc-7-d-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-7-d-TOTAL-ME"></td>
+
+            <td align="center" id="vmmc-7-di-1-ME"></td>
+            <td align="center" id="vmmc-7-di-1-9-ME"></td>
+            <td align="center" id="vmmc-7-di-9-14-ME"></td>
+            <td align="center" id="vmmc-7-di-15-19-ME"></td>
+            <td align="center" id="vmmc-7-di-20-24-ME"></td>
+            <td align="center" id="vmmc-7-di-25-29-ME"></td>
+            <td align="center" id="vmmc-7-di-30-34-ME"></td>
+            <td align="center" id="vmmc-7-di-35-39-ME"></td>
+            <td align="center" id="vmmc-7-di-40-44-ME"></td>
+            <td align="center" id="vmmc-7-di-45-49-ME"></td>
+            <td align="center" id="vmmc-7-di-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-7-di-TOTAL-ME"></td>
+        </tr>
+        <tr>
+            <td colspan="2">Any hospital admission for ≥3 days</td>
+            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-7-e-1-ME"></td>
+            <td align="center" id="vmmc-7-e-1-9-ME"></td>
+            <td align="center" id="vmmc-7-e-9-14-ME"></td>
+            <td align="center" id="vmmc-7-e-15-19-ME"></td>
+            <td align="center" id="vmmc-7-e-20-24-ME"></td>
+            <td align="center" id="vmmc-7-e-25-29-ME"></td>
+            <td align="center" id="vmmc-7-e-30-34-ME"></td>
+            <td align="center" id="vmmc-7-e-35-39-ME"></td>
+            <td align="center" id="vmmc-7-e-40-44-ME"></td>
+            <td align="center" id="vmmc-7-e-45-49-ME"></td>
+            <td align="center" id="vmmc-7-e-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-7-e-TOTAL-ME"></td>
+
+            <td align="center" id="vmmc-7-ei-1-ME"></td>
+            <td align="center" id="vmmc-7-ei-1-9-ME"></td>
+            <td align="center" id="vmmc-7-ei-9-14-ME"></td>
+            <td align="center" id="vmmc-7-ei-15-19-ME"></td>
+            <td align="center" id="vmmc-7-ei-20-24-ME"></td>
+            <td align="center" id="vmmc-7-ei-25-29-ME"></td>
+            <td align="center" id="vmmc-7-ei-30-34-ME"></td>
+            <td align="center" id="vmmc-7-ei-35-39-ME"></td>
+            <td align="center" id="vmmc-7-ei-40-44-ME"></td>
+            <td align="center" id="vmmc-7-ei-45-49-ME"></td>
+            <td align="center" id="vmmc-7-ei-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-7-ei-TOTAL-ME"></td>
+        </tr>
+        <tr>
+            <td colspan="2">Moderate or severe device displacement AE </td>
+            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-7-f-1-ME"></td>
+            <td align="center" id="vmmc-7-f-1-9-ME"></td>
+            <td align="center" id="vmmc-7-f-9-14-ME"></td>
+            <td align="center" id="vmmc-7-f-15-19-ME"></td>
+            <td align="center" id="vmmc-7-f-20-24-ME"></td>
+            <td align="center" id="vmmc-7-f-25-29-ME"></td>
+            <td align="center" id="vmmc-7-f-30-34-ME"></td>
+            <td align="center" id="vmmc-7-f-35-39-ME"></td>
+            <td align="center" id="vmmc-7-f-40-44-ME"></td>
+            <td align="center" id="vmmc-7-f-45-49-ME"></td>
+            <td align="center" id="vmmc-7-f-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-7-f-TOTAL-ME"></td>
+
+            <td align="center" id="vmmc-7-fi-1-ME"></td>
+            <td align="center" id="vmmc-7-fi-1-9-ME"></td>
+            <td align="center" id="vmmc-7-fi-9-14-ME"></td>
+            <td align="center" id="vmmc-7-fi-15-19-ME"></td>
+            <td align="center" id="vmmc-7-fi-20-24-ME"></td>
+            <td align="center" id="vmmc-7-fi-25-29-ME"></td>
+            <td align="center" id="vmmc-7-fi-30-34-ME"></td>
+            <td align="center" id="vmmc-7-fi-35-39-ME"></td>
+            <td align="center" id="vmmc-7-fi-40-44-ME"></td>
+            <td align="center" id="vmmc-7-fi-45-49-ME"></td>
+            <td align="center" id="vmmc-7-fi-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-7-fi-TOTAL-ME"></td>
+        </tr>
+        <tr>
+            <td colspan="2">Client deaths within 30days post MC</td>
+            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-7-g-1-ME"></td>
+            <td align="center" id="vmmc-7-g-1-9-ME"></td>
+            <td align="center" id="vmmc-7-g-9-14-ME"></td>
+            <td align="center" id="vmmc-7-g-15-19-ME"></td>
+            <td align="center" id="vmmc-7-g-20-24-ME"></td>
+            <td align="center" id="vmmc-7-g-25-29-ME"></td>
+            <td align="center" id="vmmc-7-g-30-34-ME"></td>
+            <td align="center" id="vmmc-7-g-35-39-ME"></td>
+            <td align="center" id="vmmc-7-g-40-44-ME"></td>
+            <td align="center" id="vmmc-7-g-45-49-ME"></td>
+            <td align="center" id="vmmc-7-g-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-7-g-TOTAL-ME"></td>
+
+            <td align="center" id="vmmc-7-gi-1-ME"></td>
+            <td align="center" id="vmmc-7-gi-1-9-ME"></td>
+            <td align="center" id="vmmc-7-gi-9-14-ME"></td>
+            <td align="center" id="vmmc-7-gi-15-19-ME"></td>
+            <td align="center" id="vmmc-7-gi-20-24-ME"></td>
+            <td align="center" id="vmmc-7-gi-25-29-ME"></td>
+            <td align="center" id="vmmc-7-gi-30-34-ME"></td>
+            <td align="center" id="vmmc-7-gi-35-39-ME"></td>
+            <td align="center" id="vmmc-7-gi-40-44-ME"></td>
+            <td align="center" id="vmmc-7-gi-45-49-ME"></td>
+            <td align="center" id="vmmc-7-gi-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-7-gi-TOTAL-ME"></td>
+        </tr>
+        <tr>
+            <td colspan="2">Any admission to ICU within 30days post MC </td>
+            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-7-h-1-ME"></td>
+            <td align="center" id="vmmc-7-h-1-9-ME"></td>
+            <td align="center" id="vmmc-7-h-9-14-ME"></td>
+            <td align="center" id="vmmc-7-h-15-19-ME"></td>
+            <td align="center" id="vmmc-7-h-20-24-ME"></td>
+            <td align="center" id="vmmc-7-h-25-29-ME"></td>
+            <td align="center" id="vmmc-7-h-30-34-ME"></td>
+            <td align="center" id="vmmc-7-h-35-39-ME"></td>
+            <td align="center" id="vmmc-7-h-40-44-ME"></td>
+            <td align="center" id="vmmc-7-h-45-49-ME"></td>
+            <td align="center" id="vmmc-7-h-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-7-h-TOTAL-ME"></td>
+
+            <td align="center" id="vmmc-7-hi-1-ME"></td>
+            <td align="center" id="vmmc-7-hi-1-9-ME"></td>
+            <td align="center" id="vmmc-7-hi-9-14-ME"></td>
+            <td align="center" id="vmmc-7-hi-15-19-ME"></td>
+            <td align="center" id="vmmc-7-hi-20-24-ME"></td>
+            <td align="center" id="vmmc-7-hi-25-29-ME"></td>
+            <td align="center" id="vmmc-7-hi-30-34-ME"></td>
+            <td align="center" id="vmmc-7-hi-35-39-ME"></td>
+            <td align="center" id="vmmc-7-hi-40-44-ME"></td>
+            <td align="center" id="vmmc-7-hi-45-49-ME"></td>
+            <td align="center" id="vmmc-7-hi-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-7-hi-total-me"></td>
+        </tr>
+
+
+        <tr>
+            <th rowspan="6">8</th>
+            <td align="left" colspan="1" rowspan="9">Number of male circumcised who returned for  follow up visit</td>
+        </tr><tr>
+            <td colspan="2">1st Within 2 days</td>
+            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-8-a-1-ME"></td>
+            <td align="center" id="vmmc-8-a-1-9-ME"></td>
+            <td align="center" id="vmmc-8-a-9-14-ME"></td>
+            <td align="center" id="vmmc-8-a-15-19-ME"></td>
+            <td align="center" id="vmmc-8-a-20-24-ME"></td>
+            <td align="center" id="vmmc-8-a-25-29-ME"></td>
+            <td align="center" id="vmmc-8-a-30-34-ME"></td>
+            <td align="center" id="vmmc-8-a-35-39-ME"></td>
+            <td align="center" id="vmmc-8-a-40-44-ME"></td>
+            <td align="center" id="vmmc-8-a-45-49-ME"></td>
+            <td align="center" id="vmmc-8-a-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-8-a-TOTAL-ME"></td>
+
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+        </tr>
+        <tr>
+            <td colspan="2">1st beyond 2 days </td>
+            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-8-b-1-ME"></td>
+            <td align="center" id="vmmc-8-b-1-9-ME"></td>
+            <td align="center" id="vmmc-8-b-9-14-ME"></td>
+            <td align="center" id="vmmc-8-b-15-19-ME"></td>
+            <td align="center" id="vmmc-8-b-20-24-ME"></td>
+            <td align="center" id="vmmc-8-b-25-29-ME"></td>
+            <td align="center" id="vmmc-8-b-30-34-ME"></td>
+            <td align="center" id="vmmc-8-b-35-39-ME"></td>
+            <td align="center" id="vmmc-8-b-40-44-ME"></td>
+            <td align="center" id="vmmc-8-b-45-49-ME"></td>
+            <td align="center" id="vmmc-8-b-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-8-b-TOTAL-ME"></td>
+
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+        </tr>
+        <tr>
+            <td colspan="2">2nd within 7 days</td>
+            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-8-c-1-ME"></td>
+            <td align="center" id="vmmc-8-c-1-9-ME"></td>
+            <td align="center" id="vmmc-8-c-9-14-ME"></td>
+            <td align="center" id="vmmc-8-c-15-19-ME"></td>
+            <td align="center" id="vmmc-8-c-20-24-ME"></td>
+            <td align="center" id="vmmc-8-c-25-29-ME"></td>
+            <td align="center" id="vmmc-8-c-30-34-ME"></td>
+            <td align="center" id="vmmc-8-c-35-39-ME"></td>
+            <td align="center" id="vmmc-8-c-40-44-ME"></td>
+            <td align="center" id="vmmc-8-c-45-49-ME"></td>
+            <td align="center" id="vmmc-8-c-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-8-c-TOTAL-ME"></td>
+
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+        </tr>
+        <tr>
+            <td colspan="2">2nd beyond 7 days</td>
+            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-8-d-1-ME"></td>
+            <td align="center" id="vmmc-8-d-1-9-ME"></td>
+            <td align="center" id="vmmc-8-d-9-14-ME"></td>
+            <td align="center" id="vmmc-8-d-15-19-ME"></td>
+            <td align="center" id="vmmc-8-d-20-24-ME"></td>
+            <td align="center" id="vmmc-8-d-25-29-ME"></td>
+            <td align="center" id="vmmc-8-d-30-34-ME"></td>
+            <td align="center" id="vmmc-8-d-35-39-ME"></td>
+            <td align="center" id="vmmc-8-d-40-44-ME"></td>
+            <td align="center" id="vmmc-8-d-45-49-ME"></td>
+            <td align="center" id="vmmc-8-d-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-8-d-TOTAL-ME"></td>
+
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+        </tr>
+        <tr>
+            <td colspan="2">7 days follow-up </td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+
+            <td align="center" id="vmmc-8-ei-1-ME"></td>
+            <td align="center" id="vmmc-8-ei-1-9-ME"></td>
+            <td align="center" id="vmmc-8-ei-9-14-ME"></td>
+            <td align="center" id="vmmc-8-ei-15-19-ME"></td>
+            <td align="center" id="vmmc-8-ei-20-24-ME"></td>
+            <td align="center" id="vmmc-8-ei-25-29-ME"></td>
+            <td align="center" id="vmmc-8-ei-30-34-ME"></td>
+            <td align="center" id="vmmc-8-ei-35-39-ME"></td>
+            <td align="center" id="vmmc-8-ei-40-44-ME"></td>
+            <td align="center" id="vmmc-8-ei-45-49-ME"></td>
+            <td align="center" id="vmmc-8-ei-&gt;50-ME"></td>
+            <td align="center" class="table-total-color" id="vmmc-8-ei-TOTAL-ME"></td>
+        </tr>
+
+
+
+        </tbody><tbody>
+    </tbody></table>
+</div>
+
+<script>
+    function loadData(reportKey, reportType) {
+  const data = JSON.parse(Android.getData(reportKey));
+  const keys = Object.keys(data.nameValuePairs);
+  const reportPeriod = document.getElementById("report_period");
+  const reportingFacility = document.getElementById("reporting_facility");
+  keys.forEach((key) => {
+    let element;
+    if(reportType!== null && reportType === "pnc"){
+      element = document.getElementById(key.replace("pnc-",""));
+    }else{
+      element = document.getElementById(key);
+    }
+    if (element !== null && typeof element !== "undefined") {
+      element.innerHTML = data.nameValuePairs[key];
+    }
+  });
+  reportPeriod.innerHTML = Android.getDataPeriod();
+  reportingFacility.innerHTML = Android.getReportingFacility();
+}
+</script>
+</body></html>
