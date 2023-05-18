@@ -140,5 +140,9 @@ public class ReportsActivity extends SecuredActivity implements View.OnClickList
             Intent intent = new Intent(this, KvpReportsActivity.class);
             startActivity(intent);
         }
+        else if (id==R.id.vmmc_reports){
+            Intent intent = new Intent(this, VmmcReportsActivity.class);
+            startActivity(intent);
+        }
     }
 }
