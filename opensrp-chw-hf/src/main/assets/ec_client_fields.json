@@ -8439,7 +8439,7 @@
       ]
     },
     {
-      "name": "ec_vmmc_medical_history",
+      "name": "ec_vmmc_services",
       "columns": [
         {
           "column_name": "base_entity_id",
@@ -8542,25 +8542,6 @@
             "field": "obs.fieldCode",
             "concept": "tetanus_booster_date"
           }
-        }
-      ]
-    },
-    {
-      "name": "ec_vmmc_physical_examination",
-      "columns": [
-        {
-          "column_name": "base_entity_id",
-          "type": "Event",
-          "json_mapping": {
-            "field": "formSubmissionId"
-          }
-        },
-        {
-          "column_name": "entity_id",
-          "type": "Event",
-          "json_mapping": {
-            "field": "baseEntityId"
-          }
         },
         {
           "column_name": "physical_abnormality",
@@ -8633,25 +8614,6 @@
             "field": "obs.fieldCode",
             "concept": "preferred_client"
           }
-        }
-      ]
-    },
-    {
-      "name": "ec_vmmc_hts",
-      "columns": [
-        {
-          "column_name": "base_entity_id",
-          "type": "Event",
-          "json_mapping": {
-            "field": "formSubmissionId"
-          }
-        },
-        {
-          "column_name": "entity_id",
-          "type": "Event",
-          "json_mapping": {
-            "field": "baseEntityId"
-          }
         },
         {
           "column_name": "tested_hiv",
@@ -8702,11 +8664,11 @@
           }
         },
         {
-          "column_name": "pallor_managed",
+          "column_name": "smegma_managed",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
-            "concept": "pallor_managed"
+            "concept": "smegma_managed"
           }
         },
         {
@@ -8720,7 +8682,7 @@
       ]
     },
     {
-      "name": "ec_vmmc_consent_form",
+      "name": "ec_vmmc_procedure",
       "columns": [
         {
           "column_name": "base_entity_id",
@@ -8759,25 +8721,6 @@
             "field": "obs.fieldCode",
             "concept": "health_care_provider"
           }
-        }
-      ]
-    },
-    {
-      "name": "ec_vmmc_procedure",
-      "columns": [
-        {
-          "column_name": "base_entity_id",
-          "type": "Event",
-          "json_mapping": {
-            "field": "formSubmissionId"
-          }
-        },
-        {
-          "column_name": "entity_id",
-          "type": "Event",
-          "json_mapping": {
-            "field": "baseEntityId"
-          }
         },
         {
           "column_name": "is_male_procedure_circumcision_conducted",
@@ -8794,10 +8737,204 @@
             "field": "obs.fieldCode",
             "concept": "reason"
           }
+        },
+        {
+          "column_name": "start_time",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "start_time"
+          }
+        },
+        {
+          "column_name": "end_time",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "end_time"
+          }
+        },
+        {
+          "column_name": "aneathesia_administered",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "aneathesia_administered"
+          }
+        },
+        {
+          "column_name": "other_aneathesia_administered",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "other_aneathesia_administered"
+          }
+        },
+        {
+          "column_name": "lignocaine_dosage",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "lignocaine_dosage"
+          }
+        },
+        {
+          "column_name": "bupivacaine_dosage",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "bupivacaine_dosage"
+          }
+        },
+        {
+          "column_name": "dosage",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "dosage"
+          }
+        },
+        {
+          "column_name": "male_circumcision_method",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "male_circumcision_method"
+          }
+        },
+        {
+          "column_name": "device_name",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "device_name"
+          }
+        }
+      ]
+    },
+    {
+      "name": "ec_vmmc_discharge",
+      "columns": [
+        {
+          "column_name": "base_entity_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "formSubmissionId"
+          }
+        },
+        {
+          "column_name": "entity_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "baseEntityId"
+          }
+        },
+        {
+          "column_name": "discharge_condition",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "discharge_condition"
+          }
+        },
+        {
+          "column_name": "discharged_reasons",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "discharged_reasons"
+          }
+        },
+        {
+          "column_name": "analgesics_given",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "analgesics_given"
+          }
+        },
+        {
+          "column_name": "analgenics_type",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "analgenics_type"
+          }
+        },
+        {
+          "column_name": "discharging_name",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "discharging_name"
+          }
+        },
+        {
+          "column_name": "provider_cadre",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "provider_cadre"
+          }
+        },
+        {
+          "column_name": "pulse_rate",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "pulse_rate"
+          }
+        },
+        {
+          "column_name": "systolic",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "systolic"
+          }
+        },
+        {
+          "column_name": "diastolic",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "diastolic"
+          }
+        },
+        {
+          "column_name": "temperature",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "temperature"
+          }
+        },
+        {
+          "column_name": "notify_client_has_fever",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "notify_client_has_fever"
+          }
+        },
+        {
+          "column_name": "respiration_rate",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "respiration_rate"
+          }
+        },
+        {
+          "column_name": "dressing_condition",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "dressing_condition"
+          }
         }
       ]
     }
-
 
   ]
 }

@@ -194,7 +194,22 @@
             "field": "eventType",
             "field_value": "Vmmc Confirmation",
             "creates_case": [
-              "ec_vmmc_confirmation"
+              "ec_vmmc_confirmation",
+              "ec_vmmc_services"
+            ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "Vmmc Procedure",
+            "creates_case": [
+              "ec_vmmc_procedure"
+            ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "Vmmc Discharge",
+            "creates_case": [
+              "ec_vmmc_discharge"
             ]
           },
           {
