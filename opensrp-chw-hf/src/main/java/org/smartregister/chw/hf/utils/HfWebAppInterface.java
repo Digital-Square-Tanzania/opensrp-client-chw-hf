@@ -77,6 +77,10 @@ public class HfWebAppInterface {
             ReportUtils.setPrintJobName("kvp_report_ya_mwezi-" + ReportUtils.getReportPeriod() + ".pdf");
             return ReportUtils.KvpReport.computeReport(ReportUtils.getReportDate());
         }
+        if (reportType.equalsIgnoreCase(Constants.ReportConstants.ReportTypes.VMMC_REPORT)){
+            ReportUtils.setPrintJobName("vmmc_report_ya_mwezi-" + ReportUtils.getReportPeriod() + ".pdf");
+            return ReportUtils.VmmcReport.computeReport(ReportUtils.getReportDate());
+        }
         if (reportType.equalsIgnoreCase(Constants.ReportConstants.ReportTypes.CONDOM_DISTRIBUTION_REPORT)){
               switch (key) {
                 case ISSUING_AT_THE_FACILITY_REPORTS:
