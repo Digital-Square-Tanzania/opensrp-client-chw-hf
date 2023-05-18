@@ -8934,6 +8934,220 @@
           }
         }
       ]
+    },
+    {
+      "name": "ec_vmmc_followup",
+      "columns": [
+        {
+          "column_name": "base_entity_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "formSubmissionId"
+          }
+        },
+        {
+          "column_name": "entity_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "baseEntityId"
+          }
+        },
+        {
+          "column_name": "visit_type",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "visit_type"
+          }
+        },
+        {
+          "column_name": "comment_vmmc_followup",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "comment_vmmc_followup"
+          }
+        },
+        {
+          "column_name": "post_op_adverse_event_occur",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "post_op_adverse_event_occur"
+          }
+        },
+        {
+          "column_name": "time_of_adverse_event_occured",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "time_of_adverse_event_occured"
+          }
+        },
+        {
+          "column_name": "type_of_adverse_event",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "type_of_adverse_event"
+          }
+        },
+        {
+          "column_name": "type_of_adverse_event_others",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "type_of_adverse_event_others"
+          }
+        },
+        {
+          "column_name": "desc_of_post_op_adverse_event_infection",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "desc_of_post_op_adverse_event_infection"
+          }
+        },
+        {
+          "column_name": "desc_of_post_op_adverse_event_persistent_pain",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "desc_of_post_op_adverse_event_persistent_pain"
+          }
+        },
+        {
+          "column_name": "what_done",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "what_done"
+          }
+        },
+        {
+          "column_name": "treatment_outcome",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "treatment_outcome"
+          }
+        },
+        {
+          "column_name": "treatment_outcome_note",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "treatment_outcome_note"
+          }
+        },
+        {
+          "column_name": "was_condom_provided",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "was_condom_provided"
+          }
+        },
+        {
+          "column_name": "condoms_issued",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "condoms_issued"
+          }
+        }
+      ]
+    },
+    {
+      "name": "ec_vmmc_notifiable_ae",
+      "columns": [
+        {
+          "column_name": "base_entity_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "formSubmissionId"
+          }
+        },
+        {
+          "column_name": "entity_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "baseEntityId"
+          }
+        },
+        {
+          "column_name": "was_adverse_events_notifiable",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "was_adverse_events_notifiable"
+          }
+        },
+        {
+          "column_name": "did_client_experience_nae",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "did_client_experience_nae"
+          }
+        },
+        {
+          "column_name": "date_nae_occured",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "date_nae_occured"
+          }
+        },
+        {
+          "column_name": "nature_of_ae",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "nature_of_ae"
+          }
+        },
+        {
+          "column_name": "what_done",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "what_done"
+          }
+        },
+        {
+          "column_name": "was_nae_attended",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "was_nae_attended"
+          }
+        },
+        {
+          "column_name": "treatment_outcome",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "treatment_outcome"
+          }
+        },
+        {
+          "column_name": "treatment_outcome_note",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "treatment_outcome_note"
+          }
+        },
+        {
+          "column_name": "treatment_outcome_unchanged_note",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "treatment_outcome_unchanged_note"
+          }
+        }
+      ]
     }
 
   ]

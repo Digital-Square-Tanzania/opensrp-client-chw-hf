@@ -214,6 +214,20 @@
           },
           {
             "field": "eventType",
+            "field_value": "VMMC Follow-up Form",
+            "creates_case": [
+              "ec_vmmc_followup"
+            ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "VMMC Notifiable Adverse Events",
+            "creates_case": [
+              "ec_vmmc_notifiable_ae"
+            ]
+          },
+          {
+            "field": "eventType",
             "field_value": "Family Planning Registration",
             "creates_case": [
               "ec_family_planning"
