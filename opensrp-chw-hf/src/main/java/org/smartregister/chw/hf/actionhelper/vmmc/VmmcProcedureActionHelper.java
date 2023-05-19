@@ -15,6 +15,7 @@ import java.util.Map;
 public class VmmcProcedureActionHelper implements BaseVmmcVisitAction.VmmcVisitActionHelper {
 
     protected String medical_history;
+    public static String method_used;
     protected String jsonPayload;
 
     @Override
@@ -38,6 +39,9 @@ public class VmmcProcedureActionHelper implements BaseVmmcVisitAction.VmmcVisitA
     public void onPayloadReceived(String jsonPayload) {
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
+
+            method_used = CoreJsonFormUtils.getValue(jsonObject, "male_circumcision_method");
+
             medical_history = CoreJsonFormUtils.getValue(jsonObject, "is_male_procedure_circumcision_conducted");
         } catch (JSONException e) {
             e.printStackTrace();

@@ -1,0 +1,14 @@
+---
+name: step1_type_of_adverse_event
+description: if type_of_adverse_event
+priority: 1
+condition: "global_method_used.contains('device') && step1_post_op_adverse_event_occur.equalsIgnoreCase('yes')"
+actions:
+  - "isRelevant = true "
+---
+name: step1_type_of_adverse_event_without_device
+description: if type_of_adverse_event_without_device
+priority: 1
+condition: "!global_method_used.contains('device') && step1_post_op_adverse_event_occur.equalsIgnoreCase('yes')"
+actions:
+  - "isRelevant = true "

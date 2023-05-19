@@ -6,6 +6,7 @@ import static org.smartregister.chw.vmmc.util.Constants.ACTIVITY_PAYLOAD.BASE_EN
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -60,20 +61,33 @@ public class VmmcProfileActivity extends CoreVmmcProfileActivity {
     @Override
     public void startVmmcNotifiableForm(String baseEntityId) {
         JSONObject form = FormUtils.getFormUtils().getFormJson(Constants.FORMS.VMMC_NOTIFIABLE);
-//        try {
-//            form.put(org.smartregister.util.JsonFormUtils.ENTITY_ID, baseEntityId);
-////            JSONObject global = form.getJSONObject("global");
-////            boolean knownPositiveFromHIV = HivDao.isRegisteredForHiv(baseEntityId) && StringUtils.isNotBlank(HivDao.getMember(baseEntityId).getCtcNumber());
-////            global.put("known_positive", HivstDao.isTheClientKnownPositiveAtReg(baseEntityId) || knownPositiveFromHIV);
-//        } catch (JSONException e) {
-//            Timber.e(e);
-//        }
+
+        try {
+            JSONObject global = form.getJSONObject("global");
+            String method_used_notify = org.smartregister.chw.hf.actionhelper.vmmc.VmmcProcedureActionHelper.method_used;
+            global.put("method_used", method_used_notify);
+            Log.d("method_used_vmmc",method_used_notify);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Log.d("method_used_vmmc", e.toString());
+        }
         startFormActivity(form);
     }
 
     @Override
     public void startVmmcFollowUp(String baseEntityId) {
         JSONObject form = FormUtils.getFormUtils().getFormJson(Constants.FORMS.VMMC_FOLLOW_UP_VISIT);
+
+        try {
+            JSONObject global = form.getJSONObject("global");
+            String method_used = org.smartregister.chw.hf.actionhelper.vmmc.VmmcProcedureActionHelper.method_used;
+            global.put("method_used", method_used);
+            Log.d("method_used_vmmc",method_used);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Log.d("method_used_vmmc", e.toString());
+        }
+
         startFormActivity(form);
     }
 
