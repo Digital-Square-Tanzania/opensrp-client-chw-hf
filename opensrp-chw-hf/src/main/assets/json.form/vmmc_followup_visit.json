@@ -279,23 +279,22 @@
         "type": "native_radio",
         "options": [
           {
-            "key": "3_or_4_on_pain_scale",
-            "text": "3 or 4 on pain scale",
+            "key": "erythema",
+            "text": "Erythema more than 1 cm beyond incision line",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "3_or_4_on_pain_scale"
           },
           {
-            "key": "5_or_6_on_pain_scale",
-            "text": "5 or 6 on pain scale",
+            "key": "purulent",
+            "text": "Purulent discharge from the wound",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "5_or_6_on_pain_scale"
           },
-
           {
-            "key": "7_on_pain_scale",
-            "text": "7 on pain scale",
+            "key": "cellutilis",
+            "text": "Cellutilis or wound necrosis",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "7_on_pain_scale"
@@ -314,6 +313,51 @@
                 ]
               }
             ]
+          }
+        }
+      },
+      {
+        "key": "ae_classified_as_mild_infection",
+        "type": "toaster_notes",
+        "text": "AE classified as MILD",
+        "openmrs_entity_id": "ae_classified_as_mild",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "info",
+        "relevance": {
+          "step1:desc_of_post_op_adverse_event_infection": {
+            "type": "string",
+            "ex": "equalTo(., \"erythema\")"
+          }
+        }
+      },
+      {
+        "key": "ae_classified_as_moderate_infection",
+        "type": "toaster_notes",
+        "text": "AE classified as MODERATE",
+        "openmrs_entity_id": "ae_classified_as_moderate",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "warning",
+        "relevance": {
+          "step1:desc_of_post_op_adverse_event_infection": {
+            "type": "string",
+            "ex": "equalTo(., \"purulent\")"
+          }
+        }
+      },
+      {
+        "key": "ae_classified_as_severe_infection",
+        "type": "toaster_notes",
+        "text": "AE classified as SEVERE",
+        "openmrs_entity_id": "ae_classified_as_severe",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "problem",
+        "relevance": {
+          "step1:desc_of_post_op_adverse_event_infection": {
+            "type": "string",
+            "ex": "equalTo(., \"cellutilis\")"
           }
         }
       },
@@ -366,6 +410,51 @@
         }
       },
       {
+        "key": "ae_classified_as_mild_pain",
+        "type": "toaster_notes",
+        "text": "AE classified as MILD",
+        "openmrs_entity_id": "ae_classified_as_mild",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "info",
+        "relevance": {
+          "step1:desc_of_post_op_adverse_event_persistent_pain": {
+            "type": "string",
+            "ex": "equalTo(., \"3_or_4_on_pain_scale\")"
+          }
+        }
+      },
+      {
+        "key": "ae_classified_as_moderate_pain",
+        "type": "toaster_notes",
+        "text": "AE classified as MODERATE",
+        "openmrs_entity_id": "ae_classified_as_moderate",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "warning",
+        "relevance": {
+          "step1:desc_of_post_op_adverse_event_persistent_pain": {
+            "type": "string",
+            "ex": "equalTo(., \"5_or_6_on_pain_scale\")"
+          }
+        }
+      },
+      {
+        "key": "ae_classified_as_severe_pain",
+        "type": "toaster_notes",
+        "text": "AE classified as SEVERE",
+        "openmrs_entity_id": "ae_classified_as_severe",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "problem",
+        "relevance": {
+          "step1:desc_of_post_op_adverse_event_persistent_pain": {
+            "type": "string",
+            "ex": "equalTo(., \"7_on_pain_scale\")"
+          }
+        }
+      },
+      {
         "key": "desc_of_post_op_adverse_event_bleeding",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -410,6 +499,51 @@
                 ]
               }
             ]
+          }
+        }
+      },
+      {
+        "key": "ae_classified_as_mild_bleeding",
+        "type": "toaster_notes",
+        "text": "AE classified as MILD",
+        "openmrs_entity_id": "ae_classified_as_mild",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "info",
+        "relevance": {
+          "step1:desc_of_post_op_adverse_event_bleeding": {
+            "type": "string",
+            "ex": "equalTo(., \"more_bleeding\")"
+          }
+        }
+      },
+      {
+        "key": "ae_classified_as_moderate_bleeding",
+        "type": "toaster_notes",
+        "text": "AE classified as MODERATE",
+        "openmrs_entity_id": "ae_classified_as_moderate",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "warning",
+        "relevance": {
+          "step1:desc_of_post_op_adverse_event_bleeding": {
+            "type": "string",
+            "ex": "equalTo(., \"pressure_dressing\")"
+          }
+        }
+      },
+      {
+        "key": "ae_classified_as_severe_bleeding",
+        "type": "toaster_notes",
+        "text": "AE classified as SEVERE",
+        "openmrs_entity_id": "ae_classified_as_severe",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "problem",
+        "relevance": {
+          "step1:desc_of_post_op_adverse_event_bleeding": {
+            "type": "string",
+            "ex": "equalTo(., \"blood_transfusion\")"
           }
         }
       },
@@ -462,6 +596,51 @@
         }
       },
       {
+        "key": "ae_classified_as_mild_device_displacement",
+        "type": "toaster_notes",
+        "text": "AE classified as MILD",
+        "openmrs_entity_id": "ae_classified_as_mild",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "info",
+        "relevance": {
+          "step1:desc_of_post_op_adverse_event_device_displacement": {
+            "type": "string",
+            "ex": "equalTo(., \"post_removal\")"
+          }
+        }
+      },
+      {
+        "key": "ae_classified_as_moderate_device_displacement",
+        "type": "toaster_notes",
+        "text": "AE classified as MODERATE",
+        "openmrs_entity_id": "ae_classified_as_moderate",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "warning",
+        "relevance": {
+          "step1:desc_of_post_op_adverse_event_device_displacement": {
+            "type": "string",
+            "ex": "equalTo(., \"meet_severe_criteria\")"
+          }
+        }
+      },
+      {
+        "key": "ae_classified_as_severe_device_displacement",
+        "type": "toaster_notes",
+        "text": "AE classified as SEVERE",
+        "openmrs_entity_id": "ae_classified_as_severe",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "problem",
+        "relevance": {
+          "step1:desc_of_post_op_adverse_event_device_displacement": {
+            "type": "string",
+            "ex": "equalTo(., \"surgical_intervention\")"
+          }
+        }
+      },
+      {
         "key": "desc_of_post_op_adverse_event_swelling",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -509,52 +688,141 @@
           }
         }
       },
-
       {
-        "key": "desc_mild_op_toaster",
+        "key": "ae_classified_as_mild_swelling",
         "type": "toaster_notes",
         "text": "AE classified as MILD",
-        "openmrs_entity_id": "desc_mild_op_toaster",
+        "openmrs_entity_id": "ae_classified_as_mild",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
-        "toaster_type": "warning",
+        "toaster_type": "info",
         "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "vmmc_followup_relevance.yml"
-            }
+          "step1:desc_of_post_op_adverse_event_swelling": {
+            "type": "string",
+            "ex": "equalTo(., \"bruising\")"
           }
         }
       },
       {
-        "key": "desc_moderate_op_toaster",
+        "key": "ae_classified_as_moderate_swelling",
         "type": "toaster_notes",
         "text": "AE classified as MODERATE",
-        "openmrs_entity_id": "desc_moderate_op_toaster",
+        "openmrs_entity_id": "ae_classified_as_moderate",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "warning",
         "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "vmmc_followup_relevance.yml"
-            }
+          "step1:desc_of_post_op_adverse_event_swelling": {
+            "type": "string",
+            "ex": "equalTo(., \"pressure_dressing\")"
           }
         }
       },
       {
-        "key": "desc_severe_op_toaster",
+        "key": "ae_classified_as_severe_swelling",
         "type": "toaster_notes",
         "text": "AE classified as SEVERE",
-        "openmrs_entity_id": "desc_severe_op_toaster",
+        "openmrs_entity_id": "ae_classified_as_severe",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "problem",
+        "relevance": {
+          "step1:desc_of_post_op_adverse_event_swelling": {
+            "type": "string",
+            "ex": "equalTo(., \"penis_severed\")"
+          }
+        }
+      },
+      {
+        "key": "desc_of_post_op_adverse_pass_urine",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "desc_of_post_op_adverse_event",
+        "label": "Description of post-operative adverse events(Failure to pass urine)",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "transient_complaint",
+            "text": "Transient complaint that resolves without treatment",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "transient_complaint"
+          },
+          {
+            "key": "return_cinic",
+            "text": "Requires a special return to the cinic, but no additional treatment required",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "return_cinic"
+          },
+
+          {
+            "key": "requires_referral",
+            "text": "Requires referral to another facility for management",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "requires_referral"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select atleast one scale"
+        },
+        "relevance": {
+          "step1:type_of_adverse_event": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "failure_pass_urine"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "ae_classified_as_mild_pass_urine",
+        "type": "toaster_notes",
+        "text": "AE classified as MILD",
+        "openmrs_entity_id": "ae_classified_as_mild",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "info",
+        "relevance": {
+          "step1:desc_of_post_op_adverse_pass_urine": {
+            "type": "string",
+            "ex": "equalTo(., \"transient_complaint\")"
+          }
+        }
+      },
+      {
+        "key": "ae_classified_as_moderate_pass_urine",
+        "type": "toaster_notes",
+        "text": "AE classified as MODERATE",
+        "openmrs_entity_id": "ae_classified_as_moderate",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "warning",
         "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "vmmc_followup_relevance.yml"
-            }
+          "step1:desc_of_post_op_adverse_pass_urine": {
+            "type": "string",
+            "ex": "equalTo(., \"return_cinic\")"
+          }
+        }
+      },
+      {
+        "key": "ae_classified_as_severe_pass_urine",
+        "type": "toaster_notes",
+        "text": "AE classified as SEVERE",
+        "openmrs_entity_id": "ae_classified_as_severe",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "problem",
+        "relevance": {
+          "step1:desc_of_post_op_adverse_pass_urine": {
+            "type": "string",
+            "ex": "equalTo(., \"requires_referral\")"
           }
         }
       },

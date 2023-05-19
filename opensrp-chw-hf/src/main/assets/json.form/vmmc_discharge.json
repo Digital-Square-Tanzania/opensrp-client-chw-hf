@@ -176,7 +176,7 @@
         "openmrs_entity": "",
         "openmrs_entity_id": "analgenics_reasons",
         "type": "edit_text",
-        "hint": "Specify Analgenics Reason",
+        "hint": "Specify",
         "edit_type": "text",
         "v_required": {
           "value": "true",
@@ -203,6 +203,13 @@
         "v_required": {
           "value": "true",
           "err": "Please select the discharge time"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_discharge_relevance.yml"
+            }
+          }
         }
       },
       {
@@ -211,7 +218,7 @@
         "openmrs_entity": "",
         "openmrs_entity_id": "1650011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "type": "edit_text",
-        "hint": "Discharging provider's name",
+        "hint": "Provider's name",
         "edit_type": "text",
         "v_required": {
           "value": "true",
@@ -222,15 +229,65 @@
         "key": "provider_cadre",
         "openmrs_entity_parent": "",
         "openmrs_entity": "",
-        "openmrs_entity_id": "1650012AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "type": "edit_text",
-        "hint": "Provider's Cadre",
-        "edit_type": "text",
+        "openmrs_entity_id": "provider_cadre",
+        "type": "native_radio",
+        "label": "Provider's cadre",
+        "options": [
+          {
+            "key": "assistant_medical_officer",
+            "text": "Medical officer",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": "assistant_medical_officer",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "assistant_assistant_medical_officer",
+            "text": "Assistant medical officer",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": "assistant_assistant_medical_officer",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "assistant_clinical_officer_or_assistant",
+            "text": "Clinical officer/Assistant clinical officer",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": "assistant_clinical_officer_or_assistant",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "assistant_enrolled_nurse",
+            "text": "Enrolled nurse",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": "assistant_enrolled_nurse",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "assistant_assistant_nursing_officer",
+            "text": "Assistant nursing officer",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": "assistant_assistant_nursing_officer",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "assistant_nursing_officer",
+            "text": "Nursing officer",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": "assistant_nursing_officer",
+            "openmrs_entity_parent": ""
+          }
+        ],
         "v_required": {
-          "value": "true",
-          "err": "Please enter the provider's Cadre"
+          "value": true,
+          "err": "Please select atleast one"
         }
       }
+
     ]
   }
 }

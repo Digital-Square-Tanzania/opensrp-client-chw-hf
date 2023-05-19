@@ -874,6 +874,51 @@
         }
       },
       {
+        "key": "ae_classified_as_mild_breed",
+        "type": "toaster_notes",
+        "text": "AE classified as MILD",
+        "openmrs_entity_id": "ae_classified_as_mild",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "info",
+        "relevance": {
+          "step1:desc_intraoperative_ae_bleed": {
+            "type": "string",
+            "ex": "equalTo(., \"more_bleed_than_usual_but_easily_controlled\")"
+          }
+        }
+      },
+      {
+        "key": "ae_classified_as_moderate_breed",
+        "type": "toaster_notes",
+        "text": "AE classified as MODERATE",
+        "openmrs_entity_id": "ae_classified_as_moderate",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "warning",
+        "relevance": {
+          "step1:desc_intraoperative_ae_bleed": {
+            "type": "string",
+            "ex": "equalTo(., \"bleed_require_pressure_dressing\")"
+          }
+        }
+      },
+      {
+        "key": "ae_classified_as_severe_breed",
+        "type": "toaster_notes",
+        "text": "AE classified as SEVERE",
+        "openmrs_entity_id": "ae_classified_as_severe",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "problem",
+        "relevance": {
+          "step1:desc_intraoperative_ae_bleed": {
+            "type": "string",
+            "ex": "equalTo(., \"blood_transfussion_or_transfered_another_facility\")"
+          }
+        }
+      },
+      {
         "key": "desc_intraoperative_ae_skin_removal",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -917,6 +962,51 @@
                 ]
               }
             ]
+          }
+        }
+      },
+      {
+        "key": "ae_classified_as_mild_excessive_skin_removal",
+        "type": "toaster_notes",
+        "text": "AE classified as MILD",
+        "openmrs_entity_id": "ae_classified_as_mild",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "info",
+        "relevance": {
+          "step1:desc_intraoperative_ae_skin_removal": {
+            "type": "string",
+            "ex": "equalTo(., \"discernible_adverse_condition\")"
+          }
+        }
+      },
+      {
+        "key": "ae_classified_as_moderate_excessive_skin_removal",
+        "type": "toaster_notes",
+        "text": "AE classified as MODERATE",
+        "openmrs_entity_id": "ae_classified_as_moderate",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "warning",
+        "relevance": {
+          "step1:desc_intraoperative_ae_skin_removal": {
+            "type": "string",
+            "ex": "equalTo(., \"skin_tight\")"
+          }
+        }
+      },
+      {
+        "key": "ae_classified_as_severe_excessive_skin_removal",
+        "type": "toaster_notes",
+        "text": "AE classified as SEVERE",
+        "openmrs_entity_id": "ae_classified_as_severe",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "problem",
+        "relevance": {
+          "step1:desc_intraoperative_ae_skin_removal": {
+            "type": "string",
+            "ex": "equalTo(., \"requires_reoperation\")"
           }
         }
       },
@@ -968,6 +1058,51 @@
         }
       },
       {
+        "key": "ae_classified_as_mild_injury_to_penis",
+        "type": "toaster_notes",
+        "text": "AE classified as MILD",
+        "openmrs_entity_id": "ae_classified_as_mild",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "info",
+        "relevance": {
+          "step1:desc_intraoperative_ae_injury_to_penis": {
+            "type": "string",
+            "ex": "equalTo(., \"mild_bruising\")"
+          }
+        }
+      },
+      {
+        "key": "ae_classified_as_moderate_injury_to_penis",
+        "type": "toaster_notes",
+        "text": "AE classified as MODERATE",
+        "openmrs_entity_id": "ae_classified_as_moderate",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "warning",
+        "relevance": {
+          "step1:desc_intraoperative_ae_injury_to_penis": {
+            "type": "string",
+            "ex": "equalTo(., \"bruising\")"
+          }
+        }
+      },
+      {
+        "key": "ae_classified_as_severe_injury_to_penis",
+        "type": "toaster_notes",
+        "text": "AE classified as SEVERE",
+        "openmrs_entity_id": "ae_classified_as_severe",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "problem",
+        "relevance": {
+          "step1:desc_intraoperative_ae_injury_to_penis": {
+            "type": "string",
+            "ex": "equalTo(., \"glans_or_shaft\")"
+          }
+        }
+      },
+      {
         "key": "desc_intraoperative_ae_anaesthetic_related_event",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -1015,23 +1150,22 @@
         }
       },
       {
-        "key": "ae_classified_as_mild",
+        "key": "ae_classified_as_mild_anaesthetic_related_event",
         "type": "toaster_notes",
         "text": "AE classified as MILD",
         "openmrs_entity_id": "ae_classified_as_mild",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
-        "toaster_type": "warning",
+        "toaster_type": "info",
         "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "vmmc_mc_procedure_relevance.yml"
-            }
+          "step1:desc_intraoperative_ae_anaesthetic_related_event": {
+            "type": "string",
+            "ex": "equalTo(., \"palpitations\")"
           }
         }
       },
       {
-        "key": "ae_classified_as_moderate",
+        "key": "ae_classified_as_moderate_anaesthetic_related_event",
         "type": "toaster_notes",
         "text": "AE classified as MODERATE",
         "openmrs_entity_id": "ae_classified_as_moderate",
@@ -1039,26 +1173,24 @@
         "openmrs_entity_parent": "",
         "toaster_type": "warning",
         "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "vmmc_mc_procedure_relevance.yml"
-            }
+          "step1:desc_intraoperative_ae_anaesthetic_related_event": {
+            "type": "string",
+            "ex": "equalTo(., \"reaction_to_anaesthetic\")"
           }
         }
       },
       {
-        "key": "ae_classified_as_severe",
+        "key": "ae_classified_as_severe_anaesthetic_related_event",
         "type": "toaster_notes",
         "text": "AE classified as SEVERE",
         "openmrs_entity_id": "ae_classified_as_severe",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
-        "toaster_type": "warning",
+        "toaster_type": "problem",
         "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "vmmc_mc_procedure_relevance.yml"
-            }
+          "step1:desc_intraoperative_ae_anaesthetic_related_event": {
+            "type": "string",
+            "ex": "equalTo(., \"anaphylaxis\")"
           }
         }
       },
