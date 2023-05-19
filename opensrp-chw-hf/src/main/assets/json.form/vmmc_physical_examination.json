@@ -185,16 +185,16 @@
           "err": "Please enter the pulse rate"
         },
         "v_min": {
-          "value": "60",
-          "err": "Manager according to the standard guideline"
+          "value": "0",
+          "err": "The pulse rate must be equal or greater than 0 (bpm)"
         },
         "v_max": {
-          "value": "100",
-          "err": "The pulse rate is above"
+          "value": "200",
+          "err": "The pulse rate must be equal or less than 200 (bpm)"
         },
         "v_required": {
           "value": "true",
-          "err": "Pulse Rate (Beats per minute)"
+          "err": "Please enter the Pulse Rate (Beats per minute)"
         }
       },
       {
@@ -209,12 +209,12 @@
           "err": "Please enter the systolic value"
         },
         "v_min": {
-          "value": "90",
-          "err": "Manager according to the standard guideline"
+          "value": "0",
+          "err": "Systolic value must be equal or greater than 0"
         },
         "v_max": {
-          "value": "139",
-          "err": "Manager according to the standard guideline"
+          "value": "320",
+          "err": "Systolic value must be equal or less than 320"
         },
         "v_required": {
           "value": "true",
@@ -232,17 +232,17 @@
           "value": "true",
           "err": "Please enter the diastolic value"
         },
+        "v_min": {
+          "value": "0",
+          "err": "Diastolic value must be equal or greater than 0"
+        },
+        "v_max": {
+          "value": "200",
+          "err": "Diastolic value must be equal or less than 200"
+        },
         "v_required": {
           "value": "true",
           "err": "Please enter the Diastolic (Blood Pressure)"
-        },
-        "v_min": {
-          "value": "60",
-          "err": "Manager according to the standard guideline"
-        },
-        "v_max": {
-          "value": "89",
-          "err": "Manager according to the standard guideline"
         },
         "constraints": [
           {
@@ -509,9 +509,9 @@
             "text": "Shang-ring/device"
           }
         ],
-        "value": "",
         "v_required": {
-          "value": true
+          "value": "true",
+          "err": "Please select an answer"
         }
       },
       {
@@ -632,9 +632,9 @@
             "text": "No size(specify)"
           }
         ],
-        "value": "",
         "v_required": {
-          "value": true
+          "value": "true",
+          "err": "Please select an answer"
         },
         "relevance": {
           "step1:preferred_client": {

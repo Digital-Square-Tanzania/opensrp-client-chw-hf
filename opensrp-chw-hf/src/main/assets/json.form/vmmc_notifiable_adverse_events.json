@@ -375,22 +375,6 @@
             "ex": "equalTo(., \"adverse_event_unchanged\")"
           }
         }
-      },
-      {
-        "key": "toast_for_referral",
-        "type": "toaster_notes",
-        "text": "By selecting Adverse event partially resolved, Client will be reffered ",
-        "openmrs_entity_id": "toast_for_referral",
-        "openmrs_entity": "concept",
-        "openmrs_entity_parent": "",
-        "toaster_type": "warning",
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "vmmc_notifiable_adverse_event_relevance.yml"
-            }
-          }
-        }
       }
     ]
   }
