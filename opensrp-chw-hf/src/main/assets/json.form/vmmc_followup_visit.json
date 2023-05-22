@@ -164,7 +164,7 @@
         "options": [
           {
             "key": "bleeding",
-            "text": "Breeding or blood soiling of dressing",
+            "text": "Bleeding or blood soiling of dressing",
             "value": false,
             "openmrs_entity": "",
             "openmrs_entity_id": "bleeding",

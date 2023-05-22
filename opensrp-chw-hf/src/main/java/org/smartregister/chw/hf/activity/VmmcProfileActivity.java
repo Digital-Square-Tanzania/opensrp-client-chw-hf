@@ -32,7 +32,6 @@ import org.smartregister.chw.hf.contract.VmmcProfileContract;
 import org.smartregister.chw.hf.presenter.FamilyOtherMemberActivityPresenter;
 import org.smartregister.chw.hiv.dao.HivDao;
 import org.smartregister.chw.hivst.dao.HivstDao;
-import org.smartregister.chw.kvp.KvpLibrary;
 import org.smartregister.chw.vmmc.domain.Visit;
 import org.smartregister.chw.vmmc.util.Constants;
 import org.smartregister.chw.vmmc.VmmcLibrary;
@@ -163,23 +162,23 @@ public class VmmcProfileActivity extends CoreVmmcProfileActivity {
 
     }
 
-//    @Override
-//    public void refreshMedicalHistory(boolean hasHistory) {
-//        Visit kvpBehavioralServices = getVisit(Constants.EVENT_TYPE.VMMC_CONFIRMATION);
-//        if (kvpBehavioralServices != null) {
-//            rlLastVisit.setVisibility(View.VISIBLE);
-//            findViewById(R.id.view_notification_and_referral_row).setVisibility(View.VISIBLE);
+    @Override
+    public void refreshMedicalHistory(boolean hasHistory) {
+        Visit kvpBehavioralServices = getVisit(Constants.EVENT_TYPE.VMMC_CONFIRMATION);
+        if (kvpBehavioralServices != null) {
+            rlLastVisit.setVisibility(View.VISIBLE);
+            findViewById(R.id.view_notification_and_referral_row).setVisibility(View.VISIBLE);
 //            ((TextView) findViewById(R.id.vViewHistory)).setText(R.string.visits_history);
 //            ((TextView) findViewById(R.id.ivViewHistoryArrow)).setText(getString(R.string.view_visits_history));
-//        } else {
-//            rlLastVisit.setVisibility(View.GONE);
-//        }
-//    }
+        } else {
+            rlLastVisit.setVisibility(View.GONE);
+        }
+    }
 
-//    @Override
-//    public void openMedicalHistory() {
-//        PrEPMedicalHistoryActivity.startMe(this, memberObject);
-//    }
+    @Override
+    public void openMedicalHistory() {
+        VmmcMedicalHistoryActivity.startMe(this, memberObject);
+    }
 
     private Visit getVisit(String eventType) {
         return VmmcLibrary.getInstance().visitRepository().getLatestVisit(baseEntityId, eventType);

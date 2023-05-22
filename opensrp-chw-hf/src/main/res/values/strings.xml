@@ -832,6 +832,17 @@
     <string name="prep_reasons_stopping_prep">Reason(s) for stopping PrEP medication:</string>
     <string name="prep_other_reason_stopping_prep">Other reason:</string>
 
+    <!--    Vmmc Medical History-->
+    <string name="vmmc_has_client_had_any_sti">STI:</string>
+    <string name="vmmc_any_complaints">Complaints:</string>
+    <string name="vmmc_client_diagnosed">Client Diagnosed:</string>
+    <string name="vmmc_diabetes_treatment">Diabetes treatment:</string>
+    <string name="vmmc_surgical_procedure">Surgical procedure:</string>
+    <string name="vmmc_type_complication">Type complication:</string>
+    <string name="vmmc_hematological_disease">Hematological disease:</string>
+    <string name="vmmc_known_allergies">Known allergies:</string>
+    <string name="vmmc_tetanus_vaccination">Tetanus vaccination:</string>
+
 
     <string name="facility">Health Facility</string>
     <string name="community_outreach">Community/Outreach</string>
