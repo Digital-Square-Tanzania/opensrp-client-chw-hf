@@ -63,14 +63,14 @@ public class VmmcVisitProcedureInteractor extends BaseVmmcVisitInteractor {
         JSONObject consentVisitType = FormUtils.getFormUtils().getFormJson(Constants.VMMC_FOLLOWUP_FORMS.CONSENT_FORM);
 
         VmmcConsentFormActionHelper actionHelper = new VmmcConsentFormActionHelper();
-        BaseVmmcVisitAction action = getBuilder(context.getString(R.string.vmmc_consent_form))
+        BaseVmmcVisitAction action = getBuilder(context.getString(R.string.consent_form))
                 .withOptional(false)
                 .withDetails(details)
                 .withJsonPayload(consentVisitType.toString())
                 .withHelper(actionHelper)
                 .withFormName(Constants.VMMC_FOLLOWUP_FORMS.CONSENT_FORM)
                 .build();
-        actionList.put(context.getString(R.string.vmmc_consent_form), action);
+        actionList.put(context.getString(R.string.consent_form), action);
 
     }
 

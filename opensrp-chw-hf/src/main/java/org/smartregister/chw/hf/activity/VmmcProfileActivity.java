@@ -164,8 +164,11 @@ public class VmmcProfileActivity extends CoreVmmcProfileActivity {
 
     @Override
     public void refreshMedicalHistory(boolean hasHistory) {
-        Visit kvpBehavioralServices = getVisit(Constants.EVENT_TYPE.VMMC_CONFIRMATION);
-        if (kvpBehavioralServices != null) {
+        Visit vmmcServices = getVisit(Constants.EVENT_TYPE.VMMC_CONFIRMATION);
+        Visit vmmcProcedure = getVisit(Constants.EVENT_TYPE.VMMC_PROCEDURE);
+        Visit vmmcDischarge = getVisit(Constants.EVENT_TYPE.VMMC_DISCHARGE);
+
+        if (vmmcServices != null || vmmcProcedure != null || vmmcDischarge != null) {
             rlLastVisit.setVisibility(View.VISIBLE);
             findViewById(R.id.view_notification_and_referral_row).setVisibility(View.VISIBLE);
 //            ((TextView) findViewById(R.id.vViewHistory)).setText(R.string.visits_history);

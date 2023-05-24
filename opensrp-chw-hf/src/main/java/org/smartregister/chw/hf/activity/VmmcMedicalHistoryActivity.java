@@ -116,29 +116,27 @@ public class VmmcMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
                     String[] medicalHistoryParams = {"has_client_had_any_sti", "any_complaints","client_diagnosed","diabetes_treatment","surgical_procedure","type_complication","hematological_disease","known_allergies","tetanus_vaccination"};
                     extractVisitDetails(visits, medicalHistoryParams, visitDetails, x, context);
 
-//                    String[] prepScreeningParams = {"client_diagnosed", "diabetes_treatment", "surgical_procedure", ""};
-//                    extractVisitDetails(visits, prepScreeningParams, visitDetails, x, context);
-//
-//                    String[] otherServicesParams = {"hematological_disease", "known_allergies", "tetanus_vaccination", "physical_abnormality", "client_weight", "pulse_rate", "systolic"};
-//                    extractVisitDetails(visits, otherServicesParams, visitDetails, x, context);
+                    String[] physicalExamParams = {"physical_abnormality", "client_weight","pulse_rate","systolic","diastolic","temperature","respiration_rate","genital_examination","preferred_client","penile_size"};
+                    extractVisitDetails(visits, physicalExamParams, visitDetails, x, context);
 
-//                    String[] prepInitiationServicesParams = {"prep_status", "prep_drug_offered", "prep_pills_number", "prep_adherence", "poor_prep_adherence_reason", "other_poor_prep_adherence_reason", "prep_side_effects", "other_prep_side_effects", "reasons_stopping_prep", "other_reason_stopping_prep", "next_visit_date"};
-//                    extractVisitDetails(visits, prepInitiationServicesParams, visitDetails, x, context);
-//
-//                    String[] stiScreeningServicesParams = {"sti_screening", "treatment_provided"};
-//                    extractVisitDetails(visits, stiScreeningServicesParams, visitDetails, x, context);
-//
-//                    String[] tbScreeningServicesParams = {"tb_screening"};
-//                    extractVisitDetails(visits, tbScreeningServicesParams, visitDetails, x, context);
-//
-//                    String[] vmmcServicesParams = {"vmcc_provided"};
-//                    extractVisitDetails(visits, vmmcServicesParams, visitDetails, x, context);
-//
-//                    String[] cervicalCancerScreeningServicesParams = {"cervical_cancer_screening"};
-//                    extractVisitDetails(visits, cervicalCancerScreeningServicesParams, visitDetails, x, context);
-//
-//                    String[] clientStatusServicesParams = {"client_status", "other_kvp_category"};
-//                    extractVisitDetails(visits, clientStatusServicesParams, visitDetails, x, context);
+                    String[] htsParams = {"tested_hiv", "hiv_result","hiv_reasons","hiv_viral_load_text","self_test_kits","client_referred_to","client_medically_cleared","mc_reasons","uds_managed","smegma_managed","gud_managed","phimosis_managed","paraphimosis_managed","underscended_managed","condylomata_managed","adhesion_managed","balanitis_managed","urethral_managed","chordae_managed","hydrocele_managed"};
+                    extractVisitDetails(visits, htsParams, visitDetails, x, context);
+
+                    String[] consentForParams = {"client_consent_for_mc_procedure", "consent_form","health_care_provider"};
+                    extractVisitDetails(visits, consentForParams, visitDetails, x, context);
+
+                    String[] mcProcedureParams = {"is_male_procedure_circumcision_conducted", "start_time","end_time","aneathesia_administered","other_aneathesia_administered","lignocaine_dosage","bupivacaine_dosage","dosage","male_circumcision_method","device_name","lot_number","select_size_place","surgeon_name","surgeons_cadre","assistant_name","assistant_cadre","intraoperative_adverse_event_occured","type_of_adverse_event","type_of_adverse_event_others","desc_intraoperative_ae_bleed","desc_intraoperative_ae_skin_removal","desc_intraoperative_ae_injury_to_penis","desc_intraoperative_ae_anaesthetic_related_event","nature_of_ae","what_done","treatment_outcome"};
+                    extractVisitDetails(visits, mcProcedureParams, visitDetails, x, context);
+
+                    String[] postOpParams = {"dressing_condition"};
+                    extractVisitDetails(visits, postOpParams, visitDetails, x, context);
+
+                    String[] dischargeParams = {"discharge_condition","discharged_reasons","analgesics_given","analgenics_type","analgenics_dosage","analgenics_reasons","discharge_time","discharging_name","provider_cadre"};
+                    extractVisitDetails(visits, dischargeParams, visitDetails, x, context);
+
+//                    String[] postOP = {"has_client_had_any_sti", "any_complaints","client_diagnosed","diabetes_treatment","surgical_procedure","type_complication","hematological_disease","known_allergies","tetanus_vaccination"};
+//                    extractVisitDetails(visits, medicalHistoryParams, visitDetails, x, context);
+
 
                     hf_visits.add(visitDetails);
 

@@ -56,7 +56,10 @@ public class VmmcMedicalHistoryInteractor extends CoreBaseAncMedicalHistoryInter
         final Runnable runnable = () -> {
 
             String[] eventTypes = new String[]{
-                    Constants.EVENT_TYPE.VMMC_CONFIRMATION};
+                    Constants.EVENT_TYPE.VMMC_CONFIRMATION,
+                    Constants.EVENT_TYPE.VMMC_PROCEDURE,
+                    Constants.EVENT_TYPE.VMMC_DISCHARGE,
+            };
             List<SortableVisit> visits = getVisits(memberID, eventTypes);
             final List<Visit> all_visits = new ArrayList<>(visits);
 

@@ -67,9 +67,9 @@ public class VmmcProcedureActivity extends BaseVmmcVisitActivity {
 
         //Necessary evil to rearrange the actions according to a specific arrangement
 
-        if (map.containsKey(getString(R.string.vmmc_consent_form))) {
-            BaseVmmcVisitAction visitTypeAction = map.get(getString(R.string.vmmc_consent_form));
-            actionList.put(getString(R.string.vmmc_consent_form), visitTypeAction);
+        if (map.containsKey(getString(R.string.consent_form))) {
+            BaseVmmcVisitAction visitTypeAction = map.get(getString(R.string.consent_form));
+            actionList.put(getString(R.string.consent_form), visitTypeAction);
         }
         if (map.containsKey(getString(R.string.vmmc_mc_procedure))) {
             BaseVmmcVisitAction vmmcExamAction = map.get(getString(R.string.vmmc_mc_procedure));
