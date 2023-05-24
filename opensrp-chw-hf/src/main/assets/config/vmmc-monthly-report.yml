@@ -312,3 +312,1793 @@ indicators:
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                       date(substr(strftime('%Y-%m-%d', datetime(evs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
                       substr(strftime('%Y-%m-%d', datetime(evs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  #    QN 6 & 7
+  # QUESTION 6
+  #  CM
+  #  i.
+  - key: "vmmc-7-i-1-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in disability that is likely permanent ( e.g glans numbness)'
+  AND (date('now')-date(efm.dob))<1
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-i-1-9-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in disability that is likely permanent ( e.g glans numbness)'
+  AND 1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-i-10-14-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in disability that is likely permanent ( e.g glans numbness)'
+  AND 10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-i-15-19-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in disability that is likely permanent ( e.g glans numbness)'
+  AND 15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-i-20-24-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in disability that is likely permanent ( e.g glans numbness)'
+  AND 20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-i-25-29-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in disability that is likely permanent ( e.g glans numbness)'
+  AND 25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-i-30-34-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in disability that is likely permanent ( e.g glans numbness)'
+  AND 30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-i-35-39-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in disability that is likely permanent ( e.g glans numbness)'
+  AND 35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-i-40-44-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in disability that is likely permanent ( e.g glans numbness)'
+  AND 40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-i-45-49-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in disability that is likely permanent ( e.g glans numbness)'
+  AND 45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-i-50-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in disability that is likely permanent ( e.g glans numbness)'
+  AND (date('now')-date(efm.dob))>=50
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+
+  #      ii.
+  - key: "vmmc-7-ii-1-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Tetanus including non-fatal cases'
+  AND (date('now')-date(efm.dob))<1
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-ii-1-9-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Tetanus including non-fatal cases'
+  AND 1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-ii-10-14-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Tetanus including non-fatal cases'
+  AND 10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-ii-15-19-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Tetanus including non-fatal cases'
+  AND 15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-ii-20-24-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Tetanus including non-fatal cases'
+  AND 20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-ii-25-29-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Tetanus including non-fatal cases'
+  AND 25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-ii-30-34-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Tetanus including non-fatal cases'
+  AND 30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-ii-35-39-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Tetanus including non-fatal cases'
+  AND 35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-ii-40-44-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Tetanus including non-fatal cases'
+  AND 40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-ii-45-49-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Tetanus including non-fatal cases'
+  AND 45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-ii-50-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Tetanus including non-fatal cases'
+  AND (date('now')-date(efm.dob))>=50
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  #    iii.
+  - key: "vmmc-7-iii-1-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in disability that is likely permanent ( e.g glans numbness)'
+  AND (date('now')-date(efm.dob))<1
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-iii-1-9-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in disability that is likely permanent ( e.g glans numbness)'
+  AND 1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-iii-10-14-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in disability that is likely permanent ( e.g glans numbness)'
+  AND 10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-iii-15-19-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in disability that is likely permanent ( e.g glans numbness)'
+  AND 15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-iii-20-24-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in disability that is likely permanent ( e.g glans numbness)'
+  AND 20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-iii-25-29-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in disability that is likely permanent ( e.g glans numbness)'
+  AND 25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-iii-30-34-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in disability that is likely permanent ( e.g glans numbness)'
+  AND 30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-iii-35-39-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in disability that is likely permanent ( e.g glans numbness)'
+  AND 35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-iii-40-44-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in disability that is likely permanent ( e.g glans numbness)'
+  AND 40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-iii-45-49-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in disability that is likely permanent ( e.g glans numbness)'
+  AND 45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-iii-50-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in disability that is likely permanent ( e.g glans numbness)'
+  AND (date('now')-date(efm.dob))>=50
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  #    iv.
+  - key: "vmmc-7-iv-1-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in anatomic deformity that is likely permanent ( e.g keloid,scaring,penile torsion etc)'
+  AND (date('now')-date(efm.dob))<1
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-iv-1-9-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in anatomic deformity that is likely permanent ( e.g keloid,scaring,penile torsion etc)'
+  AND 1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-iv-10-14-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in anatomic deformity that is likely permanent ( e.g keloid,scaring,penile torsion etc)'
+  AND 10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-iv-15-19-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in anatomic deformity that is likely permanent ( e.g keloid,scaring,penile torsion etc)'
+  AND 15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-iv-20-24-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in anatomic deformity that is likely permanent ( e.g keloid,scaring,penile torsion etc)'
+  AND 20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-iv-25-29-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in anatomic deformity that is likely permanent ( e.g keloid,scaring,penile torsion etc)'
+  AND 25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-iv-30-34-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in anatomic deformity that is likely permanent ( e.g keloid,scaring,penile torsion etc)'
+  AND 30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-iv-35-39-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in anatomic deformity that is likely permanent ( e.g keloid,scaring,penile torsion etc)'
+  AND 35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-iv-40-44-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in anatomic deformity that is likely permanent ( e.g keloid,scaring,penile torsion etc)'
+  AND 40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-iv-45-49-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in anatomic deformity that is likely permanent ( e.g keloid,scaring,penile torsion etc)'
+  AND 45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-iv-50-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in anatomic deformity that is likely permanent ( e.g keloid,scaring,penile torsion etc)'
+  AND (date('now')-date(efm.dob))>=50
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+
+  #    v.
+  - key: "vmmc-7-v-1-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Any hospital admission for >= 3 days'
+  AND (date('now')-date(efm.dob))<1
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-v-1-9-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Any hospital admission for >= 3 days'
+  AND 1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-v-10-14-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Any hospital admission for >= 3 days'
+  AND 10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-v-15-19-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Any hospital admission for >= 3 days'
+  AND 15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-v-20-24-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Any hospital admission for >= 3 days'
+  AND 20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-v-25-29-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Any hospital admission for >= 3 days'
+  AND 25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-v-30-34-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Any hospital admission for >= 3 days'
+  AND 30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-v-35-39-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Any hospital admission for >= 3 days'
+  AND 35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-v-40-44-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Any hospital admission for >= 3 days'
+  AND 40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-v-45-49-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Any hospital admission for >= 3 days'
+  AND 45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-v-50-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Any hospital admission for >= 3 days'
+  AND (date('now')-date(efm.dob))>=50
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  #    vi.
+  - key: "vmmc-7-vi-1-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Moderate or severe device displacement AE'
+  AND (date('now')-date(efm.dob))<1
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-vi-1-9-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Moderate or severe device displacement AE'
+  AND 1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-vi-10-14-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Moderate or severe device displacement AE'
+  AND 10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-vi-15-19-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Moderate or severe device displacement AE'
+  AND 15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-vi-20-24-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Moderate or severe device displacement AE'
+  AND 20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-vi-25-29-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Moderate or severe device displacement AE'
+  AND 25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-vi-30-34-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Moderate or severe device displacement AE'
+  AND 30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-vi-35-39-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Moderate or severe device displacement AE'
+  AND 35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-vi-40-44-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Moderate or severe device displacement AE'
+  AND 40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-vi-45-49-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Moderate or severe device displacement AE'
+  AND 45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-vi-50-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Moderate or severe device displacement AE'
+  AND (date('now')-date(efm.dob))>=50
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  #    vii.
+  - key: "vmmc-7-vii-1-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Tetanus including non-fatal cases'
+  AND (date('now')-date(efm.dob))<1
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-vii-1-9-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Tetanus including non-fatal cases'
+  AND 1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-vii-10-14-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Tetanus including non-fatal cases'
+  AND 10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-vii-15-19-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Tetanus including non-fatal cases'
+  AND 15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-vii-20-24-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Tetanus including non-fatal cases'
+  AND 20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-vii-25-29-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Tetanus including non-fatal cases'
+  AND 25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-vii-30-34-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Tetanus including non-fatal cases'
+  AND 30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-vii-35-39-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Tetanus including non-fatal cases'
+  AND 35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-vii-40-44-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Tetanus including non-fatal cases'
+  AND 40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-vii-45-49-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Tetanus including non-fatal cases'
+  AND 45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-vii-50-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Tetanus including non-fatal cases'
+  AND (date('now')-date(efm.dob))>=50
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+
+  #    viii.
+  - key: "vmmc-7-viii-1-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Any admission to ICU within 30 days post MC'
+  AND (date('now')-date(efm.dob))<1
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-viii-1-9-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Any admission to ICU within 30 days post MC'
+  AND 1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-viii-10-14-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Any admission to ICU within 30 days post MC'
+  AND 10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-viii-15-19-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Any admission to ICU within 30 days post MC'
+  AND 15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-viii-20-24-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Any admission to ICU within 30 days post MC'
+  AND 20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-viii-25-29-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Any admission to ICU within 30 days post MC'
+  AND 25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-viii-30-34-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Any admission to ICU within 30 days post MC'
+  AND 30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-viii-35-39-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Any admission to ICU within 30 days post MC'
+  AND 35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-viii-40-44-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Any admission to ICU within 30 days post MC'
+  AND 40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-viii-45-49-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Any admission to ICU within 30 days post MC'
+  AND 45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-viii-50-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Any admission to ICU within 30 days post MC'
+  AND (date('now')-date(efm.dob))>=50
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  #    DM
+  #  i.
+  - key: "vmmc-7-i-1-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in disability that is likely permanent ( e.g glans numbness)'
+  AND (date('now')-date(efm.dob))<1
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-i-1-9-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in disability that is likely permanent ( e.g glans numbness)'
+  AND 1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-i-10-14-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in disability that is likely permanent ( e.g glans numbness)'
+  AND 10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-i-15-19-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in disability that is likely permanent ( e.g glans numbness)'
+  AND 15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-i-20-24-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in disability that is likely permanent ( e.g glans numbness)'
+  AND 20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-i-25-29-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in disability that is likely permanent ( e.g glans numbness)'
+  AND 25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-i-30-34-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in disability that is likely permanent ( e.g glans numbness)'
+  AND 30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-i-35-39-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in disability that is likely permanent ( e.g glans numbness)'
+  AND 35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-i-40-44-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in disability that is likely permanent ( e.g glans numbness)'
+  AND 40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-i-45-49-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in disability that is likely permanent ( e.g glans numbness)'
+  AND 45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-i-50-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in disability that is likely permanent ( e.g glans numbness)'
+  AND (date('now')-date(efm.dob))>=50
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+
+  #      ii.
+  - key: "vmmc-7-ii-1-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Tetanus including non-fatal cases'
+  AND (date('now')-date(efm.dob))<1
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-ii-1-9-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Tetanus including non-fatal cases'
+  AND 1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-ii-10-14-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Tetanus including non-fatal cases'
+  AND 10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-ii-15-19-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Tetanus including non-fatal cases'
+  AND 15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-ii-20-24-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Tetanus including non-fatal cases'
+  AND 20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-ii-25-29-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Tetanus including non-fatal cases'
+  AND 25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-ii-30-34-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Tetanus including non-fatal cases'
+  AND 30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-ii-35-39-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Tetanus including non-fatal cases'
+  AND 35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-ii-40-44-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Tetanus including non-fatal cases'
+  AND 40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-ii-45-49-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Tetanus including non-fatal cases'
+  AND 45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-ii-50-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Tetanus including non-fatal cases'
+  AND (date('now')-date(efm.dob))>=50
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  #    iii.
+  - key: "vmmc-7-iii-1-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in disability that is likely permanent ( e.g glans numbness)'
+  AND (date('now')-date(efm.dob))<1
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-iii-1-9-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in disability that is likely permanent ( e.g glans numbness)'
+  AND 1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-iii-10-14-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in disability that is likely permanent ( e.g glans numbness)'
+  AND 10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-iii-15-19-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in disability that is likely permanent ( e.g glans numbness)'
+  AND 15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-iii-20-24-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in disability that is likely permanent ( e.g glans numbness)'
+  AND 20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-iii-25-29-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in disability that is likely permanent ( e.g glans numbness)'
+  AND 25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-iii-30-34-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in disability that is likely permanent ( e.g glans numbness)'
+  AND 30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-iii-35-39-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in disability that is likely permanent ( e.g glans numbness)'
+  AND 35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-iii-40-44-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in disability that is likely permanent ( e.g glans numbness)'
+  AND 40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-iii-45-49-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in disability that is likely permanent ( e.g glans numbness)'
+  AND 45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-iii-50-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in disability that is likely permanent ( e.g glans numbness)'
+  AND (date('now')-date(efm.dob))>=50
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  #    iv.
+  - key: "vmmc-7-iv-1-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in anatomic deformity that is likely permanent ( e.g keloid,scaring,penile torsion etc)'
+  AND (date('now')-date(efm.dob))<1
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-iv-1-9-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in anatomic deformity that is likely permanent ( e.g keloid,scaring,penile torsion etc)'
+  AND 1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-iv-10-14-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in anatomic deformity that is likely permanent ( e.g keloid,scaring,penile torsion etc)'
+  AND 10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-iv-15-19-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in anatomic deformity that is likely permanent ( e.g keloid,scaring,penile torsion etc)'
+  AND 15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-iv-20-24-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in anatomic deformity that is likely permanent ( e.g keloid,scaring,penile torsion etc)'
+  AND 20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-iv-25-29-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in anatomic deformity that is likely permanent ( e.g keloid,scaring,penile torsion etc)'
+  AND 25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-iv-30-34-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in anatomic deformity that is likely permanent ( e.g keloid,scaring,penile torsion etc)'
+  AND 30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-iv-35-39-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in anatomic deformity that is likely permanent ( e.g keloid,scaring,penile torsion etc)'
+  AND 35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-iv-40-44-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in anatomic deformity that is likely permanent ( e.g keloid,scaring,penile torsion etc)'
+  AND 40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-iv-45-49-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in anatomic deformity that is likely permanent ( e.g keloid,scaring,penile torsion etc)'
+  AND 45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-iv-50-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'AE that results in anatomic deformity that is likely permanent ( e.g keloid,scaring,penile torsion etc)'
+  AND (date('now')-date(efm.dob))>=50
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+
+  #    v.
+  - key: "vmmc-7-v-1-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Any hospital admission for >= 3 days'
+  AND (date('now')-date(efm.dob))<1
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-v-1-9-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Any hospital admission for >= 3 days'
+  AND 1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-v-10-14-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Any hospital admission for >= 3 days'
+  AND 10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-v-15-19-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Any hospital admission for >= 3 days'
+  AND 15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-v-20-24-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Any hospital admission for >= 3 days'
+  AND 20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-v-25-29-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Any hospital admission for >= 3 days'
+  AND 25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-v-30-34-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Any hospital admission for >= 3 days'
+  AND 30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-v-35-39-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Any hospital admission for >= 3 days'
+  AND 35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-v-40-44-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Any hospital admission for >= 3 days'
+  AND 40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-v-45-49-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Any hospital admission for >= 3 days'
+  AND 45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-v-50-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Any hospital admission for >= 3 days'
+  AND (date('now')-date(efm.dob))>=50
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  #    vi.
+  - key: "vmmc-7-vi-1-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Moderate or severe device displacement AE'
+  AND (date('now')-date(efm.dob))<1
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-vi-1-9-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Moderate or severe device displacement AE'
+  AND 1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-vi-10-14-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Moderate or severe device displacement AE'
+  AND 10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-vi-15-19-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Moderate or severe device displacement AE'
+  AND 15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-vi-20-24-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Moderate or severe device displacement AE'
+  AND 20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-vi-25-29-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Moderate or severe device displacement AE'
+  AND 25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-vi-30-34-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Moderate or severe device displacement AE'
+  AND 30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-vi-35-39-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Moderate or severe device displacement AE'
+  AND 35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-vi-40-44-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Moderate or severe device displacement AE'
+  AND 40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-vi-45-49-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Moderate or severe device displacement AE'
+  AND 45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-vi-50-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Moderate or severe device displacement AE'
+  AND (date('now')-date(efm.dob))>=50
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  #    vii.
+  - key: "vmmc-7-vii-1-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Tetanus including non-fatal cases'
+  AND (date('now')-date(efm.dob))<1
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-vii-1-9-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Tetanus including non-fatal cases'
+  AND 1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-vii-10-14-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Tetanus including non-fatal cases'
+  AND 10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-vii-15-19-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Tetanus including non-fatal cases'
+  AND 15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-vii-20-24-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Tetanus including non-fatal cases'
+  AND 20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-vii-25-29-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Tetanus including non-fatal cases'
+  AND 25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-vii-30-34-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Tetanus including non-fatal cases'
+  AND 30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-vii-35-39-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Tetanus including non-fatal cases'
+  AND 35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-vii-40-44-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Tetanus including non-fatal cases'
+  AND 40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-vii-45-49-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Tetanus including non-fatal cases'
+  AND 45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-vii-50-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Tetanus including non-fatal cases'
+  AND (date('now')-date(efm.dob))>=50
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+
+  #    viii.
+  - key: "vmmc-7-viii-1-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Any admission to ICU within 30 days post MC'
+  AND (date('now')-date(efm.dob))<1
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-viii-1-9-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Any admission to ICU within 30 days post MC'
+  AND 1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-viii-10-14-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Any admission to ICU within 30 days post MC'
+  AND 10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-viii-15-19-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Any admission to ICU within 30 days post MC'
+  AND 15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-viii-20-24-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Any admission to ICU within 30 days post MC'
+  AND 20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-viii-25-29-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Any admission to ICU within 30 days post MC'
+  AND 25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-viii-30-34-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Any admission to ICU within 30 days post MC'
+  AND 30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-viii-35-39-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Any admission to ICU within 30 days post MC'
+  AND 35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-viii-40-44-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Any admission to ICU within 30 days post MC'
+  AND 40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-viii-45-49-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Any admission to ICU within 30 days post MC'
+  AND 45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-7-viii-50-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  WHERE  did_client_experience_nae = 'Any admission to ICU within 30 days post MC'
+  AND (date('now')-date(efm.dob))>=50
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+
+# QUESTION 7
+# End of QN 6 & 7

@@ -222,6 +222,13 @@
           {
             "field": "eventType",
             "field_value": "VMMC Notifiable Adverse Events",
+            "closes_case": [
+              "ec_vmmc_notifiable_adverse_events"
+            ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "VMMC Notifiable Adverse Events",
             "creates_case": [
               "ec_vmmc_notifiable_ae"
             ]
