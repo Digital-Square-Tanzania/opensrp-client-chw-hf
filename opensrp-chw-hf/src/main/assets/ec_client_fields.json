@@ -9070,6 +9070,21 @@
             "field": "obs.fieldCode",
             "concept": "condoms_issued"
           }
+        },
+        {
+          "column_name": "followup_visit_date",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "followup_visit_date"
+          }
+        },
+        {
+          "column_name": "last_interacted_with",
+          "type": "Event",
+          "json_mapping": {
+            "field": "version"
+          }
         }
       ]
     },

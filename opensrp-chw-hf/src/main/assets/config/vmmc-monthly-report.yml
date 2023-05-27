@@ -2452,4 +2452,39 @@ indicators:
   substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
 
 # QUESTION 7
+# CM
+  #  i.
+  - key: "vmmc-8-i-1-cm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE evn.id = (SELECT MIN(id)FROM ec_vmmc_follow_up_visit)
+  AND round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 1 AND 2
+  AND male_circumcision_method != 'device'
+  AND (date('now')-date(efm.dob))<1
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+
+# DM
+  - key: "vmmc-8-ii-1-9-dm"
+    description: "VMMC number of notifiable ae reported"
+    indicatorQuery: "  SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE evn.id = (SELECT MIN(id)FROM ec_vmmc_follow_up_visit)
+  AND round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 1 AND 2
+  AND male_circumcision_method = 'device'
+  AND 1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+
 # End of QN 6 & 7
