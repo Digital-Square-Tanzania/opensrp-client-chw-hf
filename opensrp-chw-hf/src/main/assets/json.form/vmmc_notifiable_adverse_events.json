@@ -422,7 +422,6 @@
           }
         }
       },
-
       {
         "key": "treatment_outcome_unchanged_note",
         "openmrs_entity_parent": "",

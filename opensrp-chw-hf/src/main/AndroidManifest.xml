@@ -96,6 +96,12 @@
             android:name=".activity.VmmcMedicalHistoryActivity"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
+            android:name=".activity.VmmcFollowUpActivity"
+            android:theme="@style/HFTheme.NoActionBar" />
+        <activity
+            android:name=".activity.VmmcNotifiableAdverseActivity"
+            android:theme="@style/HFTheme.NoActionBar" />
+        <activity
             android:name=".activity.CdpRegisterActivity"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity

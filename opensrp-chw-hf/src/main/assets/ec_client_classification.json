@@ -194,7 +194,13 @@
             "field": "eventType",
             "field_value": "Vmmc Confirmation",
             "creates_case": [
-              "ec_vmmc_confirmation",
+              "ec_vmmc_confirmation"
+            ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "Vmmc Services",
+            "creates_case": [
               "ec_vmmc_services"
             ]
           },
@@ -214,16 +220,9 @@
           },
           {
             "field": "eventType",
-            "field_value": "VMMC Follow-up Form",
+            "field_value": "Vmmc Follow-up Visit",
             "creates_case": [
-              "ec_vmmc_followup"
-            ]
-          },
-          {
-            "field": "eventType",
-            "field_value": "VMMC Notifiable Adverse Events",
-            "closes_case": [
-              "ec_vmmc_notifiable_adverse_events"
+              "ec_vmmc_follow_up_visit"
             ]
           },
           {

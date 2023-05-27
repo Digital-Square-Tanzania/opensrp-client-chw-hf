@@ -23,12 +23,15 @@ import org.smartregister.chw.core.activity.CoreAncMedicalHistoryActivity;
 import org.smartregister.chw.core.activity.DefaultAncMedicalHistoryActivityFlv;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.interactor.VmmcMedicalHistoryInteractor;
+import org.smartregister.chw.vmmc.util.Constants;
 
 import java.text.MessageFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import timber.log.Timber;
@@ -103,6 +106,7 @@ public class VmmcMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
             if (visits.size() > 0) {
                 int days = 0;
                 List<LinkedHashMap<String, String>> hf_visits = new ArrayList<>();
+                List<LinkedHashMap<String, String>> hfVisitsMaps = new ArrayList<>();
 
                 int x = 0;
                 while (x < visits.size()) {
@@ -134,8 +138,11 @@ public class VmmcMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
                     String[] dischargeParams = {"discharge_condition","discharged_reasons","analgesics_given","analgenics_type","analgenics_dosage","analgenics_reasons","discharge_time","discharging_name","provider_cadre"};
                     extractVisitDetails(visits, dischargeParams, visitDetails, x, context);
 
-//                    String[] postOP = {"has_client_had_any_sti", "any_complaints","client_diagnosed","diabetes_treatment","surgical_procedure","type_complication","hematological_disease","known_allergies","tetanus_vaccination"};
-//                    extractVisitDetails(visits, medicalHistoryParams, visitDetails, x, context);
+                    String[] followUpParams = {"visit_type","comment_vmmc_followup","post_op_adverse_event_occur","time_of_adverse_event_occured","time_of_adverse_event_attended","type_of_adverse_event","type_of_adverse_event_others","desc_of_post_op_adverse_event_infection","desc_of_post_op_adverse_event_persistent_pain","desc_of_post_op_adverse_event_bleeding","desc_of_post_op_adverse_event_device_displacement","desc_of_post_op_adverse_event_swelling","desc_of_post_op_adverse_pass_urine","type_of_adverse_event_without_device","type_of_adverse_event_others_without_device","desc_of_post_op_adverse_event_infection_without_device","desc_of_post_op_adverse_event_persistent_pain_without_device","desc_of_post_op_adverse_event_bleeding_without_device","desc_of_post_op_adverse_event_swelling_without_device","desc_of_post_op_adverse_pass_urine_without_device","nature_of_ae","what_done","treatment_outcome","was_condom_provided","condoms_issued","number_of_male_condoms_issued","number_of_female_condoms_issued","was_bandage_given","number_of_bandage_given","provider_name","provider_cadre"};
+                    extractVisitDetails(visits, followUpParams, visitDetails, x, context);
+
+                    String[] notifiableAdverseEvent = {"was_adverse_events_notifiable", "did_client_experience_nae","did_client_experience_nae_without_device","date_nae_occured","date_nae_notified","time_nae_started","nature_of_ae","what_done","was_nae_attended","time_nae_was_attended","treatment_outcome"};
+                    extractVisitDetails(visits, notifiableAdverseEvent, visitDetails, x, context);
 
 
                     hf_visits.add(visitDetails);
@@ -145,6 +152,7 @@ public class VmmcMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
 
                 processLastVisit(days, context);
                 processVisit(hf_visits, context, visits);
+//                processFacilityVisit(hfVisitsMaps, visits, context);
             }
         }
 
@@ -182,9 +190,28 @@ public class VmmcMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
                 for (LinkedHashMap<String, String> vals : community_visits) {
                     View view = inflater.inflate(R.layout.medical_history_visit, null);
                     TextView tvTitle = view.findViewById(R.id.title);
+                    TextView tvEdit = view.findViewById(R.id.textview_edit);
                     LinearLayout visitDetailsLayout = view.findViewById(R.id.visit_details_layout);
 
+                    // Updating visibility of EDIT button if the visit is the last visit
+                    if (x == visits.size() - 1)
+                        tvEdit.setVisibility(View.VISIBLE);
+                    else
+                        tvEdit.setVisibility(View.GONE);
+
                     tvTitle.setText(visits.get(x).getVisitType() + " " + visits.get(x).getDate());
+
+                    tvEdit.setOnClickListener(view1 -> {
+                    ((Activity) context).finish();
+                    Visit visit = visits.get(0);
+                    if (visit != null && visit.getVisitType().equalsIgnoreCase(Constants.EVENT_TYPE.VMMC_DISCHARGE) && visit.getBaseEntityId() != null)
+                        VmmcDischargeActivity.startVmmcVisitDischargeActivity((Activity) context, visit.getBaseEntityId(), true);
+                    else if (visit != null && visit.getVisitType().equalsIgnoreCase(Constants.EVENT_TYPE.VMMC_PROCEDURE) && visit.getBaseEntityId() != null)
+                        VmmcProcedureActivity.startVmmcVisitProcedureActivity((Activity) context, visit.getBaseEntityId(), true);
+                    else if (visit != null && visit.getVisitType().equalsIgnoreCase(org.smartregister.chw.vmmc.util.Constants.EVENT_TYPE.VMMC_SERVICES) && visit.getBaseEntityId() != null)
+                        VmmcServiceActivity.startVmmcVisitActivity((Activity) context, visit.getBaseEntityId(), true);
+
+                });
 
 
                     for (LinkedHashMap.Entry<String, String> entry : vals.entrySet()) {

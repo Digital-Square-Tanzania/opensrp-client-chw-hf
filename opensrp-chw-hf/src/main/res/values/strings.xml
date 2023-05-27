@@ -469,6 +469,8 @@
     <string name="prep_screening">PrEP Screening</string>
 
     <string name="vmmc_medical_history">Medical History</string>
+    <string name="vmmc_followup_visit">Follow Up Visit</string>
+    <string name="vmmc_notifiable_adverse">Notifiable Adverse Event</string>
     <string name="consent_form">Consent for MC procedure</string>
     <string name="vmmc_mc_procedure">MC procedure</string>
     <string name="vmmc_physical_examination">Physical Examination</string>
@@ -873,10 +875,10 @@
     <string name="vmmc_chordae_managed">chordae managed:</string>
     <string name="vmmc_hydrocele_managed">hydrocele managed:</string>
     <string name="vmmc_client_consent_for_mc_procedure">client consent for mc procedure:</string>
-    <string name="vmmc_consent_form">consent form:</string>
+    <string name="vmmc_consent_form" formatted="false">consent form:</string>
     <string name="vmmc_health_care_provider">health care provider:</string>
 
-    <string name="vmmc_is_male_procedure_circumcision_conducted">is_male_procedure_circumcision_conducted:</string>
+    <string name="vmmc_is_male_procedure_circumcision_conducted">Male circumcision procedure conducted:</string>
     <string name="vmmc_start_time">start time:</string>
     <string name="vmmc_end_time">end time:</string>
     <string name="vmmc_aneathesia_administered">aneathesia administered:</string>
@@ -892,19 +894,19 @@
     <string name="vmmc_surgeons_cadre">surgeons cadre:</string>
     <string name="vmmc_assistant_name">assistant name:</string>
     <string name="vmmc_assistant_cadre">assistant cadre:</string>
-    <string name="vmmc_intraoperative_adverse_event_occured">intraoperative_adverse_event_occured:</string>
+    <string name="vmmc_intraoperative_adverse_event_occured">intraoperative adverse event occured:</string>
     <string name="vmmc_type_of_adverse_event">type of adverse event:</string>
     <string name="vmmc_type_of_adverse_event_others">type of adverse event others:</string>
-    <string name="vmmc_desc_intraoperative_ae_bleed">desc_intraoperative_ae_bleed:</string>
-    <string name="vmmc_desc_intraoperative_ae_skin_removal">desc_intraoperative_ae_skin_removal:</string>
-    <string name="vmmc_desc_intraoperative_ae_injury_to_penis">desc_intraoperative_ae_injury_to_penis:</string>
-    <string name="vmmc_desc_intraoperative_ae_anaesthetic_related_event">desc_intraoperative_ae_anaesthetic_related_event:</string>
+    <string name="vmmc_desc_intraoperative_ae_bleed">Description of intraoperative adverse events (Excessive bleeding):</string>
+    <string name="vmmc_desc_intraoperative_ae_skin_removal">Description of intraoperative adverse events (Excessive skin removal):</string>
+    <string name="vmmc_desc_intraoperative_ae_injury_to_penis">Description of intraoperative adverse events (Injury to penis):</string>
+    <string name="vmmc_desc_intraoperative_ae_anaesthetic_related_event">Description of intraoperative adverse events (Anaesthetic-related event):</string>
     <string name="vmmc_nature_of_ae">nature of ae:</string>
     <string name="vmmc_what_done">what done:</string>
-    <string name="vmmc_treatment_outcome">treatment outcome:</string>
+    <string name="vmmc_treatment_outcome">Treatment outcome:</string>
 
     <string name="vmmc_dressing_condition">dressing condition:</string>
-    <string name="vmmc_discharge_condition">discharge_condition:</string>
+    <string name="vmmc_discharge_condition">discharge condition:</string>
     <string name="vmmc_discharged_reasons">discharged reasons:</string>
     <string name="vmmc_analgesics_given">analgesics given:</string>
     <string name="vmmc_analgenics_type">analgenics type:</string>
@@ -912,8 +914,42 @@
     <string name="vmmc_analgenics_reasons">analgenics reasons:</string>
     <string name="vmmc_discharge_time">discharge time:</string>
     <string name="vmmc_discharging_name">discharging name:</string>
-    <string name="vmmc_provider_cadre">provider cadre:</string>
+    <string name="vmmc_provider_cadre">Providers cadre:</string>
 
+    <string name="vmmc_visit_type">Follow up visit type:</string>
+    <string name="vmmc_comment_vmmc_followup">comment vmmc followup:</string>
+    <string name="vmmc_post_op_adverse_event_occur">post-operative adverse event occur:</string>
+    <string name="vmmc_time_of_adverse_event_occured">Time The adverse event occured:</string>
+    <string name="vmmc_time_of_adverse_event_attended">Time The adverse event was attended:</string>
+    <string name="vmmc_desc_of_post_op_adverse_event_infection">Description of post-operative adverse events(Infection):</string>
+    <string name="vmmc_desc_of_post_op_adverse_event_persistent_pain">Description of post-operative adverse events(Persistent pain):</string>
+    <string name="vmmc_desc_of_post_op_adverse_event_bleeding">Description of post-operative adverse events(Bleeding):</string>
+    <string name="vmmc_desc_of_post_op_adverse_event_device_displacement">Description of post-operative adverse events(device displacement):</string>
+    <string name="vmmc_desc_of_post_op_adverse_event_swelling">Description of post-operative adverse events(swelling):</string>
+    <string name="vmmc_desc_of_post_op_adverse_pass_urine">Description of post-operative adverse events(Failure to pass urine):</string>
+    <string name="vmmc_type_of_adverse_event_without_device">Type of adverse event:</string>
+    <string name="vmmc_type_of_adverse_event_others_without_device">type of others adverse event:</string>
+    <string name="vmmc_desc_of_post_op_adverse_event_infection_without_device">Description of post-operative adverse events(Infection):</string>
+    <string name="vmmc_desc_of_post_op_adverse_event_persistent_pain_without_device">Description of post-operative adverse events(Persistent pain):</string>
+    <string name="vmmc_desc_of_post_op_adverse_event_bleeding_without_device">Description of post-operative adverse events(Bleeding):</string>
+    <string name="vmmc_desc_of_post_op_adverse_event_swelling_without_device">Description of post-operative adverse events(swelling):</string>
+    <string name="vmmc_desc_of_post_op_adverse_pass_urine_without_device">Description of post-operative adverse events(Failure to pass urine):</string>
+    <string name="vmmc_was_condom_provided">Was condom provided:</string>
+    <string name="vmmc_condoms_issued">Type of the condoms issued:</string>
+    <string name="vmmc_number_of_male_condoms_issued">Number of male condoms issued:</string>
+    <string name="vmmc_number_of_female_condoms_issued">Number of female condoms issued:</string>
+    <string name="vmmc_was_bandage_given">Was bandage given:</string>
+    <string name="vmmc_number_of_bandage_given">Number of bandage given:</string>
+    <string name="vmmc_provider_name">Providers name:</string>
+
+    <string name="vmmc_was_adverse_events_notifiable">Was adverse events notifiable :</string>
+    <string name="vmmc_did_client_experience_nae">Did the client experience a Notifiable Adverse Event:</string>
+    <string name="vmmc_did_client_experience_nae_without_device">Did the client experience a Notifiable Adverse Event:</string>
+    <string name="vmmc_date_nae_occured">Date NAE occured:</string>
+    <string name="vmmc_date_nae_notified">Date NAE was notified:</string>
+    <string name="vmmc_time_nae_started">Time NAE started:</string>
+    <string name="vmmc_was_nae_attended">Was NAE attended:</string>
+    <string name="vmmc_time_nae_was_attended">Time Nae was attended :</string>
 
     <string name="facility">Health Facility</string>
     <string name="community_outreach">Community/Outreach</string>

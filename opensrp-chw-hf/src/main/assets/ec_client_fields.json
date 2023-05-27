@@ -8951,7 +8951,7 @@
       ]
     },
     {
-      "name": "ec_vmmc_followup",
+      "name": "ec_vmmc_follow_up_visit",
       "columns": [
         {
           "column_name": "base_entity_id",

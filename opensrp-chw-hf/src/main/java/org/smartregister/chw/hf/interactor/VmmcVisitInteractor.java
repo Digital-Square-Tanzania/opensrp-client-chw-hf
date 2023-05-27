@@ -112,12 +112,12 @@ public class VmmcVisitInteractor extends BaseVmmcVisitInteractor {
 
     @Override
     protected String getEncounterType() {
-        return Constants.EVENT_TYPE.VMMC_CONFIRMATION;
+        return Constants.EVENT_TYPE.VMMC_SERVICES;
     }
 
     @Override
     protected String getTableName() {
-        return Constants.TABLES.VMMC_CONFIRMATION;
+        return Constants.TABLES.VMMC_SERVICE;
     }
 
     private class VmmcVisitTypeActionHelper extends org.smartregister.chw.hf.actionhelper.vmmc.VmmcVisitTypeActionHelper {

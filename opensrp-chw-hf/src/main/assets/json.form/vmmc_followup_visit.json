@@ -1,6 +1,6 @@
 {
   "count": "1",
-  "encounter_type": "VMMC Follow-up Form",
+  "encounter_type": "Vmmc Follow-up Visit",
   "entity_id": "",
   "metadata": {
     "start": {
@@ -51,7 +51,7 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "visit_type",
-        "label": "Follo up visit type",
+        "label": "Follow up visit type",
         "text_color": "#000000",
         "type": "native_radio",
         "options": [
