@@ -2451,37 +2451,796 @@ indicators:
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
   substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
 
-# QUESTION 7
+# QUESTION 8
 # CM
   #  i.
   - key: "vmmc-8-i-1-cm"
-    description: "VMMC number of notifiable ae reported"
+    description: "VMMC number of male circumcised who returned for followup visit"
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE evn.id = (SELECT MIN(id)FROM ec_vmmc_follow_up_visit)
-  AND round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  WHERE round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 1 AND 2
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 2
   AND male_circumcision_method != 'device'
   AND (date('now')-date(efm.dob))<1
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
   substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
 
-
-# DM
-  - key: "vmmc-8-ii-1-9-dm"
-    description: "VMMC number of notifiable ae reported"
-    indicatorQuery: "  SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  - key: "vmmc-8-i-1-9-cm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE evn.id = (SELECT MIN(id)FROM ec_vmmc_follow_up_visit)
-  AND round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  WHERE round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 1 AND 2
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 2
+  AND male_circumcision_method != 'device'
+  AND 1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-8-i-10-14-cm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 2
+  AND male_circumcision_method != 'device'
+  AND 10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-8-i-15-19-cm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 2
+  AND male_circumcision_method != 'device'
+  AND 15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-8-i-20-24-cm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 2
+  AND male_circumcision_method != 'device'
+  AND 20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-8-i-25-29-cm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 2
+  AND male_circumcision_method != 'device'
+  AND 25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-8-i-30-34-cm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 2
+  AND male_circumcision_method != 'device'
+  AND 30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-8-i-35-39-cm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 2
+  AND male_circumcision_method != 'device'
+  AND 35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-8-i-40-44-cm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 2
+  AND male_circumcision_method != 'device'
+  AND 40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-8-i-45-49-cm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 2
+  AND male_circumcision_method != 'device'
+  AND 45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-8-i-50-cm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 2
+  AND male_circumcision_method != 'device'
+  AND (date('now')-date(efm.dob))>=50
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+#  ii.
+
+  - key: "vmmc-8-ii-1-cm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE 2 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 2)
+  AND male_circumcision_method != 'device'
+  AND (date('now')-date(efm.dob))<1
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-8-ii-1-9-cm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE 2 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 2)
+  AND male_circumcision_method != 'device'
+  AND 1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-8-ii-10-14-cm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE 2 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 2)
+  AND male_circumcision_method != 'device'
+  AND 10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-8-ii-15-19-cm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE 2 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 2)
+  AND male_circumcision_method != 'device'
+  AND 15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-8-ii-20-24-cm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE 2 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 2)
+  AND male_circumcision_method != 'device'
+  AND 20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-8-ii-25-29-cm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE 2 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 2)
+  AND male_circumcision_method != 'device'
+  AND 25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-8-ii-30-34-cm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE 2 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 2)
+  AND male_circumcision_method != 'device'
+  AND 30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-8-ii-35-39-cm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE 2 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 2)
+  AND male_circumcision_method != 'device'
+  AND 35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-8-ii-40-44-cm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE 2 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 2)
+  AND male_circumcision_method != 'device'
+  AND 40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-8-ii-45-49-cm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE 2 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 2)
+  AND male_circumcision_method != 'device'
+  AND 45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-8-ii-50-cm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE 2 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 2)
+  AND male_circumcision_method != 'device'
+  AND (date('now')-date(efm.dob))>=50
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+
+  #  iii.
+  - key: "vmmc-8-iii-1-cm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7
+  AND male_circumcision_method != 'device'
+  AND (date('now')-date(efm.dob))<1
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-8-iii-1-9-cm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7
+  AND male_circumcision_method != 'device'
+  AND 1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-8-iii-10-14-cm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7
+  AND male_circumcision_method != 'device'
+  AND 10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-8-iii-15-19-cm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7
+  AND male_circumcision_method != 'device'
+  AND 15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-8-iii-20-24-cm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7
+  AND male_circumcision_method != 'device'
+  AND 20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-8-iii-25-29-cm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7
+  AND male_circumcision_method != 'device'
+  AND 25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-8-iii-30-34-cm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7
+  AND male_circumcision_method != 'device'
+  AND 30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-8-iii-35-39-cm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7
+  AND male_circumcision_method != 'device'
+  AND 35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-8-iii-40-44-cm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7
+  AND male_circumcision_method != 'device'
+  AND 40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-8-iii-45-49-cm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7
+  AND male_circumcision_method != 'device'
+  AND 45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-8-iii-50-cm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7
+  AND male_circumcision_method != 'device'
+  AND (date('now')-date(efm.dob))>=50
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+
+  #  iv.
+
+  - key: "vmmc-8-iv-1-cm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE 7 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7)
+  AND male_circumcision_method != 'device'
+  AND (date('now')-date(efm.dob))<1
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-8-iv-1-9-cm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE 7 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7)
+  AND male_circumcision_method != 'device'
+  AND 1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-8-iv-10-14-cm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE 7 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7)
+  AND male_circumcision_method != 'device'
+  AND 10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-8-iv-15-19-cm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE 7 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7)
+  AND male_circumcision_method != 'device'
+  AND 15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-8-iv-20-24-cm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE 7 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7)
+  AND male_circumcision_method != 'device'
+  AND 20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-8-iv-25-29-cm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE 7 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7)
+  AND male_circumcision_method != 'device'
+  AND 25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-8-iv-30-34-cm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE 7 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7)
+  AND male_circumcision_method != 'device'
+  AND 30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-8-iv-35-39-cm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE 7 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7)
+  AND male_circumcision_method != 'device'
+  AND 35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-8-iv-40-44-cm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE 7 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7)
+  AND male_circumcision_method != 'device'
+  AND 40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-8-iv-45-49-cm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE 7 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7)
+  AND male_circumcision_method != 'device'
+  AND 45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-8-iv-50-cm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE 7 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7)
+  AND male_circumcision_method != 'device'
+  AND (date('now')-date(efm.dob))>=50
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+
+  # DM
+  #  v.
+  - key: "vmmc-8-v-1-dm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
+  AND 7 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7)
+  AND male_circumcision_method = 'device'
+  AND (date('now')-date(efm.dob))<1
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-8-v-1-9-dm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
+  AND 7 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7)
   AND male_circumcision_method = 'device'
   AND 1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-8-v-10-14-dm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
+  AND 7 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7)
+  AND male_circumcision_method = 'device'
+  AND 10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-8-v-15-19-dm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
+  AND 7 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7)
+  AND male_circumcision_method = 'device'
+  AND 15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-8-v-20-24-dm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
+  AND 7 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7)
+  AND male_circumcision_method = 'device'
+  AND 20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-8-v-25-29-dm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
+  AND 7 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7)
+  AND male_circumcision_method = 'device'
+  AND 25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-8-v-30-34-dm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
+  AND 7 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7)
+  AND male_circumcision_method = 'device'
+  AND 30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-8-v-35-39-dm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
+  AND 7 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7)
+  AND male_circumcision_method = 'device'
+  AND 35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-8-v-40-44-dm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
+  AND 7 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7)
+  AND male_circumcision_method = 'device'
+  AND 40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-8-v-45-49-dm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
+  AND 7 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7)
+  AND male_circumcision_method = 'device'
+  AND 45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
+  AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+  date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+  substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-8-v-50-dm"
+    description: "VMMC number of male circumcised who returned for followup visit"
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+  INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
+  AND 7 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  || substr(followup_visit_date, 4, 2) || '-'
+  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7)
+  AND male_circumcision_method = 'device'
+  AND (date('now')-date(efm.dob))>=50
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
   substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
