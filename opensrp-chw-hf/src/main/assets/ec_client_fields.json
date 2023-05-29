@@ -8824,6 +8824,13 @@
             "field": "obs.fieldCode",
             "concept": "device_name"
           }
+        },
+        {
+          "column_name": "last_interacted_with",
+          "type": "Event",
+          "json_mapping": {
+            "field": "version"
+          }
         }
       ]
     },

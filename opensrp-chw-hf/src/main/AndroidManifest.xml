@@ -91,6 +91,7 @@
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.VmmcReportsViewActivity"
+            android:screenOrientation="landscape"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.VmmcMedicalHistoryActivity"

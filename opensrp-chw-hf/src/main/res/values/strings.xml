@@ -846,6 +846,12 @@
     <string name="vmmc_tetanus_vaccination">Tetanus vaccination:</string>
     <string name="vmmc_physical_abnormality">Physical abnormality:</string>
     <string name="vmmc_client_weight">client weight:</string>
+    <string name="vmmc_pulse_rate_second">pulse rate (second vital):</string>
+    <string name="vmmc_systolic_second">systolic (second vital):</string>
+    <string name="vmmc_diastolic_second">diastolic (second vital):</string>
+    <string name="vmmc_temperature_second">temperature (second vital):</string>
+    <string name="vmmc_respiration_rate_second">respiration rate (second vital):</string>
+    <string name="vmmc_time_taken_second">time taken (second vital):</string>
     <string name="vmmc_pulse_rate">pulse rate:</string>
     <string name="vmmc_systolic">systolic:</string>
     <string name="vmmc_diastolic">diastolic:</string>
