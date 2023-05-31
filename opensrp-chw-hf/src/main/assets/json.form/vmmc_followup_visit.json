@@ -299,21 +299,21 @@
             "text": "Erythema more than 1 cm beyond incision line",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "3_or_4_on_pain_scale"
+            "openmrs_entity_id": "erythema"
           },
           {
             "key": "purulent",
             "text": "Purulent discharge from the wound",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "5_or_6_on_pain_scale"
+            "openmrs_entity_id": "purulent"
           },
           {
             "key": "cellutilis",
             "text": "Cellutilis or wound necrosis",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "7_on_pain_scale"
+            "openmrs_entity_id": "cellutilis"
           }
         ],
         "v_required": {
@@ -577,14 +577,14 @@
             "text": "Displacement of the device after which no other treatment needed beyond routine post-removal wound care. ",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "3_or_4_on_pain_scale"
+            "openmrs_entity_id": "post_removal"
           },
           {
             "key": "meet_severe_criteria",
             "text": "Displacement of the device that requires any treatment more than routine post-operative wound care but does not meet severe criteria. ",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "5_or_6_on_pain_scale"
+            "openmrs_entity_id": "meet_severe_criteria"
           },
 
           {
@@ -592,7 +592,7 @@
             "text": "Displacement of the device, including intentional movement of device by the client and/or self-removal, that requires surgical intervention, hospitalization, or transfer to another facility to clinically manage.",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "7_on_pain_scale"
+            "openmrs_entity_id": "surgical_intervention"
           }
         ],
         "v_required": {
@@ -670,14 +670,14 @@
             "text": "Mild bruising or abrasion, not requiring treatment",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "3_or_4_on_pain_scale"
+            "openmrs_entity_id": "bruising"
           },
           {
             "key": "pressure_dressing",
             "text": "Bruising or abrasion of the glans or shaft of the penis requiring pressure dressing or additional surgery to control",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "5_or_6_on_pain_scale"
+            "openmrs_entity_id": "pressure_dressing"
           },
 
           {
@@ -685,7 +685,7 @@
             "text": "Part or all of the glans or shaft of the penis severed",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "7_on_pain_scale"
+            "openmrs_entity_id": "penis_severed"
           }
         ],
         "v_required": {
@@ -958,21 +958,21 @@
             "text": "Erythema more than 1 cm beyond incision line",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "3_or_4_on_pain_scale"
+            "openmrs_entity_id": "erythema"
           },
           {
             "key": "purulent",
             "text": "Purulent discharge from the wound",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "5_or_6_on_pain_scale"
+            "openmrs_entity_id": "purulent"
           },
           {
             "key": "cellutilis",
             "text": "Cellutilis or wound necrosis",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "7_on_pain_scale"
+            "openmrs_entity_id": "cellutilis"
           }
         ],
         "v_required": {
