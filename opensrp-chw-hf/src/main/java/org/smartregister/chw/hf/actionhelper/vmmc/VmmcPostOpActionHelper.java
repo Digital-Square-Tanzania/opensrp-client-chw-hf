@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class VmmcPostOpActionHelper implements BaseVmmcVisitAction.VmmcVisitActionHelper {
 
-    protected String medical_history;
+    protected String dressing_condition;
     protected String jsonPayload;
 
     @Override
@@ -38,7 +38,7 @@ public class VmmcPostOpActionHelper implements BaseVmmcVisitAction.VmmcVisitActi
     public void onPayloadReceived(String jsonPayload) {
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
-            medical_history = CoreJsonFormUtils.getValue(jsonObject, "dressing_condition");
+            dressing_condition = CoreJsonFormUtils.getValue(jsonObject, "dressing_condition");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -66,7 +66,7 @@ public class VmmcPostOpActionHelper implements BaseVmmcVisitAction.VmmcVisitActi
 
     @Override
     public BaseVmmcVisitAction.Status evaluateStatusOnPayload() {
-        if (StringUtils.isBlank(medical_history))
+        if (StringUtils.isBlank(dressing_condition))
             return BaseVmmcVisitAction.Status.PENDING;
         else {
             return BaseVmmcVisitAction.Status.COMPLETED;
