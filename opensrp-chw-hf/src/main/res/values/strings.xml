@@ -835,6 +835,7 @@
     <string name="prep_other_reason_stopping_prep">Other reason:</string>
 
     <!--    Vmmc Medical History-->
+    <string name="vmmc_consent_form">consent form:</string>
     <string name="vmmc_has_client_had_any_sti">STI:</string>
     <string name="vmmc_any_complaints">Complaints:</string>
     <string name="vmmc_client_diagnosed">Client Diagnosed:</string>
@@ -881,7 +882,6 @@
     <string name="vmmc_chordae_managed">chordae managed:</string>
     <string name="vmmc_hydrocele_managed">hydrocele managed:</string>
     <string name="vmmc_client_consent_for_mc_procedure">client consent for mc procedure:</string>
-    <string name="vmmc_consent_form" formatted="false">consent form:</string>
     <string name="vmmc_health_care_provider">health care provider:</string>
 
     <string name="vmmc_is_male_procedure_circumcision_conducted">Male circumcision procedure conducted:</string>
