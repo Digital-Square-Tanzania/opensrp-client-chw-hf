@@ -132,7 +132,7 @@ public class VmmcMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
                     String[] mcProcedureParams = {"is_male_procedure_circumcision_conducted", "start_time","end_time","aneathesia_administered","other_aneathesia_administered","lignocaine_dosage","bupivacaine_dosage","dosage","male_circumcision_method","device_name","lot_number","select_size_place","surgeon_name","surgeons_cadre","assistant_name","assistant_cadre","intraoperative_adverse_event_occured","type_of_adverse_event","type_of_adverse_event_others","desc_intraoperative_ae_bleed","desc_intraoperative_ae_skin_removal","desc_intraoperative_ae_injury_to_penis","desc_intraoperative_ae_anaesthetic_related_event","nature_of_ae","what_done","treatment_outcome"};
                     extractVisitDetails(visits, mcProcedureParams, visitDetails, x, context);
 
-                    String[] postOpParams = {"dressing_condition"};
+                    String[] postOpParams = {"dressing_condition","device_mc"};
                     extractVisitDetails(visits, postOpParams, visitDetails, x, context);
 
                     String[] dischargeParams = {"discharge_condition","discharged_reasons","analgesics_given","analgenics_type","analgenics_dosage","analgenics_reasons","discharge_time","discharging_name","provider_cadre"};

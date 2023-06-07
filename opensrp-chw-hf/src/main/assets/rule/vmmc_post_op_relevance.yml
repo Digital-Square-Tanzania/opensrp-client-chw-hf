@@ -1,0 +1,14 @@
+---
+name: step1_device_mc
+description: device_mc relevance
+priority: 1
+condition: "global_method_used.contains('device')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_dressing_condition
+description: dressing_condition relevance
+priority: 1
+condition: "global_method_used.contains('dorsal_slit') || global_method_used.contains('sleeve_resection')"
+actions:
+  - "isRelevant = true"

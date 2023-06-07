@@ -129,6 +129,14 @@
             "openmrs_entity": "",
             "openmrs_entity_id": "admission_to_icu_within_30_days_post_mc",
             "openmrs_entity_parent": ""
+          },
+          {
+            "key": "client_deaths_within_30days_post",
+            "text": "Client deaths within 30days post MC",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": "client_deaths_within_30days_post",
+            "openmrs_entity_parent": ""
           }
         ],
         "v_required": {
@@ -189,6 +197,14 @@
             "value": false,
             "openmrs_entity": "",
             "openmrs_entity_id": "admission_to_icu_within_30_days_post_mc",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "client_deaths_within_30days_post",
+            "text": "Client deaths within 30days post MC",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": "client_deaths_within_30days_post",
             "openmrs_entity_parent": ""
           }
         ],

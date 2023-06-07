@@ -835,7 +835,7 @@
     <string name="prep_other_reason_stopping_prep">Other reason:</string>
 
     <!--    Vmmc Medical History-->
-    <string name="vmmc_consent_form">consent form:</string>
+    <string name="vmmc_consent_form">Consent from ?:</string>
     <string name="vmmc_has_client_had_any_sti">STI:</string>
     <string name="vmmc_any_complaints">Complaints:</string>
     <string name="vmmc_client_diagnosed">Client Diagnosed:</string>
@@ -911,7 +911,8 @@
     <string name="vmmc_what_done">what done:</string>
     <string name="vmmc_treatment_outcome">Treatment outcome:</string>
 
-    <string name="vmmc_dressing_condition">dressing condition:</string>
+    <string name="vmmc_dressing_condition">Describe the condition of the dressing in relation to bleeding(For conventional surgery):</string>
+    <string name="vmmc_device_mc">Device MC Observe the following:</string>
     <string name="vmmc_discharge_condition">discharge condition:</string>
     <string name="vmmc_discharged_reasons">discharged reasons:</string>
     <string name="vmmc_analgesics_given">analgesics given:</string>

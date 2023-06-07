@@ -1,6 +1,7 @@
 package org.smartregister.chw.hf.actionhelper.vmmc;
 
 import android.content.Context;
+import android.util.Log;
 
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
@@ -26,6 +27,12 @@ public class VmmcPostOpActionHelper implements BaseVmmcVisitAction.VmmcVisitActi
     public String getPreProcessed() {
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
+
+            JSONObject global = jsonObject.getJSONObject("global");
+            String method_used_notify = org.smartregister.chw.hf.actionhelper.vmmc.VmmcProcedureActionHelper.method_used;
+            global.put("method_used", method_used_notify);
+
+            Log.d("method_used_vmmc",method_used_notify);
             return jsonObject.toString();
         } catch (JSONException e) {
             e.printStackTrace();
@@ -38,7 +45,15 @@ public class VmmcPostOpActionHelper implements BaseVmmcVisitAction.VmmcVisitActi
     public void onPayloadReceived(String jsonPayload) {
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
-            dressing_condition = CoreJsonFormUtils.getValue(jsonObject, "dressing_condition");
+//            dressing_condition = CoreJsonFormUtils.getValue(jsonObject, "dressing_condition");
+//            device_mc = CoreJsonFormUtils.getValue(jsonObject, "device_mc");
+
+            if(CoreJsonFormUtils.getValue(jsonObject, "dressing_condition").isEmpty()){
+                dressing_condition = CoreJsonFormUtils.getValue(jsonObject, "device_mc");
+            } else {
+                dressing_condition = CoreJsonFormUtils.getValue(jsonObject, "dressing_condition");
+            }
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

@@ -100,25 +100,25 @@
         "type": "native_radio",
         "options": [
           {
-            "key": "client",
+            "key": "from_client",
             "text": "Client",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "client"
+            "openmrs_entity_id": "from_client"
           },
           {
-            "key": "parent",
+            "key": "from_parent",
             "text": "Parent",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "parent"
+            "openmrs_entity_id": "from_parent"
           },
           {
-            "key": "guardian",
+            "key": "from_guardian",
             "text": "Guardian",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "guardian"
+            "openmrs_entity_id": "from_guardian"
           }
         ],
         "v_required": {

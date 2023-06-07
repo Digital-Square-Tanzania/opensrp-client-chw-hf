@@ -4,6 +4,7 @@ import static org.smartregister.chw.core.utils.Utils.passToolbarTitle;
 import static org.smartregister.chw.vmmc.util.Constants.ACTIVITY_PAYLOAD.BASE_ENTITY_ID;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
