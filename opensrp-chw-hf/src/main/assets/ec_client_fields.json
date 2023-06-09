@@ -9039,6 +9039,86 @@
           }
         },
         {
+          "column_name": "desc_of_post_op_adverse_pass_urine",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "desc_of_post_op_adverse_pass_urine"
+          }
+        },
+        {
+          "column_name": "desc_of_post_op_adverse_event_bleeding",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "desc_of_post_op_adverse_event_bleeding"
+          }
+        },
+        {
+          "column_name": "desc_of_post_op_adverse_event_swelling",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "desc_of_post_op_adverse_event_swelling"
+          }
+        },
+        {
+          "column_name": "desc_of_post_op_adverse_event_device_displacement",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "desc_of_post_op_adverse_event_device_displacement"
+          }
+        },
+        {
+          "column_name": "desc_of_post_op_adverse_event_device_detachment",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "desc_of_post_op_adverse_event_device_detachment"
+          }
+        },
+        {
+          "column_name": "desc_of_post_op_adverse_event_infection_without_device",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "desc_of_post_op_adverse_event_infection_without_device"
+          }
+        },
+        {
+          "column_name": "desc_of_post_op_adverse_event_persistent_pain_without_device",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "desc_of_post_op_adverse_event_persistent_pain_without_device"
+          }
+        },
+        {
+          "column_name": "desc_of_post_op_adverse_event_bleeding_without_device",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "desc_of_post_op_adverse_event_bleeding_without_device"
+          }
+        },
+        {
+          "column_name": "desc_of_post_op_adverse_event_swelling_without_device",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "desc_of_post_op_adverse_event_swelling_without_device"
+          }
+        },
+        {
+          "column_name": "desc_of_post_op_adverse_pass_urine_without_device",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "desc_of_post_op_adverse_pass_urine_without_device"
+          }
+        },
+        {
           "column_name": "what_done",
           "type": "Event",
           "json_mapping": {

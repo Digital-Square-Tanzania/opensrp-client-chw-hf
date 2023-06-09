@@ -225,11 +225,11 @@
             "openmrs_entity_parent": ""
           },
           {
-            "key": "device_detachement",
-            "text": "Device detachement",
+            "key": "device_detachment",
+            "text": "Device detachment",
             "value": false,
             "openmrs_entity": "",
-            "openmrs_entity_id": "device_detachement",
+            "openmrs_entity_id": "device_detachment",
             "openmrs_entity_parent": ""
           },
           {
@@ -289,7 +289,7 @@
         "key": "desc_of_post_op_adverse_event_infection",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "desc_of_post_op_adverse_event",
+        "openmrs_entity_id": "desc_of_post_op_adverse_event_infection",
         "label": "Description of post-operative adverse events(Infection)",
         "text_color": "#000000",
         "type": "native_radio",
@@ -381,7 +381,7 @@
         "key": "desc_of_post_op_adverse_event_persistent_pain",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "desc_of_post_op_adverse_event",
+        "openmrs_entity_id": "desc_of_post_op_adverse_event_persistent_pain",
         "label": "Description of post-operative adverse events(Persistent pain)",
         "text_color": "#000000",
         "type": "native_radio",
@@ -474,7 +474,7 @@
         "key": "desc_of_post_op_adverse_event_bleeding",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "desc_of_post_op_adverse_event",
+        "openmrs_entity_id": "desc_of_post_op_adverse_event_bleeding",
         "label": "Description of post-operative adverse events(Bleeding)",
         "text_color": "#000000",
         "type": "native_radio",
@@ -567,7 +567,7 @@
         "key": "desc_of_post_op_adverse_event_device_displacement",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "desc_of_post_op_adverse_event",
+        "openmrs_entity_id": "desc_of_post_op_adverse_event_device_displacement",
         "label": "Description of post-operative adverse events(device displacement)",
         "text_color": "#000000",
         "type": "native_radio",
@@ -608,6 +608,99 @@
                 ]
               }
             ]
+          }
+        }
+      },
+      {
+        "key": "desc_of_post_op_adverse_event_device_detachment",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "desc_of_post_op_adverse_event_device_detachment",
+        "label": "Description of post-operative adverse events(device detachment)",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "post_removal",
+            "text": "Detachment of the device after which no other treatment needed beyond routine post-removal wound care. ",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "post_removal"
+          },
+          {
+            "key": "meet_severe_criteria",
+            "text": "Detachment of the device that requires any treatment more than routine post-operative wound care but does not meet severe criteria. ",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "meet_severe_criteria"
+          },
+
+          {
+            "key": "surgical_intervention",
+            "text": "Detachment of the device, including intentional movement of device by the client and/or self-removal, that requires surgical intervention, hospitalization, or transfer to another facility to clinically manage.",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "surgical_intervention"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select atleast one scale"
+        },
+        "relevance": {
+          "step1:type_of_adverse_event": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "device_detachment"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "ae_classified_as_mild_device_detachment",
+        "type": "toaster_notes",
+        "text": "AE classified as MILD",
+        "openmrs_entity_id": "ae_classified_as_mild",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "info",
+        "relevance": {
+          "step1:desc_of_post_op_adverse_event_device_detachment": {
+            "type": "string",
+            "ex": "equalTo(., \"post_removal\")"
+          }
+        }
+      },
+      {
+        "key": "ae_classified_as_moderate_device_detachment",
+        "type": "toaster_notes",
+        "text": "AE classified as MODERATE",
+        "openmrs_entity_id": "ae_classified_as_moderate",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "warning",
+        "relevance": {
+          "step1:desc_of_post_op_adverse_event_device_detachment": {
+            "type": "string",
+            "ex": "equalTo(., \"meet_severe_criteria\")"
+          }
+        }
+      },
+      {
+        "key": "ae_classified_as_severe_device_detachment",
+        "type": "toaster_notes",
+        "text": "AE classified as SEVERE",
+        "openmrs_entity_id": "ae_classified_as_severe",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "problem",
+        "relevance": {
+          "step1:desc_of_post_op_adverse_event_device_detachment": {
+            "type": "string",
+            "ex": "equalTo(., \"surgical_intervention\")"
           }
         }
       },
@@ -660,7 +753,7 @@
         "key": "desc_of_post_op_adverse_event_swelling",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "desc_of_post_op_adverse_event",
+        "openmrs_entity_id": "desc_of_post_op_adverse_event_swelling",
         "label": "Description of post-operative adverse events(swelling)",
         "text_color": "#000000",
         "type": "native_radio",
@@ -753,7 +846,7 @@
         "key": "desc_of_post_op_adverse_pass_urine",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "desc_of_post_op_adverse_event",
+        "openmrs_entity_id": "desc_of_post_op_adverse_pass_urine",
         "label": "Description of post-operative adverse events(Failure to pass urine)",
         "text_color": "#000000",
         "type": "native_radio",
@@ -847,7 +940,7 @@
         "key": "type_of_adverse_event_without_device",
         "openmrs_entity_parent": "",
         "openmrs_entity": "",
-        "openmrs_entity_id": "type_of_adverse_event",
+        "openmrs_entity_id": "type_of_adverse_event_without_device",
         "type": "check_box",
         "label": "Type of adverse event",
         "options": [
@@ -948,7 +1041,7 @@
         "key": "desc_of_post_op_adverse_event_infection_without_device",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "desc_of_post_op_adverse_event",
+        "openmrs_entity_id": "desc_of_post_op_adverse_event_infection_without_device",
         "label": "Description of post-operative adverse events(Infection)",
         "text_color": "#000000",
         "type": "native_radio",
@@ -1040,7 +1133,7 @@
         "key": "desc_of_post_op_adverse_event_persistent_pain_without_device",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "desc_of_post_op_adverse_event",
+        "openmrs_entity_id": "desc_of_post_op_adverse_event_persistent_pain_without_device",
         "label": "Description of post-operative adverse events(Persistent pain)",
         "text_color": "#000000",
         "type": "native_radio",
@@ -1133,7 +1226,7 @@
         "key": "desc_of_post_op_adverse_event_bleeding_without_device",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "desc_of_post_op_adverse_event",
+        "openmrs_entity_id": "desc_of_post_op_adverse_event_bleeding_without_device",
         "label": "Description of post-operative adverse events(Bleeding)",
         "text_color": "#000000",
         "type": "native_radio",
@@ -1226,7 +1319,7 @@
         "key": "desc_of_post_op_adverse_event_swelling_without_device",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "desc_of_post_op_adverse_event",
+        "openmrs_entity_id": "desc_of_post_op_adverse_event_swelling_without_device",
         "label": "Description of post-operative adverse events(swelling)",
         "text_color": "#000000",
         "type": "native_radio",
@@ -1236,14 +1329,14 @@
             "text": "Mild bruising or abrasion, not requiring treatment",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "3_or_4_on_pain_scale"
+            "openmrs_entity_id": "bruising"
           },
           {
             "key": "pressure_dressing",
             "text": "Bruising or abrasion of the glans or shaft of the penis requiring pressure dressing or additional surgery to control",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "5_or_6_on_pain_scale"
+            "openmrs_entity_id": "pressure_dressing"
           },
 
           {
@@ -1251,7 +1344,7 @@
             "text": "Part or all of the glans or shaft of the penis severed",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "7_on_pain_scale"
+            "openmrs_entity_id": "penis_severed"
           }
         ],
         "v_required": {
@@ -1319,7 +1412,7 @@
         "key": "desc_of_post_op_adverse_pass_urine_without_device",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "desc_of_post_op_adverse_event",
+        "openmrs_entity_id": "desc_of_post_op_adverse_pass_urine_without_device",
         "label": "Description of post-operative adverse events(Failure to pass urine)",
         "text_color": "#000000",
         "type": "native_radio",
