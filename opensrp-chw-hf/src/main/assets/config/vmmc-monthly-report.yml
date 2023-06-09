@@ -321,6 +321,7 @@ indicators:
     indicatorQuery: "  SELECT count(DISTINCT evp.entity_id) as count FROM ec_vmmc_procedure evp
                        INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
                        WHERE (date('now')-date(efm.dob))<1
+                       AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
                        AND is_male_procedure_circumcision_conducted='yes'
                        AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                        date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -332,6 +333,7 @@ indicators:
     indicatorQuery: "  SELECT count(DISTINCT evp.entity_id) as count FROM ec_vmmc_procedure evp
                        INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
                        WHERE 1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
+                       AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
                        AND is_male_procedure_circumcision_conducted='yes'
                        AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                        date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -342,6 +344,7 @@ indicators:
     indicatorQuery: "  SELECT count(DISTINCT evp.entity_id) as count FROM ec_vmmc_procedure evp
                        INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
                        WHERE 10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
+                       AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
                        AND is_male_procedure_circumcision_conducted='yes'
                        AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                        date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -352,6 +355,7 @@ indicators:
     indicatorQuery: "  SELECT count(DISTINCT evp.entity_id) as count FROM ec_vmmc_procedure evp
                        INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
                        WHERE 15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
+                       AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
                        AND is_male_procedure_circumcision_conducted='yes'
                        AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                        date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -362,6 +366,7 @@ indicators:
     indicatorQuery: "  SELECT count(DISTINCT evp.entity_id) as count FROM ec_vmmc_procedure evp
                        INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
                        WHERE 20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
+                       AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
                        AND is_male_procedure_circumcision_conducted='yes'
                        AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                        date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -372,6 +377,7 @@ indicators:
     indicatorQuery: "  SELECT count(DISTINCT evp.entity_id) as count FROM ec_vmmc_procedure evp
                        INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
                        WHERE 25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
+                       AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
                        AND is_male_procedure_circumcision_conducted='yes'
                        AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                        date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -382,6 +388,7 @@ indicators:
     indicatorQuery: "  SELECT count(DISTINCT evp.entity_id) as count FROM ec_vmmc_procedure evp
                        INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
                        WHERE 30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
+                       AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
                        AND is_male_procedure_circumcision_conducted='yes'
                        AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                        date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -392,6 +399,7 @@ indicators:
     indicatorQuery: "  SELECT count(DISTINCT evp.entity_id) as count FROM ec_vmmc_procedure evp
                        INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
                        WHERE 35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
+                       AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
                        AND is_male_procedure_circumcision_conducted='yes'
                        AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                        date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -402,6 +410,7 @@ indicators:
     indicatorQuery: "  SELECT count(DISTINCT evp.entity_id) as count FROM ec_vmmc_procedure evp
                        INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
                        WHERE 40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
+                       AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
                        AND is_male_procedure_circumcision_conducted='yes'
                        AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                        date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -412,6 +421,7 @@ indicators:
     indicatorQuery: "  SELECT count(DISTINCT evp.entity_id) as count FROM ec_vmmc_procedure evp
                        INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
                        WHERE 45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
+                       AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
                        AND is_male_procedure_circumcision_conducted='yes'
                        AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                        date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -422,6 +432,7 @@ indicators:
     indicatorQuery: "  SELECT count(DISTINCT evp.entity_id) as count FROM ec_vmmc_procedure evp
                        INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
                        WHERE (date('now')-date(efm.dob))>=50
+                       AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
                        AND is_male_procedure_circumcision_conducted='yes'
                        AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                        date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -434,6 +445,7 @@ indicators:
     indicatorQuery: "  SELECT count(DISTINCT evp.entity_id) as count FROM ec_vmmc_procedure evp
                        INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
                        WHERE (date('now')-date(efm.dob))<1
+                       AND male_circumcision_method = 'device'
                        AND is_male_procedure_circumcision_conducted='yes'
                        AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                        date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -445,6 +457,7 @@ indicators:
     indicatorQuery: "  SELECT count(DISTINCT evp.entity_id) as count FROM ec_vmmc_procedure evp
                        INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
                        WHERE 1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
+                       AND male_circumcision_method = 'device'
                        AND is_male_procedure_circumcision_conducted='yes'
                        AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                        date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -455,6 +468,7 @@ indicators:
     indicatorQuery: "  SELECT count(DISTINCT evp.entity_id) as count FROM ec_vmmc_procedure evp
                        INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
                        WHERE 10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
+                       AND male_circumcision_method = 'device'
                        AND is_male_procedure_circumcision_conducted='yes'
                        AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                        date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -465,6 +479,7 @@ indicators:
     indicatorQuery: "  SELECT count(DISTINCT evp.entity_id) as count FROM ec_vmmc_procedure evp
                        INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
                        WHERE 15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
+                       AND male_circumcision_method = 'device'
                        AND is_male_procedure_circumcision_conducted='yes'
                        AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                        date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -475,6 +490,7 @@ indicators:
     indicatorQuery: "  SELECT count(DISTINCT evp.entity_id) as count FROM ec_vmmc_procedure evp
                        INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
                        WHERE 20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
+                       AND male_circumcision_method = 'device'
                        AND is_male_procedure_circumcision_conducted='yes'
                        AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                        date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -485,6 +501,7 @@ indicators:
     indicatorQuery: "  SELECT count(DISTINCT evp.entity_id) as count FROM ec_vmmc_procedure evp
                        INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
                        WHERE 25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
+                       AND male_circumcision_method = 'device'
                        AND is_male_procedure_circumcision_conducted='yes'
                        AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                        date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -495,6 +512,7 @@ indicators:
     indicatorQuery: "  SELECT count(DISTINCT evp.entity_id) as count FROM ec_vmmc_procedure evp
                        INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
                        WHERE 30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
+                       AND male_circumcision_method = 'device'
                        AND is_male_procedure_circumcision_conducted='yes'
                        AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                        date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -505,6 +523,7 @@ indicators:
     indicatorQuery: "  SELECT count(DISTINCT evp.entity_id) as count FROM ec_vmmc_procedure evp
                        INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
                        WHERE 35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
+                       AND male_circumcision_method = 'device'
                        AND is_male_procedure_circumcision_conducted='yes'
                        AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                        date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -515,6 +534,7 @@ indicators:
     indicatorQuery: "  SELECT count(DISTINCT evp.entity_id) as count FROM ec_vmmc_procedure evp
                        INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
                        WHERE 40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
+                       AND male_circumcision_method = 'device'
                        AND is_male_procedure_circumcision_conducted='yes'
                        AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                        date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -525,6 +545,7 @@ indicators:
     indicatorQuery: "  SELECT count(DISTINCT evp.entity_id) as count FROM ec_vmmc_procedure evp
                        INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
                        WHERE 45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
+                       AND male_circumcision_method = 'device'
                        AND is_male_procedure_circumcision_conducted='yes'
                        AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                        date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -535,6 +556,7 @@ indicators:
     indicatorQuery: "  SELECT count(DISTINCT evp.entity_id) as count FROM ec_vmmc_procedure evp
                        INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
                        WHERE (date('now')-date(efm.dob))>=50
+                       AND male_circumcision_method = 'device'
                        AND is_male_procedure_circumcision_conducted='yes'
                        AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                        date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -1751,7 +1773,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%Tetanus including non-fatal cases%' OR did_client_experience_nae_without_device LIKE '%Tetanus including non-fatal cases%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND (date('now')-date(efm.dob))<1
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -1763,7 +1785,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%Tetanus including non-fatal cases%' OR did_client_experience_nae_without_device LIKE '%Tetanus including non-fatal cases%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -1775,7 +1797,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%Tetanus including non-fatal cases%' OR did_client_experience_nae_without_device LIKE '%Tetanus including non-fatal cases%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -1787,7 +1809,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%Tetanus including non-fatal cases%' OR did_client_experience_nae_without_device LIKE '%Tetanus including non-fatal cases%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -1799,7 +1821,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%Tetanus including non-fatal cases%' OR did_client_experience_nae_without_device LIKE '%Tetanus including non-fatal cases%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -1811,7 +1833,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%Tetanus including non-fatal cases%' OR did_client_experience_nae_without_device LIKE '%Tetanus including non-fatal cases%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -1823,7 +1845,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%Tetanus including non-fatal cases%' OR did_client_experience_nae_without_device LIKE '%Tetanus including non-fatal cases%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -1835,7 +1857,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%Tetanus including non-fatal cases%' OR did_client_experience_nae_without_device LIKE '%Tetanus including non-fatal cases%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -1847,7 +1869,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%Tetanus including non-fatal cases%' OR did_client_experience_nae_without_device LIKE '%Tetanus including non-fatal cases%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -1859,7 +1881,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%Tetanus including non-fatal cases%' OR did_client_experience_nae_without_device LIKE '%Tetanus including non-fatal cases%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -1871,7 +1893,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%Tetanus including non-fatal cases%' OR did_client_experience_nae_without_device LIKE '%Tetanus including non-fatal cases%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND (date('now')-date(efm.dob))>=50
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -1884,7 +1906,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%AE that results in disability that is likely permanent ( e.g glans numbness)%' OR did_client_experience_nae_without_device LIKE '%AE that results in disability that is likely permanent ( e.g glans numbness)%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND (date('now')-date(efm.dob))<1
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -1896,7 +1918,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%AE that results in disability that is likely permanent ( e.g glans numbness)%' OR did_client_experience_nae_without_device LIKE '%AE that results in disability that is likely permanent ( e.g glans numbness)%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -1908,7 +1930,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%AE that results in disability that is likely permanent ( e.g glans numbness)%' OR did_client_experience_nae_without_device LIKE '%AE that results in disability that is likely permanent ( e.g glans numbness)%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -1920,7 +1942,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%AE that results in disability that is likely permanent ( e.g glans numbness)%' OR did_client_experience_nae_without_device LIKE '%AE that results in disability that is likely permanent ( e.g glans numbness)%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -1932,7 +1954,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%AE that results in disability that is likely permanent ( e.g glans numbness)%' OR did_client_experience_nae_without_device LIKE '%AE that results in disability that is likely permanent ( e.g glans numbness)%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -1944,7 +1966,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%AE that results in disability that is likely permanent ( e.g glans numbness)%' OR did_client_experience_nae_without_device LIKE '%AE that results in disability that is likely permanent ( e.g glans numbness)%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -1956,7 +1978,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%AE that results in disability that is likely permanent ( e.g glans numbness)%' OR did_client_experience_nae_without_device LIKE '%AE that results in disability that is likely permanent ( e.g glans numbness)%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -1968,7 +1990,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%AE that results in disability that is likely permanent ( e.g glans numbness)%' OR did_client_experience_nae_without_device LIKE '%AE that results in disability that is likely permanent ( e.g glans numbness)%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -1980,7 +2002,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%AE that results in disability that is likely permanent ( e.g glans numbness)%' OR did_client_experience_nae_without_device LIKE '%AE that results in disability that is likely permanent ( e.g glans numbness)%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -1992,7 +2014,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%AE that results in disability that is likely permanent ( e.g glans numbness)%' OR did_client_experience_nae_without_device LIKE '%AE that results in disability that is likely permanent ( e.g glans numbness)%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2004,7 +2026,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%AE that results in disability that is likely permanent ( e.g glans numbness)%' OR did_client_experience_nae_without_device LIKE '%AE that results in disability that is likely permanent ( e.g glans numbness)%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND (date('now')-date(efm.dob))>=50
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2017,7 +2039,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%AE that results in anatomic deformity that is likely permanent ( e.g keloid,scaring,penile torsion etc)%' OR did_client_experience_nae_without_device LIKE '%AE that results in anatomic deformity that is likely permanent ( e.g keloid,scaring,penile torsion etc)%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND (date('now')-date(efm.dob))<1
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2029,7 +2051,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%AE that results in anatomic deformity that is likely permanent ( e.g keloid,scaring,penile torsion etc)%' OR did_client_experience_nae_without_device LIKE '%AE that results in anatomic deformity that is likely permanent ( e.g keloid,scaring,penile torsion etc)%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2041,7 +2063,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%AE that results in anatomic deformity that is likely permanent ( e.g keloid,scaring,penile torsion etc)%' OR did_client_experience_nae_without_device LIKE '%AE that results in anatomic deformity that is likely permanent ( e.g keloid,scaring,penile torsion etc)%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2053,7 +2075,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%AE that results in anatomic deformity that is likely permanent ( e.g keloid,scaring,penile torsion etc)%' OR did_client_experience_nae_without_device LIKE '%AE that results in anatomic deformity that is likely permanent ( e.g keloid,scaring,penile torsion etc)%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2065,7 +2087,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%AE that results in anatomic deformity that is likely permanent ( e.g keloid,scaring,penile torsion etc)%' OR did_client_experience_nae_without_device LIKE '%AE that results in anatomic deformity that is likely permanent ( e.g keloid,scaring,penile torsion etc)%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2077,7 +2099,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%AE that results in anatomic deformity that is likely permanent ( e.g keloid,scaring,penile torsion etc)%' OR did_client_experience_nae_without_device LIKE '%AE that results in anatomic deformity that is likely permanent ( e.g keloid,scaring,penile torsion etc)%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2089,7 +2111,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%AE that results in anatomic deformity that is likely permanent ( e.g keloid,scaring,penile torsion etc)%' OR did_client_experience_nae_without_device LIKE '%AE that results in anatomic deformity that is likely permanent ( e.g keloid,scaring,penile torsion etc)%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2101,7 +2123,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%AE that results in anatomic deformity that is likely permanent ( e.g keloid,scaring,penile torsion etc)%' OR did_client_experience_nae_without_device LIKE '%AE that results in anatomic deformity that is likely permanent ( e.g keloid,scaring,penile torsion etc)%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2113,7 +2135,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%AE that results in anatomic deformity that is likely permanent ( e.g keloid,scaring,penile torsion etc)%' OR did_client_experience_nae_without_device LIKE '%AE that results in anatomic deformity that is likely permanent ( e.g keloid,scaring,penile torsion etc)%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2125,7 +2147,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%AE that results in anatomic deformity that is likely permanent ( e.g keloid,scaring,penile torsion etc)%' OR did_client_experience_nae_without_device LIKE '%AE that results in anatomic deformity that is likely permanent ( e.g keloid,scaring,penile torsion etc)%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2137,7 +2159,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%AE that results in anatomic deformity that is likely permanent ( e.g keloid,scaring,penile torsion etc)%' OR did_client_experience_nae_without_device LIKE '%AE that results in anatomic deformity that is likely permanent ( e.g keloid,scaring,penile torsion etc)%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND (date('now')-date(efm.dob))>=50
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2151,7 +2173,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%Any hospital admission for >= 3 days%' OR did_client_experience_nae_without_device LIKE '%Any hospital admission for >= 3 days%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND (date('now')-date(efm.dob))<1
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2163,7 +2185,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%Any hospital admission for >= 3 days%' OR did_client_experience_nae_without_device LIKE '%Any hospital admission for >= 3 days%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2175,7 +2197,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%Any hospital admission for >= 3 days%' OR did_client_experience_nae_without_device LIKE '%Any hospital admission for >= 3 days%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2187,7 +2209,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%Any hospital admission for >= 3 days%' OR did_client_experience_nae_without_device LIKE '%Any hospital admission for >= 3 days%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2199,7 +2221,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%Any hospital admission for >= 3 days%' OR did_client_experience_nae_without_device LIKE '%Any hospital admission for >= 3 days%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2211,7 +2233,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%Any hospital admission for >= 3 days%' OR did_client_experience_nae_without_device LIKE '%Any hospital admission for >= 3 days%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2223,7 +2245,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%Any hospital admission for >= 3 days%' OR did_client_experience_nae_without_device LIKE '%Any hospital admission for >= 3 days%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2235,7 +2257,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%Any hospital admission for >= 3 days%' OR did_client_experience_nae_without_device LIKE '%Any hospital admission for >= 3 days%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2247,7 +2269,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%Any hospital admission for >= 3 days%' OR did_client_experience_nae_without_device LIKE '%Any hospital admission for >= 3 days%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2259,7 +2281,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%Any hospital admission for >= 3 days%' OR did_client_experience_nae_without_device LIKE '%Any hospital admission for >= 3 days%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2271,7 +2293,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%Any hospital admission for >= 3 days%' OR did_client_experience_nae_without_device LIKE '%Any hospital admission for >= 3 days%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND (date('now')-date(efm.dob))>=50
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2284,7 +2306,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  did_client_experience_nae LIKE '%Moderate or severe device displacement AE%'
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND (date('now')-date(efm.dob))<1
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2296,7 +2318,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  did_client_experience_nae LIKE '%Moderate or severe device displacement AE%'
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2308,7 +2330,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  did_client_experience_nae LIKE '%Moderate or severe device displacement AE%'
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2320,7 +2342,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  did_client_experience_nae LIKE '%Moderate or severe device displacement AE%'
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2332,7 +2354,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  did_client_experience_nae LIKE '%Moderate or severe device displacement AE%'
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2344,7 +2366,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  did_client_experience_nae LIKE '%Moderate or severe device displacement AE%'
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2356,7 +2378,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  did_client_experience_nae LIKE '%Moderate or severe device displacement AE%'
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2368,7 +2390,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  did_client_experience_nae LIKE '%Moderate or severe device displacement AE%'
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2380,7 +2402,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  did_client_experience_nae LIKE '%Moderate or severe device displacement AE%'
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2392,7 +2414,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  did_client_experience_nae LIKE '%Moderate or severe device displacement AE%'
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2404,7 +2426,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  did_client_experience_nae LIKE '%Moderate or severe device displacement AE%'
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND (date('now')-date(efm.dob))>=50
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2417,7 +2439,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%Client deaths within 30days post MC%' OR did_client_experience_nae_without_device LIKE '%Client deaths within 30days post MC%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND (date('now')-date(efm.dob))<1
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2429,7 +2451,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%Client deaths within 30days post MC%' OR did_client_experience_nae_without_device LIKE '%Client deaths within 30days post MC%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2441,7 +2463,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%Client deaths within 30days post MC%' OR did_client_experience_nae_without_device LIKE '%Client deaths within 30days post MC%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2453,7 +2475,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%Client deaths within 30days post MC%' OR did_client_experience_nae_without_device LIKE '%Client deaths within 30days post MC%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2465,7 +2487,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%Client deaths within 30days post MC%' OR did_client_experience_nae_without_device LIKE '%Client deaths within 30days post MC%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2477,7 +2499,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%Client deaths within 30days post MC%' OR did_client_experience_nae_without_device LIKE '%Client deaths within 30days post MC%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2489,7 +2511,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%Client deaths within 30days post MC%' OR did_client_experience_nae_without_device LIKE '%Client deaths within 30days post MC%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2501,7 +2523,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%Client deaths within 30days post MC%' OR did_client_experience_nae_without_device LIKE '%Client deaths within 30days post MC%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2513,7 +2535,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%Client deaths within 30days post MC%' OR did_client_experience_nae_without_device LIKE '%Client deaths within 30days post MC%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2525,7 +2547,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%Client deaths within 30days post MC%' OR did_client_experience_nae_without_device LIKE '%Client deaths within 30days post MC%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2537,7 +2559,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%Client deaths within 30days post MC%' OR did_client_experience_nae_without_device LIKE '%Client deaths within 30days post MC%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND (date('now')-date(efm.dob))>=50
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2551,7 +2573,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%Any admission to ICU within 30 days post MC%' OR did_client_experience_nae_without_device LIKE '%Any admission to ICU within 30 days post MC%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND (date('now')-date(efm.dob))<1
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2563,7 +2585,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%Any admission to ICU within 30 days post MC%' OR did_client_experience_nae_without_device LIKE '%Any admission to ICU within 30 days post MC%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2575,7 +2597,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%Any admission to ICU within 30 days post MC%' OR did_client_experience_nae_without_device LIKE '%Any admission to ICU within 30 days post MC%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2587,7 +2609,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%Any admission to ICU within 30 days post MC%' OR did_client_experience_nae_without_device LIKE '%Any admission to ICU within 30 days post MC%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2599,7 +2621,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%Any admission to ICU within 30 days post MC%' OR did_client_experience_nae_without_device LIKE '%Any admission to ICU within 30 days post MC%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2611,7 +2633,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%Any admission to ICU within 30 days post MC%' OR did_client_experience_nae_without_device LIKE '%Any admission to ICU within 30 days post MC%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2623,7 +2645,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%Any admission to ICU within 30 days post MC%' OR did_client_experience_nae_without_device LIKE '%Any admission to ICU within 30 days post MC%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2635,7 +2657,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%Any admission to ICU within 30 days post MC%' OR did_client_experience_nae_without_device LIKE '%Any admission to ICU within 30 days post MC%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2647,7 +2669,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%Any admission to ICU within 30 days post MC%' OR did_client_experience_nae_without_device LIKE '%Any admission to ICU within 30 days post MC%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2659,7 +2681,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%Any admission to ICU within 30 days post MC%' OR did_client_experience_nae_without_device LIKE '%Any admission to ICU within 30 days post MC%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND 45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2671,7 +2693,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%Any admission to ICU within 30 days post MC%' OR did_client_experience_nae_without_device LIKE '%Any admission to ICU within 30 days post MC%')
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  AND male_circumcision_method = 'device'
   AND (date('now')-date(efm.dob))>=50
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2997,7 +3019,8 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
+  AND round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7
   AND male_circumcision_method != 'device'
@@ -3011,7 +3034,8 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
+  AND round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7
   AND male_circumcision_method != 'device'
@@ -3025,7 +3049,8 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
+  AND round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7
   AND male_circumcision_method != 'device'
@@ -3039,7 +3064,8 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
+  AND round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7
   AND male_circumcision_method != 'device'
@@ -3053,7 +3079,8 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
+  AND round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7
   AND male_circumcision_method != 'device'
@@ -3067,7 +3094,8 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
+  AND round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7
   AND male_circumcision_method != 'device'
@@ -3081,7 +3109,8 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
+  AND round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7
   AND male_circumcision_method != 'device'
@@ -3095,7 +3124,8 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
+  AND round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7
   AND male_circumcision_method != 'device'
@@ -3109,7 +3139,8 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
+  AND round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7
   AND male_circumcision_method != 'device'
@@ -3123,7 +3154,8 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
+  AND round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7
   AND male_circumcision_method != 'device'
@@ -3137,7 +3169,8 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
+  AND round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7
   AND male_circumcision_method != 'device'
