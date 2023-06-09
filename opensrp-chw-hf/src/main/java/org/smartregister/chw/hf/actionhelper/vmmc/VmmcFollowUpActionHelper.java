@@ -49,8 +49,7 @@ public class VmmcFollowUpActionHelper implements BaseVmmcVisitAction.VmmcVisitAc
     public void onPayloadReceived(String jsonPayload) {
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
-
-            visit_type = CoreJsonFormUtils.getValue(jsonObject, "visit_type");
+            visit_type = CoreJsonFormUtils.getValue(jsonObject, "post_op_adverse_event_occur");
         } catch (JSONException e) {
             e.printStackTrace();
         }
