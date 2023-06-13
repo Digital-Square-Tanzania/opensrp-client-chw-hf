@@ -8,12 +8,12 @@ public class DefaultHFApplicationFlv implements HealthFacilityApplication.Flavor
 
     @Override
     public boolean hasHivst() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean hasKvpPrEP() {
-        return false;
+        return true;
     }
 
     @Override
