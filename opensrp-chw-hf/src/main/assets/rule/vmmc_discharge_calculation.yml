@@ -1,0 +1,7 @@
+---
+name: step1_discharge_date
+description: vmmc discharge date
+priority: 1
+condition: "true"
+actions:
+  - "calculation = helper.getDateToday()"

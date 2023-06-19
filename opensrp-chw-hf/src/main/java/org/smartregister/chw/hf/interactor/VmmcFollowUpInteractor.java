@@ -1,17 +1,23 @@
 package org.smartregister.chw.hf.interactor;
 
+import com.vijay.jsonwizard.constants.JsonFormConstants;
+
 import org.apache.commons.lang3.StringUtils;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.anc.util.AppExecutors;
 import org.smartregister.chw.core.utils.FormUtils;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.actionhelper.vmmc.VmmcFollowUpActionHelper;
 import org.smartregister.chw.hf.actionhelper.vmmc.VmmcHtsActionHelper;
+import org.smartregister.chw.hf.dao.HfVmmcDao;
 import org.smartregister.chw.vmmc.contract.BaseVmmcVisitContract;
 import org.smartregister.chw.vmmc.domain.VisitDetail;
 import org.smartregister.chw.vmmc.interactor.BaseVmmcVisitInteractor;
 import org.smartregister.chw.vmmc.model.BaseVmmcVisitAction;
 import org.smartregister.chw.vmmc.util.Constants;
+import org.smartregister.chw.vmmc.util.VmmcJsonFormUtils;
 
 import java.util.List;
 import java.util.Map;
@@ -54,6 +60,21 @@ public class VmmcFollowUpInteractor extends BaseVmmcVisitInteractor {
 
     private void evaluateVisitType(Map<String, List<VisitDetail>> details) throws BaseVmmcVisitAction.ValidationException {
         JSONObject vmmcFollowUpVisit = FormUtils.getFormUtils().getFormJson(Constants.FORMS.VMMC_FOLLOW_UP_VISIT);
+
+        //trial ang
+        try {
+            JSONArray fields = vmmcFollowUpVisit.getJSONObject(org.smartregister.chw.hf.utils.Constants.JsonFormConstants.STEP1).getJSONArray(JsonFormConstants.FIELDS);
+            //update visit number
+            JSONObject visitNumber = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "visit_number");
+            visitNumber.put(org.smartregister.chw.pmtct.util.JsonFormUtils.VALUE, HfVmmcDao.getVisitNumber(memberObject.getBaseEntityId()));
+
+            //loads details to the form
+            if (details != null && !details.isEmpty()) {
+                VmmcJsonFormUtils.populateForm(vmmcFollowUpVisit, details);
+            }
+        } catch (JSONException e) {
+            Timber.e(e);
+        }
 
         VmmcFollowUpActionHelper actionHelper = new VmmcFollowUpActionHelper(memberObject.getBaseEntityId());
         BaseVmmcVisitAction action = getBuilder(context.getString(R.string.vmmc_followup_visit))
