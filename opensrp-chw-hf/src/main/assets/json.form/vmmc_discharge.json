@@ -56,6 +56,21 @@
     "title": "Discharge Form",
     "fields": [
       {
+        "key": "discharge_date",
+        "type": "edit_text",
+        "hidden": "true",
+        "openmrs_entity_id": "discharge_date",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_discharge_calculation.yml"
+            }
+          }
+        }
+      },
+      {
         "key": "discharge_condition",
         "openmrs_entity_parent": "",
         "openmrs_entity": "",

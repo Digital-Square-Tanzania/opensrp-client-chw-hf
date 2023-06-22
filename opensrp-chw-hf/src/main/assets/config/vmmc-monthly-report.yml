@@ -6725,9 +6725,13 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  WHERE round(julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 2
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 2
+  AND evn.visit_number = '0'
   AND male_circumcision_method != 'device'
   AND (date('now')-date(efm.dob))<1
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -6739,9 +6743,13 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  WHERE round(julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 2
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 2
+  AND evn.visit_number = '0'
   AND male_circumcision_method != 'device'
   AND 1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -6753,9 +6761,13 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  WHERE round(julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 2
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 2
+  AND evn.visit_number = '0'
   AND male_circumcision_method != 'device'
   AND 10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -6767,9 +6779,13 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  WHERE round(julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 2
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 2
+  AND evn.visit_number = '0'
   AND male_circumcision_method != 'device'
   AND 15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -6781,9 +6797,13 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  WHERE round(julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 2
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 2
+  AND evn.visit_number = '0'
   AND male_circumcision_method != 'device'
   AND 20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -6795,9 +6815,13 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  WHERE round(julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 2
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 2
+  AND evn.visit_number = '0'
   AND male_circumcision_method != 'device'
   AND 25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -6809,9 +6833,13 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  WHERE round(julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 2
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 2
+  AND evn.visit_number = '0'
   AND male_circumcision_method != 'device'
   AND 30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -6823,9 +6851,13 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  WHERE round(julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 2
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 2
+  AND evn.visit_number = '0'
   AND male_circumcision_method != 'device'
   AND 35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -6837,9 +6869,13 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  WHERE round(julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 2
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 2
+  AND evn.visit_number = '0'
   AND male_circumcision_method != 'device'
   AND 40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -6851,9 +6887,13 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  WHERE round(julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 2
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 2
+  AND evn.visit_number = '0'
   AND male_circumcision_method != 'device'
   AND 45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -6865,9 +6905,13 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  WHERE round(julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 2
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 2
+  AND evn.visit_number = '0'
   AND male_circumcision_method != 'device'
   AND (date('now')-date(efm.dob))>=50
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -6881,9 +6925,13 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE 2 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  WHERE 2 < ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 2)
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 2)
+  AND evn.visit_number = '0'
   AND male_circumcision_method != 'device'
   AND (date('now')-date(efm.dob))<1
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -6895,9 +6943,13 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE 2 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  WHERE 2 < ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 2)
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 2)
+  AND evn.visit_number = '0'
   AND male_circumcision_method != 'device'
   AND 1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -6909,9 +6961,13 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE 2 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  WHERE 2 < ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 2)
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 2)
+  AND evn.visit_number = '0'
   AND male_circumcision_method != 'device'
   AND 10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -6923,9 +6979,13 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE 2 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  WHERE 2 < ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 2)
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 2)
+  AND evn.visit_number = '0'
   AND male_circumcision_method != 'device'
   AND 15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -6937,9 +6997,13 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE 2 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  WHERE 2 < ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 2)
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 2)
+  AND evn.visit_number = '0'
   AND male_circumcision_method != 'device'
   AND 20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -6951,9 +7015,13 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE 2 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  WHERE 2 < ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 2)
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 2)
+  AND evn.visit_number = '0'
   AND male_circumcision_method != 'device'
   AND 25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -6965,9 +7033,13 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE 2 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  WHERE 2 < ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 2)
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 2)
+  AND evn.visit_number = '0'
   AND male_circumcision_method != 'device'
   AND 30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -6979,9 +7051,13 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE 2 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  WHERE 2 < ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 2)
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 2)
+  AND evn.visit_number = '0'
   AND male_circumcision_method != 'device'
   AND 35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -6993,9 +7069,13 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE 2 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  WHERE 2 < ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 2)
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 2)
+  AND evn.visit_number = '0'
   AND male_circumcision_method != 'device'
   AND 40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -7007,9 +7087,13 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE 2 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  WHERE 2 < ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 2)
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 2)
+  AND evn.visit_number = '0'
   AND male_circumcision_method != 'device'
   AND 45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -7021,9 +7105,13 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE 2 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  WHERE 2 < ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 2)
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 2)
+  AND evn.visit_number = '0'
   AND male_circumcision_method != 'device'
   AND (date('now')-date(efm.dob))>=50
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -7037,10 +7125,13 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
-  AND round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  WHERE round(julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 7
+  AND evn.visit_number = '1'
   AND male_circumcision_method != 'device'
   AND (date('now')-date(efm.dob))<1
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -7052,10 +7143,13 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
-  AND round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  WHERE round(julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 7
+  AND evn.visit_number = '1'
   AND male_circumcision_method != 'device'
   AND 1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -7067,10 +7161,13 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
-  AND round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  WHERE round(julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 7
+  AND evn.visit_number = '1'
   AND male_circumcision_method != 'device'
   AND 10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -7082,10 +7179,13 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
-  AND round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  WHERE round(julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 7
+  AND evn.visit_number = '1'
   AND male_circumcision_method != 'device'
   AND 15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -7097,10 +7197,13 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
-  AND round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  WHERE round(julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 7
+  AND evn.visit_number = '1'
   AND male_circumcision_method != 'device'
   AND 20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -7112,10 +7215,13 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
-  AND round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  WHERE round(julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 7
+  AND evn.visit_number = '1'
   AND male_circumcision_method != 'device'
   AND 25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -7127,10 +7233,13 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
-  AND round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  WHERE round(julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 7
+  AND evn.visit_number = '1'
   AND male_circumcision_method != 'device'
   AND 30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -7142,10 +7251,13 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
-  AND round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  WHERE round(julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 7
+  AND evn.visit_number = '1'
   AND male_circumcision_method != 'device'
   AND 35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -7157,10 +7269,13 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
-  AND round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  WHERE round(julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 7
+  AND evn.visit_number = '1'
   AND male_circumcision_method != 'device'
   AND 40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -7172,10 +7287,13 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
-  AND round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  WHERE round(julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 7
+  AND evn.visit_number = '1'
   AND male_circumcision_method != 'device'
   AND 45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -7187,10 +7305,13 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
-  AND round(julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  WHERE round(julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 7
+  AND evn.visit_number = '1'
   AND male_circumcision_method != 'device'
   AND (date('now')-date(efm.dob))>=50
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -7205,9 +7326,13 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE 7 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  WHERE 7 < ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7)
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 7)
+  AND evn.visit_number = '1'
   AND male_circumcision_method != 'device'
   AND (date('now')-date(efm.dob))<1
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -7219,9 +7344,13 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE 7 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  WHERE 7 < ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7)
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 7)
+  AND evn.visit_number = '1'
   AND male_circumcision_method != 'device'
   AND 1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -7233,9 +7362,13 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE 7 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  WHERE 7 < ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7)
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 7)
+  AND evn.visit_number = '1'
   AND male_circumcision_method != 'device'
   AND 10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -7247,9 +7380,13 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE 7 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  WHERE 7 < ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7)
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 7)
+  AND evn.visit_number = '1'
   AND male_circumcision_method != 'device'
   AND 15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -7261,9 +7398,13 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE 7 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  WHERE 7 < ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7)
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 7)
+  AND evn.visit_number = '1'
   AND male_circumcision_method != 'device'
   AND 20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -7275,9 +7416,13 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE 7 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  WHERE 7 < ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7)
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 7)
+  AND evn.visit_number = '1'
   AND male_circumcision_method != 'device'
   AND 25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -7289,9 +7434,13 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE 7 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  WHERE 7 < ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7)
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 7)
+  AND evn.visit_number = '1'
   AND male_circumcision_method != 'device'
   AND 30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -7303,9 +7452,13 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE 7 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  WHERE 7 < ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7)
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 7)
+  AND evn.visit_number = '1'
   AND male_circumcision_method != 'device'
   AND 35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -7317,9 +7470,13 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE 7 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  WHERE 7 < ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7)
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 7)
+  AND evn.visit_number = '1'
   AND male_circumcision_method != 'device'
   AND 40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -7331,9 +7488,13 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE 7 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  WHERE 7 < ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7)
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 7)
+  AND evn.visit_number = '1'
   AND male_circumcision_method != 'device'
   AND 45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -7345,9 +7506,13 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE 7 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  WHERE 7 < ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7)
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 7)
+  AND evn.visit_number = '1'
   AND male_circumcision_method != 'device'
   AND (date('now')-date(efm.dob))>=50
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -7362,11 +7527,14 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
   WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
-  AND 7 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  AND 7 <= ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7)
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 7)
+  AND (male_circumcision_method = 'device' )
   AND (date('now')-date(efm.dob))<1
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -7377,11 +7545,14 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
   WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
-  AND 7 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  AND 7 <= ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7)
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 7)
+  AND (male_circumcision_method = 'device' )
   AND 1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -7392,11 +7563,14 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
   WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
-  AND 7 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  AND 7 <= ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7)
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 7)
+  AND (male_circumcision_method = 'device' )
   AND 10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -7407,11 +7581,14 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
   WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
-  AND 7 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  AND 7 <= ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7)
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 7)
+  AND (male_circumcision_method = 'device' )
   AND 15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -7422,11 +7599,14 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
   WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
-  AND 7 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  AND 7 <= ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7)
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 7)
+  AND (male_circumcision_method = 'device' )
   AND 20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -7437,11 +7617,14 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
   WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
-  AND 7 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  AND 7 <= ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7)
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 7)
+  AND (male_circumcision_method = 'device' )
   AND 25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -7452,11 +7635,14 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
   WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
-  AND 7 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  AND 7 <= ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7)
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 7)
+  AND (male_circumcision_method = 'device' )
   AND 30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -7467,11 +7653,14 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
   WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
-  AND 7 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  AND 7 <= ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7)
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 7)
+  AND (male_circumcision_method = 'device' )
   AND 35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -7482,11 +7671,14 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
   WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
-  AND 7 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  AND 7 <= ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7)
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 7)
+  AND (male_circumcision_method = 'device' )
   AND 40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -7497,11 +7689,14 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
   WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
-  AND 7 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  AND 7 <= ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7)
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 7)
+  AND (male_circumcision_method = 'device' )
   AND 45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -7512,11 +7707,14 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
+  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
   WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
-  AND 7 < ((julianday('now') - julianday(substr(followup_visit_date, 7, 4) || '-'
+  AND 7 <= ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
-  || substr(followup_visit_date, 1, 2))) BETWEEN 0 AND 7)
-  AND (male_circumcision_method = 'dorsal_slit' OR male_circumcision_method = 'sleeve_resection')
+  || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
+  || substr(ds.discharge_date, 4, 2) || '-'
+  || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 7)
+  AND (male_circumcision_method = 'device' )
   AND (date('now')-date(efm.dob))>=50
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
