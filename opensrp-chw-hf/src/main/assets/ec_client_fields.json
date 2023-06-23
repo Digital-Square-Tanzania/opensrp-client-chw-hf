@@ -8962,6 +8962,13 @@
             "field": "obs.fieldCode",
             "concept": "discharge_date"
           }
+        },
+        {
+          "column_name": "last_interacted_with",
+          "type": "Event",
+          "json_mapping": {
+            "field": "version"
+          }
         }
       ]
     },
