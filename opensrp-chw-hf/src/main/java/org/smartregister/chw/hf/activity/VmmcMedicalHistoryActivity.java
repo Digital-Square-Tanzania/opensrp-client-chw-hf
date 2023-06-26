@@ -120,7 +120,7 @@ public class VmmcMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
                     String[] medicalHistoryParams = {"has_client_had_any_sti", "any_complaints","client_diagnosed","diabetes_treatment","surgical_procedure","type_complication","hematological_disease","known_allergies","tetanus_vaccination"};
                     extractVisitDetails(visits, medicalHistoryParams, visitDetails, x, context);
 
-                    String[] physicalExamParams = {"physical_abnormality", "client_weight","pulse_rate","systolic","diastolic","temperature","respiration_rate","genital_examination","preferred_client","penile_size"};
+                    String[] physicalExamParams = {"physical_abnormality", "client_weight","pulse_rate","systolic","diastolic","temperature","respiration_rate","genital_examination","preferred_client_mc_method","penile_size"};
                     extractVisitDetails(visits, physicalExamParams, visitDetails, x, context);
 
                     String[] htsParams = {"tested_hiv", "hiv_result","hiv_reasons","hiv_viral_load_text","self_test_kits","client_referred_to","client_medically_cleared","mc_reasons","uds_managed","smegma_managed","gud_managed","phimosis_managed","paraphimosis_managed","underscended_managed","condylomata_managed","adhesion_managed","balanitis_managed","urethral_managed","chordae_managed","hydrocele_managed"};

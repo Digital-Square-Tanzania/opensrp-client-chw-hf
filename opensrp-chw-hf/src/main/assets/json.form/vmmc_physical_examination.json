@@ -554,26 +554,32 @@
         }
       },
       {
-        "key": "preferred_client",
+        "key": "preferred_client_mc_method",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "",
-        "type": "native_radio",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "preferred_client",
         "label": "Preferred client’s MC method",
-        "label_text_size": "18px",
+        "text_color": "#000000",
+        "type": "native_radio",
         "options": [
           {
-            "key": "surgical_procedure",
-            "text": "Convectional surgical procedure"
+            "key": "convectional_surgical_procedure",
+            "text": "Convectional surgical procedure",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "convectional_surgical_procedure"
           },
           {
             "key": "shang_ring",
-            "text": "Shang-ring/device"
+            "text": "Shang-ring/device",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "shang_ring"
           }
         ],
         "v_required": {
           "value": "true",
-          "err": "Please select an answer"
+          "err": "Please select one"
         }
       },
       {

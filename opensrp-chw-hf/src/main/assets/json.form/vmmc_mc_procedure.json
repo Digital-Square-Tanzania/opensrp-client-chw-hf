@@ -854,7 +854,7 @@
             "text": "Blood transfussion/transffered to another facility required",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "transfussion_or_transfered_another_facility"
+            "openmrs_entity_id": "blood_transfussion_or_transfered_another_facility"
           }
         ],
         "v_required": {

@@ -834,8 +834,48 @@
     <string name="prep_reasons_stopping_prep">Reason(s) for stopping PrEP medication:</string>
     <string name="prep_other_reason_stopping_prep">Other reason:</string>
 
+    <string name="shang_ring">Shang-ring/device</string>
+    <string name="convectional_surgical_procedure">Convectional surgical procedure</string>
+
+    <string name="adverse_event_completely_resolved">Adverse event completely resolved</string>
+    <string name="adverse_event_partially_resolved">Adverse event partially resolved</string>
+    <string name="adverse_event_unchanged">Adverse event unchanged</string>
+
+    <string name="palpitations">Palpitations, vaso-vagal reaction or emesis</string>
+    <string name="reaction_to_anaesthetic">Reaction to anaesthetic requiring medical treatment in clinic, but not transfer to another facility</string>
+    <string name="anaphylaxis">Anaphylaxis or other reaction requiring transfer to another facility</string>
+    <string name="mild_bruising">Mild bruising or abrasion, not requiring treatment</string>
+    <string name="bruising">Bruising or abrasion of the glans or shaft of the penis requiring pressure dressing or additional surgery to control</string>
+    <string name="glans_or_shaft">Part or all of the glans or shaft of the penis severed</string>
+    <string name="discernible_adverse_condition">Adds time or material needs to the procedure, but does not result in any discernible adverse condition</string>
+    <string name="skin_tight">Skin is tight, but additional operative work not necessary</string>
+    <string name="requires_reoperation">Requires re-operation or transfer to another facility to correct the problem</string>
+    <string name="more_bleed_than_usual_but_easily_controlled">More Bleeding than usual but easily controlled</string>
+    <string name="bleed_require_pressure_dressing">Bleed Requires pressure dressing to control</string>
+    <string name="blood_transfussion_or_transfered_another_facility">Blood transfussion/transffered to another facility required</string>
+
+    <string name="surgeon_medical_officer">Medical officer</string>
+    <string name="surgeon_assistant_medical_officer">Assistant medical officer</string>
+    <string name="surgeon_clinical_officer_or_assistant">Clinical officer/Assistant clinical officer</string>
+    <string name="surgeon_enrolled_nurse">Enrolled nurse</string>
+    <string name="surgeon_assistant_nursing_officer">Assistant nursing officer</string>
+
+    <string name="assistant_medical_officer">Medical officer</string>
+    <string name="assistant_assistant_medical_officer">Assistant medical officer</string>
+    <string name="assistant_clinical_officer_or_assistant">Clinical officer/Assistant clinical officer</string>
+    <string name="assistant_enrolled_nurse">Enrolled nurse</string>
+    <string name="assistant_assistant_nursing_officer">Assistant nursing officer</string>
+    <string name="assistant_nursing_officer">Nursing officer</string>
+
+    <string name="injectables_lignocaine">Injectables-Lignocaine</string>
+    <string name="topical_cream">Topical Cream</string>
+
+    <string name="from_client">Client</string>
+    <string name="from_parent">Parent</string>
+    <string name="from_guardian">Guardian</string>
+
     <!--    Vmmc Medical History-->
-    <string name="vmmc_consent_form">Consent from ?:</string>
+    <string name="vmmc_consent_form">Consent from:</string>
     <string name="vmmc_has_client_had_any_sti">STI:</string>
     <string name="vmmc_any_complaints">Complaints:</string>
     <string name="vmmc_client_diagnosed">Client Diagnosed:</string>
@@ -859,7 +899,7 @@
     <string name="vmmc_temperature">temperature:</string>
     <string name="vmmc_respiration_rate">respiration rate:</string>
     <string name="vmmc_genital_examination">genital examination:</string>
-    <string name="vmmc_preferred_client">preferred client:</string>
+    <string name="vmmc_preferred_client_mc_method">Preferred client’s MC method:</string>
     <string name="vmmc_penile_size">penile size:</string>
     <string name="vmmc_tested_hiv">tested hiv:</string>
     <string name="vmmc_hiv_result">hiv result:</string>
