@@ -7528,8 +7528,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
-  WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
-  AND 7 <= ((julianday(substr(followup_visit_date, 7, 4) || '-'
+  WHERE 7 <= ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
@@ -7546,8 +7545,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
-  WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
-  AND 7 <= ((julianday(substr(followup_visit_date, 7, 4) || '-'
+  WHERE 7 <= ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
@@ -7564,8 +7562,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
-  WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
-  AND 7 <= ((julianday(substr(followup_visit_date, 7, 4) || '-'
+  WHERE 7 <= ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
@@ -7582,8 +7579,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
-  WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
-  AND 7 <= ((julianday(substr(followup_visit_date, 7, 4) || '-'
+  WHERE 7 <= ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
@@ -7600,8 +7596,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
-  WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
-  AND 7 <= ((julianday(substr(followup_visit_date, 7, 4) || '-'
+  WHERE 7 <= ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
@@ -7618,8 +7613,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
-  WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
-  AND 7 <= ((julianday(substr(followup_visit_date, 7, 4) || '-'
+  WHERE 7 <= ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
@@ -7636,8 +7630,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
-  WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
-  AND 7 <= ((julianday(substr(followup_visit_date, 7, 4) || '-'
+  WHERE 7 <= ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
@@ -7654,8 +7647,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
-  WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
-  AND 7 <= ((julianday(substr(followup_visit_date, 7, 4) || '-'
+  WHERE 7 <= ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
@@ -7672,8 +7664,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
-  WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
-  AND 7 <= ((julianday(substr(followup_visit_date, 7, 4) || '-'
+  WHERE 7 <= ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
@@ -7690,8 +7681,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
-  WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
-  AND 7 <= ((julianday(substr(followup_visit_date, 7, 4) || '-'
+  WHERE 7 <= ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
@@ -7708,8 +7698,7 @@ indicators:
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
-  WHERE evn.id =(SELECT MAX(id)  FROM ec_vmmc_follow_up_visit)
-  AND 7 <= ((julianday(substr(followup_visit_date, 7, 4) || '-'
+  WHERE 7 <= ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
