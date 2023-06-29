@@ -7,6 +7,7 @@ import android.content.Intent;
 
 import androidx.fragment.app.Fragment;
 
+import org.json.JSONObject;
 import org.smartregister.chw.core.activity.CoreLDRegisterActivity;
 import org.smartregister.chw.hf.fragment.LDDischargedRegisterFragment;
 import org.smartregister.chw.hf.fragment.LDRegisterFragment;
@@ -17,6 +18,8 @@ import org.smartregister.chw.ld.util.Constants;
 import org.smartregister.view.fragment.BaseRegisterFragment;
 
 public class LDRegisterActivity extends CoreLDRegisterActivity {
+    private long mLastExecutionTime = 0;
+    private static final long MINIMUM_INTERVAL_MS = 3000;
     @Override
     protected BaseRegisterFragment getRegisterFragment() {
         return new LDRegisterFragment();
@@ -48,5 +51,19 @@ public class LDRegisterActivity extends CoreLDRegisterActivity {
         Fragment[] otherFragments = new Fragment[1];
         otherFragments[0] = new LDDischargedRegisterFragment();
         return otherFragments;
+    }
+
+    @Override
+    public void startFormActivity(JSONObject jsonForm) {
+        //Necessary evil to disable multiple sequential clicks of actions that do sometimes cause app crushes
+        long currentTime = System.currentTimeMillis();
+        if (currentTime - mLastExecutionTime < MINIMUM_INTERVAL_MS) {
+            // too soon to execute the function again, ignore this call
+            return;
+        }
+
+        // record the current time as the last execution time
+        mLastExecutionTime = currentTime;
+        super.startFormActivity(jsonForm);
     }
 }

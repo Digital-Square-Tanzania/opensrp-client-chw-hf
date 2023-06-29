@@ -24,6 +24,8 @@ import java.util.Map;
  * Created by Kassim Sheghembe on 2022-05-16
  */
 public class LDPostDeliveryManagementMotherActivity extends BaseLDVisitActivity {
+    private long mLastExecutionTime = 0;
+    private static final long MINIMUM_INTERVAL_MS = 3000;
 
     public static void startPostDeliveryMotherManagementActivity(Activity activity, String baseEntityId, Boolean editMode) {
         Intent intent = new Intent(activity, LDPostDeliveryManagementMotherActivity.class);
@@ -48,6 +50,16 @@ public class LDPostDeliveryManagementMotherActivity extends BaseLDVisitActivity 
         intent.putExtra(org.smartregister.family.util.Constants.JSON_FORM_EXTRA.JSON, jsonForm.toString());
         intent.putExtra(org.smartregister.family.util.Constants.WizardFormActivity.EnableOnCloseDialog, false);
         intent.putExtra(JsonFormConstants.JSON_FORM_KEY.FORM, form);
+
+        //Necessary evil to disable multiple sequential clicks of actions that do sometimes cause app crushes
+        long currentTime = System.currentTimeMillis();
+        if (currentTime - mLastExecutionTime < MINIMUM_INTERVAL_MS) {
+            // too soon to execute the function again, ignore this call
+            return;
+        }
+
+        // record the current time as the last execution time
+        mLastExecutionTime = currentTime;
         startActivityForResult(intent, JsonFormUtils.REQUEST_CODE_GET_JSON);
     }
 
