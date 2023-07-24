@@ -1,0 +1,21 @@
+---
+name: step1_provide_consent_form_signature
+description: toaster provide_consent_form_signature relevance
+priority: 1
+condition: "step1_client_consent_for_mc_procedure.equalsIgnoreCase('yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_consent_form
+description: consent_form question relevance
+priority: 1
+condition: "step1_client_consent_for_mc_procedure.equalsIgnoreCase('yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_health_care_provider
+description: healthcare provider name relevance
+priority: 1
+condition: "step1_client_consent_for_mc_procedure.equalsIgnoreCase('yes')"
+actions:
+  - "isRelevant = true"

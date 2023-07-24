@@ -1,0 +1,7 @@
+---
+name: step1_discharge_time
+description: discharge time
+priority: 1
+condition: "!step1_discharge_condition.equalsIgnoreCase('needs')"
+actions:
+  - "isRelevant = true"

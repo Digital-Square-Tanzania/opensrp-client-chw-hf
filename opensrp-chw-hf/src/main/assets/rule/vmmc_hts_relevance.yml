@@ -1,0 +1,182 @@
+---
+name: step1_tested_hiv
+description: if step1_tested_hiv
+priority: 1
+condition: "!global_hiv_info.contains('hiv')"
+actions:
+  - "isRelevant = true "
+---
+name: step1_hiv_viral_load_text
+description: if step1_hiv_viral_load_text
+priority: 1
+condition: "global_hiv_info.contains('hiv')"
+actions:
+  - "isRelevant = true "
+---
+name: step1_toaster_notes_uds
+description: if step1_tested_hiv
+priority: 1
+condition: "global_contraindication.contains('uds')"
+actions:
+  - "isRelevant = true "
+---
+name: step1_toaster_notes_gud
+description: if step1_tested_hiv
+priority: 1
+condition: "global_contraindication.contains('gud')"
+actions:
+  - "isRelevant = true "
+---
+name: step1_toaster_notes_smegma
+description: if step1_tested_hiv
+priority: 1
+condition: "global_contraindication.contains('smegma')"
+actions:
+  - "isRelevant = true "
+---
+name: step1_toaster_notes_phimosis
+description: if step1_tested_hiv
+priority: 1
+condition: "global_contraindication.contains('phimosis')"
+actions:
+  - "isRelevant = true "
+---
+name: step1_toaster_notes_paraphimosis
+description: if step1_tested_hiv
+priority: 1
+condition: "global_contraindication.contains('paraphimosis')"
+actions:
+  - "isRelevant = true "
+---
+name: step1_toaster_notes_underscended
+description: if step1_tested_hiv
+priority: 1
+condition: "global_contraindication.contains('undescended_testicles')"
+actions:
+  - "isRelevant = true "
+---
+name: step1_toaster_notes_condylomata
+description: if step1_tested_hiv
+priority: 1
+condition: "global_contraindication.contains('condylomata_lata')"
+actions:
+  - "isRelevant = true "
+---
+name: step1_toaster_notes_adhesion
+description: if step1_tested_hiv
+priority: 1
+condition: "global_contraindication.contains('adhesion_prepuce')"
+actions:
+  - "isRelevant = true "
+---
+name: step1_toaster_notes_balanitis
+description: if step1_tested_hiv
+priority: 1
+condition: "global_contraindication.contains('balanitis')"
+actions:
+  - "isRelevant = true "
+---
+name: step1_toaster_notes_urethral
+description: if step1_tested_hiv
+priority: 1
+condition: "global_contraindication.contains('opening_abnormality')"
+actions:
+  - "isRelevant = true "
+---
+name: step1_toaster_notes_chordae
+description: if step1_tested_hiv
+priority: 1
+condition: "global_contraindication.contains('chordae')"
+actions:
+  - "isRelevant = true "
+---
+name: step1_toaster_notes_hydrocele
+description: if step1_tested_hiv
+priority: 1
+condition: "global_contraindication.contains('hydrocele')"
+actions:
+  - "isRelevant = true "
+---
+name: step1_uds_managed
+description: if step1_tested_hiv
+priority: 1
+condition: "global_contraindication.contains('uds') && step1_client_medically_cleared.equalsIgnoreCase('yes')"
+actions:
+  - "isRelevant = true "
+---
+name: step1_gud_managed
+description: if step1_tested_hiv
+priority: 1
+condition: "global_contraindication.contains('gud') && step1_client_medically_cleared.equalsIgnoreCase('yes')"
+actions:
+  - "isRelevant = true "
+---
+name: step1_smegma_managed
+description: if step1_tested_hiv
+priority: 1
+condition: "global_contraindication.contains('smegma') && step1_client_medically_cleared.equalsIgnoreCase('yes')"
+actions:
+  - "isRelevant = true "
+---
+name: step1_phimosis_managed
+description: if step1_tested_hiv
+priority: 1
+condition: "global_contraindication.contains('phimosis') && step1_client_medically_cleared.equalsIgnoreCase('yes')"
+actions:
+  - "isRelevant = true "
+---
+name: step1_paraphimosis_managed
+description: if step1_tested_hiv
+priority: 1
+condition: "global_contraindication.contains('paraphimosis') && step1_client_medically_cleared.equalsIgnoreCase('yes')"
+actions:
+  - "isRelevant = true "
+---
+name: step1_underscended_managed
+description: if step1_tested_hiv
+priority: 1
+condition: "global_contraindication.contains('undescended_testicles') && step1_client_medically_cleared.equalsIgnoreCase('yes')"
+actions:
+  - "isRelevant = true "
+---
+name: step1_condylomata_managed
+description: if step1_tested_hiv
+priority: 1
+condition: "global_contraindication.contains('condylomata_lata') && step1_client_medically_cleared.equalsIgnoreCase('yes')"
+actions:
+  - "isRelevant = true "
+---
+name: step1_adhesion_managed
+description: if step1_tested_hiv
+priority: 1
+condition: "global_contraindication.contains('adhesion_prepuce') && step1_client_medically_cleared.equalsIgnoreCase('yes')"
+actions:
+  - "isRelevant = true "
+---
+name: step1_balanitis_managed
+description: if step1_tested_hiv
+priority: 1
+condition: "global_contraindication.contains('balanitis') && step1_client_medically_cleared.equalsIgnoreCase('yes')"
+actions:
+  - "isRelevant = true "
+---
+name: step1_urethral_managed
+description: if step1_tested_hiv
+priority: 1
+condition: "global_contraindication.contains('opening_abnormality') && step1_client_medically_cleared.equalsIgnoreCase('yes')"
+actions:
+  - "isRelevant = true "
+---
+name: step1_chordae_managed
+description: if step1_tested_hiv
+priority: 1
+condition: "global_contraindication.contains('chordae') && step1_client_medically_cleared.equalsIgnoreCase('yes')"
+actions:
+  - "isRelevant = true "
+---
+name: step1_hydrocele_managed
+description: if step1_tested_hiv
+priority: 1
+condition: "global_contraindication.contains('hydrocele') && step1_client_medically_cleared.equalsIgnoreCase('yes')"
+actions:
+  - "isRelevant = true "

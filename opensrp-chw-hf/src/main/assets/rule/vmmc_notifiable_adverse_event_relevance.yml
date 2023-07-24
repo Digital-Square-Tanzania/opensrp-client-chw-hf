@@ -1,0 +1,79 @@
+---
+name: step1_did_client_experience_nae
+description: did_client_experience_nae relevance
+priority: 1
+condition: "global_method_used.contains('device') && step1_was_adverse_events_notifiable.equalsIgnoreCase('yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_did_client_experience_nae_without_device
+description: did_client_experience_nae_without_device relevance
+priority: 1
+condition: "!global_method_used.contains('device') && step1_was_adverse_events_notifiable.equalsIgnoreCase('yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_date_nae_occured
+description: date_nae_occured relevance
+priority: 1
+condition: "step1_was_adverse_events_notifiable.equalsIgnoreCase('yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_date_nae_notified
+description: date_nae_notified relevance
+priority: 1
+condition: "step1_was_adverse_events_notifiable.equalsIgnoreCase('yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_time_nae_started
+description: time_nae_started relevance
+priority: 1
+condition: "step1_was_adverse_events_notifiable.equalsIgnoreCase('yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_nature_of_ae
+description: time_nae_started relevance
+priority: 1
+condition: "step1_was_adverse_events_notifiable.equalsIgnoreCase('yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_what_done
+description: what_done relevance
+priority: 1
+condition: "step1_was_adverse_events_notifiable.equalsIgnoreCase('yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_was_nae_attended
+description: was_nae_attended relevance
+priority: 1
+condition: "step1_was_adverse_events_notifiable.equalsIgnoreCase('yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_time_nae_was_attended
+description: time_nae_was_attended relevance
+priority: 1
+condition: "step1_was_nae_attended.equalsIgnoreCase('yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_treatment_outcome
+description: treatment_outcome relevance
+priority: 1
+condition: "step1_was_nae_attended.equalsIgnoreCase('yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_toast_for_referral
+description: toast_for_referral relevance
+priority: 1
+condition: "step1_treatment_outcome.equalsIgnoreCase('adverse_event_partially_resolved')"
+actions:
+  - "isRelevant = true"
+
+
