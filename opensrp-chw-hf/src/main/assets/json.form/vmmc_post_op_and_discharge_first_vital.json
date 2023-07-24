@@ -1,0 +1,224 @@
+{
+  "count": "1",
+  "encounter_type": "Post Operation Vital Sign",
+  "validate_on_submit": true,
+  "entity_id": "",
+  "relational_id": "",
+  "metadata": {
+    "start": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "start",
+      "openmrs_entity_id": "165000AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "end": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "end",
+      "openmrs_entity_id": "165001AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "today": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "encounter",
+      "openmrs_entity_id": "encounter_date"
+    },
+    "deviceid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "deviceid",
+      "openmrs_entity_id": "165003AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "subscriberid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "subscriberid",
+      "openmrs_entity_id": "165004AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "simserial": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "simserial",
+      "openmrs_entity_id": "165005AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "phonenumber": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "phonenumber",
+      "openmrs_entity_id": "165006AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "encounter_location": "",
+    "look_up": {
+      "entity_id": "",
+      "value": ""
+    }
+  },
+  "step1": {
+    "title": "Post Operation Vital Sign",
+    "fields": [
+      {
+        "key": "pulse_rate",
+        "type": "edit_text",
+        "hint": "Pulse Rate (Beats per minute)",
+        "openmrs_entity_id": "pulse_rate",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "v_numeric": {
+          "value": "true",
+          "err": "Please enter the pulse rate"
+        },
+        "v_min": {
+          "value": "0",
+          "err": "The pulse rate must be equal or greater than 0 (bpm)"
+        },
+        "v_max": {
+          "value": "200",
+          "err": "The pulse rate must be equal or less than 200 (bpm)"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the Pulse Rate (Beats per minute)"
+        }
+      },
+      {
+        "key": "systolic",
+        "type": "edit_text",
+        "hint": "Systolic (Blood Pressure)",
+        "openmrs_entity_id": "systolic",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "v_numeric": {
+          "value": "true",
+          "err": "Please enter the systolic value"
+        },
+        "v_min": {
+          "value": "0",
+          "err": "Systolic value must be equal or greater than 0"
+        },
+        "v_max": {
+          "value": "320",
+          "err": "Systolic value must be equal or less than 320"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the Systolic (Blood Pressure)"
+        }
+      },
+      {
+        "key": "diastolic",
+        "type": "edit_text",
+        "hint": "Diastolic (Blood Pressure)",
+        "openmrs_entity_id": "diastolic",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "v_numeric": {
+          "value": "true",
+          "err": "Please enter the diastolic value"
+        },
+        "v_min": {
+          "value": "0",
+          "err": "Diastolic value must be equal or greater than 0"
+        },
+        "v_max": {
+          "value": "200",
+          "err": "Diastolic value must be equal or less than 200"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the Diastolic (Blood Pressure)"
+        },
+        "constraints": [
+          {
+            "type": "numeric",
+            "ex": "lessThan(., step1:systolic)",
+            "err": "The diastolic value must be less than the systolic value"
+          }
+        ]
+      },
+      {
+        "key": "temperature",
+        "type": "edit_text",
+        "hint": "Temperature (\u2103)",
+        "openmrs_entity_id": "temperature",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "v_numeric": {
+          "value": "true",
+          "err": "Please enter the temperature"
+        },
+        "v_min": {
+          "value": "10",
+          "err": "Temperature must be equal or greater than 10"
+        },
+        "v_max": {
+          "value": "50",
+          "err": "Temperature must be equal or less than 50"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the Temperature"
+        }
+      },
+      {
+        "key": "notify_client_has_fever",
+        "type": "toaster_notes",
+        "text": "Conduct relevant laboratory tests to elicit the cause of fever and manage according to standard guidelines ",
+        "openmrs_entity_id": "notify_client_has_fever",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "warning",
+        "relevance": {
+          "step1:temperature": {
+            "type": "numeric",
+            "ex": "greaterThan(.,\"37.8\")"
+          }
+        }
+      },
+      {
+        "key": "notify_client_has_hypothermia",
+        "type": "toaster_notes",
+        "text": "Manage the hypothermia according to standard guidelines",
+        "openmrs_entity_id": "notify_client_has_hypothermia",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "warning",
+        "relevance": {
+          "step1:temperature": {
+            "type": "numeric",
+            "ex": "lessThan(.,\"36.5\")"
+          }
+        }
+      },
+      {
+        "key": "respiration_rate",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "entity_id": "",
+        "type": "edit_text",
+        "hint": "Respiration rate (Breath per minute) ",
+        "edit_type": "number",
+        "look_up": "true",
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the Respiration rate (Breath per minute) "
+        }
+      },
+      {
+        "key": "time_taken",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "1650012AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "time_picker",
+        "hint": "Time taken",
+        "expandable": false,
+        "duration": {
+          "label": "Time taken"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please select the time taken"
+        }
+      }
+    ]
+  }
+}

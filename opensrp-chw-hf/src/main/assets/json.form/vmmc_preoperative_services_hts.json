@@ -1,0 +1,812 @@
+{
+  "validate_on_submit": true,
+  "count": "1",
+  "encounter_type": "VMMC HTS",
+  "entity_id": "",
+  "metadata": {
+    "start": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "start",
+      "openmrs_entity_id": "163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "end": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "end",
+      "openmrs_entity_id": "163138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "deviceid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "deviceid",
+      "openmrs_entity_id": "163149AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "subscriberid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "subscriberid",
+      "openmrs_entity_id": "163150AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "simserial": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "simserial",
+      "openmrs_entity_id": "163151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "phonenumber": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "phonenumber",
+      "openmrs_entity_id": "163152AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "encounter_location": ""
+  },
+  "global": {},
+  "step1": {
+    "title": "HIV testing service",
+    "fields": [
+      {
+        "key": "tested_hiv",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "native_radio",
+        "label": "Client tested for HIV as part of MC service ",
+        "label_text_size": "18px",
+        "options": [
+          {
+            "key": "yes",
+            "text": "Yes"
+          },
+          {
+            "key": "no",
+            "text": "No"
+          }
+        ],
+        "value": "",
+        "v_required": {
+          "value": true
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_hts_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "hiv_result",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "native_radio",
+        "label": "HIV test result ",
+        "label_text_size": "18px",
+        "options": [
+          {
+            "key": "positive",
+            "text": "Positive"
+          },
+          {
+            "key": "negative",
+            "text": "Negative"
+          }
+        ],
+        "value": "",
+        "v_required": {
+          "value": true
+        },
+        "relevance": {
+          "step1:tested_hiv": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
+        }
+      },
+      {
+        "key": "hiv_reasons",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "native_radio",
+        "label": "Reasons",
+        "text_color": "#000000",
+        "options": [
+          {
+            "key": "out_of_stock",
+            "text": "Test kits out of stock",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "emergency_situation",
+            "text": "a client was in an emergency situation",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "client_refused ",
+            "text": "Client refused to be tested",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "counselling",
+            "text": "we are still counselling a client",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "other",
+            "text": "Other (specify)",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          }
+        ],
+        "v_required": {
+          "value": true,
+          "err": "Please specify any other symptoms or select none"
+        },
+        "relevance": {
+          "step1:tested_hiv": {
+            "type": "string",
+            "ex": "equalTo(., \"no\")"
+          }
+        }
+      },
+      {
+        "key": "hiv_reasons_others",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "hiv_reasons_others",
+        "type": "edit_text",
+        "hint": "Other(Specify)",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
+        "relevance": {
+          "step1:hiv_reasons": {
+            "type": "string",
+            "ex": "equalTo(., \"other\")"
+          }
+        }
+      },
+      {
+        "key": "hiv_viral_load_text",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "hiv_viral_load_text",
+        "type": "edit_text",
+        "hint": "Viral load",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_hts_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "self_test_kits",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "native_radio",
+        "label": "Client offered HIV self test kits? ",
+        "label_text_size": "18px",
+        "options": [
+          {
+            "key": "yes",
+            "text": "Yes"
+          },
+          {
+            "key": "no",
+            "text": "No"
+          }
+        ],
+        "value": "",
+        "v_required": {
+          "value": true
+        }
+      },
+      {
+        "key": "client_referred_to",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "check_box",
+        "label": "Client referred to",
+        "text_color": "#000000",
+        "exclusive": [
+          "client_not_referred"
+        ],
+        "options": [
+          {
+            "key": "surgical",
+            "text": "Surgical/medical",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "ctc:",
+            "text": "CTC",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "psychosocial_support ",
+            "text": "Psychosocial support",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "client_not_referred",
+            "text": "Client not referred",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "other",
+            "text": "Other (specify)",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          }
+        ],
+        "v_required": {
+          "value": true,
+          "err": "Please specify any other symptoms or select none"
+        }
+      },
+      {
+        "key": "client_referred_to_others",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "client_referred_to_others",
+        "type": "edit_text",
+        "hint": "Other(Specify)",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
+        "relevance": {
+          "step1:client_referred_to": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "other"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "toaster_notes_uds",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person_attribute",
+        "openmrs_entity_id": "toaster_notes",
+        "type": "toaster_notes",
+        "text": "Client Contraindication UDS",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_hts_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "toaster_notes_gud",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person_attribute",
+        "openmrs_entity_id": "toaster_notes",
+        "type": "toaster_notes",
+        "text": "Client Contraindication GUD",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_hts_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "toaster_notes_smegma",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person_attribute",
+        "openmrs_entity_id": "toaster_notes",
+        "type": "toaster_notes",
+        "text": "Client Contraindication Smegma under the foreskin",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_hts_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "toaster_notes_phimosis",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person_attribute",
+        "openmrs_entity_id": "toaster_notes",
+        "type": "toaster_notes",
+        "text": "Client Contraindication Phimosis",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_hts_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "toaster_notes_paraphimosis",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person_attribute",
+        "openmrs_entity_id": "toaster_notes",
+        "type": "toaster_notes",
+        "text": "Client Contraindication Paraphimosis",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_hts_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "toaster_notes_underscended",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person_attribute",
+        "openmrs_entity_id": "toaster_notes",
+        "type": "toaster_notes",
+        "text": "Client Contraindication Underscended testicles",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_hts_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "toaster_notes_condylomata",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person_attribute",
+        "openmrs_entity_id": "toaster_notes",
+        "type": "toaster_notes",
+        "text": "Client Contraindication Condylomata lata/acuminate",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_hts_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "toaster_notes_adhesion",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person_attribute",
+        "openmrs_entity_id": "toaster_notes",
+        "type": "toaster_notes",
+        "text": "Client Contraindication Adhesion of prepuce to glans",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_hts_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "toaster_notes_balanitis",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person_attribute",
+        "openmrs_entity_id": "toaster_notes",
+        "type": "toaster_notes",
+        "text": "Client Contraindication Balanitis/ redness/ swelling of foreskin/glans/shaft",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_hts_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "toaster_notes_urethral",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person_attribute",
+        "openmrs_entity_id": "toaster_notes",
+        "type": "toaster_notes",
+        "text": "Client Contraindication Urethral opening abnormality",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_hts_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "toaster_notes_chordae",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person_attribute",
+        "openmrs_entity_id": "toaster_notes",
+        "type": "toaster_notes",
+        "text": "Client Contraindication Chordae (banana shaped penis)",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_hts_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "toaster_notes_hydrocele",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person_attribute",
+        "openmrs_entity_id": "toaster_notes",
+        "type": "toaster_notes",
+        "text": "Client Contraindication hydrocele",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_hts_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "client_medically_cleared",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "native_radio",
+        "label": "Client medically cleared for MC procedure?",
+        "label_text_size": "18px",
+        "options": [
+          {
+            "key": "yes",
+            "text": "Yes"
+          },
+          {
+            "key": "no",
+            "text": "No"
+          }
+        ],
+        "value": "",
+        "v_required": {
+          "value": true
+        }
+      },
+      {
+        "key": "mc_reasons",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "hint": "Reasons",
+        "edit_type": "name",
+        "v_regex": {
+          "value": "[A-Za-z\\s\\.\\-]*",
+          "err": "Please enter a valid reason"
+        },
+        "v_required": {
+          "value": true,
+          "err": "Please specify the reason"
+        },
+        "relevance": {
+          "step1:client_medically_cleared": {
+            "type": "string",
+            "ex": "equalTo(., \"no\")"
+          }
+        }
+      },
+      {
+        "key": "uds_managed",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "entity_id": "",
+        "type": "edit_text",
+        "hint": "How was UDS  managed ",
+        "edit_type": "name",
+        "look_up": "true",
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the UDS  managed "
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_hts_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "smegma_managed",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "entity_id": "",
+        "type": "edit_text",
+        "hint": "How was Smegma under the foreskin managed ?",
+        "edit_type": "name",
+        "look_up": "true",
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the Pallor  managed"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_hts_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "gud_managed",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "entity_id": "",
+        "type": "edit_text",
+        "hint": "How was GUD  managed ?",
+        "edit_type": "name",
+        "look_up": "true",
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the GUD  managed"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_hts_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "phimosis_managed",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "entity_id": "",
+        "type": "edit_text",
+        "hint": "How was Phimosis  managed ?",
+        "edit_type": "name",
+        "look_up": "true",
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the Phimosis  managed"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_hts_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "paraphimosis_managed",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "entity_id": "",
+        "type": "edit_text",
+        "hint": "How was Paraphimosis  managed ?",
+        "edit_type": "name",
+        "look_up": "true",
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the Paraphimosis  managed"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_hts_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "underscended_managed",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "entity_id": "",
+        "type": "edit_text",
+        "hint": "How was Underscended testicles  managed ?",
+        "edit_type": "name",
+        "look_up": "true",
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the Underscended testicles  managed"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_hts_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "condylomata_managed",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "entity_id": "",
+        "type": "edit_text",
+        "hint": "How was Condylomata lata/acuminate  managed ?",
+        "edit_type": "name",
+        "look_up": "true",
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the Condylomata lata/acuminate  managed"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_hts_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "adhesion_managed",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "entity_id": "",
+        "type": "edit_text",
+        "hint": "How was Adhesion of prepuce to glans  managed ?",
+        "edit_type": "name",
+        "look_up": "true",
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the Adhesion of prepuce to glans  managed"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_hts_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "balanitis_managed",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "entity_id": "",
+        "type": "edit_text",
+        "hint": "How was Balanitis/ redness/ swelling of foreskin/glans/shaft  managed ?",
+        "edit_type": "name",
+        "look_up": "true",
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the Balanitis/ redness/ swelling of foreskin/glans/shaft  managed"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_hts_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "urethral_managed",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "entity_id": "",
+        "type": "edit_text",
+        "hint": "How was Urethral opening abnormality  managed ?",
+        "edit_type": "name",
+        "look_up": "true",
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the Urethral opening abnormality  managed"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_hts_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "chordae_managed",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "entity_id": "",
+        "type": "edit_text",
+        "hint": "How was Chordae (banana shaped penis) managed ?",
+        "edit_type": "name",
+        "look_up": "true",
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the Chordae (banana shaped penis) managed"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_hts_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "hydrocele_managed",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "entity_id": "",
+        "type": "edit_text",
+        "hint": "How was hydrocele managed?",
+        "edit_type": "name",
+        "look_up": "true",
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the hydrocele managed"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_hts_relevance.yml"
+            }
+          }
+        }
+      }
+    ]
+  }
+}

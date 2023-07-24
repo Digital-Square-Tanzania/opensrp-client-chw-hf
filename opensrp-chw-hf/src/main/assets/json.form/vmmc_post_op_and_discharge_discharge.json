@@ -1,0 +1,293 @@
+{
+  "count": "1",
+  "encounter_type": "Discharge",
+  "validate_on_submit": true,
+  "entity_id": "",
+  "relational_id": "",
+  "metadata": {
+    "start": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "start",
+      "openmrs_entity_id": "165000AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "end": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "end",
+      "openmrs_entity_id": "165001AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "today": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "encounter",
+      "openmrs_entity_id": "encounter_date"
+    },
+    "deviceid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "deviceid",
+      "openmrs_entity_id": "165003AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "subscriberid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "subscriberid",
+      "openmrs_entity_id": "165004AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "simserial": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "simserial",
+      "openmrs_entity_id": "165005AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "phonenumber": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "phonenumber",
+      "openmrs_entity_id": "165006AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "encounter_location": "",
+    "look_up": {
+      "entity_id": "",
+      "value": ""
+    }
+  },
+  "step1": {
+    "title": "Discharge Form",
+    "fields": [
+      {
+        "key": "discharge_condition",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "165007AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "native_radio",
+        "label": "General condition at discharge",
+        "options": [
+          {
+            "key":"satisfactory",
+            "text": "Satisfactory",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "satisfactory"
+          },
+          {
+            "key":"needs",
+            "text": "Needs follow-up",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "needs"
+          },
+          {
+            "key":"not_discharged",
+            "text": "Not discharged",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "not_discharged"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select the general condition at discharge"
+        }
+      },
+      {
+        "key": "discharged_reasons",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "discharged_reasons",
+        "type": "edit_text",
+        "hint": "Specify Discharge Reason",
+        "edit_type": "text",
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the reason"
+        },
+        "relevance": {
+          "step1:discharge_condition": {
+            "type": "string",
+            "ex": "equalTo(., \"not_discharged\")"
+          }
+        }
+      },
+      {
+        "key": "analgesics_given",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "analgesics_given",
+        "type": "native_radio",
+        "label": "Analgesics Given",
+        "options": [
+          {
+            "key":"yes",
+            "text": "Yes",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "yes"
+          },
+          {
+            "key":"no",
+            "text": "No",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "no"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select the analgesics given"
+        }
+      },
+      {
+        "key": "analgenics_type",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "analgenics_type",
+        "type": "edit_text",
+        "hint": "Specify Analgesics Type",
+        "edit_type": "text",
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the type"
+        },
+        "relevance": {
+          "step1:analgesics_given": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
+        }
+      },
+      {
+        "key": "analgenics_dosage",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "analgenics_dosage",
+        "type": "edit_text",
+        "hint": "Specify Analgesics Dosage",
+        "edit_type": "text",
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the dosage"
+        },
+        "relevance": {
+          "step1:analgesics_given": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
+        }
+      },
+      {
+        "key": "analgenics_reasons",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "analgenics_reasons",
+        "type": "edit_text",
+        "hint": "Specify",
+        "edit_type": "text",
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the reason"
+        },
+        "relevance": {
+          "step1:analgesics_given": {
+            "type": "string",
+            "ex": "equalTo(., \"no\")"
+          }
+        }
+      },
+      {
+        "key": "discharge_time",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "1650010AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "time_picker",
+        "hint": "Discharge Time",
+        "expandable": false,
+        "duration": {
+          "label": "Discharge Time"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please select the discharge time"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_discharge_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "discharging_name",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "1650011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "edit_text",
+        "hint": "Provider's name",
+        "edit_type": "text",
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the discharging provider's name"
+        }
+      },
+      {
+        "key": "provider_cadre",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "provider_cadre",
+        "type": "native_radio",
+        "label": "Provider's cadre",
+        "options": [
+          {
+            "key": "assistant_medical_officer",
+            "text": "Medical officer",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": "assistant_medical_officer",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "assistant_assistant_medical_officer",
+            "text": "Assistant medical officer",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": "assistant_assistant_medical_officer",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "assistant_clinical_officer_or_assistant",
+            "text": "Clinical officer/Assistant clinical officer",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": "assistant_clinical_officer_or_assistant",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "assistant_enrolled_nurse",
+            "text": "Enrolled nurse",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": "assistant_enrolled_nurse",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "assistant_assistant_nursing_officer",
+            "text": "Assistant nursing officer",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": "assistant_assistant_nursing_officer",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "assistant_nursing_officer",
+            "text": "Nursing officer",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": "assistant_nursing_officer",
+            "openmrs_entity_parent": ""
+          }
+        ],
+        "v_required": {
+          "value": true,
+          "err": "Please select atleast one"
+        }
+      }
+
+    ]
+  }
+}

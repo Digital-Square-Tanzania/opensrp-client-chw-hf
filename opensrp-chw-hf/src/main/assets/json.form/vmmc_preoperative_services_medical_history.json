@@ -1,0 +1,744 @@
+{
+  "validate_on_submit": true,
+  "count": "1",
+  "encounter_type": "VMMC Medical History",
+  "entity_id": "",
+  "metadata": {
+    "start": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "start",
+      "openmrs_entity_id": "163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "end": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "end",
+      "openmrs_entity_id": "163138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "deviceid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "deviceid",
+      "openmrs_entity_id": "163149AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "subscriberid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "subscriberid",
+      "openmrs_entity_id": "163150AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "simserial": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "simserial",
+      "openmrs_entity_id": "163151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "phonenumber": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "phonenumber",
+      "openmrs_entity_id": "163152AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "encounter_location": ""
+  },
+  "global": {},
+  "step1": {
+    "title": "Medical History",
+    "fields": [
+      {
+        "key": "has_client_had_any_sti",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "native_radio",
+        "label": "Has the client had any STIs in the last 3 months ?",
+        "label_text_size": "18px",
+        "options": [
+          {
+            "key": "yes",
+            "text": "Yes"
+          },
+          {
+            "key": "no",
+            "text": "No"
+          },
+          {
+            "key": "not_applicable",
+            "text": "Not Applicable"
+          }
+        ],
+        "value": "",
+        "v_required": {
+          "value": true
+        }
+      },
+      {
+        "key": "has_client_had_any_sti_note",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person_attribute",
+        "openmrs_entity_id": "toaster_notes",
+        "type": "toaster_notes",
+        "text": "Do not perform Male circumcision link/refer to other service",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "step1:has_client_had_any_sti": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
+        }
+      },
+      {
+        "key": "any_complaints",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "check_box",
+        "label": "Does the client currently have any of the following complaints?",
+        "text_color": "#000000",
+        "exclusive": [
+          "none"
+        ],
+        "options": [
+          {
+            "key": "urethral_discharge",
+            "text": "Urethral discharge",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "pain_on_erection",
+            "text": "Pain on erection",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "painful_micturition",
+            "text": "Painful micturition",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "genital_warts",
+            "text": "Genital warts",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "genital_sore",
+            "text": "Genital sore (ulcer)",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "swelling_scrotum",
+            "text": "Swelling of the scrotum",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "difficulty_retracting_foreskin",
+            "text": "Difficulty in retracting foreskin",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "others",
+            "text": "Others (specify)",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "none",
+            "text": "None",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          }
+        ],
+        "v_required": {
+          "value": true,
+          "err": "Please specify any other symptoms or select none"
+        }
+      },
+      {
+        "key": "any_complaints_others",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "any_complaints_others",
+        "type": "edit_text",
+        "hint": "Other(Specify)",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
+        "relevance": {
+          "step1:any_complaints": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "others"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "toaster_any_complaints",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person_attribute",
+        "openmrs_entity_id": "toaster_notes",
+        "type": "toaster_notes",
+        "text": "Do not perform Male circumcision link/refer to other service",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "step1:any_complaints": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "urethral_discharge",
+                  "pain_on_erection",
+                  "painful_micturition",
+                  "genital_warts",
+                  "genital_sore",
+                  "swelling_scrotum",
+                  "difficulty_retracting_foreskin",
+                  "others"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "client_diagnosed",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "check_box",
+        "label": "Is client diagnosed with any of the following?",
+        "text_color": "#000000",
+        "exclusive": [
+          "none"
+        ],
+        "options": [
+          {
+            "key": "hypertension",
+            "text": "Hypertension",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "diabetes",
+            "text": "Diabetes",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "hiv",
+            "text": "HIV",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "others",
+            "text": "Others (specify)",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "none",
+            "text": "None",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          }
+        ],
+        "v_required": {
+          "value": true,
+          "err": "Please specify any other symptoms or select none"
+        }
+      },
+      {
+        "key": "client_diagnosed_others",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "client_diagnosed_others",
+        "type": "edit_text",
+        "hint": "Other(Specify)",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
+        "relevance": {
+          "step1:client_diagnosed": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "others"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "ctc_number",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "ctc_number",
+        "type": "mask_edit_text",
+        "mask": "##-##-####-######",
+        "mask_hint": "12345678912345",
+        "allowed_chars": "0123456789",
+        "hint": "CTC Number e.g 12-34-5678-912345",
+        "edit_type": "number",
+        "v_regex": {
+          "value": "(\\d{2}-\\d{2}-\\d{4}-\\d{6})?",
+          "err": "CTC Number should be of the format (XX-XX-XXXX-XXXXXX)"
+        },
+        "v_max_length": {
+          "value": "17",
+          "is_fixed_size": "true",
+          "err": "Please enter a valid ctc Number"
+        },
+        "v_required": {
+          "value": true,
+          "err": "Please enter a valid ctc Number"
+        },
+        "relevance": {
+          "step1:client_diagnosed": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "hiv"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "diabetes_treatment",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "native_radio",
+        "label": "Is client on treatment for diabetes?",
+        "label_text_size": "18px",
+        "options": [
+          {
+            "key": "yes",
+            "text": "Yes"
+          },
+          {
+            "key": "no",
+            "text": "No"
+          }
+        ],
+        "value": "",
+        "v_required": {
+          "value": true
+        },
+        "relevance": {
+          "step1:client_diagnosed": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "diabetes"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "hypertension_treatment",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "native_radio",
+        "label": "Is client on treatment for hypertension?",
+        "label_text_size": "18px",
+        "options": [
+          {
+            "key": "yes",
+            "text": "Yes"
+          },
+          {
+            "key": "no",
+            "text": "No"
+          }
+        ],
+        "value": "",
+        "v_required": {
+          "value": true
+        },
+        "relevance": {
+          "step1:client_diagnosed": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "hypertension"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "surgical_procedure",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "native_radio",
+        "label": "Has a client ever had any surgical procedure ?",
+        "label_text_size": "18px",
+        "options": [
+          {
+            "key": "yes",
+            "text": "Yes"
+          },
+          {
+            "key": "no",
+            "text": "No"
+          }
+        ],
+        "value": "",
+        "v_required": {
+          "value": true
+        }
+      },
+      {
+        "key": "complications_previous_surgical",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "native_radio",
+        "label": "Any complications related to previous surgical procedure?",
+        "label_text_size": "18px",
+        "options": [
+          {
+            "key": "yes",
+            "text": "Yes"
+          },
+          {
+            "key": "no",
+            "text": "No"
+          }
+        ],
+        "value": "",
+        "v_required": {
+          "value": true
+        },
+        "relevance": {
+          "step1:surgical_procedure": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
+        }
+      },
+      {
+        "key": "type_complication",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "check_box",
+        "label": "Select the type of complication",
+        "text_color": "#000000",
+        "options": [
+          {
+            "key": "infection",
+            "text": "Infection",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "excessive_bleeding",
+            "text": "Excessive bleeding",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "others",
+            "text": "Others (specify)",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          }
+        ],
+        "v_required": {
+          "value": true,
+          "err": "Please specify any other symptoms or select none"
+        },
+        "relevance": {
+          "step1:complications_previous_surgical": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
+        }
+      },
+      {
+        "key": "type_complication_others",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "type_complication_others",
+        "type": "edit_text",
+        "hint": "Other(Specify)",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
+        "relevance": {
+          "step1:type_complication": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "others"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "hematological_disease",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "check_box",
+        "label": "Any symptoms of hematological disease? (Check all applicable)",
+        "text_color": "#000000",
+        "exclusive": [
+          "none"
+        ],
+        "options": [
+          {
+            "key": "recurrent_blood_transfusion",
+            "text": "Recurrent blood transfusion",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "treated_anemia",
+            "text": "Being treated for anemia",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "prolonged_bleeding",
+            "text": "Prolonged bleeding (following tooth extraction, any surgery or minor trauma)",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "yellowish_discoloration",
+            "text": "Yellowish discoloration of mucus membrane",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "spontaneous_bleeding",
+            "text": "Spontaneous bleeding (without trauma e.g nasal bleeding)",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "abnormal_bleeding_sites",
+            "text": "Abnormal bleeding sites (Mucous membrane or under the skin)",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "severe_swelling",
+            "text": "Severe swelling following minor trauma",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "bleeding_tendencies",
+            "text": "Any family history of bleeding tendencies",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "none",
+            "text": "None",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          }
+        ],
+        "v_required": {
+          "value": true,
+          "err": "Please specify any other symptoms or select none"
+        }
+      },
+      {
+        "key": "hematological_disease_notes",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person_attribute",
+        "openmrs_entity_id": "toaster_notes",
+        "type": "toaster_notes",
+        "text": "Do not circumcise, refer the client to the facility with hematological services",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "step1:hematological_disease": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "recurrent_blood_transfusion",
+                  "treated_anemia",
+                  "prolonged_bleeding",
+                  "yellowish_discoloration",
+                  "spontaneous_bleeding",
+                  "abnormal_bleeding_sites",
+                  "severe_swelling",
+                  "bleeding_tendencies"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "known_allergies",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "check_box",
+        "label": "Any known allergies to any of these medications?",
+        "text_color": "#000000",
+        "exclusive": [
+          "none"
+        ],
+        "options": [
+          {
+            "key": "local_anesthetics",
+            "text": "Local Anesthetics",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "antiseptics",
+            "text": "Antiseptics",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "any_other_medications",
+            "text": "Any other medications (specify)",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "none",
+            "text": "None",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          }
+        ],
+        "v_required": {
+          "value": true,
+          "err": "Please specify any other symptoms or select none"
+        }
+      },
+      {
+        "key": "known_allergies_others",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "known_allergies_others",
+        "type": "edit_text",
+        "hint": "Other medication(Specify)",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
+        "relevance": {
+          "step1:known_allergies": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "any_other_medications"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "tetanus_vaccination",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "native_radio",
+        "label": "Any history of Tetanus vaccination?",
+        "label_text_size": "18px",
+        "options": [
+          {
+            "key": "yes",
+            "text": "Yes"
+          },
+          {
+            "key": "no",
+            "text": "No"
+          },
+          {
+            "key": "dont_know",
+            "text": "Don’t know"
+          }
+        ],
+        "value": "",
+        "v_required": {
+          "value": true
+        }
+      },
+      {
+        "key": "tetanus_booster_date",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "date_picker",
+        "hint": "Date of most recent tetanus booster",
+        "expanded": false,
+        "max_date": "today",
+        "relevance": {
+          "step1:tetanus_vaccination": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
+        }
+      }
+    ]
+  }
+}
