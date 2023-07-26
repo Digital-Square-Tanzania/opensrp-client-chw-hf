@@ -49,8 +49,8 @@
       {
         "key": "physical_abnormality",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "physical_abnormality",
         "type": "check_box",
         "label": "Any significant physical abnormality on general examination? (Check all applicable)",
         "text_color": "#000000",
@@ -62,43 +62,43 @@
             "key": "pallor",
             "text": "Pallor",
             "value": false,
-            "openmrs_entity": "",
-            "openmrs_entity_id": ""
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "pallor"
           },
           {
             "key": "jaundice",
             "text": "Jaundice",
             "value": false,
-            "openmrs_entity": "",
-            "openmrs_entity_id": ""
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "jaundice"
           },
           {
             "key": "petechiae",
             "text": "Petechiae/Ecchymosis/Epistaxis",
             "value": false,
-            "openmrs_entity": "",
-            "openmrs_entity_id": ""
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "petechiae"
           },
           {
             "key": "joint_deformity",
             "text": "Joint deformity ",
             "value": false,
-            "openmrs_entity": "",
-            "openmrs_entity_id": ""
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "joint_deformity"
           },
           {
             "key": "others",
             "text": "Others (specify)",
             "value": false,
-            "openmrs_entity": "",
-            "openmrs_entity_id": ""
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "others"
           },
           {
             "key": "none",
             "text": "None",
             "value": false,
-            "openmrs_entity": "",
-            "openmrs_entity_id": ""
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "none"
           }
         ],
         "v_required": {
@@ -132,8 +132,8 @@
       {
         "key": "toaster_physical_abnormality",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "person_attribute",
-        "openmrs_entity_id": "toaster_notes",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "toaster_physical_abnormality",
         "type": "toaster_notes",
         "text": "Do not perform Male circumcision link/refer to other service",
         "text_color": "#CF0800",
@@ -157,8 +157,8 @@
       {
         "key": "client_weight",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "client_weight",
         "entity_id": "",
         "type": "edit_text",
         "hint": "Client’s Weight (KG)",
@@ -371,8 +371,8 @@
       {
         "key": "respiration_rate",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "respiration_rate",
         "entity_id": "",
         "type": "edit_text",
         "hint": "Respiration rate (Breath per minute) ",
@@ -386,8 +386,8 @@
       {
         "key": "genital_examination",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "genital_examination",
         "type": "check_box",
         "label": "Genital examination",
         "text_color": "#000000",
@@ -399,43 +399,43 @@
             "key": "uds",
             "text": "UDS",
             "value": false,
-            "openmrs_entity": "",
-            "openmrs_entity_id": ""
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "uds"
           },
           {
             "key": "gud",
             "text": "GUD",
             "value": false,
-            "openmrs_entity": "",
-            "openmrs_entity_id": ""
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "gud"
           },
           {
             "key": "smegma",
             "text": "Smegma under the foreskin",
             "value": false,
-            "openmrs_entity": "",
-            "openmrs_entity_id": ""
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "smegma"
           },
           {
             "key": "phimosis",
             "text": "Phimosis",
             "value": false,
-            "openmrs_entity": "",
-            "openmrs_entity_id": ""
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "phimosis"
           },
           {
             "key": "paraphimosis",
             "text": "Paraphimosis",
             "value": false,
-            "openmrs_entity": "",
-            "openmrs_entity_id": ""
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "paraphimosis"
           },
           {
             "key": "undescended_testicles",
             "text": "Undescended testicles",
             "value": false,
-            "openmrs_entity": "",
-            "openmrs_entity_id": ""
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "undescended_testicles"
           },
           {
             "key": "condylomata_lata",
@@ -448,50 +448,50 @@
             "key": "adhesion_prepuce",
             "text": "Adhesion of prepuce to glans",
             "value": false,
-            "openmrs_entity": "",
-            "openmrs_entity_id": ""
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "adhesion_prepuce"
           },
           {
             "key": "hydrocele",
             "text": "Hydrocele",
             "value": false,
-            "openmrs_entity": "",
-            "openmrs_entity_id": ""
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "hydrocele"
           },
           {
             "key": "balanitis",
             "text": "Balanitis/redness/swelling of foreskin/ glans/ shaft",
             "value": false,
-            "openmrs_entity": "",
-            "openmrs_entity_id": ""
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "balanitis"
           },
           {
             "key": "opening_abnormality",
             "text": "Urethral opening abnormality",
             "value": false,
-            "openmrs_entity": "",
-            "openmrs_entity_id": ""
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "opening_abnormality"
           },
           {
             "key": "chordae",
             "text": "Chordae (banana shaped penis)",
             "value": false,
-            "openmrs_entity": "",
-            "openmrs_entity_id": ""
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chordae"
           },
           {
             "key": "others",
             "text": "Others (specify)",
             "value": false,
-            "openmrs_entity": "",
-            "openmrs_entity_id": ""
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "others"
           },
           {
             "key": "none",
             "text": "None",
             "value": false,
-            "openmrs_entity": "",
-            "openmrs_entity_id": ""
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "none"
           }
         ],
         "v_required": {
@@ -525,8 +525,8 @@
       {
         "key": "toaster_genital_examination",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "person_attribute",
-        "openmrs_entity_id": "toaster_notes",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "toaster_genital_examination",
         "type": "toaster_notes",
         "text": "Do not perform Male circumcision  until the issue is resolved/refer to other service",
         "text_color": "#CF0800",
@@ -556,8 +556,8 @@
       {
         "key": "preferred_client",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "preferred_client",
         "type": "native_radio",
         "label": "Preferred client’s MC method",
         "label_text_size": "18px",
@@ -579,8 +579,8 @@
       {
         "key": "penile_size",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "penile_size",
         "type": "native_radio",
         "label": "Select appropriate device size for client’s penile size",
         "label_text_size": "18px",

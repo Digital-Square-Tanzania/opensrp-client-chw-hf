@@ -59,24 +59,24 @@
         "key": "discharge_condition",
         "openmrs_entity_parent": "",
         "openmrs_entity": "",
-        "openmrs_entity_id": "165007AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "openmrs_entity_id": "discharge_condition",
         "type": "native_radio",
         "label": "General condition at discharge",
         "options": [
           {
-            "key":"satisfactory",
+            "key": "satisfactory",
             "text": "Satisfactory",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "satisfactory"
           },
           {
-            "key":"needs",
+            "key": "needs",
             "text": "Needs follow-up",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "needs"
           },
           {
-            "key":"not_discharged",
+            "key": "not_discharged",
             "text": "Not discharged",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "not_discharged"
@@ -90,7 +90,7 @@
       {
         "key": "discharged_reasons",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "discharged_reasons",
         "type": "edit_text",
         "hint": "Specify Discharge Reason",
@@ -109,19 +109,19 @@
       {
         "key": "analgesics_given",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "analgesics_given",
         "type": "native_radio",
         "label": "Analgesics Given",
         "options": [
           {
-            "key":"yes",
+            "key": "yes",
             "text": "Yes",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "yes"
           },
           {
-            "key":"no",
+            "key": "no",
             "text": "No",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "no"
@@ -135,7 +135,7 @@
       {
         "key": "analgenics_type",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "analgenics_type",
         "type": "edit_text",
         "hint": "Specify Analgesics Type",
@@ -154,7 +154,7 @@
       {
         "key": "analgenics_dosage",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "analgenics_dosage",
         "type": "edit_text",
         "hint": "Specify Analgesics Dosage",
@@ -173,7 +173,7 @@
       {
         "key": "analgenics_reasons",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "analgenics_reasons",
         "type": "edit_text",
         "hint": "Specify",
@@ -192,8 +192,8 @@
       {
         "key": "discharge_time",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "1650010AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "discharge_time",
         "type": "time_picker",
         "hint": "Discharge Time",
         "expandable": false,
@@ -215,8 +215,8 @@
       {
         "key": "discharging_name",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "1650011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "discharging_name",
         "type": "edit_text",
         "hint": "Provider's name",
         "edit_type": "text",
@@ -228,7 +228,7 @@
       {
         "key": "provider_cadre",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "provider_cadre",
         "type": "native_radio",
         "label": "Provider's cadre",
@@ -237,7 +237,7 @@
             "key": "assistant_medical_officer",
             "text": "Medical officer",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "assistant_medical_officer",
             "openmrs_entity_parent": ""
           },
@@ -245,7 +245,7 @@
             "key": "assistant_assistant_medical_officer",
             "text": "Assistant medical officer",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "assistant_assistant_medical_officer",
             "openmrs_entity_parent": ""
           },
@@ -253,7 +253,7 @@
             "key": "assistant_clinical_officer_or_assistant",
             "text": "Clinical officer/Assistant clinical officer",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "assistant_clinical_officer_or_assistant",
             "openmrs_entity_parent": ""
           },
@@ -261,7 +261,7 @@
             "key": "assistant_enrolled_nurse",
             "text": "Enrolled nurse",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "assistant_enrolled_nurse",
             "openmrs_entity_parent": ""
           },
@@ -269,7 +269,7 @@
             "key": "assistant_assistant_nursing_officer",
             "text": "Assistant nursing officer",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "assistant_assistant_nursing_officer",
             "openmrs_entity_parent": ""
           },
@@ -277,7 +277,7 @@
             "key": "assistant_nursing_officer",
             "text": "Nursing officer",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "assistant_nursing_officer",
             "openmrs_entity_parent": ""
           }
@@ -287,7 +287,6 @@
           "err": "Please select atleast one"
         }
       }
-
     ]
   }
 }

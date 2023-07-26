@@ -191,8 +191,8 @@
       {
         "key": "respiration_rate",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "respiration_rate",
         "entity_id": "",
         "type": "edit_text",
         "hint": "Respiration rate (Breath per minute) ",
@@ -206,8 +206,8 @@
       {
         "key": "time_taken",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "1650012AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "time_taken",
         "type": "time_picker",
         "hint": "Time taken",
         "expandable": false,

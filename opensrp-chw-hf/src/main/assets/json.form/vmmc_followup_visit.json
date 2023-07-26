@@ -89,7 +89,6 @@
           "err": "Please select the visit type"
         }
       },
-
       {
         "key": "comment_vmmc_followup",
         "openmrs_entity_parent": "",
@@ -98,13 +97,12 @@
         "type": "edit_text",
         "hint": "Notes"
       },
-
       {
         "key": "post_op_adverse_event_occur",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "post_op_adverse_event_occur",
-        "label": "Did post-operative adverse event occur ?",
+        "label": "Did post-operative adverse event occur?",
         "text_color": "#000000",
         "type": "native_radio",
         "options": [
@@ -128,7 +126,6 @@
           "err": "Please select at least one"
         }
       },
-
       {
         "key": "time_of_adverse_event_occured",
         "openmrs_entity_parent": "",
@@ -148,14 +145,13 @@
           }
         }
       },
-
       {
         "key": "time_of_adverse_event_attended",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "time_of_adverse_event_attended",
         "type": "time_picker",
-        "hint": "Time The adverse event was attended ",
+        "hint": "Time the adverse event was attended ",
         "expanded": false,
         "v_required": {
           "value": "true",
@@ -171,7 +167,7 @@
       {
         "key": "type_of_adverse_event",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "type_of_adverse_event",
         "type": "check_box",
         "label": "Type of adverse event",
@@ -180,7 +176,7 @@
             "key": "bleeding",
             "text": "Bleeding or blood soiling of dressing",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "bleeding",
             "openmrs_entity_parent": ""
           },
@@ -188,7 +184,7 @@
             "key": "swelling",
             "text": "Swelling of the penis or scrotum",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "swelling",
             "openmrs_entity_parent": ""
           },
@@ -196,7 +192,7 @@
             "key": "persistent_pain",
             "text": "Persistent pain",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "Persistent_pain",
             "openmrs_entity_parent": ""
           },
@@ -204,7 +200,7 @@
             "key": "infection",
             "text": "Infection",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "infection",
             "openmrs_entity_parent": ""
           },
@@ -212,7 +208,7 @@
             "key": "failure_pass_urine",
             "text": "Failure to pass urine",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "failure_pass_urine",
             "openmrs_entity_parent": ""
           },
@@ -220,7 +216,7 @@
             "key": "device_displacement",
             "text": "Device displacement",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "device_displacement",
             "openmrs_entity_parent": ""
           },
@@ -228,7 +224,7 @@
             "key": "device_detachment",
             "text": "Device detachment",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "device_detachment",
             "openmrs_entity_parent": ""
           },
@@ -236,7 +232,7 @@
             "key": "insufficient_skin_removal",
             "text": "Insufficient skin removal",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "insufficient_skin_removal",
             "openmrs_entity_parent": ""
           },
@@ -245,7 +241,7 @@
             "text": "Others",
             "value": false,
             "ignore": true,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "others",
             "openmrs_entity_parent": ""
           }
@@ -336,7 +332,7 @@
         "key": "ae_classified_as_mild_infection",
         "type": "toaster_notes",
         "text": "AE classified as MILD",
-        "openmrs_entity_id": "ae_classified_as_mild",
+        "openmrs_entity_id": "ae_classified_as_mild_infection",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "info",
@@ -351,7 +347,7 @@
         "key": "ae_classified_as_moderate_infection",
         "type": "toaster_notes",
         "text": "AE classified as MODERATE",
-        "openmrs_entity_id": "ae_classified_as_moderate",
+        "openmrs_entity_id": "ae_classified_as_moderate_infection",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "warning",
@@ -366,7 +362,7 @@
         "key": "ae_classified_as_severe_infection",
         "type": "toaster_notes",
         "text": "AE classified as SEVERE",
-        "openmrs_entity_id": "ae_classified_as_severe",
+        "openmrs_entity_id": "ae_classified_as_severe_infection",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "problem",
@@ -400,7 +396,6 @@
             "openmrs_entity": "concept",
             "openmrs_entity_id": "5_or_6_on_pain_scale"
           },
-
           {
             "key": "7_on_pain_scale",
             "text": "7 on pain scale",
@@ -429,7 +424,7 @@
         "key": "ae_classified_as_mild_pain",
         "type": "toaster_notes",
         "text": "AE classified as MILD",
-        "openmrs_entity_id": "ae_classified_as_mild",
+        "openmrs_entity_id": "ae_classified_as_mild_pain",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "info",
@@ -444,7 +439,7 @@
         "key": "ae_classified_as_moderate_pain",
         "type": "toaster_notes",
         "text": "AE classified as MODERATE",
-        "openmrs_entity_id": "ae_classified_as_moderate",
+        "openmrs_entity_id": "ae_classified_as_moderate_pain",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "warning",
@@ -459,7 +454,7 @@
         "key": "ae_classified_as_severe_pain",
         "type": "toaster_notes",
         "text": "AE classified as SEVERE",
-        "openmrs_entity_id": "ae_classified_as_severe",
+        "openmrs_entity_id": "ae_classified_as_severe_pain",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "problem",
@@ -493,7 +488,6 @@
             "openmrs_entity": "concept",
             "openmrs_entity_id": "pressure_dressing"
           },
-
           {
             "key": "blood_transfusion",
             "text": "Blood transfusion or transfer to another facility required",
@@ -522,7 +516,7 @@
         "key": "ae_classified_as_mild_bleeding",
         "type": "toaster_notes",
         "text": "AE classified as MILD",
-        "openmrs_entity_id": "ae_classified_as_mild",
+        "openmrs_entity_id": "ae_classified_as_mild_bleeding",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "info",
@@ -537,7 +531,7 @@
         "key": "ae_classified_as_moderate_bleeding",
         "type": "toaster_notes",
         "text": "AE classified as MODERATE",
-        "openmrs_entity_id": "ae_classified_as_moderate",
+        "openmrs_entity_id": "ae_classified_as_moderate_bleeding",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "warning",
@@ -552,7 +546,7 @@
         "key": "ae_classified_as_severe_bleeding",
         "type": "toaster_notes",
         "text": "AE classified as SEVERE",
-        "openmrs_entity_id": "ae_classified_as_severe",
+        "openmrs_entity_id": "ae_classified_as_severe_bleeding",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "problem",
@@ -586,7 +580,6 @@
             "openmrs_entity": "concept",
             "openmrs_entity_id": "meet_severe_criteria"
           },
-
           {
             "key": "surgical_intervention",
             "text": "Displacement of the device, including intentional movement of device by the client and/or self-removal, that requires surgical intervention, hospitalization, or transfer to another facility to clinically manage.",
@@ -634,7 +627,6 @@
             "openmrs_entity": "concept",
             "openmrs_entity_id": "meet_severe_criteria"
           },
-
           {
             "key": "surgical_intervention",
             "text": "Detachment of the device, including intentional movement of device by the client and/or self-removal, that requires surgical intervention, hospitalization, or transfer to another facility to clinically manage.",
@@ -663,7 +655,7 @@
         "key": "ae_classified_as_mild_device_detachment",
         "type": "toaster_notes",
         "text": "AE classified as MILD",
-        "openmrs_entity_id": "ae_classified_as_mild",
+        "openmrs_entity_id": "ae_classified_as_mild_device_detachment",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "info",
@@ -678,7 +670,7 @@
         "key": "ae_classified_as_moderate_device_detachment",
         "type": "toaster_notes",
         "text": "AE classified as MODERATE",
-        "openmrs_entity_id": "ae_classified_as_moderate",
+        "openmrs_entity_id": "ae_classified_as_moderate_device_detachment",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "warning",
@@ -693,7 +685,7 @@
         "key": "ae_classified_as_severe_device_detachment",
         "type": "toaster_notes",
         "text": "AE classified as SEVERE",
-        "openmrs_entity_id": "ae_classified_as_severe",
+        "openmrs_entity_id": "ae_classified_as_severe_device_detachment",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "problem",
@@ -708,7 +700,7 @@
         "key": "ae_classified_as_mild_device_displacement",
         "type": "toaster_notes",
         "text": "AE classified as MILD",
-        "openmrs_entity_id": "ae_classified_as_mild",
+        "openmrs_entity_id": "ae_classified_as_mild_device_displacement",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "info",
@@ -723,7 +715,7 @@
         "key": "ae_classified_as_moderate_device_displacement",
         "type": "toaster_notes",
         "text": "AE classified as MODERATE",
-        "openmrs_entity_id": "ae_classified_as_moderate",
+        "openmrs_entity_id": "ae_classified_as_moderate_device_displacement",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "warning",
@@ -738,7 +730,7 @@
         "key": "ae_classified_as_severe_device_displacement",
         "type": "toaster_notes",
         "text": "AE classified as SEVERE",
-        "openmrs_entity_id": "ae_classified_as_severe",
+        "openmrs_entity_id": "ae_classified_as_severe_device_displacement",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "problem",
@@ -772,7 +764,6 @@
             "openmrs_entity": "concept",
             "openmrs_entity_id": "pressure_dressing"
           },
-
           {
             "key": "penis_severed",
             "text": "Part or all of the glans or shaft of the penis severed",
@@ -801,7 +792,7 @@
         "key": "ae_classified_as_mild_swelling",
         "type": "toaster_notes",
         "text": "AE classified as MILD",
-        "openmrs_entity_id": "ae_classified_as_mild",
+        "openmrs_entity_id": "ae_classified_as_mild_swelling",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "info",
@@ -816,7 +807,7 @@
         "key": "ae_classified_as_moderate_swelling",
         "type": "toaster_notes",
         "text": "AE classified as MODERATE",
-        "openmrs_entity_id": "ae_classified_as_moderate",
+        "openmrs_entity_id": "ae_classified_as_moderate_swelling",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "warning",
@@ -831,7 +822,7 @@
         "key": "ae_classified_as_severe_swelling",
         "type": "toaster_notes",
         "text": "AE classified as SEVERE",
-        "openmrs_entity_id": "ae_classified_as_severe",
+        "openmrs_entity_id": "ae_classified_as_severe_swelling",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "problem",
@@ -865,7 +856,6 @@
             "openmrs_entity": "concept",
             "openmrs_entity_id": "return_cinic"
           },
-
           {
             "key": "requires_referral",
             "text": "Requires referral to another facility for management",
@@ -894,7 +884,7 @@
         "key": "ae_classified_as_mild_pass_urine",
         "type": "toaster_notes",
         "text": "AE classified as MILD",
-        "openmrs_entity_id": "ae_classified_as_mild",
+        "openmrs_entity_id": "ae_classified_as_mild_pass_urine",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "info",
@@ -909,7 +899,7 @@
         "key": "ae_classified_as_moderate_pass_urine",
         "type": "toaster_notes",
         "text": "AE classified as MODERATE",
-        "openmrs_entity_id": "ae_classified_as_moderate",
+        "openmrs_entity_id": "ae_classified_as_moderate_pass_urine",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "warning",
@@ -924,7 +914,7 @@
         "key": "ae_classified_as_severe_pass_urine",
         "type": "toaster_notes",
         "text": "AE classified as SEVERE",
-        "openmrs_entity_id": "ae_classified_as_severe",
+        "openmrs_entity_id": "ae_classified_as_severe_pass_urine",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "problem",
@@ -935,11 +925,10 @@
           }
         }
       },
-
       {
         "key": "type_of_adverse_event_without_device",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "type_of_adverse_event_without_device",
         "type": "check_box",
         "label": "Type of adverse event",
@@ -948,7 +937,7 @@
             "key": "bleeding",
             "text": "Breeding or blood soiling of dressing",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "bleeding",
             "openmrs_entity_parent": ""
           },
@@ -956,7 +945,7 @@
             "key": "swelling",
             "text": "Swelling of the penis or scrotum",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "swelling",
             "openmrs_entity_parent": ""
           },
@@ -964,7 +953,7 @@
             "key": "persistent_pain",
             "text": "Persistent pain",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "Persistent_pain",
             "openmrs_entity_parent": ""
           },
@@ -972,7 +961,7 @@
             "key": "infection",
             "text": "Infection",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "infection",
             "openmrs_entity_parent": ""
           },
@@ -980,7 +969,7 @@
             "key": "failure_pass_urine",
             "text": "Failure to pass urine",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "failure_pass_urine",
             "openmrs_entity_parent": ""
           },
@@ -988,7 +977,7 @@
             "key": "insufficient_skin_removal",
             "text": "Insufficient skin removal",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "insufficient_skin_removal",
             "openmrs_entity_parent": ""
           },
@@ -997,7 +986,7 @@
             "text": "Others",
             "value": false,
             "ignore": true,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "others",
             "openmrs_entity_parent": ""
           }
@@ -1018,7 +1007,7 @@
         "key": "type_of_adverse_event_others_without_device",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "type_of_adverse_event_others",
+        "openmrs_entity_id": "type_of_adverse_event_others_without_device",
         "type": "edit_text",
         "hint": "Others (Specify)",
         "v_required": {
@@ -1088,7 +1077,7 @@
         "key": "ae_classified_as_mild_infection_without_device",
         "type": "toaster_notes",
         "text": "AE classified as MILD",
-        "openmrs_entity_id": "ae_classified_as_mild",
+        "openmrs_entity_id": "ae_classified_as_mild_infection_without_device",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "info",
@@ -1103,7 +1092,7 @@
         "key": "ae_classified_as_moderate_infection_without_device",
         "type": "toaster_notes",
         "text": "AE classified as MODERATE",
-        "openmrs_entity_id": "ae_classified_as_moderate",
+        "openmrs_entity_id": "ae_classified_as_moderate_infection_without_device",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "warning",
@@ -1118,7 +1107,7 @@
         "key": "ae_classified_as_severe_infection_without_device",
         "type": "toaster_notes",
         "text": "AE classified as SEVERE",
-        "openmrs_entity_id": "ae_classified_as_severe",
+        "openmrs_entity_id": "ae_classified_as_severe_infection_without_device",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "problem",
@@ -1152,7 +1141,6 @@
             "openmrs_entity": "concept",
             "openmrs_entity_id": "5_or_6_on_pain_scale"
           },
-
           {
             "key": "7_on_pain_scale",
             "text": "7 on pain scale",
@@ -1181,7 +1169,7 @@
         "key": "ae_classified_as_mild_pain_without_device",
         "type": "toaster_notes",
         "text": "AE classified as MILD",
-        "openmrs_entity_id": "ae_classified_as_mild",
+        "openmrs_entity_id": "ae_classified_as_mild_pain_without_device",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "info",
@@ -1196,7 +1184,7 @@
         "key": "ae_classified_as_moderate_pain_without_device",
         "type": "toaster_notes",
         "text": "AE classified as MODERATE",
-        "openmrs_entity_id": "ae_classified_as_moderate",
+        "openmrs_entity_id": "ae_classified_as_moderate_pain_without_device",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "warning",
@@ -1211,7 +1199,7 @@
         "key": "ae_classified_as_severe_pain_without_device",
         "type": "toaster_notes",
         "text": "AE classified as SEVERE",
-        "openmrs_entity_id": "ae_classified_as_severe",
+        "openmrs_entity_id": "ae_classified_as_severe_pain_without_device",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "problem",
@@ -1245,7 +1233,6 @@
             "openmrs_entity": "concept",
             "openmrs_entity_id": "pressure_dressing"
           },
-
           {
             "key": "blood_transfusion",
             "text": "Blood transfusion or transfer to another facility required",
@@ -1338,7 +1325,6 @@
             "openmrs_entity": "concept",
             "openmrs_entity_id": "pressure_dressing"
           },
-
           {
             "key": "penis_severed",
             "text": "Part or all of the glans or shaft of the penis severed",
@@ -1367,7 +1353,7 @@
         "key": "ae_classified_as_mild_swelling_without_device",
         "type": "toaster_notes",
         "text": "AE classified as MILD",
-        "openmrs_entity_id": "ae_classified_as_mild",
+        "openmrs_entity_id": "ae_classified_as_mild_swelling_without_device",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "info",
@@ -1382,7 +1368,7 @@
         "key": "ae_classified_as_moderate_swelling_without_device",
         "type": "toaster_notes",
         "text": "AE classified as MODERATE",
-        "openmrs_entity_id": "ae_classified_as_moderate",
+        "openmrs_entity_id": "ae_classified_as_moderate_swelling_without_device",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "warning",
@@ -1397,7 +1383,7 @@
         "key": "ae_classified_as_severe_swelling_without_device",
         "type": "toaster_notes",
         "text": "AE classified as SEVERE",
-        "openmrs_entity_id": "ae_classified_as_severe",
+        "openmrs_entity_id": "ae_classified_as_severe_swelling_without_device",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "problem",
@@ -1431,7 +1417,6 @@
             "openmrs_entity": "concept",
             "openmrs_entity_id": "return_cinic"
           },
-
           {
             "key": "requires_referral",
             "text": "Requires referral to another facility for management",
@@ -1460,7 +1445,7 @@
         "key": "ae_classified_as_mild_pass_urine_without_device",
         "type": "toaster_notes",
         "text": "AE classified as MILD",
-        "openmrs_entity_id": "ae_classified_as_mild",
+        "openmrs_entity_id": "ae_classified_as_mild_pass_urine_without_device",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "info",
@@ -1475,7 +1460,7 @@
         "key": "ae_classified_as_moderate_pass_urine_without_device",
         "type": "toaster_notes",
         "text": "AE classified as MODERATE",
-        "openmrs_entity_id": "ae_classified_as_moderate",
+        "openmrs_entity_id": "ae_classified_as_moderate_pass_urine_without_device",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "warning",
@@ -1490,7 +1475,7 @@
         "key": "ae_classified_as_severe_pass_urine_without_device",
         "type": "toaster_notes",
         "text": "AE classified as SEVERE",
-        "openmrs_entity_id": "ae_classified_as_severe",
+        "openmrs_entity_id": "ae_classified_as_severe_pass_urine_without_device",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "problem",
@@ -1519,7 +1504,6 @@
           }
         }
       },
-
       {
         "key": "what_done",
         "openmrs_entity_parent": "",
@@ -1538,7 +1522,6 @@
           }
         }
       },
-
       {
         "key": "treatment_outcome",
         "openmrs_entity_parent": "",
@@ -1581,11 +1564,10 @@
           }
         }
       },
-
       {
         "key": "treatment_outcome_note",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "person_attribute",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "toaster_notes",
         "type": "toaster_notes",
         "text": "Refer the client for further managment",
@@ -1598,11 +1580,10 @@
           }
         }
       },
-
       {
         "key": "treatment_outcome_unchanged_note",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "person_attribute",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "toaster_notes",
         "type": "toaster_notes",
         "text": "Refer the client for further managment",
@@ -1615,7 +1596,6 @@
           }
         }
       },
-
       {
         "key": "was_condom_provided",
         "openmrs_entity_parent": "",
@@ -1652,11 +1632,10 @@
           "err": "Please select at least one"
         }
       },
-
       {
         "key": "condoms_issued",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "condoms_issued",
         "type": "check_box",
         "label": "Select the type of the condoms issued",
@@ -1689,7 +1668,6 @@
           }
         }
       },
-
       {
         "key": "number_of_male_condoms_issued",
         "openmrs_entity_parent": "",
@@ -1738,7 +1716,6 @@
           }
         }
       },
-
       {
         "key": "was_bandage_given",
         "openmrs_entity_parent": "",
@@ -1768,7 +1745,6 @@
           "err": "Please select at least one"
         }
       },
-
       {
         "key": "number_of_bandage_given",
         "openmrs_entity_parent": "",
@@ -1788,7 +1764,6 @@
           }
         }
       },
-
       {
         "key": "provider_name",
         "openmrs_entity_parent": "",
@@ -1801,11 +1776,10 @@
           "err": "Please fill the field"
         }
       },
-
       {
         "key": "provider_cadre",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "provider_cadre",
         "type": "native_radio",
         "label": "Provider's cadre",
@@ -1814,7 +1788,7 @@
             "key": "assistant_medical_officer",
             "text": "Medical officer",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "assistant_medical_officer",
             "openmrs_entity_parent": ""
           },
@@ -1822,7 +1796,7 @@
             "key": "assistant_assistant_medical_officer",
             "text": "Assistant medical officer",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "assistant_assistant_medical_officer",
             "openmrs_entity_parent": ""
           },
@@ -1830,7 +1804,7 @@
             "key": "assistant_clinical_officer_or_assistant",
             "text": "Clinical officer/Assistant clinical officer",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "assistant_clinical_officer_or_assistant",
             "openmrs_entity_parent": ""
           },
@@ -1838,7 +1812,7 @@
             "key": "assistant_enrolled_nurse",
             "text": "Enrolled nurse",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "assistant_enrolled_nurse",
             "openmrs_entity_parent": ""
           },
@@ -1846,7 +1820,7 @@
             "key": "assistant_assistant_nursing_officer",
             "text": "Assistant nursing officer",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "assistant_assistant_nursing_officer",
             "openmrs_entity_parent": ""
           },
@@ -1854,7 +1828,7 @@
             "key": "assistant_nursing_officer",
             "text": "Nursing officer",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "assistant_nursing_officer",
             "openmrs_entity_parent": ""
           }

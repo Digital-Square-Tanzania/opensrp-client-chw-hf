@@ -50,7 +50,7 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "is_male_procedure_circumcision_conducted",
-        "label": "Male circumcision procedure conducted ?",
+        "label": "Male circumcision procedure conducted?",
         "text_color": "#000000",
         "type": "native_radio",
         "options": [
@@ -83,7 +83,7 @@
         "hint": "Reason",
         "v_required": {
           "value": "true",
-          "err": "Please select at one reason"
+          "err": "Please select atleast one reason"
         },
         "relevance": {
           "rules-engine": {
@@ -103,7 +103,7 @@
         "expanded": false,
         "v_required": {
           "value": "true",
-          "err": "Please provide the time "
+          "err": "Please provide the start time "
         },
         "relevance": {
           "rules-engine": {
@@ -123,7 +123,7 @@
         "expanded": false,
         "v_required": {
           "value": "true",
-          "err": "Please provide the time "
+          "err": "Please provide the end time "
         },
         "relevance": {
           "rules-engine": {
@@ -541,7 +541,7 @@
         "openmrs_entity": "",
         "openmrs_entity_id": "surgeons_cadre",
         "type": "native_radio",
-        "label": "Surgeons cadre",
+        "label": "Surgeon's cadre",
         "options": [
           {
             "key": "surgeon_medical_officer",
@@ -618,7 +618,7 @@
       {
         "key": "assistant_cadre",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "assistant_cadre",
         "type": "native_radio",
         "label": "Assistant's cadre",
@@ -627,7 +627,7 @@
             "key": "assistant_medical_officer",
             "text": "Medical officer",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "assistant_medical_officer",
             "openmrs_entity_parent": ""
           },
@@ -635,7 +635,7 @@
             "key": "assistant_assistant_medical_officer",
             "text": "Assistant medical officer",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "assistant_assistant_medical_officer",
             "openmrs_entity_parent": ""
           },
@@ -643,7 +643,7 @@
             "key": "assistant_clinical_officer_or_assistant",
             "text": "Clinical officer/Assistant clinical officer",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "assistant_clinical_officer_or_assistant",
             "openmrs_entity_parent": ""
           },
@@ -651,7 +651,7 @@
             "key": "assistant_enrolled_nurse",
             "text": "Enrolled nurse",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "assistant_enrolled_nurse",
             "openmrs_entity_parent": ""
           },
@@ -659,7 +659,7 @@
             "key": "assistant_assistant_nursing_officer",
             "text": "Assistant nursing officer",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "assistant_assistant_nursing_officer",
             "openmrs_entity_parent": ""
           },
@@ -667,7 +667,7 @@
             "key": "assistant_nursing_officer",
             "text": "Nursing officer",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "assistant_nursing_officer",
             "openmrs_entity_parent": ""
           }
@@ -704,7 +704,7 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "intraoperative_adverse_event_occured",
-        "label": "Did intraoperative adverse event occur ?",
+        "label": "Did intraoperative adverse event occur?",
         "text_color": "#000000",
         "type": "native_radio",
         "options": [
@@ -738,7 +738,7 @@
       {
         "key": "type_of_adverse_event",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "type_of_adverse_event",
         "type": "check_box",
         "label": "Type of adverse event",
@@ -747,7 +747,7 @@
             "key": "excessive_skin_removal",
             "text": "Excessive skin removal",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "excessive_skin_removal",
             "openmrs_entity_parent": ""
           },
@@ -755,7 +755,7 @@
             "key": "insufficient_skin_removal",
             "text": "Insufficient skin removal",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "insufficient_skin_removal",
             "openmrs_entity_parent": ""
           },
@@ -763,7 +763,7 @@
             "key": "excessive_bleeding",
             "text": "Excessive bleeding",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "excessive_bleeding",
             "openmrs_entity_parent": ""
           },
@@ -771,7 +771,7 @@
             "key": "injury_to_penis",
             "text": "Injury to penis",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "injury_to_penis",
             "openmrs_entity_parent": ""
           },
@@ -779,7 +779,7 @@
             "key": "anesthetic_related_events",
             "text": "Anesthetic related events",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "anesthetic_related_events",
             "openmrs_entity_parent": ""
           },
@@ -787,7 +787,7 @@
             "key": "others",
             "text": "Others",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "others",
             "openmrs_entity_parent": ""
           }
@@ -830,7 +830,7 @@
         "key": "desc_intraoperative_ae_bleed",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "desc_intraoperative_ae",
+        "openmrs_entity_id": "desc_intraoperative_ae_bleed",
         "label": "Description of intraoperative adverse events (Excessive bleeding)",
         "text_color": "#000000",
         "type": "native_radio",
@@ -854,7 +854,7 @@
             "text": "Blood transfussion/transffered to another facility required",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "transfussion_or_transfered_another_facility"
+            "openmrs_entity_id": "blood_transfussion_or_transfered_another_facility"
           }
         ],
         "v_required": {
@@ -877,7 +877,7 @@
         "key": "ae_classified_as_mild_breed",
         "type": "toaster_notes",
         "text": "AE classified as MILD",
-        "openmrs_entity_id": "ae_classified_as_mild",
+        "openmrs_entity_id": "ae_classified_as_mild_breed",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "info",
@@ -892,7 +892,7 @@
         "key": "ae_classified_as_moderate_breed",
         "type": "toaster_notes",
         "text": "AE classified as MODERATE",
-        "openmrs_entity_id": "ae_classified_as_moderate",
+        "openmrs_entity_id": "ae_classified_as_moderate_breed",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "warning",
@@ -907,7 +907,7 @@
         "key": "ae_classified_as_severe_breed",
         "type": "toaster_notes",
         "text": "AE classified as SEVERE",
-        "openmrs_entity_id": "ae_classified_as_severe",
+        "openmrs_entity_id": "ae_classified_as_severe_breed",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "problem",
@@ -922,7 +922,7 @@
         "key": "desc_intraoperative_ae_skin_removal",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "desc_intraoperative_ae",
+        "openmrs_entity_id": "desc_intraoperative_ae_skin_removal",
         "label": "Description of intraoperative adverse events (Excessive skin removal)",
         "text_color": "#000000",
         "type": "native_radio",
@@ -969,7 +969,7 @@
         "key": "ae_classified_as_mild_excessive_skin_removal",
         "type": "toaster_notes",
         "text": "AE classified as MILD",
-        "openmrs_entity_id": "ae_classified_as_mild",
+        "openmrs_entity_id": "ae_classified_as_mild_excessive_skin_removal",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "info",
@@ -984,7 +984,7 @@
         "key": "ae_classified_as_moderate_excessive_skin_removal",
         "type": "toaster_notes",
         "text": "AE classified as MODERATE",
-        "openmrs_entity_id": "ae_classified_as_moderate",
+        "openmrs_entity_id": "ae_classified_as_moderate_excessive_skin_removal",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "warning",
@@ -999,7 +999,7 @@
         "key": "ae_classified_as_severe_excessive_skin_removal",
         "type": "toaster_notes",
         "text": "AE classified as SEVERE",
-        "openmrs_entity_id": "ae_classified_as_severe",
+        "openmrs_entity_id": "ae_classified_as_severe_excessive_skin_removal",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "problem",
@@ -1014,7 +1014,7 @@
         "key": "desc_intraoperative_ae_injury_to_penis",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "desc_intraoperative_ae",
+        "openmrs_entity_id": "desc_intraoperative_ae_injury_to_penis",
         "label": "Description of intraoperative adverse events (Injury to penis)",
         "text_color": "#000000",
         "type": "native_radio",
@@ -1024,21 +1024,21 @@
             "text": "Mild bruising or abrasion, not requiring treatment",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "more_bleed_than_usual_but_easily_controlled"
+            "openmrs_entity_id": "mild_bruising"
           },
           {
             "key": "bruising",
             "text": "Bruising or abrasion of the glans or shaft of the penis requiring pressure dressing or additional surgery to control",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "bleed_require_pressure_dressing"
+            "openmrs_entity_id": "bruising"
           },
           {
             "key": "glans_or_shaft",
             "text": "Part or all of the glans or shaft of the penis severed",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "transfussion_or_transfered_another_facility"
+            "openmrs_entity_id": "glans_or_shaft"
           }
         ],
         "v_required": {
@@ -1061,7 +1061,7 @@
         "key": "ae_classified_as_mild_injury_to_penis",
         "type": "toaster_notes",
         "text": "AE classified as MILD",
-        "openmrs_entity_id": "ae_classified_as_mild",
+        "openmrs_entity_id": "ae_classified_as_mild_injury_to_penis",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "info",
@@ -1076,7 +1076,7 @@
         "key": "ae_classified_as_moderate_injury_to_penis",
         "type": "toaster_notes",
         "text": "AE classified as MODERATE",
-        "openmrs_entity_id": "ae_classified_as_moderate",
+        "openmrs_entity_id": "ae_classified_as_moderate_injury_to_penis",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "warning",
@@ -1091,7 +1091,7 @@
         "key": "ae_classified_as_severe_injury_to_penis",
         "type": "toaster_notes",
         "text": "AE classified as SEVERE",
-        "openmrs_entity_id": "ae_classified_as_severe",
+        "openmrs_entity_id": "ae_classified_as_severe_injury_to_penis",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "problem",
@@ -1106,7 +1106,7 @@
         "key": "desc_intraoperative_ae_anaesthetic_related_event",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "desc_intraoperative_ae",
+        "openmrs_entity_id": "desc_intraoperative_ae_anaesthetic_related_event",
         "label": "Description of intraoperative adverse events (Anaesthetic-related event)",
         "text_color": "#000000",
         "type": "native_radio",
@@ -1116,21 +1116,21 @@
             "text": "Palpitations, vaso-vagal reaction or emesis",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "more_bleed_than_usual_but_easily_controlled"
+            "openmrs_entity_id": "palpitations"
           },
           {
             "key": "reaction_to_anaesthetic",
             "text": "Reaction to anaesthetic requiring medical treatment in clinic, but not transfer to another facility",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "bleed_require_pressure_dressing"
+            "openmrs_entity_id": "reaction_to_anaesthetic"
           },
           {
             "key": "anaphylaxis",
             "text": "Anaphylaxis or other reaction requiring transfer to another facility",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "transfussion_or_transfered_another_facility"
+            "openmrs_entity_id": "anaphylaxis"
           }
         ],
         "v_required": {
@@ -1153,7 +1153,7 @@
         "key": "ae_classified_as_mild_anaesthetic_related_event",
         "type": "toaster_notes",
         "text": "AE classified as MILD",
-        "openmrs_entity_id": "ae_classified_as_mild",
+        "openmrs_entity_id": "ae_classified_as_mild_anaesthetic_related_event",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "info",
@@ -1168,7 +1168,7 @@
         "key": "ae_classified_as_moderate_anaesthetic_related_event",
         "type": "toaster_notes",
         "text": "AE classified as MODERATE",
-        "openmrs_entity_id": "ae_classified_as_moderate",
+        "openmrs_entity_id": "ae_classified_as_moderate_anaesthetic_related_event",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "warning",
@@ -1183,7 +1183,7 @@
         "key": "ae_classified_as_severe_anaesthetic_related_event",
         "type": "toaster_notes",
         "text": "AE classified as SEVERE",
-        "openmrs_entity_id": "ae_classified_as_severe",
+        "openmrs_entity_id": "ae_classified_as_severe_anaesthetic_related_event",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "problem",
