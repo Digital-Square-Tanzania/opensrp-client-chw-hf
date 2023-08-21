@@ -62,10 +62,6 @@
           {
             "key": "no",
             "text": "No"
-          },
-          {
-            "key": "not_applicable",
-            "text": "Not Applicable"
           }
         ],
         "value": "",
@@ -275,6 +271,106 @@
         }
       },
       {
+        "key": "blood_for_glucose_test",
+        "type": "native_radio",
+        "label": "Blood For Glucose Test",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "blood_for_glucose_test",
+        "openmrs_entity_parent": "",
+        "options": [
+          {
+            "key": "test_conducted",
+            "text": "Blood for Glucose Test conducted",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "test_conducted",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "test_not_conducted",
+            "text": "Blood for Glucose Test not conducted",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "test_not_conducted"
+          }
+        ],
+        "relevance": {
+          "step1:client_diagnosed": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "diabetes"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "type_of_blood_for_glucose_test",
+        "type": "native_radio",
+        "label": "Type Of Blood For Glucose Test Conducted",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "type_of_blood_for_glucose_test",
+        "openmrs_entity_parent": "",
+        "options": [
+          {
+            "key": "rbg",
+            "text": "Random Blood Glucose Test (rbg)",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "rbg",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "fbg",
+            "text": "Fasting Blood Glucose Test",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "fbg"
+          }
+        ],
+        "v_required": {
+          "value": true,
+          "err": "Please answer this question"
+        },
+        "relevance": {
+          "step1:blood_for_glucose_test": {
+            "type": "string",
+            "ex": "equalTo(., \"test_conducted\")"
+          }
+        }
+      },
+      {
+        "key": "blood_for_glucose",
+        "type": "edit_text",
+        "hint": "Blood For Glucose (mmol/L)",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "blood_for_glucose",
+        "openmrs_entity_parent": "",
+        "v_numeric": {
+          "value": "true",
+          "err": "Please enter the blood for glucose (mmol/L)"
+        },
+        "v_min": {
+          "value": "0",
+          "err": "Blood for glucose must be equal or greater than 0 (mmol/L)"
+        },
+        "v_max": {
+          "value": "45",
+          "err": "Blood for glucose must be equal or less than 45 (mmol/L)"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the blood for glucose (mmol/L)"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_medical_history.yml"
+            }
+          }
+        }
+      },
+      {
         "key": "client_diagnosed_others",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -321,6 +417,25 @@
           "value": true,
           "err": "Please enter a valid ctc Number"
         },
+        "relevance": {
+          "step1:client_diagnosed": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "hiv"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "ctc_name",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "ctc_name",
+        "type": "edit_text",
+        "hint": "CTC Name",
         "relevance": {
           "step1:client_diagnosed": {
             "ex-checkbox": [
@@ -407,7 +522,7 @@
         "openmrs_entity": "",
         "openmrs_entity_id": "",
         "type": "native_radio",
-        "label": "Has a client ever had any surgical procedure ?",
+        "label": "Has a client ever had any surgical procedure  ?",
         "label_text_size": "18px",
         "options": [
           {
@@ -671,6 +786,29 @@
         "v_required": {
           "value": true,
           "err": "Please specify any other symptoms or select none"
+        }
+      },
+      {
+        "key": "known_allergies_note",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person_attribute",
+        "openmrs_entity_id": "toaster_notes",
+        "type": "toaster_notes",
+        "text": "Counsel the client on possible complications of procedure with that allergy",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "step1:known_allergies": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "any_other_medications",
+                  "local_anesthetics",
+                  "antiseptics"
+                ]
+              }
+            ]
+          }
         }
       },
       {

@@ -62,7 +62,7 @@
         "openmrs_entity": "person_attribute",
         "openmrs_entity_id": "dressing_condition",
         "type": "native_radio",
-        "label": "Describe the condition of the dressing in relation to bleeding(For conventional surgery)",
+        "label": "Describe the condition of the dressing in relation to bleeding",
         "label_text_style": "bold",
         "text_color": "#000000",
         "options": [
@@ -157,7 +157,7 @@
         "openmrs_entity": "person_attribute",
         "openmrs_entity_id": "device_mc",
         "type": "native_radio",
-        "label": "Device MC, Observe the following",
+        "label": "Device Male Circumcision, Observe the following",
         "label_text_style": "bold",
         "text_color": "#000000",
         "options": [
@@ -176,7 +176,7 @@
         ],
         "v_required": {
           "value": "true",
-          "err": "Device MC is required"
+          "err": "Device Male Circumcision is required"
         },
         "relevance": {
           "rules-engine": {

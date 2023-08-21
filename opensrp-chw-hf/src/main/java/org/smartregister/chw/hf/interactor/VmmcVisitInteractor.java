@@ -6,7 +6,6 @@ import org.smartregister.chw.anc.util.AppExecutors;
 import org.smartregister.chw.core.utils.FormUtils;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.actionhelper.vmmc.VmmcHtsActionHelper;
-import org.smartregister.chw.hf.actionhelper.vmmc.VmmcPhysicalExamActionHelper;
 import org.smartregister.chw.vmmc.contract.BaseVmmcVisitContract;
 import org.smartregister.chw.vmmc.domain.VisitDetail;
 import org.smartregister.chw.vmmc.interactor.BaseVmmcVisitInteractor;

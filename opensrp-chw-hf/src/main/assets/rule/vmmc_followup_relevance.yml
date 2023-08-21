@@ -12,3 +12,10 @@ priority: 1
 condition: "!global_method_used.contains('device') && step1_post_op_adverse_event_occur.equalsIgnoreCase('yes')"
 actions:
   - "isRelevant = true "
+---
+name: step1_was_bandage_given
+description: if was_bandage_given
+priority: 1
+condition: "global_method_used.contains('device')"
+actions:
+  - "isRelevant = true "

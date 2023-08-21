@@ -22,7 +22,7 @@ public class VmmcPhysicalExamActionHelper implements BaseVmmcVisitAction.VmmcVis
     protected String medical_history;
     protected String jsonPayload;
     private String baseEntityId;
-    protected static String contraindication;
+    protected static String genital_examination;
 
     public VmmcPhysicalExamActionHelper(String baseEntityId) {
         this.baseEntityId = baseEntityId;
@@ -52,9 +52,9 @@ public class VmmcPhysicalExamActionHelper implements BaseVmmcVisitAction.VmmcVis
             JSONObject jsonObject = new JSONObject(jsonPayload);
             JSONObject global = jsonObject.getJSONObject("global");
 
-            contraindication = CoreJsonFormUtils.getValue(jsonObject, "genital_examination");
-            Log.d("physical",contraindication);
-            global.put("contraindication", contraindication);
+            genital_examination = CoreJsonFormUtils.getValue(jsonObject, "genital_examination");
+//            Log.d("physical",genital_examination);
+            global.put("contraindication", genital_examination);
 
 
             medical_history = CoreJsonFormUtils.getValue(jsonObject, "physical_abnormality");

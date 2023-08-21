@@ -1,6 +1,8 @@
 package org.smartregister.chw.hf.interactor;
 
 import org.apache.commons.lang3.StringUtils;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.core.utils.FormUtils;
 import org.smartregister.chw.hf.R;
@@ -8,14 +10,19 @@ import org.smartregister.chw.hf.actionhelper.vmmc.VmmcDischargeActionHelper;
 import org.smartregister.chw.hf.actionhelper.vmmc.VmmcFirstVitalActionHelper;
 import org.smartregister.chw.hf.actionhelper.vmmc.VmmcPostOpActionHelper;
 import org.smartregister.chw.hf.actionhelper.vmmc.VmmcSecondVitalActionHelper;
+import org.smartregister.chw.hf.repository.HfLocationRepository;
+import org.smartregister.chw.referral.util.JsonFormConstants;
 import org.smartregister.chw.vmmc.contract.BaseVmmcVisitContract;
 import org.smartregister.chw.vmmc.domain.VisitDetail;
 import org.smartregister.chw.vmmc.interactor.BaseVmmcVisitInteractor;
 import org.smartregister.chw.vmmc.model.BaseVmmcVisitAction;
 import org.smartregister.chw.vmmc.util.Constants;
+import org.smartregister.domain.Location;
+import org.smartregister.domain.LocationTag;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import timber.log.Timber;
 
@@ -100,11 +107,13 @@ public class VmmcVisitDischargeInteractor extends BaseVmmcVisitInteractor {
     }
 
     private void evaluateVmmcDischarge(Map<String, List<VisitDetail>> details) throws BaseVmmcVisitAction.ValidationException {
+        JSONObject discharge = initializeHealthFacilitiesList(FormUtils.getFormUtils().getFormJson(Constants.VMMC_FOLLOWUP_FORMS.DISCHARGE));
 
         VmmcDischargeActionHelper actionHelper = new VmmcDischargeActionHelper();
         BaseVmmcVisitAction action = getBuilder(context.getString(R.string.vmmc_post_discharge))
                 .withOptional(false)
                 .withDetails(details)
+                .withJsonPayload(discharge.toString())
                 .withHelper(actionHelper)
                 .withFormName(Constants.VMMC_FOLLOWUP_FORMS.DISCHARGE)
                 .build();
@@ -164,4 +173,38 @@ public class VmmcVisitDischargeInteractor extends BaseVmmcVisitInteractor {
 //            return super.postProcess(s);
 //        }
 //    }
+public static JSONObject initializeHealthFacilitiesList(JSONObject form) {
+    HfLocationRepository locationRepository = new HfLocationRepository();
+    List<Location> locations = locationRepository.getAllLocationsWithTags();
+    if (locations != null && form != null) {
+
+        try {
+
+            JSONArray fields = form.getJSONObject(org.smartregister.chw.hf.utils.Constants.JsonFormConstants.STEP1)
+                    .getJSONArray(JsonFormConstants.FIELDS);
+
+            JSONObject referralHealthFacilities = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, org.smartregister.chw.hf.utils.Constants.JsonFormConstants.NAME_OF_HF);
+
+            JSONArray options = referralHealthFacilities.getJSONArray("options");
+            String healthFacilityTagName = "Facility";
+            for (Location location : locations) {
+                Set<LocationTag> locationTags = location.getLocationTags();
+                if (locationTags.iterator().next().getName().equalsIgnoreCase(healthFacilityTagName)) {
+                    JSONObject optionNode = new JSONObject();
+                    optionNode.put("text", StringUtils.capitalize(location.getProperties().getName()));
+                    optionNode.put("key", StringUtils.capitalize(location.getProperties().getName()));
+                    JSONObject propertyObject = new JSONObject();
+                    propertyObject.put("presumed-id", location.getProperties().getUid());
+                    propertyObject.put("confirmed-id", location.getProperties().getUid());
+                    optionNode.put("property", propertyObject);
+
+                    options.put(optionNode);
+                }
+            }
+        } catch (JSONException e) {
+            Timber.e(e);
+        }
+    }
+    return form;
+}
 }

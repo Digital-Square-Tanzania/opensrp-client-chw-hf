@@ -13,170 +13,78 @@ condition: "global_hiv_info.contains('hiv')"
 actions:
   - "isRelevant = true "
 ---
-name: step1_toaster_notes_uds
-description: if step1_tested_hiv
+name: step1_toaster_notes_genital_examination
+description: if genital_examination
 priority: 1
-condition: "global_contraindication.contains('uds')"
+condition: "!global_genital_examination.contains('none')"
 actions:
   - "isRelevant = true "
 ---
-name: step1_toaster_notes_gud
-description: if step1_tested_hiv
+name: step1_toaster_notes_any_complaints
+description: if any_complaints
 priority: 1
-condition: "global_contraindication.contains('gud')"
+condition: "!global_any_complaints.contains('none')"
 actions:
   - "isRelevant = true "
 ---
-name: step1_toaster_notes_smegma
-description: if step1_tested_hiv
+name: step1_toaster_notes_known_allergies
+description: if known_allergies
 priority: 1
-condition: "global_contraindication.contains('smegma')"
+condition: "!global_known_allergies.contains('none')"
 actions:
   - "isRelevant = true "
 ---
-name: step1_toaster_notes_phimosis
-description: if step1_tested_hiv
+name: step1_toaster_notes_hematological_disease
+description: if toaster_notes_hematological_disease
 priority: 1
-condition: "global_contraindication.contains('phimosis')"
+condition: "!global_hematological_disease.contains('none')"
 actions:
   - "isRelevant = true "
 ---
-name: step1_toaster_notes_paraphimosis
-description: if step1_tested_hiv
+name: step1_toaster_notes_client_diagnosed
+description: if toaster_notes_client_diagnosed
 priority: 1
-condition: "global_contraindication.contains('paraphimosis')"
+condition: "global_client_diagnosed.contains('others')"
 actions:
   - "isRelevant = true "
 ---
-name: step1_toaster_notes_underscended
-description: if step1_tested_hiv
+name: step1_toaster_notes_hypertension
+description: if toaster_notes_client_diagnosed
 priority: 1
-condition: "global_contraindication.contains('undescended_testicles')"
+condition: "global_client_diagnosed.contains('hypertension')"
+  - "isRelevant = true "
+---
+name: step1_toaster_notes_diabetes
+description: if toaster_notes_client_diagnosed
+priority: 1
+condition: "(global_type_of_blood_for_glucose_test.equalsIgnoreCase('rbg') && global_blood_for_glucose > 6.9) || (global_type_of_blood_for_glucose_test.equalsIgnoreCase('fbg') && global_blood_for_glucose > 5.9) || (global_client_diagnosed.contains('diabetes') && global_blood_for_glucose_test.equalsIgnoreCase('test_not_conducted'))"
 actions:
   - "isRelevant = true "
 ---
-name: step1_toaster_notes_condylomata
-description: if step1_tested_hiv
+name: step1_toaster_notes_hiv
+description: if toaster_notes_client_diagnosed
 priority: 1
-condition: "global_contraindication.contains('condylomata_lata')"
+condition: "step1_hiv_viral_load_text > 1000"
 actions:
   - "isRelevant = true "
 ---
-name: step1_toaster_notes_adhesion
-description: if step1_tested_hiv
+name: step1_defer_procedure
+description: if defer_procedure
 priority: 1
-condition: "global_contraindication.contains('adhesion_prepuce')"
+condition: "step1_hiv_result.equalsIgnoreCase('positive') || step1_hiv_viral_load_text > 1000"
 actions:
   - "isRelevant = true "
 ---
-name: step1_toaster_notes_balanitis
-description: if step1_tested_hiv
+name: step1_toaster_notes_complications_previous_surgical
+description: if complications_previous_surgical
 priority: 1
-condition: "global_contraindication.contains('balanitis')"
+condition: "global_complications_previous_surgical.contains('yes')"
 actions:
   - "isRelevant = true "
 ---
-name: step1_toaster_notes_urethral
-description: if step1_tested_hiv
+name: step1_toaster_notes_contraindication
+description: if toaster_notes_contraindication
 priority: 1
-condition: "global_contraindication.contains('opening_abnormality')"
-actions:
-  - "isRelevant = true "
----
-name: step1_toaster_notes_chordae
-description: if step1_tested_hiv
-priority: 1
-condition: "global_contraindication.contains('chordae')"
-actions:
-  - "isRelevant = true "
----
-name: step1_toaster_notes_hydrocele
-description: if step1_tested_hiv
-priority: 1
-condition: "global_contraindication.contains('hydrocele')"
-actions:
-  - "isRelevant = true "
----
-name: step1_uds_managed
-description: if step1_tested_hiv
-priority: 1
-condition: "global_contraindication.contains('uds') && step1_client_medically_cleared.equalsIgnoreCase('yes')"
-actions:
-  - "isRelevant = true "
----
-name: step1_gud_managed
-description: if step1_tested_hiv
-priority: 1
-condition: "global_contraindication.contains('gud') && step1_client_medically_cleared.equalsIgnoreCase('yes')"
-actions:
-  - "isRelevant = true "
----
-name: step1_smegma_managed
-description: if step1_tested_hiv
-priority: 1
-condition: "global_contraindication.contains('smegma') && step1_client_medically_cleared.equalsIgnoreCase('yes')"
-actions:
-  - "isRelevant = true "
----
-name: step1_phimosis_managed
-description: if step1_tested_hiv
-priority: 1
-condition: "global_contraindication.contains('phimosis') && step1_client_medically_cleared.equalsIgnoreCase('yes')"
-actions:
-  - "isRelevant = true "
----
-name: step1_paraphimosis_managed
-description: if step1_tested_hiv
-priority: 1
-condition: "global_contraindication.contains('paraphimosis') && step1_client_medically_cleared.equalsIgnoreCase('yes')"
-actions:
-  - "isRelevant = true "
----
-name: step1_underscended_managed
-description: if step1_tested_hiv
-priority: 1
-condition: "global_contraindication.contains('undescended_testicles') && step1_client_medically_cleared.equalsIgnoreCase('yes')"
-actions:
-  - "isRelevant = true "
----
-name: step1_condylomata_managed
-description: if step1_tested_hiv
-priority: 1
-condition: "global_contraindication.contains('condylomata_lata') && step1_client_medically_cleared.equalsIgnoreCase('yes')"
-actions:
-  - "isRelevant = true "
----
-name: step1_adhesion_managed
-description: if step1_tested_hiv
-priority: 1
-condition: "global_contraindication.contains('adhesion_prepuce') && step1_client_medically_cleared.equalsIgnoreCase('yes')"
-actions:
-  - "isRelevant = true "
----
-name: step1_balanitis_managed
-description: if step1_tested_hiv
-priority: 1
-condition: "global_contraindication.contains('balanitis') && step1_client_medically_cleared.equalsIgnoreCase('yes')"
-actions:
-  - "isRelevant = true "
----
-name: step1_urethral_managed
-description: if step1_tested_hiv
-priority: 1
-condition: "global_contraindication.contains('opening_abnormality') && step1_client_medically_cleared.equalsIgnoreCase('yes')"
-actions:
-  - "isRelevant = true "
----
-name: step1_chordae_managed
-description: if step1_tested_hiv
-priority: 1
-condition: "global_contraindication.contains('chordae') && step1_client_medically_cleared.equalsIgnoreCase('yes')"
-actions:
-  - "isRelevant = true "
----
-name: step1_hydrocele_managed
-description: if step1_tested_hiv
-priority: 1
-condition: "global_contraindication.contains('hydrocele') && step1_client_medically_cleared.equalsIgnoreCase('yes')"
+condition: "global_complications_previous_surgical.contains('yes') || global_client_diagnosed.contains('hypertension') || global_client_diagnosed.contains('others') || (global_type_of_blood_for_glucose_test.equalsIgnoreCase('rbg') && global_blood_for_glucose > 6.9) || (global_type_of_blood_for_glucose_test.equalsIgnoreCase('fbg') && global_blood_for_glucose > 5.9) || (global_client_diagnosed.contains('diabetes') && global_blood_for_glucose_test.equalsIgnoreCase('test_not_conducted')) || (step1_hiv_viral_load_text > 1000) || !global_hematological_disease.contains('none') || !global_known_allergies.contains('none') || !global_any_complaints.contains('none') || !global_genital_examination.contains('none')"
 actions:
   - "isRelevant = true "

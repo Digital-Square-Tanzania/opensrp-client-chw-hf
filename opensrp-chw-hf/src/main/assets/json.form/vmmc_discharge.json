@@ -91,10 +91,10 @@
             "openmrs_entity_id": "needs"
           },
           {
-            "key":"not_discharged",
-            "text": "Not discharged",
+            "key":"referral",
+            "text": "Referral",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "not_discharged"
+            "openmrs_entity_id": "referral"
           }
         ],
         "v_required": {
@@ -103,12 +103,36 @@
         }
       },
       {
-        "key": "discharged_reasons",
+        "key": "name_of_hf",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "name_of_hf",
+        "buttonText": "Select Health Facility",
+        "sort": true,
+        "maxSelectable": 1,
+        "dialogTitle": "Health Facility",
+        "searchHint": "Type Health Facility Name",
+        "options": [
+        ],
+        "type": "multi_select_list",
+        "v_required": {
+          "value": true,
+          "err": "Please select the health facility"
+        },
+        "relevance": {
+          "step1:discharge_condition": {
+            "type": "string",
+            "ex": "equalTo(., \"referral\")"
+          }
+        }
+      },
+      {
+        "key": "referral_reasons",
         "openmrs_entity_parent": "",
         "openmrs_entity": "",
-        "openmrs_entity_id": "discharged_reasons",
+        "openmrs_entity_id": "referral_reasons",
         "type": "edit_text",
-        "hint": "Specify Discharge Reason",
+        "hint": "Specify referral Reason",
         "edit_type": "text",
         "v_required": {
           "value": "true",
@@ -117,7 +141,7 @@
         "relevance": {
           "step1:discharge_condition": {
             "type": "string",
-            "ex": "equalTo(., \"not_discharged\")"
+            "ex": "equalTo(., \"referral\")"
           }
         }
       },

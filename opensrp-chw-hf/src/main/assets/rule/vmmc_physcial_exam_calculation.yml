@@ -1,0 +1,7 @@
+---
+name: step1_bmi
+description: BMI calculated
+priority: 1
+condition: "true"
+actions:
+  - "calculation = Float.parseFloat(step1_client_weight) / (Float.parseFloat(step1_client_height) * Float.parseFloat(step1_client_height) / 10000)"

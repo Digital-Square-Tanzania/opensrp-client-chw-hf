@@ -471,8 +471,8 @@
     <string name="vmmc_medical_history">Medical History</string>
     <string name="vmmc_followup_visit">Follow Up Visit</string>
     <string name="vmmc_notifiable_adverse">Notifiable Adverse Event</string>
-    <string name="consent_form">Consent for MC procedure</string>
-    <string name="vmmc_mc_procedure">MC procedure</string>
+    <string name="consent_form">Consent for Male Circumcision procedure</string>
+    <string name="vmmc_mc_procedure">Male Circumcision procedure</string>
     <string name="vmmc_physical_examination">Physical Examination</string>
     <string name="vmmc_hts">HTS</string>
     <string name="vmmc_post">Post-OP</string>
@@ -834,7 +834,7 @@
     <string name="prep_reasons_stopping_prep">Reason(s) for stopping PrEP medication:</string>
     <string name="prep_other_reason_stopping_prep">Other reason:</string>
 
-    <string name="shang_ring">Shang-ring/device</string>
+    <string name="device">Device</string>
     <string name="convectional_surgical_procedure">Convectional surgical procedure</string>
 
     <string name="adverse_event_completely_resolved">Adverse event completely resolved</string>
@@ -899,7 +899,7 @@
     <string name="vmmc_temperature">temperature:</string>
     <string name="vmmc_respiration_rate">respiration rate:</string>
     <string name="vmmc_genital_examination">genital examination:</string>
-    <string name="vmmc_preferred_client_mc_method">Preferred client’s MC method:</string>
+    <string name="vmmc_preferred_client_mc_method">Preferred client’s Male Circumcision method:</string>
     <string name="vmmc_penile_size">penile size:</string>
     <string name="vmmc_tested_hiv">tested hiv:</string>
     <string name="vmmc_hiv_result">hiv result:</string>
@@ -952,7 +952,7 @@
     <string name="vmmc_treatment_outcome">Treatment outcome:</string>
 
     <string name="vmmc_dressing_condition">Describe the condition of the dressing in relation to bleeding(For conventional surgery):</string>
-    <string name="vmmc_device_mc">Device MC Observe the following:</string>
+    <string name="vmmc_device_mc">Device Male Circumcision Observe the following:</string>
     <string name="vmmc_discharge_condition">discharge condition:</string>
     <string name="vmmc_discharged_reasons">discharged reasons:</string>
     <string name="vmmc_analgesics_given">analgesics given:</string>

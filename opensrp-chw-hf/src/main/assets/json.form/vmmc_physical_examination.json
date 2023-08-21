@@ -174,6 +174,47 @@
         }
       },
       {
+        "key": "client_height",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "entity_id": "",
+        "type": "edit_text",
+        "hint": "Client’s Height (cm)",
+        "edit_type": "number"
+      },
+      {
+        "key": "bmi",
+        "type": "edit_text",
+        "hint": "Body Mass Index (BMI)",
+        "read_only": "true",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "bmi",
+        "openmrs_entity_parent": "",
+        "v_numeric": {
+          "value": "true",
+          "err": "Please enter the height"
+        },
+        "v_required": {
+          "value": true,
+          "err": "Please enter the height"
+        },
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_physcial_exam_calculation.yml"
+            }
+          }
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_physcial_exam_relevance.yml"
+            }
+          }
+        }
+      },
+      {
         "key": "pulse_rate",
         "type": "edit_text",
         "hint": "Pulse Rate (Beats per minute)",
@@ -397,14 +438,14 @@
         "options": [
           {
             "key": "uds",
-            "text": "UDS",
+            "text": "Urethral Discharge Syndrome(UDS)",
             "value": false,
             "openmrs_entity": "",
             "openmrs_entity_id": ""
           },
           {
             "key": "gud",
-            "text": "GUD",
+            "text": "Genital Ulcer Disease (GUD)",
             "value": false,
             "openmrs_entity": "",
             "openmrs_entity_id": ""
@@ -500,6 +541,27 @@
         }
       },
       {
+        "key": "toaster_banana_shaped_penis",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person_attribute",
+        "openmrs_entity_id": "toaster_notes",
+        "type": "toaster_notes",
+        "text": "Use conventional method as a method for circumcision",
+        "text_color": "#CF0800",
+        "toaster_type": "info",
+        "relevance": {
+          "step1:genital_examination": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chordae"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
         "key": "genital_examination_others",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -558,7 +620,7 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "preferred_client",
-        "label": "Preferred client’s MC method",
+        "label": "Preferred client’s Male Circumcision method",
         "text_color": "#000000",
         "type": "native_radio",
         "options": [
@@ -570,11 +632,11 @@
             "openmrs_entity_id": "convectional_surgical_procedure"
           },
           {
-            "key": "shang_ring",
-            "text": "Shang-ring/device",
+            "key": "device",
+            "text": "Device",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "shang_ring"
+            "openmrs_entity_id": "device"
           }
         ],
         "v_required": {
@@ -705,9 +767,9 @@
           "err": "Please select an answer"
         },
         "relevance": {
-          "step1:preferred_client": {
+          "step1:preferred_client_mc_method": {
             "type": "string",
-            "ex": "equalTo(., \"shang_ring\")"
+            "ex": "equalTo(., \"device\")"
           }
         }
       },

@@ -50,7 +50,7 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "client_consent_for_mc_procedure",
-        "label": "Did the client consent for the MC procedure ?",
+        "label": "Did the client consent for the Male Circumcision procedure ?",
         "text_color": "#000000",
         "type": "native_radio",
         "options": [

@@ -18,6 +18,15 @@ public class VmmcVisitTypeActionHelper implements BaseVmmcVisitAction.VmmcVisitA
     protected String medical_history;
     protected String jsonPayload;
     protected static String hiv_info;
+    protected static String client_diagnosed;
+    protected static String any_complaints;
+    protected static String complications_previous_surgical;
+    protected static String hematological_disease;
+    protected static String known_allergies;
+    protected static String type_of_blood_for_glucose_test;
+    protected static String blood_for_glucose;
+    protected static String blood_for_glucose_test;
+
     private String baseEntityId;
 
     public VmmcVisitTypeActionHelper(String baseEntityId) {
@@ -48,6 +57,16 @@ public class VmmcVisitTypeActionHelper implements BaseVmmcVisitAction.VmmcVisitA
             JSONObject global = jsonObject.getJSONObject("global");
 
             hiv_info = CoreJsonFormUtils.getValue(jsonObject, "client_diagnosed");
+
+            client_diagnosed = CoreJsonFormUtils.getValue(jsonObject, "client_diagnosed");
+            any_complaints = CoreJsonFormUtils.getValue(jsonObject, "any_complaints");
+            complications_previous_surgical = CoreJsonFormUtils.getValue(jsonObject, "complications_previous_surgical");
+            hematological_disease = CoreJsonFormUtils.getValue(jsonObject, "hematological_disease");
+            known_allergies = CoreJsonFormUtils.getValue(jsonObject, "known_allergies");
+            type_of_blood_for_glucose_test = CoreJsonFormUtils.getValue(jsonObject, "type_of_blood_for_glucose_test");
+            blood_for_glucose = CoreJsonFormUtils.getValue(jsonObject, "blood_for_glucose");
+            blood_for_glucose_test = CoreJsonFormUtils.getValue(jsonObject, "blood_for_glucose_test");
+
             global.put("hiv_info", hiv_info);
 
             Log.d("vmmc-test", hiv_info);

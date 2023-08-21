@@ -43,7 +43,7 @@
     "encounter_location": ""
   },
   "step1": {
-    "title": "MC procedure",
+    "title": "Male circumcision procedure",
     "fields": [
       {
         "key": "is_male_procedure_circumcision_conducted",
@@ -198,7 +198,7 @@
         "key": "lignocaine_dosage",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "lignocaine_dosage",
+        "openmrs_entity_id": "lignocaine_dosage(ml and %)",
         "type": "edit_text",
         "hint": "Lignocaine dosage",
         "relevance": {
@@ -215,7 +215,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "bupivacaine_dosage",
         "type": "edit_text",
-        "hint": "Bupivacaine dosage",
+        "hint": "Bupivacaine dosage (ml and %)",1
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -582,11 +582,19 @@
             "openmrs_entity": "",
             "openmrs_entity_id": "surgeon_assistant_nursing_officer",
             "openmrs_entity_parent": ""
+          },
+          {
+            "key": "nursing_officer",
+            "text": "Nursing officer",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": "nursing_officer",
+            "openmrs_entity_parent": ""
           }
         ],
         "v_required": {
           "value": true,
-          "err": "Please select atleast one"
+          "err": "Please select at least one"
         },
         "relevance": {
           "rules-engine": {
@@ -744,11 +752,19 @@
         "label": "Type of adverse event",
         "options": [
           {
-            "key": "excessive_skin_removal",
-            "text": "Excessive skin removal",
+            "key": "pain",
+            "text": "Pain",
             "value": false,
             "openmrs_entity": "",
-            "openmrs_entity_id": "excessive_skin_removal",
+            "openmrs_entity_id": "pain",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "excessive_skin_removed",
+            "text": "Excessive skin removed",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": "excessive_skin_removed",
             "openmrs_entity_parent": ""
           },
           {
@@ -768,11 +784,11 @@
             "openmrs_entity_parent": ""
           },
           {
-            "key": "injury_to_penis",
-            "text": "Injury to penis",
+            "key": "damage_to_penis",
+            "text": "Damage to the penis",
             "value": false,
             "openmrs_entity": "",
-            "openmrs_entity_id": "injury_to_penis",
+            "openmrs_entity_id": "damage_to_penis",
             "openmrs_entity_parent": ""
           },
           {
@@ -784,8 +800,24 @@
             "openmrs_entity_parent": ""
           },
           {
+            "key": "infection",
+            "text": "Infection",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": "infection",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "delayed_wound_healing",
+            "text": "Delayed wound healing",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": "delayed_wound_healing",
+            "openmrs_entity_parent": ""
+          },
+          {
             "key": "others",
-            "text": "Others",
+            "text": "Others (Specify)",
             "value": false,
             "openmrs_entity": "",
             "openmrs_entity_id": "others",
@@ -794,7 +826,7 @@
         ],
         "v_required": {
           "value": true,
-          "err": "Please select atleast one"
+          "err": "Please select at least one"
         },
         "relevance": {
           "step1:intraoperative_adverse_event_occured": {
@@ -958,7 +990,7 @@
             "ex-checkbox": [
               {
                 "or": [
-                  "excessive_skin_removal"
+                  "excessive_skin_removed"
                 ]
               }
             ]
@@ -1050,7 +1082,7 @@
             "ex-checkbox": [
               {
                 "or": [
-                  "injury_to_penis"
+                  "damage_to_penis"
                 ]
               }
             ]

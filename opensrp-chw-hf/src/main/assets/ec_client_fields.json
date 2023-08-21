@@ -8488,6 +8488,22 @@
           }
         },
         {
+          "column_name": "type_of_blood_for_glucose_test",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "type_of_blood_for_glucose_test"
+          }
+        },
+        {
+          "column_name": "blood_for_glucose",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "blood_for_glucose"
+          }
+        },
+        {
           "column_name": "surgical_procedure",
           "type": "Event",
           "json_mapping": {
@@ -8656,37 +8672,14 @@
           }
         },
         {
-          "column_name": "client_medically_cleared",
+          "column_name": "hiv_viral_load_text",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
-            "concept": "client_medically_cleared"
+            "concept": "hiv_viral_load_text"
           }
         },
-        {
-          "column_name": "uds_managed",
-          "type": "Event",
-          "json_mapping": {
-            "field": "obs.fieldCode",
-            "concept": "uds_managed"
-          }
-        },
-        {
-          "column_name": "smegma_managed",
-          "type": "Event",
-          "json_mapping": {
-            "field": "obs.fieldCode",
-            "concept": "smegma_managed"
-          }
-        },
-        {
-          "column_name": "gud_managed",
-          "type": "Event",
-          "json_mapping": {
-            "field": "obs.fieldCode",
-            "concept": "gud_managed"
-          }
-        },
+
         {
           "column_name": "last_interacted_with",
           "type": "Event",
@@ -8857,6 +8850,13 @@
           "json_mapping": {
             "field": "obs.fieldCode",
             "concept": "discharge_condition"
+          }
+        },
+        {
+          "column_name": "name_of_hf",
+          "type": "Event",
+          "json_mapping": {
+            "field": "name_of_hf"
           }
         },
         {

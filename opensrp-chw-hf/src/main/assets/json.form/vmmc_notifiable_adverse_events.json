@@ -124,7 +124,7 @@
           },
           {
             "key": "admission_to_icu_within_30_days_post_mc",
-            "text": "Any admission to ICU within 30 days post MC",
+            "text": "Any admission to ICU within 30 days post Male Circumcision",
             "value": false,
             "openmrs_entity": "",
             "openmrs_entity_id": "admission_to_icu_within_30_days_post_mc",
@@ -132,7 +132,7 @@
           },
           {
             "key": "client_deaths_within_30days_post",
-            "text": "Client deaths within 30days post MC",
+            "text": "Client deaths within 30days post Male Circumcision",
             "value": false,
             "openmrs_entity": "",
             "openmrs_entity_id": "client_deaths_within_30days_post",
@@ -193,7 +193,7 @@
           },
           {
             "key": "admission_to_icu_within_30_days_post_mc",
-            "text": "Any admission to ICU within 30 days post MC",
+            "text": "Any admission to ICU within 30 days post Male Circumcision",
             "value": false,
             "openmrs_entity": "",
             "openmrs_entity_id": "admission_to_icu_within_30_days_post_mc",
@@ -201,7 +201,7 @@
           },
           {
             "key": "client_deaths_within_30days_post",
-            "text": "Client deaths within 30days post MC",
+            "text": "Client deaths within 30days post Male Circumcision",
             "value": false,
             "openmrs_entity": "",
             "openmrs_entity_id": "client_deaths_within_30days_post",
