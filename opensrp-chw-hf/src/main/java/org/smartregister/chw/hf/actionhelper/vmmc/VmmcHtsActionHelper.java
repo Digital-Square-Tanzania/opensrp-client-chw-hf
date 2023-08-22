@@ -55,9 +55,10 @@ public class VmmcHtsActionHelper implements BaseVmmcVisitAction.VmmcVisitActionH
             global.put("blood_for_glucose_test", blood_for_glucose_test);
 
 
-            Log.d("type_of_blood",type_of_blood_for_glucose_test);
-            Log.d("blood_for_glucose",blood_for_glucose);
-            Log.d("client_diagnosed",hiv_info);
+            Log.d("known_allergies",known_allergies);
+            Log.d("genital_examination",genital_examination);
+            Log.d("any_complaints",any_complaints);
+            Log.d("hematological_disease",hematological_disease);
 
             return jsonObject.toString();
         } catch (JSONException e) {

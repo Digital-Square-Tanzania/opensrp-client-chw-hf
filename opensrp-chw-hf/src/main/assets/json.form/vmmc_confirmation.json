@@ -123,13 +123,6 @@
             "openmrs_entity_id": "chw"
           },
           {
-            "key": "chw",
-            "text": "CHW",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "chw"
-          },
-          {
             "key": "opd",
             "text": "OPD",
             "openmrs_entity_parent": "",
