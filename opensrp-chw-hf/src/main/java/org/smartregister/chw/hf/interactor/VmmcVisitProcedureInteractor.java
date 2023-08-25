@@ -1,19 +1,11 @@
 package org.smartregister.chw.hf.interactor;
 
-import static org.smartregister.client.utils.constants.JsonFormConstants.FIELDS;
-import static org.smartregister.client.utils.constants.JsonFormConstants.STEP1;
-
 import org.apache.commons.lang3.StringUtils;
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.smartregister.chw.anc.util.AppExecutors;
 import org.smartregister.chw.core.utils.FormUtils;
 import org.smartregister.chw.hf.R;
-import org.smartregister.chw.hf.actionhelper.vmmc.VmmcConsentFormActionHelper;
 import org.smartregister.chw.hf.actionhelper.vmmc.VmmcProcedureActionHelper;
-import org.smartregister.chw.hf.dao.HfKvpDao;
-import org.smartregister.chw.hf.dao.HfVmmcDao;
-import org.smartregister.chw.kvp.model.BaseKvpVisitAction;
 import org.smartregister.chw.vmmc.contract.BaseVmmcVisitContract;
 import org.smartregister.chw.vmmc.domain.VisitDetail;
 import org.smartregister.chw.vmmc.interactor.BaseVmmcVisitInteractor;

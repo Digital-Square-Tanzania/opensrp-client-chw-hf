@@ -6,6 +6,7 @@ import org.smartregister.chw.anc.util.AppExecutors;
 import org.smartregister.chw.core.utils.FormUtils;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.actionhelper.vmmc.VmmcHtsActionHelper;
+import org.smartregister.chw.hf.actionhelper.vmmc.VmmcMedicalHistoryTypeActionHelper;
 import org.smartregister.chw.vmmc.contract.BaseVmmcVisitContract;
 import org.smartregister.chw.vmmc.domain.VisitDetail;
 import org.smartregister.chw.vmmc.interactor.BaseVmmcVisitInteractor;
@@ -17,12 +18,12 @@ import java.util.Map;
 
 import timber.log.Timber;
 
-public class VmmcVisitInteractor extends BaseVmmcVisitInteractor {
+public class VmmcVisitMedicalHistoryInteractor extends BaseVmmcVisitInteractor {
 
     String visitType;
     protected BaseVmmcVisitContract.InteractorCallBack callBack;
 
-    public VmmcVisitInteractor(String visitType) {
+    public VmmcVisitMedicalHistoryInteractor(String visitType) {
         this.visitType = visitType;
     }
 
@@ -56,7 +57,7 @@ public class VmmcVisitInteractor extends BaseVmmcVisitInteractor {
     private void evaluateVisitType(Map<String, List<VisitDetail>> details) throws BaseVmmcVisitAction.ValidationException {
         JSONObject vmmcMedicalHistory = FormUtils.getFormUtils().getFormJson(Constants.VMMC_FOLLOWUP_FORMS.MEDICAL_HISTORY);
 
-        VmmcVisitTypeActionHelper actionHelper = new VmmcVisitTypeActionHelper(memberObject.getBaseEntityId());
+        VmmcMedicalHistory actionHelper = new VmmcMedicalHistory(memberObject.getBaseEntityId());
         BaseVmmcVisitAction action = getBuilder(context.getString(R.string.vmmc_medical_history))
                 .withOptional(false)
                 .withDetails(details)
@@ -119,8 +120,8 @@ public class VmmcVisitInteractor extends BaseVmmcVisitInteractor {
         return Constants.TABLES.VMMC_SERVICE;
     }
 
-    private class VmmcVisitTypeActionHelper extends org.smartregister.chw.hf.actionhelper.vmmc.VmmcVisitTypeActionHelper {
-        public VmmcVisitTypeActionHelper(String baseEntityId) {
+    private class VmmcMedicalHistory extends VmmcMedicalHistoryTypeActionHelper {
+        public VmmcMedicalHistory(String baseEntityId) {
             super(baseEntityId);
         }
 

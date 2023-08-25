@@ -215,7 +215,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "bupivacaine_dosage",
         "type": "edit_text",
-        "hint": "Bupivacaine dosage (ml and %)",1
+        "hint": "Bupivacaine dosage (ml and %)",
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -538,7 +538,7 @@
       {
         "key": "surgeons_cadre",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "surgeons_cadre",
         "type": "native_radio",
         "label": "Surgeons cadre",
@@ -547,7 +547,7 @@
             "key": "surgeon_medical_officer",
             "text": "Medical officer",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "surgeon_medical_officer",
             "openmrs_entity_parent": ""
           },
@@ -555,7 +555,7 @@
             "key": "surgeon_assistant_medical_officer",
             "text": "Assistant medical officer",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "surgeon_assistant_medical_officer",
             "openmrs_entity_parent": ""
           },
@@ -563,7 +563,7 @@
             "key": "surgeon_clinical_officer_or_assistant",
             "text": "Clinical officer/Assistant clinical officer",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "surgeon_clinical_officer_or_assistant",
             "openmrs_entity_parent": ""
           },
@@ -571,7 +571,7 @@
             "key": "surgeon_enrolled_nurse",
             "text": "Enrolled nurse",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "surgeon_enrolled_nurse",
             "openmrs_entity_parent": ""
           },
@@ -579,7 +579,7 @@
             "key": "surgeon_assistant_nursing_officer",
             "text": "Assistant nursing officer",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "surgeon_assistant_nursing_officer",
             "openmrs_entity_parent": ""
           },
@@ -587,7 +587,7 @@
             "key": "nursing_officer",
             "text": "Nursing officer",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "nursing_officer",
             "openmrs_entity_parent": ""
           }
@@ -626,7 +626,7 @@
       {
         "key": "assistant_cadre",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "assistant_cadre",
         "type": "native_radio",
         "label": "Assistant's cadre",
@@ -635,7 +635,7 @@
             "key": "assistant_medical_officer",
             "text": "Medical officer",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "assistant_medical_officer",
             "openmrs_entity_parent": ""
           },
@@ -643,7 +643,7 @@
             "key": "assistant_assistant_medical_officer",
             "text": "Assistant medical officer",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "assistant_assistant_medical_officer",
             "openmrs_entity_parent": ""
           },
@@ -651,7 +651,7 @@
             "key": "assistant_clinical_officer_or_assistant",
             "text": "Clinical officer/Assistant clinical officer",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "assistant_clinical_officer_or_assistant",
             "openmrs_entity_parent": ""
           },
@@ -659,7 +659,7 @@
             "key": "assistant_enrolled_nurse",
             "text": "Enrolled nurse",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "assistant_enrolled_nurse",
             "openmrs_entity_parent": ""
           },
@@ -667,7 +667,7 @@
             "key": "assistant_assistant_nursing_officer",
             "text": "Assistant nursing officer",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "assistant_assistant_nursing_officer",
             "openmrs_entity_parent": ""
           },
@@ -675,7 +675,7 @@
             "key": "assistant_nursing_officer",
             "text": "Nursing officer",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "assistant_nursing_officer",
             "openmrs_entity_parent": ""
           }
@@ -746,7 +746,7 @@
       {
         "key": "type_of_adverse_event",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "type_of_adverse_event",
         "type": "check_box",
         "label": "Type of adverse event",
@@ -755,7 +755,7 @@
             "key": "pain",
             "text": "Pain",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "pain",
             "openmrs_entity_parent": ""
           },
@@ -763,7 +763,7 @@
             "key": "excessive_skin_removed",
             "text": "Excessive skin removed",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "excessive_skin_removed",
             "openmrs_entity_parent": ""
           },
@@ -771,7 +771,7 @@
             "key": "insufficient_skin_removal",
             "text": "Insufficient skin removal",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "insufficient_skin_removal",
             "openmrs_entity_parent": ""
           },
@@ -779,7 +779,7 @@
             "key": "excessive_bleeding",
             "text": "Excessive bleeding",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "excessive_bleeding",
             "openmrs_entity_parent": ""
           },
@@ -787,7 +787,7 @@
             "key": "damage_to_penis",
             "text": "Damage to the penis",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "damage_to_penis",
             "openmrs_entity_parent": ""
           },
@@ -795,7 +795,7 @@
             "key": "anesthetic_related_events",
             "text": "Anesthetic related events",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "anesthetic_related_events",
             "openmrs_entity_parent": ""
           },
@@ -803,7 +803,7 @@
             "key": "infection",
             "text": "Infection",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "infection",
             "openmrs_entity_parent": ""
           },
@@ -811,7 +811,7 @@
             "key": "delayed_wound_healing",
             "text": "Delayed wound healing",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "delayed_wound_healing",
             "openmrs_entity_parent": ""
           },
@@ -819,7 +819,7 @@
             "key": "others",
             "text": "Others (Specify)",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "others",
             "openmrs_entity_parent": ""
           }

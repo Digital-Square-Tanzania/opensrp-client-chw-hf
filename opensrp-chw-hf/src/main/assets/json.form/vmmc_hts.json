@@ -64,7 +64,7 @@
       {
         "key": "tested_hiv",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "native_radio",
         "label": "Client tested for HIV as part of Male Circumcision service ",
@@ -94,7 +94,7 @@
       {
         "key": "hiv_result",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "native_radio",
         "label": "HIV test result ",
@@ -161,7 +161,7 @@
       {
         "key": "hiv_reasons",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "native_radio",
         "label": "Reasons",
@@ -171,35 +171,35 @@
             "key": "out_of_stock",
             "text": "Test kits out of stock",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
             "key": "emergency_situation",
             "text": "a client was in an emergency situation",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
             "key": "client_refused ",
             "text": "Client refused to be tested",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
             "key": "counselling",
             "text": "we are still counselling a client",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
             "key": "other",
             "text": "Other (specify)",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           }
         ],
@@ -235,7 +235,7 @@
       {
         "key": "self_test_kits",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "native_radio",
         "label": "Client offered HIV self test kits? ",
@@ -258,7 +258,7 @@
       {
         "key": "was_client_referred",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "native_radio",
         "label": "Was the client referred?",
@@ -281,7 +281,7 @@
       {
         "key": "client_referred_to",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "check_box",
         "label": "Client referred to",
@@ -294,28 +294,28 @@
             "key": "surgical",
             "text": "Surgical/medical",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
             "key": "ctc:",
             "text": "CTC",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
             "key": "psychosocial_support ",
             "text": "Psychosocial support",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
             "key": "other",
             "text": "Other (specify)",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           }
         ],

@@ -1,9 +1,6 @@
 package org.smartregister.chw.hf.actionhelper.vmmc;
 
 import android.content.Context;
-import android.util.Log;
-
-import com.google.android.material.snackbar.Snackbar;
 
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
@@ -30,35 +27,34 @@ public class VmmcHtsActionHelper implements BaseVmmcVisitAction.VmmcVisitActionH
             JSONObject jsonObject = new JSONObject(jsonPayload);
             JSONObject global = jsonObject.getJSONObject("global");
 
-            String hiv_info = org.smartregister.chw.hf.actionhelper.vmmc.VmmcVisitTypeActionHelper.hiv_info;
-            global.put("hiv_info", hiv_info);
+//            String hiv_info = org.smartregister.chw.hf.actionhelper.vmmc.VmmcMedicalHistoryTypeActionHelper.hiv_info;
+//            global.put("hiv_info", hiv_info);
 
+            String client_diagnosed = VmmcMedicalHistoryTypeActionHelper.client_diagnosed;
+            String any_complaints = VmmcMedicalHistoryTypeActionHelper.any_complaints;
+            String known_allergies = VmmcMedicalHistoryTypeActionHelper.known_allergies;
+            String hematological_disease = VmmcMedicalHistoryTypeActionHelper.hematological_disease;
+            String complications_previous_surgical = VmmcMedicalHistoryTypeActionHelper.complications_previous_surgical;
+            String type_of_blood_for_glucose_test = VmmcMedicalHistoryTypeActionHelper.type_of_blood_for_glucose_test;
+            String blood_for_glucose = VmmcMedicalHistoryTypeActionHelper.blood_for_glucose;
+            String blood_for_glucose_test = VmmcMedicalHistoryTypeActionHelper.blood_for_glucose_test;
             String genital_examination = org.smartregister.chw.hf.actionhelper.vmmc.VmmcPhysicalExamActionHelper.genital_examination;
-            String any_complaints = org.smartregister.chw.hf.actionhelper.vmmc.VmmcVisitTypeActionHelper.any_complaints;
-            String known_allergies = org.smartregister.chw.hf.actionhelper.vmmc.VmmcVisitTypeActionHelper.known_allergies;
-            String hematological_disease = org.smartregister.chw.hf.actionhelper.vmmc.VmmcVisitTypeActionHelper.hematological_disease;
-            String client_diagnosed = org.smartregister.chw.hf.actionhelper.vmmc.VmmcVisitTypeActionHelper.client_diagnosed;
-            String complications_previous_surgical = org.smartregister.chw.hf.actionhelper.vmmc.VmmcVisitTypeActionHelper.complications_previous_surgical;
-            String type_of_blood_for_glucose_test = org.smartregister.chw.hf.actionhelper.vmmc.VmmcVisitTypeActionHelper.type_of_blood_for_glucose_test;
-            String blood_for_glucose = org.smartregister.chw.hf.actionhelper.vmmc.VmmcVisitTypeActionHelper.blood_for_glucose;
-            String blood_for_glucose_test = org.smartregister.chw.hf.actionhelper.vmmc.VmmcVisitTypeActionHelper.blood_for_glucose_test;
 
-
-            global.put("genital_examination", genital_examination);
+            global.put("client_diagnosed", client_diagnosed);
             global.put("any_complaints", any_complaints);
             global.put("known_allergies", known_allergies);
             global.put("hematological_disease", hematological_disease);
-            global.put("client_diagnosed", client_diagnosed);
             global.put("complications_previous_surgical", complications_previous_surgical);
             global.put("type_of_blood_for_glucose_test", type_of_blood_for_glucose_test);
             global.put("blood_for_glucose", blood_for_glucose);
             global.put("blood_for_glucose_test", blood_for_glucose_test);
+            global.put("genital_examination", genital_examination);
 
-
-            Log.d("known_allergies",known_allergies);
-            Log.d("genital_examination",genital_examination);
-            Log.d("any_complaints",any_complaints);
-            Log.d("hematological_disease",hematological_disease);
+//            Log.d("client_diagnosed",client_diagnosed);
+//            Log.d("known_allergies",known_allergies);
+//            Log.d("genital_examination",genital_examination);
+//            Log.d("any_complaints",any_complaints);
+//            Log.d("hematological_disease",hematological_disease);
 
             return jsonObject.toString();
         } catch (JSONException e) {

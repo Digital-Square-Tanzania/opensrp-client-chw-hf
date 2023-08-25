@@ -2,6 +2,34 @@
 name: step1_discharge_time
 description: discharge time
 priority: 1
-condition: "!step1_discharge_condition.equalsIgnoreCase('needs')"
+condition: "step1_discharge_condition.equalsIgnoreCase('satisfactory')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_analgesics_given
+description: analgesics given
+priority: 1
+condition: "step1_discharge_condition.equalsIgnoreCase('satisfactory')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_discharging_name
+description: discharging_name
+priority: 1
+condition: "step1_discharge_condition.equalsIgnoreCase('satisfactory')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_provider_cadre
+description: provider_cadre
+priority: 1
+condition: "step1_discharge_condition.equalsIgnoreCase('satisfactory')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_intraoperative_adverse_event_occured
+description: intraoperative_adverse_event_occured
+priority: 1
+condition: "step1_discharge_condition.equalsIgnoreCase('not_discharged')"
 actions:
   - "isRelevant = true"

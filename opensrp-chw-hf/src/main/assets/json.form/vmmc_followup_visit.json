@@ -179,7 +179,7 @@
       {
         "key": "type_of_adverse_event",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "type_of_adverse_event",
         "type": "check_box",
         "label": "Type of adverse event",
@@ -188,7 +188,7 @@
             "key": "bleeding",
             "text": "Bleeding or blood soiling of dressing",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "bleeding",
             "openmrs_entity_parent": ""
           },
@@ -196,7 +196,7 @@
             "key": "swelling",
             "text": "Swelling of the penis or scrotum",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "swelling",
             "openmrs_entity_parent": ""
           },
@@ -204,7 +204,7 @@
             "key": "persistent_pain",
             "text": "Persistent pain",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "Persistent_pain",
             "openmrs_entity_parent": ""
           },
@@ -212,7 +212,7 @@
             "key": "infection",
             "text": "Infection",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "infection",
             "openmrs_entity_parent": ""
           },
@@ -220,7 +220,7 @@
             "key": "failure_pass_urine",
             "text": "Failure to pass urine",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "failure_pass_urine",
             "openmrs_entity_parent": ""
           },
@@ -228,7 +228,7 @@
             "key": "device_displacement",
             "text": "Device displacement",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "device_displacement",
             "openmrs_entity_parent": ""
           },
@@ -236,7 +236,7 @@
             "key": "device_detachment",
             "text": "Device detachment",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "device_detachment",
             "openmrs_entity_parent": ""
           },
@@ -244,7 +244,7 @@
             "key": "insufficient_skin_removal",
             "text": "Insufficient skin removal",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "insufficient_skin_removal",
             "openmrs_entity_parent": ""
           },
@@ -253,7 +253,7 @@
             "text": "Others",
             "value": false,
             "ignore": true,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "others",
             "openmrs_entity_parent": ""
           }
@@ -947,7 +947,7 @@
       {
         "key": "type_of_adverse_event_without_device",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "type_of_adverse_event_without_device",
         "type": "check_box",
         "label": "Type of adverse event",
@@ -956,7 +956,7 @@
             "key": "bleeding",
             "text": "Breeding or blood soiling of dressing",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "bleeding",
             "openmrs_entity_parent": ""
           },
@@ -964,7 +964,7 @@
             "key": "swelling",
             "text": "Swelling of the penis or scrotum",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "swelling",
             "openmrs_entity_parent": ""
           },
@@ -972,7 +972,7 @@
             "key": "persistent_pain",
             "text": "Persistent pain",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "Persistent_pain",
             "openmrs_entity_parent": ""
           },
@@ -980,7 +980,7 @@
             "key": "infection",
             "text": "Infection",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "infection",
             "openmrs_entity_parent": ""
           },
@@ -988,7 +988,7 @@
             "key": "failure_pass_urine",
             "text": "Failure to pass urine",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "failure_pass_urine",
             "openmrs_entity_parent": ""
           },
@@ -996,7 +996,7 @@
             "key": "insufficient_skin_removal",
             "text": "Insufficient skin removal",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "insufficient_skin_removal",
             "openmrs_entity_parent": ""
           },
@@ -1005,7 +1005,7 @@
             "text": "Others",
             "value": false,
             "ignore": true,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "others",
             "openmrs_entity_parent": ""
           }
@@ -1546,84 +1546,6 @@
           }
         }
       },
-
-      {
-        "key": "treatment_outcome",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "treatment_outcome",
-        "label": "Treatment outcome",
-        "text_color": "#000000",
-        "type": "native_radio",
-        "options": [
-          {
-            "key": "adverse_event_completely_resolved",
-            "text": "Adverse event completely resolved",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "adverse_event_completely_resolved"
-          },
-          {
-            "key": "adverse_event_partially_resolved",
-            "text": "Adverse event partially resolved",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "adverse_event_partially_resolved"
-          },
-          {
-            "key": "adverse_event_unchanged",
-            "text": "Adverse event unchanged",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "adverse_event_unchanged"
-          }
-        ],
-        "v_required": {
-          "value": "true",
-          "err": "Please select atleast one outcome"
-        },
-        "relevance": {
-          "step1:post_op_adverse_event_occur": {
-            "type": "string",
-            "ex": "equalTo(., \"yes\")"
-          }
-        }
-      },
-
-      {
-        "key": "treatment_outcome_note",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "person_attribute",
-        "openmrs_entity_id": "toaster_notes",
-        "type": "toaster_notes",
-        "text": "Refer the client for further managment",
-        "text_color": "#CF0800",
-        "toaster_type": "problem",
-        "relevance": {
-          "step1:treatment_outcome": {
-            "type": "string",
-            "ex": "equalTo(., \"adverse_event_partially_resolved\")"
-          }
-        }
-      },
-
-      {
-        "key": "treatment_outcome_unchanged_note",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "person_attribute",
-        "openmrs_entity_id": "toaster_notes",
-        "type": "toaster_notes",
-        "text": "Refer the client for further managment",
-        "text_color": "#CF0800",
-        "toaster_type": "problem",
-        "relevance": {
-          "step1:treatment_outcome": {
-            "type": "string",
-            "ex": "equalTo(., \"adverse_event_unchanged\")"
-          }
-        }
-      },
-
       {
         "key": "was_condom_provided",
         "openmrs_entity_parent": "",
@@ -1664,7 +1586,7 @@
       {
         "key": "condoms_issued",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "condoms_issued",
         "type": "check_box",
         "label": "Select the type of the condoms issued",
@@ -1673,7 +1595,7 @@
             "key": "male_condoms",
             "text": "Male condoms",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "male_condoms",
             "openmrs_entity_parent": ""
           },
@@ -1681,7 +1603,7 @@
             "key": "female_condoms",
             "text": "Female condoms",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "female_condoms",
             "openmrs_entity_parent": ""
           }
@@ -1820,7 +1742,7 @@
       {
         "key": "provider_cadre",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "provider_cadre",
         "type": "native_radio",
         "label": "Provider's cadre",
@@ -1829,7 +1751,7 @@
             "key": "assistant_medical_officer",
             "text": "Medical officer",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "assistant_medical_officer",
             "openmrs_entity_parent": ""
           },
@@ -1837,7 +1759,7 @@
             "key": "assistant_assistant_medical_officer",
             "text": "Assistant medical officer",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "assistant_assistant_medical_officer",
             "openmrs_entity_parent": ""
           },
@@ -1845,7 +1767,7 @@
             "key": "assistant_clinical_officer_or_assistant",
             "text": "Clinical officer/Assistant clinical officer",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "assistant_clinical_officer_or_assistant",
             "openmrs_entity_parent": ""
           },
@@ -1853,7 +1775,7 @@
             "key": "assistant_enrolled_nurse",
             "text": "Enrolled nurse",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "assistant_enrolled_nurse",
             "openmrs_entity_parent": ""
           },
@@ -1861,7 +1783,7 @@
             "key": "assistant_assistant_nursing_officer",
             "text": "Assistant nursing officer",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "assistant_assistant_nursing_officer",
             "openmrs_entity_parent": ""
           },
@@ -1869,7 +1791,7 @@
             "key": "assistant_nursing_officer",
             "text": "Nursing officer",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": "assistant_nursing_officer",
             "openmrs_entity_parent": ""
           }
@@ -1877,6 +1799,82 @@
         "v_required": {
           "value": true,
           "err": "Please select atleast one"
+        }
+      },
+      {
+        "key": "treatment_outcome",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "treatment_outcome",
+        "label": "Treatment outcome",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "adverse_event_completely_resolved",
+            "text": "Adverse event completely resolved",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "adverse_event_completely_resolved"
+          },
+          {
+            "key": "adverse_event_partially_resolved",
+            "text": "Adverse event partially resolved",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "adverse_event_partially_resolved"
+          },
+          {
+            "key": "adverse_event_unchanged",
+            "text": "Adverse event unchanged",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "adverse_event_unchanged"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select atleast one outcome"
+        },
+        "relevance": {
+          "step1:post_op_adverse_event_occur": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
+        }
+      },
+
+      {
+        "key": "treatment_outcome_note",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "toaster_notes",
+        "type": "toaster_notes",
+        "text": "Refer the client for further managment",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "step1:treatment_outcome": {
+            "type": "string",
+            "ex": "equalTo(., \"adverse_event_partially_resolved\")"
+          }
+        }
+      },
+
+      {
+        "key": "treatment_outcome_unchanged_note",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "toaster_notes",
+        "type": "toaster_notes",
+        "text": "Refer the client for further managment",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "step1:treatment_outcome": {
+            "type": "string",
+            "ex": "equalTo(., \"adverse_event_unchanged\")"
+          }
         }
       }
     ]

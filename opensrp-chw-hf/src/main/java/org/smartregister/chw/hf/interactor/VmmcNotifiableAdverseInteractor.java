@@ -120,8 +120,8 @@ public class VmmcNotifiableAdverseInteractor extends BaseVmmcVisitInteractor {
         return Constants.TABLES.VMMC_NOTIFIABLE_EVENT;
     }
 
-//    private class VmmcVisitTypeActionHelper extends org.smartregister.chw.hf.actionhelper.vmmc.VmmcVisitTypeActionHelper {
-//        public VmmcVisitTypeActionHelper(String baseEntityId) {
+//    private class VmmcMedicalHistoryTypeActionHelper extends org.smartregister.chw.hf.actionhelper.vmmc.VmmcMedicalHistoryTypeActionHelper {
+//        public VmmcMedicalHistoryTypeActionHelper(String baseEntityId) {
 //            super(baseEntityId);
 //        }
 //

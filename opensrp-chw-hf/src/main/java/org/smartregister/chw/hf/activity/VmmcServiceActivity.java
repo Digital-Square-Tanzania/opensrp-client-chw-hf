@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
-import android.os.Bundle;
-import android.view.View;
 
 import com.vijay.jsonwizard.constants.JsonFormConstants;
 import com.vijay.jsonwizard.domain.Form;
@@ -13,7 +11,7 @@ import com.vijay.jsonwizard.domain.Form;
 import org.json.JSONObject;
 import org.smartregister.chw.core.task.RunnableTask;
 import org.smartregister.chw.hf.R;
-import org.smartregister.chw.hf.interactor.VmmcVisitInteractor;
+import org.smartregister.chw.hf.interactor.VmmcVisitMedicalHistoryInteractor;
 import org.smartregister.chw.hf.schedulers.HfScheduleTaskExecutor;
 import org.smartregister.chw.vmmc.model.BaseVmmcVisitAction;
 import org.smartregister.chw.vmmc.presenter.BaseVmmcVisitPresenter;
@@ -38,7 +36,7 @@ public class VmmcServiceActivity extends BaseVmmcVisitActivity {
 
     @Override
     protected void registerPresenter() {
-        presenter = new BaseVmmcVisitPresenter(memberObject, this, new VmmcVisitInteractor(Constants.EVENT_TYPE.VMMC_SERVICES));
+        presenter = new BaseVmmcVisitPresenter(memberObject, this, new VmmcVisitMedicalHistoryInteractor(Constants.EVENT_TYPE.VMMC_SERVICES));
     }
 
     @Override

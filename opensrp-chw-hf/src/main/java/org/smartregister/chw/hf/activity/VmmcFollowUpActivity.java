@@ -12,7 +12,6 @@ import org.json.JSONObject;
 import org.smartregister.chw.core.task.RunnableTask;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.interactor.VmmcFollowUpInteractor;
-import org.smartregister.chw.hf.interactor.VmmcVisitInteractor;
 import org.smartregister.chw.hf.schedulers.HfScheduleTaskExecutor;
 import org.smartregister.chw.vmmc.activity.BaseVmmcVisitActivity;
 import org.smartregister.chw.vmmc.model.BaseVmmcVisitAction;

@@ -921,7 +921,7 @@
     <string name="vmmc_urethral_managed">urethral managed:</string>
     <string name="vmmc_chordae_managed">chordae managed:</string>
     <string name="vmmc_hydrocele_managed">hydrocele managed:</string>
-    <string name="vmmc_client_consent_for_mc_procedure">client consent for mc procedure:</string>
+    <string name="vmmc_client_consent_for_mc_procedure">client consent for male circumcision procedure:</string>
     <string name="vmmc_health_care_provider">health care provider:</string>
 
     <string name="vmmc_is_male_procedure_circumcision_conducted">Male circumcision procedure conducted:</string>

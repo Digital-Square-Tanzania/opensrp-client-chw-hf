@@ -49,7 +49,7 @@
       {
         "key": "physical_abnormality",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "check_box",
         "label": "Any significant physical abnormality on general examination? (Check all applicable)",
@@ -62,42 +62,42 @@
             "key": "pallor",
             "text": "Pallor",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
             "key": "jaundice",
             "text": "Jaundice",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
             "key": "petechiae",
             "text": "Petechiae/Ecchymosis/Epistaxis",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
             "key": "joint_deformity",
             "text": "Joint deformity ",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
             "key": "others",
             "text": "Others (specify)",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
             "key": "none",
             "text": "None",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           }
         ],
@@ -157,7 +157,7 @@
       {
         "key": "client_weight",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "entity_id": "",
         "type": "edit_text",
@@ -176,7 +176,7 @@
       {
         "key": "client_height",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "entity_id": "",
         "type": "edit_text",
@@ -412,7 +412,7 @@
       {
         "key": "respiration_rate",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "entity_id": "",
         "type": "edit_text",
@@ -427,7 +427,7 @@
       {
         "key": "genital_examination",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "check_box",
         "label": "Genital examination",
@@ -440,98 +440,98 @@
             "key": "uds",
             "text": "Urethral Discharge Syndrome(UDS)",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
             "key": "gud",
             "text": "Genital Ulcer Disease (GUD)",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
             "key": "smegma",
             "text": "Smegma under the foreskin",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
             "key": "phimosis",
             "text": "Phimosis",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
             "key": "paraphimosis",
             "text": "Paraphimosis",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
             "key": "undescended_testicles",
             "text": "Undescended testicles",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
             "key": "condylomata_lata",
             "text": "Condylomata lata/acuminate",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
             "key": "adhesion_prepuce",
             "text": "Adhesion of prepuce to glans",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
             "key": "hydrocele",
             "text": "Hydrocele",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
             "key": "balanitis",
             "text": "Balanitis/redness/swelling of foreskin/ glans/ shaft",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
             "key": "opening_abnormality",
             "text": "Urethral opening abnormality",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
             "key": "chordae",
             "text": "Chordae (banana shaped penis)",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
             "key": "others",
             "text": "Others (specify)",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
             "key": "none",
             "text": "None",
             "value": false,
-            "openmrs_entity": "",
+            "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           }
         ],
@@ -647,7 +647,7 @@
       {
         "key": "penile_size",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "native_radio",
         "label": "Select appropriate device size for client’s penile size",

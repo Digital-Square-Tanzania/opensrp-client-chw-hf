@@ -131,7 +131,7 @@ public class VmmcVisitDischargeInteractor extends BaseVmmcVisitInteractor {
         return Constants.TABLES.VMMC_CONFIRMATION;
     }
 
-//    private class VmmcVisitTypeActionHelper extends org.smartregister.chw.hf.actionhelper.vmmc.VmmcVisitTypeActionHelper {
+//    private class VmmcMedicalHistoryTypeActionHelper extends org.smartregister.chw.hf.actionhelper.vmmc.VmmcMedicalHistoryTypeActionHelper {
 //        @Override
 //        public String postProcess(String s) {
 //            if (StringUtils.isNotBlank(medical_history)) {

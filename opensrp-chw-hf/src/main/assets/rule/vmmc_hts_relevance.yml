@@ -2,14 +2,14 @@
 name: step1_tested_hiv
 description: if step1_tested_hiv
 priority: 1
-condition: "!global_hiv_info.contains('hiv')"
+condition: "!global_client_diagnosed.contains('hiv')"
 actions:
   - "isRelevant = true "
 ---
 name: step1_hiv_viral_load_text
 description: if step1_hiv_viral_load_text
 priority: 1
-condition: "global_hiv_info.contains('hiv')"
+condition: "global_client_diagnosed.contains('hiv')"
 actions:
   - "isRelevant = true "
 ---
@@ -52,6 +52,7 @@ name: step1_toaster_notes_hypertension
 description: if toaster_notes_client_diagnosed
 priority: 1
 condition: "global_client_diagnosed.contains('hypertension')"
+actions:
   - "isRelevant = true "
 ---
 name: step1_toaster_notes_diabetes

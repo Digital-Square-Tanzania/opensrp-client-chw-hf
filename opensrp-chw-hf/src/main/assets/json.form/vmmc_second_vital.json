@@ -253,7 +253,7 @@
       {
         "key": "respiration_rate_second",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "entity_id": "",
         "type": "edit_text",
@@ -268,8 +268,8 @@
       {
         "key": "time_taken_second",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "1650012AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "time_taken_second",
         "type": "time_picker",
         "hint": "Time taken",
         "expandable": false,

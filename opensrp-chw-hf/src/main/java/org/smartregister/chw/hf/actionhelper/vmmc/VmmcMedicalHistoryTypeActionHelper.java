@@ -1,7 +1,6 @@
 package org.smartregister.chw.hf.actionhelper.vmmc;
 
 import android.content.Context;
-import android.util.Log;
 
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
@@ -13,7 +12,7 @@ import org.smartregister.chw.vmmc.model.BaseVmmcVisitAction;
 import java.util.List;
 import java.util.Map;
 
-public class VmmcVisitTypeActionHelper implements BaseVmmcVisitAction.VmmcVisitActionHelper {
+public class VmmcMedicalHistoryTypeActionHelper implements BaseVmmcVisitAction.VmmcVisitActionHelper {
 
     protected String medical_history;
     protected String jsonPayload;
@@ -29,7 +28,7 @@ public class VmmcVisitTypeActionHelper implements BaseVmmcVisitAction.VmmcVisitA
 
     private String baseEntityId;
 
-    public VmmcVisitTypeActionHelper(String baseEntityId) {
+    public VmmcMedicalHistoryTypeActionHelper(String baseEntityId) {
         this.baseEntityId = baseEntityId;
     }
 
@@ -54,9 +53,9 @@ public class VmmcVisitTypeActionHelper implements BaseVmmcVisitAction.VmmcVisitA
     public void onPayloadReceived(String jsonPayload) {
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
-            JSONObject global = jsonObject.getJSONObject("global");
+//            JSONObject global = jsonObject.getJSONObject("global");
 
-            hiv_info = CoreJsonFormUtils.getValue(jsonObject, "client_diagnosed");
+//            hiv_info = CoreJsonFormUtils.getValue(jsonObject, "client_diagnosed");
 
             client_diagnosed = CoreJsonFormUtils.getValue(jsonObject, "client_diagnosed");
             any_complaints = CoreJsonFormUtils.getValue(jsonObject, "any_complaints");
@@ -67,11 +66,12 @@ public class VmmcVisitTypeActionHelper implements BaseVmmcVisitAction.VmmcVisitA
             blood_for_glucose = CoreJsonFormUtils.getValue(jsonObject, "blood_for_glucose");
             blood_for_glucose_test = CoreJsonFormUtils.getValue(jsonObject, "blood_for_glucose_test");
 
-            global.put("hiv_info", hiv_info);
+//            global.put("hiv_info", hiv_info);
 
-            Log.d("vmmc-test", hiv_info);
+//            Log.d("vmmc-test", hiv_info);
 
             medical_history = CoreJsonFormUtils.getValue(jsonObject, "has_client_had_any_sti");
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
