@@ -116,6 +116,13 @@
         "v_required": {
           "value": "true",
           "err": "Please select an answer"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kvp_family_planning_services_relevance.yml"
+            }
+          }
         }
       }
     ]

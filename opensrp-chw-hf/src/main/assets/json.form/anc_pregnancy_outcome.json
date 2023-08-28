@@ -827,12 +827,12 @@
               "err": "Please enter the weight"
             },
             "v_min": {
-              "value": "1.5",
-              "err": "The weight must be equal or greater than 1.5 (KGs)"
+              "value": "0.5",
+              "err": "The weight must be equal or greater than 0.5 (KGs)"
             },
             "v_max": {
-              "value": "6",
-              "err": "The weight must be equal or less than 6 (KGs)"
+              "value": "7",
+              "err": "The weight must be equal or less than 7 (KGs)"
             },
             "v_required": {
               "value": true,
@@ -983,19 +983,19 @@
             "hint": "Reason why the child was not breast fed within one hour",
             "values": [
               "Mother Died",
-              "There was no milk flow",
+              "Baby unable to breast feed",
               "Replacement Feeding",
               "Other (Specify)"
             ],
             "keys": [
               "mother_died",
-              "no_milk_flow",
+              "baby_unable_to_breast_feed",
               "replacement_feeding",
               "other"
             ],
             "openmrs_choice_ids": {
               "mother_died": "mother_died",
-              "no_milk_flow": "no_milk_flow",
+              "baby_unable_to_breast_feed": "baby_unable_to_breast_feed",
               "replacement_feeding": "replacement_feeding",
               "Other": "other"
             },
@@ -1284,16 +1284,12 @@
               "err": "Please enter the weight"
             },
             "v_min": {
-              "value": "0",
-              "err": "The weight must be equal or greater than 0 (KG)"
+              "value": "0.5",
+              "err": "The weight must be equal or greater than 0.5 (KG)"
             },
             "v_max": {
-              "value": "30",
-              "err": "The weight must be equal or less than 30 (KG)"
-            },
-            "v_required": {
-              "value": true,
-              "err": "Please enter the weight"
+              "value": "7",
+              "err": "The weight must be equal or less than 7 (KG)"
             }
           },
           {
@@ -1440,19 +1436,19 @@
             "hint": "Reason why the child was not breast fed within one hour",
             "values": [
               "Mother Died",
-              "There was no milk flow",
+              "Baby unable to breast feed",
               "Replacement Feeding",
               "Other (Specify)"
             ],
             "keys": [
               "mother_died",
-              "no_milk_flow",
+              "baby_unable_to_breast_feed",
               "replacement_feeding",
               "other"
             ],
             "openmrs_choice_ids": {
               "mother_died": "mother_died",
-              "no_milk_flow": "no_milk_flow",
+              "baby_unable_to_breast_feed": "baby_unable_to_breast_feed",
               "replacement_feeding": "replacement_feeding",
               "Other": "other"
             },

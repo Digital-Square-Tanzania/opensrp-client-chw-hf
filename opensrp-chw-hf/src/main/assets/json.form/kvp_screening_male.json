@@ -184,7 +184,7 @@
     ]
   },
   "step4": {
-    "title": "MSM",
+    "title": "High Risk Men",
     "next": "step5",
     "fields": [
       {
@@ -610,7 +610,7 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "prep_qualified",
-        "label": "Is the client qualified to receive PrEP?",
+        "label": "Is the client eligible to receive PrEP?",
         "text_color": "#000000",
         "type": "native_radio",
         "options": [
@@ -664,7 +664,7 @@
       {
         "key": "prompt_for_msm_kvp",
         "type": "toaster_notes",
-        "text": "The client falls in MSM KVP group\nThe client should be enrolled to KVP friendly services",
+        "text": "The client falls in High Risk Men KVP group\nThe client should be enrolled to KVP friendly services",
         "openmrs_entity_id": "",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
@@ -776,6 +776,7 @@
           "Simiyu",
           "Singida",
           "Songwe",
+          "Tabora",
           "Tanga"
         ],
         "keys": [
@@ -803,6 +804,7 @@
           "Simiyu",
           "Singida",
           "Songwe",
+          "Tabora",
           "Tanga"
         ],
         "v_required": {
@@ -825,7 +827,7 @@
         "type": "date_picker",
         "hint": "Enrollment date",
         "expanded": false,
-        "min_date": "today-1m",
+        "min_date": "01-05-2018",
         "max_date": "today",
         "v_required": {
           "value": "true",
@@ -850,7 +852,7 @@
         "options": [
           {
             "key": "msm",
-            "text": "MSM",
+            "text": "High Risk Men",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "msm"

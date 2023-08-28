@@ -1,0 +1,651 @@
+{
+  "count": "1",
+  "encounter_type": "CDP Distribution Within Facility",
+  "entity_id": "",
+  "metadata": {
+    "start": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "start",
+      "openmrs_entity_id": "163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "end": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "end",
+      "openmrs_entity_id": "163138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "deviceid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "deviceid",
+      "openmrs_entity_id": "163149AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "subscriberid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "subscriberid",
+      "openmrs_entity_id": "163150AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "simserial": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "simserial",
+      "openmrs_entity_id": "163151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "phonenumber": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "phonenumber",
+      "openmrs_entity_id": "163152AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "encounter_location": ""
+  },
+  "global": {},
+  "step1": {
+    "title": "Condom Distribution",
+    "fields": [
+      {
+        "key": "condom_type",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "condom_type",
+        "label": "Chagua aina ya kondomu",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "male_condom",
+            "text": "Male",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "male_condom"
+          },
+          {
+            "key": "female_condom",
+            "text": "Female",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "female_condom"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select the condom type"
+        }
+      },
+      {
+        "key": "number_of_condoms_available",
+        "type": "toaster_notes",
+        "text": "",
+        "openmrs_entity_id": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "info"
+      },
+      {
+        "key": "condom_brand",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "condom_brand",
+        "label": "Chagua chapa ya kondomu",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "public_sc",
+            "text": "Public sector condom",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "public_sc"
+          },
+          {
+            "key": "dume",
+            "text": "Dume",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "dume"
+          },
+          {
+            "key": "salama",
+            "text": "Salama",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "salama"
+          },
+          {
+            "key": "familia",
+            "text": "Familia",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "familia"
+          },
+          {
+            "key": "others",
+            "text": "Others",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "others"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select the condom brand"
+        }
+      },
+      {
+        "key": "male_condom_brand",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "male_condom_brand",
+        "type": "hidden",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cdp_condom_distribution_within_calculation.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "female_condom_brand",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "female_condom_brand",
+        "type": "hidden",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cdp_condom_distribution_within_calculation.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "other_condom_brand",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "other_condom_brand",
+        "type": "edit_text",
+        "hint": "Other condom brand",
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the other condom brand"
+        },
+        "relevance": {
+          "step1:condom_brand": {
+            "type": "string",
+            "ex": "equalTo(., \"others\")"
+          }
+        }
+      },
+      {
+        "key": "provided_male_condoms_public_sc",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "provided_male_condoms_public_sc",
+        "type": "edit_text",
+        "hint": "Idadi ya Kondomu za kiume zilizosambazwa",
+        "v_numeric": {
+          "value": "true",
+          "err": "Tafadhali jaza namba"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Tafadhali jaza namba"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cdp_condom_distribution_within_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "provided_female_condoms_public_sc",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "provided_female_condoms_public_sc",
+        "type": "edit_text",
+        "hint": "Idadi ya Kondomu za kike zilizosambazwa",
+        "v_numeric": {
+          "value": "true",
+          "err": "Tafadhali jaza namba"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Tafadhali jaza namba"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cdp_condom_distribution_within_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "provided_male_condoms_dume",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "provided_male_condoms_dume",
+        "type": "edit_text",
+        "hint": "Idadi ya Kondomu za kiume zilizosambazwa",
+        "v_numeric": {
+          "value": "true",
+          "err": "Tafadhali jaza namba"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Tafadhali jaza namba"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cdp_condom_distribution_within_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "provided_female_condoms_dume",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "provided_female_condoms_dume",
+        "type": "edit_text",
+        "hint": "Idadi ya Kondomu za kike zilizosambazwa",
+        "v_numeric": {
+          "value": "true",
+          "err": "Tafadhali jaza namba"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Tafadhali jaza namba"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cdp_condom_distribution_within_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "provided_male_condoms_salama",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "provided_male_condoms_salama",
+        "type": "edit_text",
+        "hint": "Idadi ya Kondomu za kiume zilizosambazwa",
+        "v_numeric": {
+          "value": "true",
+          "err": "Tafadhali jaza namba"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Tafadhali jaza namba"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cdp_condom_distribution_within_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "provided_female_condoms_salama",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "provided_female_condoms_salama",
+        "type": "edit_text",
+        "hint": "Idadi ya Kondomu za kike zilizosambazwa",
+        "v_numeric": {
+          "value": "true",
+          "err": "Tafadhali jaza namba"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Tafadhali jaza namba"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cdp_condom_distribution_within_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "provided_male_condoms_familia",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "provided_male_condoms_familia",
+        "type": "edit_text",
+        "hint": "Idadi ya Kondomu za kiume zilizosambazwa",
+        "v_numeric": {
+          "value": "true",
+          "err": "Tafadhali jaza namba"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Tafadhali jaza namba"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cdp_condom_distribution_within_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "provided_female_condoms_familia",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "provided_female_condoms_familia",
+        "type": "edit_text",
+        "hint": "Idadi ya Kondomu za kike zilizosambazwa",
+        "v_numeric": {
+          "value": "true",
+          "err": "Tafadhali jaza namba"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Tafadhali jaza namba"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cdp_condom_distribution_within_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "provided_male_condoms_other",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "provided_male_condoms_other",
+        "type": "edit_text",
+        "hint": "Idadi ya Kondomu za kiume zilizosambazwa",
+        "v_numeric": {
+          "value": "true",
+          "err": "Tafadhali jaza namba"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Tafadhali jaza namba"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cdp_condom_distribution_within_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "provided_female_condoms_other",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "provided_female_condoms_other",
+        "type": "hidden",
+        "hint": "Idadi ya Kondomu za kike zilizosambazwa",
+        "v_numeric": {
+          "value": "true",
+          "err": "Tafadhali jaza namba"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Tafadhali jaza namba"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cdp_condom_distribution_within_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "provided_male_condoms",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "male_condoms_offset",
+        "type": "hidden",
+        "hint": "Idadi ya Kondomu za kiume zilizosambazwa",
+        "v_numeric": {
+          "value": "true",
+          "err": "Tafadhali jaza namba"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Tafadhali jaza namba"
+        },
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cdp_condom_distribution_within_calculation.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "provided_female_condoms",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "female_condoms_offset",
+        "type": "hidden",
+        "hint": "Idadi ya Kondomu za kike zilizosambazwa",
+        "v_numeric": {
+          "value": "true",
+          "err": "Tafadhali jaza namba"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Tafadhali jaza namba"
+        },
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cdp_condom_distribution_within_calculation.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "quantity_response",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "quantity_response",
+        "type": "hidden",
+        "hint": "Number of condoms distributed (Pieces)",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cdp_condom_distribution_within_calculation.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "stock_event_type",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "stock_event_type",
+        "type": "hidden",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cdp_condom_distribution_within_calculation.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "condom_restock_date",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "condom_restock_date",
+        "type": "hidden",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cdp_condom_distribution_within_calculation.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "condom_restock_date",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "condom_restock_date",
+        "type": "date_picker",
+        "hint": "Condom distribution date",
+        "expanded": false,
+        "min_date": "today-1m",
+        "max_date": "today",
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the distribution date"
+        }
+      },
+      {
+        "key": "stock_event_type",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "stock_event_type",
+        "type": "hidden",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cdp_condom_distribution_within_calculation.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "point_of_service",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "point_of_service",
+        "label": "Chagua kituo cha huduma",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "ctc",
+            "text": "kliniki ya tiba na matunzo(CTC)",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "ctc"
+          },
+          {
+            "key": "rch_clinic",
+            "text": "kliniki ya mama na mtoto(RCH)",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "rch_clinic"
+          },
+          {
+            "key": "opd",
+            "text": "idara ya wagonjwa wa nje(OPD)",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "opd"
+          },
+          {
+            "key": "tb_clinic",
+            "text": "Kliniki ya kifua kikuu(TB)",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "tb_clinic"
+          },
+          {
+            "key": "outreach",
+            "text": "Ufatiliyaji(OUTREACH)",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "outreach"
+          },
+          {
+            "key": "other",
+            "text": "Nyingine",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "other"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Tafadhali chagua kituo cha huduma"
+        }
+      },
+      {
+        "key": "other_pos",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "other_pos",
+        "type": "edit_text",
+        "hint": "Sehemu nyingine ya huduma",
+        "v_required": {
+          "value": "true",
+          "err": "Tafadhali ingiza chapa nyingine ya kondomu"
+        },
+        "relevance": {
+          "step1:point_of_service": {
+            "type": "string",
+            "ex": "equalTo(., \"other\")"
+          }
+        }
+      },
+      {
+        "key": "distributing_person_name",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "distributing_person_name",
+        "type": "edit_text",
+        "hint": "Jina la mtu aliyesambaza kondomu",
+        "edit_type": "name",
+        "v_regex": {
+          "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-\\']*",
+          "err": "Tafadhali weka jina sahihi"
+        },
+        "v_required": { "value": "true", "err": "Tafadhali weka jina" }
+      },
+      {
+        "key": "distributing_person_position",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "distributing_person_position",
+        "type": "edit_text",
+        "hint": "Cheo cha mtu anayesambaza ",
+        "v_required": { "value": "true", "err": "Tafadhali weka cheo" }
+      },
+      {
+        "key": "distributing_person_phone",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "distributing_person_phone",
+        "type": "edit_text",
+        "hint": "Namba ya simu ya mtu anayesambaza",
+        "edit_type": "number",
+        "v_numeric": {
+          "value": "true",
+          "err": "Namba lazima iwe jumla ya tarakimu 10 kwa urefu"
+        },
+        "v_regex": {
+          "value": "(0[6-7][1-9][0-9][0-9]{6})|\\s*",
+          "err": "Nambari lazima iwe na tarakimu 10 na lazima ianze na 06 au 07."
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Tafadhali weka nambari ya simu"
+        }
+      }
+    ]
+  }
+}

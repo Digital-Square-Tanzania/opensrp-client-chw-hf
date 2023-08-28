@@ -1234,8 +1234,8 @@
           "err": "Please enter the weight"
         },
         "v_min": {
-          "value": "0",
-          "err": "The weight must be equal or greater than 0 (KG)"
+          "value": "0.5",
+          "err": "The weight must be equal or greater than 0.5 (KG)"
         },
         "v_max": {
           "value": "7",
@@ -1378,6 +1378,12 @@
             "text": "Baby has low ApGar score",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "baby_has_low_apgar_score"
+          },
+          {
+            "key": "baby_has_complications",
+            "text": "Baby has Complications",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "baby_has_complications"
           },
           {
             "key": "other",
@@ -1596,10 +1602,10 @@
             "openmrs_entity_id": "mother_died"
           },
           {
-            "key": "no_milk_flow",
-            "text": "There was no milk flow",
+            "key": "baby_unable_to_breast_feed",
+            "text": "Baby unable to breast feed",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "no_milk_flow"
+            "openmrs_entity_id": "baby_unable_to_breast_feed"
           },
           {
             "key": "replacement_feeding",

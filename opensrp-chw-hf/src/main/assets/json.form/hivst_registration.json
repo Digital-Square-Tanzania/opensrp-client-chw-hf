@@ -213,7 +213,7 @@
         "options": [
           {
             "key": "msm",
-            "text": "MSM",
+            "text": "High Risk Men",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "msm"
@@ -243,6 +243,25 @@
         "v_required": {
           "value": "true",
           "err": "Please select an answer"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "hivst_registration_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "other_group",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "other_group",
+        "type": "edit_text",
+        "hint": "Other Group",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify the other group"
         },
         "relevance": {
           "rules-engine": {
