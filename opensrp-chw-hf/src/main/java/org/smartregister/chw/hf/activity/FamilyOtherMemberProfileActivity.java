@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.sun.xml.bind.v2.TODO;
 import com.vijay.jsonwizard.utils.FormUtils;
 
 import org.apache.commons.lang3.StringUtils;
@@ -319,6 +320,11 @@ public class FamilyOtherMemberProfileActivity extends CoreFamilyOtherMemberProfi
             String dob = Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.DOB, false);
             int age = Utils.getAgeFromDate(dob);
             menu.findItem(R.id.action_kvp_registration).setVisible(!KvpDao.isRegisteredForKvp(baseEntityId) && age >= 15);
+        }
+
+        //TODO ChrissDisigale: vmmc-menu-option
+        if (gender.equalsIgnoreCase("male") && HealthFacilityApplication.getApplicationFlavor().hasVmmc()){
+            menu.findItem(R.id.action_vmmc_registration).setVisible(!VmmcDao.isRegisteredForVmmc(baseEntityId));
         }
 
         if (BuildConfig.BUILD_FOR_BORESHA_AFYA_SOUTH) {

@@ -143,11 +143,11 @@
         "type": "native_radio",
         "options": [
           {
-            "key": "injectables_lignocaine",
-            "text": "Injectables-Lignocaine",
+            "key": "injectables",
+            "text": "Injectables",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "injectables_lignocaine"
+            "openmrs_entity_id": "injectables"
           },
           {
             "key": "topical_cream",
@@ -231,6 +231,46 @@
         "openmrs_entity_id": "dosage",
         "type": "edit_text",
         "hint": "Dosage",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_mc_procedure_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "start_time_topical_cream_application",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "start_time_topical_cream_application",
+        "type": "time_picker",
+        "hint": "Start time of topical cream application",
+        "expanded": false,
+        "v_required": {
+          "value": "true",
+          "err": "Please provide the time "
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_mc_procedure_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "end_time_topical_cream_application",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "end_time_topical_cream_application",
+        "type": "time_picker",
+        "hint": "End time of topical cream application",
+        "expanded": false,
+        "v_required": {
+          "value": "true",
+          "err": "Please provide the time "
+        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -1056,21 +1096,21 @@
             "text": "Mild bruising or abrasion, not requiring treatment",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "more_bleed_than_usual_but_easily_controlled"
+            "openmrs_entity_id": "mild_bruising"
           },
           {
             "key": "bruising",
             "text": "Bruising or abrasion of the glans or shaft of the penis requiring pressure dressing or additional surgery to control",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "bleed_require_pressure_dressing"
+            "openmrs_entity_id": "bruising"
           },
           {
             "key": "glans_or_shaft",
             "text": "Part or all of the glans or shaft of the penis severed",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "transfussion_or_transfered_another_facility"
+            "openmrs_entity_id": "glans_or_shaft"
           }
         ],
         "v_required": {
@@ -1093,7 +1133,7 @@
         "key": "ae_classified_as_mild_injury_to_penis",
         "type": "toaster_notes",
         "text": "AE classified as MILD",
-        "openmrs_entity_id": "ae_classified_as_mild",
+        "openmrs_entity_id": "ae_classified_as_mild_injury_to_penis",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "info",
@@ -1108,7 +1148,7 @@
         "key": "ae_classified_as_moderate_injury_to_penis",
         "type": "toaster_notes",
         "text": "AE classified as MODERATE",
-        "openmrs_entity_id": "ae_classified_as_moderate",
+        "openmrs_entity_id": "ae_classified_as_moderate_injury_to_penis",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "warning",
@@ -1123,7 +1163,7 @@
         "key": "ae_classified_as_severe_injury_to_penis",
         "type": "toaster_notes",
         "text": "AE classified as SEVERE",
-        "openmrs_entity_id": "ae_classified_as_severe",
+        "openmrs_entity_id": "ae_classified_as_severe_injury_to_penis",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "problem",
@@ -1138,7 +1178,7 @@
         "key": "desc_intraoperative_ae_anaesthetic_related_event",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "desc_intraoperative_ae",
+        "openmrs_entity_id": "desc_intraoperative_ae_anaesthetic_related_event",
         "label": "Description of intraoperative adverse events (Anaesthetic-related event)",
         "text_color": "#000000",
         "type": "native_radio",
@@ -1148,21 +1188,21 @@
             "text": "Palpitations, vaso-vagal reaction or emesis",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "more_bleed_than_usual_but_easily_controlled"
+            "openmrs_entity_id": "palpitations"
           },
           {
             "key": "reaction_to_anaesthetic",
             "text": "Reaction to anaesthetic requiring medical treatment in clinic, but not transfer to another facility",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "bleed_require_pressure_dressing"
+            "openmrs_entity_id": "reaction_to_anaesthetic"
           },
           {
             "key": "anaphylaxis",
             "text": "Anaphylaxis or other reaction requiring transfer to another facility",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "transfussion_or_transfered_another_facility"
+            "openmrs_entity_id": "anaphylaxis"
           }
         ],
         "v_required": {

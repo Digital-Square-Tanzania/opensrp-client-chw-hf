@@ -8964,6 +8964,22 @@
           }
         },
         {
+          "column_name": "did_client_experience_nae",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "did_client_experience_nae"
+          }
+        },
+        {
+          "column_name": "date_nae_occured",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "date_nae_occured"
+          }
+        },
+        {
           "column_name": "last_interacted_with",
           "type": "Event",
           "json_mapping": {
@@ -9094,46 +9110,6 @@
           }
         },
         {
-          "column_name": "desc_of_post_op_adverse_event_infection_without_device",
-          "type": "Event",
-          "json_mapping": {
-            "field": "obs.fieldCode",
-            "concept": "desc_of_post_op_adverse_event_infection_without_device"
-          }
-        },
-        {
-          "column_name": "desc_of_post_op_adverse_event_persistent_pain_without_device",
-          "type": "Event",
-          "json_mapping": {
-            "field": "obs.fieldCode",
-            "concept": "desc_of_post_op_adverse_event_persistent_pain_without_device"
-          }
-        },
-        {
-          "column_name": "desc_of_post_op_adverse_event_bleeding_without_device",
-          "type": "Event",
-          "json_mapping": {
-            "field": "obs.fieldCode",
-            "concept": "desc_of_post_op_adverse_event_bleeding_without_device"
-          }
-        },
-        {
-          "column_name": "desc_of_post_op_adverse_event_swelling_without_device",
-          "type": "Event",
-          "json_mapping": {
-            "field": "obs.fieldCode",
-            "concept": "desc_of_post_op_adverse_event_swelling_without_device"
-          }
-        },
-        {
-          "column_name": "desc_of_post_op_adverse_pass_urine_without_device",
-          "type": "Event",
-          "json_mapping": {
-            "field": "obs.fieldCode",
-            "concept": "desc_of_post_op_adverse_pass_urine_without_device"
-          }
-        },
-        {
           "column_name": "what_done",
           "type": "Event",
           "json_mapping": {
@@ -9171,6 +9147,22 @@
           "json_mapping": {
             "field": "obs.fieldCode",
             "concept": "condoms_issued"
+          }
+        },
+        {
+          "column_name": "did_client_experience_nae",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "did_client_experience_nae"
+          }
+        },
+        {
+          "column_name": "date_nae_occured",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "date_nae_occured"
           }
         },
         {
@@ -9229,14 +9221,6 @@
           "json_mapping": {
             "field": "obs.fieldCode",
             "concept": "did_client_experience_nae"
-          }
-        },
-        {
-          "column_name": "did_client_experience_nae_without_device",
-          "type": "Event",
-          "json_mapping": {
-            "field": "obs.fieldCode",
-            "concept": "did_client_experience_nae_without_device"
           }
         },
         {

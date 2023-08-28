@@ -65,18 +65,22 @@
         "key": "tested_hiv",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
+        "openmrs_entity_id": "tested_hiv",
         "type": "native_radio",
         "label": "Client tested for HIV as part of Male Circumcision service ",
         "label_text_size": "18px",
         "options": [
           {
             "key": "yes",
-            "text": "Yes"
+            "text": "Yes",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "yes"
           },
           {
             "key": "no",
-            "text": "No"
+            "text": "No",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "no"
           }
         ],
         "value": "",
@@ -95,22 +99,28 @@
         "key": "hiv_result",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
+        "openmrs_entity_id": "hiv_result",
         "type": "native_radio",
         "label": "HIV test result ",
         "label_text_size": "18px",
         "options": [
           {
             "key": "positive",
-            "text": "Positive"
+            "text": "Positive",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "positive"
           },
           {
             "key": "negative",
-            "text": "Negative"
+            "text": "Negative",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "negative"
           },
           {
             "key": "indeterminate",
-            "text": "Indeterminate"
+            "text": "Indeterminate",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "indeterminate"
           }
         ],
         "value": "",
@@ -127,8 +137,8 @@
       {
         "key": "defer_procedure",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "person_attribute",
-        "openmrs_entity_id": "toaster_notes",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "defer_procedure",
         "type": "toaster_notes",
         "text": "Defer the procedure and follow HTS procedure",
         "text_color": "#CF0800",
@@ -144,8 +154,8 @@
       {
         "key": "toaster_notes_indeterminate",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "person_attribute",
-        "openmrs_entity_id": "toaster_notes",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "toaster_notes_indeterminate",
         "type": "toaster_notes",
         "text": "Defer the procedure for one month & follow HTS Guideline",
         "text_color": "#CF0800",
@@ -162,7 +172,7 @@
         "key": "hiv_reasons",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
+        "openmrs_entity_id": "hiv_reasons",
         "type": "native_radio",
         "label": "Reasons",
         "text_color": "#000000",
@@ -172,35 +182,35 @@
             "text": "Test kits out of stock",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
+            "openmrs_entity_id": "out_of_stock"
           },
           {
             "key": "emergency_situation",
             "text": "a client was in an emergency situation",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
+            "openmrs_entity_id": "emergency_situation"
           },
           {
             "key": "client_refused ",
             "text": "Client refused to be tested",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
+            "openmrs_entity_id": "client_refused"
           },
           {
             "key": "counselling",
             "text": "we are still counselling a client",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
+            "openmrs_entity_id": "counselling"
           },
           {
             "key": "other",
             "text": "Other (specify)",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
+            "openmrs_entity_id": "other"
           }
         ],
         "v_required": {
@@ -236,18 +246,22 @@
         "key": "self_test_kits",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
+        "openmrs_entity_id": "self_test_kits",
         "type": "native_radio",
         "label": "Client offered HIV self test kits? ",
         "label_text_size": "18px",
         "options": [
           {
             "key": "yes",
-            "text": "Yes"
+            "text": "Yes",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "yes"
           },
           {
             "key": "no",
-            "text": "No"
+            "text": "No",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "no"
           }
         ],
         "value": "",
@@ -259,18 +273,22 @@
         "key": "was_client_referred",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
+        "openmrs_entity_id": "was_client_referred",
         "type": "native_radio",
         "label": "Was the client referred?",
         "label_text_size": "18px",
         "options": [
           {
             "key": "yes",
-            "text": "Yes"
+            "text": "Yes",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "yes"
           },
           {
             "key": "no",
-            "text": "No"
+            "text": "No",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "no"
           }
         ],
         "value": "",
@@ -282,7 +300,7 @@
         "key": "client_referred_to",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
+        "openmrs_entity_id": "client_referred_to",
         "type": "check_box",
         "label": "Client referred to",
         "text_color": "#000000",
@@ -295,28 +313,28 @@
             "text": "Surgical/medical",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
+            "openmrs_entity_id": "surgical"
           },
           {
-            "key": "ctc:",
+            "key": "ctc",
             "text": "CTC",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
+            "openmrs_entity_id": "ctc"
           },
           {
             "key": "psychosocial_support ",
             "text": "Psychosocial support",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
+            "openmrs_entity_id": "psychosocial_support"
           },
           {
             "key": "other",
             "text": "Other (specify)",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
+            "openmrs_entity_id": "other"
           }
         ],
         "v_required": {
@@ -356,8 +374,8 @@
       {
         "key": "toaster_notes_contraindication",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "person_attribute",
-        "openmrs_entity_id": "toaster_notes",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "toaster_notes_contraindication",
         "type": "toaster_notes",
         "text": "Clear the following Contraindication",
         "text_color": "#CF0800",
@@ -373,8 +391,8 @@
       {
         "key": "toaster_notes_genital_examination",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "person_attribute",
-        "openmrs_entity_id": "toaster_notes",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "toaster_notes_genital_examination",
         "type": "toaster_notes",
         "text": "Genital examination contraindication",
         "text_color": "#CF0800",

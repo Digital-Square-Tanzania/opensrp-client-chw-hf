@@ -75,10 +75,10 @@
         }
       },
       {
-        "key": "did_client_experience_nae",
+        "key": "did_client_experience_nae_with_device",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "did_client_experience_nae",
+        "openmrs_entity_id": "did_client_experience_nae_with_device",
         "type": "check_box",
         "label": "Did the client experience a Notifiable Adverse Event",
         "options": [
@@ -220,7 +220,20 @@
           }
         }
       },
-
+      {
+        "key": "did_client_experience_nae",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "did_client_experience_nae",
+        "type": "hidden",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_notifiable_adverse_event_calculation.yml"
+            }
+          }
+        }
+      },
       {
         "key": "date_nae_occured",
         "openmrs_entity_parent": "",

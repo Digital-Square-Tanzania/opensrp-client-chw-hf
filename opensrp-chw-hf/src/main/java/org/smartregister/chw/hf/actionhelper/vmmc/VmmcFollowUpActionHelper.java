@@ -16,12 +16,13 @@ import java.util.Map;
 public class VmmcFollowUpActionHelper implements BaseVmmcVisitAction.VmmcVisitActionHelper {
 
     protected String visit_type;
+    protected String notifiable_adverse_event_occured;
     protected String jsonPayload;
     private String baseEntityId;
 
-    public VmmcFollowUpActionHelper(String baseEntityId) {
-        this.baseEntityId = baseEntityId;
-    }
+//    public VmmcFollowUpActionHelper(String baseEntityId) {
+//        this.baseEntityId = baseEntityId;
+//    }
 
     @Override
     public void onJsonFormLoaded(String jsonPayload, Context context, Map<String, List<VisitDetail>> map) {
@@ -35,6 +36,7 @@ public class VmmcFollowUpActionHelper implements BaseVmmcVisitAction.VmmcVisitAc
             JSONObject global = jsonObject.getJSONObject("global");
 
             String method_used = org.smartregister.chw.hf.actionhelper.vmmc.VmmcProcedureActionHelper.method_used;
+            Log.d("test_method_used", method_used);
             global.put("method_used", method_used);
 
             return jsonObject.toString();
@@ -50,6 +52,8 @@ public class VmmcFollowUpActionHelper implements BaseVmmcVisitAction.VmmcVisitAc
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
             visit_type = CoreJsonFormUtils.getValue(jsonObject, "post_op_adverse_event_occur");
+            notifiable_adverse_event_occured = CoreJsonFormUtils.getValue(jsonObject, "notifiable_adverse_event_occured");
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

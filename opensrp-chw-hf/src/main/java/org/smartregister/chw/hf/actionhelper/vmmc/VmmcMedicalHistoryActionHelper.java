@@ -12,11 +12,11 @@ import org.smartregister.chw.vmmc.model.BaseVmmcVisitAction;
 import java.util.List;
 import java.util.Map;
 
-public class VmmcMedicalHistoryTypeActionHelper implements BaseVmmcVisitAction.VmmcVisitActionHelper {
+public class VmmcMedicalHistoryActionHelper implements BaseVmmcVisitAction.VmmcVisitActionHelper {
 
     protected String medical_history;
     protected String jsonPayload;
-    protected static String hiv_info;
+//    protected static String hiv_info;
     protected static String client_diagnosed;
     protected static String any_complaints;
     protected static String complications_previous_surgical;
@@ -28,7 +28,7 @@ public class VmmcMedicalHistoryTypeActionHelper implements BaseVmmcVisitAction.V
 
     private String baseEntityId;
 
-    public VmmcMedicalHistoryTypeActionHelper(String baseEntityId) {
+    public VmmcMedicalHistoryActionHelper(String baseEntityId) {
         this.baseEntityId = baseEntityId;
     }
 

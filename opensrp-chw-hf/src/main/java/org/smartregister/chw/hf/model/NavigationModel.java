@@ -43,9 +43,9 @@ public class NavigationModel implements org.smartregister.chw.core.model.Navigat
             // ANC, PMTCT, LD, PNC, HEI, Child,LTFU, Referrals
             if (BuildConfig.BUILD_FOR_BORESHA_AFYA_SOUTH) {
                 if (BuildConfig.BUILD_FOR_PMTCT_CASE_BASED_MANAGEMENT) {
-                    navigationOptions.addAll(Arrays.asList(op1, op3, op4, op13, op14, op12,op21));
+                    navigationOptions.addAll(Arrays.asList(op1, op3, op4, op13, op14, op12));
                 } else {
-                    navigationOptions.addAll(Arrays.asList(op1, op9, op8, op10, op3, op13, op4, op14, op16, op12,op21));
+                    navigationOptions.addAll(Arrays.asList(op1, op9, op8, op10, op3, op13, op4, op14, op16, op12));
                 }
                 if (HealthFacilityApplication.getApplicationFlavor().hasHivst()) {
                     navigationOptions.add(2, op17);
@@ -72,8 +72,11 @@ public class NavigationModel implements org.smartregister.chw.core.model.Navigat
                 if (HealthFacilityApplication.getApplicationFlavor().hasMalaria()) {
                     navigationOptions.add(14, op7);
                 }
+                if (HealthFacilityApplication.getApplicationFlavor().hasVmmc()) {
+                    navigationOptions.add(20, op21);
+                }
             } else {
-                navigationOptions.addAll(Arrays.asList(op1, op2, op3, op4, op5, op6, op7, op12, op21));
+                navigationOptions.addAll(Arrays.asList(op1, op2, op3, op4, op5, op6, op7, op12));
             }
         }
 

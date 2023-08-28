@@ -4,10 +4,12 @@ import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.smartregister.chw.anc.util.AppExecutors;
 import org.smartregister.chw.core.utils.FormUtils;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.actionhelper.vmmc.VmmcDischargeActionHelper;
 import org.smartregister.chw.hf.actionhelper.vmmc.VmmcFirstVitalActionHelper;
+import org.smartregister.chw.hf.actionhelper.vmmc.VmmcNotifiableAdverseActionHelper;
 import org.smartregister.chw.hf.actionhelper.vmmc.VmmcPostOpActionHelper;
 import org.smartregister.chw.hf.actionhelper.vmmc.VmmcSecondVitalActionHelper;
 import org.smartregister.chw.hf.repository.HfLocationRepository;
@@ -107,18 +109,33 @@ public class VmmcVisitDischargeInteractor extends BaseVmmcVisitInteractor {
     }
 
     private void evaluateVmmcDischarge(Map<String, List<VisitDetail>> details) throws BaseVmmcVisitAction.ValidationException {
-        JSONObject discharge = initializeHealthFacilitiesList(FormUtils.getFormUtils().getFormJson(Constants.VMMC_FOLLOWUP_FORMS.DISCHARGE));
+//        JSONObject discharge = initializeHealthFacilitiesList(FormUtils.getFormUtils().getFormJson(Constants.VMMC_FOLLOWUP_FORMS.DISCHARGE));
 
         VmmcDischargeActionHelper actionHelper = new VmmcDischargeActionHelper();
         BaseVmmcVisitAction action = getBuilder(context.getString(R.string.vmmc_post_discharge))
                 .withOptional(false)
                 .withDetails(details)
-                .withJsonPayload(discharge.toString())
+//                .withJsonPayload(discharge.toString())
                 .withHelper(actionHelper)
                 .withFormName(Constants.VMMC_FOLLOWUP_FORMS.DISCHARGE)
                 .build();
 
         actionList.put(context.getString(R.string.vmmc_post_discharge), action);
+    }
+
+    private void evaluateVmmcNAE(Map<String, List<VisitDetail>> details) throws BaseVmmcVisitAction.ValidationException {
+        JSONObject vmmcMedicalHistory = FormUtils.getFormUtils().getFormJson(Constants.FORMS.VMMC_NOTIFIABLE);
+
+        VmmcNotifiableAdverseActionHelper actionHelper = new VmmcNotifiableAdverseActionHelper(memberObject.getBaseEntityId());
+        BaseVmmcVisitAction action = getBuilder(context.getString(R.string.vmmc_notifiable_adverse))
+                .withOptional(false)
+                .withDetails(details)
+                .withJsonPayload(vmmcMedicalHistory.toString())
+                .withHelper(actionHelper)
+                .withFormName(Constants.FORMS.VMMC_NOTIFIABLE)
+                .build();
+        actionList.put(context.getString(R.string.vmmc_notifiable_adverse), action);
+
     }
 
     @Override
@@ -131,7 +148,25 @@ public class VmmcVisitDischargeInteractor extends BaseVmmcVisitInteractor {
         return Constants.TABLES.VMMC_CONFIRMATION;
     }
 
-//    private class VmmcMedicalHistoryTypeActionHelper extends org.smartregister.chw.hf.actionhelper.vmmc.VmmcMedicalHistoryTypeActionHelper {
+    private class VmmcDischargeActionHelper extends org.smartregister.chw.hf.actionhelper.vmmc.VmmcDischargeActionHelper {
+        @Override
+        public String postProcess(String s) {
+            if (notifiable_adverse_event_occured.equalsIgnoreCase("yes")) {
+                try {
+                    evaluateVmmcNAE(details);
+                } catch (BaseVmmcVisitAction.ValidationException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                actionList.remove(context.getString(R.string.vmmc_notifiable_adverse));
+            }
+            new AppExecutors().mainThread().execute(() -> callBack.preloadActions(actionList));
+            return super.postProcess(s);
+        }
+
+    }
+
+//    private class VmmcMedicalHistoryActionHelper extends org.smartregister.chw.hf.actionhelper.vmmc.VmmcMedicalHistoryActionHelper {
 //        @Override
 //        public String postProcess(String s) {
 //            if (StringUtils.isNotBlank(medical_history)) {

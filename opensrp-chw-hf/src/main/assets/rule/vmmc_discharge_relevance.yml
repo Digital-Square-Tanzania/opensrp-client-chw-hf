@@ -27,8 +27,8 @@ condition: "step1_discharge_condition.equalsIgnoreCase('satisfactory')"
 actions:
   - "isRelevant = true"
 ---
-name: step1_intraoperative_adverse_event_occured
-description: intraoperative_adverse_event_occured
+name: step1_notifiable_adverse_event_occured
+description: notifiable_adverse_event_occured
 priority: 1
 condition: "step1_discharge_condition.equalsIgnoreCase('not_discharged')"
 actions:

@@ -11,7 +11,7 @@ import com.vijay.jsonwizard.domain.Form;
 import org.json.JSONObject;
 import org.smartregister.chw.core.task.RunnableTask;
 import org.smartregister.chw.hf.R;
-import org.smartregister.chw.hf.interactor.VmmcVisitMedicalHistoryInteractor;
+import org.smartregister.chw.hf.interactor.VmmcServiceVisitInteractor;
 import org.smartregister.chw.hf.schedulers.HfScheduleTaskExecutor;
 import org.smartregister.chw.vmmc.model.BaseVmmcVisitAction;
 import org.smartregister.chw.vmmc.presenter.BaseVmmcVisitPresenter;
@@ -36,7 +36,7 @@ public class VmmcServiceActivity extends BaseVmmcVisitActivity {
 
     @Override
     protected void registerPresenter() {
-        presenter = new BaseVmmcVisitPresenter(memberObject, this, new VmmcVisitMedicalHistoryInteractor(Constants.EVENT_TYPE.VMMC_SERVICES));
+        presenter = new BaseVmmcVisitPresenter(memberObject, this, new VmmcServiceVisitInteractor(Constants.EVENT_TYPE.VMMC_SERVICES));
     }
 
     @Override

@@ -6,7 +6,7 @@ import org.smartregister.chw.anc.util.AppExecutors;
 import org.smartregister.chw.core.utils.FormUtils;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.actionhelper.vmmc.VmmcHtsActionHelper;
-import org.smartregister.chw.hf.actionhelper.vmmc.VmmcMedicalHistoryTypeActionHelper;
+import org.smartregister.chw.hf.actionhelper.vmmc.VmmcMedicalHistoryActionHelper;
 import org.smartregister.chw.vmmc.contract.BaseVmmcVisitContract;
 import org.smartregister.chw.vmmc.domain.VisitDetail;
 import org.smartregister.chw.vmmc.interactor.BaseVmmcVisitInteractor;
@@ -18,12 +18,12 @@ import java.util.Map;
 
 import timber.log.Timber;
 
-public class VmmcVisitMedicalHistoryInteractor extends BaseVmmcVisitInteractor {
+public class VmmcServiceVisitInteractor extends BaseVmmcVisitInteractor {
 
     String visitType;
     protected BaseVmmcVisitContract.InteractorCallBack callBack;
 
-    public VmmcVisitMedicalHistoryInteractor(String visitType) {
+    public VmmcServiceVisitInteractor(String visitType) {
         this.visitType = visitType;
     }
 
@@ -40,7 +40,7 @@ public class VmmcVisitMedicalHistoryInteractor extends BaseVmmcVisitInteractor {
         this.callBack = callBack;
         final Runnable runnable = () -> {
             try {
-                evaluateVisitType(details);
+                evaluateVmmcMedicalHistory(details);
                 evaluateVmmcPhysicalExam(details);
                 evaluateVmmcHTS(details);
 
@@ -54,7 +54,7 @@ public class VmmcVisitMedicalHistoryInteractor extends BaseVmmcVisitInteractor {
         appExecutors.diskIO().execute(runnable);
     }
 
-    private void evaluateVisitType(Map<String, List<VisitDetail>> details) throws BaseVmmcVisitAction.ValidationException {
+    private void evaluateVmmcMedicalHistory(Map<String, List<VisitDetail>> details) throws BaseVmmcVisitAction.ValidationException {
         JSONObject vmmcMedicalHistory = FormUtils.getFormUtils().getFormJson(Constants.VMMC_FOLLOWUP_FORMS.MEDICAL_HISTORY);
 
         VmmcMedicalHistory actionHelper = new VmmcMedicalHistory(memberObject.getBaseEntityId());
@@ -120,7 +120,7 @@ public class VmmcVisitMedicalHistoryInteractor extends BaseVmmcVisitInteractor {
         return Constants.TABLES.VMMC_SERVICE;
     }
 
-    private class VmmcMedicalHistory extends VmmcMedicalHistoryTypeActionHelper {
+    private class VmmcMedicalHistory extends VmmcMedicalHistoryActionHelper {
         public VmmcMedicalHistory(String baseEntityId) {
             super(baseEntityId);
         }

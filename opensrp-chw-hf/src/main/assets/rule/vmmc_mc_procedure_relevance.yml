@@ -125,6 +125,20 @@ condition: "step1_aneathesia_administered.equalsIgnoreCase('topical_cream')"
 actions:
   - "isRelevant = true"
 ---
+name: step1_start_time_topical_cream_application
+description: start_time_topical_cream_application relevance
+priority: 1
+condition: "step1_aneathesia_administered.equalsIgnoreCase('topical_cream')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_end_time_topical_cream_application
+description: end_time_topical_cream_application relevance
+priority: 1
+condition: "step1_aneathesia_administered.equalsIgnoreCase('topical_cream')"
+actions:
+  - "isRelevant = true"
+---
 name: step1_select_size_place
 description: select_size_place relevance
 priority: 1

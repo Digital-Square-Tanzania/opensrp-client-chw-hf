@@ -27,17 +27,17 @@ public class VmmcHtsActionHelper implements BaseVmmcVisitAction.VmmcVisitActionH
             JSONObject jsonObject = new JSONObject(jsonPayload);
             JSONObject global = jsonObject.getJSONObject("global");
 
-//            String hiv_info = org.smartregister.chw.hf.actionhelper.vmmc.VmmcMedicalHistoryTypeActionHelper.hiv_info;
+//            String hiv_info = org.smartregister.chw.hf.actionhelper.vmmc.VmmcMedicalHistoryActionHelper.hiv_info;
 //            global.put("hiv_info", hiv_info);
 
-            String client_diagnosed = VmmcMedicalHistoryTypeActionHelper.client_diagnosed;
-            String any_complaints = VmmcMedicalHistoryTypeActionHelper.any_complaints;
-            String known_allergies = VmmcMedicalHistoryTypeActionHelper.known_allergies;
-            String hematological_disease = VmmcMedicalHistoryTypeActionHelper.hematological_disease;
-            String complications_previous_surgical = VmmcMedicalHistoryTypeActionHelper.complications_previous_surgical;
-            String type_of_blood_for_glucose_test = VmmcMedicalHistoryTypeActionHelper.type_of_blood_for_glucose_test;
-            String blood_for_glucose = VmmcMedicalHistoryTypeActionHelper.blood_for_glucose;
-            String blood_for_glucose_test = VmmcMedicalHistoryTypeActionHelper.blood_for_glucose_test;
+            String client_diagnosed = VmmcMedicalHistoryActionHelper.client_diagnosed;
+            String any_complaints = VmmcMedicalHistoryActionHelper.any_complaints;
+            String known_allergies = VmmcMedicalHistoryActionHelper.known_allergies;
+            String hematological_disease = VmmcMedicalHistoryActionHelper.hematological_disease;
+            String complications_previous_surgical = VmmcMedicalHistoryActionHelper.complications_previous_surgical;
+            String type_of_blood_for_glucose_test = VmmcMedicalHistoryActionHelper.type_of_blood_for_glucose_test;
+            String blood_for_glucose = VmmcMedicalHistoryActionHelper.blood_for_glucose;
+            String blood_for_glucose_test = VmmcMedicalHistoryActionHelper.blood_for_glucose_test;
             String genital_examination = org.smartregister.chw.hf.actionhelper.vmmc.VmmcPhysicalExamActionHelper.genital_examination;
 
             global.put("client_diagnosed", client_diagnosed);
