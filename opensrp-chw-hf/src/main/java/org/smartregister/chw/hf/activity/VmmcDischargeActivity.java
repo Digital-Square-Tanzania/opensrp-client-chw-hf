@@ -10,9 +10,7 @@ import com.vijay.jsonwizard.domain.Form;
 
 import org.json.JSONObject;
 import org.smartregister.chw.core.task.RunnableTask;
-import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.interactor.VmmcVisitDischargeInteractor;
-import org.smartregister.chw.hf.interactor.VmmcVisitProcedureInteractor;
 import org.smartregister.chw.hf.schedulers.HfScheduleTaskExecutor;
 import org.smartregister.chw.vmmc.activity.BaseVmmcVisitActivity;
 import org.smartregister.chw.vmmc.model.BaseVmmcVisitAction;
@@ -67,16 +65,6 @@ public class VmmcDischargeActivity extends BaseVmmcVisitActivity {
         actionList.clear();
 
         //Necessary evil to rearrange the actions according to a specific arrangement
-
-//        if (map.containsKey(getString(R.string.vmmc_medical_history))) {
-//            BaseVmmcVisitAction visitTypeAction = map.get(getString(R.string.vmmc_medical_history));
-//            actionList.put(getString(R.string.vmmc_medical_history), visitTypeAction);
-//        }
-//        if (map.containsKey(getString(R.string.vmmc_physical_examination))) {
-//            BaseVmmcVisitAction vmmcExamAction = map.get(getString(R.string.vmmc_physical_examination));
-//            actionList.put(getString(R.string.vmmc_physical_examination), vmmcExamAction);
-//        }
-
 
         for (Map.Entry<String, BaseVmmcVisitAction> entry : map.entrySet()) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {

@@ -7,16 +7,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
-
 import com.whiteelephant.monthpicker.MonthPickerDialog;
-
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.utils.Constants;
 import org.smartregister.chw.hf.utils.ReportUtils;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

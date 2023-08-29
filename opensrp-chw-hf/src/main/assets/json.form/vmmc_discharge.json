@@ -85,7 +85,7 @@
             "openmrs_entity_id": "satisfactory"
           },
           {
-            "key":"needs",
+            "key":"needs_followup",
             "text": "Needs follow-up",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "needs"
@@ -111,9 +111,10 @@
         "hint": "Notes/Comments",
         "edit_type": "text",
         "relevance": {
-          "step1:discharge_condition": {
-            "type": "string",
-            "ex": "equalTo(., \"needs\")"
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_discharge_relevance.yml"
+            }
           }
         }
       },

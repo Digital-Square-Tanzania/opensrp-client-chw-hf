@@ -18,7 +18,7 @@ public class DefaultHFApplicationFlv implements HealthFacilityApplication.Flavor
 
     @Override
     public boolean hasMalaria() {
-        return true;
+        return false;
     }
 
     @Override

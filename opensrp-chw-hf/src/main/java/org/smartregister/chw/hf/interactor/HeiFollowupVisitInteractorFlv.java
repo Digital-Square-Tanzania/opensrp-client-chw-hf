@@ -7,6 +7,9 @@ import static org.smartregister.chw.hf.interactor.AncFirstFacilityVisitInteracto
 import android.content.Context;
 
 import org.apache.commons.lang3.StringUtils;
+import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
+import org.joda.time.Months;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -113,6 +116,12 @@ public class HeiFollowupVisitInteractorFlv implements PmtctFollowupVisitInteract
         evaluateBaselineInvestigationAction(actionList, details, memberObject, context, baselineInvestigationForm);
     }
 
+    private int getAgeInMonthsFromDate(String dateOfBirth) {
+        DateTime date = DateTime.parse(dateOfBirth);
+        Months ageInMonths = Months.monthsBetween(date.toLocalDate(), LocalDate.now());
+        return ageInMonths.getMonths();
+    }
+
     private void evaluateBaselineInvestigationAction(LinkedHashMap<String, BasePmtctHomeVisitAction> actionList, Map<String, List<VisitDetail>> details, MemberObject memberObject, Context context, JSONObject baselineInvestigationForm) throws BasePmtctHomeVisitAction.ValidationException {
         BasePmtctHomeVisitAction BaselineInvestigation = new BasePmtctHomeVisitAction.Builder(context, context.getString(R.string.anc_first_visit_baseline_investigation))
                 .withOptional(false)
@@ -216,9 +225,38 @@ public class HeiFollowupVisitInteractorFlv implements PmtctFollowupVisitInteract
         public String getPreProcessed() {
             try {
                 JSONObject jsonObject = new JSONObject(jsonPayload);
+                JSONArray fields = jsonObject.getJSONObject(Constants.JsonFormConstants.STEP1).getJSONArray(JsonFormConstants.FIELDS);
+
+                JSONObject actualAge = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "actual_age");
+                CommonPersonObjectClient client = getCommonPersonObjectClient(memberObject.getBaseEntityId());
+                actualAge.put(JsonFormUtils.VALUE, getDuration(org.smartregister.family.util.Utils.getValue(client.getColumnmaps(), org.smartregister.family.util.DBConstants.KEY.DOB, false)));
+
+                int age = getAgeInMonthsFromDate(memberObject.getDob());
+                JSONObject infantFeedingPractice = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "infant_feeding_practice");
+                JSONArray values = infantFeedingPractice.getJSONArray("values");
+                JSONArray keys = infantFeedingPractice.getJSONArray("keys");
+                if (age < 7) {
+                    values.remove(5);
+                    values.remove(4);
+                    values.remove(3);
+
+                    keys.remove(5);
+                    keys.remove(4);
+                    keys.remove(3);
+
+                } else {
+                    values.remove(2);
+                    values.remove(1);
+                    values.remove(0);
+
+                    keys.remove(2);
+                    keys.remove(1);
+                    keys.remove(0);
+                }
+
                 return jsonObject.toString();
             } catch (JSONException e) {
-                e.printStackTrace();
+                Timber.e(e);
             }
             return null;
         }
@@ -255,15 +293,11 @@ public class HeiFollowupVisitInteractorFlv implements PmtctFollowupVisitInteract
                     JSONObject testAtAge = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "test_at_age");
                     testAtAge.put(JsonFormUtils.VALUE, HeiDao.getNextHivTestAge(memberObject.getBaseEntityId()));
 
-                    JSONObject actualAge = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "actual_age");
-                    CommonPersonObjectClient client = getCommonPersonObjectClient(memberObject.getBaseEntityId());
-                    actualAge.put(JsonFormUtils.VALUE, getDuration(org.smartregister.family.util.Utils.getValue(client.getColumnmaps(), org.smartregister.family.util.DBConstants.KEY.DOB, false)));
-
                     String heiNumber = HeiDao.getHeiNumber(memberObject.getBaseEntityId());
                     if (!StringUtils.isBlank(heiNumber)) {
                         JSONObject sampleId = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "sample_id");
                         sampleId.put(JsonFormUtils.VALUE, heiNumber);
-                        sampleId.put("editable", true);
+                        sampleId.put("editable", false);
                         sampleId.put("read_only", true);
                     }
 

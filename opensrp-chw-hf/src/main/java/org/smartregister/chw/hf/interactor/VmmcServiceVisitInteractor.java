@@ -97,19 +97,6 @@ public class VmmcServiceVisitInteractor extends BaseVmmcVisitInteractor {
         actionList.put(context.getString(R.string.vmmc_hts), action);
     }
 
-//    private void evaluateOtherServices(Map<String, List<VisitDetail>> details) throws BaseVmmcVisitAction.ValidationException {
-//
-//        PrEPOtherServicesActionHelper actionHelper = new PrEPOtherServicesActionHelper();
-//        BaseVmmcVisitAction action = getBuilder(context.getString(R.string.other_services))
-//                .withOptional(true)
-//                .withDetails(details)
-//                .withHelper(actionHelper)
-//                .withFormName(Constants.VMMC_FOLLOWUP_FORMS.HTS)
-//                .build();
-//
-//        actionList.put(context.getString(R.string.other_services), action);
-//    }
-
     @Override
     protected String getEncounterType() {
         return Constants.EVENT_TYPE.VMMC_SERVICES;
@@ -136,9 +123,7 @@ public class VmmcServiceVisitInteractor extends BaseVmmcVisitInteractor {
                     e.printStackTrace();
                 }
             } else {
-////                actionList.remove(context.getString(R.string.vmmc_medical_history));
-////                actionList.remove(context.getString(R.string.vmmc_physical_examination));
-////                actionList.remove(context.getString(R.string.vmmc_hts));
+//                actionList.remove(context.getString(R.string.vmmc_medical_history));
             }
             new AppExecutors().mainThread().execute(() -> callBack.preloadActions(actionList));
             return super.postProcess(s);
@@ -160,9 +145,7 @@ public class VmmcServiceVisitInteractor extends BaseVmmcVisitInteractor {
                     e.printStackTrace();
                 }
             } else {
-////                actionList.remove(context.getString(R.string.vmmc_medical_history));
-////                actionList.remove(context.getString(R.string.vmmc_physical_examination));
-////                actionList.remove(context.getString(R.string.vmmc_hts));
+//                actionList.remove(context.getString(R.string.vmmc_medical_history));
             }
             new AppExecutors().mainThread().execute(() -> callBack.preloadActions(actionList));
             return super.postProcess(s);

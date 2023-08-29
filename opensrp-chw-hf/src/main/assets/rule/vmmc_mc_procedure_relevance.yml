@@ -107,14 +107,14 @@ actions:
 name: step1_lignocaine_dosage
 description: lignocaine_dosage relevance
 priority: 1
-condition: "step1_aneathesia_administered.equalsIgnoreCase('injectables_lignocaine')"
+condition: "step1_aneathesia_administered.equalsIgnoreCase('injectables')"
 actions:
   - "isRelevant = true"
 ---
 name: step1_bupivacaine_dosage
 description: bupivacaine_dosage relevance
 priority: 1
-condition: "step1_aneathesia_administered.equalsIgnoreCase('injectables_lignocaine')"
+condition: "step1_aneathesia_administered.equalsIgnoreCase('injectables')"
 actions:
   - "isRelevant = true"
 ---

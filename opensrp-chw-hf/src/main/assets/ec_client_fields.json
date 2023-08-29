@@ -1271,6 +1271,22 @@
           }
         },
         {
+          "column_name": "child_hepatitis_b_vaccination",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "child_hepatitis_b_vaccination"
+          }
+        },
+        {
+          "column_name": "child_vitamin_k_injection",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "child_vitamin_k_injection"
+          }
+        },
+        {
           "column_name": "weight",
           "type": "Event",
           "json_mapping": {
@@ -7964,6 +7980,14 @@
           }
         },
         {
+          "column_name": "enrollment_date",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "enrollment_date"
+          }
+        },
+        {
           "column_name": "last_interacted_with",
           "type": "Event",
           "json_mapping": {
@@ -8352,6 +8376,14 @@
           "json_mapping": {
             "field": "obs.fieldCode",
             "concept": "crcl_results"
+          }
+        },
+        {
+          "column_name": "next_visit_date",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "next_visit_date"
           }
         },
         {

@@ -45,8 +45,6 @@ public class VmmcPostOpActionHelper implements BaseVmmcVisitAction.VmmcVisitActi
     public void onPayloadReceived(String jsonPayload) {
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
-//            dressing_condition = CoreJsonFormUtils.getValue(jsonObject, "dressing_condition");
-//            device_mc = CoreJsonFormUtils.getValue(jsonObject, "device_mc");
 
             if(CoreJsonFormUtils.getValue(jsonObject, "dressing_condition").isEmpty()){
                 dressing_condition = CoreJsonFormUtils.getValue(jsonObject, "device_mc");

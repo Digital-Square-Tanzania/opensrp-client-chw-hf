@@ -26,12 +26,10 @@ import org.smartregister.chw.hf.interactor.VmmcMedicalHistoryInteractor;
 import org.smartregister.chw.vmmc.util.Constants;
 
 import java.text.MessageFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import timber.log.Timber;
@@ -40,12 +38,6 @@ public class VmmcMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
     private static org.smartregister.chw.vmmc.domain.MemberObject vmmcMemberObject;
     private final Flavor flavor = new VmmcMedicalHistoryActivityFlv();
     private ProgressBar progressBar;
-
-//    public static void startMe(Activity activity, MemberObject memberObject) {
-//        Intent intent = new Intent(activity, VmmcMedicalHistoryActivity.class);
-//        vmmcMemberObject = memberObject;
-//        activity.startActivity(intent);
-//    }
 
     public static void startMe(VmmcProfileActivity vmmcProfileActivity, org.smartregister.chw.vmmc.domain.MemberObject memberObject) {
         Intent intent = new Intent(vmmcProfileActivity, VmmcMedicalHistoryActivity.class);

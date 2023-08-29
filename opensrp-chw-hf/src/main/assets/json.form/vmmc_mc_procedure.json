@@ -198,9 +198,9 @@
         "key": "lignocaine_dosage",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "lignocaine_dosage(ml and %)",
+        "openmrs_entity_id": "lignocaine_dosage",
         "type": "edit_text",
-        "hint": "Lignocaine dosage",
+        "hint": "Lignocaine dosage(ml and %)",
         "relevance": {
           "rules-engine": {
             "ex-rules": {

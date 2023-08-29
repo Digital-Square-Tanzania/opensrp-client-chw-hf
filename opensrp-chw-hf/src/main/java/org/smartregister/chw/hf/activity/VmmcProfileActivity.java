@@ -2,35 +2,26 @@ package org.smartregister.chw.hf.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
-
+import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
-
-import com.google.android.material.snackbar.Snackbar;
-
 import org.smartregister.chw.core.activity.CoreFamilyProfileActivity;
 import org.smartregister.chw.core.activity.CoreVmmcProfileActivity;
+import org.smartregister.chw.core.custom_views.CoreVmmcFloatingMenu;
+import org.smartregister.chw.core.listener.OnClickFloatingMenu;
 import org.smartregister.chw.core.presenter.CoreFamilyOtherMemberActivityPresenter;
 import org.smartregister.chw.hf.R;
-import org.smartregister.chw.hf.dao.HfAncDao;
-import org.smartregister.chw.hf.dao.HfVmmcDao;
+import org.smartregister.chw.hf.custom_view.VmmcFloatingMenu;
+import org.smartregister.chw.hf.utils.VmmcReferralFormUtils;
 import org.smartregister.chw.vmmc.domain.Visit;
 import org.smartregister.chw.vmmc.util.Constants;
 import org.smartregister.chw.vmmc.VmmcLibrary;
+import timber.log.Timber;
 
 public class VmmcProfileActivity extends CoreVmmcProfileActivity {
 
     private static String baseEntityId;
-    private String getGentialExaminationValue;
-    private String getAnyComplaintsValue;
-    private String getDiagnosedValue;
-    private String getAnyComplicationsPreviousSurgicalProcedureValue;
-    private String getSymptomsHematologicalDiseaseValue;
-    private String getKnownAllergiesValue;
-    private String getHivTestResultValue;
-
-
 
     public static void startVmmcActivity(Activity activity, String baseEntityId) {
         VmmcProfileActivity.baseEntityId = baseEntityId;
@@ -116,8 +107,6 @@ public class VmmcProfileActivity extends CoreVmmcProfileActivity {
         if (vmmcServices != null || vmmcProcedure != null || vmmcDischarge != null || vmmcFollowUp != null || vmmcNotifiableAdverse != null) {
             rlLastVisit.setVisibility(View.VISIBLE);
             findViewById(R.id.view_notification_and_referral_row).setVisibility(View.VISIBLE);
-//            ((TextView) findViewById(R.id.vViewHistory)).setText(R.string.visits_history);
-//            ((TextView) findViewById(R.id.ivViewHistoryArrow)).setText(getString(R.string.view_visits_history));
         } else {
             rlLastVisit.setVisibility(View.GONE);
         }
@@ -133,6 +122,36 @@ public class VmmcProfileActivity extends CoreVmmcProfileActivity {
     }
 
     @Override
+    public void initializeFloatingMenu() {
+
+        baseVmmcFloatingMenu = new VmmcFloatingMenu(this, memberObject);
+
+        OnClickFloatingMenu onClickFloatingMenu = viewId -> {
+            switch (viewId) {
+                case R.id.vmmc_fab:
+                    ((CoreVmmcFloatingMenu) baseVmmcFloatingMenu).animateFAB();
+                    break;
+                case R.id.call_layout:
+                    ((CoreVmmcFloatingMenu) baseVmmcFloatingMenu).launchCallWidget();
+                    ((CoreVmmcFloatingMenu) baseVmmcFloatingMenu).animateFAB();
+                    break;
+                case R.id.refer_to_facility_layout:
+                    VmmcReferralFormUtils.startVmmcReferral(this, memberObject.getBaseEntityId());
+                    break;
+                default:
+                    Timber.d("Unknown fab action");
+                    break;
+            }
+        };
+
+        ((CoreVmmcFloatingMenu) baseVmmcFloatingMenu).setFloatMenuClickListener(onClickFloatingMenu);
+        baseVmmcFloatingMenu.setGravity(Gravity.BOTTOM | Gravity.END);
+        LinearLayout.LayoutParams linearLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT);
+        addContentView(baseVmmcFloatingMenu, linearLayoutParams);
+    }
+
+        @Override
     public void refreshList() {
 
     }
@@ -156,31 +175,5 @@ public class VmmcProfileActivity extends CoreVmmcProfileActivity {
     public void notifyHasPhone(boolean b) {
 
     }
-
-//    @Override
-//    protected void setupButtons(){
-//        getGentialExaminationValue = HfVmmcDao.getGentialExamination(memberObject.getBaseEntityId());
-//        getDiagnosedValue = HfVmmcDao.getDiagnosed(memberObject.getBaseEntityId());
-//        getAnyComplicationsPreviousSurgicalProcedureValue = HfVmmcDao.getAnyComplicationsPreviousSurgicalProcedure(memberObject.getBaseEntityId());
-//        getHivTestResultValue = HfVmmcDao.getHivTestResult(memberObject.getBaseEntityId());
-//        getKnownAllergiesValue = HfVmmcDao.getKnownAllergiesValue(memberObject.getBaseEntityId());
-//        getSymptomsHematologicalDiseaseValue = HfVmmcDao.getSymptomsHematologicalDiseaseValue(memberObject.getBaseEntityId());
-//        getAnyComplaintsValue = HfVmmcDao.getAnyComplaints(memberObject.getBaseEntityId());
-//
-//        if (getGentialExaminationValue.equalsIgnoreCase("None") &&
-//                getDiagnosedValue.equalsIgnoreCase("None") &&
-//                getKnownAllergiesValue.equalsIgnoreCase("None") &&
-//                getAnyComplicationsPreviousSurgicalProcedureValue.equalsIgnoreCase("No") &&
-//                getHivTestResultValue.equalsIgnoreCase("Negative") &&
-//                getSymptomsHematologicalDiseaseValue.equalsIgnoreCase("None") &&
-//                getAnyComplaintsValue.equalsIgnoreCase("None")
-//        ){
-//            textViewRecordVmmc.setVisibility(View.GONE);
-//            textViewProcedureVmmc.setVisibility(View.VISIBLE);
-//            textViewDischargeVmmc.setVisibility(View.GONE);
-//            textViewNotifiableVmmc.setVisibility(View.GONE);
-//            rlLastVisit.setVisibility(View.VISIBLE);
-//        }
-//    }
 }
 

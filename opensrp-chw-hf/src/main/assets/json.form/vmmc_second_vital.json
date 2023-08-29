@@ -59,7 +59,7 @@
         "key": "pulse_rate_second",
         "type": "edit_text",
         "hint": "Pulse Rate (Beats per minute)",
-        "openmrs_entity_id": "pulse_rate",
+        "openmrs_entity_id": "pulse_rate_second",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "v_numeric": {
@@ -88,7 +88,7 @@
         "openmrs_entity_parent": "",
         "toaster_type": "problem",
         "relevance": {
-          "step1:pulse_rate": {
+          "step1:pulse_rate_second": {
             "type": "numeric",
             "ex": "lessThan(.,\"60\")"
           }
@@ -103,7 +103,7 @@
         "openmrs_entity_parent": "",
         "toaster_type": "problem",
         "relevance": {
-          "step1:pulse_rate": {
+          "step1:pulse_rate_second": {
             "type": "numeric",
             "ex": "greaterThan(.,\"100\")"
           }
@@ -113,7 +113,7 @@
         "key": "systolic_second",
         "type": "edit_text",
         "hint": "Systolic (Blood Pressure)",
-        "openmrs_entity_id": "systolic",
+        "openmrs_entity_id": "systolic_second",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "v_numeric": {
@@ -137,7 +137,7 @@
         "key": "diastolic_second",
         "type": "edit_text",
         "hint": "Diastolic (Blood Pressure)",
-        "openmrs_entity_id": "diastolic",
+        "openmrs_entity_id": "diastolic_second",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "v_numeric": {
@@ -159,16 +159,16 @@
         "constraints": [
           {
             "type": "numeric",
-            "ex": "lessThan(., step1:systolic)",
+            "ex": "lessThan(., step1:systolic_second)",
             "err": "The diastolic value must be less than the systolic value"
           }
         ]
       },
       {
-        "key": "prompt_for_management_of_hypertension",
+        "key": "prompt_for_management_of_hypertension_second",
         "type": "toaster_notes",
         "text": "Manage the hypertension according to standard guidelines",
-        "openmrs_entity_id": "prompt_for_management_of_hypertension",
+        "openmrs_entity_id": "prompt_for_management_of_hypertension_second",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "problem",
@@ -181,10 +181,10 @@
         }
       },
       {
-        "key": "prompt_for_management_of_hypotension",
+        "key": "prompt_for_management_of_hypotension_second",
         "type": "toaster_notes",
         "text": "Elicit the cause of hypotension and manage according to standard guidelines",
-        "openmrs_entity_id": "prompt_for_management_of_hypotension",
+        "openmrs_entity_id": "prompt_for_management_of_hypotension_second",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "problem",

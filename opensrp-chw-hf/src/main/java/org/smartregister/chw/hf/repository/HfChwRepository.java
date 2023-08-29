@@ -69,19 +69,38 @@ public class HfChwRepository extends CoreChwRepository {
                     break;
                 case 8:
                     upgradeToVersion8(db);
+                    break;
                 case 9:
                     upgradeToVersion9(db);
+                    break;
                 case 10:
                     upgradeToVersion10(db);
                     upgradeToVersion10ForBaSouth(db);
+                    break;
                 case 11:
                     upgradeToVersion11(db);
+                    break;
                 case 12:
                     upgradeToVersion12(db);
+                    break;
                 case 13:
                     upgradeToVersion14(db);
+                    break;
                 case 14:
                     upgradeToVersion15(db);
+                    break;
+                case 16:
+                    upgradeToVersion16(db);
+                    break;
+                case 17:
+                    upgradeToVersion17(db);
+                    break;
+                case 18:
+                    upgradeToVersion18(db);
+                    break;
+                case 19:
+                    upgradeToVersion19(db);
+                    break;
                 default:
                     break;
             }
@@ -168,7 +187,7 @@ public class HfChwRepository extends CoreChwRepository {
             return true;
         } else {
             int savedVersion = Integer.parseInt(savedAppVersion);
-            return (org.smartregister.chw.core.BuildConfig.VERSION_CODE > savedVersion);
+            return (BuildConfig.VERSION_CODE > savedVersion);
         }
     }
 
@@ -312,6 +331,107 @@ public class HfChwRepository extends CoreChwRepository {
             Timber.e(e, "upgradeToVersion15");
         }
     }
+    private static void upgradeToVersion16(SQLiteDatabase db) {
+        try {
+            // add missing columns
+            db.execSQL("ALTER TABLE ec_cbhs_register ADD COLUMN provider_id TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_cdp_stock_log ADD COLUMN condom_brand TEXT NULL;");
+
+        } catch (Exception e) {
+            Timber.e(e, "upgradeToVersion16");
+        }
+    }
+
+    private static void upgradeToVersion17(SQLiteDatabase db) {
+        try {
+            db.execSQL("ALTER TABLE ec_kvp_register ADD COLUMN enrollment_date TEXT NULL;");
+
+            ReportingLibrary reportingLibraryInstance = ReportingLibrary.getInstance();
+            String indicatorDataInitialisedPref = "INDICATOR_DATA_INITIALISED";
+
+            boolean indicatorDataInitialised = Boolean.parseBoolean(reportingLibraryInstance.getContext().allSharedPreferences().getPreference(indicatorDataInitialisedPref));
+            boolean isUpdated = checkIfAppUpdated();
+
+            //Refreshing all indicator queries adding grouping to all indicator queries which is going to be utilized in synchronization of monthly tallies to the server
+            if (!indicatorDataInitialised || isUpdated) {
+                db.execSQL("DELETE FROM indicator_queries");
+                db.execSQL("DELETE FROM indicators");
+
+                String indicatorsConfigFile = "config/indicator-definitions.yml";
+                String ancIndicatorConfigFile = "config/anc-reporting-indicator-definitions.yml";
+                String pmtctIndicatorConfigFile = "config/pmtct-reporting-indicator-definitions.yml";
+                String pncIndicatorConfigFile = "config/pnc-reporting-indicator-definitions.yml";
+                String cbhsReportingIndicatorConfigFile = "config/cbhs-reporting-indicator-definitions.yml";
+                String ldReportingIndicatorConfigFile = "config/ld-reporting-indicator-definitions.yml";
+                String motherChampionReportingIndicatorConfigFile = "config/mother_champion-reporting-indicator-definitions.yml";
+                String selfTestingIndicatorConfigFile = "config/self-testing-monthly-report.yml";
+                String kvpTestingIndicatorConfigFile = "config/kvp-monthly-report.yml";
+                String ltfuIndicatorConfigFile = "config/community-ltfu-summary.yml";
+
+                for (String configFile : Collections.unmodifiableList(
+                        Arrays.asList(indicatorsConfigFile, ancIndicatorConfigFile,
+                                pmtctIndicatorConfigFile, pncIndicatorConfigFile,
+                                cbhsReportingIndicatorConfigFile, ldReportingIndicatorConfigFile,
+                                motherChampionReportingIndicatorConfigFile,selfTestingIndicatorConfigFile,kvpTestingIndicatorConfigFile,ltfuIndicatorConfigFile))) {
+                    reportingLibraryInstance.readConfigFile(configFile, db);
+                }
+
+                reportingLibraryInstance.initIndicatorData(indicatorsConfigFile, db); // This will persist the data in the DB
+                reportingLibraryInstance.getContext().allSharedPreferences().savePreference(indicatorDataInitialisedPref, "true");
+                reportingLibraryInstance.getContext().allSharedPreferences().savePreference(appVersionCodePref, String.valueOf(BuildConfig.VERSION_CODE));
+            }
+        } catch (Exception e) {
+            Timber.e(e);
+        }
+    }
+
+    private static void upgradeToVersion18(SQLiteDatabase db) {
+        try {
+            db.execSQL("ALTER TABLE ec_prep_register ADD COLUMN next_visit_date TEXT NULL;");
+        } catch (Exception e) {
+            Timber.e(e);
+        }
+    }
+
+    private static void upgradeToVersion19(SQLiteDatabase db) {
+        try {
+            db.execSQL("ALTER TABLE ec_child ADD COLUMN child_hepatitis_b_vaccination TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_child ADD COLUMN child_vitamin_k_injection TEXT NULL;");
+        } catch (Exception e) {
+            Timber.e(e);
+        }
+    }
+
+    private static void upgradeToVersion20(SQLiteDatabase db) {
+        try {
+            DatabaseMigrationUtils.createAddedECTables(db,
+                    new HashSet<>(Arrays.asList("ec_vmmc_services", "ec_vmmc_procedure","ec_vmmc_discharge","ec_vmmc_follow_up_visit")),
+                    HealthFacilityApplication.createCommonFtsObject());
+
+            ReportingLibrary reportingLibraryInstance = ReportingLibrary.getInstance();
+            String indicatorDataInitialisedPref = "INDICATOR_DATA_INITIALISED";
+
+            boolean indicatorDataInitialised = Boolean.parseBoolean(reportingLibraryInstance.getContext().allSharedPreferences().getPreference(indicatorDataInitialisedPref));
+            boolean isUpdated = checkIfAppUpdated();
+            if (!indicatorDataInitialised || isUpdated) {
+
+                String vmmcIndicatorConfigFile = "config/vmmc-monthly-report.yml";
+                String indicatorsConfigFile = "config/indicator-definitions.yml";
+
+                for (String configFile : Collections.unmodifiableList(
+                        Arrays.asList(indicatorsConfigFile,vmmcIndicatorConfigFile))) {
+                    reportingLibraryInstance.readConfigFile(configFile, db);
+                }
+
+                reportingLibraryInstance.initIndicatorData(indicatorsConfigFile, db); // This will persist the data in the DB
+                reportingLibraryInstance.getContext().allSharedPreferences().savePreference(indicatorDataInitialisedPref, "true");
+                reportingLibraryInstance.getContext().allSharedPreferences().savePreference(appVersionCodePref, String.valueOf(org.smartregister.chw.core.BuildConfig.VERSION_CODE));}
+        }
+        catch (Exception e) {
+            Timber.e(e);
+        }
+    }
+
 
     private static void upgradeToVersion10ForBaSouth(SQLiteDatabase db) {
         try {

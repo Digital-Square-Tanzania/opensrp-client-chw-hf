@@ -16,6 +16,7 @@ public class Constants extends CoreConstants {
     public static String FILTER_IS_REFERRED = "FILTER_IS_REFERRED";
     public static String FILTER_HIV_STATUS = "FILTER_HIV_STATUS";
     public static String FILTERS_ENABLED = "FILTERS_ENABLED";
+    public static String ENABLE_HIV_STATUS_FILTER = "ENABLE_HIV_STATUS_FILTER";
 
     public static int REQUEST_FILTERS = 2004;
 
@@ -38,6 +39,7 @@ public class Constants extends CoreConstants {
 
     public static final class FOCUS {
         public static final String LOST_TO_FOLLOWUP_FOCUS = "LTFU";
+        public static final String REFERRALS = "REFERRALS";
         public static final String LD_EMERGENCY = "Labour And Delivery Emergency";
         public static final String LD_CHILD_EMERGENCY = "Labour And Delivery Child Emergency";
     }
@@ -151,6 +153,8 @@ public class Constants extends CoreConstants {
         private static final String LD_EMERGENCY_REFERRAL_FORM = "referrals/labour_and_delivery_emergency_referral";
         private static final String LD_CHILD_EMERGENCY_REFERRAL_FORM = "referrals/labour_and_delivery_child_emergency_referral";
         private static final String PMTCT_REGISTRATION_FOR_CLIENTS_POST_PNC = "pmtct_registration_for_clients_post_pnc";
+        private static final String VMMC_REFERRAL= "referrals/vmmc_referral_form";
+
 
         public static String getNextFacilityVisitForm() {
             return NEXT_FACILITY_VISIT_FORM;
@@ -162,6 +166,10 @@ public class Constants extends CoreConstants {
 
         public static String getLtfuReferralForm() {
             return LTFU_REFERRAL_FORM;
+        }
+
+        public static String getVmmcReferralForm() {
+            return VMMC_REFERRAL;
         }
 
         public static String getLdEmergencyReferralForm() {

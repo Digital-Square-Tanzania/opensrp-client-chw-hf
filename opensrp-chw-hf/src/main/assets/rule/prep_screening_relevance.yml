@@ -41,6 +41,13 @@ condition: "step1_nephrotoxic_drugs != '' && step1_nephrotoxic_drugs != 'yes' &&
 actions:
   - "isRelevant = true"
 ---
+name: step1_should_test_for_crcl
+description: show prompt
+priority: 1
+condition: "step1_tested_crcl == 'no'  && global_should_record_crcl_tests"
+actions:
+  - "isRelevant = true"
+---
 name: step1_hcv_results
 description: hcv_results relevance
 priority: 1
@@ -62,17 +69,10 @@ condition: "step1_weight_35_or_above != '' && step1_weight_35_or_above != 'no'"
 actions:
   - "isRelevant = true "
 ---
-name: step1_substantial_criteria
-description: check if client is eligible to initiate for prep
-priority: 1
-condition: "step1_acute_hiv != '' && step1_acute_hiv != 'yes'"
-actions:
-  - "isRelevant = true "
----
 name: step1_prompt_for_prep_eligibility
 description: check if client is eligible to initiate for prep
 priority: 1
-condition: "step1_substantial_criteria != '' && step1_should_initiate == 'yes'"
+condition: "step1_should_initiate == 'yes'"
 actions:
   - "isRelevant = true "
 ---

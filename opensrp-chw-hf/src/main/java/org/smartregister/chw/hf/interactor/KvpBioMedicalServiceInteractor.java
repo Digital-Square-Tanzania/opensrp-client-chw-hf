@@ -29,7 +29,10 @@ import org.smartregister.chw.kvp.util.Constants;
 import org.smartregister.chw.kvp.util.KvpJsonFormUtils;
 import org.smartregister.chw.referral.util.JsonFormConstants;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import timber.log.Timber;
@@ -91,7 +94,25 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
         if (StringUtils.isNotBlank(HfKvpDao.getClientStatus(memberObject.getBaseEntityId()))) {
             KvpJsonFormUtils.removeOptionFromCheckboxListWithKey(client_status_object, "new_client");
         } else {
-            KvpJsonFormUtils.removeOptionFromCheckboxListWithKey(client_status_object, "return");
+            try {
+                String enrollmentDateString = HfKvpDao.getClientEnrollmentDate(memberObject.getBaseEntityId());
+                if (StringUtils.isNotBlank(enrollmentDateString)) {
+                    Date enrollmentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).parse(enrollmentDateString);
+
+                    Date currentDate = new Date();
+                    long cutoffTime = currentDate.getTime() - (28L * 24L * 60L * 60L * 1000L);
+                    Date cutoffDate = new Date(cutoffTime);
+
+
+                    if (enrollmentDate != null && !enrollmentDate.before(cutoffDate)) {
+                        KvpJsonFormUtils.removeOptionFromCheckboxListWithKey(client_status_object, "return");
+                    }
+                }
+            } catch (Exception e) {
+                Timber.e(e);
+                KvpJsonFormUtils.removeOptionFromCheckboxListWithKey(client_status_object, "return");
+            }
+
         }
 
         //update other_kvp_category
@@ -107,6 +128,11 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
             //remove MSM
             //TODO: extract keys to constant
             KvpJsonFormUtils.removeOptionFromCheckboxListWithKey(other_kvp_category, "msm");
+
+            if (memberObject.getAge() > 24) {
+                //remove AGYW
+                KvpJsonFormUtils.removeOptionFromCheckboxListWithKey(other_kvp_category, "agyw");
+            }
         }
 
 
@@ -147,7 +173,7 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
         }
 
         KvpPrepPepActionHelper actionHelper = new KvpPrepPepActionHelper();
-        BaseKvpVisitAction action = getBuilder(context.getString(R.string.kvp_prep_and_pep))
+        BaseKvpVisitAction action = getBuilder(context.getString(R.string.kvp_pep_assesment))
                 .withOptional(true)
                 .withDetails(details)
                 .withHelper(actionHelper)
@@ -155,7 +181,7 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
                 .withFormName(Constants.KVP_BIO_MEDICAL_SERVICE_FORMS.KVP_PrEP_PEP)
                 .build();
 
-        actionList.put(context.getString(R.string.kvp_prep_and_pep), action);
+        actionList.put(context.getString(R.string.kvp_pep_assesment), action);
     }
 
     private void evaluateCondomProvision(Map<String, List<VisitDetail>> details) throws BaseKvpVisitAction.ValidationException {
@@ -288,7 +314,7 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
                     e.printStackTrace();
                 }
             } else {
-                actionList.remove(context.getString(R.string.kvp_prep_and_pep));
+                actionList.remove(context.getString(R.string.kvp_pep_assesment));
             }
             new AppExecutors().mainThread().execute(() -> callBack.preloadActions(actionList));
             return super.postProcess(s);

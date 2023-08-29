@@ -18,11 +18,6 @@ public class VmmcFollowUpActionHelper implements BaseVmmcVisitAction.VmmcVisitAc
     protected String visit_type;
     protected String notifiable_adverse_event_occured;
     protected String jsonPayload;
-    private String baseEntityId;
-
-//    public VmmcFollowUpActionHelper(String baseEntityId) {
-//        this.baseEntityId = baseEntityId;
-//    }
 
     @Override
     public void onJsonFormLoaded(String jsonPayload, Context context, Map<String, List<VisitDetail>> map) {
