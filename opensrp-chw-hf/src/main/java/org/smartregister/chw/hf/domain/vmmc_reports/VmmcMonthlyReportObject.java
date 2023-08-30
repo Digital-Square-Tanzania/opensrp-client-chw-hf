@@ -20,13 +20,9 @@ public class VmmcMonthlyReportObject extends ReportObject {
             "1","1-9","10-14","15-19","20-24","25-29","30-34","35-39","40-44","45-49","50"
     };
 
-    private final String[] vmmcGroups = new String[]{
-            "a","cm","dm"
-    };
+
 
     private final Date reportDate;
-
-    private JSONObject jsonObject ;
 
     public VmmcMonthlyReportObject(Date reportDate) {
         super(reportDate);
@@ -35,12 +31,18 @@ public class VmmcMonthlyReportObject extends ReportObject {
 
     @Override
     public JSONObject getIndicatorData() throws JSONException {
-        jsonObject = new JSONObject();
+
+        final String[] vmmcGroups = new String[]{
+                "a","cm","dm"
+        };
+
+        JSONObject jsonObject = new JSONObject();
+
         for (String questionGroup : vmmcQuestionsGroups) {   //rows
             for (String ageGroup : vmmcAgeGroups) {  //columns
-                    for (String vmmcGroups : vmmcGroups) {  //concstenate rows columns and gendergroup
-                        jsonObject.put("vmmc" + "-" + questionGroup + "-" + ageGroup + "-" + vmmcGroups,
-                                ReportDao.getReportPerIndicatorCode("vmmc" + "-" + questionGroup + "-" + ageGroup +"-" + vmmcGroups, reportDate));
+                    for (String vmmcGroup : vmmcGroups) {  //concstenate rows columns and gendergroup
+                        jsonObject.put("vmmc" + "-" + questionGroup + "-" + ageGroup + "-" + vmmcGroup,
+                                ReportDao.getReportPerIndicatorCode("vmmc" + "-" + questionGroup + "-" + ageGroup +"-" + vmmcGroup, reportDate));
                     }
             }
         }

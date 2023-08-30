@@ -230,7 +230,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "dosage",
         "type": "edit_text",
-        "hint": "Dosage",
+        "hint": "Dosage (g and %)",
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -784,10 +784,10 @@
         }
       },
       {
-        "key": "type_of_adverse_event",
+        "key": "type_of_adverse_event_with_device",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "type_of_adverse_event",
+        "openmrs_entity_id": "type_of_adverse_event_with_device",
         "type": "check_box",
         "label": "Type of adverse event",
         "options": [
@@ -845,9 +845,86 @@
           "err": "Please select at least one"
         },
         "relevance": {
-          "step1:intraoperative_adverse_event_occured": {
-            "type": "string",
-            "ex": "equalTo(., \"yes\")"
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_mc_procedure_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "type_of_adverse_event_without_device",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "type_of_adverse_event_without_device",
+        "type": "check_box",
+        "label": "Type of adverse event",
+        "options": [
+          {
+            "key": "excessive_skin_removed",
+            "text": "Excessive skin removed",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "excessive_skin_removed",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "excessive_bleeding",
+            "text": "Excessive bleeding",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "excessive_bleeding",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "damage_to_penis",
+            "text": "Injury to the penis",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "damage_to_penis",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "anesthetic_related_events",
+            "text": "Anesthetic related events",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "anesthetic_related_events",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "others",
+            "text": "Others (Specify)",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "others",
+            "openmrs_entity_parent": ""
+          }
+        ],
+        "v_required": {
+          "value": true,
+          "err": "Please select at least one"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_mc_procedure_relevance.yml"
+            }
+          }
+        }
+      },
+
+      {
+        "key": "type_of_adverse_event",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "type_of_adverse_event",
+        "type": "hidden",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_mc_procedure_calculation.yml"
+            }
           }
         }
       },
@@ -863,14 +940,10 @@
           "err": "Please specify"
         },
         "relevance": {
-          "step1:type_of_adverse_event": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "others"
-                ]
-              }
-            ]
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_mc_procedure_relevance.yml"
+            }
           }
         }
       },
@@ -910,14 +983,10 @@
           "err": "Please select at least one"
         },
         "relevance": {
-          "step1:type_of_adverse_event": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "excessive_bleeding"
-                ]
-              }
-            ]
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_mc_procedure_relevance.yml"
+            }
           }
         }
       },
@@ -1002,14 +1071,10 @@
           "err": "Please select at least one"
         },
         "relevance": {
-          "step1:type_of_adverse_event": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "excessive_skin_removed"
-                ]
-              }
-            ]
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_mc_procedure_relevance.yml"
+            }
           }
         }
       },
@@ -1094,14 +1159,10 @@
           "err": "Please select at least one"
         },
         "relevance": {
-          "step1:type_of_adverse_event": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "damage_to_penis"
-                ]
-              }
-            ]
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_mc_procedure_relevance.yml"
+            }
           }
         }
       },
@@ -1186,14 +1247,10 @@
           "err": "Please select at least one"
         },
         "relevance": {
-          "step1:type_of_adverse_event": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "anesthetic_related_events"
-                ]
-              }
-            ]
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_mc_procedure_relevance.yml"
+            }
           }
         }
       },
@@ -1279,7 +1336,7 @@
           "err": "Please select atleast one scale"
         },
         "relevance": {
-          "step1:type_of_adverse_event": {
+          "step1:type_of_adverse_event_with_device": {
             "ex-checkbox": [
               {
                 "or": [

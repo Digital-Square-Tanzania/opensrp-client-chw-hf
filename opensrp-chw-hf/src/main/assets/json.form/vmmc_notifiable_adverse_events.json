@@ -46,35 +46,6 @@
     "title": "Notifiable Adverse Events",
     "fields": [
       {
-        "key": "was_adverse_events_notifiable",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "was_adverse_events_notifiable",
-        "label": "Was adverse events notifiable ?",
-        "text_color": "#000000",
-        "type": "native_radio",
-        "options": [
-          {
-            "key": "yes",
-            "text": "Yes",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "yes"
-          },
-          {
-            "key": "no",
-            "text": "No",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "no"
-          }
-        ],
-        "v_required": {
-          "value": "true",
-          "err": "Please select at least one"
-        }
-      },
-      {
         "key": "did_client_experience_nae_with_device",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -142,13 +113,6 @@
         "v_required": {
           "value": true,
           "err": "Please select atleast one"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "vmmc_notifiable_adverse_event_relevance.yml"
-            }
-          }
         }
       },
       {
@@ -211,13 +175,6 @@
         "v_required": {
           "value": true,
           "err": "Please select atleast one"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "vmmc_notifiable_adverse_event_relevance.yml"
-            }
-          }
         }
       },
       {
@@ -247,13 +204,6 @@
         "v_required": {
           "value": "true",
           "err": "Please enter the date"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "vmmc_notifiable_adverse_event_relevance.yml"
-            }
-          }
         }
       },
       {
@@ -269,13 +219,6 @@
         "v_required": {
           "value": "true",
           "err": "Please enter the date"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "vmmc_notifiable_adverse_event_relevance.yml"
-            }
-          }
         }
       },
       {
@@ -289,13 +232,6 @@
         "v_required": {
           "value": "true",
           "err": "Please provide the time "
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "vmmc_notifiable_adverse_event_relevance.yml"
-            }
-          }
         }
       },
       {
@@ -308,13 +244,6 @@
         "v_required": {
           "value": "true",
           "err": "Please fill the field"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "vmmc_notifiable_adverse_event_relevance.yml"
-            }
-          }
         }
       },
       {
@@ -327,13 +256,6 @@
         "v_required": {
           "value": "true",
           "err": "Please fill the field"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "vmmc_notifiable_adverse_event_relevance.yml"
-            }
-          }
         }
       },
       {
@@ -363,13 +285,6 @@
         "v_required": {
           "value": "true",
           "err": "Please select at least one"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "vmmc_notifiable_adverse_event_relevance.yml"
-            }
-          }
         }
       },
       {

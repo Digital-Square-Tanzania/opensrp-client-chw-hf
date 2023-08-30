@@ -5,9 +5,8 @@ import android.content.Intent;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
-import androidx.annotation.NonNull;
 
-import com.sun.xml.bind.v2.TODO;
+import androidx.annotation.NonNull;
 
 import org.smartregister.chw.core.activity.CoreFamilyProfileActivity;
 import org.smartregister.chw.core.activity.CoreVmmcProfileActivity;
@@ -17,9 +16,10 @@ import org.smartregister.chw.core.presenter.CoreFamilyOtherMemberActivityPresent
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.custom_view.VmmcFloatingMenu;
 import org.smartregister.chw.hf.utils.VmmcReferralFormUtils;
+import org.smartregister.chw.vmmc.VmmcLibrary;
 import org.smartregister.chw.vmmc.domain.Visit;
 import org.smartregister.chw.vmmc.util.Constants;
-import org.smartregister.chw.vmmc.VmmcLibrary;
+
 import timber.log.Timber;
 
 public class VmmcProfileActivity extends CoreVmmcProfileActivity {
@@ -56,8 +56,7 @@ public class VmmcProfileActivity extends CoreVmmcProfileActivity {
         if (id == R.id.textview_followup_vmmc) {
             VmmcFollowUpActivity.startVmmcVisitActivity(this, baseEntityId, false);
 
-        }
-        else {
+        } else {
             super.onClick(view);
         }
     }
@@ -164,12 +163,12 @@ public class VmmcProfileActivity extends CoreVmmcProfileActivity {
         addContentView(baseVmmcFloatingMenu, linearLayoutParams);
     }
 
-        @Override
+    @Override
     public void refreshList() {
 
-//        TODO: implement this function
+//        Not required
 
-        }
+    }
 
     @Override
     public void updateHasPhone(boolean b) {
