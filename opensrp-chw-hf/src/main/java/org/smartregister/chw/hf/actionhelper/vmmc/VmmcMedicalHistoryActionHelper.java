@@ -14,15 +14,24 @@ import java.util.Map;
 
 public class VmmcMedicalHistoryActionHelper implements BaseVmmcVisitAction.VmmcVisitActionHelper {
 
-    protected String medical_history;
     protected String jsonPayload;
+
     protected static String client_diagnosed;
+
+    protected String medical_history;
+
     protected static String any_complaints;
+
     protected static String complications_previous_surgical;
+
     protected static String hematological_disease;
+
     protected static String known_allergies;
+
     protected static String type_of_blood_for_glucose_test;
+
     protected static String blood_for_glucose;
+
     protected static String blood_for_glucose_test;
 
     protected String baseEntityId;

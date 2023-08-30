@@ -32,6 +32,7 @@ public class ReportsActivity extends SecuredActivity implements View.OnClickList
     protected ConstraintLayout selfTestingReports;
     protected ConstraintLayout condomDistributionReports;
     protected ConstraintLayout kvpReports;
+
     protected ConstraintLayout vmcReports;
 
     @Override

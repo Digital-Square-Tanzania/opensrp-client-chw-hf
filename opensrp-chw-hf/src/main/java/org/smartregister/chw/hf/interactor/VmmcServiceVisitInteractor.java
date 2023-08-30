@@ -22,6 +22,7 @@ import timber.log.Timber;
 public class VmmcServiceVisitInteractor extends BaseVmmcVisitInteractor {
 
     String visitType;
+
     protected InteractorCallBack callBack;
 
     public VmmcServiceVisitInteractor(String visitType) {

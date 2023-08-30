@@ -16,7 +16,9 @@ import java.util.Map;
 public class VmmcNotifiableAdverseActionHelper implements BaseVmmcVisitAction.VmmcVisitActionHelper {
 
     protected String was_adverse_events_notifiable;
+
     protected String jsonPayload;
+
     protected String baseEntityId;
 
     public VmmcNotifiableAdverseActionHelper(String baseEntityId) {

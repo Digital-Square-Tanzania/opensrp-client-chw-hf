@@ -66,7 +66,7 @@ public class VmmcProfileActivity extends CoreVmmcProfileActivity {
 
     @Override
     protected void removeMember() {
-//        Implement
+//        Implement vmmc function here
     }
 
     @NonNull
@@ -77,22 +77,22 @@ public class VmmcProfileActivity extends CoreVmmcProfileActivity {
 
     @Override
     public void setProfileImage(String s, String s1) {
-        //Implement
+//        Implement vmmc function here
     }
 
     @Override
     public void setProfileDetailThree(String s) {
-        //Implement
+//        Implement vmmc function here
     }
 
     @Override
     public void toggleFamilyHead(boolean b) {
-        //Implement
+//        Implement vmmc function here
     }
 
     @Override
     public void togglePrimaryCaregiver(boolean b) {
-        //Implement
+//        Implement vmmc function here
     }
 
     @Override
@@ -153,27 +153,27 @@ public class VmmcProfileActivity extends CoreVmmcProfileActivity {
 
         @Override
     public void refreshList() {
-            //Implement
+//        Implement vmmc function here
     }
 
     @Override
     public void updateHasPhone(boolean b) {
-        //Implement
+//        Implement vmmc function here
     }
 
     @Override
     public void setFamilyServiceStatus(String s) {
-        //Implement
+//        Implement vmmc function here
     }
 
     @Override
     public void verifyHasPhone() {
-        //Implement
+//        Implement vmmc function here
     }
 
     @Override
     public void notifyHasPhone(boolean b) {
-        //Implement
+//        Implement vmmc function here
     }
 }
 

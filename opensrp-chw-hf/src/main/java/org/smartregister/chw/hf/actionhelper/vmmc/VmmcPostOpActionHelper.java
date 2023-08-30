@@ -16,6 +16,7 @@ import java.util.Map;
 public class VmmcPostOpActionHelper implements BaseVmmcVisitAction.VmmcVisitActionHelper {
 
     protected String dressing_condition;
+
     protected String jsonPayload;
 
     @Override

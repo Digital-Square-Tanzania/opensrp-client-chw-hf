@@ -626,7 +626,7 @@
         "options": [
           {
             "key": "convectional_surgical_procedure",
-            "text": "Convectional surgical procedure",
+            "text": "Conventional surgical procedure",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "convectional_surgical_procedure"

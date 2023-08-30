@@ -16,6 +16,7 @@ import java.util.Map;
 public class VmmcConsentFormActionHelper implements BaseVmmcVisitAction.VmmcVisitActionHelper {
 
     protected String consent_form;
+
     protected String jsonPayload;
 
     protected String mc_procedure;

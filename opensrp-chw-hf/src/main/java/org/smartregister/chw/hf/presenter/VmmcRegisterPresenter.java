@@ -1,7 +1,5 @@
 package org.smartregister.chw.hf.presenter;
 
-import org.apache.commons.lang3.StringUtils;
-import org.json.JSONObject;
 import org.smartregister.chw.vmmc.contract.VmmcRegisterContract;
 import org.smartregister.chw.vmmc.presenter.BaseVmmcRegisterPresenter;
 
@@ -12,7 +10,6 @@ public class VmmcRegisterPresenter extends BaseVmmcRegisterPresenter {
 
     @Override
     public void startForm(String formName, String entityId, String metadata, String currentLocationId) throws Exception {
-
-
+        // implement vmmc function here
     }
 }

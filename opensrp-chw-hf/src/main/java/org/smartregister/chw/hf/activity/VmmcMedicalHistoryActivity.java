@@ -37,7 +37,9 @@ import timber.log.Timber;
 
 public class VmmcMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
     private static MemberObject vmmcMemberObject;
+
     private final Flavor flavor = new VmmcMedicalHistoryActivityFlv();
+
     private ProgressBar progressBar;
 
     public static void startMe(VmmcProfileActivity vmmcProfileActivity, MemberObject memberObject) {

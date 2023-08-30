@@ -15,6 +15,7 @@ import java.util.Map;
 public class VmmcFirstVitalActionHelper implements BaseVmmcVisitAction.VmmcVisitActionHelper {
 
     protected String pulse_rate;
+
     protected String jsonPayload;
 
     @Override

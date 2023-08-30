@@ -16,7 +16,9 @@ import java.util.Map;
 public class VmmcDischargeActionHelper implements BaseVmmcVisitAction.VmmcVisitActionHelper {
 
     protected String medical_history;
+
     protected String notifiable_adverse_event_occured;
+
     protected String jsonPayload;
 
     @Override

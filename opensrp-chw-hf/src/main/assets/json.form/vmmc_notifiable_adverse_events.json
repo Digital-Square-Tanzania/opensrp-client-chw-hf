@@ -304,7 +304,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "nature_of_ae",
         "type": "edit_text",
-        "hint": "What was the nature of AE",
+        "hint": "What was the nature of NAE",
         "v_required": {
           "value": "true",
           "err": "Please fill the field"

@@ -19,6 +19,7 @@ import timber.log.Timber;
 public class VmmcNotifiableAdverseInteractor extends BaseVmmcVisitInteractor {
 
     String visitType;
+
     protected InteractorCallBack callBack;
 
     public VmmcNotifiableAdverseInteractor(String visitType) {

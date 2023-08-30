@@ -15,9 +15,11 @@ public class VmmcMonthlyReportObject extends ReportObject {
             "7-i","7-ii","7-iii","7-iv","7-v","7-vi","7-vii","7-viii",
             "8-i","8-ii","8-iii","8-iv","8-v"
     };
+
     private final String[] vmmcAgeGroups = new String[]{
             "1","1-9","10-14","15-19","20-24","25-29","30-34","35-39","40-44","45-49","50"
     };
+
     private final String[] vmmcGroups = new String[]{
             "a","cm","dm"
     };

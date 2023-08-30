@@ -14,6 +14,7 @@ import java.util.Map;
 public class VmmcHtsActionHelper implements BaseVmmcVisitAction.VmmcVisitActionHelper {
 
     protected String medical_history;
+
     protected String jsonPayload;
 
     @Override
