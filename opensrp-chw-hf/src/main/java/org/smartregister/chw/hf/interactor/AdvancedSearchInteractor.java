@@ -98,11 +98,7 @@ public class AdvancedSearchInteractor implements AdvancedSearchContract.Interact
         Response<String> response = getHttpAgent().fetch(uri);
 
         GsonBuilder builder = new GsonBuilder();
-//        builder.registerTypeAdapter(Date.class, new JsonDeserializer<Date>() {
-//            public Date deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-//                return new Date(json.getAsJsonPrimitive().getAsLong());
-//            }
-//        });
+
         Gson gson = builder.create();
 
         List<Entity> members = new ArrayList<>();

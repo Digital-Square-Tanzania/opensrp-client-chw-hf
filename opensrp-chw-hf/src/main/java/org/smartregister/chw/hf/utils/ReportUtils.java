@@ -350,16 +350,6 @@ public class ReportUtils {
             }
             return "";
         }
-
-//        public static String computeReceivingReports(Date startDate, Context context) {
-//            CdpReceivingReportObject cdpReceivingReportObject = new CdpReceivingReportObject(startDate,context);
-//            try {
-//                return cdpReceivingReportObject.getIndicatorDataAsGson(cdpReceivingReportObject.getIndicatorData());
-//            } catch (JSONException e) {
-//                Timber.e(e);
-//            }
-//            return "";
-//        }
     }
 
     public static class CBHSReport {

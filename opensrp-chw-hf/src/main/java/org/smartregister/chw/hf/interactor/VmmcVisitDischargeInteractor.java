@@ -58,8 +58,6 @@ public class VmmcVisitDischargeInteractor extends BaseVmmcVisitInteractor {
     }
 
     private void evaluatePostForm(Map<String, List<VisitDetail>> details) throws BaseVmmcVisitAction.ValidationException {
-//        JSONObject prepVisitType = FormUtils.getFormUtils().getFormJson(Constants.VMMC_FOLLOWUP_FORMS.MEDICAL_HISTORY);
-
 
         VmmcPostOpActionHelper actionHelper = new VmmcPostOpActionHelper();
         BaseVmmcVisitAction action = getBuilder(context.getString(R.string.vmmc_post))
@@ -85,7 +83,6 @@ public class VmmcVisitDischargeInteractor extends BaseVmmcVisitInteractor {
     }
 
     private void evaluateSecondVital(Map<String, List<VisitDetail>> details) throws BaseVmmcVisitAction.ValidationException {
-//        JSONObject prepInitiation = FormUtils.getFormUtils().getFormJson(Constants.VMMC_FOLLOWUP_FORMS.HTS);
 
         VmmcSecondVitalActionHelper actionHelper = new VmmcSecondVitalActionHelper();
         BaseVmmcVisitAction action = getBuilder(context.getString(R.string.vmmc_second_vital))
@@ -98,7 +95,6 @@ public class VmmcVisitDischargeInteractor extends BaseVmmcVisitInteractor {
     }
 
     private void evaluateVmmcDischarge(Map<String, List<VisitDetail>> details) throws BaseVmmcVisitAction.ValidationException {
-//        JSONObject discharge = initializeHealthFacilitiesList(FormUtils.getFormUtils().getFormJson(Constants.VMMC_FOLLOWUP_FORMS.DISCHARGE));
 
         VmmcDischargeActionHelper actionHelper = new VmmcDischargeActionHelper();
         BaseVmmcVisitAction action = getBuilder(context.getString(R.string.vmmc_post_discharge))

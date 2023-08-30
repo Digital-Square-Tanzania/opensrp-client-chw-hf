@@ -27,8 +27,6 @@ public class VmmcHtsActionHelper implements BaseVmmcVisitAction.VmmcVisitActionH
             JSONObject jsonObject = new JSONObject(jsonPayload);
             JSONObject global = jsonObject.getJSONObject("global");
 
-//            String hiv_info = org.smartregister.chw.hf.actionhelper.vmmc.VmmcMedicalHistoryActionHelper.hiv_info;
-//            global.put("hiv_info", hiv_info);
 
             String client_diagnosed = VmmcMedicalHistoryActionHelper.client_diagnosed;
             String any_complaints = VmmcMedicalHistoryActionHelper.any_complaints;
@@ -38,7 +36,7 @@ public class VmmcHtsActionHelper implements BaseVmmcVisitAction.VmmcVisitActionH
             String type_of_blood_for_glucose_test = VmmcMedicalHistoryActionHelper.type_of_blood_for_glucose_test;
             String blood_for_glucose = VmmcMedicalHistoryActionHelper.blood_for_glucose;
             String blood_for_glucose_test = VmmcMedicalHistoryActionHelper.blood_for_glucose_test;
-            String genital_examination = org.smartregister.chw.hf.actionhelper.vmmc.VmmcPhysicalExamActionHelper.genital_examination;
+            String genital_examination = VmmcPhysicalExamActionHelper.genital_examination;
 
             global.put("client_diagnosed", client_diagnosed);
             global.put("any_complaints", any_complaints);
@@ -49,12 +47,6 @@ public class VmmcHtsActionHelper implements BaseVmmcVisitAction.VmmcVisitActionH
             global.put("blood_for_glucose", blood_for_glucose);
             global.put("blood_for_glucose_test", blood_for_glucose_test);
             global.put("genital_examination", genital_examination);
-
-//            Log.d("client_diagnosed",client_diagnosed);
-//            Log.d("known_allergies",known_allergies);
-//            Log.d("genital_examination",genital_examination);
-//            Log.d("any_complaints",any_complaints);
-//            Log.d("hematological_disease",hematological_disease);
 
             return jsonObject.toString();
         } catch (JSONException e) {

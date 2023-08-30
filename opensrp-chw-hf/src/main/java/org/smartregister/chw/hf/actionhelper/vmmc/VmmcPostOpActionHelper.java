@@ -29,7 +29,7 @@ public class VmmcPostOpActionHelper implements BaseVmmcVisitAction.VmmcVisitActi
             JSONObject jsonObject = new JSONObject(jsonPayload);
 
             JSONObject global = jsonObject.getJSONObject("global");
-            String method_used_notify = org.smartregister.chw.hf.actionhelper.vmmc.VmmcProcedureActionHelper.method_used;
+            String method_used_notify = VmmcProcedureActionHelper.method_used;
             global.put("method_used", method_used_notify);
 
             Log.d("method_used_vmmc",method_used_notify);

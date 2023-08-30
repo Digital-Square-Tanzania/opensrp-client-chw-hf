@@ -16,7 +16,6 @@ public class VmmcMedicalHistoryActionHelper implements BaseVmmcVisitAction.VmmcV
 
     protected String medical_history;
     protected String jsonPayload;
-//    protected static String hiv_info;
     protected static String client_diagnosed;
     protected static String any_complaints;
     protected static String complications_previous_surgical;
@@ -53,9 +52,6 @@ public class VmmcMedicalHistoryActionHelper implements BaseVmmcVisitAction.VmmcV
     public void onPayloadReceived(String jsonPayload) {
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
-//            JSONObject global = jsonObject.getJSONObject("global");
-
-//            hiv_info = CoreJsonFormUtils.getValue(jsonObject, "client_diagnosed");
 
             client_diagnosed = CoreJsonFormUtils.getValue(jsonObject, "client_diagnosed");
             any_complaints = CoreJsonFormUtils.getValue(jsonObject, "any_complaints");
@@ -65,10 +61,6 @@ public class VmmcMedicalHistoryActionHelper implements BaseVmmcVisitAction.VmmcV
             type_of_blood_for_glucose_test = CoreJsonFormUtils.getValue(jsonObject, "type_of_blood_for_glucose_test");
             blood_for_glucose = CoreJsonFormUtils.getValue(jsonObject, "blood_for_glucose");
             blood_for_glucose_test = CoreJsonFormUtils.getValue(jsonObject, "blood_for_glucose_test");
-
-//            global.put("hiv_info", hiv_info);
-
-//            Log.d("vmmc-test", hiv_info);
 
             medical_history = CoreJsonFormUtils.getValue(jsonObject, "has_client_had_any_sti");
 

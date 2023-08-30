@@ -2,12 +2,6 @@ package org.smartregister.chw.hf.presenter;
 
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONObject;
-import org.smartregister.chw.hf.activity.PmtctRegisterActivity;
-import org.smartregister.chw.hf.activity.VmmcRegisterActivity;
-import org.smartregister.chw.hf.dao.HfAncDao;
-import org.smartregister.chw.hf.utils.Constants;
-import org.smartregister.chw.pmtct.contract.PmtctRegisterContract;
-import org.smartregister.chw.pmtct.presenter.BasePmtctRegisterPresenter;
 import org.smartregister.chw.vmmc.contract.VmmcRegisterContract;
 import org.smartregister.chw.vmmc.presenter.BaseVmmcRegisterPresenter;
 

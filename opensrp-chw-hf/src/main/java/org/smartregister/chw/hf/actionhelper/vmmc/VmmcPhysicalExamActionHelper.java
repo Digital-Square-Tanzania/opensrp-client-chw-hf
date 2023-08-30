@@ -47,7 +47,6 @@ public class VmmcPhysicalExamActionHelper implements BaseVmmcVisitAction.VmmcVis
             JSONObject global = jsonObject.getJSONObject("global");
 
             genital_examination = CoreJsonFormUtils.getValue(jsonObject, "genital_examination");
-//            Log.d("physical",genital_examination);
             global.put("contraindication", genital_examination);
 
 

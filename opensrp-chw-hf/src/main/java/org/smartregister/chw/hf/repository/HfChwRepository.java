@@ -413,37 +413,6 @@ public class HfChwRepository extends CoreChwRepository {
         }
     }
 
-//    private static void upgradeToVersion20(SQLiteDatabase db) {
-//        try {
-//            DatabaseMigrationUtils.createAddedECTables(db,
-//                    new HashSet<>(Arrays.asList("ec_vmmc_services", "ec_vmmc_procedure","ec_vmmc_discharge","ec_vmmc_follow_up_visit")),
-//                    HealthFacilityApplication.createCommonFtsObject());
-//
-//            ReportingLibrary reportingLibraryInstance = ReportingLibrary.getInstance();
-//            String indicatorDataInitialisedPref = "INDICATOR_DATA_INITIALISED";
-//
-//            boolean indicatorDataInitialised = Boolean.parseBoolean(reportingLibraryInstance.getContext().allSharedPreferences().getPreference(indicatorDataInitialisedPref));
-//            boolean isUpdated = checkIfAppUpdated();
-//            if (!indicatorDataInitialised || isUpdated) {
-//
-//                String vmmcIndicatorConfigFile = "config/vmmc-monthly-report.yml";
-//                String indicatorsConfigFile = "config/indicator-definitions.yml";
-//
-//                for (String configFile : Collections.unmodifiableList(
-//                        Arrays.asList(indicatorsConfigFile,vmmcIndicatorConfigFile))) {
-//                    reportingLibraryInstance.readConfigFile(configFile, db);
-//                }
-//
-//                reportingLibraryInstance.initIndicatorData(indicatorsConfigFile, db); // This will persist the data in the DB
-//                reportingLibraryInstance.getContext().allSharedPreferences().savePreference(indicatorDataInitialisedPref, "true");
-//                reportingLibraryInstance.getContext().allSharedPreferences().savePreference(appVersionCodePref, String.valueOf(org.smartregister.chw.core.BuildConfig.VERSION_CODE));}
-//        }
-//        catch (Exception e) {
-//            Timber.e(e);
-//        }
-//    }
-
-
     private static void upgradeToVersion10ForBaSouth(SQLiteDatabase db) {
         try {
             db.execSQL("ALTER TABLE ec_family_member ADD COLUMN reasons_for_registration TEXT NULL;");

@@ -1,7 +1,6 @@
 package org.smartregister.chw.hf.actionhelper.vmmc;
 
 import android.content.Context;
-import android.util.Log;
 
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
@@ -30,8 +29,8 @@ public class VmmcFollowUpActionHelper implements BaseVmmcVisitAction.VmmcVisitAc
             JSONObject jsonObject = new JSONObject(jsonPayload);
             JSONObject global = jsonObject.getJSONObject("global");
 
-            String method_used = org.smartregister.chw.hf.actionhelper.vmmc.VmmcProcedureActionHelper.method_used;
-            Log.d("test_method_used", method_used);
+            String method_used = VmmcProcedureActionHelper.method_used;
+
             global.put("method_used", method_used);
 
             return jsonObject.toString();

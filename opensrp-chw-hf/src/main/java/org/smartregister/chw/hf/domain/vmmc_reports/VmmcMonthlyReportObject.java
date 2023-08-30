@@ -41,37 +41,9 @@ public class VmmcMonthlyReportObject extends ReportObject {
                     }
             }
         }
-        // get total of all Male & Female in Qn 2 & 7
-        //and the whole total for both of them
-//        funcGetTotal();
-
         return jsonObject;
     }
 
-//    private int getTotalPerEachIndicator(String question,String kvpgroup) throws JSONException {
-//        int  totalOfGenderGiven = 0;
-//        int returnedValue = 0;
-//        for (String age: vmmcAgeGroups){
-//                totalOfGenderGiven += (ReportDao.getReportPerIndicatorCode("kvp" + "-"
-//                        + question + "-" + age + "-" + kvpgroup + "-" + "ME", reportDate)
-//                +ReportDao.getReportPerIndicatorCode("kvp" + "-"
-//                        + question + "-" + age + "-" + kvpgroup + "-" + "KE", reportDate));
-//            jsonObject.put("kvp"+"-"+question+"-"+kvpgroup+"-jumla-both-ME-KE",totalOfGenderGiven);  //display the total for both gender
-//            returnedValue = totalOfGenderGiven;
-//        }
-//        return returnedValue;
-//    }
-//
-//
-//    private void funcGetTotal() throws JSONException {
-//        int totalofthewholekvpgroup = 0;
-//        for (String question: vmmcQuestionsGroups) {
-//                for (String kvpGroup : vmmcGroups) {
-//                    totalofthewholekvpgroup+=getTotalPerEachIndicator(question,kvpGroup);
-//                    jsonObject.put("kvp"+"-"+question+"-jumla-kuu",totalofthewholekvpgroup); //total for all kvp groups
-//                }
-//            totalofthewholekvpgroup = 0;
-//        }
-//    }
+
 
 }

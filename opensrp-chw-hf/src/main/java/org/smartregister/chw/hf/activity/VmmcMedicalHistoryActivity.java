@@ -144,7 +144,6 @@ public class VmmcMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
 
                 processLastVisit(days, context);
                 processVisit(hf_visits, context, visits);
-//                processFacilityVisit(hfVisitsMaps, visits, context);
             }
         }
 
