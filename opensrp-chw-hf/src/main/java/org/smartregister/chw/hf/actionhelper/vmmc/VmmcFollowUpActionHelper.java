@@ -15,7 +15,9 @@ import java.util.Map;
 public class VmmcFollowUpActionHelper implements BaseVmmcVisitAction.VmmcVisitActionHelper {
 
     protected String visit_type;
+
     protected String notifiable_adverse_event_occured;
+
     protected String jsonPayload;
 
     @Override

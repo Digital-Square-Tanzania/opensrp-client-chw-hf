@@ -12,11 +12,7 @@ public class VmmcRegisterPresenter extends BaseVmmcRegisterPresenter {
 
     @Override
     public void startForm(String formName, String entityId, String metadata, String currentLocationId) throws Exception {
-        if (StringUtils.isBlank(entityId)) {
-            return;
-        }
 
-        JSONObject form = model.getFormAsJson(formName, entityId, currentLocationId);
 
     }
 }

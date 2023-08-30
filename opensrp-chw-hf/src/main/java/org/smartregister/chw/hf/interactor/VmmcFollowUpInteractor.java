@@ -11,7 +11,7 @@ import org.smartregister.chw.core.utils.FormUtils;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.actionhelper.vmmc.VmmcNotifiableAdverseActionHelper;
 import org.smartregister.chw.hf.dao.HfVmmcDao;
-import org.smartregister.chw.vmmc.contract.BaseVmmcVisitContract;
+import org.smartregister.chw.vmmc.contract.BaseVmmcVisitContract.InteractorCallBack;
 import org.smartregister.chw.vmmc.domain.VisitDetail;
 import org.smartregister.chw.vmmc.interactor.BaseVmmcVisitInteractor;
 import org.smartregister.chw.vmmc.model.BaseVmmcVisitAction;
@@ -26,7 +26,7 @@ import timber.log.Timber;
 public class VmmcFollowUpInteractor extends BaseVmmcVisitInteractor {
 
     String visitType;
-    protected BaseVmmcVisitContract.InteractorCallBack callBack;
+    protected InteractorCallBack callBack;
 
     public VmmcFollowUpInteractor(String visitType) {
         this.visitType = visitType;
@@ -41,7 +41,7 @@ public class VmmcFollowUpInteractor extends BaseVmmcVisitInteractor {
     }
 
     @Override
-    protected void populateActionList(BaseVmmcVisitContract.InteractorCallBack callBack) {
+    protected void populateActionList(InteractorCallBack callBack) {
         this.callBack = callBack;
         final Runnable runnable = () -> {
             try {

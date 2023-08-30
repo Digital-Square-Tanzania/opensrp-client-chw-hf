@@ -23,6 +23,7 @@ import org.smartregister.chw.core.activity.CoreAncMedicalHistoryActivity;
 import org.smartregister.chw.core.activity.DefaultAncMedicalHistoryActivityFlv;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.interactor.VmmcMedicalHistoryInteractor;
+import org.smartregister.chw.vmmc.domain.MemberObject;
 import org.smartregister.chw.vmmc.util.Constants;
 
 import java.text.MessageFormat;
@@ -35,11 +36,11 @@ import java.util.Map;
 import timber.log.Timber;
 
 public class VmmcMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
-    private static org.smartregister.chw.vmmc.domain.MemberObject vmmcMemberObject;
+    private static MemberObject vmmcMemberObject;
     private final Flavor flavor = new VmmcMedicalHistoryActivityFlv();
     private ProgressBar progressBar;
 
-    public static void startMe(VmmcProfileActivity vmmcProfileActivity, org.smartregister.chw.vmmc.domain.MemberObject memberObject) {
+    public static void startMe(VmmcProfileActivity vmmcProfileActivity, MemberObject memberObject) {
         Intent intent = new Intent(vmmcProfileActivity, VmmcMedicalHistoryActivity.class);
         vmmcMemberObject = memberObject;
         vmmcProfileActivity.startActivity(intent);
@@ -98,7 +99,6 @@ public class VmmcMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
             if (visits.size() > 0) {
                 int days = 0;
                 List<LinkedHashMap<String, String>> hf_visits = new ArrayList<>();
-                List<LinkedHashMap<String, String>> hfVisitsMaps = new ArrayList<>();
 
                 int x = 0;
                 while (x < visits.size()) {

@@ -5,7 +5,7 @@ import org.json.JSONObject;
 import org.smartregister.chw.core.utils.FormUtils;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.actionhelper.vmmc.VmmcNotifiableAdverseActionHelper;
-import org.smartregister.chw.vmmc.contract.BaseVmmcVisitContract;
+import org.smartregister.chw.vmmc.contract.BaseVmmcVisitContract.InteractorCallBack;
 import org.smartregister.chw.vmmc.domain.VisitDetail;
 import org.smartregister.chw.vmmc.interactor.BaseVmmcVisitInteractor;
 import org.smartregister.chw.vmmc.model.BaseVmmcVisitAction;
@@ -19,7 +19,7 @@ import timber.log.Timber;
 public class VmmcNotifiableAdverseInteractor extends BaseVmmcVisitInteractor {
 
     String visitType;
-    protected BaseVmmcVisitContract.InteractorCallBack callBack;
+    protected InteractorCallBack callBack;
 
     public VmmcNotifiableAdverseInteractor(String visitType) {
         this.visitType = visitType;
@@ -34,7 +34,7 @@ public class VmmcNotifiableAdverseInteractor extends BaseVmmcVisitInteractor {
     }
 
     @Override
-    protected void populateActionList(BaseVmmcVisitContract.InteractorCallBack callBack) {
+    protected void populateActionList(InteractorCallBack callBack) {
         this.callBack = callBack;
         final Runnable runnable = () -> {
             try {

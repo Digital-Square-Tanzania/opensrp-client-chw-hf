@@ -1,12 +1,13 @@
 package org.smartregister.chw.hf.interactor;
 
+import static org.smartregister.chw.vmmc.contract.BaseVmmcVisitContract.*;
+
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONObject;
 import org.smartregister.chw.anc.util.AppExecutors;
 import org.smartregister.chw.core.utils.FormUtils;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.actionhelper.vmmc.VmmcProcedureActionHelper;
-import org.smartregister.chw.vmmc.contract.BaseVmmcVisitContract;
 import org.smartregister.chw.vmmc.domain.VisitDetail;
 import org.smartregister.chw.vmmc.interactor.BaseVmmcVisitInteractor;
 import org.smartregister.chw.vmmc.model.BaseVmmcVisitAction;
@@ -20,7 +21,7 @@ import timber.log.Timber;
 public class VmmcVisitProcedureInteractor extends BaseVmmcVisitInteractor {
 
     String visitType;
-    protected BaseVmmcVisitContract.InteractorCallBack callBack;
+    protected InteractorCallBack callBack;
 
     public VmmcVisitProcedureInteractor(String visitType) {
         this.visitType = visitType;
@@ -35,7 +36,7 @@ public class VmmcVisitProcedureInteractor extends BaseVmmcVisitInteractor {
     }
 
     @Override
-    protected void populateActionList(BaseVmmcVisitContract.InteractorCallBack callBack) {
+    protected void populateActionList(InteractorCallBack callBack) {
         this.callBack = callBack;
         final Runnable runnable = () -> {
             try {

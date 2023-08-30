@@ -15,7 +15,7 @@ import java.util.Map;
 public class VmmcPhysicalExamActionHelper implements BaseVmmcVisitAction.VmmcVisitActionHelper {
     protected String medical_history;
     protected String jsonPayload;
-    private String baseEntityId;
+    protected String baseEntityId;
     protected static String genital_examination;
 
     public VmmcPhysicalExamActionHelper(String baseEntityId) {

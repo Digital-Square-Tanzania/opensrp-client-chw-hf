@@ -17,6 +17,7 @@ public class VmmcConsentFormActionHelper implements BaseVmmcVisitAction.VmmcVisi
 
     protected String consent_form;
     protected String jsonPayload;
+
     protected String mc_procedure;
 
     @Override

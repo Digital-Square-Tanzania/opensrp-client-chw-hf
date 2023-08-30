@@ -17,7 +17,7 @@ public class VmmcNotifiableAdverseActionHelper implements BaseVmmcVisitAction.Vm
 
     protected String was_adverse_events_notifiable;
     protected String jsonPayload;
-    private String baseEntityId;
+    protected String baseEntityId;
 
     public VmmcNotifiableAdverseActionHelper(String baseEntityId) {
         this.baseEntityId = baseEntityId;

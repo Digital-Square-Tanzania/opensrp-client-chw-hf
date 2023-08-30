@@ -25,7 +25,7 @@ public class VmmcMedicalHistoryActionHelper implements BaseVmmcVisitAction.VmmcV
     protected static String blood_for_glucose;
     protected static String blood_for_glucose_test;
 
-    private String baseEntityId;
+    protected String baseEntityId;
 
     public VmmcMedicalHistoryActionHelper(String baseEntityId) {
         this.baseEntityId = baseEntityId;
