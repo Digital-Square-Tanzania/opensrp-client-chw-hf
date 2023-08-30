@@ -792,27 +792,11 @@
         "label": "Type of adverse event",
         "options": [
           {
-            "key": "pain",
-            "text": "Pain",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "pain",
-            "openmrs_entity_parent": ""
-          },
-          {
             "key": "excessive_skin_removed",
             "text": "Excessive skin removed",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "excessive_skin_removed",
-            "openmrs_entity_parent": ""
-          },
-          {
-            "key": "insufficient_skin_removal",
-            "text": "Insufficient skin removal",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "insufficient_skin_removal",
             "openmrs_entity_parent": ""
           },
           {
@@ -825,7 +809,7 @@
           },
           {
             "key": "damage_to_penis",
-            "text": "Damage to the penis",
+            "text": "Injury to the penis",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "damage_to_penis",
@@ -840,19 +824,11 @@
             "openmrs_entity_parent": ""
           },
           {
-            "key": "infection",
-            "text": "Infection",
+            "key": "device_displacement",
+            "text": "Device displacement",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "infection",
-            "openmrs_entity_parent": ""
-          },
-          {
-            "key": "delayed_wound_healing",
-            "text": "Delayed wound healing",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "delayed_wound_healing",
+            "openmrs_entity_id": "device_displacement",
             "openmrs_entity_parent": ""
           },
           {
@@ -1263,6 +1239,99 @@
           "step1:desc_intraoperative_ae_anaesthetic_related_event": {
             "type": "string",
             "ex": "equalTo(., \"anaphylaxis\")"
+          }
+        }
+      },
+      {
+        "key": "desc_of_adverse_event_device_displacement",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "desc_of_adverse_event_device_displacement",
+        "label": "Description of adverse events(device displacement)",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "post_removal",
+            "text": "Displacement of the device after which no other treatment needed beyond routine post-removal wound care. ",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "post_removal"
+          },
+          {
+            "key": "meet_severe_criteria",
+            "text": "Displacement of the device that requires any treatment more than routine post-operative wound care but does not meet severe criteria. ",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "meet_severe_criteria"
+          },
+
+          {
+            "key": "surgical_intervention",
+            "text": "Displacement of the device, including intentional movement of device by the client and/or self-removal, that requires surgical intervention, hospitalization, or transfer to another facility to clinically manage.",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "surgical_intervention"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select atleast one scale"
+        },
+        "relevance": {
+          "step1:type_of_adverse_event": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "device_displacement"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "ae_classified_as_mild_device_displacement",
+        "type": "toaster_notes",
+        "text": "AE classified as MILD",
+        "openmrs_entity_id": "ae_classified_as_mild",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "info",
+        "relevance": {
+          "step1:desc_of_adverse_event_device_displacement": {
+            "type": "string",
+            "ex": "equalTo(., \"post_removal\")"
+          }
+        }
+      },
+      {
+        "key": "ae_classified_as_moderate_device_displacement",
+        "type": "toaster_notes",
+        "text": "AE classified as MODERATE",
+        "openmrs_entity_id": "ae_classified_as_moderate",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "warning",
+        "relevance": {
+          "step1:desc_of_adverse_event_device_displacement": {
+            "type": "string",
+            "ex": "equalTo(., \"meet_severe_criteria\")"
+          }
+        }
+      },
+      {
+        "key": "ae_classified_as_severe_device_displacement",
+        "type": "toaster_notes",
+        "text": "AE classified as SEVERE",
+        "openmrs_entity_id": "ae_classified_as_severe",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "problem",
+        "relevance": {
+          "step1:desc_of_adverse_event_device_displacement": {
+            "type": "string",
+            "ex": "equalTo(., \"surgical_intervention\")"
           }
         }
       },

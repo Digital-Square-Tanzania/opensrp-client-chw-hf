@@ -20,6 +20,34 @@ condition: "global_method_used.contains('device')"
 actions:
   - "isRelevant = true "
 ---
+name: step1_desc_of_post_op_adverse_excessive_skin_removed
+description: if desc_of_post_op_adverse_excessive_skin_removed
+priority: 1
+condition: "step1_type_of_adverse_event_with_device.equalsIgnoreCase('excessive_skin_removed') || step1_type_of_adverse_event_without_device.equalsIgnoreCase('excessive_skin_removed')"
+actions:
+  - "isRelevant = true "
+---
+name: step1_desc_of_post_op_adverse_anaesthetic_related_event
+description: if desc_of_post_op_adverse_excessive_anaesthetic_related_event
+priority: 1
+condition: "step1_type_of_adverse_event_with_device.equalsIgnoreCase('anaesthetic_related_event') || step1_type_of_adverse_event_without_device.equalsIgnoreCase('anaesthetic_related_event')"
+actions:
+  - "isRelevant = true "
+---
+name: step1_desc_of_post_op_adverse_delayed_wound_healing
+description: if desc_of_post_op_adverse_delayed_wound_healing
+priority: 1
+condition: "step1_type_of_adverse_event_with_device.equalsIgnoreCase('delayed_wound_healing') || step1_type_of_adverse_event_without_device.equalsIgnoreCase('delayed_wound_healing')"
+actions:
+  - "isRelevant = true "
+---
+name: step1_desc_of_post_op_adverse_appearance
+description: if desc_of_post_op_adverse_appearance
+priority: 1
+condition: "step1_type_of_adverse_event_with_device.equalsIgnoreCase('appearance') || step1_type_of_adverse_event_without_device.equalsIgnoreCase('appearance')"
+actions:
+  - "isRelevant = true "
+---
 name: step1_ae_classified_as_mild_infection
 description: if ae_classified_as_mild_infection
 priority: 1

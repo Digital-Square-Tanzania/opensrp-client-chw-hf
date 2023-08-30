@@ -186,7 +186,7 @@
         "options": [
           {
             "key": "bleeding",
-            "text": "Bleeding or blood soiling of dressing",
+            "text": "Excessive bleeding",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "bleeding",
@@ -194,7 +194,7 @@
           },
           {
             "key": "swelling",
-            "text": "Swelling of the penis or scrotum",
+            "text": "Damage to the penis",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "swelling",
@@ -218,7 +218,7 @@
           },
           {
             "key": "failure_pass_urine",
-            "text": "Failure to pass urine",
+            "text": "Problems with urinating",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "failure_pass_urine",
@@ -241,11 +241,35 @@
             "openmrs_entity_parent": ""
           },
           {
-            "key": "insufficient_skin_removal",
-            "text": "Insufficient skin removal",
+            "key": "excessive_skin_removed",
+            "text": "Excessive skin removed",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "insufficient_skin_removal",
+            "openmrs_entity_id": "excessive_skin_removed",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "anaesthetic_related_event",
+            "text": "Anaesthetic-related event",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "anaesthetic_related_event",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "delayed_wound_healing",
+            "text": "Delayed wound healing",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "delayed_wound_healing",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "appearance",
+            "text": "Appearance",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "appearance",
             "openmrs_entity_parent": ""
           },
           {
@@ -288,7 +312,7 @@
           },
           {
             "key": "swelling",
-            "text": "Swelling of the penis or scrotum",
+            "text": "Damage to the penis",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "swelling",
@@ -296,10 +320,10 @@
           },
           {
             "key": "persistent_pain",
-            "text": "Persistent pain",
+            "text": "Pain",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "Persistent_pain",
+            "openmrs_entity_id": "persistent_pain",
             "openmrs_entity_parent": ""
           },
           {
@@ -312,18 +336,42 @@
           },
           {
             "key": "failure_pass_urine",
-            "text": "Failure to pass urine",
+            "text": "Problems with urinating",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "failure_pass_urine",
             "openmrs_entity_parent": ""
           },
           {
-            "key": "insufficient_skin_removal",
-            "text": "Insufficient skin removal",
+            "key": "excessive_skin_removed",
+            "text": "Excessive skin removed",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "insufficient_skin_removal",
+            "openmrs_entity_id": "excessive_skin_removed",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "anaesthetic_related_event",
+            "text": "Anaesthetic-related event",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "anaesthetic_related_event",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "delayed_wound_healing",
+            "text": "Delayed wound healing",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "delayed_wound_healing",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "appearance",
+            "text": "Appearance",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "appearance",
             "openmrs_entity_parent": ""
           },
           {
@@ -1403,7 +1451,361 @@
           }
         }
       },
+      {
+        "key": "desc_of_post_op_adverse_excessive_skin_removed",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "desc_of_post_op_adverse_excessive_skin_removed",
+        "label": "Description of post-operative adverse events(Excessive skin removed)",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "adds_time",
+            "text": "Adds time or material needs to the procedure, but does not result in any discernible adverse condition",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "adds_time"
+          },
+          {
+            "key": "additional_operative",
+            "text": "Skin is tight, but additional operative work not necessary",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "additional_operative"
+          },
+          {
+            "key": "operation_or_transfer_to_another_facility",
+            "text": "Requires re-operation or transfer to another facility to correct the problem",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "operation_or_transfer_to_another_facility"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select atleast one scale"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_followup_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "ae_classified_as_mild_excessive_skin_removed",
+        "type": "toaster_notes",
+        "text": "AE classified as MILD",
+        "openmrs_entity_id": "ae_classified_as_mild_excessive_skin_removed",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "info",
+        "relevance": {
+          "step1:desc_of_post_op_adverse_excessive_skin_removed": {
+            "type": "string",
+            "ex": "equalTo(., \"adds_time\")"
+          }
+        }
+      },
+      {
+        "key": "ae_classified_as_moderate_excessive_skin_removed",
+        "type": "toaster_notes",
+        "text": "AE classified as MODERATE",
+        "openmrs_entity_id": "ae_classified_as_moderate_excessive_skin_removed",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "warning",
+        "relevance": {
+          "step1:desc_of_post_op_adverse_excessive_skin_removed": {
+            "type": "string",
+            "ex": "equalTo(., \"additional_operative\")"
+          }
+        }
+      },
+      {
+        "key": "ae_classified_as_severe_excessive_skin_removed",
+        "type": "toaster_notes",
+        "text": "AE classified as SEVERE",
+        "openmrs_entity_id": "ae_classified_as_severe_excessive_skin_removed",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "problem",
+        "relevance": {
+          "step1:desc_of_post_op_adverse_excessive_skin_removed": {
+            "type": "string",
+            "ex": "equalTo(., \"operation_or_transfer_to_another_facility\")"
+          }
+        }
+      },
 
+      {
+        "key": "desc_of_post_op_adverse_anaesthetic_related_event",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "desc_of_post_op_adverse_excessive_anaesthetic_related_event",
+        "label": "Description of post-operative adverse events(Anaesthetic-related event)",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "palpitations",
+            "text": "Palpitations, vaso-vagal reaction or emesis",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "adds_time"
+          },
+          {
+            "key": "anaesthetic_requiring_medical",
+            "text": "Reaction to anaesthetic requiring medical treatment in clinic, but not transfer to another facility",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "additional_operative"
+          },
+          {
+            "key": "anaphylaxis",
+            "text": "Anaphylaxis or other reaction requiring transfer to another facility",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "operation_or_transfer_to_another_facility"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select atleast one scale"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_followup_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "ae_classified_as_mild_excessive_anaesthetic_related_event",
+        "type": "toaster_notes",
+        "text": "AE classified as MILD",
+        "openmrs_entity_id": "ae_classified_as_mild_excessive_anaesthetic_related_event",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "info",
+        "relevance": {
+          "step1:desc_of_post_op_adverse_anaesthetic_related_event": {
+            "type": "string",
+            "ex": "equalTo(., \"palpitations\")"
+          }
+        }
+      },
+      {
+        "key": "ae_classified_as_moderate_excessive_anaesthetic_related_event",
+        "type": "toaster_notes",
+        "text": "AE classified as MODERATE",
+        "openmrs_entity_id": "ae_classified_as_moderate_excessive_anaesthetic_related_event",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "warning",
+        "relevance": {
+          "step1:desc_of_post_op_adverse_anaesthetic_related_event": {
+            "type": "string",
+            "ex": "equalTo(., \"anaesthetic_requiring_medical\")"
+          }
+        }
+      },
+      {
+        "key": "ae_classified_as_severe_excessive_anaesthetic_related_event",
+        "type": "toaster_notes",
+        "text": "AE classified as SEVERE",
+        "openmrs_entity_id": "ae_classified_as_severe_excessive_anaesthetic_related_event",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "problem",
+        "relevance": {
+          "step1:desc_of_post_op_adverse_anaesthetic_related_event": {
+            "type": "string",
+            "ex": "equalTo(., \"anaphylaxis\")"
+          }
+        }
+      },
+
+      {
+        "key": "desc_of_post_op_adverse_delayed_wound_healing",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "desc_of_post_op_adverse_delayed_wound_healing",
+        "label": "Description of post-operative adverse events(Delayed wound healing)",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "healing_takes_longer_than_usual",
+            "text": "Healing takes longer than usual, but no extra treatment necessary",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "healing_takes_longer_than_usual"
+          },
+          {
+            "key": "additional_non_operative_treatment",
+            "text": "Additional non-operative treatment required",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "additional_non_operative_treatment"
+          },
+          {
+            "key": "requires_re_operation",
+            "text": "Requires re-operation",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "requires_re_operation"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select atleast one scale"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_followup_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "ae_classified_as_mild_delayed_wound_healing",
+        "type": "toaster_notes",
+        "text": "AE classified as MILD",
+        "openmrs_entity_id": "ae_classified_as_mild_excessive_anaesthetic_related_event",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "info",
+        "relevance": {
+          "step1:desc_of_post_op_adverse_delayed_wound_healing": {
+            "type": "string",
+            "ex": "equalTo(., \"healing_takes_longer_than_usual\")"
+          }
+        }
+      },
+      {
+        "key": "ae_classified_as_moderate_delayed_wound_healing",
+        "type": "toaster_notes",
+        "text": "AE classified as MODERATE",
+        "openmrs_entity_id": "ae_classified_as_moderate_excessive_anaesthetic_related_event",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "warning",
+        "relevance": {
+          "step1:desc_of_post_op_adverse_delayed_wound_healing": {
+            "type": "string",
+            "ex": "equalTo(., \"additional_non_operative_treatment\")"
+          }
+        }
+      },
+      {
+        "key": "ae_classified_as_severe_delayed_wound_healing",
+        "type": "toaster_notes",
+        "text": "AE classified as SEVERE",
+        "openmrs_entity_id": "ae_classified_as_severe_excessive_anaesthetic_related_event",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "problem",
+        "relevance": {
+          "step1:desc_of_post_op_adverse_delayed_wound_healing": {
+            "type": "string",
+            "ex": "equalTo(., \"requires_re_operation\")"
+          }
+        }
+      },
+
+      {
+        "key": "desc_of_post_op_adverse_appearance",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "desc_of_post_op_adverse_appearance",
+        "label": "Description of post-operative adverse events(Appearance)",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "transient_complaint ",
+            "text": "Transient complaint that resolves without treatment",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "transient_complaint"
+          },
+          {
+            "key": "requires_special_return_to_the_clinic",
+            "text": "Requires a special return to the clinic, but no additional treatment required",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "requires_special_return_to_the_clinic"
+          },
+          {
+            "key": "requires_referral_to_another_facility",
+            "text": "Requires referral to another facility for management",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "requires_referral_to_another_facility"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select atleast one scale"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_followup_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "ae_classified_as_mild_appearance",
+        "type": "toaster_notes",
+        "text": "AE classified as MILD",
+        "openmrs_entity_id": "ae_classified_as_mild_excessive_anaesthetic_related_event",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "info",
+        "relevance": {
+          "step1:desc_of_post_op_adverse_appearance": {
+            "type": "string",
+            "ex": "equalTo(., \"transient_complaint\")"
+          }
+        }
+      },
+      {
+        "key": "ae_classified_as_moderate_appearance",
+        "type": "toaster_notes",
+        "text": "AE classified as MODERATE",
+        "openmrs_entity_id": "ae_classified_as_moderate_excessive_anaesthetic_related_event",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "warning",
+        "relevance": {
+          "step1:desc_of_post_op_adverse_appearance": {
+            "type": "string",
+            "ex": "equalTo(., \"requires_referral_to_another_facility\")"
+          }
+        }
+      },
+      {
+        "key": "ae_classified_as_severe_appearance",
+        "type": "toaster_notes",
+        "text": "AE classified as SEVERE",
+        "openmrs_entity_id": "ae_classified_as_severe_excessive_anaesthetic_related_event",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "problem",
+        "relevance": {
+          "step1:desc_of_post_op_adverse_appearance": {
+            "type": "string",
+            "ex": "equalTo(., \"requires_referral_to_another_facility\")"
+          }
+        }
+      },
       {
         "key": "nature_of_ae",
         "openmrs_entity_parent": "",

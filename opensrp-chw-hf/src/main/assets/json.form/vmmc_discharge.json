@@ -195,7 +195,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "analgenics_reasons",
         "type": "edit_text",
-        "hint": "Specify",
+        "hint": "Analgenics reasons",
         "edit_type": "text",
         "v_required": {
           "value": "true",
