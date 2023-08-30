@@ -25,6 +25,7 @@ public class VmmcMonthlyReportObject extends ReportObject {
     };
 
     private final Date reportDate;
+
     private JSONObject jsonObject ;
 
     public VmmcMonthlyReportObject(Date reportDate) {

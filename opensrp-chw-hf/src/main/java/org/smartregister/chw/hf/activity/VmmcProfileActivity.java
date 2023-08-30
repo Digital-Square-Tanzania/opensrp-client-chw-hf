@@ -6,6 +6,9 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
+
+import com.sun.xml.bind.v2.TODO;
+
 import org.smartregister.chw.core.activity.CoreFamilyProfileActivity;
 import org.smartregister.chw.core.activity.CoreVmmcProfileActivity;
 import org.smartregister.chw.core.custom_views.CoreVmmcFloatingMenu;
@@ -66,7 +69,9 @@ public class VmmcProfileActivity extends CoreVmmcProfileActivity {
 
     @Override
     protected void removeMember() {
-//        Implement vmmc function here
+
+//        TODO: implement this function
+
     }
 
     @NonNull
@@ -77,22 +82,30 @@ public class VmmcProfileActivity extends CoreVmmcProfileActivity {
 
     @Override
     public void setProfileImage(String s, String s1) {
-//        Implement vmmc function here
+
+//        TODO: implement this function
+
     }
 
     @Override
     public void setProfileDetailThree(String s) {
-//        Implement vmmc function here
+
+//        TODO: implement this function
+
     }
 
     @Override
     public void toggleFamilyHead(boolean b) {
-//        Implement vmmc function here
+
+//        TODO: implement this function
+
     }
 
     @Override
     public void togglePrimaryCaregiver(boolean b) {
-//        Implement vmmc function here
+
+//        TODO: implement this function
+
     }
 
     @Override
@@ -153,27 +166,37 @@ public class VmmcProfileActivity extends CoreVmmcProfileActivity {
 
         @Override
     public void refreshList() {
-//        Implement vmmc function here
-    }
+
+//        TODO: implement this function
+
+        }
 
     @Override
     public void updateHasPhone(boolean b) {
-//        Implement vmmc function here
+
+//        TODO: implement this function
+
     }
 
     @Override
     public void setFamilyServiceStatus(String s) {
-//        Implement vmmc function here
+
+//        TODO: implement this function
+
     }
 
     @Override
     public void verifyHasPhone() {
-//        Implement vmmc function here
+
+//        TODO: implement this function
+
     }
 
     @Override
     public void notifyHasPhone(boolean b) {
-//        Implement vmmc function here
+
+//        TODO: implement this function
+
     }
 }
 
