@@ -163,55 +163,48 @@ actions:
 name: step1_type_of_adverse_event_with_device
 description: type_of_adverse_event_with_device relevance
 priority: 1
-condition: "step1_male_circumcision_method.equalsIgnoreCase('device') || step1_intraoperative_adverse_event_occured.equalsIgnoreCase('yes')"
+condition: "step1_male_circumcision_method.equalsIgnoreCase('device') && step1_intraoperative_adverse_event_occured.equalsIgnoreCase('yes')"
 actions:
   - "isRelevant = true"
 ---
 name: step1_type_of_adverse_event_without_device
 description: type_of_adverse_event_without_device relevance
 priority: 1
-condition: "step1_male_circumcision_method.equalsIgnoreCase('dorsal_slit') || step1_male_circumcision_method.equalsIgnoreCase('sleeve_resection')"
+condition: "(step1_male_circumcision_method.equalsIgnoreCase('dorsal_slit') && step1_intraoperative_adverse_event_occured.equalsIgnoreCase('yes')) || (step1_male_circumcision_method.equalsIgnoreCase('sleeve_resection') && step1_intraoperative_adverse_event_occured.equalsIgnoreCase('yes'))"
 actions:
   - "isRelevant = true"
 ---
 name: step1_type_of_adverse_event_others
 description: type_of_adverse_event_others relevance
 priority: 1
-condition: "(step1_type_of_adverse_event_with_device.equalsIgnoreCase('others') && step1_intraoperative_adverse_event_occured.equalsIgnoreCase('yes'))  || (step1_type_of_adverse_event_without_device.equalsIgnoreCase('others') && step1_intraoperative_adverse_event_occured.equalsIgnoreCase('yes'))"
+condition: "step1_type_of_adverse_event_with_device.contains('others')  || step1_type_of_adverse_event_without_device.contains('others')"
 actions:
   - "isRelevant = true"
 ---
 name: step1_desc_intraoperative_ae_bleed
 description: desc_intraoperative_ae_bleed relevance
 priority: 1
-condition: "step1_type_of_adverse_event_with_device.equalsIgnoreCase('excessive_bleeding') || step1_type_of_adverse_event_without_device.equalsIgnoreCase('excessive_bleeding')"
-actions:
-  - "isRelevant = true"
----
-name: step1_desc_intraoperative_ae_bleed
-description: desc_intraoperative_ae_bleed relevance
-priority: 1
-condition: "step1_type_of_adverse_event_with_device.equalsIgnoreCase('excessive_bleeding') || step1_type_of_adverse_event_without_device.equalsIgnoreCase('excessive_bleeding')"
+condition: "step1_type_of_adverse_event_with_device.contains('excessive_bleeding') || step1_type_of_adverse_event_without_device.contains('excessive_bleeding')"
 actions:
   - "isRelevant = true"
 ---
 name: step1_desc_intraoperative_ae_skin_removal
 description: desc_intraoperative_ae_skin_removal relevance
 priority: 1
-condition: "step1_type_of_adverse_event_with_device.equalsIgnoreCase('excessive_skin_removed') || step1_type_of_adverse_event_without_device.equalsIgnoreCase('excessive_skin_removed')"
+condition: "step1_type_of_adverse_event_with_device.contains('excessive_skin_removed') || step1_type_of_adverse_event_without_device.contains('excessive_skin_removed')"
 actions:
   - "isRelevant = true"
 ---
 name: step1_desc_intraoperative_ae_injury_to_penis
 description: desc_intraoperative_ae_injury_to_penis relevance
 priority: 1
-condition: "step1_type_of_adverse_event_with_device.equalsIgnoreCase('damage_to_penis') || step1_type_of_adverse_event_without_device.equalsIgnoreCase('damage_to_penis')"
+condition: "step1_type_of_adverse_event_with_device.contains('damage_to_penis') || step1_type_of_adverse_event_without_device.contains('damage_to_penis')"
 actions:
   - "isRelevant = true"
 ---
 name: step1_desc_intraoperative_ae_anaesthetic_related_event
 description: desc_intraoperative_ae_anaesthetic_related_event relevance
 priority: 1
-condition: "step1_type_of_adverse_event_with_device.equalsIgnoreCase('anesthetic_related_events') || step1_type_of_adverse_event_without_device.equalsIgnoreCase('anesthetic_related_events')"
+condition: "step1_type_of_adverse_event_with_device.contains('anesthetic_related_events') || step1_type_of_adverse_event_without_device.contains('anesthetic_related_events')"
 actions:
   - "isRelevant = true"

@@ -113,6 +113,13 @@
         "v_required": {
           "value": true,
           "err": "Please select atleast one"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_notifiable_adverse_event_relevance.yml"
+            }
+          }
         }
       },
       {
@@ -175,6 +182,13 @@
         "v_required": {
           "value": true,
           "err": "Please select atleast one"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_notifiable_adverse_event_relevance.yml"
+            }
+          }
         }
       },
       {
