@@ -249,10 +249,10 @@
         }
       },
       {
-        "key": "nature_of_ae",
+        "key": "nature_of_nae",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "nature_of_ae",
+        "openmrs_entity_id": "nature_of_nae",
         "type": "edit_text",
         "hint": "What was the nature of NAE",
         "v_required": {

@@ -1,7 +1,7 @@
 indicators:
   - key: "vmmc-1-1-a"
     description: "Jumla ya wateja (Binafsi) waliopata majibu chanya (Reactive) baada ya kujipima VVU Umri 15-19"
-    indicatorQuery: " SELECT count(DISTINCT evc.id) as count FROM ec_vmmc_confirmation evc
+    indicatorQuery: " SELECT count(DISTINCT evc.id) as count FROM  ec_vmmc_enrollment evc
                        INNER JOIN ec_family_member efm ON efm.base_entity_id = evc.id
                        WHERE   (date('now')-date(efm.dob))<1
                        AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -9,7 +9,7 @@ indicators:
                        substr(strftime('%Y-%m-%d', datetime(evc.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
   - key: "vmmc-1-1-9-a"
     description: "Jumla ya wateja (Binafsi) waliopata majibu chanya (Reactive) baada ya kujipima VVU Umri 15-19"
-    indicatorQuery: " SELECT count(DISTINCT evc.id) as count FROM ec_vmmc_confirmation evc
+    indicatorQuery: " SELECT count(DISTINCT evc.id) as count FROM  ec_vmmc_enrollment evc
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = evc.id
                       WHERE (date(efm.dob, '+1 years') <= date('now'))
                       AND (date(efm.dob, '+10 years') > date('now'))
@@ -18,7 +18,7 @@ indicators:
                       substr(strftime('%Y-%m-%d', datetime(evc.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
   - key: "vmmc-1-10-14-a"
     description: "Jumla ya wateja (Binafsi) waliopata majibu chanya (Reactive) baada ya kujipima VVU Umri 15-19"
-    indicatorQuery: " SELECT count(DISTINCT evc.id) as count FROM ec_vmmc_confirmation evc
+    indicatorQuery: " SELECT count(DISTINCT evc.id) as count FROM  ec_vmmc_enrollment evc
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = evc.id
                       WHERE   (date(efm.dob, '+10 years') <= date('now'))
                       AND (date(efm.dob, '+15 years') > date('now'))
@@ -27,7 +27,7 @@ indicators:
                       substr(strftime('%Y-%m-%d', datetime(evc.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
   - key: "vmmc-1-15-19-a"
     description: "Jumla ya wateja (Binafsi) waliopata majibu chanya (Reactive) baada ya kujipima VVU Umri 15-19"
-    indicatorQuery: " SELECT count(DISTINCT evc.id) as count FROM ec_vmmc_confirmation evc
+    indicatorQuery: " SELECT count(DISTINCT evc.id) as count FROM  ec_vmmc_enrollment evc
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = evc.id
                       WHERE (date(efm.dob, '+15 years') <= date('now'))
                       AND (date(efm.dob, '+20 years') > date('now'))
@@ -36,7 +36,7 @@ indicators:
                       substr(strftime('%Y-%m-%d', datetime(evc.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
   - key: "vmmc-1-20-24-a"
     description: "Jumla ya wateja (Binafsi) waliopata majibu chanya (Reactive) baada ya kujipima VVU Umri 15-19"
-    indicatorQuery: " SELECT count(DISTINCT evc.id) as count FROM ec_vmmc_confirmation evc
+    indicatorQuery: " SELECT count(DISTINCT evc.id) as count FROM  ec_vmmc_enrollment evc
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = evc.id
                       WHERE (date(efm.dob, '+20 years') <= date('now'))
                       AND (date(efm.dob, '+25 years') > date('now'))
@@ -45,7 +45,7 @@ indicators:
                        substr(strftime('%Y-%m-%d', datetime(evc.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
   - key: "vmmc-1-25-29-a"
     description: "Jumla ya wateja (Binafsi) waliopata majibu chanya (Reactive) baada ya kujipima VVU Umri 20-24"
-    indicatorQuery: " SELECT count(DISTINCT evc.id) as count FROM ec_vmmc_confirmation evc
+    indicatorQuery: " SELECT count(DISTINCT evc.id) as count FROM  ec_vmmc_enrollment evc
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = evc.id
                       WHERE  (date(efm.dob, '+25 years') <= date('now'))
                       AND (date(efm.dob, '+30 years') > date('now'))
@@ -54,7 +54,7 @@ indicators:
                       substr(strftime('%Y-%m-%d', datetime(evc.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
   - key: "vmmc-1-30-34-a"
     description: "Jumla ya wateja (Binafsi) waliopata majibu chanya (Reactive) baada ya kujipima VVU Umri 20-24"
-    indicatorQuery: " SELECT count(DISTINCT evc.id) as count FROM ec_vmmc_confirmation evc
+    indicatorQuery: " SELECT count(DISTINCT evc.id) as count FROM  ec_vmmc_enrollment evc
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = evc.id
                       WHERE (date(efm.dob, '+30 years') <= date('now'))
                       AND (date(efm.dob, '+35 years') > date('now'))
@@ -63,7 +63,7 @@ indicators:
                       substr(strftime('%Y-%m-%d', datetime(evc.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
   - key: "vmmc-1-35-39-a"
     description: "Jumla ya wateja (Binafsi) waliopata majibu chanya (Reactive) baada ya kujipima VVU Umri 20-24"
-    indicatorQuery: " SELECT count(DISTINCT evc.id) as count FROM ec_vmmc_confirmation evc
+    indicatorQuery: " SELECT count(DISTINCT evc.id) as count FROM  ec_vmmc_enrollment evc
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = evc.id
                       WHERE (date(efm.dob, '+35 years') <= date('now'))
                       AND (date(efm.dob, '+40 years') > date('now'))
@@ -72,7 +72,7 @@ indicators:
                       substr(strftime('%Y-%m-%d', datetime(evc.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
   - key: "vmmc-1-40-44-a"
     description: "Jumla ya wateja (Binafsi) waliopata majibu chanya (Reactive) baada ya kujipima VVU Umri 20-24"
-    indicatorQuery: " SELECT count(DISTINCT evc.id) as count FROM ec_vmmc_confirmation evc
+    indicatorQuery: " SELECT count(DISTINCT evc.id) as count FROM  ec_vmmc_enrollment evc
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = evc.id
                       WHERE (date(efm.dob, '+40 years') <= date('now'))
                       AND (date(efm.dob, '+45 years') > date('now'))
@@ -81,7 +81,7 @@ indicators:
                       substr(strftime('%Y-%m-%d', datetime(evc.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
   - key: "vmmc-1-45-49-a"
     description: "Jumla ya wateja (Binafsi) waliopata majibu chanya (Reactive) baada ya kujipima VVU Umri 20-24"
-    indicatorQuery: " SELECT count(DISTINCT evc.id) as count FROM ec_vmmc_confirmation evc
+    indicatorQuery: " SELECT count(DISTINCT evc.id) as count FROM  ec_vmmc_enrollment evc
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = evc.id
                       WHERE (date(efm.dob, '+45 years') <= date('now'))
                       AND (date(efm.dob, '+50 years') > date('now'))
@@ -90,7 +90,7 @@ indicators:
                       substr(strftime('%Y-%m-%d', datetime(evc.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
   - key: "vmmc-1-50-a"
     description: "Jumla ya wateja (Binafsi) waliopata majibu chanya (Reactive) baada ya kujipima VVU Umri 20-24"
-    indicatorQuery: " SELECT count(DISTINCT evc.id) as count FROM ec_vmmc_confirmation evc
+    indicatorQuery: " SELECT count(DISTINCT evc.id) as count FROM  ec_vmmc_enrollment evc
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = evc.id
                       WHERE (date('now')-date(efm.dob))>=50
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -6725,7 +6725,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE round(julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -6743,7 +6743,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE round(julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -6761,7 +6761,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE round(julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -6779,7 +6779,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE round(julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -6797,7 +6797,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE round(julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -6815,7 +6815,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE round(julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -6833,7 +6833,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE round(julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -6851,7 +6851,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE round(julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -6869,7 +6869,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE round(julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -6887,7 +6887,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE round(julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -6905,7 +6905,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE round(julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -6925,7 +6925,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE 2 < ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -6943,7 +6943,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE 2 < ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -6961,7 +6961,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE 2 < ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -6979,7 +6979,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE 2 < ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -6997,7 +6997,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE 2 < ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -7015,7 +7015,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE 2 < ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -7033,7 +7033,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE 2 < ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -7051,7 +7051,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE 2 < ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -7069,7 +7069,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE 2 < ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -7087,7 +7087,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE 2 < ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -7105,7 +7105,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE 2 < ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -7125,7 +7125,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE round(julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -7143,7 +7143,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE round(julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -7161,7 +7161,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE round(julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -7179,7 +7179,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE round(julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -7197,7 +7197,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE round(julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -7215,7 +7215,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE round(julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -7233,7 +7233,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE round(julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -7251,7 +7251,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE round(julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -7269,7 +7269,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE round(julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -7287,7 +7287,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE round(julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -7305,7 +7305,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE round(julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -7326,7 +7326,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE 7 < ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -7344,7 +7344,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE 7 < ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -7362,7 +7362,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE 7 < ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -7380,7 +7380,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE 7 < ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -7398,7 +7398,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE 7 < ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -7416,7 +7416,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE 7 < ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -7434,7 +7434,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE 7 < ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -7452,7 +7452,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE 7 < ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -7470,7 +7470,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE 7 < ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -7488,7 +7488,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE 7 < ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -7506,7 +7506,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE 7 < ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -7527,7 +7527,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE 7 <= ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -7544,7 +7544,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE 7 <= ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -7561,7 +7561,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE 7 <= ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -7578,7 +7578,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE 7 <= ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -7595,7 +7595,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE 7 <= ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -7612,7 +7612,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE 7 <= ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -7629,7 +7629,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE 7 <= ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -7646,7 +7646,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE 7 <= ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -7663,7 +7663,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE 7 <= ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -7680,7 +7680,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE 7 <= ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
@@ -7697,7 +7697,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  INNER JOIN ec_vmmc_discharge ds ON ds.entity_id = evn.entity_id
+  INNER JOIN  ec_vmmc_post_op_and_discharge ds ON ds.entity_id = evn.entity_id
   WHERE 7 <= ((julianday(substr(followup_visit_date, 7, 4) || '-'
   || substr(followup_visit_date, 4, 2) || '-'
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'

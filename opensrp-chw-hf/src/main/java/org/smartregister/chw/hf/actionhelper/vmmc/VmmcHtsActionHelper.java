@@ -29,20 +29,20 @@ public class VmmcHtsActionHelper implements BaseVmmcVisitAction.VmmcVisitActionH
             JSONObject global = jsonObject.getJSONObject("global");
 
 
-            String client_diagnosed = VmmcMedicalHistoryActionHelper.client_diagnosed;
+            String is_client_diagnosed_with_any = VmmcMedicalHistoryActionHelper.is_client_diagnosed_with_any;
             String any_complaints = VmmcMedicalHistoryActionHelper.any_complaints;
             String known_allergies = VmmcMedicalHistoryActionHelper.known_allergies;
-            String hematological_disease = VmmcMedicalHistoryActionHelper.hematological_disease;
+            String any_hematological_disease_symptoms = VmmcMedicalHistoryActionHelper.any_hematological_disease_symptoms;
             String complications_previous_surgical = VmmcMedicalHistoryActionHelper.complications_previous_surgical;
             String type_of_blood_for_glucose_test = VmmcMedicalHistoryActionHelper.type_of_blood_for_glucose_test;
             String blood_for_glucose = VmmcMedicalHistoryActionHelper.blood_for_glucose;
             String blood_for_glucose_test = VmmcMedicalHistoryActionHelper.blood_for_glucose_test;
             String genital_examination = VmmcPhysicalExamActionHelper.genital_examination;
 
-            global.put("client_diagnosed", client_diagnosed);
+            global.put("is_client_diagnosed_with_any", is_client_diagnosed_with_any);
             global.put("any_complaints", any_complaints);
             global.put("known_allergies", known_allergies);
-            global.put("hematological_disease", hematological_disease);
+            global.put("any_hematological_disease_symptoms", any_hematological_disease_symptoms);
             global.put("complications_previous_surgical", complications_previous_surgical);
             global.put("type_of_blood_for_glucose_test", type_of_blood_for_glucose_test);
             global.put("blood_for_glucose", blood_for_glucose);

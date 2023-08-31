@@ -181,8 +181,8 @@ condition: "step1_type_of_adverse_event_with_device.contains('others')  || step1
 actions:
   - "isRelevant = true"
 ---
-name: step1_desc_intraoperative_ae_bleed
-description: desc_intraoperative_ae_bleed relevance
+name: step1_desc_intraoperative_ae_bleed_excessive_bleeding
+description: desc_intraoperative_ae_bleed_excessive_bleeding relevance
 priority: 1
 condition: "step1_type_of_adverse_event_with_device.contains('excessive_bleeding') || step1_type_of_adverse_event_without_device.contains('excessive_bleeding')"
 actions:

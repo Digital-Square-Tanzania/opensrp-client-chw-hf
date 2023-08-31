@@ -16,7 +16,7 @@ public class VmmcMedicalHistoryActionHelper implements BaseVmmcVisitAction.VmmcV
 
     protected String jsonPayload;
 
-    protected static String client_diagnosed;
+    protected static String is_client_diagnosed_with_any;
 
     protected String medical_history;
 
@@ -24,7 +24,7 @@ public class VmmcMedicalHistoryActionHelper implements BaseVmmcVisitAction.VmmcV
 
     protected static String complications_previous_surgical;
 
-    protected static String hematological_disease;
+    protected static String any_hematological_disease_symptoms;
 
     protected static String known_allergies;
 
@@ -62,10 +62,10 @@ public class VmmcMedicalHistoryActionHelper implements BaseVmmcVisitAction.VmmcV
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
 
-            client_diagnosed = CoreJsonFormUtils.getValue(jsonObject, "client_diagnosed");
+            is_client_diagnosed_with_any = CoreJsonFormUtils.getValue(jsonObject, "is_client_diagnosed_with_any");
             any_complaints = CoreJsonFormUtils.getValue(jsonObject, "any_complaints");
             complications_previous_surgical = CoreJsonFormUtils.getValue(jsonObject, "complications_previous_surgical");
-            hematological_disease = CoreJsonFormUtils.getValue(jsonObject, "hematological_disease");
+            any_hematological_disease_symptoms = CoreJsonFormUtils.getValue(jsonObject, "any_hematological_disease_symptoms");
             known_allergies = CoreJsonFormUtils.getValue(jsonObject, "known_allergies");
             type_of_blood_for_glucose_test = CoreJsonFormUtils.getValue(jsonObject, "type_of_blood_for_glucose_test");
             blood_for_glucose = CoreJsonFormUtils.getValue(jsonObject, "blood_for_glucose");

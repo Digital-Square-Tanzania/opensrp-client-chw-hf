@@ -75,8 +75,8 @@
       {
         "key": "has_client_had_any_sti_note",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "person_attribute",
-        "openmrs_entity_id": "toaster_notes",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "has_client_had_any_sti_note",
         "type": "toaster_notes",
         "text": "Do not perform Male circumcision link/refer to other service",
         "text_color": "#CF0800",
@@ -195,8 +195,8 @@
       {
         "key": "toaster_any_complaints",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "person_attribute",
-        "openmrs_entity_id": "toaster_notes",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "toaster_any_complaints",
         "type": "toaster_notes",
         "text": "Do not perform Male circumcision link/refer to other service",
         "text_color": "#CF0800",
@@ -221,10 +221,10 @@
         }
       },
       {
-        "key": "client_diagnosed",
+        "key": "is_client_diagnosed_with_any",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "client_diagnosed",
+        "openmrs_entity_id": "is_client_diagnosed_with_any",
         "type": "check_box",
         "label": "Is client diagnosed with any of the following?",
         "text_color": "#000000",
@@ -297,7 +297,7 @@
           }
         ],
         "relevance": {
-          "step1:client_diagnosed": {
+          "step1:is_client_diagnosed_with_any": {
             "ex-checkbox": [
               {
                 "or": [
@@ -311,7 +311,7 @@
       {
         "key": "type_of_blood_for_glucose_test",
         "type": "native_radio",
-        "label": "Type Of Blood For Glucose Test Conducted",
+        "label": "Type of Blood For Glucose Test Conducted",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "type_of_blood_for_glucose_test",
         "openmrs_entity_parent": "",
@@ -374,10 +374,10 @@
         }
       },
       {
-        "key": "client_diagnosed_others",
+        "key": "is_client_diagnosed_with_any_others",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "client_diagnosed_others",
+        "openmrs_entity_id": "is_client_diagnosed_with_any_others",
         "type": "edit_text",
         "hint": "Other(Specify)",
         "v_required": {
@@ -385,7 +385,7 @@
           "err": "Please specify"
         },
         "relevance": {
-          "step1:client_diagnosed": {
+          "step1:is_client_diagnosed_with_any": {
             "ex-checkbox": [
               {
                 "or": [
@@ -421,7 +421,7 @@
           "err": "Please enter a valid ctc Number"
         },
         "relevance": {
-          "step1:client_diagnosed": {
+          "step1:is_client_diagnosed_with_any": {
             "ex-checkbox": [
               {
                 "or": [
@@ -440,7 +440,7 @@
         "type": "edit_text",
         "hint": "CTC Name",
         "relevance": {
-          "step1:client_diagnosed": {
+          "step1:is_client_diagnosed_with_any": {
             "ex-checkbox": [
               {
                 "or": [
@@ -478,7 +478,7 @@
           "value": true
         },
         "relevance": {
-          "step1:client_diagnosed": {
+          "step1:is_client_diagnosed_with_any": {
             "ex-checkbox": [
               {
                 "or": [
@@ -516,7 +516,7 @@
           "value": true
         },
         "relevance": {
-          "step1:client_diagnosed": {
+          "step1:is_client_diagnosed_with_any": {
             "ex-checkbox": [
               {
                 "or": [
@@ -653,10 +653,10 @@
         }
       },
       {
-        "key": "hematological_disease",
+        "key": "any_hematological_disease_symptoms",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "hematological_disease",
+        "openmrs_entity_id": "any_hematological_disease_symptoms",
         "type": "check_box",
         "label": "Any symptoms of hematological disease? (Check all applicable)",
         "text_color": "#000000",
@@ -714,11 +714,11 @@
             "openmrs_entity_id": "severe_swelling"
           },
           {
-            "key": "bleeding_tendencies",
+            "key": "bleeding_tendencies_history",
             "text": "Any family history of bleeding tendencies",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "bleeding_tendencies"
+            "openmrs_entity_id": "bleeding_tendencies_history"
           },
           {
             "key": "none",
@@ -734,7 +734,7 @@
         }
       },
       {
-        "key": "hematological_disease_notes",
+        "key": "any_hematological_disease_symptoms_notes",
         "openmrs_entity_parent": "",
         "openmrs_entity": "person_attribute",
         "openmrs_entity_id": "toaster_notes",
@@ -743,7 +743,7 @@
         "text_color": "#CF0800",
         "toaster_type": "problem",
         "relevance": {
-          "step1:hematological_disease": {
+          "step1:any_hematological_disease_symptoms": {
             "ex-checkbox": [
               {
                 "or": [
@@ -754,7 +754,7 @@
                   "spontaneous_bleeding",
                   "abnormal_bleeding_sites",
                   "severe_swelling",
-                  "bleeding_tendencies"
+                  "bleeding_tendencies_history"
                 ]
               }
             ]

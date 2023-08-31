@@ -53,7 +53,7 @@
             "field": "eventType",
             "field_value": "Vmmc Confirmation",
             "closes_case": [
-              "ec_vmmc_confirmation"
+              " ec_vmmc_enrollment"
             ]
           },
           {
@@ -194,7 +194,7 @@
             "field": "eventType",
             "field_value": "Vmmc Confirmation",
             "creates_case": [
-              "ec_vmmc_confirmation"
+              " ec_vmmc_enrollment"
             ]
           },
           {
@@ -215,7 +215,7 @@
             "field": "eventType",
             "field_value": "Vmmc Discharge",
             "creates_case": [
-              "ec_vmmc_discharge"
+              " ec_vmmc_post_op_and_discharge"
             ]
           },
           {

@@ -169,20 +169,20 @@
       },
 
       {
-        "key": "hiv_reasons",
+        "key": "hiv_not_tested_reasons",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "hiv_reasons",
+        "openmrs_entity_id": "hiv_not_tested_reasons",
         "type": "native_radio",
         "label": "Reasons",
         "text_color": "#000000",
         "options": [
           {
-            "key": "out_of_stock",
+            "key": "test_kits_out_of_stock",
             "text": "Test kits out of stock",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "out_of_stock"
+            "openmrs_entity_id": "test_kits_out_of_stock"
           },
           {
             "key": "emergency_situation",
@@ -199,11 +199,11 @@
             "openmrs_entity_id": "client_refused"
           },
           {
-            "key": "counselling",
+            "key": "still_counselling",
             "text": "we are still counselling a client",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "counselling"
+            "openmrs_entity_id": "still_counselling"
           },
           {
             "key": "other",
@@ -225,10 +225,10 @@
         }
       },
       {
-        "key": "hiv_reasons_others",
+        "key": "hiv_not_tested_reasons_others",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "hiv_reasons_others",
+        "openmrs_entity_id": "hiv_not_tested_reasons_others",
         "type": "edit_text",
         "hint": "Other(Specify)",
         "v_required": {
@@ -236,17 +236,17 @@
           "err": "Please specify"
         },
         "relevance": {
-          "step1:hiv_reasons": {
+          "step1:hiv_not_tested_reasons": {
             "type": "string",
             "ex": "equalTo(., \"other\")"
           }
         }
       },
       {
-        "key": "self_test_kits",
+        "key": "self_test_kits_offered",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "self_test_kits",
+        "openmrs_entity_id": "self_test_kits_offered",
         "type": "native_radio",
         "label": "Client offered HIV self test kits? ",
         "label_text_size": "18px",
@@ -440,7 +440,7 @@
         }
       },
       {
-        "key": "toaster_notes_hematological_disease",
+        "key": "toaster_notes_any_hematological_disease_symptoms",
         "openmrs_entity_parent": "",
         "openmrs_entity": "person_attribute",
         "openmrs_entity_id": "toaster_notes",
@@ -457,7 +457,7 @@
         }
       },
       {
-        "key": "toaster_notes_client_diagnosed",
+        "key": "toaster_notes_is_client_diagnosed_with_any",
         "openmrs_entity_parent": "",
         "openmrs_entity": "person_attribute",
         "openmrs_entity_id": "toaster_notes",

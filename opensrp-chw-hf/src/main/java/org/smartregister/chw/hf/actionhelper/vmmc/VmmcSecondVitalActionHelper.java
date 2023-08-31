@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class VmmcSecondVitalActionHelper implements BaseVmmcVisitAction.VmmcVisitActionHelper {
 
-    protected String pulse_rate_second;
+    protected String second_vital_pulse_rate;
 
     protected String jsonPayload;
 
@@ -39,7 +39,7 @@ public class VmmcSecondVitalActionHelper implements BaseVmmcVisitAction.VmmcVisi
     public void onPayloadReceived(String jsonPayload) {
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
-            pulse_rate_second = CoreJsonFormUtils.getValue(jsonObject, "pulse_rate_second");
+            second_vital_pulse_rate = CoreJsonFormUtils.getValue(jsonObject, "second_vital_pulse_rate");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -67,7 +67,7 @@ public class VmmcSecondVitalActionHelper implements BaseVmmcVisitAction.VmmcVisi
 
     @Override
     public BaseVmmcVisitAction.Status evaluateStatusOnPayload() {
-        if (StringUtils.isBlank(pulse_rate_second))
+        if (StringUtils.isBlank(second_vital_pulse_rate))
             return BaseVmmcVisitAction.Status.PENDING;
         else {
             return BaseVmmcVisitAction.Status.COMPLETED;

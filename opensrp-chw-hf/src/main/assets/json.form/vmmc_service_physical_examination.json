@@ -73,11 +73,11 @@
             "openmrs_entity_id": "jaundice"
           },
           {
-            "key": "petechiae",
+            "key": "petechiae_ecchymosis_epistaxis",
             "text": "Petechiae/Ecchymosis/Epistaxis",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "petechiae"
+            "openmrs_entity_id": "petechiae_ecchymosis_epistaxis"
           },
           {
             "key": "joint_deformity",
@@ -145,7 +145,7 @@
                 "or": [
                   "pallor",
                   "jaundice",
-                  "petechiae",
+                  "petechiae_ecchymosis_epistaxis",
                   "joint_deformity",
                   "others"
                 ]
@@ -467,25 +467,25 @@
         ],
         "options": [
           {
-            "key": "uds",
+            "key": "urethral_discharge_syndrome",
             "text": "Urethral Discharge Syndrome(UDS)",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "uds"
+            "openmrs_entity_id": "urethral_discharge_syndrome"
           },
           {
-            "key": "gud",
+            "key": "genital_ulcer_disease",
             "text": "Genital Ulcer Disease (GUD)",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "gud"
+            "openmrs_entity_id": "genital_ulcer_disease"
           },
           {
-            "key": "smegma",
+            "key": "smegma_under_foreskin",
             "text": "Smegma under the foreskin",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "smegma"
+            "openmrs_entity_id": "smegma_under_foreskin"
           },
           {
             "key": "phimosis",
@@ -537,11 +537,11 @@
             "openmrs_entity_id": "balanitis"
           },
           {
-            "key": "opening_abnormality",
+            "key": "urethral_opening_abnormality",
             "text": "Urethral opening abnormality",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "opening_abnormality"
+            "openmrs_entity_id": "urethral_opening_abnormality"
           },
           {
             "key": "chordae",
@@ -628,8 +628,8 @@
             "ex-checkbox": [
               {
                 "or": [
-                  "uds",
-                  "gud",
+                  "urethral_discharge_syndrome",
+                  "genital_ulcer_disease",
                   "phimosis",
                   "paraphimosis",
                   "undescended_testicles",
@@ -637,7 +637,7 @@
                   "adhesion_prepuce",
                   "hydrocele",
                   "balanitis",
-                  "opening_abnormality",
+                  "urethral_opening_abnormality",
                   "others"
                 ]
               }
@@ -678,8 +678,8 @@
             "ex-checkbox": [
               {
                 "or": [
-                  "uds",
-                  "gud",
+                  "urethral_discharge_syndrome",
+                  "genital_ulcer_disease",
                   "phimosis",
                   "paraphimosis",
                   "undescended_testicles",
@@ -687,7 +687,7 @@
                   "adhesion_prepuce",
                   "hydrocele",
                   "balanitis",
-                  "opening_abnormality",
+                  "urethral_opening_abnormality",
                   "others",
                   "none",
                   "chordae"

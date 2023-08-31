@@ -56,10 +56,10 @@
     "title": "Post Operation Vital Sign",
     "fields": [
       {
-        "key": "pulse_rate_second",
+        "key": "second_vital_pulse_rate",
         "type": "edit_text",
         "hint": "Pulse Rate (Beats per minute)",
-        "openmrs_entity_id": "pulse_rate_second",
+        "openmrs_entity_id": "second_vital_pulse_rate",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "v_numeric": {
@@ -88,7 +88,7 @@
         "openmrs_entity_parent": "",
         "toaster_type": "problem",
         "relevance": {
-          "step1:pulse_rate_second": {
+          "step1:second_vital_pulse_rate": {
             "type": "numeric",
             "ex": "lessThan(.,\"60\")"
           }
@@ -103,17 +103,17 @@
         "openmrs_entity_parent": "",
         "toaster_type": "problem",
         "relevance": {
-          "step1:pulse_rate_second": {
+          "step1:second_vital_pulse_rate": {
             "type": "numeric",
             "ex": "greaterThan(.,\"100\")"
           }
         }
       },
       {
-        "key": "systolic_second",
+        "key": "second_vital_sign_systolic",
         "type": "edit_text",
         "hint": "Systolic (Blood Pressure)",
-        "openmrs_entity_id": "systolic_second",
+        "openmrs_entity_id": "second_vital_sign_systolic",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "v_numeric": {
@@ -134,10 +134,10 @@
         }
       },
       {
-        "key": "diastolic_second",
+        "key": "second_vital_sign_diastolic",
         "type": "edit_text",
         "hint": "Diastolic (Blood Pressure)",
-        "openmrs_entity_id": "diastolic_second",
+        "openmrs_entity_id": "second_vital_sign_diastolic",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "v_numeric": {
@@ -159,7 +159,7 @@
         "constraints": [
           {
             "type": "numeric",
-            "ex": "lessThan(., step1:systolic_second)",
+            "ex": "lessThan(., step1:second_vital_sign_systolic)",
             "err": "The diastolic value must be less than the systolic value"
           }
         ]
@@ -197,10 +197,10 @@
         }
       },
       {
-        "key": "temperature_second",
+        "key": "second_vital_sign_temperature",
         "type": "edit_text",
         "hint": "Temperature (\u2103)",
-        "openmrs_entity_id": "temperature",
+        "openmrs_entity_id": "second_vital_sign_temperature",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "v_numeric": {
@@ -229,7 +229,7 @@
         "openmrs_entity_parent": "",
         "toaster_type": "warning",
         "relevance": {
-          "step1:temperature": {
+          "step1:second_vital_sign_temperature": {
             "type": "numeric",
             "ex": "greaterThan(.,\"37.8\")"
           }
@@ -244,17 +244,17 @@
         "openmrs_entity_parent": "",
         "toaster_type": "warning",
         "relevance": {
-          "step1:temperature": {
+          "step1:second_vital_sign_temperature": {
             "type": "numeric",
             "ex": "lessThan(.,\"36.5\")"
           }
         }
       },
       {
-        "key": "respiration_rate_second",
+        "key": "second_vital_sign_respiration_rate",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
+        "openmrs_entity_id": "second_vital_sign_respiration_rate",
         "entity_id": "",
         "type": "edit_text",
         "hint": "Respiration rate (Breath per minute) ",
@@ -266,10 +266,10 @@
         }
       },
       {
-        "key": "time_taken_second",
+        "key": "second_vital_sign_time_taken",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "time_taken_second",
+        "openmrs_entity_id": "second_vital_sign_time_taken",
         "type": "time_picker",
         "hint": "Time taken",
         "expandable": false,

@@ -2439,7 +2439,7 @@
       ]
     },
     {
-      "name": "ec_vmmc_confirmation",
+      "name": " ec_vmmc_enrollment",
       "columns": [
         {
           "column_name": "base_entity_id",
@@ -8512,11 +8512,11 @@
           }
         },
         {
-          "column_name": "client_diagnosed",
+          "column_name": "is_client_diagnosed_with_any",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
-            "concept": "client_diagnosed"
+            "concept": "is_client_diagnosed_with_any"
           }
         },
         {
@@ -8568,11 +8568,11 @@
           }
         },
         {
-          "column_name": "hematological_disease",
+          "column_name": "any_hematological_disease_symptoms",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
-            "concept": "hematological_disease"
+            "concept": "any_hematological_disease_symptoms"
           }
         },
         {
@@ -8696,11 +8696,11 @@
           }
         },
         {
-          "column_name": "self_test_kits",
+          "column_name": "self_test_kits_offered",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
-            "concept": "self_test_kits"
+            "concept": "self_test_kits_offered"
           }
         },
         {
@@ -8868,7 +8868,7 @@
       ]
     },
     {
-      "name": "ec_vmmc_discharge",
+      "name": " ec_vmmc_post_op_and_discharge",
       "columns": [
         {
           "column_name": "base_entity_id",
@@ -8988,11 +8988,11 @@
           }
         },
         {
-          "column_name": "dressing_condition",
+          "column_name": "dressing_condition_in_relation_to_bleeding",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
-            "concept": "dressing_condition"
+            "concept": "dressing_condition_in_relation_to_bleeding"
           }
         },
         {

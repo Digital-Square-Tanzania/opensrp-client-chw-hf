@@ -55,18 +55,18 @@
         "type": "native_radio",
         "options": [
           {
-            "key": "static",
+            "key": "static_or_routine",
             "text": "Static/Routine",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "new_client"
+            "openmrs_entity_id": "static_or_routine"
           },
           {
-            "key": "outreach",
+            "key": "outreach_or_mobile",
             "text": "Outreach/ Mobile",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "returning_client"
+            "openmrs_entity_id": "outreach_or_mobile"
           }
         ],
         "v_required": {

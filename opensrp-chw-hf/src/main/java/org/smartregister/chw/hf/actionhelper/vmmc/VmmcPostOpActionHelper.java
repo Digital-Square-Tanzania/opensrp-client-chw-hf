@@ -15,7 +15,7 @@ import java.util.Map;
 
 public class VmmcPostOpActionHelper implements BaseVmmcVisitAction.VmmcVisitActionHelper {
 
-    protected String dressing_condition;
+    protected String dressing_condition_in_relation_to_bleeding;
 
     protected String jsonPayload;
 
@@ -47,10 +47,10 @@ public class VmmcPostOpActionHelper implements BaseVmmcVisitAction.VmmcVisitActi
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
 
-            if(CoreJsonFormUtils.getValue(jsonObject, "dressing_condition").isEmpty()){
-                dressing_condition = CoreJsonFormUtils.getValue(jsonObject, "device_mc");
+            if(CoreJsonFormUtils.getValue(jsonObject, "dressing_condition_in_relation_to_bleeding").isEmpty()){
+                dressing_condition_in_relation_to_bleeding = CoreJsonFormUtils.getValue(jsonObject, "device_mc");
             } else {
-                dressing_condition = CoreJsonFormUtils.getValue(jsonObject, "dressing_condition");
+                dressing_condition_in_relation_to_bleeding = CoreJsonFormUtils.getValue(jsonObject, "dressing_condition_in_relation_to_bleeding");
             }
 
         } catch (JSONException e) {
@@ -80,7 +80,7 @@ public class VmmcPostOpActionHelper implements BaseVmmcVisitAction.VmmcVisitActi
 
     @Override
     public BaseVmmcVisitAction.Status evaluateStatusOnPayload() {
-        if (StringUtils.isBlank(dressing_condition))
+        if (StringUtils.isBlank(dressing_condition_in_relation_to_bleeding))
             return BaseVmmcVisitAction.Status.PENDING;
         else {
             return BaseVmmcVisitAction.Status.COMPLETED;

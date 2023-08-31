@@ -39,8 +39,8 @@ public interface HfQueryConstant {
             "    SELECT ec_malaria_confirmation.base_entity_id AS base_entity_id\n" +
             "    FROM ec_malaria_confirmation\n" +
             "    UNION ALL\n" +
-            "    SELECT ec_vmmc_confirmation.base_entity_id AS base_entity_id\n" +
-            "    FROM ec_vmmc_confirmation\n" +
+            "    SELECT  ec_vmmc_enrollment.base_entity_id AS base_entity_id\n" +
+            "    FROM  ec_vmmc_enrollment\n" +
             "    UNION ALL\n" +
             "    SELECT ec_family_planning.base_entity_id AS base_entity_id\n" +
             "    FROM ec_family_planning\n" +
@@ -390,11 +390,11 @@ public interface HfQueryConstant {
             "       NULL                                         AS mother_first_name,\n" +
             "       NULL                                         AS mother_last_name,\n" +
             "       NULL                                         AS mother_middle_name,\n" +
-            "       ec_vmmc_confirmation.last_interacted_with AS last_interacted_with\n" +
+            "        ec_vmmc_enrollment.last_interacted_with AS last_interacted_with\n" +
             "FROM ec_family_member\n" +
             "         inner join ec_family on ec_family.base_entity_id = ec_family_member.relational_id\n" +
-            "         inner join ec_vmmc_confirmation\n" +
-            "                    on ec_family_member.base_entity_id = ec_vmmc_confirmation.base_entity_id\n" +
+            "         inner join  ec_vmmc_enrollment\n" +
+            "                    on ec_family_member.base_entity_id =  ec_vmmc_enrollment.base_entity_id\n" +
             "where ec_family_member.date_removed is null\n" +
             "  AND ec_family_member.base_entity_id IN (%s)\n" +
             "  AND ec_family_member.base_entity_id NOT IN (\n" +

@@ -851,7 +851,7 @@
     <string name="mild_bruising">Mild bruising or abrasion, not requiring treatment</string>
     <string name="bruising">Bruising or abrasion of the glans or shaft of the penis requiring pressure dressing or additional surgery to control</string>
     <string name="glans_or_shaft">Part or all of the glans or shaft of the penis severed</string>
-    <string name="discernible_adverse_condition">Adds time or material needs to the procedure, but does not result in any discernible adverse condition</string>
+    <string name="adds_time_or_material_needs_to_the_procedure">Adds time or material needs to the procedure, but does not result in any discernible adverse condition</string>
     <string name="skin_tight">Skin is tight, but additional operative work not necessary</string>
     <string name="requires_reoperation">Requires re-operation or transfer to another facility to correct the problem</string>
     <string name="more_bleed_than_usual_but_easily_controlled">More Bleeding than usual but easily controlled</string>
@@ -864,12 +864,12 @@
     <string name="surgeon_enrolled_nurse">Enrolled nurse</string>
     <string name="surgeon_assistant_nursing_officer">Assistant nursing officer</string>
 
-    <string name="assistant_medical_officer">Medical officer</string>
-    <string name="assistant_assistant_medical_officer">Assistant medical officer</string>
-    <string name="assistant_clinical_officer_or_assistant">Clinical officer/Assistant clinical officer</string>
-    <string name="assistant_enrolled_nurse">Enrolled nurse</string>
-    <string name="assistant_assistant_nursing_officer">Assistant nursing officer</string>
-    <string name="assistant_nursing_officer">Nursing officer</string>
+    <string name="medical_officer">Medical officer</string>
+    <string name="assistant_medical_officer">Assistant medical officer</string>
+    <string name="clinical_officer_or_assistant_clinical">Clinical officer/Assistant clinical officer</string>
+    <string name="enrolled_nurse">Enrolled nurse</string>
+    <string name="assistant_nursing_officer">Assistant nursing officer</string>
+    <string name="nursing_officer">Nursing officer</string>
 
     <string name="injectables_lignocaine">Injectables-Lignocaine</string>
     <string name="topical_cream">Topical Cream</string>
@@ -882,21 +882,21 @@
     <string name="vmmc_consent_form">Consent from:</string>
     <string name="vmmc_has_client_had_any_sti">STI:</string>
     <string name="vmmc_any_complaints">Complaints:</string>
-    <string name="vmmc_client_diagnosed">Client Diagnosed:</string>
+    <string name="vmmc_is_client_diagnosed_with_any">Client Diagnosed:</string>
     <string name="vmmc_diabetes_treatment">Diabetes treatment:</string>
     <string name="vmmc_surgical_procedure">Surgical procedure:</string>
     <string name="vmmc_type_complication">Type complication:</string>
-    <string name="vmmc_hematological_disease">Hematological disease:</string>
+    <string name="vmmc_any_hematological_disease_symptoms">Hematological disease:</string>
     <string name="vmmc_known_allergies">Known allergies:</string>
     <string name="vmmc_tetanus_vaccination">Tetanus vaccination:</string>
     <string name="vmmc_physical_abnormality">Physical abnormality:</string>
     <string name="vmmc_client_weight">client weight:</string>
-    <string name="vmmc_pulse_rate_second">pulse rate (second vital):</string>
-    <string name="vmmc_systolic_second">systolic (second vital):</string>
-    <string name="vmmc_diastolic_second">diastolic (second vital):</string>
-    <string name="vmmc_temperature_second">temperature (second vital):</string>
-    <string name="vmmc_respiration_rate_second">respiration rate (second vital):</string>
-    <string name="vmmc_time_taken_second">time taken (second vital):</string>
+    <string name="vmmc_second_vital_pulse_rate">pulse rate (second vital):</string>
+    <string name="vmmc_second_vital_sign_systolic">systolic (second vital):</string>
+    <string name="vmmc_second_vital_sign_diastolic">diastolic (second vital):</string>
+    <string name="vmmc_second_vital_sign_temperature">temperature (second vital):</string>
+    <string name="vmmc_second_vital_sign_respiration_rate">respiration rate (second vital):</string>
+    <string name="vmmc_second_vital_sign_time_taken">time taken (second vital):</string>
     <string name="vmmc_pulse_rate">pulse rate:</string>
     <string name="vmmc_systolic">systolic:</string>
     <string name="vmmc_diastolic">diastolic:</string>
@@ -907,7 +907,7 @@
     <string name="vmmc_penile_size">penile size:</string>
     <string name="vmmc_tested_hiv">tested hiv:</string>
     <string name="vmmc_hiv_result">hiv result:</string>
-    <string name="vmmc_hiv_reasons">hiv reasons:</string>
+    <string name="vmmc_hiv_not_tested_reasons">hiv not tested reasons:</string>
     <string name="vmmc_hiv_viral_load_text">hiv viral load text:</string>
     <string name="vmmc_self_test_kits">self test kits:</string>
     <string name="vmmc_client_referred_to">client referred to:</string>
@@ -947,7 +947,7 @@
     <string name="vmmc_intraoperative_adverse_event_occured">intraoperative adverse event occured:</string>
     <string name="vmmc_type_of_adverse_event">type of adverse event:</string>
     <string name="vmmc_type_of_adverse_event_others">type of adverse event others:</string>
-    <string name="vmmc_desc_intraoperative_ae_bleed">Description of intraoperative adverse events (Excessive bleeding):</string>
+    <string name="vmmc_desc_intraoperative_ae_bleed_excessive_bleeding">Description of intraoperative adverse events (Excessive bleeding):</string>
     <string name="vmmc_desc_intraoperative_ae_skin_removal">Description of intraoperative adverse events (Excessive skin removal):</string>
     <string name="vmmc_desc_intraoperative_ae_injury_to_penis">Description of intraoperative adverse events (Injury to penis):</string>
     <string name="vmmc_desc_intraoperative_ae_anaesthetic_related_event">Description of intraoperative adverse events (Anaesthetic-related event):</string>
@@ -955,7 +955,7 @@
     <string name="vmmc_what_done">what done:</string>
     <string name="vmmc_treatment_outcome">Treatment outcome:</string>
 
-    <string name="vmmc_dressing_condition">Describe the condition of the dressing in relation to bleeding(For conventional surgery):</string>
+    <string name="vmmc_dressing_condition_in_relation_to_bleeding">Describe the condition of the dressing in relation to bleeding(For conventional surgery):</string>
     <string name="vmmc_device_mc">Device Male Circumcision Observe the following:</string>
     <string name="vmmc_discharge_condition">discharge condition:</string>
     <string name="vmmc_discharged_reasons">discharged reasons:</string>

@@ -616,11 +616,11 @@
             "openmrs_entity_parent": ""
           },
           {
-            "key": "surgeon_assistant_nursing_officer",
+            "key": "assistant_nursing_officer",
             "text": "Assistant nursing officer",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "surgeon_assistant_nursing_officer",
+            "openmrs_entity_id": "assistant_nursing_officer",
             "openmrs_entity_parent": ""
           },
           {
@@ -672,51 +672,51 @@
         "label": "Assistant's cadre",
         "options": [
           {
-            "key": "assistant_medical_officer",
+            "key": "medical_officer",
             "text": "Medical officer",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "medical_officer",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "assistant_medical_officer",
+            "text": "Assistant medical officer",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "assistant_medical_officer",
             "openmrs_entity_parent": ""
           },
           {
-            "key": "assistant_assistant_medical_officer",
-            "text": "Assistant medical officer",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "assistant_assistant_medical_officer",
-            "openmrs_entity_parent": ""
-          },
-          {
-            "key": "assistant_clinical_officer_or_assistant",
+            "key": "clinical_officer_or_assistant_clinical",
             "text": "Clinical officer/Assistant clinical officer",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "assistant_clinical_officer_or_assistant",
+            "openmrs_entity_id": "clinical_officer_or_assistant_clinical",
             "openmrs_entity_parent": ""
           },
           {
-            "key": "assistant_enrolled_nurse",
+            "key": "enrolled_nurse",
             "text": "Enrolled nurse",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "assistant_enrolled_nurse",
-            "openmrs_entity_parent": ""
-          },
-          {
-            "key": "assistant_assistant_nursing_officer",
-            "text": "Assistant nursing officer",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "assistant_assistant_nursing_officer",
+            "openmrs_entity_id": "enrolled_nurse",
             "openmrs_entity_parent": ""
           },
           {
             "key": "assistant_nursing_officer",
-            "text": "Nursing officer",
+            "text": "Assistant nursing officer",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "assistant_nursing_officer",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "nursing_officer",
+            "text": "Nursing officer",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "nursing_officer",
             "openmrs_entity_parent": ""
           }
         ],
@@ -948,10 +948,10 @@
         }
       },
       {
-        "key": "desc_intraoperative_ae_bleed",
+        "key": "desc_intraoperative_ae_bleed_excessive_bleeding",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "desc_intraoperative_ae",
+        "openmrs_entity_id": "desc_intraoperative_ae_bleed_excessive_bleeding",
         "label": "Description of intraoperative adverse events (Excessive bleeding)",
         "text_color": "#000000",
         "type": "native_radio",
@@ -999,7 +999,7 @@
         "openmrs_entity_parent": "",
         "toaster_type": "info",
         "relevance": {
-          "step1:desc_intraoperative_ae_bleed": {
+          "step1:desc_intraoperative_ae_bleed_excessive_bleeding": {
             "type": "string",
             "ex": "equalTo(., \"more_bleed_than_usual_but_easily_controlled\")"
           }
@@ -1014,7 +1014,7 @@
         "openmrs_entity_parent": "",
         "toaster_type": "warning",
         "relevance": {
-          "step1:desc_intraoperative_ae_bleed": {
+          "step1:desc_intraoperative_ae_bleed_excessive_bleeding": {
             "type": "string",
             "ex": "equalTo(., \"bleed_require_pressure_dressing\")"
           }
@@ -1029,7 +1029,7 @@
         "openmrs_entity_parent": "",
         "toaster_type": "problem",
         "relevance": {
-          "step1:desc_intraoperative_ae_bleed": {
+          "step1:desc_intraoperative_ae_bleed_excessive_bleeding": {
             "type": "string",
             "ex": "equalTo(., \"blood_transfussion_or_transfered_another_facility\")"
           }
@@ -1045,11 +1045,11 @@
         "type": "native_radio",
         "options": [
           {
-            "key": "discernible_adverse_condition",
+            "key": "adds_time_or_material_needs_to_the_procedure",
             "text": "Adds time or material needs to the procedure, but does not result in any discernible adverse condition",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "discernible_adverse_condition"
+            "openmrs_entity_id": "adds_time_or_material_needs_to_the_procedure"
           },
           {
             "key": "skin_tight",
@@ -1089,7 +1089,7 @@
         "relevance": {
           "step1:desc_intraoperative_ae_skin_removal": {
             "type": "string",
-            "ex": "equalTo(., \"discernible_adverse_condition\")"
+            "ex": "equalTo(., \"adds_time_or_material_needs_to_the_procedure\")"
           }
         }
       },
@@ -1140,18 +1140,18 @@
             "openmrs_entity_id": "mild_bruising"
           },
           {
-            "key": "bruising",
+            "key": "bruising_or_abrasion_of_the_glans_or_shaft_of_the_penis",
             "text": "Bruising or abrasion of the glans or shaft of the penis requiring pressure dressing or additional surgery to control",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "bruising"
+            "openmrs_entity_id": "bruising_or_abrasion_of_the_glans_or_shaft_of_the_penis"
           },
           {
-            "key": "glans_or_shaft",
+            "key": "glans_or_shaft_of_penis_severed",
             "text": "Part or all of the glans or shaft of the penis severed",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "glans_or_shaft"
+            "openmrs_entity_id": "glans_or_shaft_of_penis_severed"
           }
         ],
         "v_required": {
@@ -1192,7 +1192,7 @@
         "relevance": {
           "step1:desc_intraoperative_ae_injury_to_penis": {
             "type": "string",
-            "ex": "equalTo(., \"bruising\")"
+            "ex": "equalTo(., \"bruising_or_abrasion_of_the_glans_or_shaft_of_the_penis\")"
           }
         }
       },
@@ -1207,7 +1207,7 @@
         "relevance": {
           "step1:desc_intraoperative_ae_injury_to_penis": {
             "type": "string",
-            "ex": "equalTo(., \"glans_or_shaft\")"
+            "ex": "equalTo(., \"glans_or_shaft_of_penis_severed\")"
           }
         }
       },
@@ -1309,26 +1309,26 @@
         "type": "native_radio",
         "options": [
           {
-            "key": "post_removal",
+            "key": "no_other_treatment_needed_beyond_routine_post_removal_wound_care",
             "text": "Displacement of the device after which no other treatment needed beyond routine post-removal wound care. ",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "post_removal"
+            "openmrs_entity_id": "no_other_treatment_needed_beyond_routine_post_removal_wound_care"
           },
           {
-            "key": "meet_severe_criteria",
+            "key": "requires_any_treatment_more_than_routine_post_operative_wound_care",
             "text": "Displacement of the device that requires any treatment more than routine post-operative wound care but does not meet severe criteria. ",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "meet_severe_criteria"
+            "openmrs_entity_id": "requires_any_treatment_more_than_routine_post_operative_wound_care"
           },
 
           {
-            "key": "surgical_intervention",
+            "key": " intentional_movement_of_device_by_client_or_self_removal_that_requires_surgical_intervention_hospitalization_transfer",
             "text": "Displacement of the device, including intentional movement of device by the client and/or self-removal, that requires surgical intervention, hospitalization, or transfer to another facility to clinically manage.",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "surgical_intervention"
+            "openmrs_entity_id": "intentional_movement_of_device_by_client_or_self_removal_that_requires_surgical_intervention_hospitalization_transfer"
           }
         ],
         "v_required": {
@@ -1358,7 +1358,7 @@
         "relevance": {
           "step1:desc_of_adverse_event_device_displacement": {
             "type": "string",
-            "ex": "equalTo(., \"post_removal\")"
+            "ex": "equalTo(., \"no_other_treatment_needed_beyond_routine_post_removal_wound_care\")"
           }
         }
       },
@@ -1373,7 +1373,7 @@
         "relevance": {
           "step1:desc_of_adverse_event_device_displacement": {
             "type": "string",
-            "ex": "equalTo(., \"meet_severe_criteria\")"
+            "ex": "equalTo(., \"requires_any_treatment_more_than_routine_post_operative_wound_care\")"
           }
         }
       },
@@ -1388,7 +1388,7 @@
         "relevance": {
           "step1:desc_of_adverse_event_device_displacement": {
             "type": "string",
-            "ex": "equalTo(., \"surgical_intervention\")"
+            "ex": "equalTo(., \"intentional_movement_of_device_by_client_or_self_removal_that_requires_surgical_intervention_hospitalization_transfer\")"
           }
         }
       },

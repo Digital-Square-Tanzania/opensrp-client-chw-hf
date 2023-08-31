@@ -69,10 +69,10 @@
         }
       },
       {
-        "key": "visit_type",
+        "key": "follow_up_visit_type",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "visit_type",
+        "openmrs_entity_id": "follow_up_visit_type",
         "label": "Follow up visit type",
         "text_color": "#000000",
         "type": "native_radio",
@@ -97,7 +97,6 @@
           "err": "Please select the visit type"
         }
       },
-
       {
         "key": "comment_vmmc_followup",
         "openmrs_entity_parent": "",
@@ -106,7 +105,6 @@
         "type": "edit_text",
         "hint": "Notes"
       },
-
       {
         "key": "post_op_adverse_event_occur",
         "openmrs_entity_parent": "",
@@ -138,10 +136,10 @@
       },
 
       {
-        "key": "time_of_adverse_event_occured",
+        "key": "time_adverse_event_occured",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "time_of_adverse_event_occured",
+        "openmrs_entity_id": "time_adverse_event_occured",
         "type": "time_picker",
         "hint": "Time The adverse event occured ",
         "expanded": false,
@@ -158,10 +156,10 @@
       },
 
       {
-        "key": "time_of_adverse_event_attended",
+        "key": "time_adverse_event_was_attended",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "time_of_adverse_event_attended",
+        "openmrs_entity_id": "time_adverse_event_was_attended",
         "type": "time_picker",
         "hint": "Time The adverse event was attended ",
         "expanded": false,
@@ -2045,51 +2043,51 @@
         "label": "Provider's cadre",
         "options": [
           {
-            "key": "assistant_medical_officer",
+            "key": "medical_officer",
             "text": "Medical officer",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "medical_officer",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "assistant_medical_officer",
+            "text": "Assistant medical officer",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "assistant_medical_officer",
             "openmrs_entity_parent": ""
           },
           {
-            "key": "assistant_assistant_medical_officer",
-            "text": "Assistant medical officer",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "assistant_assistant_medical_officer",
-            "openmrs_entity_parent": ""
-          },
-          {
-            "key": "assistant_clinical_officer_or_assistant",
+            "key": "clinical_officer_or_assistant_clinical",
             "text": "Clinical officer/Assistant clinical officer",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "assistant_clinical_officer_or_assistant",
+            "openmrs_entity_id": "clinical_officer_or_assistant_clinical",
             "openmrs_entity_parent": ""
           },
           {
-            "key": "assistant_enrolled_nurse",
+            "key": "enrolled_nurse",
             "text": "Enrolled nurse",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "assistant_enrolled_nurse",
-            "openmrs_entity_parent": ""
-          },
-          {
-            "key": "assistant_assistant_nursing_officer",
-            "text": "Assistant nursing officer",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "assistant_assistant_nursing_officer",
+            "openmrs_entity_id": "enrolled_nurse",
             "openmrs_entity_parent": ""
           },
           {
             "key": "assistant_nursing_officer",
-            "text": "Nursing officer",
+            "text": "Assistant nursing officer",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "assistant_nursing_officer",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "nursing_officer",
+            "text": "Nursing officer",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "nursing_officer",
             "openmrs_entity_parent": ""
           }
         ],
