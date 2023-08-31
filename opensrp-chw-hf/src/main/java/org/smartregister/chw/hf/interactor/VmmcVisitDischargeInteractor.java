@@ -1,6 +1,5 @@
 package org.smartregister.chw.hf.interactor;
 
-import static org.smartregister.chw.vmmc.contract.BaseVmmcVisitContract.*;
 
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONObject;
@@ -11,6 +10,7 @@ import org.smartregister.chw.hf.actionhelper.vmmc.VmmcFirstVitalActionHelper;
 import org.smartregister.chw.hf.actionhelper.vmmc.VmmcNotifiableAdverseActionHelper;
 import org.smartregister.chw.hf.actionhelper.vmmc.VmmcPostOpActionHelper;
 import org.smartregister.chw.hf.actionhelper.vmmc.VmmcSecondVitalActionHelper;
+import org.smartregister.chw.vmmc.contract.BaseVmmcVisitContract;
 import org.smartregister.chw.vmmc.domain.VisitDetail;
 import org.smartregister.chw.vmmc.interactor.BaseVmmcVisitInteractor;
 import org.smartregister.chw.vmmc.model.BaseVmmcVisitAction;
@@ -25,7 +25,7 @@ public class VmmcVisitDischargeInteractor extends BaseVmmcVisitInteractor {
 
     String visitType;
 
-    protected InteractorCallBack callBack;
+    protected BaseVmmcVisitContract.InteractorCallBack callBack;
 
     public VmmcVisitDischargeInteractor(String visitType) {
         this.visitType = visitType;
@@ -40,7 +40,7 @@ public class VmmcVisitDischargeInteractor extends BaseVmmcVisitInteractor {
     }
 
     @Override
-    protected void populateActionList(InteractorCallBack callBack) {
+    protected void populateActionList(BaseVmmcVisitContract.InteractorCallBack callBack) {
         this.callBack = callBack;
         final Runnable runnable = () -> {
             try {
