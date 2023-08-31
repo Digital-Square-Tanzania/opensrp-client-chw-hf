@@ -88,7 +88,7 @@
             "key":"needs_followup",
             "text": "Needs follow-up",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "needs"
+            "openmrs_entity_id": "needs_followup"
           },
           {
             "key":"not_discharged",

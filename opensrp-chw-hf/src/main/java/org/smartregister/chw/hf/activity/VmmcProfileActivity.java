@@ -139,6 +139,7 @@ public class VmmcProfileActivity extends CoreVmmcProfileActivity {
                     break;
                 case R.id.refer_to_facility_layout:
                     VmmcReferralFormUtils.startVmmcReferral(this, memberObject.getBaseEntityId());
+                    ((CoreVmmcFloatingMenu) baseVmmcFloatingMenu).animateFAB();
                     break;
                 default:
                     Timber.d("Unknown fab action");
