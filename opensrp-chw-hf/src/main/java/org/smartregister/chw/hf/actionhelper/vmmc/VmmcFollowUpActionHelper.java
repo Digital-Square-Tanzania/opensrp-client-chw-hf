@@ -6,6 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.core.utils.CoreJsonFormUtils;
+import org.smartregister.chw.hf.dao.HfVmmcDao;
 import org.smartregister.chw.vmmc.domain.VisitDetail;
 import org.smartregister.chw.vmmc.model.BaseVmmcVisitAction;
 
@@ -20,6 +21,12 @@ public class VmmcFollowUpActionHelper implements BaseVmmcVisitAction.VmmcVisitAc
 
     protected String jsonPayload;
 
+    protected String baseEntityId;
+
+    public VmmcFollowUpActionHelper(String baseEntityId) {
+        this.baseEntityId = baseEntityId;
+    }
+
     @Override
     public void onJsonFormLoaded(String jsonPayload, Context context, Map<String, List<VisitDetail>> map) {
         this.jsonPayload = jsonPayload;
@@ -31,7 +38,9 @@ public class VmmcFollowUpActionHelper implements BaseVmmcVisitAction.VmmcVisitAc
             JSONObject jsonObject = new JSONObject(jsonPayload);
             JSONObject global = jsonObject.getJSONObject("global");
 
-            String method_used = VmmcProcedureActionHelper.method_used;
+//            String method_used = VmmcProcedureActionHelper.method_used;
+            String method_used = HfVmmcDao.getMcMethodUsed(baseEntityId);
+
 
             global.put("method_used", method_used);
 

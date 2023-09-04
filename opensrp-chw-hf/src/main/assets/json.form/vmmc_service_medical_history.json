@@ -317,18 +317,18 @@
         "openmrs_entity_parent": "",
         "options": [
           {
-            "key": "rbg",
+            "key": "random_blood_glucose_test",
             "text": "Random Blood Glucose Test (rbg)",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "rbg",
+            "openmrs_entity_id": "random_blood_glucose_test",
             "openmrs_entity_parent": ""
           },
           {
-            "key": "fbg",
+            "key": "fast_blood_glucose_test",
             "text": "Fasting Blood Glucose Test",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "fbg"
+            "openmrs_entity_id": "fast_blood_glucose_test"
           }
         ],
         "v_required": {

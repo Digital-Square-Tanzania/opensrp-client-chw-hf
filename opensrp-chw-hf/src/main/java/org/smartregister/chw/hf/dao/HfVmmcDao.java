@@ -17,4 +17,17 @@ public class HfVmmcDao extends VmmcDao {
         } else
             return 0;
     }
+
+    public static String getMcMethodUsed(String baseEntityId) {
+        String sql = "SELECT male_circumcision_method FROM ec_vmmc_procedure p " +
+                " WHERE p.entity_id = '" + baseEntityId + "' ORDER BY last_interacted_with DESC LIMIT 1";
+
+        DataMap<String> dataMap = cursor -> getCursorValue(cursor, "male_circumcision_method");
+
+        List<String> res = readData(sql, dataMap);
+        if (res != null && res.size() != 0 && res.get(0) != null) {
+            return res.get(0);
+        }
+        return "";
+    }
 }

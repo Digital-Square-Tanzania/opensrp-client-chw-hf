@@ -20,31 +20,73 @@ condition: "global_method_used.contains('device')"
 actions:
   - "isRelevant = true "
 ---
+name: step1_type_of_adverse_event_others
+description: if type_of_adverse_event_others
+priority: 1
+condition: "step1_type_of_adverse_event_with_device.contains('others') || step1_type_of_adverse_event_without_device.contains('others')"
+actions:
+  - "isRelevant = true "
+---
+name: step1_desc_of_post_op_adverse_event_infection
+description: if desc_of_post_op_adverse_event_infection
+priority: 1
+condition: "step1_type_of_adverse_event_with_device.contains('infection') || step1_type_of_adverse_event_without_device.contains('infection')"
+actions:
+  - "isRelevant = true "
+---
+name: step1_desc_of_post_op_adverse_event_persistent_pain
+description: if desc_of_post_op_adverse_event_persistent_pain
+priority: 1
+condition: "step1_type_of_adverse_event_with_device.contains('persistent_pain') || step1_type_of_adverse_event_without_device.contains('persistent_pain')"
+actions:
+  - "isRelevant = true "
+---
+name: step1_desc_of_post_op_adverse_event_bleeding
+description: if desc_of_post_op_adverse_event_bleeding
+priority: 1
+condition: "step1_type_of_adverse_event_with_device.contains('bleeding_or_blood_soiling_of_dressing') || step1_type_of_adverse_event_without_device.contains('bleeding_or_blood_soiling_of_dressing')"
+actions:
+  - "isRelevant = true "
+---
+name: step1_desc_of_post_op_adverse_event_swelling
+description: if desc_of_post_op_adverse_event_swelling
+priority: 1
+condition: "step1_type_of_adverse_event_with_device.contains('swelling_of_penis_or_scrotum') || step1_type_of_adverse_event_without_device.contains('swelling_of_penis_or_scrotum')"
+actions:
+  - "isRelevant = true "
+---
+name: step1_desc_of_post_op_adverse_pass_urine
+description: if desc_of_post_op_adverse_pass_urine
+priority: 1
+condition: "step1_type_of_adverse_event_with_device.contains('failure_pass_urine') || step1_type_of_adverse_event_without_device.contains('failure_pass_urine')"
+actions:
+  - "isRelevant = true "
+---
 name: step1_desc_of_post_op_adverse_excessive_skin_removed
 description: if desc_of_post_op_adverse_excessive_skin_removed
 priority: 1
-condition: "step1_type_of_adverse_event_with_device.equalsIgnoreCase('excessive_skin_removed') || step1_type_of_adverse_event_without_device.equalsIgnoreCase('excessive_skin_removed')"
+condition: "step1_type_of_adverse_event_with_device.contains('excessive_skin_removed') || step1_type_of_adverse_event_without_device.contains('excessive_skin_removed')"
 actions:
   - "isRelevant = true "
 ---
 name: step1_desc_of_post_op_adverse_anaesthetic_related_event
 description: if desc_of_post_op_adverse_excessive_anaesthetic_related_event
 priority: 1
-condition: "step1_type_of_adverse_event_with_device.equalsIgnoreCase('anaesthetic_related_event') || step1_type_of_adverse_event_without_device.equalsIgnoreCase('anaesthetic_related_event')"
+condition: "step1_type_of_adverse_event_with_device.contains('anaesthetic_related_event') || step1_type_of_adverse_event_without_device.contains('anaesthetic_related_event')"
 actions:
   - "isRelevant = true "
 ---
 name: step1_desc_of_post_op_adverse_delayed_wound_healing
 description: if desc_of_post_op_adverse_delayed_wound_healing
 priority: 1
-condition: "step1_type_of_adverse_event_with_device.equalsIgnoreCase('delayed_wound_healing') || step1_type_of_adverse_event_without_device.equalsIgnoreCase('delayed_wound_healing')"
+condition: "step1_type_of_adverse_event_with_device.contains('delayed_wound_healing') || step1_type_of_adverse_event_without_device.contains('delayed_wound_healing')"
 actions:
   - "isRelevant = true "
 ---
 name: step1_desc_of_post_op_adverse_appearance
 description: if desc_of_post_op_adverse_appearance
 priority: 1
-condition: "step1_type_of_adverse_event_with_device.equalsIgnoreCase('appearance') || step1_type_of_adverse_event_without_device.equalsIgnoreCase('appearance')"
+condition: "step1_type_of_adverse_event_with_device.contains('appearance') || step1_type_of_adverse_event_without_device.contains('appearance')"
 actions:
   - "isRelevant = true "
 ---
@@ -118,15 +160,15 @@ condition: "step1_desc_of_post_op_adverse_event_swelling_with_device.equalsIgnor
 actions:
   - "isRelevant = true "
 ---
-name: step1_ae_classified_as_moderate_bleeding
-description: if ae_classified_as_moderate_bleeding
+name: step1_ae_classified_as_moderate_swelling
+description: if ae_classified_as_moderate_swelling
 priority: 1
 condition: "step1_desc_of_post_op_adverse_event_swelling_with_device.equalsIgnoreCase('pressure_dressing') || step1_desc_of_post_op_adverse_event_swelling_without_device.equalsIgnoreCase('pressure_dressing')"
 actions:
   - "isRelevant = true "
 ---
-name: step1_ae_classified_as_severe_bleeding
-description: if ae_classified_as_severe_bleeding
+name: step1_ae_classified_as_severe_swelling
+description: if ae_classified_as_severe_swelling
 priority: 1
 condition: "step1_desc_of_post_op_adverse_event_swelling_with_device.equalsIgnoreCase('penis_severed') || step1_desc_of_post_op_adverse_event_swelling_without_device.equalsIgnoreCase('penis_severed')"
 actions:
@@ -139,8 +181,8 @@ condition: "step1_desc_of_post_op_adverse_pass_urine_with_device.equalsIgnoreCas
 actions:
   - "isRelevant = true "
 ---
-name: step1_ae_classified_as_moderate_bleeding
-description: if ae_classified_as_moderate_bleeding
+name: step1_ae_classified_as_moderate_pass_urine
+description: if ae_classified_as_moderate_pass_urine
 priority: 1
 condition: "step1_desc_of_post_op_adverse_pass_urine_with_device.equalsIgnoreCase('return_cinic') || step1_desc_of_post_op_adverse_pass_urine_without_device.equalsIgnoreCase('return_cinic')"
 actions:

@@ -56,10 +56,10 @@
     "title": "Post Operation Vital Sign",
     "fields": [
       {
-        "key": "pulse_rate",
+        "key": "first_vital_sign_pulse_rate",
         "type": "edit_text",
         "hint": "Pulse Rate (Beats per minute)",
-        "openmrs_entity_id": "pulse_rate",
+        "openmrs_entity_id": "first_vital_sign_pulse_rate",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "v_numeric": {
@@ -73,10 +73,6 @@
         "v_max": {
           "value": "200",
           "err": "The pulse rate must be equal or less than 200 (bpm)"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Please enter the Pulse Rate (Beats per minute)"
         }
       },
       {
@@ -88,7 +84,7 @@
         "openmrs_entity_parent": "",
         "toaster_type": "problem",
         "relevance": {
-          "step1:pulse_rate": {
+          "step1:first_vital_sign_pulse_rate": {
             "type": "numeric",
             "ex": "lessThan(.,\"60\")"
           }
@@ -103,17 +99,17 @@
         "openmrs_entity_parent": "",
         "toaster_type": "problem",
         "relevance": {
-          "step1:pulse_rate": {
+          "step1:first_vital_sign_pulse_rate": {
             "type": "numeric",
             "ex": "greaterThan(.,\"100\")"
           }
         }
       },
       {
-        "key": "systolic",
+        "key": "first_vital_sign_systolic",
         "type": "edit_text",
         "hint": "Systolic (Blood Pressure)",
-        "openmrs_entity_id": "systolic",
+        "openmrs_entity_id": "first_vital_sign_systolic",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "v_numeric": {
@@ -127,17 +123,13 @@
         "v_max": {
           "value": "320",
           "err": "Systolic value must be equal or less than 320"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Please enter the Systolic (Blood Pressure)"
         }
       },
       {
-        "key": "diastolic",
+        "key": "first_vital_sign_diastolic",
         "type": "edit_text",
         "hint": "Diastolic (Blood Pressure)",
-        "openmrs_entity_id": "diastolic",
+        "openmrs_entity_id": "first_vital_sign_diastolic",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "v_numeric": {
@@ -152,14 +144,10 @@
           "value": "200",
           "err": "Diastolic value must be equal or less than 200"
         },
-        "v_required": {
-          "value": "true",
-          "err": "Please enter the Diastolic (Blood Pressure)"
-        },
         "constraints": [
           {
             "type": "numeric",
-            "ex": "lessThan(., step1:systolic)",
+            "ex": "lessThan(., step1:first_vital_sign_systolic)",
             "err": "The diastolic value must be less than the systolic value"
           }
         ]
@@ -197,10 +185,10 @@
         }
       },
       {
-        "key": "temperature",
+        "key": "first_vital_sign_temperature",
         "type": "edit_text",
         "hint": "Temperature (\u2103)",
-        "openmrs_entity_id": "temperature",
+        "openmrs_entity_id": "first_vital_sign_temperature",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "v_numeric": {
@@ -214,10 +202,6 @@
         "v_max": {
           "value": "50",
           "err": "Temperature must be equal or less than 50"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Please enter the Temperature"
         }
       },
       {
@@ -229,7 +213,7 @@
         "openmrs_entity_parent": "",
         "toaster_type": "warning",
         "relevance": {
-          "step1:temperature": {
+          "step1:first_vital_sign_temperature": {
             "type": "numeric",
             "ex": "greaterThan(.,\"37.8\")"
           }
@@ -244,43 +228,44 @@
         "openmrs_entity_parent": "",
         "toaster_type": "warning",
         "relevance": {
-          "step1:temperature": {
+          "step1:first_vital_sign_temperature": {
             "type": "numeric",
             "ex": "lessThan(.,\"36.5\")"
           }
         }
       },
       {
-        "key": "respiration_rate",
+        "key": "first_vital_sign_respiration_rate",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "respiration_rate",
+        "openmrs_entity_id": "first_vital_sign_respiration_rate",
         "entity_id": "",
         "type": "edit_text",
         "hint": "Respiration rate (Breath per minute) ",
         "edit_type": "number",
-        "look_up": "true",
-        "v_required": {
-          "value": "true",
-          "err": "Please enter the Respiration rate (Breath per minute) "
-        }
+        "look_up": "true"
       },
       {
-        "key": "time_taken",
+        "key": "first_vital_sign_time_taken",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "time_taken",
+        "openmrs_entity_id": "first_vital_sign_time_taken",
         "type": "time_picker",
         "hint": "Time taken",
         "expandable": false,
         "duration": {
           "label": "Time taken"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Please select the time taken"
         }
+      },
+      {
+        "key": "first_vital_completion_status",
+        "type": "hidden",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "first_vital_completion_status",
+        "openmrs_entity_parent": "",
+        "value": "pending"
       }
+
     ]
   }
 }

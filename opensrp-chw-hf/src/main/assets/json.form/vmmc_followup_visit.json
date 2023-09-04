@@ -183,19 +183,19 @@
         "label": "Type of adverse event",
         "options": [
           {
-            "key": "bleeding",
-            "text": "Excessive bleeding",
+            "key": "bleeding_or_blood_soiling_of_dressing",
+            "text": "Bleeding or blood soiling of dressing",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "bleeding",
+            "openmrs_entity_id": "bleeding_or_blood_soiling_of_dressing",
             "openmrs_entity_parent": ""
           },
           {
-            "key": "swelling",
-            "text": "Damage to the penis",
+            "key": "swelling_of_penis_or_scrotum",
+            "text": "Swelling of the penis or scrotum",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "swelling",
+            "openmrs_entity_id": "swelling_of_penis_or_scrotum",
             "openmrs_entity_parent": ""
           },
           {
@@ -203,7 +203,7 @@
             "text": "Persistent pain",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "Persistent_pain",
+            "openmrs_entity_id": "persistent_pain",
             "openmrs_entity_parent": ""
           },
           {
@@ -216,7 +216,7 @@
           },
           {
             "key": "failure_pass_urine",
-            "text": "Problems with urinating",
+            "text": "Failure to pass urine",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "failure_pass_urine",
@@ -301,24 +301,24 @@
         "label": "Type of adverse event",
         "options": [
           {
-            "key": "bleeding",
-            "text": "Breeding or blood soiling of dressing",
+            "key": "bleeding_or_blood_soiling_of_dressing",
+            "text": "Bleeding or blood soiling of dressing",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "bleeding",
+            "openmrs_entity_id": "bleeding_or_blood_soiling_of_dressing",
             "openmrs_entity_parent": ""
           },
           {
-            "key": "swelling",
-            "text": "Damage to the penis",
+            "key": "swelling_of_penis_or_scrotum",
+            "text": "Swelling of the penis or scrotum",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "swelling",
+            "openmrs_entity_id": "swelling_of_penis_or_scrotum",
             "openmrs_entity_parent": ""
           },
           {
             "key": "persistent_pain",
-            "text": "Pain",
+            "text": "Persistent pain",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "persistent_pain",
@@ -334,7 +334,7 @@
           },
           {
             "key": "failure_pass_urine",
-            "text": "Problems with urinating",
+            "text": "Failure to pass urine",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "failure_pass_urine",
@@ -409,157 +409,21 @@
         }
       },
       {
-        "key": "type_of_adverse_event_others_with_device",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "type_of_adverse_event_others_with_device",
-        "type": "edit_text",
-        "hint": "Others (Specify)",
-        "v_required": {
-          "value": "true",
-          "err": "Please specify"
-        },
-        "relevance": {
-          "step1:type_of_adverse_event_with_device": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "others"
-                ]
-              }
-            ]
-          }
-        }
-      },
-      {
-        "key": "type_of_adverse_event_others_without_device",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "type_of_adverse_event_others",
-        "type": "edit_text",
-        "hint": "Others (Specify)",
-        "v_required": {
-          "value": "true",
-          "err": "Please specify"
-        },
-        "relevance": {
-          "step1:type_of_adverse_event_without_device": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "others"
-                ]
-              }
-            ]
-          }
-        }
-      },
-      {
         "key": "type_of_adverse_event_others",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "type_of_adverse_event_others",
-        "type": "hidden",
-        "calculation": {
+        "type": "edit_text",
+        "hint": "Others (Specify)",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
+        "relevance": {
           "rules-engine": {
             "ex-rules": {
-              "rules-file": "vmmc_followup_calculation.yml"
+              "rules-file": "vmmc_followup_relevance.yml"
             }
-          }
-        }
-      },
-
-      {
-        "key": "desc_of_post_op_adverse_event_infection_with_device",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "desc_of_post_op_adverse_event_infection",
-        "label": "Description of post-operative adverse events(Infection)",
-        "text_color": "#000000",
-        "type": "native_radio",
-        "options": [
-          {
-            "key": "erythema",
-            "text": "Erythema more than 1 cm beyond incision line",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "erythema"
-          },
-          {
-            "key": "purulent",
-            "text": "Purulent discharge from the wound",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "purulent"
-          },
-          {
-            "key": "cellutilis",
-            "text": "Cellutilis or wound necrosis",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "cellutilis"
-          }
-        ],
-        "v_required": {
-          "value": "true",
-          "err": "Please select atleast one scale"
-        },
-        "relevance": {
-          "step1:type_of_adverse_event_with_device": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "infection"
-                ]
-              }
-            ]
-          }
-        }
-      },
-      {
-        "key": "desc_of_post_op_adverse_event_infection_without_device",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "desc_of_post_op_adverse_event_infection_without_device",
-        "label": "Description of post-operative adverse events(Infection)",
-        "text_color": "#000000",
-        "type": "native_radio",
-        "options": [
-          {
-            "key": "erythema",
-            "text": "Erythema more than 1 cm beyond incision line",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "erythema"
-          },
-          {
-            "key": "purulent",
-            "text": "Purulent discharge from the wound",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "purulent"
-          },
-          {
-            "key": "cellutilis",
-            "text": "Cellutilis or wound necrosis",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "cellutilis"
-          }
-        ],
-        "v_required": {
-          "value": "true",
-          "err": "Please select atleast one scale"
-        },
-        "relevance": {
-          "step1:type_of_adverse_event_without_device": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "infection"
-                ]
-              }
-            ]
           }
         }
       },
@@ -568,11 +432,40 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "desc_of_post_op_adverse_event_infection",
-        "type": "hidden",
-        "calculation": {
+        "label": "Description of post-operative adverse events(Infection)",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "erythema",
+            "text": "Erythema more than 1 cm beyond incision line",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "erythema"
+          },
+          {
+            "key": "purulent",
+            "text": "Purulent discharge from the wound",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "purulent"
+          },
+          {
+            "key": "cellutilis",
+            "text": "Cellutilis or wound necrosis",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "cellutilis"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select atleast one scale"
+        },
+        "relevance": {
           "rules-engine": {
             "ex-rules": {
-              "rules-file": "vmmc_followup_calculation.yml"
+              "rules-file": "vmmc_followup_relevance.yml"
             }
           }
         }
@@ -625,113 +518,46 @@
           }
         }
       },
-
-      {
-        "key": "desc_of_post_op_adverse_event_persistent_pain_with_device",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "desc_of_post_op_adverse_event_persistent_pain_with_device",
-        "label": "Description of post-operative adverse events(Persistent pain)",
-        "text_color": "#000000",
-        "type": "native_radio",
-        "options": [
-          {
-            "key": "3_or_4_on_pain_scale",
-            "text": "3 or 4 on pain scale",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "3_or_4_on_pain_scale"
-          },
-          {
-            "key": "5_or_6_on_pain_scale",
-            "text": "5 or 6 on pain scale",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "5_or_6_on_pain_scale"
-          },
-
-          {
-            "key": "7_on_pain_scale",
-            "text": "7 on pain scale",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "7_on_pain_scale"
-          }
-        ],
-        "v_required": {
-          "value": "true",
-          "err": "Please select atleast one scale"
-        },
-        "relevance": {
-          "step1:type_of_adverse_event_with_device": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "persistent_pain"
-                ]
-              }
-            ]
-          }
-        }
-      },
-      {
-        "key": "desc_of_post_op_adverse_event_persistent_pain_without_device",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "desc_of_post_op_adverse_event_persistent_pain_without_device",
-        "label": "Description of post-operative adverse events(Persistent pain)",
-        "text_color": "#000000",
-        "type": "native_radio",
-        "options": [
-          {
-            "key": "3_or_4_on_pain_scale",
-            "text": "3 or 4 on pain scale",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "3_or_4_on_pain_scale"
-          },
-          {
-            "key": "5_or_6_on_pain_scale",
-            "text": "5 or 6 on pain scale",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "5_or_6_on_pain_scale"
-          },
-
-          {
-            "key": "7_on_pain_scale",
-            "text": "7 on pain scale",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "7_on_pain_scale"
-          }
-        ],
-        "v_required": {
-          "value": "true",
-          "err": "Please select atleast one scale"
-        },
-        "relevance": {
-          "step1:type_of_adverse_event_without_device": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "persistent_pain"
-                ]
-              }
-            ]
-          }
-        }
-      },
       {
         "key": "desc_of_post_op_adverse_event_persistent_pain",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "desc_of_post_op_adverse_event_persistent_pain",
-        "type": "hidden",
-        "calculation": {
+        "label": "Description of post-operative adverse events(Persistent pain)",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "3_or_4_on_pain_scale",
+            "text": "3 or 4 on pain scale",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "3_or_4_on_pain_scale"
+          },
+          {
+            "key": "5_or_6_on_pain_scale",
+            "text": "5 or 6 on pain scale",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "5_or_6_on_pain_scale"
+          },
+
+          {
+            "key": "7_on_pain_scale",
+            "text": "7 on pain scale",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "7_on_pain_scale"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select atleast one scale"
+        },
+        "relevance": {
           "rules-engine": {
             "ex-rules": {
-              "rules-file": "vmmc_followup_calculation.yml"
+              "rules-file": "vmmc_followup_relevance.yml"
             }
           }
         }
@@ -784,114 +610,46 @@
           }
         }
       },
-
-
-      {
-        "key": "desc_of_post_op_adverse_event_bleeding_with_device",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "desc_of_post_op_adverse_event_bleeding_with_device",
-        "label": "Description of post-operative adverse events(Bleeding)",
-        "text_color": "#000000",
-        "type": "native_radio",
-        "options": [
-          {
-            "key": "more_bleeding",
-            "text": "More bleeding than usual, but easily controlled",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "more_bleeding"
-          },
-          {
-            "key": "pressure_dressing",
-            "text": "Bleeding that requires pressure dressing to control",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "pressure_dressing"
-          },
-
-          {
-            "key": "blood_transfusion",
-            "text": "Blood transfusion or transfer to another facility required",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "blood_transfusion"
-          }
-        ],
-        "v_required": {
-          "value": "true",
-          "err": "Please select atleast one scale"
-        },
-        "relevance": {
-          "step1:type_of_adverse_event_with_device": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "bleeding"
-                ]
-              }
-            ]
-          }
-        }
-      },
-      {
-        "key": "desc_of_post_op_adverse_event_bleeding_without_device",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "desc_of_post_op_adverse_event_bleeding_without_device",
-        "label": "Description of post-operative adverse events(Bleeding)",
-        "text_color": "#000000",
-        "type": "native_radio",
-        "options": [
-          {
-            "key": "more_bleeding",
-            "text": "More bleeding than usual, but easily controlled",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "more_bleeding"
-          },
-          {
-            "key": "pressure_dressing",
-            "text": "Bleeding that requires pressure dressing to control",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "pressure_dressing"
-          },
-
-          {
-            "key": "blood_transfusion",
-            "text": "Blood transfusion or transfer to another facility required",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "blood_transfusion"
-          }
-        ],
-        "v_required": {
-          "value": "true",
-          "err": "Please select atleast one scale"
-        },
-        "relevance": {
-          "step1:type_of_adverse_event_without_device": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "bleeding"
-                ]
-              }
-            ]
-          }
-        }
-      },
       {
         "key": "desc_of_post_op_adverse_event_bleeding",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "desc_of_post_op_adverse_event_bleeding",
-        "type": "hidden",
-        "calculation": {
+        "label": "Description of post-operative adverse events(Bleeding)",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "more_bleeding",
+            "text": "More bleeding than usual, but easily controlled",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "more_bleeding"
+          },
+          {
+            "key": "pressure_dressing",
+            "text": "Bleeding that requires pressure dressing to control",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "pressure_dressing"
+          },
+
+          {
+            "key": "blood_transfusion",
+            "text": "Blood transfusion or transfer to another facility required",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "blood_transfusion"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select atleast one scale"
+        },
+        "relevance": {
           "rules-engine": {
             "ex-rules": {
-              "rules-file": "vmmc_followup_calculation.yml"
+              "rules-file": "vmmc_followup_relevance.yml"
             }
           }
         }
@@ -1133,111 +891,45 @@
         }
       },
       {
-        "key": "desc_of_post_op_adverse_event_swelling_with_device",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "desc_of_post_op_adverse_event_swelling_with_device",
-        "label": "Description of post-operative adverse events(swelling)",
-        "text_color": "#000000",
-        "type": "native_radio",
-        "options": [
-          {
-            "key": "bruising",
-            "text": "Mild bruising or abrasion, not requiring treatment",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "bruising"
-          },
-          {
-            "key": "pressure_dressing",
-            "text": "Bruising or abrasion of the glans or shaft of the penis requiring pressure dressing or additional surgery to control",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "pressure_dressing"
-          },
-
-          {
-            "key": "penis_severed",
-            "text": "Part or all of the glans or shaft of the penis severed",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "penis_severed"
-          }
-        ],
-        "v_required": {
-          "value": "true",
-          "err": "Please select atleast one scale"
-        },
-        "relevance": {
-          "step1:type_of_adverse_event_with_device": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "swelling"
-                ]
-              }
-            ]
-          }
-        }
-      },
-      {
-        "key": "desc_of_post_op_adverse_event_swelling_without_device",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "desc_of_post_op_adverse_event_swelling_without_device",
-        "label": "Description of post-operative adverse events(swelling)",
-        "text_color": "#000000",
-        "type": "native_radio",
-        "options": [
-          {
-            "key": "bruising",
-            "text": "Mild bruising or abrasion, not requiring treatment",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "bruising"
-          },
-          {
-            "key": "pressure_dressing",
-            "text": "Bruising or abrasion of the glans or shaft of the penis requiring pressure dressing or additional surgery to control",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "pressure_dressing"
-          },
-
-          {
-            "key": "penis_severed",
-            "text": "Part or all of the glans or shaft of the penis severed",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "penis_severed"
-          }
-        ],
-        "v_required": {
-          "value": "true",
-          "err": "Please select atleast one scale"
-        },
-        "relevance": {
-          "step1:type_of_adverse_event_without_device": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "swelling"
-                ]
-              }
-            ]
-          }
-        }
-      },
-      {
         "key": "desc_of_post_op_adverse_event_swelling",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "desc_of_post_op_adverse_event_swelling",
-        "type": "hidden",
-        "calculation": {
+        "label": "Description of post-operative adverse events(swelling)",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "bruising",
+            "text": "Mild bruising or abrasion, not requiring treatment",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "bruising"
+          },
+          {
+            "key": "pressure_dressing",
+            "text": "Bruising or abrasion of the glans or shaft of the penis requiring pressure dressing or additional surgery to control",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "pressure_dressing"
+          },
+
+          {
+            "key": "penis_severed",
+            "text": "Part or all of the glans or shaft of the penis severed",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "penis_severed"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select atleast one scale"
+        },
+        "relevance": {
           "rules-engine": {
             "ex-rules": {
-              "rules-file": "vmmc_followup_calculation.yml"
+              "rules-file": "vmmc_followup_relevance.yml"
             }
           }
         }
@@ -1292,111 +984,45 @@
       },
 
       {
-        "key": "desc_of_post_op_adverse_pass_urine_with_device",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "desc_of_post_op_adverse_pass_urine_with_device",
-        "label": "Description of post-operative adverse events(Failure to pass urine)",
-        "text_color": "#000000",
-        "type": "native_radio",
-        "options": [
-          {
-            "key": "transient_complaint",
-            "text": "Transient complaint that resolves without treatment",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "transient_complaint"
-          },
-          {
-            "key": "return_cinic",
-            "text": "Requires a special return to the cinic, but no additional treatment required",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "return_cinic"
-          },
-
-          {
-            "key": "requires_referral",
-            "text": "Requires referral to another facility for management",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "requires_referral"
-          }
-        ],
-        "v_required": {
-          "value": "true",
-          "err": "Please select atleast one scale"
-        },
-        "relevance": {
-          "step1:type_of_adverse_event_with_device": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "failure_pass_urine"
-                ]
-              }
-            ]
-          }
-        }
-      },
-      {
-        "key": "desc_of_post_op_adverse_pass_urine_without_device",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "desc_of_post_op_adverse_pass_urine_without_device",
-        "label": "Description of post-operative adverse events(Failure to pass urine)",
-        "text_color": "#000000",
-        "type": "native_radio",
-        "options": [
-          {
-            "key": "transient_complaint",
-            "text": "Transient complaint that resolves without treatment",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "transient_complaint"
-          },
-          {
-            "key": "return_cinic",
-            "text": "Requires a special return to the cinic, but no additional treatment required",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "return_cinic"
-          },
-
-          {
-            "key": "requires_referral",
-            "text": "Requires referral to another facility for management",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "requires_referral"
-          }
-        ],
-        "v_required": {
-          "value": "true",
-          "err": "Please select atleast one scale"
-        },
-        "relevance": {
-          "step1:type_of_adverse_event_without_device": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "failure_pass_urine"
-                ]
-              }
-            ]
-          }
-        }
-      },
-      {
         "key": "desc_of_post_op_adverse_pass_urine",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "desc_of_post_op_adverse_pass_urine",
-        "type": "hidden",
-        "calculation": {
+        "label": "Description of post-operative adverse events(Failure to pass urine)",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "transient_complaint",
+            "text": "Transient complaint that resolves without treatment",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "transient_complaint"
+          },
+          {
+            "key": "return_cinic",
+            "text": "Requires a special return to the cinic, but no additional treatment required",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "return_cinic"
+          },
+
+          {
+            "key": "requires_referral",
+            "text": "Requires referral to another facility for management",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "requires_referral"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select atleast one scale"
+        },
+        "relevance": {
           "rules-engine": {
             "ex-rules": {
-              "rules-file": "vmmc_followup_calculation.yml"
+              "rules-file": "vmmc_followup_relevance.yml"
             }
           }
         }
@@ -2138,7 +1764,6 @@
           }
         }
       },
-
       {
         "key": "treatment_outcome_note",
         "openmrs_entity_parent": "",
@@ -2155,7 +1780,6 @@
           }
         }
       },
-
       {
         "key": "treatment_outcome_unchanged_note",
         "openmrs_entity_parent": "",
@@ -2201,7 +1825,6 @@
           "err": "Please select at least one"
         }
       }
-
     ]
   }
 }

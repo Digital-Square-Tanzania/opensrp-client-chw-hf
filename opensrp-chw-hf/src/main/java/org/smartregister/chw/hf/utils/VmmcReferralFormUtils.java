@@ -6,6 +6,7 @@ import com.vijay.jsonwizard.utils.FormUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.smartregister.chw.core.utils.Utils;
 import org.smartregister.chw.hf.activity.VmmcReferralRegistrationActivity;
 
 public class VmmcReferralFormUtils {
@@ -21,5 +22,18 @@ public class VmmcReferralFormUtils {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    public static String getHfrCode() {
+        String attribute = Utils.getAllSharedPreferences().fetchUserLocationAttribute();
+        if (attribute != null) {
+            String[] attributesArray = attribute.split(",");
+            for (String attributeName : attributesArray) {
+                if (attributeName.trim().startsWith("HFR Code:")) {
+                    return attributeName.trim().substring(9).trim();
+                }
+            }
+        }
+        return "";
     }
 }

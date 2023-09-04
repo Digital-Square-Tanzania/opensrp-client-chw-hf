@@ -2,9 +2,7 @@ package org.smartregister.chw.hf.interactor;
 
 
 import org.apache.commons.lang3.StringUtils;
-import org.json.JSONObject;
 import org.smartregister.chw.anc.util.AppExecutors;
-import org.smartregister.chw.core.utils.FormUtils;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.actionhelper.vmmc.VmmcFirstVitalActionHelper;
 import org.smartregister.chw.hf.actionhelper.vmmc.VmmcNotifiableAdverseActionHelper;
@@ -23,9 +21,8 @@ import timber.log.Timber;
 
 public class VmmcVisitDischargeInteractor extends BaseVmmcVisitInteractor {
 
-    String visitType;
-
     protected BaseVmmcVisitContract.InteractorCallBack callBack;
+    String visitType;
 
     public VmmcVisitDischargeInteractor(String visitType) {
         this.visitType = visitType;
@@ -61,7 +58,7 @@ public class VmmcVisitDischargeInteractor extends BaseVmmcVisitInteractor {
 
     private void evaluatePostForm(Map<String, List<VisitDetail>> details) throws BaseVmmcVisitAction.ValidationException {
 
-        VmmcPostOpActionHelper actionHelper = new VmmcPostOpActionHelper();
+        VmmcPostOpActionHelper actionHelper = new VmmcPostOpActionHelper(memberObject.getBaseEntityId());
         BaseVmmcVisitAction action = getBuilder(context.getString(R.string.vmmc_post))
                 .withOptional(false)
                 .withDetails(details)
@@ -76,7 +73,7 @@ public class VmmcVisitDischargeInteractor extends BaseVmmcVisitInteractor {
 
         VmmcFirstVitalActionHelper actionHelper = new VmmcFirstVitalActionHelper();
         BaseVmmcVisitAction action = getBuilder(context.getString(R.string.vmmc_first_vital))
-                .withOptional(false)
+                .withOptional(true)
                 .withDetails(details)
                 .withHelper(actionHelper)
                 .withFormName(Constants.VMMC_FOLLOWUP_FORMS.FIRST_VITAL_SIGN)
@@ -88,7 +85,7 @@ public class VmmcVisitDischargeInteractor extends BaseVmmcVisitInteractor {
 
         VmmcSecondVitalActionHelper actionHelper = new VmmcSecondVitalActionHelper();
         BaseVmmcVisitAction action = getBuilder(context.getString(R.string.vmmc_second_vital))
-                .withOptional(false)
+                .withOptional(true)
                 .withDetails(details)
                 .withHelper(actionHelper)
                 .withFormName(Constants.VMMC_FOLLOWUP_FORMS.SECOND_VITAL_SIGN)
@@ -100,7 +97,7 @@ public class VmmcVisitDischargeInteractor extends BaseVmmcVisitInteractor {
 
         VmmcDischargeActionHelper actionHelper = new VmmcDischargeActionHelper();
         BaseVmmcVisitAction action = getBuilder(context.getString(R.string.vmmc_post_discharge))
-                .withOptional(false)
+                .withOptional(true)
                 .withDetails(details)
                 .withHelper(actionHelper)
                 .withFormName(Constants.VMMC_FOLLOWUP_FORMS.DISCHARGE)
@@ -110,13 +107,11 @@ public class VmmcVisitDischargeInteractor extends BaseVmmcVisitInteractor {
     }
 
     private void evaluateVmmcNAE(Map<String, List<VisitDetail>> details) throws BaseVmmcVisitAction.ValidationException {
-        JSONObject vmmcMedicalHistory = FormUtils.getFormUtils().getFormJson(Constants.FORMS.VMMC_NOTIFIABLE);
 
         VmmcNotifiableAdverseActionHelper actionHelper = new VmmcNotifiableAdverseActionHelper(memberObject.getBaseEntityId());
         BaseVmmcVisitAction action = getBuilder(context.getString(R.string.vmmc_notifiable_adverse))
-                .withOptional(false)
+                .withOptional(true)
                 .withDetails(details)
-                .withJsonPayload(vmmcMedicalHistory.toString())
                 .withHelper(actionHelper)
                 .withFormName(Constants.FORMS.VMMC_NOTIFIABLE)
                 .build();
@@ -131,7 +126,7 @@ public class VmmcVisitDischargeInteractor extends BaseVmmcVisitInteractor {
 
     @Override
     protected String getTableName() {
-        return Constants.TABLES.VMMC_CONFIRMATION;
+        return Constants.TABLES.VMMC_ENROLLMENT;
     }
 
     private class VmmcDischargeActionHelper extends org.smartregister.chw.hf.actionhelper.vmmc.VmmcDischargeActionHelper {

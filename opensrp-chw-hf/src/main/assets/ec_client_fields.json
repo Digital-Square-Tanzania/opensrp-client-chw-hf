@@ -2439,65 +2439,6 @@
       ]
     },
     {
-      "name": " ec_vmmc_enrollment",
-      "columns": [
-        {
-          "column_name": "base_entity_id",
-          "type": "Event",
-          "json_mapping": {
-            "field": "baseEntityId"
-          }
-        },
-        {
-          "column_name": "relational_id",
-          "type": "Event",
-          "json_mapping": {
-            "field": "obs.fieldCode",
-            "concept": "relational_id"
-          }
-        },
-        {
-          "column_name": "service_delivery_approach",
-          "type": "Event",
-          "json_mapping": {
-            "field": "obs.fieldCode",
-            "concept": "service_delivery_approach"
-          }
-        },
-        {
-          "column_name": "client_id_number",
-          "type": "Event",
-          "json_mapping": {
-            "field": "obs.fieldCode",
-            "concept": "client_id_number"
-          }
-        },
-        {
-          "column_name": "reffered_from",
-          "type": "Event",
-          "json_mapping": {
-            "field": "obs.fieldCode",
-            "concept": "reffered_from"
-          }
-        },
-        {
-          "column_name": "malaria_test_date",
-          "type": "Event",
-          "json_mapping": {
-            "field": "obs.fieldCode",
-            "concept": "163724AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          }
-        },
-        {
-          "column_name": "last_interacted_with",
-          "type": "Event",
-          "json_mapping": {
-            "field": "version"
-          }
-        }
-      ]
-    },
-    {
       "name": "ec_family_planning",
       "columns": [
         {
@@ -8479,6 +8420,57 @@
       ]
     },
     {
+      "name": "ec_vmmc_enrollment",
+      "columns": [
+        {
+          "column_name": "base_entity_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "baseEntityId"
+          }
+        },
+        {
+          "column_name": "relational_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "relational_id"
+          }
+        },
+        {
+          "column_name": "service_delivery_approach",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "service_delivery_approach"
+          }
+        },
+        {
+          "column_name": "client_id_number",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "client_id_number"
+          }
+        },
+        {
+          "column_name": "reffered_from",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "reffered_from"
+          }
+        },
+        {
+          "column_name": "last_interacted_with",
+          "type": "Event",
+          "json_mapping": {
+            "field": "version"
+          }
+        }
+      ]
+    },
+    {
       "name": "ec_vmmc_services",
       "columns": [
         {
@@ -8868,7 +8860,7 @@
       ]
     },
     {
-      "name": " ec_vmmc_post_op_and_discharge",
+      "name": "ec_vmmc_post_op_and_discharge",
       "columns": [
         {
           "column_name": "base_entity_id",

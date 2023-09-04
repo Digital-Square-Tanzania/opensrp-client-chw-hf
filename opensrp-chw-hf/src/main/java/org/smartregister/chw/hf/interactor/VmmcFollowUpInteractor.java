@@ -76,7 +76,7 @@ public class VmmcFollowUpInteractor extends BaseVmmcVisitInteractor {
             Timber.e(e);
         }
 
-        VmmcFollowUpActionHelper actionHelper = new VmmcFollowUpActionHelper();
+        VmmcFollowUpActionHelper actionHelper = new VmmcFollowUpActionHelper(memberObject.getBaseEntityId());
         BaseVmmcVisitAction action = getBuilder(context.getString(R.string.vmmc_followup_visit))
                 .withOptional(false)
                 .withDetails(details)
@@ -89,13 +89,11 @@ public class VmmcFollowUpInteractor extends BaseVmmcVisitInteractor {
     }
 
     private void evaluateVmmcNAE(Map<String, List<VisitDetail>> details) throws BaseVmmcVisitAction.ValidationException {
-        JSONObject vmmcMedicalHistory = FormUtils.getFormUtils().getFormJson(Constants.FORMS.VMMC_NOTIFIABLE);
 
         VmmcNotifiableAdverseActionHelper actionHelper = new VmmcNotifiableAdverseActionHelper(memberObject.getBaseEntityId());
         BaseVmmcVisitAction action = getBuilder(context.getString(R.string.vmmc_notifiable_adverse))
                 .withOptional(false)
                 .withDetails(details)
-                .withJsonPayload(vmmcMedicalHistory.toString())
                 .withHelper(actionHelper)
                 .withFormName(Constants.FORMS.VMMC_NOTIFIABLE)
                 .build();
@@ -114,6 +112,10 @@ public class VmmcFollowUpInteractor extends BaseVmmcVisitInteractor {
     }
 
     private class VmmcFollowUpActionHelper extends org.smartregister.chw.hf.actionhelper.vmmc.VmmcFollowUpActionHelper {
+        public VmmcFollowUpActionHelper(String baseEntityId) {
+            super(baseEntityId);
+        }
+
         @Override
         public String postProcess(String s) {
             if (notifiable_adverse_event_occured.equalsIgnoreCase("yes")) {

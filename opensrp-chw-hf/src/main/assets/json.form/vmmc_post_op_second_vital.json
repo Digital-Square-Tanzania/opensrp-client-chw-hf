@@ -73,10 +73,6 @@
         "v_max": {
           "value": "200",
           "err": "The pulse rate must be equal or less than 200 (bpm)"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Please enter the Pulse Rate (Beats per minute)"
         }
       },
       {
@@ -127,10 +123,6 @@
         "v_max": {
           "value": "320",
           "err": "Systolic value must be equal or less than 320"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Please enter the Systolic (Blood Pressure)"
         }
       },
       {
@@ -151,10 +143,6 @@
         "v_max": {
           "value": "200",
           "err": "Diastolic value must be equal or less than 200"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Please enter the Diastolic (Blood Pressure)"
         },
         "constraints": [
           {
@@ -214,10 +202,6 @@
         "v_max": {
           "value": "50",
           "err": "Temperature must be equal or less than 50"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Please enter the Temperature"
         }
       },
       {
@@ -259,11 +243,7 @@
         "type": "edit_text",
         "hint": "Respiration rate (Breath per minute) ",
         "edit_type": "number",
-        "look_up": "true",
-        "v_required": {
-          "value": "true",
-          "err": "Please enter the Respiration rate (Breath per minute) "
-        }
+        "look_up": "true"
       },
       {
         "key": "second_vital_sign_time_taken",
@@ -275,12 +255,17 @@
         "expandable": false,
         "duration": {
           "label": "Time taken"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Please enter the time taken"
         }
+      },
+      {
+        "key": "second_vital_completion_status",
+        "type": "hidden",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "second_vital_completion_status",
+        "openmrs_entity_parent": "",
+        "value": "pending"
       }
+
     ]
   }
 }

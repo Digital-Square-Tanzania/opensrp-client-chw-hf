@@ -1,6 +1,6 @@
 {
   "count": "1",
-  "encounter_type": "Vmmc Confirmation",
+  "encounter_type": "Vmmc Enrollment",
   "entity_id": "",
   "metadata": {
     "start": {
@@ -41,7 +41,6 @@
     },
     "encounter_location": ""
   },
-
   "step1": {
     "title": "Vmmc",
     "fields": [
@@ -91,7 +90,7 @@
           "err": "Please enter a valid vmmc client id"
         },
         "v_regex": {
-          "value": "^111890-1 \\d{4} \\d{4}$",
+          "value": "^\\d{6}-\\d{1} \\d{4} \\d{4}$",
           "err": "Vmmc Client ID should be of the format (111890-1 0001 2023)"
         },
         "v_required": {

@@ -51,13 +51,6 @@
           },
           {
             "field": "eventType",
-            "field_value": "Vmmc Confirmation",
-            "closes_case": [
-              " ec_vmmc_enrollment"
-            ]
-          },
-          {
-            "field": "eventType",
             "field_value": "Update Family Registration",
             "creates_case": [
               "ec_family"
@@ -192,9 +185,9 @@
           },
           {
             "field": "eventType",
-            "field_value": "Vmmc Confirmation",
+            "field_value": "Vmmc Enrollment",
             "creates_case": [
-              " ec_vmmc_enrollment"
+              "ec_vmmc_enrollment"
             ]
           },
           {
@@ -215,7 +208,7 @@
             "field": "eventType",
             "field_value": "Vmmc Discharge",
             "creates_case": [
-              " ec_vmmc_post_op_and_discharge"
+              "ec_vmmc_post_op_and_discharge"
             ]
           },
           {

@@ -3,18 +3,27 @@ package org.smartregister.chw.hf.actionhelper.vmmc;
 import android.content.Context;
 
 import org.apache.commons.lang3.StringUtils;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import org.smartregister.chw.core.utils.CoreJsonFormUtils;
+import org.smartregister.chw.hf.utils.VisitUtils;
 import org.smartregister.chw.vmmc.domain.VisitDetail;
 import org.smartregister.chw.vmmc.model.BaseVmmcVisitAction;
+import org.smartregister.family.util.JsonFormUtils;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import timber.log.Timber;
 
 public class VmmcFirstVitalActionHelper implements BaseVmmcVisitAction.VmmcVisitActionHelper {
 
     protected String pulse_rate;
+
+    private HashMap<String, Boolean> checkObject = new HashMap<>();
 
     protected String jsonPayload;
 
@@ -39,7 +48,15 @@ public class VmmcFirstVitalActionHelper implements BaseVmmcVisitAction.VmmcVisit
     public void onPayloadReceived(String jsonPayload) {
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
-            pulse_rate = CoreJsonFormUtils.getValue(jsonObject, "pulse_rate");
+            checkObject.clear();
+
+            checkObject.put("first_vital_sign_pulse_rate", StringUtils.isNotBlank(CoreJsonFormUtils.getValue(jsonObject, "first_vital_sign_pulse_rate")));
+            checkObject.put("first_vital_sign_systolic", StringUtils.isNotBlank(CoreJsonFormUtils.getValue(jsonObject, "first_vital_sign_systolic")));
+            checkObject.put("first_vital_sign_diastolic", StringUtils.isNotBlank(CoreJsonFormUtils.getValue(jsonObject, "first_vital_sign_diastolic")));
+            checkObject.put("first_vital_sign_temperature", StringUtils.isNotBlank(CoreJsonFormUtils.getValue(jsonObject, "first_vital_sign_temperature")));
+            checkObject.put("first_vital_sign_respiration_rate", StringUtils.isNotBlank(CoreJsonFormUtils.getValue(jsonObject, "first_vital_sign_respiration_rate")));
+            checkObject.put("first_vital_sign_time_taken", StringUtils.isNotBlank(CoreJsonFormUtils.getValue(jsonObject, "first_vital_sign_time_taken")));
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -56,7 +73,21 @@ public class VmmcFirstVitalActionHelper implements BaseVmmcVisitAction.VmmcVisit
     }
 
     @Override
-    public String postProcess(String s) {
+    public String postProcess(String jsonPayload) {
+        JSONObject jsonObject = null;
+        try {
+            jsonObject = new JSONObject(jsonPayload);
+            JSONArray fields = JsonFormUtils.fields(jsonObject);
+            JSONObject firstVitalCompletionStatus = JsonFormUtils.getFieldJSONObject(fields, "first_vital_completion_status");
+            assert firstVitalCompletionStatus != null;
+            firstVitalCompletionStatus.put(com.vijay.jsonwizard.constants.JsonFormConstants.VALUE, VisitUtils.getActionStatus(checkObject));
+        } catch (JSONException e) {
+            Timber.e(e);
+        }
+
+        if (jsonObject != null) {
+            return jsonObject.toString();
+        }
         return null;
     }
 
@@ -67,15 +98,20 @@ public class VmmcFirstVitalActionHelper implements BaseVmmcVisitAction.VmmcVisit
 
     @Override
     public BaseVmmcVisitAction.Status evaluateStatusOnPayload() {
-        if (StringUtils.isBlank(pulse_rate))
-            return BaseVmmcVisitAction.Status.PENDING;
-        else {
+        String status = VisitUtils.getActionStatus(checkObject);
+
+        if (status.equalsIgnoreCase(VisitUtils.Complete)) {
             return BaseVmmcVisitAction.Status.COMPLETED;
         }
+        if (status.equalsIgnoreCase(VisitUtils.Ongoing)) {
+            return BaseVmmcVisitAction.Status.PARTIALLY_COMPLETED;
+        }
+        return BaseVmmcVisitAction.Status.PENDING;
     }
 
     @Override
     public void onPayloadReceived(BaseVmmcVisitAction baseVmmcVisitAction) {
-        //overridden
+        Timber.v("onPayloadReceived");
     }
 }
+

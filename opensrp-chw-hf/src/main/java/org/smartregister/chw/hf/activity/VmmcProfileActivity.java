@@ -49,7 +49,10 @@ public class VmmcProfileActivity extends CoreVmmcProfileActivity {
 
         if (id == R.id.textview_discharge_vmmc) {
             VmmcDischargeActivity.startVmmcVisitDischargeActivity(this, baseEntityId, false);
+        } else if (id == R.id.textview_continue) {
+            VmmcDischargeActivity.startVmmcVisitDischargeActivity(this, baseEntityId, true);
         }
+
         if (id == R.id.textview_notifiable_vmmc) {
             VmmcNotifiableAdverseActivity.startVmmcVisitActivity(this, baseEntityId, false);
         }

@@ -59,7 +59,7 @@
       {
         "key": "dressing_condition_in_relation_to_bleeding",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "person_attribute",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "dressing_condition_in_relation_to_bleeding",
         "type": "native_radio",
         "label": "Describe the condition of the dressing in relation to bleeding",
