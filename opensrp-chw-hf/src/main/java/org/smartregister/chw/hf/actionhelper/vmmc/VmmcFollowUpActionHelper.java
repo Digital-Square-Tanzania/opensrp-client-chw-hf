@@ -11,9 +11,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.core.utils.CoreJsonFormUtils;
-import org.smartregister.chw.core.utils.FormUtils;
-import org.smartregister.chw.hf.dao.HeiDao;
-import org.smartregister.chw.hf.dao.HfAncDao;
 import org.smartregister.chw.hf.dao.HfVmmcDao;
 import org.smartregister.chw.hf.utils.Constants;
 import org.smartregister.chw.pmtct.util.JsonFormUtils;
@@ -63,7 +60,6 @@ public class VmmcFollowUpActionHelper implements BaseVmmcVisitAction.VmmcVisitAc
 
             noOfDayPostOP = dayDifference(mcProcedureDate, todayDate);
 
-//            JSONObject followUpVisitForm = FormUtils.getFormUtils().getFormJson(Constants.JsonForm.VmmcVisit.getFollowupvisit());
             JSONArray fields = jsonObject.getJSONObject(Constants.JsonFormConstants.STEP1).getJSONArray(JsonFormConstants.FIELDS);
             JSONObject post_op_dates = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "post_op_dates");
             post_op_dates.put("text", "Day(s) Post-OP: " + noOfDayPostOP.toString());

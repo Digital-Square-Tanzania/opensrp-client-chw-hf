@@ -76,16 +76,7 @@ public class VmmcMedicalHistoryActionHelper implements BaseVmmcVisitAction.VmmcV
             checkObject.put("has_client_had_any_sti", StringUtils.isNotBlank(CoreJsonFormUtils.getValue(jsonObject, "has_client_had_any_sti")));
             checkObject.put("any_complaints", StringUtils.isNotBlank(CoreJsonFormUtils.getValue(jsonObject, "any_complaints")));
             checkObject.put("is_client_diagnosed_with_any", StringUtils.isNotBlank(CoreJsonFormUtils.getValue(jsonObject, "is_client_diagnosed_with_any")));
-//            checkObject.put("blood_for_glucose_test", StringUtils.isNotBlank(CoreJsonFormUtils.getValue(jsonObject, "blood_for_glucose_test")));
-//            checkObject.put("type_of_blood_for_glucose_test", StringUtils.isNotBlank(CoreJsonFormUtils.getValue(jsonObject, "type_of_blood_for_glucose_test")));
-//            checkObject.put("blood_for_glucose", StringUtils.isNotBlank(CoreJsonFormUtils.getValue(jsonObject, "blood_for_glucose")));
-//            checkObject.put("ctc_number", StringUtils.isNotBlank(CoreJsonFormUtils.getValue(jsonObject, "ctc_number")));
-//            checkObject.put("ctc_name", StringUtils.isNotBlank(CoreJsonFormUtils.getValue(jsonObject, "ctc_name")));
-//            checkObject.put("diabetes_treatment", StringUtils.isNotBlank(CoreJsonFormUtils.getValue(jsonObject, "diabetes_treatment")));
-//            checkObject.put("hypertension_treatment", StringUtils.isNotBlank(CoreJsonFormUtils.getValue(jsonObject, "hypertension_treatment")));
             checkObject.put("surgical_procedure", StringUtils.isNotBlank(CoreJsonFormUtils.getValue(jsonObject, "surgical_procedure")));
-//            checkObject.put("complications_previous_surgical", StringUtils.isNotBlank(CoreJsonFormUtils.getValue(jsonObject, "complications_previous_surgical")));
-//            checkObject.put("type_complication", StringUtils.isNotBlank(CoreJsonFormUtils.getValue(jsonObject, "type_complication")));
             checkObject.put("known_allergies", StringUtils.isNotBlank(CoreJsonFormUtils.getValue(jsonObject, "known_allergies")));
             checkObject.put("tetanus_vaccination", StringUtils.isNotBlank(CoreJsonFormUtils.getValue(jsonObject, "tetanus_vaccination")));
             checkObject.put("any_hematological_disease_symptoms", StringUtils.isNotBlank(CoreJsonFormUtils.getValue(jsonObject, "any_hematological_disease_symptoms")));

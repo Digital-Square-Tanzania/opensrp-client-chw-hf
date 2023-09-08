@@ -1,7 +1,6 @@
 package org.smartregister.chw.hf.actionhelper.vmmc;
 
 import android.content.Context;
-import android.util.Log;
 
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
@@ -45,7 +44,6 @@ public class VmmcConsentFormActionHelper implements BaseVmmcVisitAction.VmmcVisi
             consent_form = CoreJsonFormUtils.getValue(jsonObject, "client_consent_for_mc_procedure");
             mc_procedure = CoreJsonFormUtils.getValue(jsonObject, "consent_form");
 
-            Log.d("test-consent", consent_form);
         } catch (JSONException e) {
             e.printStackTrace();
         }

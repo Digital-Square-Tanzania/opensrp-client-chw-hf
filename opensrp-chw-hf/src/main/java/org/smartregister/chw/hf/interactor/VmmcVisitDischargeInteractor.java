@@ -22,6 +22,7 @@ import timber.log.Timber;
 public class VmmcVisitDischargeInteractor extends BaseVmmcVisitInteractor {
 
     protected BaseVmmcVisitContract.InteractorCallBack callBack;
+
     String visitType;
 
     public VmmcVisitDischargeInteractor(String visitType) {

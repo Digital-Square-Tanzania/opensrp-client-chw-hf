@@ -17,7 +17,6 @@ import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.custom_view.VmmcFloatingMenu;
 import org.smartregister.chw.hf.utils.VmmcReferralFormUtils;
 import org.smartregister.chw.vmmc.VmmcLibrary;
-import org.smartregister.chw.vmmc.dao.VmmcDao;
 import org.smartregister.chw.vmmc.domain.Visit;
 import org.smartregister.chw.vmmc.util.Constants;
 

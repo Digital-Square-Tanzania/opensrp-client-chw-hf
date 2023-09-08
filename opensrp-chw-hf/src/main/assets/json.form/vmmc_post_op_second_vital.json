@@ -52,9 +52,7 @@
       "value": ""
     }
   },
-  "global": {
-    "first_vital_sign_time_taken": "00:00"
-  },
+  "global": {},
   "step1": {
     "title": "Post Operation Vital Sign",
     "fields": [
@@ -284,10 +282,10 @@
         }
       },
       {
-        "key": "first_vital_sign_time_taken",
+        "key": "first_vital_sign_time_taken_previous",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "first_vital_sign_time_taken",
+        "openmrs_entity_id": "first_vital_sign_time_taken_previous",
         "type": "time_picker",
         "hint": "Time taken",
         "calculation": {

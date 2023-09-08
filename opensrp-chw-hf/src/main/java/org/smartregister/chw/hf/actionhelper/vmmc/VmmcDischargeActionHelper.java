@@ -1,7 +1,6 @@
 package org.smartregister.chw.hf.actionhelper.vmmc;
 
 import android.content.Context;
-import android.util.Log;
 
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
@@ -45,8 +44,6 @@ public class VmmcDischargeActionHelper implements BaseVmmcVisitAction.VmmcVisitA
             medical_history = CoreJsonFormUtils.getValue(jsonObject, "discharge_condition");
             notifiable_adverse_event_occured = CoreJsonFormUtils.getValue(jsonObject, "notifiable_adverse_event_occured");
 
-            Log.d("test-discharge", medical_history);
-            Log.d("test-NAE", notifiable_adverse_event_occured);
 
         } catch (JSONException e) {
             e.printStackTrace();
