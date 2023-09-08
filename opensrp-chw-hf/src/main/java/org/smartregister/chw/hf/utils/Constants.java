@@ -598,6 +598,16 @@ public class Constants extends CoreConstants {
 
         }
 
+        public static class VmmcVisit {
+
+            public static final String FOLLOWUPVISIT = "vmmc_followup_visit";
+
+            public static String getFollowupvisit() {
+                return Utils.getLocalForm(FOLLOWUPVISIT, locale, assetManager);
+            }
+
+        }
+
     }
 
     public static final class JsonFormConstants {

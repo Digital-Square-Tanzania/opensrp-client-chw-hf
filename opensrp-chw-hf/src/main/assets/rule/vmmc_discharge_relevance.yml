@@ -13,10 +13,24 @@ condition: "step1_discharge_condition.equalsIgnoreCase('satisfactory') || step1_
 actions:
   - "isRelevant = true"
 ---
-name: step1_discharging_name
-description: discharging_name
+name: step1_discharging_provider_first_name
+description: discharging provider name relevance
 priority: 1
 condition: "step1_discharge_condition.equalsIgnoreCase('satisfactory') || step1_discharge_condition.equalsIgnoreCase('needs_followup')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_discharging_provider_middle_name
+description: discharging provider middle relevance
+priority: 1
+condition: "!step1_discharging_provider_first_name.equals('')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_discharging_provider_last_name
+description: discharging provider last relevance
+priority: 1
+condition: "!step1_discharging_provider_middle_name.equals('')"
 actions:
   - "isRelevant = true"
 ---

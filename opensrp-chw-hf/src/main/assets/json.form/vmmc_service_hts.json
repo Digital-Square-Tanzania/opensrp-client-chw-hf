@@ -83,10 +83,6 @@
             "openmrs_entity_id": "no"
           }
         ],
-        "value": "",
-        "v_required": {
-          "value": true
-        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -123,10 +119,6 @@
             "openmrs_entity_id": "indeterminate"
           }
         ],
-        "value": "",
-        "v_required": {
-          "value": true
-        },
         "relevance": {
           "step1:tested_hiv": {
             "type": "string",
@@ -135,12 +127,29 @@
         }
       },
       {
-        "key": "defer_procedure",
+        "key": "defer_procedure_hiv_positive",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "defer_procedure",
+        "openmrs_entity_id": "defer_procedure_hiv_positive",
         "type": "toaster_notes",
-        "text": "Defer the procedure and follow HTS procedure",
+        "text": "Defer the procedure and link to CTC services",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_hts_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "defer_procedure_hiv_indeterminate",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "defer_procedure_hiv_indeterminate",
+        "type": "toaster_notes",
+        "text": "Defer the procedure and follow HTS guidelines",
         "text_color": "#CF0800",
         "toaster_type": "problem",
         "relevance": {
@@ -180,43 +189,34 @@
           {
             "key": "test_kits_out_of_stock",
             "text": "Test kits out of stock",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "test_kits_out_of_stock"
           },
           {
             "key": "emergency_situation",
             "text": "a client was in an emergency situation",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "emergency_situation"
           },
           {
             "key": "client_refused ",
             "text": "Client refused to be tested",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "client_refused"
           },
           {
             "key": "still_counselling",
             "text": "we are still counselling a client",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "still_counselling"
           },
           {
             "key": "other",
             "text": "Other (specify)",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "other"
           }
         ],
-        "v_required": {
-          "value": true,
-          "err": "Please specify any other symptoms or select none"
-        },
         "relevance": {
           "step1:tested_hiv": {
             "type": "string",
@@ -231,10 +231,6 @@
         "openmrs_entity_id": "hiv_not_tested_reasons_others",
         "type": "edit_text",
         "hint": "Other(Specify)",
-        "v_required": {
-          "value": "true",
-          "err": "Please specify"
-        },
         "relevance": {
           "step1:hiv_not_tested_reasons": {
             "type": "string",
@@ -263,11 +259,7 @@
             "openmrs_entity": "concept",
             "openmrs_entity_id": "no"
           }
-        ],
-        "value": "",
-        "v_required": {
-          "value": true
-        }
+        ]
       },
       {
         "key": "was_client_referred",
@@ -290,11 +282,7 @@
             "openmrs_entity": "concept",
             "openmrs_entity_id": "no"
           }
-        ],
-        "value": "",
-        "v_required": {
-          "value": true
-        }
+        ]
       },
       {
         "key": "client_referred_to",
@@ -304,6 +292,7 @@
         "type": "check_box",
         "label": "Client referred to",
         "text_color": "#000000",
+        "combine_checkbox_option_values": "true",
         "exclusive": [
           "client_not_referred"
         ],
@@ -311,36 +300,28 @@
           {
             "key": "surgical",
             "text": "Surgical/medical",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "surgical"
           },
           {
             "key": "ctc",
             "text": "CTC",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "ctc"
           },
           {
             "key": "psychosocial_support ",
             "text": "Psychosocial support",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "psychosocial_support"
           },
           {
             "key": "other",
             "text": "Other (specify)",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "other"
           }
         ],
-        "v_required": {
-          "value": true,
-          "err": "Please specify any other symptoms or select none"
-        },
         "relevance": {
           "step1:was_client_referred": {
             "type": "string",
@@ -355,10 +336,6 @@
         "openmrs_entity_id": "client_referred_to_others",
         "type": "edit_text",
         "hint": "Other(Specify)",
-        "v_required": {
-          "value": "true",
-          "err": "Please specify"
-        },
         "relevance": {
           "step1:client_referred_to": {
             "ex-checkbox": [
@@ -368,6 +345,23 @@
                 ]
               }
             ]
+          }
+        }
+      },
+      {
+        "key": "notes_check_contraindication",
+        "type": "label",
+        "text": "Clear contraindications, before proceeding with mc procedure",
+        "hint_on_text": false,
+        "text_color": "#FF0000",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "notes_check_contraindication",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_hts_relevance.yml"
+            }
           }
         }
       },
@@ -394,7 +388,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "toaster_notes_genital_examination",
         "type": "toaster_notes",
-        "text": "Genital examination contraindication",
+        "text": "Refer physical examination form, Genital examination ?",
         "text_color": "#CF0800",
         "toaster_type": "problem",
         "relevance": {
@@ -411,7 +405,7 @@
         "openmrs_entity": "person_attribute",
         "openmrs_entity_id": "toaster_notes",
         "type": "toaster_notes",
-        "text": "Client currently complaints contraindication",
+        "text": "Refer to medical history form, Does the client currently have any of the following complaints?",
         "text_color": "#CF0800",
         "toaster_type": "problem",
         "relevance": {
@@ -428,7 +422,7 @@
         "openmrs_entity": "person_attribute",
         "openmrs_entity_id": "toaster_notes",
         "type": "toaster_notes",
-        "text": "known allergies medications contraindication",
+        "text": "Refer to medical history form, Any known allergies to any of these medications?",
         "text_color": "#CF0800",
         "toaster_type": "problem",
         "relevance": {
@@ -445,7 +439,7 @@
         "openmrs_entity": "person_attribute",
         "openmrs_entity_id": "toaster_notes",
         "type": "toaster_notes",
-        "text": "symptoms of hematological disease contraindication",
+        "text": "Refer to medical history form, Any symptoms of hematological disease?",
         "text_color": "#CF0800",
         "toaster_type": "problem",
         "relevance": {
@@ -462,7 +456,7 @@
         "openmrs_entity": "person_attribute",
         "openmrs_entity_id": "toaster_notes",
         "type": "toaster_notes",
-        "text": "client has other diagonised contraindication",
+        "text": "Refer to medical history form, Is client diagnosed with any of the following?",
         "text_color": "#CF0800",
         "toaster_type": "problem",
         "relevance": {
@@ -479,7 +473,7 @@
         "openmrs_entity": "person_attribute",
         "openmrs_entity_id": "toaster_notes",
         "type": "toaster_notes",
-        "text": "client has hypertension",
+        "text": "Client has hypertension, Refer to medical history form, Is client diagnosed with any of the following?",
         "text_color": "#CF0800",
         "toaster_type": "problem",
         "relevance": {
@@ -496,41 +490,7 @@
         "openmrs_entity": "person_attribute",
         "openmrs_entity_id": "toaster_notes",
         "type": "toaster_notes",
-        "text": "client has diabetes",
-        "text_color": "#CF0800",
-        "toaster_type": "problem",
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "vmmc_hts_relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "toaster_notes_hiv",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "person_attribute",
-        "openmrs_entity_id": "toaster_notes",
-        "type": "toaster_notes",
-        "text": "client has hiv",
-        "text_color": "#CF0800",
-        "toaster_type": "problem",
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "vmmc_hts_relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "toaster_notes_complications_previous_surgical",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "person_attribute",
-        "openmrs_entity_id": "toaster_notes",
-        "type": "toaster_notes",
-        "text": "complications related to previous surgical procedure contraindication",
+        "text": "client has diabetes, Refer to medical history form, Is client diagnosed with any of the following?",
         "text_color": "#CF0800",
         "toaster_type": "problem",
         "relevance": {
@@ -551,11 +511,37 @@
         "text_color": "#CF0800",
         "toaster_type": "problem",
         "relevance": {
-          "step1:hiv_result": {
-            "type": "string",
-            "ex": "equalTo(., \"positive\")"
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_hts_relevance.yml"
+            }
           }
         }
+      },
+      {
+        "key": "toaster_notes_complications_previous_surgical",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person_attribute",
+        "openmrs_entity_id": "toaster_notes",
+        "type": "toaster_notes",
+        "text": "Refer to medical history form, Any complications related to previous surgical procedure?",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_hts_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "hts_completion_status",
+        "type": "hidden",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "hts_completion_status",
+        "openmrs_entity_parent": "",
+        "value": "pending"
       }
     ]
   }

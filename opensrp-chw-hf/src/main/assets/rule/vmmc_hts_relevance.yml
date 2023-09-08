@@ -49,30 +49,37 @@ actions:
   - "isRelevant = true "
 ---
 name: step1_toaster_notes_hypertension
-description: if toaster_notes_is_client_diagnosed_with_any
+description: if toaster_notes_hypertension
 priority: 1
 condition: "global_is_client_diagnosed_with_any.contains('hypertension')"
 actions:
   - "isRelevant = true "
 ---
 name: step1_toaster_notes_diabetes
-description: if toaster_notes_is_client_diagnosed_with_any
+description: if toaster_notes_diabetes
 priority: 1
-condition: "(global_type_of_blood_for_glucose_test.equalsIgnoreCase('rbg') && global_blood_for_glucose > 6.9) || (global_type_of_blood_for_glucose_test.equalsIgnoreCase('fbg') && global_blood_for_glucose > 5.9) || (global_is_client_diagnosed_with_any.contains('diabetes') && global_blood_for_glucose_test.equalsIgnoreCase('test_not_conducted'))"
+condition: "(global_type_of_blood_for_glucose_test.equalsIgnoreCase('random_blood_glucose_test') && global_blood_for_glucose > 11.1) || (global_type_of_blood_for_glucose_test.equalsIgnoreCase('fast_blood_glucose_test') && global_blood_for_glucose > 5.9) || (global_is_client_diagnosed_with_any.contains('diabetes') && global_blood_for_glucose_test.equalsIgnoreCase('test_not_conducted'))"
 actions:
   - "isRelevant = true "
 ---
-name: step1_toaster_notes_hiv
-description: if toaster_notes_is_client_diagnosed_with_any
-priority: 1
-condition: "step1_hiv_viral_load_text > 1000"
-actions:
-  - "isRelevant = true "
----
-name: step1_defer_procedure
-description: if defer_procedure
+name: step1_defer_procedure_hiv_positive
+description: if defer_procedure_hiv_positive
 priority: 1
 condition: "step1_hiv_result.equalsIgnoreCase('positive') || step1_hiv_viral_load_text > 1000"
+actions:
+  - "isRelevant = true "
+---
+name: step1_defer_procedure_hiv_indeterminate
+description: if defer_procedure_hiv_indeterminate
+priority: 1
+condition: "step1_hiv_result.equalsIgnoreCase('indeterminate')"
+actions:
+  - "isRelevant = true "
+---
+name: step1_toaster_notes_hiv_results
+description: if toaster_notes_hiv_results
+priority: 1
+condition: "(global_is_client_diagnosed_with_any.contains('hiv') && step1_hiv_viral_load_text > 1000) || step1_hiv_result.equalsIgnoreCase('positive') || step1_hiv_result.equalsIgnoreCase('indeterminate')"
 actions:
   - "isRelevant = true "
 ---
@@ -83,9 +90,9 @@ condition: "global_complications_previous_surgical.contains('yes')"
 actions:
   - "isRelevant = true "
 ---
-name: step1_toaster_notes_contraindication
-description: if toaster_notes_contraindication
+name: step1_notes_check_contraindication
+description: if notes_check_contraindication
 priority: 1
-condition: "global_complications_previous_surgical.contains('yes') || global_is_client_diagnosed_with_any.contains('hypertension') || global_ is_client_diagnosed_with_any.contains('others') || (global_type_of_blood_for_glucose_test.equalsIgnoreCase('rbg') && global_blood_for_glucose > 6.9) || (global_type_of_blood_for_glucose_test.equalsIgnoreCase('fbg') && global_blood_for_glucose > 5.9) || (global_ is_client_diagnosed_with_any.contains('diabetes') && global_blood_for_glucose_test.equalsIgnoreCase('test_not_conducted')) || (step1_hiv_viral_load_text > 1000) || !global_any_hematological_disease_symptoms.contains('none') || !global_known_allergies.contains('none') || !global_any_complaints.contains('none') || !global_genital_examination.contains('none')"
+condition: "global_complications_previous_surgical.contains('yes') || !global_any_hematological_disease_symptoms.contains('none') || !global_any_complaints.contains('none') || !global_known_allergies.contains('none') || !global_genital_examination.contains('none')"
 actions:
   - "isRelevant = true "

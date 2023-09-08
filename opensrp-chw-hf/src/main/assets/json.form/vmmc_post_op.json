@@ -100,7 +100,7 @@
       {
         "key": "dressing_toaster",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "Dressing Label",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "dressing_toaster",
         "type": "toaster_notes",
         "text_color": "#000000",
@@ -118,7 +118,7 @@
       {
         "key": "blood_spot_toaster",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "Blood Spots label",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "blood_spot_toaster",
         "type": "toaster_notes",
         "text_color": "#000000",
@@ -136,7 +136,7 @@
       {
         "key": "dressing_clear_toaster",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "Dressing clear label",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "dressing_clear_toaster",
         "type": "toaster_notes",
         "text_color": "#000000",
@@ -154,7 +154,7 @@
       {
         "key": "device_mc",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "person_attribute",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "device_mc",
         "type": "native_radio",
         "label": "Device Male Circumcision, Observe the following",
@@ -189,7 +189,7 @@
       {
         "key": "bleeding_toaster",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "Bleeding label",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "bleeding_toaster",
         "type": "toaster_notes",
         "text_color": "#000000",
@@ -207,7 +207,7 @@
       {
         "key": "the_ring_toaster",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "The Ring label",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "the_ring_toaster",
         "type": "toaster_notes",
         "text_color": "#000000",

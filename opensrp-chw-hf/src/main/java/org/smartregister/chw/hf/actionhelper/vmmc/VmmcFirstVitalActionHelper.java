@@ -27,6 +27,9 @@ public class VmmcFirstVitalActionHelper implements BaseVmmcVisitAction.VmmcVisit
 
     protected String jsonPayload;
 
+    protected static String time_taken;
+
+
     @Override
     public void onJsonFormLoaded(String jsonPayload, Context context, Map<String, List<VisitDetail>> map) {
         this.jsonPayload = jsonPayload;
@@ -56,6 +59,9 @@ public class VmmcFirstVitalActionHelper implements BaseVmmcVisitAction.VmmcVisit
             checkObject.put("first_vital_sign_temperature", StringUtils.isNotBlank(CoreJsonFormUtils.getValue(jsonObject, "first_vital_sign_temperature")));
             checkObject.put("first_vital_sign_respiration_rate", StringUtils.isNotBlank(CoreJsonFormUtils.getValue(jsonObject, "first_vital_sign_respiration_rate")));
             checkObject.put("first_vital_sign_time_taken", StringUtils.isNotBlank(CoreJsonFormUtils.getValue(jsonObject, "first_vital_sign_time_taken")));
+
+            time_taken = CoreJsonFormUtils.getValue(jsonObject, "first_vital_sign_time_taken");
+
 
         } catch (JSONException e) {
             e.printStackTrace();

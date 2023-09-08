@@ -1,6 +1,7 @@
 package org.smartregister.chw.hf.actionhelper.vmmc;
 
 import android.content.Context;
+import android.util.Log;
 
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
@@ -8,6 +9,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.core.utils.CoreJsonFormUtils;
 import org.smartregister.chw.hf.utils.VisitUtils;
+import org.smartregister.chw.ld.dao.LDDao;
 import org.smartregister.chw.vmmc.domain.VisitDetail;
 import org.smartregister.chw.vmmc.model.BaseVmmcVisitAction;
 import org.smartregister.family.util.JsonFormUtils;
@@ -33,6 +35,13 @@ public class VmmcSecondVitalActionHelper implements BaseVmmcVisitAction.VmmcVisi
     public String getPreProcessed() {
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
+            JSONObject global = jsonObject.getJSONObject("global");
+
+            String first_vital_sign_time_taken = VmmcFirstVitalActionHelper.time_taken;
+
+            global.put("first_vital_sign_time_taken", first_vital_sign_time_taken);
+
+
             return jsonObject.toString();
         } catch (JSONException e) {
             e.printStackTrace();

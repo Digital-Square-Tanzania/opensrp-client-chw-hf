@@ -52,6 +52,9 @@
       "value": ""
     }
   },
+  "global": {
+    "first_vital_sign_time_taken": "00:00"
+  },
   "step1": {
     "title": "Post Operation Vital Sign",
     "fields": [
@@ -239,11 +242,61 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "second_vital_sign_respiration_rate",
-        "entity_id": "",
         "type": "edit_text",
         "hint": "Respiration rate (Breath per minute) ",
-        "edit_type": "number",
-        "look_up": "true"
+        "v_numeric": {
+          "value": "true",
+          "err": "Please enter the Respiration rate"
+        },
+        "v_max": {
+          "value": "40",
+          "err": "Respiration rate value must be equal or less than 40"
+        }
+      },
+      {
+        "key": "notify_respiration_rate_bradypnoea",
+        "type": "toaster_notes",
+        "text": "Manage bradypnoea according to standard guidelines",
+        "openmrs_entity_id": "notify_respiration_rate_bradypnoea",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "problem",
+        "relevance": {
+          "step1:second_vital_sign_respiration_rate": {
+            "type": "numeric",
+            "ex": "lessThan(.,\"14.0\")"
+          }
+        }
+      },
+      {
+        "key": "notify_respiration_rate_tachypnoea",
+        "type": "toaster_notes",
+        "text": "Manage tachypnoea according to standard guidelines",
+        "openmrs_entity_id": "notify_respiration_rate_tachypnoea",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "problem",
+        "relevance": {
+          "step1:second_vital_sign_respiration_rate": {
+            "type": "numeric",
+            "ex": "greaterThan(.,\"20\")"
+          }
+        }
+      },
+      {
+        "key": "first_vital_sign_time_taken",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "first_vital_sign_time_taken",
+        "type": "time_picker",
+        "hint": "Time taken",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_vital_sign_calculation.yml"
+            }
+          }
+        }
       },
       {
         "key": "second_vital_sign_time_taken",
@@ -252,10 +305,16 @@
         "openmrs_entity_id": "second_vital_sign_time_taken",
         "type": "time_picker",
         "hint": "Time taken",
-        "expandable": false,
         "duration": {
           "label": "Time taken"
-        }
+        },
+        "constraints": [
+          {
+            "type": "time",
+            "ex": "greaterThan(., step1:first_vital_sign_time_taken)",
+            "err": "time cannot be less than the First vital time"
+          }
+        ]
       },
       {
         "key": "second_vital_completion_status",

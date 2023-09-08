@@ -20,6 +20,20 @@ condition: "global_method_used.contains('device')"
 actions:
   - "isRelevant = true "
 ---
+name: step1_provider_middle_name
+description:  provider middle relevance
+priority: 1
+condition: "!step1_provider_first_name.equals('')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_provider_last_name
+description:  provider last relevance
+priority: 1
+condition: "!step1_provider_middle_name.equals('')"
+actions:
+  - "isRelevant = true"
+---
 name: step1_type_of_adverse_event_others
 description: if type_of_adverse_event_others
 priority: 1
@@ -93,104 +107,104 @@ actions:
 name: step1_ae_classified_as_mild_infection
 description: if ae_classified_as_mild_infection
 priority: 1
-condition: "step1_desc_of_post_op_adverse_event_infection_with_device.equalsIgnoreCase('erythema') || step1_desc_of_post_op_adverse_event_infection_without_device.equalsIgnoreCase('erythema')"
+condition: "step1_desc_of_post_op_adverse_event_infection.equalsIgnoreCase('erythema') || step1_desc_of_post_op_adverse_event_infection.equalsIgnoreCase('erythema')"
 actions:
   - "isRelevant = true "
 ---
 name: step1_ae_classified_as_moderate_infection
 description: if ae_classified_as_moderate_infection
 priority: 1
-condition: "step1_desc_of_post_op_adverse_event_infection_with_device.equalsIgnoreCase('purulent') || step1_desc_of_post_op_adverse_event_infection_without_device.equalsIgnoreCase('purulent')"
+condition: "step1_desc_of_post_op_adverse_event_infection.equalsIgnoreCase('purulent') || step1_desc_of_post_op_adverse_event_infection.equalsIgnoreCase('purulent')"
 actions:
   - "isRelevant = true "
 ---
 name: step1_ae_classified_as_severe_infection
 description: if ae_classified_as_severe_infection
 priority: 1
-condition: "step1_desc_of_post_op_adverse_event_infection_with_device.equalsIgnoreCase('cellutilis') || step1_desc_of_post_op_adverse_event_infection_without_device.equalsIgnoreCase('cellutilis')"
+condition: "step1_desc_of_post_op_adverse_event_infection.equalsIgnoreCase('cellutilis') || step1_desc_of_post_op_adverse_event_infection.equalsIgnoreCase('cellutilis')"
 actions:
   - "isRelevant = true "
 ---
 name: step1_ae_classified_as_mild_pain
 description: if ae_classified_as_mild_pain
 priority: 1
-condition: "step1_desc_of_post_op_adverse_event_persistent_pain_with_device.equalsIgnoreCase('3_or_4_on_pain_scale') || step1_desc_of_post_op_adverse_event_persistent_pain_without_device.equalsIgnoreCase('3_or_4_on_pain_scale')"
+condition: "step1_desc_of_post_op_adverse_event_persistent_pain.equalsIgnoreCase('3_or_4_on_pain_scale') || step1_desc_of_post_op_adverse_event_persistent_pain.equalsIgnoreCase('3_or_4_on_pain_scale')"
 actions:
   - "isRelevant = true "
 ---
 name: step1_ae_classified_as_moderate_pain
 description: if ae_classified_as_moderate_pain
 priority: 1
-condition: "step1_desc_of_post_op_adverse_event_persistent_pain_with_device.equalsIgnoreCase('5_or_6_on_pain_scale') || step1_desc_of_post_op_adverse_event_persistent_pain_without_device.equalsIgnoreCase('5_or_6_on_pain_scale')"
+condition: "step1_desc_of_post_op_adverse_event_persistent_pain.equalsIgnoreCase('5_or_6_on_pain_scale') || step1_desc_of_post_op_adverse_event_persistent_pain.equalsIgnoreCase('5_or_6_on_pain_scale')"
 actions:
   - "isRelevant = true "
 ---
 name: step1_ae_classified_as_severe_pain
 description: if ae_classified_as_severe_pain
 priority: 1
-condition: "step1_desc_of_post_op_adverse_event_persistent_pain_with_device.equalsIgnoreCase('7_on_pain_scale') || step1_desc_of_post_op_adverse_event_persistent_pain_without_device.equalsIgnoreCase('7_on_pain_scale')"
+condition: "step1_desc_of_post_op_adverse_event_persistent_pain.equalsIgnoreCase('7_on_pain_scale') || step1_desc_of_post_op_adverse_event_persistent_pain.equalsIgnoreCase('7_on_pain_scale')"
 actions:
   - "isRelevant = true "
 ---
 name: step1_ae_classified_as_mild_bleeding
 description: if ae_classified_as_mild_bleeding
 priority: 1
-condition: "step1_desc_of_post_op_adverse_event_bleeding_with_device.equalsIgnoreCase('more_bleeding') || step1_desc_of_post_op_adverse_event_bleeding_without_device.equalsIgnoreCase('more_bleeding')"
+condition: "step1_desc_of_post_op_adverse_event_bleeding.equalsIgnoreCase('more_bleeding') || step1_desc_of_post_op_adverse_event_bleeding.equalsIgnoreCase('more_bleeding')"
 actions:
   - "isRelevant = true "
 ---
 name: step1_ae_classified_as_moderate_bleeding
 description: if ae_classified_as_moderate_bleeding
 priority: 1
-condition: "step1_desc_of_post_op_adverse_event_bleeding_with_device.equalsIgnoreCase('pressure_dressing') || step1_desc_of_post_op_adverse_event_bleeding_without_device.equalsIgnoreCase('pressure_dressing')"
+condition: "step1_desc_of_post_op_adverse_event_bleeding.equalsIgnoreCase('pressure_dressing') || step1_desc_of_post_op_adverse_event_bleeding.equalsIgnoreCase('pressure_dressing')"
 actions:
   - "isRelevant = true "
 ---
 name: step1_ae_classified_as_severe_bleeding
 description: if ae_classified_as_severe_bleeding
 priority: 1
-condition: "step1_desc_of_post_op_adverse_event_bleeding_with_device.equalsIgnoreCase('blood_transfusion') || step1_desc_of_post_op_adverse_event_bleeding_without_device.equalsIgnoreCase('blood_transfusion')"
+condition: "step1_desc_of_post_op_adverse_event_bleeding.equalsIgnoreCase('blood_transfusion') || step1_desc_of_post_op_adverse_event_bleeding.equalsIgnoreCase('blood_transfusion')"
 actions:
   - "isRelevant = true "
 ---
 name: step1_ae_classified_as_mild_swelling
 description: if ae_classified_as_mild_swelling
 priority: 1
-condition: "step1_desc_of_post_op_adverse_event_swelling_with_device.equalsIgnoreCase('bruising') || step1_desc_of_post_op_adverse_event_swelling_without_device.equalsIgnoreCase('bruising')"
+condition: "step1_desc_of_post_op_adverse_event_swelling.equalsIgnoreCase('bruising') || step1_desc_of_post_op_adverse_event_swelling.equalsIgnoreCase('bruising')"
 actions:
   - "isRelevant = true "
 ---
 name: step1_ae_classified_as_moderate_swelling
 description: if ae_classified_as_moderate_swelling
 priority: 1
-condition: "step1_desc_of_post_op_adverse_event_swelling_with_device.equalsIgnoreCase('pressure_dressing') || step1_desc_of_post_op_adverse_event_swelling_without_device.equalsIgnoreCase('pressure_dressing')"
+condition: "step1_desc_of_post_op_adverse_event_swelling.equalsIgnoreCase('pressure_dressing') || step1_desc_of_post_op_adverse_event_swelling.equalsIgnoreCase('pressure_dressing')"
 actions:
   - "isRelevant = true "
 ---
 name: step1_ae_classified_as_severe_swelling
 description: if ae_classified_as_severe_swelling
 priority: 1
-condition: "step1_desc_of_post_op_adverse_event_swelling_with_device.equalsIgnoreCase('penis_severed') || step1_desc_of_post_op_adverse_event_swelling_without_device.equalsIgnoreCase('penis_severed')"
+condition: "step1_desc_of_post_op_adverse_event_swelling.equalsIgnoreCase('penis_severed') || step1_desc_of_post_op_adverse_event_swelling.equalsIgnoreCase('penis_severed')"
 actions:
   - "isRelevant = true "
 ---
 name: step1_ae_classified_as_mild_pass_urine
 description: if ae_classified_as_mild_pass_urine
 priority: 1
-condition: "step1_desc_of_post_op_adverse_pass_urine_with_device.equalsIgnoreCase('transient_complaint') || step1_desc_of_post_op_adverse_pass_urine_without_device.equalsIgnoreCase('transient_complaint')"
+condition: "step1_desc_of_post_op_adverse_pass_urine.equalsIgnoreCase('transient_complaint') || step1_desc_of_post_op_adverse_pass_urine.equalsIgnoreCase('transient_complaint')"
 actions:
   - "isRelevant = true "
 ---
 name: step1_ae_classified_as_moderate_pass_urine
 description: if ae_classified_as_moderate_pass_urine
 priority: 1
-condition: "step1_desc_of_post_op_adverse_pass_urine_with_device.equalsIgnoreCase('return_cinic') || step1_desc_of_post_op_adverse_pass_urine_without_device.equalsIgnoreCase('return_cinic')"
+condition: "step1_desc_of_post_op_adverse_pass_urine.equalsIgnoreCase('return_cinic') || step1_desc_of_post_op_adverse_pass_urine.equalsIgnoreCase('return_cinic')"
 actions:
   - "isRelevant = true "
 ---
 name: step1_ae_classified_as_severe_pass_urine
 description: if ae_classified_as_severe_pass_urine
 priority: 1
-condition: "step1_desc_of_post_op_adverse_pass_urine_with_device.equalsIgnoreCase('requires_referral') || step1_desc_of_post_op_adverse_pass_urine_without_device.equalsIgnoreCase('requires_referral')"
+condition: "step1_desc_of_post_op_adverse_pass_urine.equalsIgnoreCase('requires_referral') || step1_desc_of_post_op_adverse_pass_urine.equalsIgnoreCase('requires_referral')"
 actions:
   - "isRelevant = true "

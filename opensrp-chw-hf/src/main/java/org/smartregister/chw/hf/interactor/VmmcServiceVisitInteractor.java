@@ -61,7 +61,7 @@ public class VmmcServiceVisitInteractor extends BaseVmmcVisitInteractor {
 
         VmmcMedicalHistory actionHelper = new VmmcMedicalHistory(memberObject.getBaseEntityId());
         BaseVmmcVisitAction action = getBuilder(context.getString(R.string.vmmc_medical_history))
-                .withOptional(false)
+                .withOptional(true)
                 .withDetails(details)
                 .withJsonPayload(vmmcMedicalHistory.toString())
                 .withHelper(actionHelper)
@@ -76,7 +76,7 @@ public class VmmcServiceVisitInteractor extends BaseVmmcVisitInteractor {
 
         VmmcPhysicalExamActionHelper actionHelper = new VmmcPhysicalExamActionHelper(memberObject.getBaseEntityId());
         BaseVmmcVisitAction action = getBuilder(context.getString(R.string.vmmc_physical_examination))
-                .withOptional(false)
+                .withOptional(true)
                 .withDetails(details)
                 .withJsonPayload(vmmcPhysicalExam.toString())
                 .withHelper(actionHelper)
@@ -90,7 +90,7 @@ public class VmmcServiceVisitInteractor extends BaseVmmcVisitInteractor {
 
         VmmcHtsActionHelper actionHelper = new VmmcHtsActionHelper();
         BaseVmmcVisitAction action = getBuilder(context.getString(R.string.vmmc_hts))
-                .withOptional(false)
+                .withOptional(true)
                 .withDetails(details)
                 .withJsonPayload(vmmcHTS.toString())
                 .withHelper(actionHelper)

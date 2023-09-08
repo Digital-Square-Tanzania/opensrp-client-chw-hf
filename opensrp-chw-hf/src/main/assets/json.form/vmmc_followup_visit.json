@@ -69,6 +69,16 @@
         }
       },
       {
+        "key": "post_op_dates",
+        "type": "label",
+        "text": "Day(s) Post-OP: 1",
+        "hint_on_text": false,
+        "text_color": "#A9A9A9",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "post_op_dates"
+      },
+      {
         "key": "follow_up_visit_type",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -134,14 +144,13 @@
           "err": "Please select at least one"
         }
       },
-
       {
         "key": "time_adverse_event_occured",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "time_adverse_event_occured",
         "type": "time_picker",
-        "hint": "Time The adverse event occured ",
+        "hint": "Time the adverse event occured ",
         "expanded": false,
         "v_required": {
           "value": "true",
@@ -154,14 +163,13 @@
           }
         }
       },
-
       {
         "key": "time_adverse_event_was_attended",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "time_adverse_event_was_attended",
         "type": "time_picker",
-        "hint": "Time The adverse event was attended ",
+        "hint": "Time the adverse event was attended ",
         "expanded": false,
         "v_required": {
           "value": "true",
@@ -180,12 +188,12 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "type_of_adverse_event_with_device",
         "type": "check_box",
+        "combine_checkbox_option_values": "true",
         "label": "Type of adverse event",
         "options": [
           {
             "key": "bleeding_or_blood_soiling_of_dressing",
             "text": "Bleeding or blood soiling of dressing",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "bleeding_or_blood_soiling_of_dressing",
             "openmrs_entity_parent": ""
@@ -193,7 +201,6 @@
           {
             "key": "swelling_of_penis_or_scrotum",
             "text": "Swelling of the penis or scrotum",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "swelling_of_penis_or_scrotum",
             "openmrs_entity_parent": ""
@@ -201,7 +208,6 @@
           {
             "key": "persistent_pain",
             "text": "Persistent pain",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "persistent_pain",
             "openmrs_entity_parent": ""
@@ -209,7 +215,6 @@
           {
             "key": "infection",
             "text": "Infection",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "infection",
             "openmrs_entity_parent": ""
@@ -217,7 +222,6 @@
           {
             "key": "failure_pass_urine",
             "text": "Failure to pass urine",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "failure_pass_urine",
             "openmrs_entity_parent": ""
@@ -225,7 +229,6 @@
           {
             "key": "device_displacement",
             "text": "Device displacement",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "device_displacement",
             "openmrs_entity_parent": ""
@@ -233,7 +236,6 @@
           {
             "key": "device_detachment",
             "text": "Device detachment",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "device_detachment",
             "openmrs_entity_parent": ""
@@ -241,7 +243,6 @@
           {
             "key": "excessive_skin_removed",
             "text": "Excessive skin removed",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "excessive_skin_removed",
             "openmrs_entity_parent": ""
@@ -249,7 +250,6 @@
           {
             "key": "anaesthetic_related_event",
             "text": "Anaesthetic-related event",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "anaesthetic_related_event",
             "openmrs_entity_parent": ""
@@ -257,7 +257,6 @@
           {
             "key": "delayed_wound_healing",
             "text": "Delayed wound healing",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "delayed_wound_healing",
             "openmrs_entity_parent": ""
@@ -265,7 +264,6 @@
           {
             "key": "appearance",
             "text": "Appearance",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "appearance",
             "openmrs_entity_parent": ""
@@ -273,7 +271,6 @@
           {
             "key": "others",
             "text": "Others",
-            "value": false,
             "ignore": true,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "others",
@@ -298,12 +295,12 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "type_of_adverse_event_without_device",
         "type": "check_box",
+        "combine_checkbox_option_values": "true",
         "label": "Type of adverse event",
         "options": [
           {
             "key": "bleeding_or_blood_soiling_of_dressing",
             "text": "Bleeding or blood soiling of dressing",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "bleeding_or_blood_soiling_of_dressing",
             "openmrs_entity_parent": ""
@@ -311,7 +308,6 @@
           {
             "key": "swelling_of_penis_or_scrotum",
             "text": "Swelling of the penis or scrotum",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "swelling_of_penis_or_scrotum",
             "openmrs_entity_parent": ""
@@ -319,7 +315,6 @@
           {
             "key": "persistent_pain",
             "text": "Persistent pain",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "persistent_pain",
             "openmrs_entity_parent": ""
@@ -327,7 +322,6 @@
           {
             "key": "infection",
             "text": "Infection",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "infection",
             "openmrs_entity_parent": ""
@@ -335,7 +329,6 @@
           {
             "key": "failure_pass_urine",
             "text": "Failure to pass urine",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "failure_pass_urine",
             "openmrs_entity_parent": ""
@@ -343,7 +336,6 @@
           {
             "key": "excessive_skin_removed",
             "text": "Excessive skin removed",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "excessive_skin_removed",
             "openmrs_entity_parent": ""
@@ -351,7 +343,6 @@
           {
             "key": "anaesthetic_related_event",
             "text": "Anaesthetic-related event",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "anaesthetic_related_event",
             "openmrs_entity_parent": ""
@@ -359,7 +350,6 @@
           {
             "key": "delayed_wound_healing",
             "text": "Delayed wound healing",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "delayed_wound_healing",
             "openmrs_entity_parent": ""
@@ -367,7 +357,6 @@
           {
             "key": "appearance",
             "text": "Appearance",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "appearance",
             "openmrs_entity_parent": ""
@@ -375,7 +364,6 @@
           {
             "key": "others",
             "text": "Others",
-            "value": false,
             "ignore": true,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "others",
@@ -1411,7 +1399,7 @@
         "relevance": {
           "step1:desc_of_post_op_adverse_appearance": {
             "type": "string",
-            "ex": "equalTo(., \"requires_referral_to_another_facility\")"
+            "ex": "equalTo(., \"requires_special_return_to_the_clinic\")"
           }
         }
       },
@@ -1501,21 +1489,76 @@
         "v_required": {
           "value": "true",
           "err": "Please select at least one"
+        },
+        "relevance": {
+          "step1:follow_up_visit_type": {
+            "type": "string",
+            "ex": "equalTo(., \"routine\")"
+          }
         }
       },
-
+      {
+        "key": "reason_condom_not_provided",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "reason_condom_not_provided",
+        "type": "spinner",
+        "hint": "Reason as to why Condom was not given",
+        "values": [
+          "Out of stock",
+          "Other (Specify)"
+        ],
+        "keys": [
+          "out_of_stock",
+          "other"
+        ],
+        "openmrs_choice_ids": {
+          "out_of_stock": "out_of_stock",
+          "other": "other"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please select a reason"
+        },
+        "relevance": {
+          "step1:was_condom_provided": {
+            "type": "string",
+            "ex": "equalTo(., \"no\")"
+          }
+        }
+      },
+      {
+        "key": "other_reason_for_not_providing_condom",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "other_reason_for_not_providing_condom",
+        "type": "edit_text",
+        "hint": "Specify other reasons for not providing Condom",
+        "edit_type": "name",
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the reason"
+        },
+        "relevance": {
+          "step1:reason_condom_not_provided": {
+            "type": "string",
+            "ex": "equalTo(., \"other\")"
+          }
+        }
+      },
       {
         "key": "condoms_issued",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "condoms_issued",
         "type": "check_box",
+        "combine_checkbox_option_values": "true",
         "label": "Select the type of the condoms issued",
         "options": [
           {
             "key": "male_condoms",
             "text": "Male condoms",
-            "value": false,
+ 
             "openmrs_entity": "concept",
             "openmrs_entity_id": "male_condoms",
             "openmrs_entity_parent": ""
@@ -1523,7 +1566,7 @@
           {
             "key": "female_condoms",
             "text": "Female condoms",
-            "value": false,
+ 
             "openmrs_entity": "concept",
             "openmrs_entity_id": "female_condoms",
             "openmrs_entity_parent": ""
@@ -1589,7 +1632,6 @@
           }
         }
       },
-
       {
         "key": "was_bandage_given",
         "openmrs_entity_parent": "",
@@ -1626,7 +1668,55 @@
           }
         }
       },
-
+      {
+        "key": "reason_bandage_not_provided",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "reason_bandage_not_provided",
+        "type": "spinner",
+        "hint": "Reason as to why bandage was not given",
+        "values": [
+          "Out of stock",
+          "Other (Specify)"
+        ],
+        "keys": [
+          "out_of_stock",
+          "other"
+        ],
+        "openmrs_choice_ids": {
+          "out_of_stock": "out_of_stock",
+          "other": "other"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please select a reason"
+        },
+        "relevance": {
+          "step1:was_bandage_given": {
+            "type": "string",
+            "ex": "equalTo(., \"no\")"
+          }
+        }
+      },
+      {
+        "key": "other_reason_for_not_providing_bandage",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "other_reason_for_not_providing_bandage",
+        "type": "edit_text",
+        "hint": "Specify other reasons for not providing bandage",
+        "edit_type": "name",
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the reason"
+        },
+        "relevance": {
+          "step1:reason_bandage_not_provided": {
+            "type": "string",
+            "ex": "equalTo(., \"other\")"
+          }
+        }
+      },
       {
         "key": "number_of_bandage_given",
         "openmrs_entity_parent": "",
@@ -1646,20 +1736,56 @@
           }
         }
       },
-
       {
-        "key": "provider_name",
+        "key": "provider_first_name",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "provider_name",
+        "openmrs_entity_id": "provider_first_name",
         "type": "edit_text",
-        "hint": "Provider's name",
+        "hint": "Provider's first name",
         "v_required": {
           "value": "true",
           "err": "Please fill the field"
         }
       },
-
+      {
+        "key": "provider_middle_name",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "provider_middle_name",
+        "type": "edit_text",
+        "hint": "Provider's middle name",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_followup_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "provider_last_name",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "provider_last_name",
+        "type": "edit_text",
+        "hint": "Provider's last name",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_followup_relevance.yml"
+            }
+          }
+        }
+      },
       {
         "key": "provider_cadre",
         "openmrs_entity_parent": "",
@@ -1671,7 +1797,7 @@
           {
             "key": "medical_officer",
             "text": "Medical officer",
-            "value": false,
+ 
             "openmrs_entity": "concept",
             "openmrs_entity_id": "medical_officer",
             "openmrs_entity_parent": ""
@@ -1679,7 +1805,7 @@
           {
             "key": "assistant_medical_officer",
             "text": "Assistant medical officer",
-            "value": false,
+ 
             "openmrs_entity": "concept",
             "openmrs_entity_id": "assistant_medical_officer",
             "openmrs_entity_parent": ""
@@ -1687,7 +1813,7 @@
           {
             "key": "clinical_officer_or_assistant_clinical",
             "text": "Clinical officer/Assistant clinical officer",
-            "value": false,
+ 
             "openmrs_entity": "concept",
             "openmrs_entity_id": "clinical_officer_or_assistant_clinical",
             "openmrs_entity_parent": ""
@@ -1695,7 +1821,7 @@
           {
             "key": "enrolled_nurse",
             "text": "Enrolled nurse",
-            "value": false,
+ 
             "openmrs_entity": "concept",
             "openmrs_entity_id": "enrolled_nurse",
             "openmrs_entity_parent": ""
@@ -1703,7 +1829,7 @@
           {
             "key": "assistant_nursing_officer",
             "text": "Assistant nursing officer",
-            "value": false,
+ 
             "openmrs_entity": "concept",
             "openmrs_entity_id": "assistant_nursing_officer",
             "openmrs_entity_parent": ""
@@ -1711,7 +1837,7 @@
           {
             "key": "nursing_officer",
             "text": "Nursing officer",
-            "value": false,
+ 
             "openmrs_entity": "concept",
             "openmrs_entity_id": "nursing_officer",
             "openmrs_entity_parent": ""

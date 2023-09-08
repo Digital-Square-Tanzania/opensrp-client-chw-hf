@@ -174,7 +174,6 @@ public class VmmcMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
             }
         }
 
-
         protected void processVisit(List<LinkedHashMap<String, String>> community_visits, Context context, List<Visit> visits) {
             if (community_visits != null && community_visits.size() > 0) {
                 linearLayoutHealthFacilityVisit.setVisibility(View.VISIBLE);
@@ -187,8 +186,9 @@ public class VmmcMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
                     LinearLayout visitDetailsLayout = view.findViewById(R.id.visit_details_layout);
 
                     // Updating visibility of EDIT button if the visit is the last visit
-                    if (x == visits.size() - 1)
-                        tvEdit.setVisibility(View.VISIBLE);
+                    if (x == visits.size() - 1){
+                         tvEdit.setVisibility(View.VISIBLE);
+                    }
                     else
                         tvEdit.setVisibility(View.GONE);
 

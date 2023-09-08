@@ -51,62 +51,56 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "did_client_experience_nae_with_device",
         "type": "check_box",
-        "label": "Did the client experience a Notifiable Adverse Event",
+        "label": "Select notifiable adverse event the client experienced",
+        "combine_checkbox_option_values": "true",
         "options": [
           {
             "key": "tetanus_including_non_fatal_cases",
             "text": "Tetanus including non-fatal cases",
-            "value": false,
-            "openmrs_entity": "concept",
+             "openmrs_entity": "concept",
             "openmrs_entity_id": "tetanus_including_non_fatal_cases",
             "openmrs_entity_parent": ""
           },
           {
             "key": "ae_results_in_disbility_permanent",
             "text": "AE that results in disability that is likely permanent ( e.g glans numbness)",
-            "value": false,
-            "openmrs_entity": "concept",
+             "openmrs_entity": "concept",
             "openmrs_entity_id": "ae_results_in_disbility_permanent",
             "openmrs_entity_parent": ""
           },
           {
             "key": "ae_results_in_anatomic_deformity_permanent",
             "text": "AE that results in anatomic deformity that is likely permanent ( e.g keloid,scaring,penile torsion etc)",
-            "value": false,
-            "openmrs_entity": "concept",
+             "openmrs_entity": "concept",
             "openmrs_entity_id": "ae_results_in_anatomic_deformity_permanent",
             "openmrs_entity_parent": ""
           },
           {
             "key": "hospital_admission",
             "text": "Any hospital admission for >= 3 days",
-            "value": false,
-            "openmrs_entity": "concept",
+             "openmrs_entity": "concept",
             "openmrs_entity_id": "hospital_admission",
             "openmrs_entity_parent": ""
           },
           {
-            "key": "moderate_severe_dev_displacement+ae",
+            "key": "moderate_severe_device_displacement",
             "text": "Moderate or severe device displacement AE",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "moderate_severe_dev_displacement",
+             "openmrs_entity": "concept",
+            "openmrs_entity_id": "moderate_severe_device_displacement",
             "openmrs_entity_parent": ""
           },
           {
             "key": "admission_to_icu_within_30_days_post_mc",
             "text": "Any admission to ICU within 30 days post Male Circumcision",
-            "value": false,
-            "openmrs_entity": "concept",
+             "openmrs_entity": "concept",
             "openmrs_entity_id": "admission_to_icu_within_30_days_post_mc",
             "openmrs_entity_parent": ""
           },
           {
-            "key": "client_deaths_within_30days_post",
+            "key": "client_deaths_within_30days_post_mc",
             "text": "Client deaths within 30days post Male Circumcision",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "client_deaths_within_30days_post",
+             "openmrs_entity": "concept",
+            "openmrs_entity_id": "client_deaths_within_30days_post_mc",
             "openmrs_entity_parent": ""
           }
         ],
@@ -128,53 +122,48 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "did_client_experience_nae",
         "type": "check_box",
-        "label": "Did the client experience a Notifiable Adverse Event",
+        "label": "Select notifiable adverse event the client experienced",
+        "combine_checkbox_option_values": "true",
         "options": [
           {
             "key": "tetanus_including_non_fatal_cases",
             "text": "Tetanus including non-fatal cases",
-            "value": false,
-            "openmrs_entity": "concept",
+             "openmrs_entity": "concept",
             "openmrs_entity_id": "tetanus_including_non_fatal_cases",
             "openmrs_entity_parent": ""
           },
           {
             "key": "ae_results_in_disbility_permanent",
             "text": "AE that results in disability that is likely permanent ( e.g glans numbness)",
-            "value": false,
-            "openmrs_entity": "concept",
+             "openmrs_entity": "concept",
             "openmrs_entity_id": "ae_results_in_disbility_permanent",
             "openmrs_entity_parent": ""
           },
           {
             "key": "ae_results_in_anatomic_deformity_permanent",
             "text": "AE that results in anatomic deformity that is likely permanent ( e.g keloid,scaring,penile torsion etc)",
-            "value": false,
-            "openmrs_entity": "concept",
+             "openmrs_entity": "concept",
             "openmrs_entity_id": "ae_results_in_anatomic_deformity_permanent",
             "openmrs_entity_parent": ""
           },
           {
             "key": "hospital_admission",
             "text": "Any hospital admission for >= 3 days",
-            "value": false,
-            "openmrs_entity": "concept",
+             "openmrs_entity": "concept",
             "openmrs_entity_id": "hospital_admission",
             "openmrs_entity_parent": ""
           },
           {
             "key": "admission_to_icu_within_30_days_post_mc",
             "text": "Any admission to ICU within 30 days post Male Circumcision",
-            "value": false,
-            "openmrs_entity": "concept",
+             "openmrs_entity": "concept",
             "openmrs_entity_id": "admission_to_icu_within_30_days_post_mc",
             "openmrs_entity_parent": ""
           },
           {
             "key": "client_deaths_within_30days_post",
             "text": "Client deaths within 30days post Male Circumcision",
-            "value": false,
-            "openmrs_entity": "concept",
+             "openmrs_entity": "concept",
             "openmrs_entity_id": "client_deaths_within_30days_post",
             "openmrs_entity_parent": ""
           }
@@ -322,6 +311,81 @@
         }
       },
       {
+        "key": "provider_name",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "provider_name",
+        "type": "edit_text",
+        "hint": "Provider's name",
+        "v_required": {
+          "value": "true",
+          "err": "Please fill the field"
+        }
+      },
+
+      {
+        "key": "provider_cadre",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "provider_cadre",
+        "type": "native_radio",
+        "label": "Provider's cadre",
+        "options": [
+          {
+            "key": "medical_officer",
+            "text": "Medical officer",
+
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "medical_officer",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "assistant_medical_officer",
+            "text": "Assistant medical officer",
+
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "assistant_medical_officer",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "clinical_officer_or_assistant_clinical",
+            "text": "Clinical officer/Assistant clinical officer",
+
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "clinical_officer_or_assistant_clinical",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "enrolled_nurse",
+            "text": "Enrolled nurse",
+
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "enrolled_nurse",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "assistant_nursing_officer",
+            "text": "Assistant nursing officer",
+
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "assistant_nursing_officer",
+            "openmrs_entity_parent": ""
+          },
+          {
+            "key": "nursing_officer",
+            "text": "Nursing officer",
+
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "nursing_officer",
+            "openmrs_entity_parent": ""
+          }
+        ],
+        "v_required": {
+          "value": true,
+          "err": "Please select atleast one"
+        }
+      },
+      {
         "key": "treatment_outcome",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -370,7 +434,7 @@
         "openmrs_entity": "person_attribute",
         "openmrs_entity_id": "toaster_notes",
         "type": "toaster_notes",
-        "text": "Refer the client for further managment",
+        "text": "Refer the client for further management",
         "text_color": "#CF0800",
         "toaster_type": "problem",
         "relevance": {

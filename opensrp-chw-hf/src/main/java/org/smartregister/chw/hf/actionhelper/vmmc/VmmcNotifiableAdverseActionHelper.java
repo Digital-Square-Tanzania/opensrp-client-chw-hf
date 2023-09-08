@@ -1,12 +1,12 @@
 package org.smartregister.chw.hf.actionhelper.vmmc;
 
 import android.content.Context;
-import android.util.Log;
 
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.core.utils.CoreJsonFormUtils;
+import org.smartregister.chw.hf.dao.HfVmmcDao;
 import org.smartregister.chw.vmmc.domain.VisitDetail;
 import org.smartregister.chw.vmmc.model.BaseVmmcVisitAction;
 
@@ -35,9 +35,8 @@ public class VmmcNotifiableAdverseActionHelper implements BaseVmmcVisitAction.Vm
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
             JSONObject global = jsonObject.getJSONObject("global");
-            String method_used_notify = VmmcProcedureActionHelper.method_used;
+            String method_used_notify = HfVmmcDao.getMcMethodUsed(baseEntityId);
             global.put("method_used", method_used_notify);
-            Log.d("method_used_vmmc",method_used_notify);
 
             return jsonObject.toString();
         } catch (JSONException e) {
@@ -52,7 +51,7 @@ public class VmmcNotifiableAdverseActionHelper implements BaseVmmcVisitAction.Vm
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
 
-            was_adverse_events_notifiable = CoreJsonFormUtils.getValue(jsonObject, "was_adverse_events_notifiable");
+            was_adverse_events_notifiable = CoreJsonFormUtils.getValue(jsonObject, "did_client_experience_nae");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -70,7 +69,7 @@ public class VmmcNotifiableAdverseActionHelper implements BaseVmmcVisitAction.Vm
 
     @Override
     public String postProcess(String s) {
-        return null;
+        return s;
     }
 
     @Override

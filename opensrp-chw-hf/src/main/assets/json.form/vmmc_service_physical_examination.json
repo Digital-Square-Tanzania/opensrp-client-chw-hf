@@ -54,6 +54,7 @@
         "type": "check_box",
         "label": "Any significant physical abnormality on general examination? (Check all applicable)",
         "text_color": "#000000",
+        "combine_checkbox_option_values": "true",
         "exclusive": [
           "none"
         ],
@@ -61,50 +62,40 @@
           {
             "key": "pallor",
             "text": "Pallor",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "pallor"
           },
           {
             "key": "jaundice",
             "text": "Jaundice",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "jaundice"
           },
           {
             "key": "petechiae_ecchymosis_epistaxis",
             "text": "Petechiae/Ecchymosis/Epistaxis",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "petechiae_ecchymosis_epistaxis"
           },
           {
             "key": "joint_deformity",
             "text": "Joint deformity ",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "joint_deformity"
           },
           {
             "key": "others",
             "text": "Others (specify)",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "others"
           },
           {
             "key": "none",
             "text": "None",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "none"
           }
-        ],
-        "v_required": {
-          "value": true,
-          "err": "Please specify any other symptoms or select none"
-        }
+        ]
       },
       {
         "key": "physical_abnormality_others",
@@ -113,10 +104,6 @@
         "openmrs_entity_id": "physical_abnormality_others",
         "type": "edit_text",
         "hint": "Other(Specify)",
-        "v_required": {
-          "value": "true",
-          "err": "Please specify"
-        },
         "relevance": {
           "step1:physical_abnormality": {
             "ex-checkbox": [
@@ -164,10 +151,6 @@
         "hint": "Client’s Weight (KG)",
         "edit_type": "number",
         "look_up": "true",
-        "v_required": {
-          "value": "true",
-          "err": "Please enter the Client’s Weight (KG)"
-        },
         "v_min": {
           "value": "20",
           "err": "client weight must be equal or greater than 20kg"
@@ -193,10 +176,6 @@
         "openmrs_entity_parent": "",
         "v_numeric": {
           "value": "true",
-          "err": "Please enter the height"
-        },
-        "v_required": {
-          "value": true,
           "err": "Please enter the height"
         },
         "calculation": {
@@ -262,10 +241,6 @@
         "v_max": {
           "value": "200",
           "err": "The pulse rate must be equal or less than 200 (bpm)"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Please enter the Pulse Rate (Beats per minute)"
         }
       },
       {
@@ -316,10 +291,6 @@
         "v_max": {
           "value": "320",
           "err": "Systolic value must be equal or less than 320"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Please enter the Systolic (Blood Pressure)"
         }
       },
       {
@@ -340,10 +311,6 @@
         "v_max": {
           "value": "200",
           "err": "Diastolic value must be equal or less than 200"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Please enter the Diastolic (Blood Pressure)"
         },
         "constraints": [
           {
@@ -403,10 +370,6 @@
         "v_max": {
           "value": "50",
           "err": "Temperature must be equal or less than 50"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Please enter the Temperature"
         }
       },
       {
@@ -444,14 +407,45 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "respiration_rate",
-        "entity_id": "",
         "type": "edit_text",
         "hint": "Respiration rate (Breath per minute) ",
-        "edit_type": "number",
-        "look_up": "true",
-        "v_required": {
+        "v_numeric": {
           "value": "true",
-          "err": "Please enter the Respiration rate (Breath per minute) "
+          "err": "Please enter the Respiration rate"
+        },
+        "v_max": {
+          "value": "40",
+          "err": "Respiration rate value must be equal or less than 40"
+        }
+      },
+      {
+        "key": "notify_respiration_rate_bradypnoea",
+        "type": "toaster_notes",
+        "text": "Manage bradypnoea according to standard guidelines",
+        "openmrs_entity_id": "notify_respiration_rate_bradypnoea",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "problem",
+        "relevance": {
+          "step1:respiration_rate": {
+            "type": "numeric",
+            "ex": "lessThan(.,\"14.0\")"
+          }
+        }
+      },
+      {
+        "key": "notify_respiration_rate_tachypnoea",
+        "type": "toaster_notes",
+        "text": "Manage tachypnoea according to standard guidelines",
+        "openmrs_entity_id": "notify_respiration_rate_tachypnoea",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "problem",
+        "relevance": {
+          "step1:respiration_rate": {
+            "type": "numeric",
+            "ex": "greaterThan(.,\"20\")"
+          }
         }
       },
       {
@@ -462,6 +456,7 @@
         "type": "check_box",
         "label": "Genital examination",
         "text_color": "#000000",
+        "combine_checkbox_option_values": "true",
         "exclusive": [
           "none"
         ],
@@ -469,106 +464,88 @@
           {
             "key": "urethral_discharge_syndrome",
             "text": "Urethral Discharge Syndrome(UDS)",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "urethral_discharge_syndrome"
           },
           {
             "key": "genital_ulcer_disease",
             "text": "Genital Ulcer Disease (GUD)",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "genital_ulcer_disease"
           },
           {
             "key": "smegma_under_foreskin",
             "text": "Smegma under the foreskin",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "smegma_under_foreskin"
           },
           {
             "key": "phimosis",
             "text": "Phimosis",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "phimosis"
           },
           {
             "key": "paraphimosis",
             "text": "Paraphimosis",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "paraphimosis"
           },
           {
             "key": "undescended_testicles",
             "text": "Undescended testicles",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "undescended_testicles"
           },
           {
             "key": "condylomata_lata",
             "text": "Condylomata lata/acuminate",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "condylomata_lata"
           },
           {
             "key": "adhesion_prepuce",
             "text": "Adhesion of prepuce to glans",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "adhesion_prepuce"
           },
           {
             "key": "hydrocele",
             "text": "Hydrocele",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "hydrocele"
           },
           {
             "key": "balanitis",
             "text": "Balanitis/redness/swelling of foreskin/ glans/ shaft",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "balanitis"
           },
           {
             "key": "urethral_opening_abnormality",
             "text": "Urethral opening abnormality",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "urethral_opening_abnormality"
           },
           {
             "key": "chordae",
             "text": "Chordae (banana shaped penis)",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "chordae"
           },
           {
             "key": "others",
             "text": "Others (specify)",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "others"
           },
           {
             "key": "none",
             "text": "None",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "none"
           }
-        ],
-        "v_required": {
-          "value": true,
-          "err": "Please specify any other symptoms or select none"
-        }
+        ]
       },
       {
         "key": "toaster_banana_shaped_penis",
@@ -668,34 +645,7 @@
             "openmrs_entity": "concept",
             "openmrs_entity_id": "device"
           }
-        ],
-        "v_required": {
-          "value": "true",
-          "err": "Please select one"
-        },
-        "relevance": {
-          "step1:genital_examination": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "urethral_discharge_syndrome",
-                  "genital_ulcer_disease",
-                  "phimosis",
-                  "paraphimosis",
-                  "undescended_testicles",
-                  "condylomata_lata",
-                  "adhesion_prepuce",
-                  "hydrocele",
-                  "balanitis",
-                  "urethral_opening_abnormality",
-                  "others",
-                  "none",
-                  "chordae"
-                ]
-              }
-            ]
-          }
-        }
+        ]
       },
       {
         "key": "penile_size",
@@ -708,111 +658,165 @@
         "options": [
           {
             "key": "A4_40mm",
-            "text": "A4-40mm"
+            "text": "A4-40mm",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "A4_40mm"
           },
           {
             "key": "A3_39mm",
-            "text": "A3-39mm"
+            "text": "A3-39mm",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "A3_39mm"
           },
           {
             "key": "A2_38mm",
-            "text": "A2-38mm"
+            "text": "A2-38mm",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "A2_38mm"
           },
           {
             "key": "A1_37mm",
-            "text": "A1-37mm"
+            "text": "A1-37mm",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "A1_37mm"
           },
           {
             "key": "A_36mm",
-            "text": "A-36mm"
+            "text": "A-36mm",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "A_36mm"
           },
           {
             "key": "B_35mm",
-            "text": "B-35mm"
+            "text": "B-35mm",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "B_35mm"
           },
           {
             "key": "C_34mm",
-            "text": "C-34mm"
+            "text": "C-34mm",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "C_34mm"
           },
           {
             "key": "D_33mm",
-            "text": "D-33mm"
+            "text": "D-33mm",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "D_33mm"
           },
           {
             "key": "E_32mm",
-            "text": "E-32mm"
+            "text": "E-32mm",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "E_32mm"
           },
           {
             "key": "F_31mm",
-            "text": "F-31mm"
+            "text": "F-31mm",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "F_31mm"
           },
           {
             "key": "G_30mm",
-            "text": "G-30mm"
+            "text": "G-30mm",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "G_30mm"
           },
           {
             "key": "H_29mm",
-            "text": "H-29mm"
+            "text": "H-29mm",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "H_29mm"
           },
           {
             "key": "I_28mm",
-            "text": "I-28mm"
+            "text": "I-28mm",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "I_28mm"
           },
           {
             "key": "K_26mm",
-            "text": "K-26mm"
+            "text": "K-26mm",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "K_26mm"
           },
           {
             "key": "M_24mm",
-            "text": "M-24mm"
+            "text": "M-24mm",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "M_24mm"
           },
           {
             "key": "O_22mm",
-            "text": "O-22mm"
+            "text": "O-22mm",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "O_22mm"
           },
           {
             "key": "Q_20mm",
-            "text": "Q-20mm"
+            "text": "Q-20mm",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "Q_20mm"
           },
           {
             "key": "S_18mm",
-            "text": "S-18mm"
+            "text": "S-18mm",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "S_18mm"
           },
           {
             "key": "U_16mm",
-            "text": "U-16mm"
+            "text": "U-16mm",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "U_16mm"
           },
           {
             "key": "V_15mm",
-            "text": "V-15mm"
+            "text": "V-15mm",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "V_15mm"
           },
           {
             "key": "W_14mm",
-            "text": "W-14mm"
+            "text": "W-14mm",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "W_14mm"
           },
           {
             "key": "X_13mm",
-            "text": "X-13mm"
+            "text": "X-13mm",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "X_13mm"
           },
           {
             "key": "Y_12mm",
-            "text": "Y-12mm"
+            "text": "Y-12mm",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "Y_12mm"
           },
           {
             "key": "Z_11mm",
-            "text": "Z-11mm"
+            "text": "Z-11mm",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "Z_11mm"
           },
           {
             "key": "Z1_10mm",
-            "text": "Z1-10mm"
+            "text": "Z1-10mm",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "Z1_10mm"
           },
           {
             "key": "Z2_09mm",
-            "text": "Z2-09mm"
+            "text": "Z2-09mm",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "Z2_09mm"
           },
           {
             "key": "no_size",
-            "text": "No size(specify)"
+            "text": "No size(specify)",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "no_size"
           }
         ],
         "v_required": {
@@ -843,6 +847,14 @@
             "ex": "equalTo(., \"no_size\")"
           }
         }
+      },
+      {
+        "key": "physical_exam_completion_status",
+        "type": "hidden",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "physical_exam_completion_status",
+        "openmrs_entity_parent": "",
+        "value": "pending"
       }
     ]
   }

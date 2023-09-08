@@ -67,10 +67,7 @@
             "openmrs_entity": "concept",
             "openmrs_entity_id": "no"
           }
-        ],
-        "v_required": {
-          "value": true
-        }
+        ]
       },
       {
         "key": "has_client_had_any_sti_note",
@@ -96,6 +93,7 @@
         "type": "check_box",
         "label": "Does the client currently have any of the following complaints?",
         "text_color": "#000000",
+        "combine_checkbox_option_values": "true",
         "exclusive": [
           "none"
         ],
@@ -163,11 +161,7 @@
             "openmrs_entity": "concept",
             "openmrs_entity_id": "none"
           }
-        ],
-        "v_required": {
-          "value": true,
-          "err": "Please specify any other symptoms or select none"
-        }
+        ]
       },
       {
         "key": "any_complaints_others",
@@ -226,8 +220,9 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "is_client_diagnosed_with_any",
         "type": "check_box",
-        "label": "Is client diagnosed with any of the following?",
+        "label": "Is client diagnosed with any of the following ?",
         "text_color": "#000000",
+        "combine_checkbox_option_values": "true",
         "exclusive": [
           "none"
         ],
@@ -235,43 +230,34 @@
           {
             "key": "hypertension",
             "text": "Hypertension",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "hypertension"
           },
           {
             "key": "diabetes",
             "text": "Diabetes",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "diabetes"
           },
           {
             "key": "hiv",
             "text": "HIV",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "hiv"
           },
           {
             "key": "others",
             "text": "Others (specify)",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "others"
           },
           {
             "key": "none",
             "text": "None",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "none"
           }
-        ],
-        "v_required": {
-          "value": true,
-          "err": "Please specify any other symptoms or select none"
-        }
+        ]
       },
       {
         "key": "blood_for_glucose_test",
@@ -331,10 +317,6 @@
             "openmrs_entity_id": "fast_blood_glucose_test"
           }
         ],
-        "v_required": {
-          "value": true,
-          "err": "Please answer this question"
-        },
         "relevance": {
           "step1:blood_for_glucose_test": {
             "type": "string",
@@ -361,10 +343,38 @@
           "value": "45",
           "err": "Blood for glucose must be equal or less than 45 (mmol/L)"
         },
-        "v_required": {
-          "value": "true",
-          "err": "Please enter the blood for glucose (mmol/L)"
-        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_medical_history.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "prompt_for_gestational_diabetes_mellitus",
+        "type": "toaster_notes",
+        "text": "Manage the diabetes mellitus according to standard guidelines",
+        "openmrs_entity_id": "prompt_for_gestational_diabetes_mellitus",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_medical_history.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "prompt_for_hypoglycaemia",
+        "type": "toaster_notes",
+        "text": "Manage the hypoglycaemia according to standard guidelines",
+        "openmrs_entity_id": "prompt_for_hypoglycaemia",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "problem",
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -380,10 +390,6 @@
         "openmrs_entity_id": "is_client_diagnosed_with_any_others",
         "type": "edit_text",
         "hint": "Other(Specify)",
-        "v_required": {
-          "value": "true",
-          "err": "Please specify"
-        },
         "relevance": {
           "step1:is_client_diagnosed_with_any": {
             "ex-checkbox": [
@@ -414,10 +420,6 @@
         "v_max_length": {
           "value": "17",
           "is_fixed_size": "true",
-          "err": "Please enter a valid ctc Number"
-        },
-        "v_required": {
-          "value": true,
           "err": "Please enter a valid ctc Number"
         },
         "relevance": {
@@ -473,10 +475,6 @@
             "openmrs_entity_id": "no"
           }
         ],
-        "value": "",
-        "v_required": {
-          "value": true
-        },
         "relevance": {
           "step1:is_client_diagnosed_with_any": {
             "ex-checkbox": [
@@ -511,10 +509,6 @@
             "openmrs_entity_id": "no"
           }
         ],
-        "value": "",
-        "v_required": {
-          "value": true
-        },
         "relevance": {
           "step1:is_client_diagnosed_with_any": {
             "ex-checkbox": [
@@ -548,11 +542,7 @@
             "openmrs_entity": "concept",
             "openmrs_entity_id": "no"
           }
-        ],
-        "value": "",
-        "v_required": {
-          "value": true
-        }
+        ]
       },
       {
         "key": "complications_previous_surgical",
@@ -576,10 +566,6 @@
             "openmrs_entity_id": "no"
           }
         ],
-        "value": "",
-        "v_required": {
-          "value": true
-        },
         "relevance": {
           "step1:surgical_procedure": {
             "type": "string",
@@ -595,33 +581,27 @@
         "type": "check_box",
         "label": "Select the type of complication",
         "text_color": "#000000",
+        "combine_checkbox_option_values": "true",
         "options": [
           {
             "key": "infection",
             "text": "Infection",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "infection"
           },
           {
             "key": "excessive_bleeding",
             "text": "Excessive bleeding",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "excessive_bleeding"
           },
           {
             "key": "others",
             "text": "Others (specify)",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "others"
           }
         ],
-        "v_required": {
-          "value": true,
-          "err": "Please specify any other symptoms or select none"
-        },
         "relevance": {
           "step1:complications_previous_surgical": {
             "type": "string",
@@ -636,10 +616,6 @@
         "openmrs_entity_id": "type_complication_others",
         "type": "edit_text",
         "hint": "Other(Specify)",
-        "v_required": {
-          "value": "true",
-          "err": "Please specify"
-        },
         "relevance": {
           "step1:type_complication": {
             "ex-checkbox": [
@@ -660,6 +636,7 @@
         "type": "check_box",
         "label": "Any symptoms of hematological disease? (Check all applicable)",
         "text_color": "#000000",
+        "combine_checkbox_option_values": "true",
         "exclusive": [
           "none"
         ],
@@ -667,71 +644,58 @@
           {
             "key": "recurrent_blood_transfusion",
             "text": "Recurrent blood transfusion",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "recurrent_blood_transfusion"
           },
           {
             "key": "treated_anemia",
             "text": "Being treated for anemia",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "treated_anemia"
           },
           {
             "key": "prolonged_bleeding",
             "text": "Prolonged bleeding (following tooth extraction, any surgery or minor trauma)",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "prolonged_bleeding"
           },
           {
             "key": "yellowish_discoloration",
             "text": "Yellowish discoloration of mucus membrane",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "yellowish_discoloration"
           },
           {
             "key": "spontaneous_bleeding",
             "text": "Spontaneous bleeding (without trauma e.g nasal bleeding)",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "spontaneous_bleeding"
           },
           {
             "key": "abnormal_bleeding_sites",
             "text": "Abnormal bleeding sites (Mucous membrane or under the skin)",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "abnormal_bleeding_sites"
           },
           {
             "key": "severe_swelling",
             "text": "Severe swelling following minor trauma",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "severe_swelling"
           },
           {
             "key": "bleeding_tendencies_history",
             "text": "Any family history of bleeding tendencies",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "bleeding_tendencies_history"
           },
           {
             "key": "none",
             "text": "None",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "none"
           }
-        ],
-        "v_required": {
-          "value": true,
-          "err": "Please specify any other symptoms or select none"
-        }
+        ]
       },
       {
         "key": "any_hematological_disease_symptoms_notes",
@@ -769,6 +733,7 @@
         "type": "check_box",
         "label": "Any known allergies to any of these medications?",
         "text_color": "#000000",
+        "combine_checkbox_option_values": "true",
         "exclusive": [
           "none"
         ],
@@ -776,36 +741,34 @@
           {
             "key": "local_anesthetics",
             "text": "Local Anesthetics",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "local_anesthetics"
           },
           {
             "key": "antiseptics",
             "text": "Antiseptics",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "antiseptics"
           },
           {
+            "key": "silicon_or_lexan",
+            "text": "Silicon/Lexan",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "silicon_or_lexan"
+          },
+          {
             "key": "any_other_medications",
             "text": "Any other medications (specify)",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "any_other_medications"
           },
           {
             "key": "none",
             "text": "None",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "none"
           }
-        ],
-        "v_required": {
-          "value": true,
-          "err": "Please specify any other symptoms or select none"
-        }
+        ]
       },
       {
         "key": "known_allergies_note",
@@ -831,16 +794,33 @@
         }
       },
       {
+        "key": "known_allergies_silicon_or_lexan",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "known_allergies_silicon_or_lexan",
+        "type": "toaster_notes",
+        "text": "Use conventional method as a method for circumcision",
+        "text_color": "#CF0800",
+        "toaster_type": "info",
+        "relevance": {
+          "step1:known_allergies": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "silicon_or_lexan"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
         "key": "known_allergies_others",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "known_allergies_others",
         "type": "edit_text",
         "hint": "Other medication(Specify)",
-        "v_required": {
-          "value": "true",
-          "err": "Please specify"
-        },
         "relevance": {
           "step1:known_allergies": {
             "ex-checkbox": [
@@ -880,11 +860,7 @@
             "openmrs_entity": "concept",
             "openmrs_entity_id": "dont_know"
           }
-        ],
-        "value": "",
-        "v_required": {
-          "value": true
-        }
+        ]
       },
       {
         "key": "tetanus_booster_date",
@@ -901,6 +877,14 @@
             "ex": "equalTo(., \"yes\")"
           }
         }
+      },
+      {
+        "key": "medical_history_completion_status",
+        "type": "hidden",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "medical_history_completion_status",
+        "openmrs_entity_parent": "",
+        "value": "pending"
       }
     ]
   }

@@ -30,7 +30,6 @@ public class VmmcRegisterActivity extends CoreVmmcRegisterActivity {
         Intent intent = new Intent(activity, VmmcRegisterActivity.class);
         intent.putExtra(org.smartregister.chw.anc.util.Constants.ACTIVITY_PAYLOAD.BASE_ENTITY_ID, baseEntityID);
         intent.putExtra(org.smartregister.chw.vmmc.util.Constants.ACTIVITY_PAYLOAD.VMMC_FORM_NAME, getVmmcEnrollment());
-        intent.putExtra(org.smartregister.chw.vmmc.util.Constants.ACTIVITY_PAYLOAD.ACTION, org.smartregister.chw.vmmc.util.Constants.ACTIVITY_PAYLOAD_TYPE.REGISTRATION);
 
         activity.startActivity(intent);
     }

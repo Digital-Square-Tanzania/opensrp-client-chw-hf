@@ -30,4 +30,30 @@ public class HfVmmcDao extends VmmcDao {
         }
         return "";
     }
+
+    public static String getMcDoneDate(String baseEntityId) {
+        String sql = "SELECT mc_procedure_date FROM ec_vmmc_procedure p " +
+                " WHERE p.entity_id = '" + baseEntityId + "' ORDER BY last_interacted_with DESC LIMIT 1";
+
+        DataMap<String> dataMap = cursor -> getCursorValue(cursor, "mc_procedure_date");
+
+        List<String> res = readData(sql, dataMap);
+        if (res != null && res.size() != 0 && res.get(0) != null) {
+            return res.get(0);
+        }
+        return "";
+    }
+
+    public static String getFollowUpVisit(String baseEntityId) {
+        String sql = "SELECT visit_number FROM ec_vmmc_follow_up_visit p " +
+                " WHERE p.entity_id = '" + baseEntityId + "' ORDER BY last_interacted_with DESC LIMIT 1";
+
+        DataMap<String> dataMap = cursor -> getCursorValue(cursor, "visit_number");
+
+        List<String> res = readData(sql, dataMap);
+        if (res != null && res.size() != 0 && res.get(0) != null) {
+            return res.get(0);
+        }
+        return "";
+    }
 }

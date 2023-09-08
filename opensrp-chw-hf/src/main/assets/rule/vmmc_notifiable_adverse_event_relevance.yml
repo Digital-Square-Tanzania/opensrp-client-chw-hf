@@ -1,6 +1,6 @@
 ---
-name: step1_did_client_experience_nae
-description: did_client_experience_nae relevance
+name: step1_did_client_experience_nae_with_device
+description: did_client_experience_nae_with_device relevance
 priority: 1
 condition: "global_method_used.contains('device')"
 actions:

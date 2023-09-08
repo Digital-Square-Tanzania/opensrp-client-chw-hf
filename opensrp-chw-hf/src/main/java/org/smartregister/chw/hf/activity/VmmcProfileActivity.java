@@ -17,6 +17,7 @@ import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.custom_view.VmmcFloatingMenu;
 import org.smartregister.chw.hf.utils.VmmcReferralFormUtils;
 import org.smartregister.chw.vmmc.VmmcLibrary;
+import org.smartregister.chw.vmmc.dao.VmmcDao;
 import org.smartregister.chw.vmmc.domain.Visit;
 import org.smartregister.chw.vmmc.util.Constants;
 
@@ -49,8 +50,6 @@ public class VmmcProfileActivity extends CoreVmmcProfileActivity {
 
         if (id == R.id.textview_discharge_vmmc) {
             VmmcDischargeActivity.startVmmcVisitDischargeActivity(this, baseEntityId, false);
-        } else if (id == R.id.textview_continue) {
-            VmmcDischargeActivity.startVmmcVisitDischargeActivity(this, baseEntityId, true);
         }
 
         if (id == R.id.textview_notifiable_vmmc) {
@@ -59,7 +58,17 @@ public class VmmcProfileActivity extends CoreVmmcProfileActivity {
         if (id == R.id.textview_followup_vmmc) {
             VmmcFollowUpActivity.startVmmcVisitActivity(this, baseEntityId, false);
 
-        } else {
+        }
+        if (id == R.id.continue_vmmc_service) {
+            VmmcServiceActivity.startVmmcVisitActivity(this, baseEntityId, true);
+        }
+        if (id == R.id.continue_vmmc_procedure) {
+            VmmcProcedureActivity.startVmmcVisitProcedureActivity(this, baseEntityId, true);
+        }
+        if (id == R.id.textview_continue) {
+            VmmcDischargeActivity.startVmmcVisitDischargeActivity(this, baseEntityId, true);
+        }
+        else {
             super.onClick(view);
         }
     }

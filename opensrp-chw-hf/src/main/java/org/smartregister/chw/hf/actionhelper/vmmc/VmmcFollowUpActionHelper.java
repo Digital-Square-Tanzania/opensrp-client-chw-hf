@@ -3,10 +3,21 @@ package org.smartregister.chw.hf.actionhelper.vmmc;
 import android.content.Context;
 
 import org.apache.commons.lang3.StringUtils;
+import org.joda.time.Days;
+import org.joda.time.LocalDate;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.core.utils.CoreJsonFormUtils;
+import org.smartregister.chw.core.utils.FormUtils;
+import org.smartregister.chw.hf.dao.HeiDao;
+import org.smartregister.chw.hf.dao.HfAncDao;
 import org.smartregister.chw.hf.dao.HfVmmcDao;
+import org.smartregister.chw.hf.utils.Constants;
+import org.smartregister.chw.pmtct.util.JsonFormUtils;
+import org.smartregister.chw.referral.util.JsonFormConstants;
 import org.smartregister.chw.vmmc.domain.VisitDetail;
 import org.smartregister.chw.vmmc.model.BaseVmmcVisitAction;
 
@@ -23,6 +34,9 @@ public class VmmcFollowUpActionHelper implements BaseVmmcVisitAction.VmmcVisitAc
 
     protected String baseEntityId;
 
+    public Integer noOfDayPostOP;
+
+
     public VmmcFollowUpActionHelper(String baseEntityId) {
         this.baseEntityId = baseEntityId;
     }
@@ -38,11 +52,24 @@ public class VmmcFollowUpActionHelper implements BaseVmmcVisitAction.VmmcVisitAc
             JSONObject jsonObject = new JSONObject(jsonPayload);
             JSONObject global = jsonObject.getJSONObject("global");
 
-//            String method_used = VmmcProcedureActionHelper.method_used;
             String method_used = HfVmmcDao.getMcMethodUsed(baseEntityId);
-
-
             global.put("method_used", method_used);
+
+            LocalDate todayDate = LocalDate.now();;
+            DateTimeFormatter formatter = DateTimeFormat.forPattern("dd-MM-yyyy");
+            String male_circumcision_date = HfVmmcDao.getMcDoneDate(baseEntityId);
+
+            LocalDate mcProcedureDate = formatter.parseDateTime(male_circumcision_date).toLocalDate();
+
+            noOfDayPostOP = dayDifference(mcProcedureDate, todayDate);
+
+//            JSONObject followUpVisitForm = FormUtils.getFormUtils().getFormJson(Constants.JsonForm.VmmcVisit.getFollowupvisit());
+            JSONArray fields = jsonObject.getJSONObject(Constants.JsonFormConstants.STEP1).getJSONArray(JsonFormConstants.FIELDS);
+            JSONObject post_op_dates = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "post_op_dates");
+            post_op_dates.put("text", "Day(s) Post-OP: " + noOfDayPostOP.toString());
+
+            JSONObject visitNumber = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "visit_number");
+            visitNumber.put(JsonFormUtils.VALUE, HfVmmcDao.getFollowUpVisit(baseEntityId));
 
             return jsonObject.toString();
         } catch (JSONException e) {
@@ -50,6 +77,10 @@ public class VmmcFollowUpActionHelper implements BaseVmmcVisitAction.VmmcVisitAc
         }
 
         return null;
+    }
+
+    private int dayDifference(LocalDate date1, LocalDate date2) {
+        return Days.daysBetween(date1, date2).getDays();
     }
 
     @Override

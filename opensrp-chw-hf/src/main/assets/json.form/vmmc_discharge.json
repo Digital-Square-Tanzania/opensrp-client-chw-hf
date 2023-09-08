@@ -139,10 +139,6 @@
             "openmrs_entity_id": "no"
           }
         ],
-        "v_required": {
-          "value": "true",
-          "err": "Please select the analgesics given"
-        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -159,10 +155,6 @@
         "type": "edit_text",
         "hint": "Specify Analgesics Type",
         "edit_type": "text",
-        "v_required": {
-          "value": "true",
-          "err": "Please enter the type"
-        },
         "relevance": {
           "step1:analgesics_given": {
             "type": "string",
@@ -178,10 +170,6 @@
         "type": "edit_text",
         "hint": "Specify Analgesics Dosage",
         "edit_type": "text",
-        "v_required": {
-          "value": "true",
-          "err": "Please enter the dosage"
-        },
         "relevance": {
           "step1:analgesics_given": {
             "type": "string",
@@ -219,9 +207,24 @@
         "duration": {
           "label": "Discharge Time"
         },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_discharge_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "discharging_provider_first_name",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "health_care_provider_first_name",
+        "type": "edit_text",
+        "hint": "Discharging provider's first name",
         "v_required": {
           "value": "true",
-          "err": "Please select the discharge time"
+          "err": "Please write the name"
         },
         "relevance": {
           "rules-engine": {
@@ -232,16 +235,34 @@
         }
       },
       {
-        "key": "discharging_name",
+        "key": "discharging_provider_middle_name",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "1650011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "openmrs_entity_id": "health_care_provider_middle_name",
         "type": "edit_text",
-        "hint": "Discharging provider's name",
-        "edit_type": "text",
+        "hint": "Discharging provider's middle name",
         "v_required": {
           "value": "true",
-          "err": "Please enter the discharging provider's name"
+          "err": "Please specify"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_discharge_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "discharging_provider_last_name",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "health_care_provider_last_name",
+        "type": "edit_text",
+        "hint": "Discharging provider's last name",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
         },
         "relevance": {
           "rules-engine": {
@@ -262,7 +283,6 @@
           {
             "key": "medical_officer",
             "text": "Medical officer",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "medical_officer",
             "openmrs_entity_parent": ""
@@ -270,7 +290,6 @@
           {
             "key": "assistant_medical_officer",
             "text": "Assistant medical officer",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "assistant_medical_officer",
             "openmrs_entity_parent": ""
@@ -278,7 +297,6 @@
           {
             "key": "clinical_officer_or_assistant_clinical officer",
             "text": "Clinical officer/Assistant clinical officer",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "clinical_officer_or_assistant_clinical",
             "openmrs_entity_parent": ""
@@ -286,7 +304,6 @@
           {
             "key": "enrolled_nurse",
             "text": "Enrolled nurse",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "enrolled_nurse",
             "openmrs_entity_parent": ""
@@ -294,7 +311,6 @@
           {
             "key": "assistant_nursing_officer",
             "text": "Assistant nursing officer",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "assistant_nursing_officer",
             "openmrs_entity_parent": ""
@@ -302,16 +318,11 @@
           {
             "key": "nursing_officer",
             "text": "Nursing officer",
-            "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "nursing_officer",
             "openmrs_entity_parent": ""
           }
         ],
-        "v_required": {
-          "value": true,
-          "err": "Please select atleast one"
-        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -344,10 +355,6 @@
             "openmrs_entity_id": "no"
           }
         ],
-        "v_required": {
-          "value": "true",
-          "err": "Please select at least one"
-        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
