@@ -20,26 +20,16 @@ import timber.log.Timber;
 
 public class VmmcMedicalHistoryActionHelper implements BaseVmmcVisitAction.VmmcVisitActionHelper {
 
-    protected String jsonPayload;
-
     protected static String is_client_diagnosed_with_any;
-
-    protected String medical_history;
-
     protected static String any_complaints;
-
     protected static String complications_previous_surgical;
-
     protected static String any_hematological_disease_symptoms;
-
     protected static String known_allergies;
-
     protected static String type_of_blood_for_glucose_test;
-
     protected static String blood_for_glucose;
-
     protected static String blood_for_glucose_test;
-
+    protected String jsonPayload;
+    protected String medical_history;
     protected String baseEntityId;
 
     private HashMap<String, Boolean> checkObject = new HashMap<>();
@@ -80,7 +70,6 @@ public class VmmcMedicalHistoryActionHelper implements BaseVmmcVisitAction.VmmcV
             checkObject.put("known_allergies", StringUtils.isNotBlank(CoreJsonFormUtils.getValue(jsonObject, "known_allergies")));
             checkObject.put("tetanus_vaccination", StringUtils.isNotBlank(CoreJsonFormUtils.getValue(jsonObject, "tetanus_vaccination")));
             checkObject.put("any_hematological_disease_symptoms", StringUtils.isNotBlank(CoreJsonFormUtils.getValue(jsonObject, "any_hematological_disease_symptoms")));
-
 
 
             is_client_diagnosed_with_any = CoreJsonFormUtils.getValue(jsonObject, "is_client_diagnosed_with_any");

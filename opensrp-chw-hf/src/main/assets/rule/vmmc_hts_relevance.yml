@@ -30,7 +30,7 @@ actions:
 name: step1_toaster_notes_known_allergies
 description: if known_allergies
 priority: 1
-condition: "!global_known_allergies.contains('none')"
+condition: "(global_known_allergies.contains('local_anesthetics') || global_known_allergies.contains('antiseptics') || global_known_allergies.contains('any_other_medications'))"
 actions:
   - "isRelevant = true "
 ---
@@ -83,16 +83,9 @@ condition: "(global_is_client_diagnosed_with_any.contains('hiv') && step1_hiv_vi
 actions:
   - "isRelevant = true "
 ---
-name: step1_toaster_notes_complications_previous_surgical
-description: if complications_previous_surgical
-priority: 1
-condition: "global_complications_previous_surgical.contains('yes')"
-actions:
-  - "isRelevant = true "
----
 name: step1_notes_check_contraindication
 description: if notes_check_contraindication
 priority: 1
-condition: "global_complications_previous_surgical.contains('yes') || !global_any_hematological_disease_symptoms.contains('none') || !global_any_complaints.contains('none') || !global_known_allergies.contains('none') || !global_genital_examination.contains('none')"
+condition: "!global_any_hematological_disease_symptoms.contains('none') || !global_any_complaints.contains('none') || (global_known_allergies.contains('local_anesthetics') || global_known_allergies.contains('antiseptics') || global_known_allergies.contains('any_other_medications')) || !global_genital_examination.contains('none')"
 actions:
   - "isRelevant = true "

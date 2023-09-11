@@ -8747,11 +8747,11 @@
           }
         },
         {
-          "column_name": "consent_form",
+          "column_name": "consent_from",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
-            "concept": "consent_form"
+            "concept": "consent_from"
           }
         },
         {
@@ -8940,35 +8940,83 @@
           }
         },
         {
-          "column_name": "pulse_rate",
+          "column_name": "first_vital_sign_pulse_rate",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
-            "concept": "pulse_rate"
+            "concept": "first_vital_sign_pulse_rate"
           }
         },
         {
-          "column_name": "systolic",
+          "column_name": "first_vital_sign_systolic",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
-            "concept": "systolic"
+            "concept": "first_vital_sign_systolic"
           }
         },
         {
-          "column_name": "diastolic",
+          "column_name": "first_vital_sign_diastolic",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
-            "concept": "diastolic"
+            "concept": "first_vital_sign_diastolic"
           }
         },
         {
-          "column_name": "temperature",
+          "column_name": "first_vital_sign_temperature",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
-            "concept": "temperature"
+            "concept": "first_vital_sign_temperature"
+          }
+        },
+        {
+          "column_name": "first_vital_sign_time_taken",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "first_vital_sign_time_taken"
+          }
+        },
+        {
+          "column_name": "second_vital_sign_pulse_rate",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "second_vital_sign_pulse_rate"
+          }
+        },
+        {
+          "column_name": "second_vital_sign_systolic",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "second_vital_sign_systolic"
+          }
+        },
+        {
+          "column_name": "second_vital_sign_diastolic",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "second_vital_sign_diastolic"
+          }
+        },
+        {
+          "column_name": "second_vital_sign_temperature",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "second_vital_sign_temperature"
+          }
+        },
+        {
+          "column_name": "second_vital_sign_time_taken",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "second_vital_sign_time_taken"
           }
         },
         {

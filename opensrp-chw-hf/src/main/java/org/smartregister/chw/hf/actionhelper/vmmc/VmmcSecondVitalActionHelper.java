@@ -1,6 +1,7 @@
 package org.smartregister.chw.hf.actionhelper.vmmc;
 
 import android.content.Context;
+import android.util.Log;
 
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.LocalTime;
@@ -38,14 +39,15 @@ public class VmmcSecondVitalActionHelper implements BaseVmmcVisitAction.VmmcVisi
             JSONObject jsonObject = new JSONObject(jsonPayload);
             JSONObject global = jsonObject.getJSONObject("global");
 
-            String first_vital_sign_time_taken = "14:00";
+            // String first_vital_sign_time_taken = "14:00";
+            String first_vital_sign_time_taken = VmmcFirstVitalActionHelper.time_taken;
 
             DateTimeFormatter formatter = DateTimeFormat.forPattern("HH:mm");
             LocalTime currentTime = LocalTime.parse(first_vital_sign_time_taken);
             LocalTime newTime = currentTime.plusMinutes(15);
             String newTimeString = newTime.toString(formatter);
 
-            global.put("first_vital_sign_time_taken", newTimeString);
+            global.put("first_vital_sign_time_taken_value", newTimeString);
 
             return jsonObject.toString();
         } catch (JSONException e) {
@@ -84,7 +86,7 @@ public class VmmcSecondVitalActionHelper implements BaseVmmcVisitAction.VmmcVisi
     }
 
     @Override
-    public String postProcess(String s) {
+    public String postProcess(String jsonPayload) {
         JSONObject jsonObject = null;
         try {
             jsonObject = new JSONObject(jsonPayload);
@@ -99,7 +101,8 @@ public class VmmcSecondVitalActionHelper implements BaseVmmcVisitAction.VmmcVisi
         if (jsonObject != null) {
             return jsonObject.toString();
         }
-        return null;    }
+        return null;
+    }
 
     @Override
     public String evaluateSubTitle() {

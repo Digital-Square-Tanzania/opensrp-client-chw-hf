@@ -879,7 +879,7 @@
     <string name="from_guardian">Guardian</string>
 
     <!--    Vmmc Medical History-->
-    <string name="vmmc_consent_form">Consent from:</string>
+    <string name="vmmc_consent_from">Consent from:</string>
     <string name="vmmc_has_client_had_any_sti">STI:</string>
     <string name="vmmc_any_complaints">Complaints:</string>
     <string name="vmmc_is_client_diagnosed_with_any">Client Diagnosed:</string>

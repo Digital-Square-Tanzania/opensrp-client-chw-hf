@@ -139,12 +139,12 @@ public class VmmcVisitDischargeInteractor extends BaseVmmcVisitInteractor {
                 } catch (BaseVmmcVisitAction.ValidationException e) {
                     e.printStackTrace();
                 }
-            } else {
+            }
+            else {
                 actionList.remove(context.getString(R.string.vmmc_notifiable_adverse));
             }
             new AppExecutors().mainThread().execute(() -> callBack.preloadActions(actionList));
             return super.postProcess(s);
         }
-
     }
 }

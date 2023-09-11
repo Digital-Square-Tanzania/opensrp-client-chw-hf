@@ -5,3 +5,10 @@ priority: 1
 condition: "true"
 actions:
   - "calculation = Float.parseFloat(step1_client_weight) / (Float.parseFloat(step1_client_height) * Float.parseFloat(step1_client_height) / 10000)"
+---
+name: step1_preferred_client_mc_method
+description: BMI calculated
+priority: 1
+condition: "true"
+actions:
+  - "calculation = step1_preferred_client_mc_method_without_chordae ? step1_preferred_client_mc_method_without_chordae : step1_preferred_client_mc_method_with_chordae"

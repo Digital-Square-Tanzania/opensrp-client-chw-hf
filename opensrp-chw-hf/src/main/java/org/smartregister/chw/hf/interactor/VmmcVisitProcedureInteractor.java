@@ -56,7 +56,7 @@ public class VmmcVisitProcedureInteractor extends BaseVmmcVisitInteractor {
     private void evaluateConsentForm(Map<String, List<VisitDetail>> details) throws BaseVmmcVisitAction.ValidationException {
         JSONObject consentVisitType = FormUtils.getFormUtils().getFormJson(Constants.VMMC_FOLLOWUP_FORMS.CONSENT_FORM);
 
-        VmmcConsentFormActionHelper actionHelper = new VmmcConsentFormActionHelper();
+        VmmcConsentFormActionHelper actionHelper = new VmmcConsentFormActionHelper(memberObject.getBaseEntityId(), memberObject.getVisitAge());
         BaseVmmcVisitAction action = getBuilder(context.getString(R.string.consent_form))
                 .withOptional(false)
                 .withDetails(details)
@@ -95,6 +95,10 @@ public class VmmcVisitProcedureInteractor extends BaseVmmcVisitInteractor {
     }
 
     private class VmmcConsentFormActionHelper extends org.smartregister.chw.hf.actionhelper.vmmc.VmmcConsentFormActionHelper {
+        public VmmcConsentFormActionHelper(String baseEntityId, Integer age) {
+            super(baseEntityId,age);
+        }
+
         @Override
         public String postProcess(String s) {
             if (StringUtils.isNotBlank(mc_procedure)) {

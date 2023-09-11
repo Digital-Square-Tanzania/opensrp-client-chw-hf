@@ -91,10 +91,10 @@
         }
       },
       {
-        "key": "consent_form",
+        "key": "consent_from_equal_or_above_18",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "consent_form",
+        "openmrs_entity_id": "consent_from_equal_or_above_18",
         "label": "Consent from ?",
         "text_color": "#000000",
         "type": "native_radio",
@@ -129,6 +129,56 @@
           "rules-engine": {
             "ex-rules": {
               "rules-file": "vmmc_consent_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "consent_from_under_18",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "consent_from_under_18",
+        "label": "Consent from ?",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "from_parent",
+            "text": "Parent",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "from_parent"
+          },
+          {
+            "key": "from_guardian",
+            "text": "Guardian",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "from_guardian"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select at least one"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_consent_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "consent_from",
+        "type": "hidden",
+        "openmrs_entity_id": "consent_from",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_procedure_consent_form_calculation.yml"
             }
           }
         }
@@ -189,6 +239,13 @@
             }
           }
         }
+      },
+      {
+        "key": "actual_age",
+        "type": "hidden",
+        "openmrs_entity_id": "actual_age",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": ""
       }
     ]
   }

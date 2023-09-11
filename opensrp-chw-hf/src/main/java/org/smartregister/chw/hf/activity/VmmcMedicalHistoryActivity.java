@@ -120,7 +120,7 @@ public class VmmcMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
                     String[] htsParams = {"tested_hiv", "hiv_result","hiv_not_tested_reasons","hiv_viral_load_text","self_test_kits_offered","client_referred_to","client_medically_cleared","mc_reasons","uds_managed","smegma_managed","gud_managed","phimosis_managed","paraphimosis_managed","underscended_managed","condylomata_managed","adhesion_managed","balanitis_managed","urethral_managed","chordae_managed","hydrocele_managed"};
                     extractVisitDetails(visits, htsParams, visitDetails, x, context);
 
-                    String[] consentForParams = {"client_consent_for_mc_procedure", "consent_form","health_care_provider"};
+                    String[] consentForParams = {"client_consent_for_mc_procedure", "consent_from","health_care_provider"};
                     extractVisitDetails(visits, consentForParams, visitDetails, x, context);
 
                     String[] mcProcedureParams = {"is_male_procedure_circumcision_conducted", "start_time","end_time","aneathesia_administered","other_aneathesia_administered","lignocaine_dosage","bupivacaine_dosage","dosage","male_circumcision_method","device_name","lot_number","select_size_place","surgeon_name","surgeons_cadre","assistant_name","assistant_cadre","intraoperative_adverse_event_occured","type_of_adverse_event","type_of_adverse_event_others","desc_intraoperative_ae_bleed_excessive_bleeding","desc_intraoperative_ae_skin_removal","desc_intraoperative_ae_injury_to_penis","desc_intraoperative_ae_anaesthetic_related_event","nature_of_ae","what_done","treatment_outcome"};
@@ -187,7 +187,7 @@ public class VmmcMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
 
                     // Updating visibility of EDIT button if the visit is the last visit
                     if (x == visits.size() - 1){
-                         tvEdit.setVisibility(View.VISIBLE);
+                         // tvEdit.setVisibility(View.VISIBLE);
                     }
                     else
                         tvEdit.setVisibility(View.GONE);

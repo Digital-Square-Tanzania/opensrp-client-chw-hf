@@ -286,12 +286,11 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "first_vital_sign_time_taken_previous",
-        "type": "time_picker",
-        "hint": "Time taken",
+        "type": "hidden",
         "calculation": {
           "rules-engine": {
             "ex-rules": {
-              "rules-file": "vmmc_vital_sign_calculation.yml"
+              "rules-file": "vmmc_post_op_second_vital_calculation.yml"
             }
           }
         }
@@ -309,10 +308,14 @@
         "constraints": [
           {
             "type": "time",
-            "ex": "greaterThan(., step1:first_vital_sign_time_taken)",
+            "ex": "greaterThan(., step1:first_vital_sign_time_taken_previous)",
             "err": "time cannot be less than the First vital time"
           }
-        ]
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "time taken is required"
+        }
       },
       {
         "key": "second_vital_completion_status",

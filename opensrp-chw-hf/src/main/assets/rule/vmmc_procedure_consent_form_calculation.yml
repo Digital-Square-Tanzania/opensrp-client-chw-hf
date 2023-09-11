@@ -1,0 +1,7 @@
+---
+name: step1_consent_from
+description: consent_from
+priority: 1
+condition: "true"
+actions:
+  - "calculation = step1_actual_age < 18 ? step1_consent_from_under_18 : step1_consent_from_equal_or_above_18"

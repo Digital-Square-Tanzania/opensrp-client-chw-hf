@@ -6,7 +6,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import org.smartregister.chw.core.utils.CoreJsonFormUtils;
 import org.smartregister.chw.hf.utils.VisitUtils;
 import org.smartregister.chw.vmmc.domain.VisitDetail;
@@ -21,14 +20,9 @@ import timber.log.Timber;
 
 public class VmmcFirstVitalActionHelper implements BaseVmmcVisitAction.VmmcVisitActionHelper {
 
-    protected String pulse_rate;
-
-    private HashMap<String, Boolean> checkObject = new HashMap<>();
-
-    protected String jsonPayload;
-
     protected static String time_taken;
-
+    protected String jsonPayload;
+    private HashMap<String, Boolean> checkObject = new HashMap<>();
 
     @Override
     public void onJsonFormLoaded(String jsonPayload, Context context, Map<String, List<VisitDetail>> map) {
@@ -61,7 +55,6 @@ public class VmmcFirstVitalActionHelper implements BaseVmmcVisitAction.VmmcVisit
             checkObject.put("first_vital_sign_time_taken", StringUtils.isNotBlank(CoreJsonFormUtils.getValue(jsonObject, "first_vital_sign_time_taken")));
 
             time_taken = CoreJsonFormUtils.getValue(jsonObject, "first_vital_sign_time_taken");
-
 
         } catch (JSONException e) {
             e.printStackTrace();
