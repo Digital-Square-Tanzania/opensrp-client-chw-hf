@@ -8656,11 +8656,11 @@
           }
         },
         {
-          "column_name": "preferred_client",
+          "column_name": "preferred_client_mc_method",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
-            "concept": "preferred_client"
+            "concept": "preferred_client_mc_method"
           }
         },
         {
@@ -9094,11 +9094,11 @@
           }
         },
         {
-          "column_name": "visit_type",
+          "column_name": "follow_up_visit_type",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
-            "concept": "visit_type"
+            "concept": "follow_up_visit_type"
           }
         },
         {

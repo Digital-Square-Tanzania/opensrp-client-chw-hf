@@ -532,7 +532,10 @@
         "type": "edit_text",
         "hint": "Lignocaine dosage (ml)",
         "edit_type": "number",
-        "look_up": "true",
+        "v_numeric": {
+          "value": "true",
+          "err": "Please enter a valid value"
+        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -550,7 +553,10 @@
         "type": "edit_text",
         "hint": "Lignocaine dosage (percent)",
         "edit_type": "number",
-        "look_up": "true",
+        "v_numeric": {
+          "value": "true",
+          "err": "Please enter a valid value"
+        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -568,7 +574,10 @@
         "type": "edit_text",
         "hint": "Bupivacaine dosage (ml)",
         "edit_type": "number",
-        "look_up": "true",
+        "v_numeric": {
+          "value": "true",
+          "err": "Please enter a valid value"
+        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -586,7 +595,10 @@
         "type": "edit_text",
         "hint": "Bupivacaine dosage (percent)",
         "edit_type": "number",
-        "look_up": "true",
+        "v_numeric": {
+          "value": "true",
+          "err": "Please enter a valid value"
+        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -604,7 +616,10 @@
         "type": "edit_text",
         "hint": "Dosage (ml)",
         "edit_type": "number",
-        "look_up": "true",
+        "v_numeric": {
+          "value": "true",
+          "err": "Please enter a valid value"
+        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -622,7 +637,10 @@
         "type": "edit_text",
         "hint": "Dosage (percent)",
         "edit_type": "number",
-        "look_up": "true",
+        "v_numeric": {
+          "value": "true",
+          "err": "Please enter a valid value"
+        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {

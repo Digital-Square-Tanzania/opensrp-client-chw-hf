@@ -44,16 +44,21 @@ public class HfVmmcDao extends VmmcDao {
         return "";
     }
 
-    public static String getFollowUpVisit(String baseEntityId) {
-        String sql = "SELECT visit_number FROM ec_vmmc_follow_up_visit p " +
-                " WHERE p.entity_id = '" + baseEntityId + "' ORDER BY last_interacted_with DESC LIMIT 1";
+    public static int getFollowUpVisitNumber(String baseEntityId) {
 
         DataMap<String> dataMap = cursor -> getCursorValue(cursor, "visit_number");
 
+        String sql = String.format(
+                "SELECT visit_number FROM %s WHERE entity_id = '%s' " +
+                        "AND is_closed = 0",
+                "ec_vmmc_follow_up_visit",
+                baseEntityId
+        );
+
         List<String> res = readData(sql, dataMap);
-        if (res != null && res.size() != 0 && res.get(0) != null) {
-            return res.get(0);
+        if (res.get(0) != null) {
+            return Integer.parseInt(res.get(0));
         }
-        return "";
+        return 0;
     }
 }

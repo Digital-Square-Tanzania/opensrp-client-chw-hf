@@ -4581,7 +4581,7 @@ indicators:
                          AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                          date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
                          substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
-    
+
   #      ii.
   - key: "vmmc-7-ii-1-cm"
     description: "VMMC number of notifiable ae reported"
@@ -5254,7 +5254,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post_mc%'  )
+  WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post%'  )
   AND male_circumcision_method != 'device'
   AND (date('now')-date(efm.dob))<1
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -5266,7 +5266,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post_mc%'  )
+  WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post%'  )
   AND male_circumcision_method != 'device'
   AND 1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -5278,7 +5278,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post_mc%'  )
+  WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post%'  )
   AND male_circumcision_method != 'device'
   AND 10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -5290,7 +5290,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post_mc%'  )
+  WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post%'  )
   AND male_circumcision_method != 'device'
   AND 15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -5302,7 +5302,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post_mc%'  )
+  WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post%'  )
   AND male_circumcision_method != 'device'
   AND 20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -5314,7 +5314,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post_mc%'  )
+  WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post%'  )
   AND male_circumcision_method != 'device'
   AND 25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -5326,7 +5326,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post_mc%'  )
+  WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post%'  )
   AND male_circumcision_method != 'device'
   AND 30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -5338,7 +5338,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post_mc%'  )
+  WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post%'  )
   AND male_circumcision_method != 'device'
   AND 35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -5350,7 +5350,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post_mc%'  )
+  WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post%'  )
   AND male_circumcision_method != 'device'
   AND 40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -5362,7 +5362,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post_mc%'  )
+  WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post%'  )
   AND male_circumcision_method != 'device'
   AND 45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -5374,7 +5374,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post_mc%'  )
+  WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post%'  )
   AND male_circumcision_method != 'device'
   AND (date('now')-date(efm.dob))>=50
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -5382,7 +5382,7 @@ indicators:
   substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
 
 
-#  #    viii.
+  #  #    viii.
   - key: "vmmc-7-viii-1-cm"
     description: "VMMC number of notifiable ae reported"
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
@@ -6181,13 +6181,13 @@ indicators:
   date(substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
   substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
 
-#      vii.
+  #      vii.
   - key: "vmmc-7-vii-1-dm"
     description: "VMMC number of notifiable ae reported"
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post_mc%'  )
+  WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post%'  )
   AND male_circumcision_method = 'device'
   AND (date('now')-date(efm.dob))<1
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -6199,7 +6199,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post_mc%'  )
+  WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post%'  )
   AND male_circumcision_method = 'device'
   AND 1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -6211,7 +6211,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post_mc%'  )
+  WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post%'  )
   AND male_circumcision_method = 'device'
   AND 10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -6223,7 +6223,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post_mc%'  )
+  WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post%'  )
   AND male_circumcision_method = 'device'
   AND 15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -6235,7 +6235,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post_mc%'  )
+  WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post%'  )
   AND male_circumcision_method = 'device'
   AND 20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -6247,7 +6247,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post_mc%'  )
+  WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post%'  )
   AND male_circumcision_method = 'device'
   AND 25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -6259,7 +6259,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post_mc%'  )
+  WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post%'  )
   AND male_circumcision_method = 'device'
   AND 30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -6271,7 +6271,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post_mc%'  )
+  WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post%'  )
   AND male_circumcision_method = 'device'
   AND 35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -6283,7 +6283,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post_mc%'  )
+  WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post%'  )
   AND male_circumcision_method = 'device'
   AND 40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -6295,7 +6295,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post_mc%'  )
+  WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post%'  )
   AND male_circumcision_method = 'device'
   AND 45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -6307,7 +6307,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
-  WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post_mc%'  )
+  WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post%'  )
   AND male_circumcision_method = 'device'
   AND (date('now')-date(efm.dob))>=50
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =

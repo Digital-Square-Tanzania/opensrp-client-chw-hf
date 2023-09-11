@@ -54,3 +54,17 @@ priority: 1
 condition: "step1_discharge_condition.equalsIgnoreCase('not_discharged') || step1_discharge_condition.equalsIgnoreCase('needs_followup')"
 actions:
   - "isRelevant = true"
+---
+name: step1_analgenics_dosage_unit
+description: analgenics_dosage_unit
+priority: 1
+condition: "step1_chose_analgenics_dosage_param.equalsIgnoreCase('gram') || step1_chose_analgenics_dosage_param.equalsIgnoreCase('milligram')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_analgenics_dosage_duration
+description: analgenics_dosage_duration
+priority: 1
+condition: "step1_chose_analgenics_dosage_param.equalsIgnoreCase('gram') || step1_chose_analgenics_dosage_param.equalsIgnoreCase('milligram')"
+actions:
+  - "isRelevant = true"

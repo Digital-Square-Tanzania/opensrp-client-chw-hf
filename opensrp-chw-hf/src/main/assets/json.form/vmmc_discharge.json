@@ -152,9 +152,27 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "analgenics_type",
-        "type": "edit_text",
+        "type": "spinner",
         "hint": "Specify Analgesics Type",
-        "edit_type": "text",
+        "values": [
+          "Paracetamol",
+          "Tramadol",
+          "Declophenac"
+        ],
+        "keys": [
+          "paracetamol",
+          "tramadol",
+          "declophenac"
+        ],
+        "openmrs_choice_ids": {
+          "paracetamol": "paracetamol",
+          "tramadol": "tramadol",
+          "declophenac": "declophenac"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please Specify Analgesics Type"
+        },
         "relevance": {
           "step1:analgesics_given": {
             "type": "string",
@@ -163,17 +181,62 @@
         }
       },
       {
-        "key": "analgenics_dosage",
+        "key": "chose_analgenics_dosage_param",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "analgenics_dosage",
-        "type": "edit_text",
-        "hint": "Specify Analgesics Dosage",
-        "edit_type": "text",
+        "openmrs_entity_id": "chose_analgenics_dosage_param",
+        "type": "native_radio",
+        "label": "Choose Analgesics Dosage Param",
+        "options": [
+          {
+            "key":"gram",
+            "text": "Gram",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "gram"
+          },
+          {
+            "key":"milligram",
+            "text": "Milligram",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "milligram"
+          }
+        ],
         "relevance": {
           "step1:analgesics_given": {
             "type": "string",
             "ex": "equalTo(., \"yes\")"
+          }
+        }
+      },
+      {
+        "key": "analgenics_dosage_unit",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "analgenics_dosage_unit",
+        "type": "edit_text",
+        "hint": "Analgesics Dosage Unit",
+        "edit_type": "text",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_discharge_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "analgenics_dosage_duration",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "analgenics_dosage_duration",
+        "type": "edit_text",
+        "hint": "Analgesics Dosage Duration",
+        "edit_type": "text",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_discharge_relevance.yml"
+            }
           }
         }
       },
@@ -360,6 +423,27 @@
             "ex-rules": {
               "rules-file": "vmmc_discharge_relevance.yml"
             }
+          }
+        }
+      },
+      {
+        "key": "next_followup_date",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "next_followup_date",
+        "type": "date_picker",
+        "hint": "Next followup date",
+        "expanded": false,
+        "min_date": "today",
+        "max_date": "today+1y",
+        "v_required": {
+          "value": "true",
+          "err": "Please fill next followup date"
+        },
+        "relevance": {
+          "step1:discharge_condition": {
+            "type": "string",
+            "ex": "equalTo(., \"satisfactory\")"
           }
         }
       }

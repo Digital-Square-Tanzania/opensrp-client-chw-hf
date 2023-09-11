@@ -102,7 +102,7 @@ ul li > * {
         <tr>
             <th>SN</th>
             <th rowspan="1" colspan="3">INDICATOR</th>
-            <th>GRAND TOTAL</th>
+            <th>GRAND total</th>
             <th>&lt;1</th>
             <th>1-9</th>
             <th>10-14</th>
@@ -133,7 +133,7 @@ ul li > * {
         <tr>
             <th>1</th>
             <td colspan="3">Number of Clients enrolled into VMMC Services</td>
-            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-1-grandtotal"></td>
             <td align="center" id="vmmc-1-1-a"></td>
             <td align="center" id="vmmc-1-1-9-a"></td>
             <td align="center" id="vmmc-1-10-14-a"></td>
@@ -345,7 +345,7 @@ ul li > * {
         </tr>
         <tr>
             <td colspan="2">HIV positive</td>
-            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-3-i-grandtotal"></td>
             <td align="center" id="vmmc-3-i-1-a"></td>
             <td align="center" id="vmmc-3-i-1-9-a"></td>
             <td align="center" id="vmmc-3-i-10-14-a"></td>
@@ -373,7 +373,7 @@ ul li > * {
         </tr>
         <tr>
             <td colspan="2">HIV negative</td>
-            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-3-ii-grandtotal"></td>
             <td align="center" id="vmmc-3-ii-1-a"></td>
             <td align="center" id="vmmc-3-ii-1-9-a"></td>
             <td align="center" id="vmmc-3-ii-10-14-a"></td>
@@ -571,7 +571,7 @@ ul li > * {
             <th>40-44</th>
             <th>45-49</th>
             <th>&gt;50</th>
-            <th class="table-total-color">TOTAL</th>
+            <th class="table-total-color">total</th>
             <th>&lt;1</th>
             <th>1-9</th>
             <th>10-14</th>
@@ -583,7 +583,7 @@ ul li > * {
             <th>40-44</th>
             <th>45-49</th>
             <th>&gt;50</th>
-            <th class="table-total-color">TOTAL</th>
+            <th class="table-total-color">total</th>
         </tr>
 
 
@@ -591,7 +591,7 @@ ul li > * {
         <tr>
             <th>5</th>
             <td colspan="3">Number of male circumcised</td>
-            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-5-grandtotal"></td>
             <td align="center" id="vmmc-5-1-cm"></td>
             <td align="center" id="vmmc-5-1-9-cm"></td>
             <td align="center" id="vmmc-5-10-14-cm"></td>
@@ -627,7 +627,7 @@ ul li > * {
         </tr>
         <tr>
             <td>Excessive Bleeding that requires pressure dressing to control</td>
-            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-6-a-i-grandtotal"></td>
             <td align="center" id="vmmc-6-a-i-1-cm"></td>
             <td align="center" id="vmmc-6-a-i-1-9-cm"></td>
             <td align="center" id="vmmc-6-a-i-10-14-cm"></td>
@@ -656,7 +656,7 @@ ul li > * {
         </tr>
         <tr>
             <td>Swelling of the penis or scrotum </td>
-            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-6-a-ii-grandtotal"></td>
             <td align="center" id="vmmc-6-a-ii-1-cm"></td>
             <td align="center" id="vmmc-6-a-ii-1-9-cm"></td>
             <td align="center" id="vmmc-6-a-ii-10-14-cm"></td>
@@ -685,7 +685,7 @@ ul li > * {
         </tr>
         <tr>
             <td>Pain of 5 to 6 Pain scale</td>
-            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-6-a-iii-grandtotal"></td>
             <td align="center" id="vmmc-6-a-iii-1-cm"></td>
             <td align="center" id="vmmc-6-a-iii-1-9-cm"></td>
             <td align="center" id="vmmc-6-a-iii-10-14-cm"></td>
@@ -714,7 +714,7 @@ ul li > * {
         </tr>
         <tr>
             <td>Infection with purulent discharge from the wound</td>
-            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-6-a-iv-grandtotal"></td>
             <td align="center" id="vmmc-6-a-iv-1-cm"></td>
             <td align="center" id="vmmc-6-a-iv-1-9-cm"></td>
             <td align="center" id="vmmc-6-a-iv-10-14-cm"></td>
@@ -743,7 +743,7 @@ ul li > * {
         </tr>
         <tr>
             <td>Failure to pass urine that requires a special return to the clinic, but no additional treatment required </td>
-            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-6-a-v-grandtotal"></td>
             <td align="center" id="vmmc-6-a-v-1-cm"></td>
             <td align="center" id="vmmc-6-a-v-1-9-cm"></td>
             <td align="center" id="vmmc-6-a-v-10-14-cm"></td>
@@ -772,7 +772,7 @@ ul li > * {
         </tr>
         <tr>
             <td>Device displacement with displacement of the device that requires any treatment more than routine post-operative wound care but does not meet severe criteria</td>
-            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-6-a-vi-grandtotal"></td>
             <td align="center" class="no-data"></td>
             <td align="center" class="no-data"></td>
             <td align="center" class="no-data"></td>
@@ -801,7 +801,7 @@ ul li > * {
         </tr>
         <tr>
             <td>Device detachment </td>
-            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-6-a-vii-grandtotal"></td>
             <td align="center" class="no-data"></td>
             <td align="center" class="no-data"></td>
             <td align="center" class="no-data"></td>
@@ -832,7 +832,7 @@ ul li > * {
         <tr><td rowspan="8">Severe</td>
         </tr><tr>
             <td>Excessive Bleeding that requires blood transfusion or transfer to other facility</td>
-            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-6-b-i-grandtotal"></td>
             <td align="center" id="vmmc-6-b-i-1-cm"></td>
             <td align="center" id="vmmc-6-b-i-1-9-cm"></td>
             <td align="center" id="vmmc-6-b-i-10-14-cm"></td>
@@ -861,7 +861,7 @@ ul li > * {
         </tr>
         <tr>
             <td>Swelling of the penis or scrotum </td>
-            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-6-b-ii-grandtotal"></td>
             <td align="center" id="vmmc-6-b-ii-1-cm"></td>
             <td align="center" id="vmmc-6-b-ii-1-9-cm"></td>
             <td align="center" id="vmmc-6-b-ii-10-14-cm"></td>
@@ -890,7 +890,7 @@ ul li > * {
         </tr>
         <tr>
             <td>Pain of 7 to 10 Pain scale </td>
-            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-6-b-iii-grandtotal"></td>
             <td align="center" id="vmmc-6-b-iii-1-cm"></td>
             <td align="center" id="vmmc-6-b-iii-1-9-cm"></td>
             <td align="center" id="vmmc-6-b-iii-10-14-cm"></td>
@@ -919,7 +919,7 @@ ul li > * {
         </tr>
         <tr>
             <td>Infection with cellulitis or wound necrosis</td>
-            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-6-b-iv-grandtotal"></td>
             <td align="center" id="vmmc-6-b-iv-1-cm"></td>
             <td align="center" id="vmmc-6-b-iv-1-9-cm"></td>
             <td align="center" id="vmmc-6-b-iv-10-14-cm"></td>
@@ -948,7 +948,7 @@ ul li > * {
         </tr>
         <tr>
             <td>Failure to pass urine that requires referral to another facility for management </td>
-            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-6-b-v-grandtotal"></td>
             <td align="center" id="vmmc-6-b-v-1-cm"></td>
             <td align="center" id="vmmc-6-b-v-1-9-cm"></td>
             <td align="center" id="vmmc-6-b-v-10-14-cm"></td>
@@ -977,7 +977,7 @@ ul li > * {
         </tr>
         <tr>
             <td>Device displacement with displacement of the device, including intentional movement of device by the client and/or self-removal, that requires surgical intervention, hospitalization, or transfer to another facility to clinically manage.</td>
-            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-6-b-vi-grandtotal"></td>
             <td align="center" class="no-data"></td>
             <td align="center" class="no-data"></td>
             <td align="center" class="no-data"></td>
@@ -1006,7 +1006,7 @@ ul li > * {
         </tr>
         <tr>
             <td>Device detachment </td>
-            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-6-b-vii-grandtotal"></td>
             <td align="center" class="no-data"></td>
             <td align="center" class="no-data"></td>
             <td align="center" class="no-data"></td>
@@ -1040,7 +1040,7 @@ ul li > * {
             <td align="left" colspan="1" rowspan="9">Number of notifieble adverse events reported</td>
         </tr><tr>
             <td colspan="2">Complete or partial amputation of the glans or shaft of the penis</td>
-            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-7-i-grandtotal"></td>
             <td align="center" id="vmmc-7-i-1-cm"></td>
             <td align="center" id="vmmc-7-i-1-9-cm"></td>
             <td align="center" id="vmmc-7-i-10-14-cm"></td>
@@ -1052,7 +1052,7 @@ ul li > * {
             <td align="center" id="vmmc-7-i-40-44-cm"></td>
             <td align="center" id="vmmc-7-i-45-49-cm"></td>
             <td align="center" id="vmmc-7-i-50-cm"></td>
-            <td align="center" class="table-total-color" id="vmmc-7-i-TOTAL-cm"></td>
+            <td align="center" class="table-total-color" id="vmmc-7-i-total-cm"></td>
 
             <td align="center" id="vmmc-7-i-1-dm"></td>
             <td align="center" id="vmmc-7-i-1-9-dm"></td>
@@ -1065,11 +1065,11 @@ ul li > * {
             <td align="center" id="vmmc-7-i-40-44-dm"></td>
             <td align="center" id="vmmc-7-i-45-49-dm"></td>
             <td align="center" id="vmmc-7-i-50-dm"></td>
-            <td align="center" class="table-total-color" id="vmmc-7-i-TOTAL-dm"></td>
+            <td align="center" class="table-total-color" id="vmmc-7-i-total-dm"></td>
         </tr>
         <tr>
             <td colspan="2">Tetanus, including non-fatal cases </td>
-            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-7-ii-grandtotal"></td>
             <td align="center" id="vmmc-7-ii-1-cm"></td>
             <td align="center" id="vmmc-7-ii-1-9-cm"></td>
             <td align="center" id="vmmc-7-ii-10-14-cm"></td>
@@ -1081,7 +1081,7 @@ ul li > * {
             <td align="center" id="vmmc-7-ii-40-44-cm"></td>
             <td align="center" id="vmmc-7-ii-45-49-cm"></td>
             <td align="center" id="vmmc-7-ii-50-cm"></td>
-            <td align="center" class="table-total-color" id="vmmc-7-ii-TOTAL-cm"></td>
+            <td align="center" class="table-total-color" id="vmmc-7-ii-total-cm"></td>
 
             <td align="center" id="vmmc-7-ii-1-dm"></td>
             <td align="center" id="vmmc-7-ii-1-9-dm"></td>
@@ -1094,11 +1094,11 @@ ul li > * {
             <td align="center" id="vmmc-7-ii-40-44-dm"></td>
             <td align="center" id="vmmc-7-ii-45-49-dm"></td>
             <td align="center" id="vmmc-7-ii-50-dm"></td>
-            <td align="center" class="table-total-color" id="vmmc-7-ii-TOTAL-dm"></td>
+            <td align="center" class="table-total-color" id="vmmc-7-ii-total-dm"></td>
         </tr>
         <tr>
             <td colspan="2">AE that results in disability that is likely permanent ( e.g glans numbness)</td>
-            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-7-iii-grandtotal"></td>
             <td align="center" id="vmmc-7-iii-1-cm"></td>
             <td align="center" id="vmmc-7-iii-1-9-cm"></td>
             <td align="center" id="vmmc-7-iii-10-14-cm"></td>
@@ -1110,7 +1110,7 @@ ul li > * {
             <td align="center" id="vmmc-7-iii-40-44-cm"></td>
             <td align="center" id="vmmc-7-iii-45-49-cm"></td>
             <td align="center" id="vmmc-7-iii-50-cm"></td>
-            <td align="center" class="table-total-color" id="vmmc-7-iii-TOTAL-cm"></td>
+            <td align="center" class="table-total-color" id="vmmc-7-iii-total-cm"></td>
 
             <td align="center" id="vmmc-7-iii-1-dm"></td>
             <td align="center" id="vmmc-7-iii-1-9-dm"></td>
@@ -1123,11 +1123,11 @@ ul li > * {
             <td align="center" id="vmmc-7-iii-40-44-dm"></td>
             <td align="center" id="vmmc-7-iii-45-49-dm"></td>
             <td align="center" id="vmmc-7-iii-50-dm"></td>
-            <td align="center" class="table-total-color" id="vmmc-7-iii-TOTAL-dm"></td>
+            <td align="center" class="table-total-color" id="vmmc-7-iii-total-dm"></td>
         </tr>
         <tr>
             <td colspan="2">AE that results in anatomic deformity that is likely permanent (eg Keloid, scaring, penile torsion etc) </td>
-            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-7-iv-grandtotal"></td>
             <td align="center" id="vmmc-7-iv-1-cm"></td>
             <td align="center" id="vmmc-7-iv-1-9-cm"></td>
             <td align="center" id="vmmc-7-iv-10-14-cm"></td>
@@ -1139,7 +1139,7 @@ ul li > * {
             <td align="center" id="vmmc-7-iv-40-44-cm"></td>
             <td align="center" id="vmmc-7-iv-45-49-cm"></td>
             <td align="center" id="vmmc-7-iv-50-cm"></td>
-            <td align="center" class="table-total-color" id="vmmc-7-iv-TOTAL-cm"></td>
+            <td align="center" class="table-total-color" id="vmmc-7-iv-total-cm"></td>
 
             <td align="center" id="vmmc-7-iv-1-dm"></td>
             <td align="center" id="vmmc-7-iv-1-9-dm"></td>
@@ -1152,11 +1152,11 @@ ul li > * {
             <td align="center" id="vmmc-7-iv-40-44-dm"></td>
             <td align="center" id="vmmc-7-iv-45-49-dm"></td>
             <td align="center" id="vmmc-7-iv-50-dm"></td>
-            <td align="center" class="table-total-color" id="vmmc-7-iv-TOTAL-dm"></td>
+            <td align="center" class="table-total-color" id="vmmc-7-iv-total-dm"></td>
         </tr>
         <tr>
             <td colspan="2">Any hospital admission for ≥3 days</td>
-            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-7-v-grandtotal"></td>
             <td align="center" id="vmmc-7-v-1-cm"></td>
             <td align="center" id="vmmc-7-v-1-9-cm"></td>
             <td align="center" id="vmmc-7-v-10-14-cm"></td>
@@ -1168,7 +1168,7 @@ ul li > * {
             <td align="center" id="vmmc-7-v-40-44-cm"></td>
             <td align="center" id="vmmc-7-v-45-49-cm"></td>
             <td align="center" id="vmmc-7-v-50-cm"></td>
-            <td align="center" class="table-total-color" id="vmmc-7-v-TOTAL-cm"></td>
+            <td align="center" class="table-total-color" id="vmmc-7-v-total-cm"></td>
 
             <td align="center" id="vmmc-7-v-1-dm"></td>
             <td align="center" id="vmmc-7-v-1-9-dm"></td>
@@ -1181,11 +1181,11 @@ ul li > * {
             <td align="center" id="vmmc-7-v-40-44-dm"></td>
             <td align="center" id="vmmc-7-v-45-49-dm"></td>
             <td align="center" id="vmmc-7-v-50-dm"></td>
-            <td align="center" class="table-total-color" id="vmmc-7-v-TOTAL-dm"></td>
+            <td align="center" class="table-total-color" id="vmmc-7-v-total-dm"></td>
         </tr>
         <tr>
             <td colspan="2">Moderate or severe device displacement AE </td>
-            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-7-vi-grandtotal"></td>
             <td align="center" id="vmmc-7-vi-1-cm"></td>
             <td align="center" id="vmmc-7-vi-1-9-cm"></td>
             <td align="center" id="vmmc-7-vi-10-14-cm"></td>
@@ -1197,7 +1197,7 @@ ul li > * {
             <td align="center" id="vmmc-7-vi-40-44-cm"></td>
             <td align="center" id="vmmc-7-vi-45-49-cm"></td>
             <td align="center" id="vmmc-7-vi-50-cm"></td>
-            <td align="center" class="table-total-color" id="vmmc-7-vi-TOTAL-cm"></td>
+            <td align="center" class="table-total-color" id="vmmc-7-vi-total-cm"></td>
 
             <td align="center" id="vmmc-7-vi-1-dm"></td>
             <td align="center" id="vmmc-7-vi-1-9-dm"></td>
@@ -1210,11 +1210,11 @@ ul li > * {
             <td align="center" id="vmmc-7-vi-40-44-dm"></td>
             <td align="center" id="vmmc-7-vi-45-49-dm"></td>
             <td align="center" id="vmmc-7-vi-50-dm"></td>
-            <td align="center" class="table-total-color" id="vmmc-7-vi-TOTAL-dm"></td>
+            <td align="center" class="table-total-color" id="vmmc-7-vi-total-dm"></td>
         </tr>
         <tr>
             <td colspan="2">Client deaths within 30days post Male Circumcision</td>
-            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-7-vii-grandtotal"></td>
             <td align="center" id="vmmc-7-vii-1-cm"></td>
             <td align="center" id="vmmc-7-vii-1-9-cm"></td>
             <td align="center" id="vmmc-7-vii-10-14-cm"></td>
@@ -1226,7 +1226,7 @@ ul li > * {
             <td align="center" id="vmmc-7-vii-40-44-cm"></td>
             <td align="center" id="vmmc-7-vii-45-49-cm"></td>
             <td align="center" id="vmmc-7-vii-50-cm"></td>
-            <td align="center" class="table-total-color" id="vmmc-7-vii-TOTAL-cm"></td>
+            <td align="center" class="table-total-color" id="vmmc-7-vii-total-cm"></td>
 
             <td align="center" id="vmmc-7-vii-1-dm"></td>
             <td align="center" id="vmmc-7-vii-1-9-dm"></td>
@@ -1239,11 +1239,11 @@ ul li > * {
             <td align="center" id="vmmc-7-vii-40-44-dm"></td>
             <td align="center" id="vmmc-7-vii-45-49-dm"></td>
             <td align="center" id="vmmc-7-vii-50-dm"></td>
-            <td align="center" class="table-total-color" id="vmmc-7-vii-TOTAL-dm"></td>
+            <td align="center" class="table-total-color" id="vmmc-7-vii-total-dm"></td>
         </tr>
         <tr>
             <td colspan="2">Any admission to ICU within 30days post Male Circumcision </td>
-            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-7-viii-grandtotal"></td>
             <td align="center" id="vmmc-7-viii-1-cm"></td>
             <td align="center" id="vmmc-7-viii-1-9-cm"></td>
             <td align="center" id="vmmc-7-viii-10-14-cm"></td>
@@ -1255,7 +1255,7 @@ ul li > * {
             <td align="center" id="vmmc-7-viii-40-44-cm"></td>
             <td align="center" id="vmmc-7-viii-45-49-cm"></td>
             <td align="center" id="vmmc-7-viii-50-cm"></td>
-            <td align="center" class="table-total-color" id="vmmc-7-viii-TOTAL-cm"></td>
+            <td align="center" class="table-total-color" id="vmmc-7-viii-total-cm"></td>
 
             <td align="center" id="vmmc-7-viii-1-dm"></td>
             <td align="center" id="vmmc-7-viii-1-9-dm"></td>
@@ -1268,7 +1268,7 @@ ul li > * {
             <td align="center" id="vmmc-7-viii-40-44-dm"></td>
             <td align="center" id="vmmc-7-viii-45-49-dm"></td>
             <td align="center" id="vmmc-7-viii-50-dm"></td>
-            <td align="center" class="table-total-color" id="vmmc-7-viii-TOTAL-dm"></td>
+            <td align="center" class="table-total-color" id="vmmc-7-viii-total-dm"></td>
         </tr>
 
 
@@ -1277,7 +1277,7 @@ ul li > * {
             <td align="left" colspan="1" rowspan="9">Number of male circumcised who returned for  follow up visit</td>
         </tr><tr>
             <td colspan="2">1st Within 2 days</td>
-            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-8-i-grandtotal"></td>
             <td align="center" id="vmmc-8-i-1-cm"></td>
             <td align="center" id="vmmc-8-i-1-9-cm"></td>
             <td align="center" id="vmmc-8-i-10-14-cm"></td>
@@ -1289,7 +1289,7 @@ ul li > * {
             <td align="center" id="vmmc-8-i-40-44-cm"></td>
             <td align="center" id="vmmc-8-i-45-49-cm"></td>
             <td align="center" id="vmmc-8-i-50-cm"></td>
-            <td align="center" class="table-total-color" id="vmmc-8-i-TOTAL-cm"></td>
+            <td align="center" class="table-total-color" id="vmmc-8-i-total-cm"></td>
 
             <td align="center" class="no-data"></td>
             <td align="center" class="no-data"></td>
@@ -1306,7 +1306,7 @@ ul li > * {
         </tr>
         <tr>
             <td colspan="2">1st beyond 2 days </td>
-            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-8-ii-grandtotal"></td>
             <td align="center" id="vmmc-8-ii-1-cm"></td>
             <td align="center" id="vmmc-8-ii-1-9-cm"></td>
             <td align="center" id="vmmc-8-ii-10-14-cm"></td>
@@ -1318,7 +1318,7 @@ ul li > * {
             <td align="center" id="vmmc-8-ii-40-44-cm"></td>
             <td align="center" id="vmmc-8-ii-45-49-cm"></td>
             <td align="center" id="vmmc-8-ii-50-cm"></td>
-            <td align="center" class="table-total-color" id="vmmc-8-ii-TOTAL-cm"></td>
+            <td align="center" class="table-total-color" id="vmmc-8-ii-total-cm"></td>
 
             <td align="center" class="no-data"></td>
             <td align="center" class="no-data"></td>
@@ -1335,7 +1335,7 @@ ul li > * {
         </tr>
         <tr>
             <td colspan="2">2nd within 7 days</td>
-            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-8-iii-grandtotal"></td>
             <td align="center" id="vmmc-8-iii-1-cm"></td>
             <td align="center" id="vmmc-8-iii-1-9-cm"></td>
             <td align="center" id="vmmc-8-iii-10-14-cm"></td>
@@ -1347,7 +1347,7 @@ ul li > * {
             <td align="center" id="vmmc-8-iii-40-44-cm"></td>
             <td align="center" id="vmmc-8-iii-45-49-cm"></td>
             <td align="center" id="vmmc-8-iii-50-cm"></td>
-            <td align="center" class="table-total-color" id="vmmc-8-iii-TOTAL-cm"></td>
+            <td align="center" class="table-total-color" id="vmmc-8-iii-total-cm"></td>
 
             <td align="center" class="no-data"></td>
             <td align="center" class="no-data"></td>
@@ -1364,7 +1364,7 @@ ul li > * {
         </tr>
         <tr>
             <td colspan="2">2nd beyond 7 days</td>
-            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-8-iv-grandtotal"></td>
             <td align="center" id="vmmc-8-iv-1-cm"></td>
             <td align="center" id="vmmc-8-iv-1-9-cm"></td>
             <td align="center" id="vmmc-8-iv-10-14-cm"></td>
@@ -1376,7 +1376,7 @@ ul li > * {
             <td align="center" id="vmmc-8-iv-40-44-cm"></td>
             <td align="center" id="vmmc-8-iv-45-49-cm"></td>
             <td align="center" id="vmmc-8-iv-50-cm"></td>
-            <td align="center" class="table-total-color" id="vmmc-8-iv-TOTAL-cm"></td>
+            <td align="center" class="table-total-color" id="vmmc-8-iv-total-cm"></td>
 
             <td align="center" class="no-data"></td>
             <td align="center" class="no-data"></td>
@@ -1393,7 +1393,7 @@ ul li > * {
         </tr>
         <tr>
             <td colspan="2">7 days follow-up </td>
-            <td align="center" class="no-data"></td>
+            <td align="center" id="vmmc-8-v-grandtotal"></td>
             <td align="center" class="no-data"></td>
             <td align="center" class="no-data"></td>
             <td align="center" class="no-data"></td>
@@ -1418,7 +1418,7 @@ ul li > * {
             <td align="center" id="vmmc-8-v-40-44-dm"></td>
             <td align="center" id="vmmc-8-v-45-49-dm"></td>
             <td align="center" id="vmmc-8-v-50-dm"></td>
-            <td align="center" class="table-total-color" id="vmmc-8-v-TOTAL-dm"></td>
+            <td align="center" class="table-total-color" id="vmmc-8-v-total-dm"></td>
         </tr>
 
 

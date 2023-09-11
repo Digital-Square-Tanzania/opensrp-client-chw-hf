@@ -16,7 +16,7 @@ actions:
 name: step1_toaster_notes_genital_examination
 description: if genital_examination
 priority: 1
-condition: "!global_genital_examination.contains('none')"
+condition: "!(global_genital_examination.contains('none') || global_genital_examination.equalsIgnoreCase('chordae'))"
 actions:
   - "isRelevant = true "
 ---
@@ -86,6 +86,6 @@ actions:
 name: step1_notes_check_contraindication
 description: if notes_check_contraindication
 priority: 1
-condition: "!global_any_hematological_disease_symptoms.contains('none') || !global_any_complaints.contains('none') || (global_known_allergies.contains('local_anesthetics') || global_known_allergies.contains('antiseptics') || global_known_allergies.contains('any_other_medications')) || !global_genital_examination.contains('none')"
+condition: "!global_any_hematological_disease_symptoms.contains('none') || !global_any_complaints.contains('none') || (global_known_allergies.contains('local_anesthetics') || global_known_allergies.contains('antiseptics') || global_known_allergies.contains('any_other_medications')) || !(global_genital_examination.contains('none') || global_genital_examination.equalsIgnoreCase('chordae'))"
 actions:
   - "isRelevant = true "

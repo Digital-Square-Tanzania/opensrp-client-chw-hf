@@ -51,7 +51,13 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "visit_number",
         "openmrs_entity_parent": "",
-        "value": 1
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_followup_calculation.yml"
+            }
+          }
+        }
       },
       {
         "key": "followup_visit_date",
@@ -1949,6 +1955,21 @@
         "v_required": {
           "value": "true",
           "err": "Please select at least one"
+        }
+      },
+      {
+        "key": "next_followup_date",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "next_followup_date",
+        "type": "date_picker",
+        "hint": "Next followup date",
+        "expanded": false,
+        "min_date": "today",
+        "max_date": "today+1y",
+        "v_required": {
+          "value": "true",
+          "err": "Please fill next followup date"
         }
       }
     ]

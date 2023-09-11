@@ -13,7 +13,6 @@ import org.json.JSONObject;
 import org.smartregister.chw.core.utils.CoreJsonFormUtils;
 import org.smartregister.chw.hf.dao.HfVmmcDao;
 import org.smartregister.chw.hf.utils.Constants;
-import org.smartregister.chw.pmtct.util.JsonFormUtils;
 import org.smartregister.chw.referral.util.JsonFormConstants;
 import org.smartregister.chw.vmmc.domain.VisitDetail;
 import org.smartregister.chw.vmmc.model.BaseVmmcVisitAction;
@@ -26,6 +25,8 @@ public class VmmcFollowUpActionHelper implements BaseVmmcVisitAction.VmmcVisitAc
     protected String visit_type;
 
     protected String notifiable_adverse_event_occured;
+
+    protected String follow_up_visit_type;
 
     protected String jsonPayload;
 
@@ -51,8 +52,9 @@ public class VmmcFollowUpActionHelper implements BaseVmmcVisitAction.VmmcVisitAc
 
             String method_used = HfVmmcDao.getMcMethodUsed(baseEntityId);
             global.put("method_used", method_used);
+            global.put("current_visit_number", HfVmmcDao.getFollowUpVisitNumber(baseEntityId));
 
-            LocalDate todayDate = LocalDate.now();;
+            LocalDate todayDate = LocalDate.now();
             DateTimeFormatter formatter = DateTimeFormat.forPattern("dd-MM-yyyy");
             String male_circumcision_date = HfVmmcDao.getMcDoneDate(baseEntityId);
 
@@ -63,9 +65,6 @@ public class VmmcFollowUpActionHelper implements BaseVmmcVisitAction.VmmcVisitAc
             JSONArray fields = jsonObject.getJSONObject(Constants.JsonFormConstants.STEP1).getJSONArray(JsonFormConstants.FIELDS);
             JSONObject post_op_dates = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "post_op_dates");
             post_op_dates.put("text", "Day(s) Post-OP: " + noOfDayPostOP.toString());
-
-            JSONObject visitNumber = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "visit_number");
-            visitNumber.put(JsonFormUtils.VALUE, HfVmmcDao.getFollowUpVisit(baseEntityId));
 
             return jsonObject.toString();
         } catch (JSONException e) {
@@ -83,7 +82,7 @@ public class VmmcFollowUpActionHelper implements BaseVmmcVisitAction.VmmcVisitAc
     public void onPayloadReceived(String jsonPayload) {
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
-            visit_type = CoreJsonFormUtils.getValue(jsonObject, "post_op_adverse_event_occur");
+            follow_up_visit_type = CoreJsonFormUtils.getValue(jsonObject, "follow_up_visit_type");
             notifiable_adverse_event_occured = CoreJsonFormUtils.getValue(jsonObject, "notifiable_adverse_event_occured");
 
         } catch (JSONException e) {
@@ -103,7 +102,7 @@ public class VmmcFollowUpActionHelper implements BaseVmmcVisitAction.VmmcVisitAc
 
     @Override
     public String postProcess(String s) {
-        return null;
+        return s;
     }
 
     @Override
@@ -113,7 +112,7 @@ public class VmmcFollowUpActionHelper implements BaseVmmcVisitAction.VmmcVisitAc
 
     @Override
     public BaseVmmcVisitAction.Status evaluateStatusOnPayload() {
-        if (StringUtils.isBlank(visit_type))
+        if (StringUtils.isBlank(follow_up_visit_type))
             return BaseVmmcVisitAction.Status.PENDING;
         else {
             return BaseVmmcVisitAction.Status.COMPLETED;
