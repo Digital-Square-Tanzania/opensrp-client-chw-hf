@@ -157,17 +157,17 @@
         "values": [
           "Paracetamol",
           "Tramadol",
-          "Declophenac"
+          "Diclophenac"
         ],
         "keys": [
           "paracetamol",
           "tramadol",
-          "declophenac"
+          "diclophenac"
         ],
         "openmrs_choice_ids": {
           "paracetamol": "paracetamol",
           "tramadol": "tramadol",
-          "declophenac": "declophenac"
+          "declophenac": "diclophenac"
         },
         "v_required": {
           "value": "true",
@@ -181,12 +181,12 @@
         }
       },
       {
-        "key": "chose_analgenics_dosage_param",
+        "key": "choose_analgenics_dose_unit",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "chose_analgenics_dosage_param",
+        "openmrs_entity_id": "choose_analgenics_dose_unit",
         "type": "native_radio",
-        "label": "Choose Analgesics Dosage Param",
+        "label": "Choose Analgesics Dose Unit",
         "options": [
           {
             "key":"gram",
@@ -209,12 +209,12 @@
         }
       },
       {
-        "key": "analgenics_dosage_unit",
+        "key": "analgenics_dose",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "analgenics_dosage_unit",
+        "openmrs_entity_id": "analgenics_dose",
         "type": "edit_text",
-        "hint": "Analgesics Dosage Unit",
+        "hint": "Analgesics Dose",
         "edit_type": "text",
         "relevance": {
           "rules-engine": {
@@ -225,12 +225,12 @@
         }
       },
       {
-        "key": "analgenics_dosage_duration",
+        "key": "analgenics_dose_duration",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "analgenics_dosage_duration",
+        "openmrs_entity_id": "analgenics_dose_duration",
         "type": "edit_text",
-        "hint": "Analgesics Dosage Duration",
+        "hint": "Analgesics Dose Duration",
         "edit_type": "text",
         "relevance": {
           "rules-engine": {

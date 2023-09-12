@@ -254,13 +254,6 @@
             "openmrs_entity_parent": ""
           },
           {
-            "key": "anaesthetic_related_event",
-            "text": "Anaesthetic-related event",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "anaesthetic_related_event",
-            "openmrs_entity_parent": ""
-          },
-          {
             "key": "delayed_wound_healing",
             "text": "Delayed wound healing",
             "openmrs_entity": "concept",
@@ -344,13 +337,6 @@
             "text": "Excessive skin removed",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "excessive_skin_removed",
-            "openmrs_entity_parent": ""
-          },
-          {
-            "key": "anaesthetic_related_event",
-            "text": "Anaesthetic-related event",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "anaesthetic_related_event",
             "openmrs_entity_parent": ""
           },
           {
@@ -1159,95 +1145,6 @@
       },
 
       {
-        "key": "desc_of_post_op_adverse_anaesthetic_related_event",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "desc_of_post_op_adverse_excessive_anaesthetic_related_event",
-        "label": "Description of post-operative adverse events(Anaesthetic-related event)",
-        "text_color": "#000000",
-        "type": "native_radio",
-        "options": [
-          {
-            "key": "palpitations",
-            "text": "Palpitations, vaso-vagal reaction or emesis",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "adds_time"
-          },
-          {
-            "key": "anaesthetic_requiring_medical",
-            "text": "Reaction to anaesthetic requiring medical treatment in clinic, but not transfer to another facility",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "additional_operative"
-          },
-          {
-            "key": "anaphylaxis",
-            "text": "Anaphylaxis or other reaction requiring transfer to another facility",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "operation_or_transfer_to_another_facility"
-          }
-        ],
-        "v_required": {
-          "value": "true",
-          "err": "Please select atleast one scale"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "vmmc_followup_relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "ae_classified_as_mild_excessive_anaesthetic_related_event",
-        "type": "toaster_notes",
-        "text": "AE classified as MILD",
-        "openmrs_entity_id": "ae_classified_as_mild_excessive_anaesthetic_related_event",
-        "openmrs_entity": "concept",
-        "openmrs_entity_parent": "",
-        "toaster_type": "info",
-        "relevance": {
-          "step1:desc_of_post_op_adverse_anaesthetic_related_event": {
-            "type": "string",
-            "ex": "equalTo(., \"palpitations\")"
-          }
-        }
-      },
-      {
-        "key": "ae_classified_as_moderate_excessive_anaesthetic_related_event",
-        "type": "toaster_notes",
-        "text": "AE classified as MODERATE",
-        "openmrs_entity_id": "ae_classified_as_moderate_excessive_anaesthetic_related_event",
-        "openmrs_entity": "concept",
-        "openmrs_entity_parent": "",
-        "toaster_type": "warning",
-        "relevance": {
-          "step1:desc_of_post_op_adverse_anaesthetic_related_event": {
-            "type": "string",
-            "ex": "equalTo(., \"anaesthetic_requiring_medical\")"
-          }
-        }
-      },
-      {
-        "key": "ae_classified_as_severe_excessive_anaesthetic_related_event",
-        "type": "toaster_notes",
-        "text": "AE classified as SEVERE",
-        "openmrs_entity_id": "ae_classified_as_severe_excessive_anaesthetic_related_event",
-        "openmrs_entity": "concept",
-        "openmrs_entity_parent": "",
-        "toaster_type": "problem",
-        "relevance": {
-          "step1:desc_of_post_op_adverse_anaesthetic_related_event": {
-            "type": "string",
-            "ex": "equalTo(., \"anaphylaxis\")"
-          }
-        }
-      },
-
-      {
         "key": "desc_of_post_op_adverse_delayed_wound_healing",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -1346,25 +1243,25 @@
         "type": "native_radio",
         "options": [
           {
-            "key": "transient_complaint ",
-            "text": "Transient complaint that resolves without treatment",
+            "key": "client_concerned_but_no_discernible_abnormality",
+            "text": "Client concerned, but no discernible abnormality",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "transient_complaint"
+            "openmrs_entity_id": "client_concerned_but_no_discernible_abnormality"
           },
           {
-            "key": "requires_special_return_to_the_clinic",
-            "text": "Requires a special return to the clinic, but no additional treatment required",
+            "key": "significant_wound_disruption_or_scarring_but_does_not_require_re_operation",
+            "text": "Significant wound disruption or scarring, but does not require re-operation",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "requires_special_return_to_the_clinic"
+            "openmrs_entity_id": "significant_wound_disruption_or_scarring_but_does_not_require_re_operation"
           },
           {
-            "key": "requires_referral_to_another_facility",
-            "text": "Requires referral to another facility for management",
+            "key": "requires_re_operation",
+            "text": "Requires re-operation",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "requires_referral_to_another_facility"
+            "openmrs_entity_id": "requires_re_operation"
           }
         ],
         "v_required": {
@@ -1390,7 +1287,7 @@
         "relevance": {
           "step1:desc_of_post_op_adverse_appearance": {
             "type": "string",
-            "ex": "equalTo(., \"transient_complaint\")"
+            "ex": "equalTo(., \"client_concerned_but_no_discernible_abnormality\")"
           }
         }
       },
@@ -1405,7 +1302,7 @@
         "relevance": {
           "step1:desc_of_post_op_adverse_appearance": {
             "type": "string",
-            "ex": "equalTo(., \"requires_special_return_to_the_clinic\")"
+            "ex": "equalTo(., \"significant_wound_disruption_or_scarring_but_does_not_require_re_operation\")"
           }
         }
       },
@@ -1420,7 +1317,7 @@
         "relevance": {
           "step1:desc_of_post_op_adverse_appearance": {
             "type": "string",
-            "ex": "equalTo(., \"requires_referral_to_another_facility\")"
+            "ex": "equalTo(., \"requires_re_operation\")"
           }
         }
       },
@@ -1955,6 +1852,12 @@
         "v_required": {
           "value": "true",
           "err": "Please select at least one"
+        },
+        "relevance": {
+          "step1:post_op_adverse_event_occur": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
         }
       },
       {

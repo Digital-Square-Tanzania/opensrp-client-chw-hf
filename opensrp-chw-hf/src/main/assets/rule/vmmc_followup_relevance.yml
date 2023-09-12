@@ -90,13 +90,6 @@ condition: "step1_type_of_adverse_event_with_device.contains('excessive_skin_rem
 actions:
   - "isRelevant = true "
 ---
-name: step1_desc_of_post_op_adverse_anaesthetic_related_event
-description: if desc_of_post_op_adverse_excessive_anaesthetic_related_event
-priority: 1
-condition: "step1_type_of_adverse_event_with_device.contains('anaesthetic_related_event') || step1_type_of_adverse_event_without_device.contains('anaesthetic_related_event')"
-actions:
-  - "isRelevant = true "
----
 name: step1_desc_of_post_op_adverse_delayed_wound_healing
 description: if desc_of_post_op_adverse_delayed_wound_healing
 priority: 1
