@@ -1970,6 +1970,13 @@
         "v_required": {
           "value": "true",
           "err": "Please fill next followup date"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_followup_relevance.yml"
+            }
+          }
         }
       }
     ]

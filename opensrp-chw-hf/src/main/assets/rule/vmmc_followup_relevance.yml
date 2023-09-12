@@ -1,4 +1,11 @@
 ---
+name: step1_next_followup_date
+description: if next_followup_date
+priority: 1
+condition: "!(global_last_follow_up_date.equals(global_today_date))"
+actions:
+  - "isRelevant = true "
+---
 name: step1_type_of_adverse_event_with_device
 description: if type_of_adverse_event_with_device
 priority: 1

@@ -44,6 +44,19 @@ public class HfVmmcDao extends VmmcDao {
         return "";
     }
 
+    public static String getDischargingDate(String baseEntityId) {
+        String sql = "SELECT discharge_date FROM ec_vmmc_post_op_and_discharge p " +
+                " WHERE p.entity_id = '" + baseEntityId + "' ORDER BY last_interacted_with DESC LIMIT 1";
+
+        DataMap<String> dataMap = cursor -> getCursorValue(cursor, "discharge_date");
+
+        List<String> res = readData(sql, dataMap);
+        if (res != null && res.size() != 0 && res.get(0) != null) {
+            return res.get(0);
+        }
+        return "";
+    }
+
     public static int getFollowUpVisitNumber(String baseEntityId) {
 
         DataMap<String> dataMap = cursor -> getCursorValue(cursor, "visit_number");

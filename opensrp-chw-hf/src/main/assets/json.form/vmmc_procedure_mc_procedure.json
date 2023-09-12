@@ -614,7 +614,7 @@
         "openmrs_entity_id": "dosage_ml",
         "entity_id": "",
         "type": "edit_text",
-        "hint": "Dosage (ml)",
+        "hint": "Dosage (g)",
         "edit_type": "number",
         "v_numeric": {
           "value": "true",

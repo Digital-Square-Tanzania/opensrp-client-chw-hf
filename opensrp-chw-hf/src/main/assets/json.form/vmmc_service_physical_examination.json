@@ -853,7 +853,7 @@
           "err": "Please select an answer"
         },
         "relevance": {
-          "step1:preferred_client_mc_method": {
+          "step1:preferred_client_mc_method_without_chordae": {
             "type": "string",
             "ex": "equalTo(., \"device\")"
           }

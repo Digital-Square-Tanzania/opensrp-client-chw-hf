@@ -22,17 +22,12 @@ import java.util.Map;
 
 public class VmmcFollowUpActionHelper implements BaseVmmcVisitAction.VmmcVisitActionHelper {
 
-    protected String visit_type;
-
-    protected String notifiable_adverse_event_occured;
-
-    protected String follow_up_visit_type;
-
-    protected String jsonPayload;
-
-    protected String baseEntityId;
-
     public Integer noOfDayPostOP;
+    protected String visit_type;
+    protected String notifiable_adverse_event_occured;
+    protected String follow_up_visit_type;
+    protected String jsonPayload;
+    protected String baseEntityId;
 
 
     public VmmcFollowUpActionHelper(String baseEntityId) {
@@ -56,8 +51,16 @@ public class VmmcFollowUpActionHelper implements BaseVmmcVisitAction.VmmcVisitAc
 
             LocalDate todayDate = LocalDate.now();
             DateTimeFormatter formatter = DateTimeFormat.forPattern("dd-MM-yyyy");
-            String male_circumcision_date = HfVmmcDao.getMcDoneDate(baseEntityId);
 
+            String discharge_date = HfVmmcDao.getDischargingDate(baseEntityId);
+            LocalDate dischargingDateFormat = formatter.parseDateTime(discharge_date).toLocalDate();
+            LocalDate lastFollowUpDate = dischargingDateFormat.plusDays(7);
+
+            global.put("last_follow_up_date", lastFollowUpDate);
+            global.put("today_date", todayDate);
+
+
+            String male_circumcision_date = HfVmmcDao.getMcDoneDate(baseEntityId);
             LocalDate mcProcedureDate = formatter.parseDateTime(male_circumcision_date).toLocalDate();
 
             noOfDayPostOP = dayDifference(mcProcedureDate, todayDate);
