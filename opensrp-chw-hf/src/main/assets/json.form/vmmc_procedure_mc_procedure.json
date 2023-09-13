@@ -687,10 +687,10 @@
         }
       },
       {
-        "key": "surgeon_name",
+        "key": "surgeon_first_name",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "surgeon_name",
+        "openmrs_entity_id": "surgeon_first_name",
         "type": "edit_text",
         "hint": "Surgeon's first name",
         "relevance": {
@@ -735,6 +735,20 @@
           "rules-engine": {
             "ex-rules": {
               "rules-file": "vmmc_mc_procedure_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "surgeon_name",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "surgeon_name",
+        "type": "hidden",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_mc_procedure_calculation.yml"
             }
           }
         }
@@ -799,10 +813,10 @@
         }
       },
       {
-        "key": "assistant_name",
+        "key": "assistant_first_name",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "assistant_name",
+        "openmrs_entity_id": "assistant_first_name",
         "type": "edit_text",
         "hint": "Assistant's first name",
         "relevance": {
@@ -847,6 +861,20 @@
           "rules-engine": {
             "ex-rules": {
               "rules-file": "vmmc_mc_procedure_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "assistant_name",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "assistant_name",
+        "type": "hidden",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_mc_procedure_calculation.yml"
             }
           }
         }

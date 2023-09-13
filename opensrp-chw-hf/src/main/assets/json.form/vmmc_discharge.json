@@ -336,6 +336,20 @@
         }
       },
       {
+        "key": "discharging_provider_name",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "discharging_provider_name",
+        "type": "hidden",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_discharge_calculation.yml"
+            }
+          }
+        }
+      },
+      {
         "key": "provider_cadre",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -441,9 +455,10 @@
           "err": "Please fill next followup date"
         },
         "relevance": {
-          "step1:discharge_condition": {
-            "type": "string",
-            "ex": "equalTo(., \"satisfactory\")"
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_discharge_relevance.yml"
+            }
           }
         }
       }

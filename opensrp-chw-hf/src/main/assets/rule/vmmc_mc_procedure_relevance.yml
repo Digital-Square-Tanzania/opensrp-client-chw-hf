@@ -48,8 +48,8 @@ condition: "step1_is_male_procedure_circumcision_conducted.equalsIgnoreCase('yes
 actions:
   - "isRelevant = true"
 ---
-name: step1_surgeon_name
-description: surgeon_name relevance
+name: step1_surgeon_first_name
+description: surgeon_first_name relevance
 priority: 1
 condition: "step1_is_male_procedure_circumcision_conducted.equalsIgnoreCase('yes')"
 actions:
@@ -58,7 +58,7 @@ actions:
 name: step1_surgeon_middle_name
 description: surgeon_middle_name relevance
 priority: 1
-condition: "!step1_surgeon_name.equals('')"
+condition: "!step1_surgeon_first_name.equals('')"
 actions:
   - "isRelevant = true"
 ---
@@ -76,8 +76,8 @@ condition: "step1_is_male_procedure_circumcision_conducted.equalsIgnoreCase('yes
 actions:
   - "isRelevant = true"
 ---
-name: step1_assistant_name
-description: assistant_name relevance
+name: step1_assistant_first_name
+description: assistant_first_name relevance
 priority: 1
 condition: "step1_is_male_procedure_circumcision_conducted.equalsIgnoreCase('yes')"
 actions:
@@ -86,7 +86,7 @@ actions:
 name: step1_assistant_middle_name
 description: assistant relevance
 priority: 1
-condition: "!step1_assistant_name.equals('')"
+condition: "!step1_assistant_first_name.equals('')"
 actions:
   - "isRelevant = true"
 ---

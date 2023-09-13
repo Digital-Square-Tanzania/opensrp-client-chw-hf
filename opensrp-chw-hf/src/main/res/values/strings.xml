@@ -979,7 +979,7 @@
     <string name="vmmc_analgenics_dosage">analgenics dosage:</string>
     <string name="vmmc_analgenics_reasons">analgenics reasons:</string>
     <string name="vmmc_discharge_time">discharge time:</string>
-    <string name="vmmc_discharging_name">discharging name:</string>
+    <string name="vmmc_discharging_provider_name">discharging provider name:</string>
     <string name="vmmc_provider_cadre">Providers cadre:</string>
 
     <string name="vmmc_first_vital_sign_pulse_rate">First Vital Sign Pulse Rate (Beats per minute):</string>

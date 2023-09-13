@@ -8924,11 +8924,11 @@
           }
         },
         {
-          "column_name": "discharging_name",
+          "column_name": "discharging_provider_name",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
-            "concept": "discharging_name"
+            "concept": "discharging_provider_name"
           }
         },
         {

@@ -241,6 +241,20 @@
         }
       },
       {
+        "key": "health_care_provider",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "health_care_provider",
+        "type": "hidden",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_mc_procedure_calculation.yml"
+            }
+          }
+        }
+      },
+      {
         "key": "actual_age",
         "type": "hidden",
         "openmrs_entity_id": "actual_age",

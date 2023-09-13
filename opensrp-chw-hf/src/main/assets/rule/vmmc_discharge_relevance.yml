@@ -68,3 +68,10 @@ priority: 1
 condition: "step1_choose_analgenics_dose_unit.equalsIgnoreCase('gram') || step1_choose_analgenics_dose_unit.equalsIgnoreCase('milligram')"
 actions:
   - "isRelevant = true"
+---
+name: step1_next_followup_date
+description: next_followup_date
+priority: 1
+condition: "step1_discharge_condition.equalsIgnoreCase('satisfactory') || step1_discharge_condition.equalsIgnoreCase('needs_followup')"
+actions:
+  - "isRelevant = true"

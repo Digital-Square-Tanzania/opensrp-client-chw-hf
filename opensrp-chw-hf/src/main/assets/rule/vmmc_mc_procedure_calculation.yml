@@ -19,3 +19,17 @@ priority: 1
 condition: "true"
 actions:
   - "calculation = step1_male_circumcision_method.equalsIgnoreCase('device') ? step1_aneathesia_administered_device : step1_aneathesia_administered_conventional"
+---
+name: step1_surgeon_name
+description: surgeon_name
+priority: 1
+condition: "true"
+actions:
+  - "calculation = step1_surgeon_first_name +' '+step1_surgeon_middle_name +' '+ step1_surgeon_last_name"
+---
+name: step1_assistant_name
+description: assistant_name
+priority: 1
+condition: "true"
+actions:
+  - "calculation = step1_assistant_first_name +' '+step1_assistant_middle_name +' '+ step1_assistant_last_name"
