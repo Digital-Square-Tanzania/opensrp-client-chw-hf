@@ -133,6 +133,13 @@
         "combine_checkbox_option_values": "true",
         "options": [
           {
+          "key": "complete_or_partial_amputation_of_glans_or_shaft_of_penis",
+          "text": "Complete or partial amputation of the glans or shaft of the penis",
+          "openmrs_entity": "concept",
+          "openmrs_entity_id": "complete_or_partial_amputation_of_glans_or_shaft_of_penis",
+          "openmrs_entity_parent": ""
+          },
+          {
             "key": "tetanus_including_non_fatal_cases",
             "text": "Tetanus including non-fatal cases",
              "openmrs_entity": "concept",
