@@ -8843,6 +8843,46 @@
           }
         },
         {
+          "column_name": "desc_intraoperative_ae_bleed_excessive_bleeding",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "desc_intraoperative_ae_bleed_excessive_bleeding"
+          }
+        },
+        {
+          "column_name": "desc_intraoperative_ae_skin_removal",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "desc_intraoperative_ae_skin_removal"
+          }
+        },
+        {
+          "column_name": "desc_intraoperative_ae_injury_to_penis",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "desc_intraoperative_ae_injury_to_penis"
+          }
+        },
+        {
+          "column_name": "desc_intraoperative_ae_anaesthetic_related_event",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "desc_intraoperative_ae_anaesthetic_related_event"
+          }
+        },
+        {
+          "column_name": "desc_of_adverse_event_device_displacement",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "desc_of_adverse_event_device_displacement"
+          }
+        },
+        {
           "column_name": "device_name",
           "type": "Event",
           "json_mapping": {
@@ -8924,11 +8964,11 @@
           }
         },
         {
-          "column_name": "discharging_provider_name",
+          "column_name": "discharging_name",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
-            "concept": "discharging_provider_name"
+            "concept": "discharging_name"
           }
         },
         {

@@ -5684,7 +5684,7 @@ indicators:
 
   - key: "vmmc-7-i-1-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%complete_or_partial_amputation_of_glans_or_shaft_of_penis%'  )
@@ -5696,7 +5696,7 @@ indicators:
 
   - key: "vmmc-7-i-1-9-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%complete_or_partial_amputation_of_glans_or_shaft_of_penis%'  )
@@ -5708,7 +5708,7 @@ indicators:
 
   - key: "vmmc-7-i-10-14-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%complete_or_partial_amputation_of_glans_or_shaft_of_penis%'  )
@@ -5720,7 +5720,7 @@ indicators:
 
   - key: "vmmc-7-i-15-19-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%complete_or_partial_amputation_of_glans_or_shaft_of_penis%'  )
@@ -5732,7 +5732,7 @@ indicators:
 
   - key: "vmmc-7-i-20-24-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%complete_or_partial_amputation_of_glans_or_shaft_of_penis%'  )
@@ -5744,7 +5744,7 @@ indicators:
 
   - key: "vmmc-7-i-25-29-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%complete_or_partial_amputation_of_glans_or_shaft_of_penis%'  )
@@ -5756,7 +5756,7 @@ indicators:
 
   - key: "vmmc-7-i-30-34-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%complete_or_partial_amputation_of_glans_or_shaft_of_penis%'  )
@@ -5768,7 +5768,7 @@ indicators:
 
   - key: "vmmc-7-i-35-39-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%complete_or_partial_amputation_of_glans_or_shaft_of_penis%'  )
@@ -5780,7 +5780,7 @@ indicators:
 
   - key: "vmmc-7-i-40-44-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%complete_or_partial_amputation_of_glans_or_shaft_of_penis%'  )
@@ -5792,7 +5792,7 @@ indicators:
 
   - key: "vmmc-7-i-45-49-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%complete_or_partial_amputation_of_glans_or_shaft_of_penis%'  )
@@ -5804,7 +5804,7 @@ indicators:
 
   - key: "vmmc-7-i-50-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%complete_or_partial_amputation_of_glans_or_shaft_of_penis%'  )
@@ -5819,7 +5819,7 @@ indicators:
   #      ii.
   - key: "vmmc-7-ii-1-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%tetanus_including_non_fatal_cases%'  )
@@ -5831,7 +5831,7 @@ indicators:
 
   - key: "vmmc-7-ii-1-9-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%tetanus_including_non_fatal_cases%'  )
@@ -5843,7 +5843,7 @@ indicators:
 
   - key: "vmmc-7-ii-10-14-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%tetanus_including_non_fatal_cases%'  )
@@ -5855,7 +5855,7 @@ indicators:
 
   - key: "vmmc-7-ii-15-19-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%tetanus_including_non_fatal_cases%'  )
@@ -5867,7 +5867,7 @@ indicators:
 
   - key: "vmmc-7-ii-20-24-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%tetanus_including_non_fatal_cases%'  )
@@ -5879,7 +5879,7 @@ indicators:
 
   - key: "vmmc-7-ii-25-29-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%tetanus_including_non_fatal_cases%'  )
@@ -5891,7 +5891,7 @@ indicators:
 
   - key: "vmmc-7-ii-30-34-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%tetanus_including_non_fatal_cases%'  )
@@ -5903,7 +5903,7 @@ indicators:
 
   - key: "vmmc-7-ii-35-39-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%tetanus_including_non_fatal_cases%'  )
@@ -5915,7 +5915,7 @@ indicators:
 
   - key: "vmmc-7-ii-40-44-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%tetanus_including_non_fatal_cases%'  )
@@ -5927,7 +5927,7 @@ indicators:
 
   - key: "vmmc-7-ii-45-49-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%tetanus_including_non_fatal_cases%'  )
@@ -5939,7 +5939,7 @@ indicators:
 
   - key: "vmmc-7-ii-50-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%tetanus_including_non_fatal_cases%'  )
@@ -5954,7 +5954,7 @@ indicators:
   #    iii.
   - key: "vmmc-7-iii-1-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%ae_results_in_disbility_permanent%'  )
@@ -5966,7 +5966,7 @@ indicators:
 
   - key: "vmmc-7-iii-1-9-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%ae_results_in_disbility_permanent%'  )
@@ -5978,7 +5978,7 @@ indicators:
 
   - key: "vmmc-7-iii-10-14-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%ae_results_in_disbility_permanent%'  )
@@ -5990,7 +5990,7 @@ indicators:
 
   - key: "vmmc-7-iii-15-19-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%ae_results_in_disbility_permanent%'  )
@@ -6002,7 +6002,7 @@ indicators:
 
   - key: "vmmc-7-iii-20-24-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%ae_results_in_disbility_permanent%'  )
@@ -6014,7 +6014,7 @@ indicators:
 
   - key: "vmmc-7-iii-25-29-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%ae_results_in_disbility_permanent%'  )
@@ -6026,7 +6026,7 @@ indicators:
 
   - key: "vmmc-7-iii-30-34-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%ae_results_in_disbility_permanent%'  )
@@ -6038,7 +6038,7 @@ indicators:
 
   - key: "vmmc-7-iii-35-39-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%ae_results_in_disbility_permanent%'  )
@@ -6050,7 +6050,7 @@ indicators:
 
   - key: "vmmc-7-iii-40-44-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%ae_results_in_disbility_permanent%'  )
@@ -6062,7 +6062,7 @@ indicators:
 
   - key: "vmmc-7-iii-45-49-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%ae_results_in_disbility_permanent%'  )
@@ -6074,7 +6074,7 @@ indicators:
 
   - key: "vmmc-7-iii-50-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%ae_results_in_disbility_permanent%'  )
@@ -6087,7 +6087,7 @@ indicators:
   #    iv.
   - key: "vmmc-7-iv-1-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%ae_results_in_anatomic_deformity_permanent%'  )
@@ -6099,7 +6099,7 @@ indicators:
 
   - key: "vmmc-7-iv-1-9-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%ae_results_in_anatomic_deformity_permanent%'  )
@@ -6111,7 +6111,7 @@ indicators:
 
   - key: "vmmc-7-iv-10-14-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%ae_results_in_anatomic_deformity_permanent%'  )
@@ -6123,7 +6123,7 @@ indicators:
 
   - key: "vmmc-7-iv-15-19-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%ae_results_in_anatomic_deformity_permanent%'  )
@@ -6135,7 +6135,7 @@ indicators:
 
   - key: "vmmc-7-iv-20-24-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%ae_results_in_anatomic_deformity_permanent%'  )
@@ -6147,7 +6147,7 @@ indicators:
 
   - key: "vmmc-7-iv-25-29-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%ae_results_in_anatomic_deformity_permanent%'  )
@@ -6159,7 +6159,7 @@ indicators:
 
   - key: "vmmc-7-iv-30-34-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%ae_results_in_anatomic_deformity_permanent%'  )
@@ -6171,7 +6171,7 @@ indicators:
 
   - key: "vmmc-7-iv-35-39-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%ae_results_in_anatomic_deformity_permanent%'  )
@@ -6183,7 +6183,7 @@ indicators:
 
   - key: "vmmc-7-iv-40-44-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%ae_results_in_anatomic_deformity_permanent%'  )
@@ -6195,7 +6195,7 @@ indicators:
 
   - key: "vmmc-7-iv-45-49-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%ae_results_in_anatomic_deformity_permanent%'  )
@@ -6207,7 +6207,7 @@ indicators:
 
   - key: "vmmc-7-iv-50-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%ae_results_in_anatomic_deformity_permanent%'  )
@@ -6221,7 +6221,7 @@ indicators:
   #    v.
   - key: "vmmc-7-v-1-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%hospital_admission%'  )
@@ -6233,7 +6233,7 @@ indicators:
 
   - key: "vmmc-7-v-1-9-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%hospital_admission%'  )
@@ -6245,7 +6245,7 @@ indicators:
 
   - key: "vmmc-7-v-10-14-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%hospital_admission%'  )
@@ -6257,7 +6257,7 @@ indicators:
 
   - key: "vmmc-7-v-15-19-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%hospital_admission%'  )
@@ -6269,7 +6269,7 @@ indicators:
 
   - key: "vmmc-7-v-20-24-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%hospital_admission%'  )
@@ -6281,7 +6281,7 @@ indicators:
 
   - key: "vmmc-7-v-25-29-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%hospital_admission%'  )
@@ -6293,7 +6293,7 @@ indicators:
 
   - key: "vmmc-7-v-30-34-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%hospital_admission%'  )
@@ -6305,7 +6305,7 @@ indicators:
 
   - key: "vmmc-7-v-35-39-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%hospital_admission%'  )
@@ -6317,7 +6317,7 @@ indicators:
 
   - key: "vmmc-7-v-40-44-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%hospital_admission%'  )
@@ -6329,7 +6329,7 @@ indicators:
 
   - key: "vmmc-7-v-45-49-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%hospital_admission%'  )
@@ -6341,7 +6341,7 @@ indicators:
 
   - key: "vmmc-7-v-50-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%hospital_admission%'  )
@@ -6354,7 +6354,7 @@ indicators:
   #    vi.
   - key: "vmmc-7-vi-1-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  did_client_experience_nae LIKE '%moderate_severe_device_displacement%'
@@ -6366,7 +6366,7 @@ indicators:
 
   - key: "vmmc-7-vi-1-9-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  did_client_experience_nae LIKE '%moderate_severe_device_displacement%'
@@ -6378,7 +6378,7 @@ indicators:
 
   - key: "vmmc-7-vi-10-14-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  did_client_experience_nae LIKE '%moderate_severe_device_displacement%'
@@ -6390,7 +6390,7 @@ indicators:
 
   - key: "vmmc-7-vi-15-19-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  did_client_experience_nae LIKE '%moderate_severe_device_displacement%'
@@ -6402,7 +6402,7 @@ indicators:
 
   - key: "vmmc-7-vi-20-24-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  did_client_experience_nae LIKE '%moderate_severe_device_displacement%'
@@ -6414,7 +6414,7 @@ indicators:
 
   - key: "vmmc-7-vi-25-29-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  did_client_experience_nae LIKE '%moderate_severe_device_displacement%'
@@ -6426,7 +6426,7 @@ indicators:
 
   - key: "vmmc-7-vi-30-34-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  did_client_experience_nae LIKE '%moderate_severe_device_displacement%'
@@ -6438,7 +6438,7 @@ indicators:
 
   - key: "vmmc-7-vi-35-39-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  did_client_experience_nae LIKE '%moderate_severe_device_displacement%'
@@ -6450,7 +6450,7 @@ indicators:
 
   - key: "vmmc-7-vi-40-44-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  did_client_experience_nae LIKE '%moderate_severe_device_displacement%'
@@ -6462,7 +6462,7 @@ indicators:
 
   - key: "vmmc-7-vi-45-49-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  did_client_experience_nae LIKE '%moderate_severe_device_displacement%'
@@ -6474,7 +6474,7 @@ indicators:
 
   - key: "vmmc-7-vi-50-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  did_client_experience_nae LIKE '%moderate_severe_device_displacement%'
@@ -6487,7 +6487,7 @@ indicators:
   #    vii.
   - key: "vmmc-7-vii-1-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post%'  )
@@ -6499,7 +6499,7 @@ indicators:
 
   - key: "vmmc-7-vii-1-9-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post%'  )
@@ -6511,7 +6511,7 @@ indicators:
 
   - key: "vmmc-7-vii-10-14-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post%'  )
@@ -6523,7 +6523,7 @@ indicators:
 
   - key: "vmmc-7-vii-15-19-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post%'  )
@@ -6535,7 +6535,7 @@ indicators:
 
   - key: "vmmc-7-vii-20-24-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post%'  )
@@ -6547,7 +6547,7 @@ indicators:
 
   - key: "vmmc-7-vii-25-29-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post%'  )
@@ -6559,7 +6559,7 @@ indicators:
 
   - key: "vmmc-7-vii-30-34-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post%'  )
@@ -6571,7 +6571,7 @@ indicators:
 
   - key: "vmmc-7-vii-35-39-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post%'  )
@@ -6583,7 +6583,7 @@ indicators:
 
   - key: "vmmc-7-vii-40-44-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post%'  )
@@ -6595,7 +6595,7 @@ indicators:
 
   - key: "vmmc-7-vii-45-49-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post%'  )
@@ -6607,7 +6607,7 @@ indicators:
 
   - key: "vmmc-7-vii-50-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post%'  )
@@ -6621,7 +6621,7 @@ indicators:
   #  #    viii.
   - key: "vmmc-7-viii-1-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%admission_to_icu_within_30_days_post_mc%'  )
@@ -6633,7 +6633,7 @@ indicators:
 
   - key: "vmmc-7-viii-1-9-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%admission_to_icu_within_30_days_post_mc%'  )
@@ -6645,7 +6645,7 @@ indicators:
 
   - key: "vmmc-7-viii-10-14-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%admission_to_icu_within_30_days_post_mc%'  )
@@ -6657,7 +6657,7 @@ indicators:
 
   - key: "vmmc-7-viii-15-19-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%admission_to_icu_within_30_days_post_mc%'  )
@@ -6669,7 +6669,7 @@ indicators:
 
   - key: "vmmc-7-viii-20-24-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%admission_to_icu_within_30_days_post_mc%'  )
@@ -6681,7 +6681,7 @@ indicators:
 
   - key: "vmmc-7-viii-25-29-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%admission_to_icu_within_30_days_post_mc%'  )
@@ -6693,7 +6693,7 @@ indicators:
 
   - key: "vmmc-7-viii-30-34-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%admission_to_icu_within_30_days_post_mc%'  )
@@ -6705,7 +6705,7 @@ indicators:
 
   - key: "vmmc-7-viii-35-39-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%admission_to_icu_within_30_days_post_mc%'  )
@@ -6717,7 +6717,7 @@ indicators:
 
   - key: "vmmc-7-viii-40-44-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%admission_to_icu_within_30_days_post_mc%'  )
@@ -6729,7 +6729,7 @@ indicators:
 
   - key: "vmmc-7-viii-45-49-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%admission_to_icu_within_30_days_post_mc%'  )
@@ -6741,7 +6741,7 @@ indicators:
 
   - key: "vmmc-7-viii-50-cm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%admission_to_icu_within_30_days_post_mc%'  )
@@ -6755,7 +6755,7 @@ indicators:
 
   - key: "vmmc-7-i-1-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%complete_or_partial_amputation_of_glans_or_shaft_of_penis%'  )
@@ -6767,7 +6767,7 @@ indicators:
 
   - key: "vmmc-7-i-1-9-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%complete_or_partial_amputation_of_glans_or_shaft_of_penis%'  )
@@ -6779,7 +6779,7 @@ indicators:
 
   - key: "vmmc-7-i-10-14-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%complete_or_partial_amputation_of_glans_or_shaft_of_penis%'  )
@@ -6791,7 +6791,7 @@ indicators:
 
   - key: "vmmc-7-i-15-19-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%complete_or_partial_amputation_of_glans_or_shaft_of_penis%'  )
@@ -6803,7 +6803,7 @@ indicators:
 
   - key: "vmmc-7-i-20-24-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%complete_or_partial_amputation_of_glans_or_shaft_of_penis%'  )
@@ -6815,7 +6815,7 @@ indicators:
 
   - key: "vmmc-7-i-25-29-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%complete_or_partial_amputation_of_glans_or_shaft_of_penis%'  )
@@ -6827,7 +6827,7 @@ indicators:
 
   - key: "vmmc-7-i-30-34-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%complete_or_partial_amputation_of_glans_or_shaft_of_penis%'  )
@@ -6839,7 +6839,7 @@ indicators:
 
   - key: "vmmc-7-i-35-39-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%complete_or_partial_amputation_of_glans_or_shaft_of_penis%'  )
@@ -6851,7 +6851,7 @@ indicators:
 
   - key: "vmmc-7-i-40-44-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%complete_or_partial_amputation_of_glans_or_shaft_of_penis%'  )
@@ -6863,7 +6863,7 @@ indicators:
 
   - key: "vmmc-7-i-45-49-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%complete_or_partial_amputation_of_glans_or_shaft_of_penis%'  )
@@ -6875,7 +6875,7 @@ indicators:
 
   - key: "vmmc-7-i-50-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%complete_or_partial_amputation_of_glans_or_shaft_of_penis%'  )
@@ -6890,7 +6890,7 @@ indicators:
   #      ii.
   - key: "vmmc-7-ii-1-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%tetanus_including_non_fatal_cases%'  )
@@ -6902,7 +6902,7 @@ indicators:
 
   - key: "vmmc-7-ii-1-9-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%tetanus_including_non_fatal_cases%'  )
@@ -6914,7 +6914,7 @@ indicators:
 
   - key: "vmmc-7-ii-10-14-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%tetanus_including_non_fatal_cases%'  )
@@ -6926,7 +6926,7 @@ indicators:
 
   - key: "vmmc-7-ii-15-19-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%tetanus_including_non_fatal_cases%'  )
@@ -6938,7 +6938,7 @@ indicators:
 
   - key: "vmmc-7-ii-20-24-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%tetanus_including_non_fatal_cases%'  )
@@ -6950,7 +6950,7 @@ indicators:
 
   - key: "vmmc-7-ii-25-29-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%tetanus_including_non_fatal_cases%'  )
@@ -6962,7 +6962,7 @@ indicators:
 
   - key: "vmmc-7-ii-30-34-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%tetanus_including_non_fatal_cases%'  )
@@ -6974,7 +6974,7 @@ indicators:
 
   - key: "vmmc-7-ii-35-39-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%tetanus_including_non_fatal_cases%'  )
@@ -6986,7 +6986,7 @@ indicators:
 
   - key: "vmmc-7-ii-40-44-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%tetanus_including_non_fatal_cases%'  )
@@ -6998,7 +6998,7 @@ indicators:
 
   - key: "vmmc-7-ii-45-49-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%tetanus_including_non_fatal_cases%'  )
@@ -7010,7 +7010,7 @@ indicators:
 
   - key: "vmmc-7-ii-50-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%tetanus_including_non_fatal_cases%'  )
@@ -7023,7 +7023,7 @@ indicators:
   #    iii.
   - key: "vmmc-7-iii-1-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%ae_results_in_disbility_permanent%'  )
@@ -7035,7 +7035,7 @@ indicators:
 
   - key: "vmmc-7-iii-1-9-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%ae_results_in_disbility_permanent%'  )
@@ -7047,7 +7047,7 @@ indicators:
 
   - key: "vmmc-7-iii-10-14-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%ae_results_in_disbility_permanent%'  )
@@ -7059,7 +7059,7 @@ indicators:
 
   - key: "vmmc-7-iii-15-19-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%ae_results_in_disbility_permanent%'  )
@@ -7071,7 +7071,7 @@ indicators:
 
   - key: "vmmc-7-iii-20-24-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%ae_results_in_disbility_permanent%'  )
@@ -7083,7 +7083,7 @@ indicators:
 
   - key: "vmmc-7-iii-25-29-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%ae_results_in_disbility_permanent%'  )
@@ -7095,7 +7095,7 @@ indicators:
 
   - key: "vmmc-7-iii-30-34-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%ae_results_in_disbility_permanent%'  )
@@ -7107,7 +7107,7 @@ indicators:
 
   - key: "vmmc-7-iii-35-39-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%ae_results_in_disbility_permanent%'  )
@@ -7119,7 +7119,7 @@ indicators:
 
   - key: "vmmc-7-iii-40-44-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%ae_results_in_disbility_permanent%'  )
@@ -7131,7 +7131,7 @@ indicators:
 
   - key: "vmmc-7-iii-45-49-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%ae_results_in_disbility_permanent%'  )
@@ -7143,7 +7143,7 @@ indicators:
 
   - key: "vmmc-7-iii-50-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%ae_results_in_disbility_permanent%'  )
@@ -7156,7 +7156,7 @@ indicators:
   #    iv.
   - key: "vmmc-7-iv-1-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%ae_results_in_anatomic_deformity_permanent%'  )
@@ -7168,7 +7168,7 @@ indicators:
 
   - key: "vmmc-7-iv-1-9-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%ae_results_in_anatomic_deformity_permanent%'  )
@@ -7180,7 +7180,7 @@ indicators:
 
   - key: "vmmc-7-iv-10-14-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%ae_results_in_anatomic_deformity_permanent%'  )
@@ -7192,7 +7192,7 @@ indicators:
 
   - key: "vmmc-7-iv-15-19-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%ae_results_in_anatomic_deformity_permanent%'  )
@@ -7204,7 +7204,7 @@ indicators:
 
   - key: "vmmc-7-iv-20-24-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%ae_results_in_anatomic_deformity_permanent%'  )
@@ -7216,7 +7216,7 @@ indicators:
 
   - key: "vmmc-7-iv-25-29-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%ae_results_in_anatomic_deformity_permanent%'  )
@@ -7228,7 +7228,7 @@ indicators:
 
   - key: "vmmc-7-iv-30-34-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%ae_results_in_anatomic_deformity_permanent%'  )
@@ -7240,7 +7240,7 @@ indicators:
 
   - key: "vmmc-7-iv-35-39-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%ae_results_in_anatomic_deformity_permanent%'  )
@@ -7252,7 +7252,7 @@ indicators:
 
   - key: "vmmc-7-iv-40-44-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%ae_results_in_anatomic_deformity_permanent%'  )
@@ -7264,7 +7264,7 @@ indicators:
 
   - key: "vmmc-7-iv-45-49-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%ae_results_in_anatomic_deformity_permanent%'  )
@@ -7276,7 +7276,7 @@ indicators:
 
   - key: "vmmc-7-iv-50-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%ae_results_in_anatomic_deformity_permanent%'  )
@@ -7290,7 +7290,7 @@ indicators:
   #    v.
   - key: "vmmc-7-v-1-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%hospital_admission%'  )
@@ -7302,7 +7302,7 @@ indicators:
 
   - key: "vmmc-7-v-1-9-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%hospital_admission%'  )
@@ -7314,7 +7314,7 @@ indicators:
 
   - key: "vmmc-7-v-10-14-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%hospital_admission%'  )
@@ -7326,7 +7326,7 @@ indicators:
 
   - key: "vmmc-7-v-15-19-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%hospital_admission%'  )
@@ -7338,7 +7338,7 @@ indicators:
 
   - key: "vmmc-7-v-20-24-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%hospital_admission%'  )
@@ -7350,7 +7350,7 @@ indicators:
 
   - key: "vmmc-7-v-25-29-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%hospital_admission%'  )
@@ -7362,7 +7362,7 @@ indicators:
 
   - key: "vmmc-7-v-30-34-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%hospital_admission%'  )
@@ -7374,7 +7374,7 @@ indicators:
 
   - key: "vmmc-7-v-35-39-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%hospital_admission%'  )
@@ -7386,7 +7386,7 @@ indicators:
 
   - key: "vmmc-7-v-40-44-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%hospital_admission%'  )
@@ -7398,7 +7398,7 @@ indicators:
 
   - key: "vmmc-7-v-45-49-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%hospital_admission%'  )
@@ -7410,7 +7410,7 @@ indicators:
 
   - key: "vmmc-7-v-50-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%hospital_admission%'  )
@@ -7423,7 +7423,7 @@ indicators:
   #    vi.
   - key: "vmmc-7-vi-1-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  did_client_experience_nae LIKE '%moderate_severe_device_displacement%'
@@ -7435,7 +7435,7 @@ indicators:
 
   - key: "vmmc-7-vi-1-9-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  did_client_experience_nae LIKE '%moderate_severe_device_displacement%'
@@ -7447,7 +7447,7 @@ indicators:
 
   - key: "vmmc-7-vi-10-14-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  did_client_experience_nae LIKE '%moderate_severe_device_displacement%'
@@ -7459,7 +7459,7 @@ indicators:
 
   - key: "vmmc-7-vi-15-19-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  did_client_experience_nae LIKE '%moderate_severe_device_displacement%'
@@ -7471,7 +7471,7 @@ indicators:
 
   - key: "vmmc-7-vi-20-24-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  did_client_experience_nae LIKE '%moderate_severe_device_displacement%'
@@ -7483,7 +7483,7 @@ indicators:
 
   - key: "vmmc-7-vi-25-29-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  did_client_experience_nae LIKE '%moderate_severe_device_displacement%'
@@ -7495,7 +7495,7 @@ indicators:
 
   - key: "vmmc-7-vi-30-34-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  did_client_experience_nae LIKE '%moderate_severe_device_displacement%'
@@ -7507,7 +7507,7 @@ indicators:
 
   - key: "vmmc-7-vi-35-39-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  did_client_experience_nae LIKE '%moderate_severe_device_displacement%'
@@ -7519,7 +7519,7 @@ indicators:
 
   - key: "vmmc-7-vi-40-44-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  did_client_experience_nae LIKE '%moderate_severe_device_displacement%'
@@ -7531,7 +7531,7 @@ indicators:
 
   - key: "vmmc-7-vi-45-49-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  did_client_experience_nae LIKE '%moderate_severe_device_displacement%'
@@ -7543,7 +7543,7 @@ indicators:
 
   - key: "vmmc-7-vi-50-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  did_client_experience_nae LIKE '%moderate_severe_device_displacement%'
@@ -7556,7 +7556,7 @@ indicators:
   #      vii.
   - key: "vmmc-7-vii-1-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post%'  )
@@ -7568,7 +7568,7 @@ indicators:
 
   - key: "vmmc-7-vii-1-9-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post%'  )
@@ -7580,7 +7580,7 @@ indicators:
 
   - key: "vmmc-7-vii-10-14-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post%'  )
@@ -7592,7 +7592,7 @@ indicators:
 
   - key: "vmmc-7-vii-15-19-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post%'  )
@@ -7604,7 +7604,7 @@ indicators:
 
   - key: "vmmc-7-vii-20-24-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post%'  )
@@ -7616,7 +7616,7 @@ indicators:
 
   - key: "vmmc-7-vii-25-29-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post%'  )
@@ -7628,7 +7628,7 @@ indicators:
 
   - key: "vmmc-7-vii-30-34-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post%'  )
@@ -7640,7 +7640,7 @@ indicators:
 
   - key: "vmmc-7-vii-35-39-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post%'  )
@@ -7652,7 +7652,7 @@ indicators:
 
   - key: "vmmc-7-vii-40-44-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post%'  )
@@ -7664,7 +7664,7 @@ indicators:
 
   - key: "vmmc-7-vii-45-49-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post%'  )
@@ -7676,7 +7676,7 @@ indicators:
 
   - key: "vmmc-7-vii-50-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%client_deaths_within_30days_post%'  )
@@ -7690,7 +7690,7 @@ indicators:
   #    viii.
   - key: "vmmc-7-viii-1-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%admission_to_icu_within_30_days_post_mc%'  )
@@ -7702,7 +7702,7 @@ indicators:
 
   - key: "vmmc-7-viii-1-9-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%admission_to_icu_within_30_days_post_mc%'  )
@@ -7714,7 +7714,7 @@ indicators:
 
   - key: "vmmc-7-viii-10-14-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%admission_to_icu_within_30_days_post_mc%'  )
@@ -7726,7 +7726,7 @@ indicators:
 
   - key: "vmmc-7-viii-15-19-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%admission_to_icu_within_30_days_post_mc%'  )
@@ -7738,7 +7738,7 @@ indicators:
 
   - key: "vmmc-7-viii-20-24-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%admission_to_icu_within_30_days_post_mc%'  )
@@ -7750,7 +7750,7 @@ indicators:
 
   - key: "vmmc-7-viii-25-29-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%admission_to_icu_within_30_days_post_mc%'  )
@@ -7762,7 +7762,7 @@ indicators:
 
   - key: "vmmc-7-viii-30-34-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%admission_to_icu_within_30_days_post_mc%'  )
@@ -7774,7 +7774,7 @@ indicators:
 
   - key: "vmmc-7-viii-35-39-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%admission_to_icu_within_30_days_post_mc%'  )
@@ -7786,7 +7786,7 @@ indicators:
 
   - key: "vmmc-7-viii-40-44-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%admission_to_icu_within_30_days_post_mc%'  )
@@ -7798,7 +7798,7 @@ indicators:
 
   - key: "vmmc-7-viii-45-49-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%admission_to_icu_within_30_days_post_mc%'  )
@@ -7810,7 +7810,7 @@ indicators:
 
   - key: "vmmc-7-viii-50-dm"
     description: "VMMC number of notifiable ae reported"
-    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_follow_up_visit evn
+    indicatorQuery: " SELECT count(DISTINCT evn.entity_id) as count FROM ec_vmmc_notifiable_ae evn
   INNER JOIN ec_family_member efm ON efm.base_entity_id = evn.entity_id
   INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evn.entity_id
   WHERE  (did_client_experience_nae LIKE '%admission_to_icu_within_30_days_post_mc%'  )
