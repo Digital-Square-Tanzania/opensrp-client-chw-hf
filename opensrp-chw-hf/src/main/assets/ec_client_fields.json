@@ -9198,6 +9198,22 @@
           }
         },
         {
+          "column_name": "desc_of_post_op_adverse_delayed_wound_healing",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "desc_of_post_op_adverse_delayed_wound_healing"
+          }
+        },
+        {
+          "column_name": "desc_of_post_op_adverse_appearance",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "desc_of_post_op_adverse_appearance"
+          }
+        },
+        {
           "column_name": "what_done",
           "type": "Event",
           "json_mapping": {
