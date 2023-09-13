@@ -114,6 +114,7 @@ public class VmmcVisitDischargeInteractor extends BaseVmmcVisitInteractor {
                 .withOptional(true)
                 .withDetails(details)
                 .withHelper(actionHelper)
+                .withProcessingMode(BaseVmmcVisitAction.ProcessingMode.SEPARATE)
                 .withFormName(Constants.FORMS.VMMC_NOTIFIABLE)
                 .build();
         actionList.put(context.getString(R.string.vmmc_notifiable_adverse), action);

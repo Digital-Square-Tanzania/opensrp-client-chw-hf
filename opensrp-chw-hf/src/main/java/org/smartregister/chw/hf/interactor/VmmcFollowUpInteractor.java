@@ -6,6 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
 import org.smartregister.chw.anc.util.AppExecutors;
 import org.smartregister.chw.core.utils.FormUtils;
 import org.smartregister.chw.hf.R;
@@ -95,6 +96,7 @@ public class VmmcFollowUpInteractor extends BaseVmmcVisitInteractor {
                 .withOptional(false)
                 .withDetails(details)
                 .withHelper(actionHelper)
+                .withProcessingMode(BaseVmmcVisitAction.ProcessingMode.SEPARATE)
                 .withFormName(Constants.FORMS.VMMC_NOTIFIABLE)
                 .build();
         actionList.put(context.getString(R.string.vmmc_notifiable_adverse), action);
