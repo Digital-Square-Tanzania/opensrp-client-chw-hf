@@ -16,6 +16,13 @@ actions:
 name: step1_device_male_circumcision_toaster
 description: device_male_circumcision_toaster relevance
 priority: 1
-condition: "step1_device_mc.contains('the_ring') || step1_device_mc.contains('bleeding')"
+condition: "step1_device_mc.contains('the_ring')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_device_male_circumcision_bleeding_toaster
+description: device_male_circumcision_bleeding_toaster relevance
+priority: 1
+condition: "step1_device_mc.contains('bleeding')"
 actions:
   - "isRelevant = true"
