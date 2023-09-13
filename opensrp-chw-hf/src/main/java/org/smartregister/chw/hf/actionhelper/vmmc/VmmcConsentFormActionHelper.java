@@ -52,7 +52,6 @@ public class VmmcConsentFormActionHelper implements BaseVmmcVisitAction.VmmcVisi
             JSONArray fields = jsonObject.getJSONObject(Constants.JsonFormConstants.STEP1).getJSONArray(JsonFormConstants.FIELDS);
 
             JSONObject actualAge = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "actual_age");
-//            CommonPersonObjectClient client = getCommonPersonObjectClient(baseEntityId);
             actualAge.put(JsonFormUtils.VALUE, age);
 
             return jsonObject.toString();
@@ -87,7 +86,7 @@ public class VmmcConsentFormActionHelper implements BaseVmmcVisitAction.VmmcVisi
 
     @Override
     public String postProcess(String s) {
-        return null;
+        return s;
     }
 
     @Override

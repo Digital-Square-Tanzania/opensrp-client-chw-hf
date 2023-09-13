@@ -655,14 +655,6 @@
         }
       },
       {
-        "key": "preferred_client_mc_method_with_chordae",
-        "type": "hidden",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "preferred_client_mc_method_with_chordae",
-        "openmrs_entity_parent": "",
-        "value": "convectional_surgical_procedure"
-      },
-      {
         "key": "preferred_client_mc_method",
         "type": "hidden",
         "openmrs_entity_id": "preferred_client_mc_method",

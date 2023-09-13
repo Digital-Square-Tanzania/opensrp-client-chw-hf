@@ -187,6 +187,12 @@
         "text_color": "#000000",
         "options": [
           {
+            "key": "not_eligible",
+            "text": "Not Eligible",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "not_eligible"
+          },
+          {
             "key": "test_kits_out_of_stock",
             "text": "Test kits out of stock",
             "openmrs_entity": "concept",
@@ -259,7 +265,14 @@
             "openmrs_entity": "concept",
             "openmrs_entity_id": "no"
           }
-        ]
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_hts_relevance.yml"
+            }
+          }
+        }
       },
       {
         "key": "was_client_referred",
@@ -451,10 +464,10 @@
         }
       },
       {
-        "key": "toaster_notes_is_client_diagnosed_with_any",
+        "key": "toaster_notes_is_client_diagnosed_with_any_other",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "person_attribute",
-        "openmrs_entity_id": "toaster_notes",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "toaster_notes_is_client_diagnosed_with_any_other",
         "type": "toaster_notes",
         "text": "Refer to medical history form, Is client diagnosed with any of the following?",
         "text_color": "#CF0800",
@@ -473,7 +486,7 @@
         "openmrs_entity": "person_attribute",
         "openmrs_entity_id": "toaster_notes",
         "type": "toaster_notes",
-        "text": "Client has hypertension, Refer to medical history form, Is client diagnosed with any of the following?",
+        "text": "Client is contraindicated due to Hypertension\n",
         "text_color": "#CF0800",
         "toaster_type": "problem",
         "relevance": {
@@ -487,10 +500,10 @@
       {
         "key": "toaster_notes_diabetes",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "person_attribute",
-        "openmrs_entity_id": "toaster_notes",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "toaster_notes_diabetes",
         "type": "toaster_notes",
-        "text": "client has diabetes, Refer to medical history form, Is client diagnosed with any of the following?",
+        "text": "Client is contraindicated due to Diabetes Mellitus",
         "text_color": "#CF0800",
         "toaster_type": "problem",
         "relevance": {
@@ -504,10 +517,27 @@
       {
         "key": "toaster_notes_hiv_results",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "person_attribute",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "toaster_notes",
         "type": "toaster_notes",
-        "text": "Client has HIV contraindication",
+        "text": "Client has viral load more than 1000",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_hts_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "toaster_notes_hiv_tested_positive",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "toaster_notes_hiv_tested_positive",
+        "type": "toaster_notes",
+        "text": "Newly diagonised HIV positive client",
         "text_color": "#CF0800",
         "toaster_type": "problem",
         "relevance": {
@@ -534,6 +564,13 @@
             }
           }
         }
+      },
+      {
+        "key": "actual_age",
+        "type": "hidden",
+        "openmrs_entity_id": "actual_age",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": ""
       },
       {
         "key": "hts_completion_status",

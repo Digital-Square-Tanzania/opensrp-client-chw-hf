@@ -66,7 +66,6 @@ public class VmmcRegisterActivity extends CoreVmmcRegisterActivity {
             Timber.e(e);
         }
 
-
         intent.putExtra(Constants.JSON_FORM_EXTRA.JSON, jsonForm.toString());
 
         if (getFormConfig() != null) {

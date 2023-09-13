@@ -129,6 +129,12 @@ public class VmmcMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
                     String[] postOpParams = {"dressing_condition_in_relation_to_bleeding","device_mc"};
                     extractVisitDetails(visits, postOpParams, visitDetails, x, context);
 
+                    String[] firstVitalSignParams = {"first_vital_sign_pulse_rate","first_vital_sign_systolic","first_vital_sign_diastolic","first_vital_sign_temperature","first_vital_sign_respiration_rate","first_vital_sign_time_taken"};
+                    extractVisitDetails(visits, firstVitalSignParams, visitDetails, x, context);
+
+                    String[] secondVitalSignParams = {"second_vital_sign_pulse_rate","second_vital_sign_systolic","second_vital_sign_diastolic","second_vital_sign_temperature","second_vital_sign_respiration_rate","second_vital_sign_time_taken"};
+                    extractVisitDetails(visits, secondVitalSignParams, visitDetails, x, context);
+
                     String[] dischargeParams = {"discharge_condition","discharged_reasons","analgesics_given","analgenics_type","analgenics_dosage","analgenics_reasons","discharge_time","discharging_name","provider_cadre"};
                     extractVisitDetails(visits, dischargeParams, visitDetails, x, context);
 
@@ -137,7 +143,6 @@ public class VmmcMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
 
                     String[] notifiableAdverseEvent = {"was_adverse_events_notifiable", "did_client_experience_nae","did_client_experience_nae_without_device","date_nae_occured","date_nae_notified","time_nae_started","nature_of_ae","what_done","was_nae_attended","time_nae_was_attended","treatment_outcome"};
                     extractVisitDetails(visits, notifiableAdverseEvent, visitDetails, x, context);
-
 
                     hf_visits.add(visitDetails);
 

@@ -28,6 +28,7 @@ public class VmmcMedicalHistoryActionHelper implements BaseVmmcVisitAction.VmmcV
     protected static String type_of_blood_for_glucose_test;
     protected static String blood_for_glucose;
     protected static String blood_for_glucose_test;
+    protected static String client_diagnosed_other;
     protected String jsonPayload;
     protected String medical_history;
     protected String baseEntityId;
@@ -80,6 +81,7 @@ public class VmmcMedicalHistoryActionHelper implements BaseVmmcVisitAction.VmmcV
             type_of_blood_for_glucose_test = CoreJsonFormUtils.getValue(jsonObject, "type_of_blood_for_glucose_test");
             blood_for_glucose = CoreJsonFormUtils.getValue(jsonObject, "blood_for_glucose");
             blood_for_glucose_test = CoreJsonFormUtils.getValue(jsonObject, "blood_for_glucose_test");
+            client_diagnosed_other = CoreJsonFormUtils.getValue(jsonObject, "is_client_diagnosed_with_any_others");
 
             medical_history = CoreJsonFormUtils.getValue(jsonObject, "has_client_had_any_sti");
 

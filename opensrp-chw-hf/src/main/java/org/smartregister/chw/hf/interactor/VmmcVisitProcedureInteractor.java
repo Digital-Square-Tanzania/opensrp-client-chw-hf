@@ -101,7 +101,7 @@ public class VmmcVisitProcedureInteractor extends BaseVmmcVisitInteractor {
 
         @Override
         public String postProcess(String s) {
-            if (StringUtils.isNotBlank(mc_procedure)) {
+            if (consent_form.equalsIgnoreCase("yes")) {
                 try {
                     evaluateMcProcedure(details);
                 } catch (BaseVmmcVisitAction.ValidationException e) {

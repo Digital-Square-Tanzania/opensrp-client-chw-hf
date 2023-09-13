@@ -872,11 +872,32 @@
     <string name="nursing_officer">Nursing officer</string>
 
     <string name="injectables_lignocaine">Injectables-Lignocaine</string>
-    <string name="topical_cream">Topical Cream</string>
 
     <string name="from_client">Client</string>
     <string name="from_parent">Parent</string>
     <string name="from_guardian">Guardian</string>
+
+    <string name="dorsal_slit">Dorsal slit</string>
+    <string name="sleeve_resection">Sleeve resection</string>
+
+    <string name="injectables">Injectables</string>
+    <string name="topical_cream">Topical Cream</string>
+
+    <string name="excessive_skin_removed">Excessive skin removed</string>
+    <string name="excessive_bleeding">Excessive bleeding</string>
+    <string name="damage_to_penis">Injury to the penis</string>
+    <string name="anesthetic_related_events">Anesthetic related events</string>
+    <string name="device_displacement">Device displacement</string>
+
+    <string name="the_ring">The ring in place</string>
+    <string name="bleeding">Bleeding</string>
+    <string name="dressing_clear">Dressing clear</string>
+    <string name="blood_spots_on_dressing">Blood spots on dressing</string>
+    <string name="dressing_soaked">Dressing soaked</string>
+
+    <string name="satisfactory">Satisfactory</string>
+    <string name="needs_followup">Needs follow-up</string>
+    <string name="not_discharged">Not Discharged</string>
 
     <!--    Vmmc Medical History-->
     <string name="vmmc_consent_from">Consent from:</string>
@@ -891,12 +912,6 @@
     <string name="vmmc_tetanus_vaccination">Tetanus vaccination:</string>
     <string name="vmmc_physical_abnormality">Physical abnormality:</string>
     <string name="vmmc_client_weight">client weight:</string>
-    <string name="vmmc_second_vital_pulse_rate">pulse rate (second vital):</string>
-    <string name="vmmc_second_vital_sign_systolic">systolic (second vital):</string>
-    <string name="vmmc_second_vital_sign_diastolic">diastolic (second vital):</string>
-    <string name="vmmc_second_vital_sign_temperature">temperature (second vital):</string>
-    <string name="vmmc_second_vital_sign_respiration_rate">respiration rate (second vital):</string>
-    <string name="vmmc_second_vital_sign_time_taken">time taken (second vital):</string>
     <string name="vmmc_pulse_rate">pulse rate:</string>
     <string name="vmmc_systolic">systolic:</string>
     <string name="vmmc_diastolic">diastolic:</string>
@@ -966,6 +981,24 @@
     <string name="vmmc_discharge_time">discharge time:</string>
     <string name="vmmc_discharging_name">discharging name:</string>
     <string name="vmmc_provider_cadre">Providers cadre:</string>
+
+    <string name="vmmc_first_vital_sign_pulse_rate">First Vital Sign Pulse Rate (Beats per minute):</string>
+    <string name="vmmc_first_vital_sign_systolic">First Vital Sign Systolic (Blood Pressure):</string>
+    <string name="vmmc_first_vital_sign_diastolic">First Vital Sign Diastolic (Blood Pressure):</string>
+    <string name="vmmc_first_vital_sign_temperature">First Vital Sign Temperature :</string>
+    <string name="vmmc_first_vital_sign_respiration_rate">First Vital Sign Respiration rate (Breath per minute) :</string>
+    <string name="vmmc_first_vital_sign_time_taken">First Vital Sign Time taken :</string>
+
+    <string name="vmmc_second_vital_sign_pulse_rate">Second Vital Sign Pulse Rate (Beats per minute):</string>
+    <string name="vmmc_second_vital_sign_systolic">Second Vital Sign Systolic (Blood Pressure):</string>
+    <string name="vmmc_second_vital_sign_diastolic">Second Vital Sign Diastolic (Blood Pressure):</string>
+    <string name="vmmc_second_vital_sign_temperature">Second Vital Sign Temperature :</string>
+    <string name="vmmc_second_vital_sign_respiration_rate">Second Vital Sign Respiration rate (Breath per minute) :</string>
+    <string name="vmmc_second_vital_sign_time_taken">Second Vital Sign Time taken :</string>
+
+    <string name="vmmc_choose_analgenics_dose_unit">Choose Analgesics Dose Unit :</string>
+    <string name="vmmc_analgenics_dose">Analgesics Dose :</string>
+    <string name="vmmc_analgenics_dose_duration">Analgesics Dose Duration :</string>
 
     <string name="vmmc_visit_type">Follow up visit type:</string>
     <string name="vmmc_comment_vmmc_followup">comment vmmc followup:</string>

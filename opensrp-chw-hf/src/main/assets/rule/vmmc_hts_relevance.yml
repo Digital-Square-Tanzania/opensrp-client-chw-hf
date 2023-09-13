@@ -13,6 +13,13 @@ condition: "global_is_client_diagnosed_with_any.contains('hiv')"
 actions:
   - "isRelevant = true "
 ---
+name: step1_self_test_kits_offered
+description: if self_test_kits_offered
+priority: 1
+condition: "step1_actual_age >= 18"
+actions:
+  - "isRelevant = true "
+---
 name: step1_toaster_notes_genital_examination
 description: if genital_examination
 priority: 1
@@ -41,8 +48,8 @@ condition: "!global_any_hematological_disease_symptoms.contains('none')"
 actions:
   - "isRelevant = true "
 ---
-name: step1_toaster_notes_is_client_diagnosed_with_any
-description: if toaster_notes_is_client_diagnosed_with_any
+name: step1_toaster_notes_is_client_diagnosed_with_any_other
+description: if toaster_notes_is_client_diagnosed_with_any_other
 priority: 1
 condition: "global_is_client_diagnosed_with_any.contains('others')"
 actions:
@@ -51,7 +58,7 @@ actions:
 name: step1_toaster_notes_hypertension
 description: if toaster_notes_hypertension
 priority: 1
-condition: "global_is_client_diagnosed_with_any.contains('hypertension')"
+condition: "global_is_client_diagnosed_with_any.contains('hypertension') && (global_diastolic > 90 || global_diastolic < 60) && (global_systolic > 140 || global_systolic < 90)"
 actions:
   - "isRelevant = true "
 ---
@@ -79,7 +86,14 @@ actions:
 name: step1_toaster_notes_hiv_results
 description: if toaster_notes_hiv_results
 priority: 1
-condition: "(global_is_client_diagnosed_with_any.contains('hiv') && step1_hiv_viral_load_text > 1000) || step1_hiv_result.equalsIgnoreCase('positive') || step1_hiv_result.equalsIgnoreCase('indeterminate')"
+condition: "global_is_client_diagnosed_with_any.contains('hiv') && step1_hiv_viral_load_text > 1000"
+actions:
+  - "isRelevant = true "
+---
+name: step1_toaster_notes_hiv_tested_positive
+description: if toaster_notes_hiv_tested_positive
+priority: 1
+condition: "step1_hiv_result.equalsIgnoreCase('positive')"
 actions:
   - "isRelevant = true "
 ---

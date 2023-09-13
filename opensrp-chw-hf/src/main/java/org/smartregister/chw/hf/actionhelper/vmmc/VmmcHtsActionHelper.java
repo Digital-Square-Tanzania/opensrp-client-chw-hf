@@ -7,7 +7,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.core.utils.CoreJsonFormUtils;
+import org.smartregister.chw.hf.utils.Constants;
 import org.smartregister.chw.hf.utils.VisitUtils;
+import org.smartregister.chw.referral.util.JsonFormConstants;
 import org.smartregister.chw.vmmc.domain.VisitDetail;
 import org.smartregister.chw.vmmc.model.BaseVmmcVisitAction;
 import org.smartregister.family.util.JsonFormUtils;
@@ -26,6 +28,16 @@ public class VmmcHtsActionHelper implements BaseVmmcVisitAction.VmmcVisitActionH
 
     private HashMap<String, Boolean> checkObject = new HashMap<>();
 
+    protected String baseEntityId;
+
+    protected Integer age;
+
+
+    public VmmcHtsActionHelper(String baseEntityId, Integer age) {
+        this.baseEntityId = baseEntityId;
+        this.age = age;
+    }
+
     @Override
     public void onJsonFormLoaded(String jsonPayload, Context context, Map<String, List<VisitDetail>> map) {
         this.jsonPayload = jsonPayload;
@@ -37,6 +49,10 @@ public class VmmcHtsActionHelper implements BaseVmmcVisitAction.VmmcVisitActionH
             JSONObject jsonObject = new JSONObject(jsonPayload);
             JSONObject global = jsonObject.getJSONObject("global");
 
+            JSONArray fields = jsonObject.getJSONObject(Constants.JsonFormConstants.STEP1).getJSONArray(JsonFormConstants.FIELDS);
+
+            JSONObject actualAge = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "actual_age");
+            actualAge.put(org.smartregister.chw.pmtct.util.JsonFormUtils.VALUE, age);
 
             String is_client_diagnosed_with_any = VmmcMedicalHistoryActionHelper.is_client_diagnosed_with_any;
             String any_complaints = VmmcMedicalHistoryActionHelper.any_complaints;
@@ -46,7 +62,10 @@ public class VmmcHtsActionHelper implements BaseVmmcVisitAction.VmmcVisitActionH
             String type_of_blood_for_glucose_test = VmmcMedicalHistoryActionHelper.type_of_blood_for_glucose_test;
             String blood_for_glucose = VmmcMedicalHistoryActionHelper.blood_for_glucose;
             String blood_for_glucose_test = VmmcMedicalHistoryActionHelper.blood_for_glucose_test;
+            String diagonised_others = VmmcMedicalHistoryActionHelper.client_diagnosed_other;
             String genital_examination = VmmcPhysicalExamActionHelper.genital_examination;
+            String diastolic = VmmcPhysicalExamActionHelper.diastolic;
+            String systolic = VmmcPhysicalExamActionHelper.systolic;
 
             global.put("is_client_diagnosed_with_any", is_client_diagnosed_with_any);
             global.put("any_complaints", any_complaints);
@@ -57,6 +76,24 @@ public class VmmcHtsActionHelper implements BaseVmmcVisitAction.VmmcVisitActionH
             global.put("blood_for_glucose", blood_for_glucose);
             global.put("blood_for_glucose_test", blood_for_glucose_test);
             global.put("genital_examination", genital_examination);
+            global.put("diastolic", diastolic);
+            global.put("systolic", systolic);
+
+
+            JSONObject toaster_hematological_disease_symptoms = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "toaster_notes_any_hematological_disease_symptoms");
+            toaster_hematological_disease_symptoms.put("text", "Client has history of hematological disease "+ any_hematological_disease_symptoms);
+
+            JSONObject toaster_genital_examination = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "toaster_notes_genital_examination");
+            toaster_genital_examination.put("text", "After genital examination, client has a "+ genital_examination);
+
+            JSONObject toaster_any_complaints = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "toaster_notes_any_complaints");
+            toaster_any_complaints.put("text", " client has history of complaints "+ any_complaints);
+
+            JSONObject toaster_known_allergies = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "toaster_notes_known_allergies");
+            toaster_known_allergies.put("text", "Client is allerged to "+ known_allergies);
+
+            JSONObject toaster_notes_is_client_diagnosed_with_any_other = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "toaster_notes_is_client_diagnosed_with_any_other");
+            toaster_notes_is_client_diagnosed_with_any_other.put("text", "Client has "+ diagonised_others);
 
             return jsonObject.toString();
         } catch (JSONException e) {
@@ -74,7 +111,7 @@ public class VmmcHtsActionHelper implements BaseVmmcVisitAction.VmmcVisitActionH
 
             checkObject.clear();
 
-            checkObject.put("self_test_kits_offered", StringUtils.isNotBlank(CoreJsonFormUtils.getValue(jsonObject, "self_test_kits_offered")));
+//            checkObject.put("self_test_kits_offered", StringUtils.isNotBlank(CoreJsonFormUtils.getValue(jsonObject, "self_test_kits_offered")));
             checkObject.put("was_client_referred", StringUtils.isNotBlank(CoreJsonFormUtils.getValue(jsonObject, "was_client_referred")));
 
         } catch (JSONException e) {

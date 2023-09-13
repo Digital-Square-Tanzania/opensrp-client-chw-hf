@@ -608,10 +608,10 @@
         }
       },
       {
-        "key": "dosage_ml",
+        "key": "dosage_g",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "dosage_ml",
+        "openmrs_entity_id": "dosage_g",
         "entity_id": "",
         "type": "edit_text",
         "hint": "Dosage (g)",
@@ -1068,7 +1068,6 @@
           }
         }
       },
-
       {
         "key": "type_of_adverse_event",
         "openmrs_entity_parent": "",

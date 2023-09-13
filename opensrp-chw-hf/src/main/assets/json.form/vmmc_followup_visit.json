@@ -1339,7 +1339,6 @@
           }
         }
       },
-
       {
         "key": "what_done",
         "openmrs_entity_parent": "",

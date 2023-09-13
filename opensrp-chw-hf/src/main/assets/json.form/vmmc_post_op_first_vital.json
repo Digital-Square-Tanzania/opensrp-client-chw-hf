@@ -240,7 +240,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "first_vital_sign_respiration_rate",
         "type": "edit_text",
-        "hint": "Respiration rate (Breath per minute) ",
+        "hint": "Respiration rate (Breath per minute)",
         "v_numeric": {
           "value": "true",
           "err": "Please enter the Respiration rate"

@@ -28,6 +28,10 @@ public class VmmcPhysicalExamActionHelper implements BaseVmmcVisitAction.VmmcVis
 
     protected static String genital_examination;
 
+    protected static String diastolic;
+
+    protected static String systolic;
+
     private HashMap<String, Boolean> checkObject = new HashMap<>();
 
     public VmmcPhysicalExamActionHelper(String baseEntityId) {
@@ -60,6 +64,9 @@ public class VmmcPhysicalExamActionHelper implements BaseVmmcVisitAction.VmmcVis
 
             genital_examination = CoreJsonFormUtils.getValue(jsonObject, "genital_examination");
             global.put("contraindication", genital_examination);
+
+            diastolic = CoreJsonFormUtils.getValue(jsonObject, "diastolic");
+            systolic = CoreJsonFormUtils.getValue(jsonObject, "systolic");
 
             medical_history = CoreJsonFormUtils.getValue(jsonObject, "physical_abnormality");
 

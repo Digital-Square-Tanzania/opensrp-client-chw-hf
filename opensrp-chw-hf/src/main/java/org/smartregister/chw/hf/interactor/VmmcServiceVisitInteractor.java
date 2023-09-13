@@ -88,7 +88,7 @@ public class VmmcServiceVisitInteractor extends BaseVmmcVisitInteractor {
     private void evaluateVmmcHTS(Map<String, List<VisitDetail>> details) throws BaseVmmcVisitAction.ValidationException {
         JSONObject vmmcHTS = FormUtils.getFormUtils().getFormJson(Constants.VMMC_FOLLOWUP_FORMS.HTS);
 
-        VmmcHtsActionHelper actionHelper = new VmmcHtsActionHelper();
+        VmmcHtsActionHelper actionHelper = new VmmcHtsActionHelper(memberObject.getBaseEntityId(), memberObject.getVisitAge());
         BaseVmmcVisitAction action = getBuilder(context.getString(R.string.vmmc_hts))
                 .withOptional(true)
                 .withDetails(details)

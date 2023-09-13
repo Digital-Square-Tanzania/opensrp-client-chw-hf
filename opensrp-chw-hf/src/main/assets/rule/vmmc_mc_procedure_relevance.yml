@@ -174,7 +174,7 @@ condition: "step1_aneathesia_administered.equalsIgnoreCase('injectables') || ste
 actions:
   - "isRelevant = true"
 ---
-name: step1_dosage_ml
+name: step1_dosage_g
 description: dosage relevance
 priority: 1
 condition: "step1_aneathesia_administered.contains('topical_cream')"
