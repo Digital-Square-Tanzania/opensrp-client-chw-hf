@@ -8446,11 +8446,11 @@
           }
         },
         {
-          "column_name": "client_id_number",
+          "column_name": "vmmc_client_id",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
-            "concept": "client_id_number"
+            "concept": "vmmc_client_id"
           }
         },
         {
