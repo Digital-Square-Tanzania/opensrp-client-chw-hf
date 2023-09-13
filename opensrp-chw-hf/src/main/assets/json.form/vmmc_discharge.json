@@ -157,17 +157,20 @@
         "values": [
           "Paracetamol",
           "Tramadol",
-          "Diclophenac"
+          "Diclophenac",
+          "Ibuprofen"
         ],
         "keys": [
           "paracetamol",
           "tramadol",
-          "diclophenac"
+          "diclophenac",
+          "ibuprofen"
         ],
         "openmrs_choice_ids": {
           "paracetamol": "paracetamol",
           "tramadol": "tramadol",
-          "declophenac": "diclophenac"
+          "diclophenac": "diclophenac",
+          "ibuprofen" : "ibuprofen"
         },
         "v_required": {
           "value": "true",
