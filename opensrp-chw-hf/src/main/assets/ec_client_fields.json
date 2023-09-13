@@ -9278,6 +9278,14 @@
           }
         },
         {
+          "column_name": "next_followup_date",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "next_followup_date"
+          }
+        },
+        {
           "column_name": "visit_number",
           "type": "Event",
           "json_mapping": {

@@ -33,5 +33,19 @@ priority: 1
 condition: "step1_treatment_outcome.equalsIgnoreCase('adverse_event_partially_resolved')"
 actions:
   - "isRelevant = true"
+---
+name: step1_provider_middle_name
+description:  provider middle relevance
+priority: 1
+condition: "!step1_provider_first_name.equals('')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_provider_last_name
+description:  provider last relevance
+priority: 1
+condition: "!step1_provider_middle_name.equals('')"
+actions:
+  - "isRelevant = true"
 
 

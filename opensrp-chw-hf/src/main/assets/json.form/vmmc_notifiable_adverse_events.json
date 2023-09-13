@@ -318,18 +318,69 @@
         }
       },
       {
-        "key": "provider_name",
+        "key": "provider_first_name",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "provider_name",
+        "openmrs_entity_id": "provider_first_name",
         "type": "edit_text",
-        "hint": "Provider's name",
+        "hint": "Provider's first name",
         "v_required": {
           "value": "true",
           "err": "Please fill the field"
         }
       },
-
+      {
+        "key": "provider_middle_name",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "provider_middle_name",
+        "type": "edit_text",
+        "hint": "Provider's middle name",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_notifiable_adverse_event_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "provider_last_name",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "provider_last_name",
+        "type": "edit_text",
+        "hint": "Provider's last name",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_notifiable_adverse_event_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "provider_name",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "provider_name",
+        "type": "hidden",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_notifiable_adverse_event_calculation.yml"
+            }
+          }
+        }
+      },
       {
         "key": "provider_cadre",
         "openmrs_entity_parent": "",
