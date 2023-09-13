@@ -960,7 +960,6 @@
     <string name="vmmc_assistant_name">assistant name:</string>
     <string name="vmmc_assistant_cadre">assistant cadre:</string>
     <string name="vmmc_intraoperative_adverse_event_occured">intraoperative adverse event occured:</string>
-    <string name="vmmc_type_of_adverse_event">type of adverse event:</string>
     <string name="vmmc_type_of_adverse_event_others">type of adverse event others:</string>
     <string name="vmmc_desc_intraoperative_ae_bleed_excessive_bleeding">Description of intraoperative adverse events (Excessive bleeding):</string>
     <string name="vmmc_desc_intraoperative_ae_skin_removal">Description of intraoperative adverse events (Excessive skin removal):</string>
