@@ -440,7 +440,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "ctc_name",
         "type": "edit_text",
-        "hint": "CTC Name",
+        "hint": "Client Registered CTC Name",
         "relevance": {
           "step1:is_client_diagnosed_with_any": {
             "ex-checkbox": [

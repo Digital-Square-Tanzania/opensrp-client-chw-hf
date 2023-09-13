@@ -62,6 +62,13 @@ condition: "step1_choose_analgenics_dose_unit.equalsIgnoreCase('gram') || step1_
 actions:
   - "isRelevant = true"
 ---
+name: step1_analgenics_dose_frequency
+description: analgenics_dose_frequency
+priority: 1
+condition: "step1_choose_analgenics_dose_unit.equalsIgnoreCase('gram') || step1_choose_analgenics_dose_unit.equalsIgnoreCase('milligram')"
+actions:
+  - "isRelevant = true"
+---
 name: step1_analgenics_dose_duration
 description: analgenics_dose_duration
 priority: 1

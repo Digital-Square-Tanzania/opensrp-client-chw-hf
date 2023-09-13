@@ -225,12 +225,28 @@
         }
       },
       {
+        "key": "analgenics_dose_frequency",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "analgenics_dose_frequency",
+        "type": "edit_text",
+        "hint": "Analgesics Dose Frequency(hourly)",
+        "edit_type": "text",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_discharge_relevance.yml"
+            }
+          }
+        }
+      },
+      {
         "key": "analgenics_dose_duration",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "analgenics_dose_duration",
         "type": "edit_text",
-        "hint": "Analgesics Dose Duration",
+        "hint": "Analgesics Dose Duration(days)",
         "edit_type": "text",
         "relevance": {
           "rules-engine": {
