@@ -7,6 +7,8 @@ import static org.smartregister.chw.hf.utils.Constants.ReportConstants.PMTCTRepo
 import static org.smartregister.chw.hf.utils.Constants.ReportConstants.PMTCTReportKeys.THREE_MONTHS;
 import static org.smartregister.chw.hf.utils.Constants.ReportConstants.PMTCTReportKeys.TWELVE_MONTHS;
 import static org.smartregister.chw.hf.utils.Constants.ReportConstants.PMTCTReportKeys.TWENTY_FOUR_MONTHS;
+import static org.smartregister.chw.hf.utils.Constants.ReportConstants.VmmcKeys.VMMC_REGISTER;
+import static org.smartregister.chw.hf.utils.Constants.ReportConstants.VmmcKeys.VMMC_REPORT;
 import static org.smartregister.util.Utils.getAllSharedPreferences;
 
 import android.content.Context;
@@ -78,8 +80,14 @@ public class HfWebAppInterface {
             return ReportUtils.KvpReport.computeReport(ReportUtils.getReportDate());
         }
         if (reportType.equalsIgnoreCase(Constants.ReportConstants.ReportTypes.VMMC_REPORT)){
-            ReportUtils.setPrintJobName("vmmc_report_ya_mwezi-" + ReportUtils.getReportPeriod() + ".pdf");
-            return ReportUtils.VmmcReport.computeReport(ReportUtils.getReportDate());
+            switch (key) {
+                case VMMC_REPORT:
+                    ReportUtils.setPrintJobName("vmmc_report_ya_mwezi-" + ReportUtils.getReportPeriod() + ".pdf");
+                    return ReportUtils.VmmcReport.computeReport(ReportUtils.getReportDate());
+                case VMMC_REGISTER:
+                    ReportUtils.setPrintJobName("vmmc_register_ya_mwezi-" + ReportUtils.getReportPeriod() + ".pdf");
+                    return ReportUtils.VmmcRegister.computeReport(ReportUtils.getReportDate());
+            }
         }
         if (reportType.equalsIgnoreCase(Constants.ReportConstants.ReportTypes.CONDOM_DISTRIBUTION_REPORT)){
               switch (key) {

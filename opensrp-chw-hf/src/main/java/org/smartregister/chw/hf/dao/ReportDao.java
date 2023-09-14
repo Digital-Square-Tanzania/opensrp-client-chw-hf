@@ -183,6 +183,99 @@ public class ReportDao extends AbstractDao {
             return new ArrayList<>();
     }
 
+    public static List<Map<String, String>> getVmmcRegister(Date reportDate)
+    {
+        String sql = " WITH VMMC_CTE AS (\n" +
+                "    SELECT\n" +
+                "        ec_vmmc_enrollment.enrollment_date,\n" +
+                "        ec_family_member.first_name,\n" +
+                "        ec_family_member.middle_name,\n" +
+                "        ec_family_member.last_name,\n" +
+                "        ec_vmmc_enrollment.vmmc_client_id,\n" +
+                "        ec_vmmc_enrollment.reffered_from,\n" +
+                "        ec_vmmc_services.tested_hiv,\n" +
+                "        ec_vmmc_services.hiv_result,\n" +
+                "        ec_vmmc_services.client_referred_to,\n" +
+                "        ec_vmmc_procedure.mc_procedure_date,\n" +
+                "        ec_vmmc_procedure.male_circumcision_method,\n" +
+                "        ec_vmmc_procedure.intraoperative_adverse_event_occured,\n" +
+                "        ec_vmmc_follow_up_visit.visit_number,\n" +
+                "        ec_vmmc_follow_up_visit.followup_visit_date AS visit_date,\n" +
+                "        ec_vmmc_follow_up_visit.post_op_adverse_event_occur AS post_op_adverse,\n" +
+                "        ec_vmmc_notifiable_ae.did_client_experience_nae AS NAE\n" +
+                "    FROM\n" +
+                "        ec_vmmc_enrollment\n" +
+                "            INNER JOIN\n" +
+                "        ec_family_member ON ec_family_member.base_entity_id = ec_vmmc_enrollment.base_entity_id\n" +
+                "            INNER JOIN\n" +
+                "        ec_vmmc_services ON ec_vmmc_services.entity_id = ec_vmmc_enrollment.base_entity_id\n" +
+                "            INNER JOIN\n" +
+                "        ec_vmmc_procedure ON ec_vmmc_procedure.entity_id = ec_vmmc_enrollment.base_entity_id\n" +
+                "            INNER JOIN\n" +
+                "        ec_vmmc_follow_up_visit ON ec_vmmc_follow_up_visit.entity_id = ec_vmmc_enrollment.base_entity_id\n" +
+                "            LEFT JOIN\n" +
+                "        ec_vmmc_notifiable_ae ON ec_vmmc_notifiable_ae.entity_id = ec_vmmc_enrollment.base_entity_id\n" +
+                "    WHERE\n" +
+                "            ec_vmmc_follow_up_visit.follow_up_visit_type = 'routine'\n" +
+                ")\n" +
+                "SELECT\n" +
+                "    enrollment_date,\n" +
+                "    first_name || ' ' || middle_name || ' ' || last_name AS names,\n" +
+                "    vmmc_client_id,\n" +
+                "    reffered_from,\n" +
+                "    tested_hiv,\n" +
+                "    hiv_result,\n" +
+                "    client_referred_to,\n" +
+                "    mc_procedure_date,\n" +
+                "    male_circumcision_method,\n" +
+                "    intraoperative_adverse_event_occured,\n" +
+                "    MAX(CASE WHEN visit_number = 0 THEN visit_date END) AS first_visit,\n" +
+                "    MAX(CASE WHEN visit_number = 1 THEN visit_date END) AS sec_visit,\n" +
+                "    MAX(post_op_adverse) AS post_op_adverse,\n" +
+                "    MAX(NAE) AS NAE\n" +
+                "FROM VMMC_CTE\n" +
+                "GROUP BY\n" +
+                "    first_name || ' ' || middle_name || ' ' || last_name,\n" +
+                "    reffered_from,\n" +
+                "    tested_hiv,\n" +
+                "    hiv_result,\n" +
+                "    mc_procedure_date,\n" +
+                "    male_circumcision_method;\n ";
+
+        String queryDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(reportDate);
+
+        sql = sql.contains("%s") ? sql.replaceAll("%s", queryDate) : sql;
+
+        DataMap<Map<String, String>> map = cursor -> {
+            Map<String, String> data = new HashMap<>();
+            data.put("enrollment_date", cursor.getString(cursor.getColumnIndex("enrollment_date")));
+            data.put("names", cursor.getString(cursor.getColumnIndex("names")));
+            data.put("vmmc_client_id", cursor.getString(cursor.getColumnIndex("vmmc_client_id")));
+            data.put("reffered_from", cursor.getString(cursor.getColumnIndex("reffered_from")));
+            data.put("tested_hiv", cursor.getString(cursor.getColumnIndex("tested_hiv")));
+            data.put("hiv_result", cursor.getString(cursor.getColumnIndex("hiv_result")));
+            data.put("client_referred_to", cursor.getString(cursor.getColumnIndex("client_referred_to")));
+            data.put("mc_procedure_date", cursor.getString(cursor.getColumnIndex("mc_procedure_date")));
+            data.put("male_circumcision_method", cursor.getString(cursor.getColumnIndex("male_circumcision_method")));
+            data.put("intraoperative_adverse_event_occured", cursor.getString(cursor.getColumnIndex("intraoperative_adverse_event_occured")));
+            data.put("first_visit", cursor.getString(cursor.getColumnIndex("first_visit")));
+            data.put("sec_visit", cursor.getString(cursor.getColumnIndex("sec_visit")));
+            data.put("post_op_adverse", cursor.getString(cursor.getColumnIndex("post_op_adverse")));
+            data.put("NAE", cursor.getString(cursor.getColumnIndex("NAE")));
+
+            return data;
+        };
+
+        List<Map<String, String>> res = readData(sql, map);
+
+
+        if (res != null && res.size() > 0) {
+            return res;
+        } else
+            return new ArrayList<>();
+    }
+
+
     public static int getReportPerIndicatorCode(String indicatorCode, Date reportDate) {
         String reportDateString = simpleDateFormat.format(reportDate);
         String sql = "SELECT indicator_value\n" +

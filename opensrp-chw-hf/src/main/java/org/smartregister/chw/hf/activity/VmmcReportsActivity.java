@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.TextView;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
+
 import com.whiteelephant.monthpicker.MonthPickerDialog;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.utils.Constants;
@@ -23,12 +25,34 @@ import timber.log.Timber;
 
 
 public class VmmcReportsActivity extends PncReportsActivity{
+
+    protected ConstraintLayout vmmc_monthly_report;
+    protected ConstraintLayout vmmc_register_report;
+
     @Override
     public void onClick(View v) {
         int id = v.getId();
-        if (id == R.id.pnc_monthly_report) {
+        if (id == R.id.vmmc_monthly_report) {
             VmmcReportsViewActivity.startMe(this,  Constants.ReportConstants.ReportPaths.VMMC_REPORT_PATH, reportPeriod);
         }
+        if (id == R.id.vmmc_register_report) {
+            VmmcReportsViewActivity.startMe(this,  Constants.ReportConstants.ReportPaths.VMMC_REGISTER_PATH, reportPeriod);
+        }
+    }
+
+    @Override
+    protected void onCreation() {
+        setContentView(R.layout.activity_vmmc_reports);
+        setUpToolbar();
+        setupViews();
+    }
+
+    public void setupViews() {
+        vmmc_monthly_report = findViewById(R.id.vmmc_monthly_report);
+        vmmc_register_report = findViewById(R.id.vmmc_register_report);
+
+        vmmc_monthly_report.setOnClickListener(this);
+        vmmc_register_report.setOnClickListener(this);
     }
 
     @Override

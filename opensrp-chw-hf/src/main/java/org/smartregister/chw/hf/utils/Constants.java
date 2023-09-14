@@ -705,6 +705,11 @@ public class Constants extends CoreConstants {
             String RECEIVING_REPORTS = "receiving_reports";
         }
 
+        public interface VmmcKeys {
+            String VMMC_REPORT = "vmmc_reports";
+            String VMMC_REGISTER = "vmmc_register";
+        }
+
         public interface ReportTypes {
             String PMTCT_REPORT = "pmtct_report";
             String ANC_REPORT = "anc_report";
@@ -736,6 +741,7 @@ public class Constants extends CoreConstants {
             String CONDOM_DISTRIBUTION_RECEIVING_REPORT_PATH = "condom-distribution-receiving-report";
             String KVP_REPORT_PATH = "kvp-report";
             String VMMC_REPORT_PATH = "vmmc-report";
+            String VMMC_REGISTER_PATH = "vmmc-register";
         }
     }
 
