@@ -186,6 +186,11 @@ public class AllClientsMemberProfileActivity extends CoreAllClientsMemberProfile
     }
 
     @Override
+    protected void startIntegratedCommunityCaseManagementEnrollment() {
+
+    }
+
+    @Override
     protected void startHivRegister() {
         try {
             HivRegisterActivity.startHIVFormActivity(AllClientsMemberProfileActivity.this, baseEntityId, HIV_REGISTRATION, (new FormUtils()).getFormJsonFromRepositoryOrAssets(this, HIV_REGISTRATION).toString());
