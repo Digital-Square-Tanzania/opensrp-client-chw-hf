@@ -31,6 +31,9 @@ public class VmmcFollowUpActionHelper implements BaseVmmcVisitAction.VmmcVisitAc
     protected String jsonPayload;
     protected String baseEntityId;
 
+    protected int followupVisit;
+
+
 
     public VmmcFollowUpActionHelper(String baseEntityId) {
         this.baseEntityId = baseEntityId;
@@ -49,6 +52,7 @@ public class VmmcFollowUpActionHelper implements BaseVmmcVisitAction.VmmcVisitAc
 
             String method_used = HfVmmcDao.getMcMethodUsed(baseEntityId);
             global.put("method_used", method_used);
+
             global.put("current_visit_number", HfVmmcDao.getFollowUpVisitNumber(baseEntityId));
 
             LocalDate todayDate = LocalDate.now();

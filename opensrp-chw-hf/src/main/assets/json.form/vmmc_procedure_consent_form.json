@@ -249,7 +249,7 @@
         "calculation": {
           "rules-engine": {
             "ex-rules": {
-              "rules-file": "vmmc_mc_procedure_calculation.yml"
+              "rules-file": "vmmc_procedure_consent_form_calculation.yml"
             }
           }
         }

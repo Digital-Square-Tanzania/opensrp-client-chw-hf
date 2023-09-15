@@ -51,6 +51,7 @@ public class VmmcRegisterObject extends ReportObject {
             reportJsonObject.put("sec_visit", getCbhsClientDetails(getVmmcRegister, "sec_visit"));
             reportJsonObject.put("post_op_adverse", getCbhsClientDetails(getVmmcRegister, "post_op_adverse"));
             reportJsonObject.put("NAE", getCbhsClientDetails(getVmmcRegister, "NAE"));
+            reportJsonObject.put("health_care_provider", getCbhsClientDetails(getVmmcRegister, "health_care_provider"));
 
 //            flag_count_male+=Integer.parseInt(getCbhsClientDetails(getVmmcRegister, "male_condoms_offset"));
 //            flag_count_female+=Integer.parseInt(getCbhsClientDetails(getVmmcRegister, "female_condoms_offset"));

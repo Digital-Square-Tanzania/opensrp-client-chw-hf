@@ -9,14 +9,14 @@ actions:
 name: step1_type_of_adverse_event_with_device
 description: if type_of_adverse_event_with_device
 priority: 1
-condition: "global_method_used.contains('device') && step1_post_op_adverse_event_occur.equalsIgnoreCase('yes')"
+condition: "global_method_used.equalsIgnoreCase('device') && step1_post_op_adverse_event_occur.equalsIgnoreCase('yes')"
 actions:
   - "isRelevant = true "
 ---
 name: step1_type_of_adverse_event_without_device
 description: if type_of_adverse_event_without_device
 priority: 1
-condition: "!global_method_used.contains('device') && step1_post_op_adverse_event_occur.equalsIgnoreCase('yes')"
+condition: "(global_method_used.equalsIgnoreCase('dorsal_slit') || global_method_used.equalsIgnoreCase('sleeve_resection')) && step1_post_op_adverse_event_occur.equalsIgnoreCase('yes')"
 actions:
   - "isRelevant = true "
 ---

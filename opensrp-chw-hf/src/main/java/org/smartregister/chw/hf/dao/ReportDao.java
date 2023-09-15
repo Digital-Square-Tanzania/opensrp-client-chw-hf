@@ -199,6 +199,7 @@ public class ReportDao extends AbstractDao {
                 "        ec_vmmc_procedure.mc_procedure_date,\n" +
                 "        ec_vmmc_procedure.male_circumcision_method,\n" +
                 "        ec_vmmc_procedure.intraoperative_adverse_event_occured,\n" +
+                "        ec_vmmc_procedure.health_care_provider,\n" +
                 "        ec_vmmc_follow_up_visit.visit_number,\n" +
                 "        ec_vmmc_follow_up_visit.followup_visit_date AS visit_date,\n" +
                 "        ec_vmmc_follow_up_visit.post_op_adverse_event_occur AS post_op_adverse,\n" +
@@ -231,6 +232,7 @@ public class ReportDao extends AbstractDao {
                 "    mc_procedure_date,\n" +
                 "    male_circumcision_method,\n" +
                 "    intraoperative_adverse_event_occured,\n" +
+                "    health_care_provider,\n" +
                 "    MAX(CASE WHEN visit_number = 0 THEN visit_date END) AS first_visit,\n" +
                 "    MAX(CASE WHEN visit_number = 1 THEN visit_date END) AS sec_visit,\n" +
                 "    MAX(post_op_adverse) AS post_op_adverse,\n" +
@@ -266,6 +268,7 @@ public class ReportDao extends AbstractDao {
             data.put("sec_visit", cursor.getString(cursor.getColumnIndex("sec_visit")));
             data.put("post_op_adverse", cursor.getString(cursor.getColumnIndex("post_op_adverse")));
             data.put("NAE", cursor.getString(cursor.getColumnIndex("NAE")));
+            data.put("health_care_provider", cursor.getString(cursor.getColumnIndex("health_care_provider")));
 
             return data;
         };
