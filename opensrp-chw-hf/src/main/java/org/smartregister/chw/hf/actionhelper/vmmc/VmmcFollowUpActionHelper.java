@@ -1,6 +1,7 @@
 package org.smartregister.chw.hf.actionhelper.vmmc;
 
 import android.content.Context;
+import android.util.Log;
 
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.Days;
@@ -19,6 +20,7 @@ import org.smartregister.chw.vmmc.model.BaseVmmcVisitAction;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class VmmcFollowUpActionHelper implements BaseVmmcVisitAction.VmmcVisitActionHelper {
 
@@ -53,8 +55,13 @@ public class VmmcFollowUpActionHelper implements BaseVmmcVisitAction.VmmcVisitAc
             DateTimeFormatter formatter = DateTimeFormat.forPattern("dd-MM-yyyy");
 
             String discharge_date = HfVmmcDao.getDischargingDate(baseEntityId);
-            LocalDate dischargingDateFormat = formatter.parseDateTime(discharge_date).toLocalDate();
-            LocalDate lastFollowUpDate = dischargingDateFormat.plusDays(7);
+
+            LocalDate lastFollowUpDate = null;
+
+            if (!Objects.equals(discharge_date, "")){
+                LocalDate dischargingDateFormat = formatter.parseDateTime(discharge_date).toLocalDate();
+                lastFollowUpDate = dischargingDateFormat.plusDays(7);
+            }
 
             global.put("last_follow_up_date", lastFollowUpDate);
             global.put("today_date", todayDate);

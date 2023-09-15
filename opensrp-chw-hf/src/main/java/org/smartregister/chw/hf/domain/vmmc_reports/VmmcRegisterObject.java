@@ -37,6 +37,7 @@ public class VmmcRegisterObject extends ReportObject {
             reportJsonObject.put("enrollment_date", getCbhsClientDetails(getVmmcRegister, "enrollment_date"));
             reportJsonObject.put("names", getCbhsClientDetails(getVmmcRegister, "names"));
             reportJsonObject.put("vmmc_client_id", getCbhsClientDetails(getVmmcRegister, "vmmc_client_id"));
+            reportJsonObject.put("age", getCbhsClientDetails(getVmmcRegister, "age"));
             reportJsonObject.put("reffered_from", getCbhsClientDetails(getVmmcRegister, "reffered_from"));
             reportJsonObject.put("tested_hiv", getCbhsClientDetails(getVmmcRegister, "tested_hiv"));
 

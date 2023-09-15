@@ -2,7 +2,7 @@
 name: step1_next_followup_date
 description: if next_followup_date
 priority: 1
-condition: "!(global_last_follow_up_date.equals(global_today_date))"
+condition: "!(global_last_follow_up_date.equals(global_today_date)) || (global_last_follow_up_date == null)"
 actions:
   - "isRelevant = true "
 ---

@@ -185,24 +185,25 @@ public class ReportDao extends AbstractDao {
 
     public static List<Map<String, String>> getVmmcRegister(Date reportDate)
     {
-        String sql = " WITH VMMC_CTE AS (\n" +
+        String sql = "WITH VMMC_CTE AS (\n" +
                 "    SELECT\n" +
-                "        ec_vmmc_enrollment.enrollment_date,\n" +
+                "\t    ec_vmmc_enrollment.enrollment_date,\n" +
                 "        ec_family_member.first_name,\n" +
                 "        ec_family_member.middle_name,\n" +
                 "        ec_family_member.last_name,\n" +
-                "        ec_vmmc_enrollment.vmmc_client_id,\n" +
+                "\t\tec_vmmc_enrollment.vmmc_client_id,\n" +
                 "        ec_vmmc_enrollment.reffered_from,\n" +
                 "        ec_vmmc_services.tested_hiv,\n" +
                 "        ec_vmmc_services.hiv_result,\n" +
-                "        ec_vmmc_services.client_referred_to,\n" +
+                "\t\tec_vmmc_services.client_referred_to,\n" +
                 "        ec_vmmc_procedure.mc_procedure_date,\n" +
                 "        ec_vmmc_procedure.male_circumcision_method,\n" +
                 "        ec_vmmc_procedure.intraoperative_adverse_event_occured,\n" +
                 "        ec_vmmc_follow_up_visit.visit_number,\n" +
                 "        ec_vmmc_follow_up_visit.followup_visit_date AS visit_date,\n" +
                 "        ec_vmmc_follow_up_visit.post_op_adverse_event_occur AS post_op_adverse,\n" +
-                "        ec_vmmc_notifiable_ae.did_client_experience_nae AS NAE\n" +
+                "        ec_vmmc_notifiable_ae.did_client_experience_nae AS NAE,\n" +
+                "        ec_family_member.dob\n" +
                 "    FROM\n" +
                 "        ec_vmmc_enrollment\n" +
                 "            INNER JOIN\n" +
@@ -219,13 +220,14 @@ public class ReportDao extends AbstractDao {
                 "            ec_vmmc_follow_up_visit.follow_up_visit_type = 'routine'\n" +
                 ")\n" +
                 "SELECT\n" +
-                "    enrollment_date,\n" +
-                "    first_name || ' ' || middle_name || ' ' || last_name AS names,\n" +
-                "    vmmc_client_id,\n" +
+                "      enrollment_date,\n" +
+                "      first_name || ' ' || middle_name || ' ' || last_name AS names,\n" +
+                "\t  vmmc_client_id,\n" +
+                "    (strftime('%Y', 'now') - strftime('%Y', dob)) - (strftime('%m-%d', 'now') < strftime('%m-%d', dob)) AS age,\n" +
                 "    reffered_from,\n" +
                 "    tested_hiv,\n" +
                 "    hiv_result,\n" +
-                "    client_referred_to,\n" +
+                "\tclient_referred_to,\n" +
                 "    mc_procedure_date,\n" +
                 "    male_circumcision_method,\n" +
                 "    intraoperative_adverse_event_occured,\n" +
@@ -235,7 +237,8 @@ public class ReportDao extends AbstractDao {
                 "    MAX(NAE) AS NAE\n" +
                 "FROM VMMC_CTE\n" +
                 "GROUP BY\n" +
-                "    first_name || ' ' || middle_name || ' ' || last_name,\n" +
+                "    names,\n" +
+                "    age,\n" +
                 "    reffered_from,\n" +
                 "    tested_hiv,\n" +
                 "    hiv_result,\n" +
@@ -251,6 +254,7 @@ public class ReportDao extends AbstractDao {
             data.put("enrollment_date", cursor.getString(cursor.getColumnIndex("enrollment_date")));
             data.put("names", cursor.getString(cursor.getColumnIndex("names")));
             data.put("vmmc_client_id", cursor.getString(cursor.getColumnIndex("vmmc_client_id")));
+            data.put("age", cursor.getString(cursor.getColumnIndex("age")));
             data.put("reffered_from", cursor.getString(cursor.getColumnIndex("reffered_from")));
             data.put("tested_hiv", cursor.getString(cursor.getColumnIndex("tested_hiv")));
             data.put("hiv_result", cursor.getString(cursor.getColumnIndex("hiv_result")));
