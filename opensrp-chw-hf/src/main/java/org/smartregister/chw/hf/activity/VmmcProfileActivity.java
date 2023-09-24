@@ -56,7 +56,6 @@ public class VmmcProfileActivity extends CoreVmmcProfileActivity {
         }
         if (id == R.id.textview_followup_vmmc) {
             VmmcFollowUpActivity.startVmmcVisitActivity(this, baseEntityId, false);
-
         }
         if (id == R.id.continue_vmmc_service) {
             VmmcServiceActivity.startVmmcVisitActivity(this, baseEntityId, true);

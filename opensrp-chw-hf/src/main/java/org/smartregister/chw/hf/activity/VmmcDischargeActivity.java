@@ -37,7 +37,7 @@ public class VmmcDischargeActivity extends BaseVmmcVisitActivity {
 
     @Override
     protected void registerPresenter() {
-        presenter = new BaseVmmcVisitPresenter(memberObject, this, new VmmcVisitDischargeInteractor(Constants.EVENT_TYPE.VMMC_DISCHARGE));
+        presenter = new BaseVmmcVisitPresenter(memberObject, this, new VmmcVisitDischargeInteractor());
     }
 
     @Override

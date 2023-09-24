@@ -37,7 +37,7 @@ public class VmmcNotifiableAdverseActivity extends BaseVmmcVisitActivity {
 
     @Override
     protected void registerPresenter() {
-        presenter = new BaseVmmcVisitPresenter(memberObject, this, new VmmcNotifiableAdverseInteractor(Constants.EVENT_TYPE.VMMC_NOTIFIABLE_EVENTS));
+        presenter = new BaseVmmcVisitPresenter(memberObject, this, new VmmcNotifiableAdverseInteractor());
     }
 
     @Override
