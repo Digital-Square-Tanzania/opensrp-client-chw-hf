@@ -693,6 +693,10 @@
         "openmrs_entity_id": "surgeon_first_name",
         "type": "edit_text",
         "hint": "Surgeon's first name",
+        "v_regex": {
+          "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-\\']*",
+          "err": "Please enter a valid name"
+        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -708,6 +712,10 @@
         "openmrs_entity_id": "surgeon_middle_name",
         "type": "edit_text",
         "hint": "Surgeon's middle name",
+        "v_regex": {
+          "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-\\']*",
+          "err": "Please enter a valid name"
+        },
         "v_required": {
           "value": "true",
           "err": "Please specify"
@@ -727,6 +735,10 @@
         "openmrs_entity_id": "surgeon_last_name",
         "type": "edit_text",
         "hint": "Surgeon's last name",
+        "v_regex": {
+          "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-\\']*",
+          "err": "Please enter a valid name"
+        },
         "v_required": {
           "value": "true",
           "err": "Please specify"
@@ -819,6 +831,10 @@
         "openmrs_entity_id": "assistant_first_name",
         "type": "edit_text",
         "hint": "Assistant's first name",
+        "v_regex": {
+          "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-\\']*",
+          "err": "Please enter a valid name"
+        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -834,6 +850,10 @@
         "openmrs_entity_id": "assistant_middle_name",
         "type": "edit_text",
         "hint": "Assistant's middle name",
+        "v_regex": {
+          "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-\\']*",
+          "err": "Please enter a valid name"
+        },
         "v_required": {
           "value": "true",
           "err": "Please specify"
@@ -853,6 +873,10 @@
         "openmrs_entity_id": "assistant_last_name",
         "type": "edit_text",
         "hint": "Assistant's last name",
+        "v_regex": {
+          "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-\\']*",
+          "err": "Please enter a valid name"
+        },
         "v_required": {
           "value": "true",
           "err": "Please specify"
@@ -1221,7 +1245,7 @@
         "key": "desc_intraoperative_ae_skin_removal",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "desc_intraoperative_ae",
+        "openmrs_entity_id": "desc_intraoperative_ae_skin_removal",
         "label": "Description of intraoperative adverse events (Excessive skin removal)",
         "text_color": "#000000",
         "type": "native_radio",
@@ -1309,7 +1333,7 @@
         "key": "desc_intraoperative_ae_injury_to_penis",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "desc_intraoperative_ae",
+        "openmrs_entity_id": "desc_intraoperative_ae_injury_to_penis",
         "label": "Description of intraoperative adverse events (Injury to penis)",
         "text_color": "#000000",
         "type": "native_radio",
@@ -1506,7 +1530,7 @@
           },
 
           {
-            "key": " intentional_movement_of_device_by_client_or_self_removal_that_requires_surgical_intervention_hospitalization_transfer",
+            "key": "intentional_movement_of_device_by_client_or_self_removal_that_requires_surgical_intervention_hospitalization_transfer",
             "text": "Displacement of the device, including intentional movement of device by the client and/or self-removal, that requires surgical intervention, hospitalization, or transfer to another facility to clinically manage.",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",

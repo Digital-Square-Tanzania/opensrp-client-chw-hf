@@ -8851,14 +8851,6 @@
           }
         },
         {
-          "column_name": "intraoperative_adverse_event_occured",
-          "type": "Event",
-          "json_mapping": {
-            "field": "obs.fieldCode",
-            "concept": "intraoperative_adverse_event_occured"
-          }
-        },
-        {
           "column_name": "desc_intraoperative_ae_bleed_excessive_bleeding",
           "type": "Event",
           "json_mapping": {
@@ -8922,8 +8914,7 @@
           }
         }
       ]
-    },
-    {
+    },    {
       "name": "ec_vmmc_post_op_and_discharge",
       "columns": [
         {
@@ -9270,6 +9261,14 @@
           }
         },
         {
+          "column_name": "desc_of_post_op_adverse_excessive_skin_removed",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "desc_of_post_op_adverse_excessive_skin_removed"
+          }
+        },
+        {
           "column_name": "what_done",
           "type": "Event",
           "json_mapping": {
@@ -9357,8 +9356,7 @@
           }
         }
       ]
-    },
-    {
+    },    {
       "name": "ec_vmmc_notifiable_ae",
       "columns": [
         {
