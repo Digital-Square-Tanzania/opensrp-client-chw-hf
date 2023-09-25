@@ -110,6 +110,10 @@
         "type": "edit_text",
         "hint": "Notes/Comments",
         "edit_type": "text",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -218,7 +222,11 @@
         "openmrs_entity_id": "analgenics_dose",
         "type": "edit_text",
         "hint": "Analgesics Dose",
-        "edit_type": "text",
+        "edit_type": "number",
+        "v_numeric": {
+          "value": "true",
+          "err": "Please enter a valid value"
+        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -234,7 +242,11 @@
         "openmrs_entity_id": "analgenics_dose_frequency",
         "type": "edit_text",
         "hint": "Analgesics Dose Frequency(hourly)",
-        "edit_type": "text",
+        "edit_type": "number",
+        "v_numeric": {
+          "value": "true",
+          "err": "Please enter a valid value"
+        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -250,7 +262,11 @@
         "openmrs_entity_id": "analgenics_dose_duration",
         "type": "edit_text",
         "hint": "Analgesics Dose Duration(days)",
-        "edit_type": "text",
+        "edit_type": "number",
+        "v_numeric": {
+          "value": "true",
+          "err": "Please enter a valid value"
+        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {

@@ -10,9 +10,9 @@ import com.vijay.jsonwizard.domain.Form;
 
 import org.json.JSONObject;
 import org.smartregister.chw.core.task.RunnableTask;
-import org.smartregister.chw.hf.interactor.VmmcVisitDischargeInteractor;
 import org.smartregister.chw.hf.schedulers.HfScheduleTaskExecutor;
 import org.smartregister.chw.vmmc.activity.BaseVmmcVisitActivity;
+import org.smartregister.chw.vmmc.interactor.BaseVmmcVisitDischargeInteractor;
 import org.smartregister.chw.vmmc.model.BaseVmmcVisitAction;
 import org.smartregister.chw.vmmc.presenter.BaseVmmcVisitPresenter;
 import org.smartregister.chw.vmmc.util.Constants;
@@ -37,7 +37,7 @@ public class VmmcDischargeActivity extends BaseVmmcVisitActivity {
 
     @Override
     protected void registerPresenter() {
-        presenter = new BaseVmmcVisitPresenter(memberObject, this, new VmmcVisitDischargeInteractor());
+        presenter = new BaseVmmcVisitPresenter(memberObject, this, new BaseVmmcVisitDischargeInteractor());
     }
 
     @Override

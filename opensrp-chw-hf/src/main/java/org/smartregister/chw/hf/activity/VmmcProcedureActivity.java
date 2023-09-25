@@ -11,9 +11,9 @@ import com.vijay.jsonwizard.domain.Form;
 import org.json.JSONObject;
 import org.smartregister.chw.core.task.RunnableTask;
 import org.smartregister.chw.hf.R;
-import org.smartregister.chw.hf.interactor.VmmcVisitProcedureInteractor;
 import org.smartregister.chw.hf.schedulers.HfScheduleTaskExecutor;
 import org.smartregister.chw.vmmc.activity.BaseVmmcVisitActivity;
+import org.smartregister.chw.vmmc.interactor.BaseVmmcVisitProcedureInteractor;
 import org.smartregister.chw.vmmc.model.BaseVmmcVisitAction;
 import org.smartregister.chw.vmmc.presenter.BaseVmmcVisitPresenter;
 import org.smartregister.chw.vmmc.util.Constants;
@@ -37,7 +37,7 @@ public class VmmcProcedureActivity extends BaseVmmcVisitActivity {
 
     @Override
     protected void registerPresenter() {
-        presenter = new BaseVmmcVisitPresenter(memberObject, this, new VmmcVisitProcedureInteractor());
+        presenter = new BaseVmmcVisitPresenter(memberObject, this, new BaseVmmcVisitProcedureInteractor());
     }
 
     @Override
@@ -55,7 +55,7 @@ public class VmmcProcedureActivity extends BaseVmmcVisitActivity {
 
     @Override
     public void submittedAndClose() {
-        Runnable runnable = () -> HfScheduleTaskExecutor.getInstance().execute(memberObject.getBaseEntityId(), Constants.EVENT_TYPE.VMMC_FOLLOW_UP_VISIT, new Date());
+        Runnable runnable = () -> HfScheduleTaskExecutor.getInstance().execute(memberObject.getBaseEntityId(), Constants.EVENT_TYPE.VMMC_PROCEDURE, new Date());
         Utils.startAsyncTask(new RunnableTask(runnable), null);
         super.submittedAndClose();
     }

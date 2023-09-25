@@ -557,6 +557,10 @@
           "value": "true",
           "err": "Please enter a valid value"
         },
+        "v_max": {
+          "value": "100",
+          "err": "Lignocaine (percent) value must be equal or less than 100"
+        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -598,6 +602,10 @@
         "v_numeric": {
           "value": "true",
           "err": "Please enter a valid value"
+        },
+        "v_max": {
+          "value": "100",
+          "err": "Bupivacaine (percent) value must be equal or less than 100"
         },
         "relevance": {
           "rules-engine": {

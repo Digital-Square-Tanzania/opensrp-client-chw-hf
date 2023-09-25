@@ -413,6 +413,10 @@
         "allowed_chars": "0123456789",
         "hint": "CTC Number e.g 12-34-5678-912345",
         "edit_type": "number",
+        "v_required": {
+          "value": "true",
+          "err": "Please select an answer"
+        },
         "v_regex": {
           "value": "(\\d{2}-\\d{2}-\\d{4}-\\d{6})?",
           "err": "CTC Number should be of the format (XX-XX-XXXX-XXXXXX)"
@@ -441,6 +445,10 @@
         "openmrs_entity_id": "ctc_name",
         "type": "edit_text",
         "hint": "CTC Name",
+        "v_required": {
+          "value": "true",
+          "err": "Please select an answer"
+        },
         "relevance": {
           "step1:is_client_diagnosed_with_any": {
             "ex-checkbox": [

@@ -738,6 +738,8 @@
     <string name="vmmc_reports">VMMC REPORTS</string>
     <string name="vmmc_register">VMMC Monthly Register</string>
     <string name="vmmc_reports_subtitle">View Reports For VMMC</string>
+    <string name="vmmc_register_subtitle">View Register For VMMC</string>
+
 
 
     <string name="view_visits_history">View Visits History</string>

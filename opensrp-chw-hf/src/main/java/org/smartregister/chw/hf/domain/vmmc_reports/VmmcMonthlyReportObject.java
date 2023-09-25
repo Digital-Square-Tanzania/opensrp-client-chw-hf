@@ -33,6 +33,19 @@ public class VmmcMonthlyReportObject extends ReportObject {
 
         jsonObject = new JSONObject();
 
+        //total for qn 2 and 4
+        jsonObject.put("vmmc-2a-grandtotal", ReportDao.getReportPerIndicatorCode("vmmc-2a-grandtotal", reportDate));
+        jsonObject.put("vmmc-2b-grandtotal", ReportDao.getReportPerIndicatorCode("vmmc-2b-grandtotal", reportDate));
+        jsonObject.put("vmmc-2c-grandtotal", ReportDao.getReportPerIndicatorCode("vmmc-2c-grandtotal", reportDate));
+        jsonObject.put("vmmc-2d-grandtotal", ReportDao.getReportPerIndicatorCode("vmmc-2d-grandtotal", reportDate));
+        jsonObject.put("vmmc-2e-grandtotal", ReportDao.getReportPerIndicatorCode("vmmc-2e-grandtotal", reportDate));
+        jsonObject.put("vmmc-2f-grandtotal", ReportDao.getReportPerIndicatorCode("vmmc-2f-grandtotal", reportDate));
+        jsonObject.put("vmmc-4a-grandtotal", ReportDao.getReportPerIndicatorCode("vmmc-4a-grandtotal", reportDate));
+        jsonObject.put("vmmc-4b-grandtotal", ReportDao.getReportPerIndicatorCode("vmmc-4b-grandtotal", reportDate));
+        jsonObject.put("vmmc-4c-grandtotal", ReportDao.getReportPerIndicatorCode("vmmc-4c-grandtotal", reportDate));
+        jsonObject.put("vmmc-4d-grandtotal", ReportDao.getReportPerIndicatorCode("vmmc-4d-grandtotal", reportDate));
+
+
         for (String questionGroup : vmmcQuestionsGroups) {   //rows
             for (String ageGroup : vmmcAgeGroups) {  //columns
                 for (String vmmcGroup : vmmcGroups) {  //concstenate rows columns and gendergroup

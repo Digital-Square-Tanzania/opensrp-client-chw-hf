@@ -74,6 +74,24 @@
         }
       },
       {
+        "key": "outreach_mobile_location",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "outreach_mobile_location",
+        "type": "edit_text",
+        "hint": "Specify Outreach/Mobile Location",
+        "v_required": {
+          "value": "true",
+          "err": "Please select an answer"
+        },
+        "relevance": {
+          "step1:service_delivery_approach": {
+            "type": "string",
+            "ex": "equalTo(., \"outreach_or_mobile\")"
+          }
+        }
+      },
+      {
         "key": "vmmc_client_id",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",

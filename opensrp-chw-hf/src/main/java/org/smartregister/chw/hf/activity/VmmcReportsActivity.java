@@ -33,10 +33,10 @@ public class VmmcReportsActivity extends PncReportsActivity{
     public void onClick(View v) {
         int id = v.getId();
         if (id == R.id.vmmc_monthly_report) {
-            VmmcReportsViewActivity.startMe(this,  Constants.ReportConstants.ReportPaths.VMMC_REPORT_PATH, reportPeriod);
+            VmmcReportsViewActivity.startMe(this,  Constants.ReportConstants.ReportPaths.VMMC_REPORT_PATH,R.string.vmmc_reports_subtitle, reportPeriod);
         }
         if (id == R.id.vmmc_register_report) {
-            VmmcReportsViewActivity.startMe(this,  Constants.ReportConstants.ReportPaths.VMMC_REGISTER_PATH, reportPeriod);
+            VmmcReportsViewActivity.startMe(this,  Constants.ReportConstants.ReportPaths.VMMC_REGISTER_PATH,R.string.vmmc_register_subtitle, reportPeriod);
         }
     }
 

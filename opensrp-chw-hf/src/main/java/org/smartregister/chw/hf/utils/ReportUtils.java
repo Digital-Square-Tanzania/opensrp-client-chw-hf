@@ -166,7 +166,10 @@ public class ReportUtils {
 
         if (reportType.equals(Constants.ReportConstants.ReportTypes.CONDOM_DISTRIBUTION_REPORT)){
             mWebView.loadUrl("https://appassets.androidplatform.net/assets/reports/cdp_reports/" + reportPath + ".html");
-        }else {
+        } else if(reportType.equals(Constants.ReportConstants.ReportTypes.VMMC_REPORT)){
+            mWebView.loadUrl("https://appassets.androidplatform.net/assets/reports/vmmc_reports/" + reportPath + ".html");
+        }
+        else {
             mWebView.loadUrl("https://appassets.androidplatform.net/assets/reports/" + reportPath + ".html");
         }
 

@@ -96,6 +96,63 @@ indicators:
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                       date(substr(strftime('%Y-%m-%d', datetime(evc.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
                       substr(strftime('%Y-%m-%d', datetime(evc.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+
+  # Question 2 (grand totals)
+  - key: "vmmc-2a-grandtotal"
+    description: "Jumla ya wateja (Binafsi) waliopata majibu chanya (Reactive) baada ya kujipima VVU Umri 20-24"
+    indicatorQuery: " SELECT count(DISTINCT evc.id) as count FROM  ec_vmmc_enrollment evc
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = evc.id
+                      WHERE reffered_from = 'self_referral'
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(evc.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                      substr(strftime('%Y-%m-%d', datetime(evc.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-2b-grandtotal"
+    description: "Jumla ya wateja (Binafsi) waliopata majibu chanya (Reactive) baada ya kujipima VVU Umri 20-24"
+    indicatorQuery: " SELECT count(DISTINCT evc.id) as count FROM  ec_vmmc_enrollment evc
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = evc.id
+                      WHERE reffered_from = 'chw'
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(evc.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                      substr(strftime('%Y-%m-%d', datetime(evc.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-2c-grandtotal"
+    description: "Jumla ya wateja (Binafsi) waliopata majibu chanya (Reactive) baada ya kujipima VVU Umri 20-24"
+    indicatorQuery: " SELECT count(DISTINCT evc.id) as count FROM  ec_vmmc_enrollment evc
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = evc.id
+                      WHERE reffered_from = 'opd'
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(evc.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                      substr(strftime('%Y-%m-%d', datetime(evc.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-2d-grandtotal"
+    description: "Jumla ya wateja (Binafsi) waliopata majibu chanya (Reactive) baada ya kujipima VVU Umri 20-24"
+    indicatorQuery: " SELECT count(DISTINCT evc.id) as count FROM  ec_vmmc_enrollment evc
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = evc.id
+                      WHERE reffered_from = 'ipd'
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(evc.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                      substr(strftime('%Y-%m-%d', datetime(evc.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-2e-grandtotal"
+    description: "Jumla ya wateja (Binafsi) waliopata majibu chanya (Reactive) baada ya kujipima VVU Umri 20-24"
+    indicatorQuery: " SELECT count(DISTINCT evc.id) as count FROM  ec_vmmc_enrollment evc
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = evc.id
+                      WHERE reffered_from = 'hts'
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(evc.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                      substr(strftime('%Y-%m-%d', datetime(evc.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-2f-grandtotal"
+    description: "Jumla ya wateja (Binafsi) waliopata majibu chanya (Reactive) baada ya kujipima VVU Umri 20-24"
+    indicatorQuery: " SELECT count(DISTINCT evc.id) as count FROM  ec_vmmc_enrollment evc
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = evc.id
+                      WHERE reffered_from = 'others'
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(evc.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                      substr(strftime('%Y-%m-%d', datetime(evc.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
   - key: "vmmc-3-i-1-a"
     description: "Jumla ya wateja wa VMMC"
     indicatorQuery: " SELECT count(DISTINCT evs.entity_id) as count FROM ec_vmmc_services evs
@@ -312,6 +369,47 @@ indicators:
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                       date(substr(strftime('%Y-%m-%d', datetime(evs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
                       substr(strftime('%Y-%m-%d', datetime(evs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+
+  # Question 4 (grand totals)
+  - key: "vmmc-4a-grandtotal"
+    description: "Jumla ya wateja (Binafsi) waliopata majibu chanya (Reactive) baada ya kujipima VVU Umri 20-24"
+    indicatorQuery: " SELECT count(DISTINCT evc.id) as count FROM  ec_vmmc_services evc
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = evc.entity_id
+                      WHERE client_referred_to = 'surgical'
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(evc.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                      substr(strftime('%Y-%m-%d', datetime(evc.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+
+  - key: "vmmc-4b-grandtotal"
+    description: "Jumla ya wateja (Binafsi) waliopata majibu chanya (Reactive) baada ya kujipima VVU Umri 20-24"
+    indicatorQuery: " SELECT count(DISTINCT evc.id) as count FROM  ec_vmmc_services evc
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = evc.entity_id
+                      WHERE client_referred_to = 'ctc'
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(evc.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                      substr(strftime('%Y-%m-%d', datetime(evc.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+
+  - key: "vmmc-4c-grandtotal"
+    description: "Jumla ya wateja (Binafsi) waliopata majibu chanya (Reactive) baada ya kujipima VVU Umri 20-24"
+    indicatorQuery: " SELECT count(DISTINCT evc.id) as count FROM  ec_vmmc_services evc
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = evc.entity_id
+                      WHERE client_referred_to = 'psychosocial_support'
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(evc.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                      substr(strftime('%Y-%m-%d', datetime(evc.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+
+  - key: "vmmc-4d-grandtotal"
+    description: "Jumla ya wateja (Binafsi) waliopata majibu chanya (Reactive) baada ya kujipima VVU Umri 20-24"
+    indicatorQuery: " SELECT count(DISTINCT evc.id) as count FROM  ec_vmmc_services evc
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = evc.entity_id
+                      WHERE client_referred_to = 'other'
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(evc.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                      substr(strftime('%Y-%m-%d', datetime(evc.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
 
 
   #    QN 5
@@ -2431,7 +2529,7 @@ indicators:
     INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
 	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
     WHERE  (date('now')-date(efm.dob))<1
-    AND (desc_of_post_op_adverse_event_device_displacement = 'meet_severe_criteria')
+    AND (evf.desc_of_post_op_adverse_event_device_displacement = 'meet_severe_criteria')
     AND male_circumcision_method = 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2456,7 +2554,7 @@ indicators:
     INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
 	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
     WHERE  1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
-    AND (desc_of_post_op_adverse_event_device_displacement = 'meet_severe_criteria')
+    AND (evf.desc_of_post_op_adverse_event_device_displacement = 'meet_severe_criteria')
     AND male_circumcision_method = 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2480,7 +2578,7 @@ indicators:
     INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
 	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
     WHERE  10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
-    AND (desc_of_post_op_adverse_event_device_displacement = 'meet_severe_criteria')
+    AND (evf.desc_of_post_op_adverse_event_device_displacement = 'meet_severe_criteria')
     AND male_circumcision_method = 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2504,7 +2602,7 @@ indicators:
     INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
 	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
     WHERE  15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
-    AND (desc_of_post_op_adverse_event_device_displacement = 'meet_severe_criteria')
+    AND (evf.desc_of_post_op_adverse_event_device_displacement = 'meet_severe_criteria')
     AND male_circumcision_method = 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2528,7 +2626,7 @@ indicators:
     INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
 	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
     WHERE  20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
-    AND (desc_of_post_op_adverse_event_device_displacement = 'meet_severe_criteria')
+    AND (evf.desc_of_post_op_adverse_event_device_displacement = 'meet_severe_criteria')
     AND male_circumcision_method = 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2552,7 +2650,7 @@ indicators:
     INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
 	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
     WHERE  25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
-    AND (desc_of_post_op_adverse_event_device_displacement = 'meet_severe_criteria')
+    AND (evf.desc_of_post_op_adverse_event_device_displacement = 'meet_severe_criteria')
     AND male_circumcision_method = 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2576,7 +2674,7 @@ indicators:
     INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
 	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
     WHERE  30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
-    AND (desc_of_post_op_adverse_event_device_displacement = 'meet_severe_criteria')
+    AND (evf.desc_of_post_op_adverse_event_device_displacement = 'meet_severe_criteria')
     AND male_circumcision_method = 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2600,7 +2698,7 @@ indicators:
     INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
 	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
     WHERE  35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
-    AND (desc_of_post_op_adverse_event_device_displacement = 'meet_severe_criteria')
+    AND (evf.desc_of_post_op_adverse_event_device_displacement = 'meet_severe_criteria')
     AND male_circumcision_method = 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2624,7 +2722,7 @@ indicators:
     INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
 	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
     WHERE  40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
-    AND (desc_of_post_op_adverse_event_device_displacement = 'meet_severe_criteria')
+    AND (evf.desc_of_post_op_adverse_event_device_displacement = 'meet_severe_criteria')
     AND male_circumcision_method = 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2648,7 +2746,7 @@ indicators:
     INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
 	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
     WHERE  45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
-    AND (desc_of_post_op_adverse_event_device_displacement = 'meet_severe_criteria')
+    AND (evf.desc_of_post_op_adverse_event_device_displacement = 'meet_severe_criteria')
     AND male_circumcision_method = 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -2672,7 +2770,7 @@ indicators:
     INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
 	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
     WHERE  (date('now')-date(efm.dob))>=50
-    AND (desc_of_post_op_adverse_event_device_displacement = 'meet_severe_criteria')
+    AND (evf.desc_of_post_op_adverse_event_device_displacement = 'meet_severe_criteria')
     AND male_circumcision_method = 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -5352,7 +5450,7 @@ indicators:
     INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
 	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
     WHERE  (date('now')-date(efm.dob))<1
-    AND (desc_of_post_op_adverse_event_device_displacement = 'surgical_intervention')
+    AND (evf.desc_of_post_op_adverse_event_device_displacement = 'surgical_intervention')
     AND male_circumcision_method = 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -5361,7 +5459,7 @@ indicators:
     SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
 	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
 	WHERE  (date('now')-date(efm.dob))<1
-    AND (evp.desc_of_adverse_event_device_displacement = ' intentional_movement_of_device_by_client_or_self_removal_that_requires_surgical_intervention_hospitalization_transfer')
+    AND (evp.desc_of_adverse_event_device_displacement = 'intentional_movement_of_device_by_client_or_self_removal_that_requires_surgical_intervention_hospitalization_transfer')
     AND male_circumcision_method = 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -5377,7 +5475,7 @@ indicators:
     INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
 	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
     WHERE  1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
-    AND (desc_of_post_op_adverse_event_device_displacement = 'surgical_intervention')
+    AND (evf.desc_of_post_op_adverse_event_device_displacement = 'surgical_intervention')
     AND male_circumcision_method = 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -5386,7 +5484,7 @@ indicators:
     SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
 	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
 	WHERE  1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
-    AND (evp.desc_of_adverse_event_device_displacement = ' intentional_movement_of_device_by_client_or_self_removal_that_requires_surgical_intervention_hospitalization_transfer')
+    AND (evp.desc_of_adverse_event_device_displacement = 'intentional_movement_of_device_by_client_or_self_removal_that_requires_surgical_intervention_hospitalization_transfer')
     AND male_circumcision_method = 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -5401,7 +5499,7 @@ indicators:
     INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
 	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
     WHERE  10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
-    AND (desc_of_post_op_adverse_event_device_displacement = 'surgical_intervention')
+    AND (evf.desc_of_post_op_adverse_event_device_displacement = 'surgical_intervention')
     AND male_circumcision_method = 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -5410,7 +5508,7 @@ indicators:
     SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
 	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
 	WHERE  10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
-    AND (evp.desc_of_adverse_event_device_displacement = ' intentional_movement_of_device_by_client_or_self_removal_that_requires_surgical_intervention_hospitalization_transfer')
+    AND (evp.desc_of_adverse_event_device_displacement = 'intentional_movement_of_device_by_client_or_self_removal_that_requires_surgical_intervention_hospitalization_transfer')
     AND male_circumcision_method = 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -5425,7 +5523,7 @@ indicators:
     INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
 	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
     WHERE  15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
-    AND (desc_of_post_op_adverse_event_device_displacement = 'surgical_intervention')
+    AND (evf.desc_of_post_op_adverse_event_device_displacement = 'surgical_intervention')
     AND male_circumcision_method = 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -5434,7 +5532,7 @@ indicators:
     SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
 	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
 	WHERE  15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
-    AND (evp.desc_of_adverse_event_device_displacement = ' intentional_movement_of_device_by_client_or_self_removal_that_requires_surgical_intervention_hospitalization_transfer')
+    AND (evp.desc_of_adverse_event_device_displacement = 'intentional_movement_of_device_by_client_or_self_removal_that_requires_surgical_intervention_hospitalization_transfer')
     AND male_circumcision_method = 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -5449,7 +5547,7 @@ indicators:
     INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
 	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
     WHERE  20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
-    AND (desc_of_post_op_adverse_event_device_displacement = 'surgical_intervention')
+    AND (evf.desc_of_post_op_adverse_event_device_displacement = 'surgical_intervention')
     AND male_circumcision_method = 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -5458,7 +5556,7 @@ indicators:
     SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
 	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
 	WHERE  20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
-    AND (evp.desc_of_adverse_event_device_displacement = ' intentional_movement_of_device_by_client_or_self_removal_that_requires_surgical_intervention_hospitalization_transfer')
+    AND (evp.desc_of_adverse_event_device_displacement = 'intentional_movement_of_device_by_client_or_self_removal_that_requires_surgical_intervention_hospitalization_transfer')
     AND male_circumcision_method = 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -5473,7 +5571,7 @@ indicators:
     INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
 	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
     WHERE  25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
-    AND (desc_of_post_op_adverse_event_device_displacement = 'surgical_intervention')
+    AND (evf.desc_of_post_op_adverse_event_device_displacement = 'surgical_intervention')
     AND male_circumcision_method = 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -5482,7 +5580,7 @@ indicators:
     SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
 	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
 	WHERE  25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
-    AND (evp.desc_of_adverse_event_device_displacement = ' intentional_movement_of_device_by_client_or_self_removal_that_requires_surgical_intervention_hospitalization_transfer')
+    AND (evp.desc_of_adverse_event_device_displacement = 'intentional_movement_of_device_by_client_or_self_removal_that_requires_surgical_intervention_hospitalization_transfer')
     AND male_circumcision_method = 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -5497,7 +5595,7 @@ indicators:
     INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
 	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
     WHERE  30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
-    AND (desc_of_post_op_adverse_event_device_displacement = 'surgical_intervention')
+    AND (evf.desc_of_post_op_adverse_event_device_displacement = 'surgical_intervention')
     AND male_circumcision_method = 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -5506,7 +5604,7 @@ indicators:
     SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
 	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
 	WHERE  30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
-    AND (evp.desc_of_adverse_event_device_displacement = ' intentional_movement_of_device_by_client_or_self_removal_that_requires_surgical_intervention_hospitalization_transfer')
+    AND (evp.desc_of_adverse_event_device_displacement = 'intentional_movement_of_device_by_client_or_self_removal_that_requires_surgical_intervention_hospitalization_transfer')
     AND male_circumcision_method = 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -5521,7 +5619,7 @@ indicators:
     INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
 	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
     WHERE  35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
-    AND (desc_of_post_op_adverse_event_device_displacement = 'surgical_intervention')
+    AND (evf.desc_of_post_op_adverse_event_device_displacement = 'surgical_intervention')
     AND male_circumcision_method = 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -5530,7 +5628,7 @@ indicators:
     SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
 	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
 	WHERE  35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
-    AND (evp.desc_of_adverse_event_device_displacement = ' intentional_movement_of_device_by_client_or_self_removal_that_requires_surgical_intervention_hospitalization_transfer')
+    AND (evp.desc_of_adverse_event_device_displacement = 'intentional_movement_of_device_by_client_or_self_removal_that_requires_surgical_intervention_hospitalization_transfer')
     AND male_circumcision_method = 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -5545,7 +5643,7 @@ indicators:
     INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
 	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
     WHERE  40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
-    AND (desc_of_post_op_adverse_event_device_displacement = 'surgical_intervention')
+    AND (evf.desc_of_post_op_adverse_event_device_displacement = 'surgical_intervention')
     AND male_circumcision_method = 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -5554,7 +5652,7 @@ indicators:
     SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
 	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
 	WHERE  40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
-    AND (evp.desc_of_adverse_event_device_displacement = ' intentional_movement_of_device_by_client_or_self_removal_that_requires_surgical_intervention_hospitalization_transfer')
+    AND (evp.desc_of_adverse_event_device_displacement = 'intentional_movement_of_device_by_client_or_self_removal_that_requires_surgical_intervention_hospitalization_transfer')
     AND male_circumcision_method = 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -5569,7 +5667,7 @@ indicators:
     INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
 	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
     WHERE  45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
-    AND (desc_of_post_op_adverse_event_device_displacement = 'surgical_intervention')
+    AND (evf.desc_of_post_op_adverse_event_device_displacement = 'surgical_intervention')
     AND male_circumcision_method = 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -5578,7 +5676,7 @@ indicators:
     SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
 	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
 	WHERE  45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
-    AND (evp.desc_of_adverse_event_device_displacement = ' intentional_movement_of_device_by_client_or_self_removal_that_requires_surgical_intervention_hospitalization_transfer')
+    AND (evp.desc_of_adverse_event_device_displacement = 'intentional_movement_of_device_by_client_or_self_removal_that_requires_surgical_intervention_hospitalization_transfer')
     AND male_circumcision_method = 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -5593,7 +5691,7 @@ indicators:
     INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
 	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
     WHERE  (date('now')-date(efm.dob))>=50
-    AND (desc_of_post_op_adverse_event_device_displacement = 'surgical_intervention')
+    AND (evf.desc_of_post_op_adverse_event_device_displacement = 'surgical_intervention')
     AND male_circumcision_method = 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -5602,7 +5700,7 @@ indicators:
     SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
 	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
 	WHERE  (date('now')-date(efm.dob))>=50
-    AND (evp.desc_of_adverse_event_device_displacement = ' intentional_movement_of_device_by_client_or_self_removal_that_requires_surgical_intervention_hospitalization_transfer')
+    AND (evp.desc_of_adverse_event_device_displacement = 'intentional_movement_of_device_by_client_or_self_removal_that_requires_surgical_intervention_hospitalization_transfer')
     AND male_circumcision_method = 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -6153,7 +6251,6 @@ indicators:
 
   #########################################################################################
 
-  #############################################################################################
 
   # Viii QN 6
 
@@ -6692,7 +6789,7 @@ indicators:
     indicatorQuery: " SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
 	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
 	WHERE  (date('now')-date(efm.dob))<1
-    AND (evp.-desc_intraoperative_ae_anaesthetic_related_event = 'anaphylaxis')
+    AND (evp.desc_intraoperative_ae_anaesthetic_related_event = 'anaphylaxis')
     AND male_circumcision_method != 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -6704,7 +6801,7 @@ indicators:
     indicatorQuery: " SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
 	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
 	WHERE  1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
-    AND (evp.-desc_intraoperative_ae_anaesthetic_related_event = 'anaphylaxis')
+    AND (evp.desc_intraoperative_ae_anaesthetic_related_event = 'anaphylaxis')
     AND male_circumcision_method != 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -6715,7 +6812,7 @@ indicators:
     indicatorQuery: " SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
 	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
 	WHERE  10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
-    AND (evp.-desc_intraoperative_ae_anaesthetic_related_event = 'anaphylaxis')
+    AND (evp.desc_intraoperative_ae_anaesthetic_related_event = 'anaphylaxis')
     AND male_circumcision_method != 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -6726,7 +6823,7 @@ indicators:
     indicatorQuery: " SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
 	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
 	WHERE  15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
-    AND (evp.-desc_intraoperative_ae_anaesthetic_related_event = 'anaphylaxis')
+    AND (evp.desc_intraoperative_ae_anaesthetic_related_event = 'anaphylaxis')
     AND male_circumcision_method != 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -6737,7 +6834,7 @@ indicators:
     indicatorQuery: " SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
 	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
 	WHERE  20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
-    AND (evp.-desc_intraoperative_ae_anaesthetic_related_event = 'anaphylaxis')
+    AND (evp.desc_intraoperative_ae_anaesthetic_related_event = 'anaphylaxis')
     AND male_circumcision_method != 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -6748,7 +6845,7 @@ indicators:
     indicatorQuery: " SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
 	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
 	WHERE  25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
-    AND (evp.-desc_intraoperative_ae_anaesthetic_related_event = 'anaphylaxis')
+    AND (evp.desc_intraoperative_ae_anaesthetic_related_event = 'anaphylaxis')
     AND male_circumcision_method != 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -6759,7 +6856,7 @@ indicators:
     indicatorQuery: " SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
 	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
 	WHERE  30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
-    AND (evp.-desc_intraoperative_ae_anaesthetic_related_event = 'anaphylaxis')
+    AND (evp.desc_intraoperative_ae_anaesthetic_related_event = 'anaphylaxis')
     AND male_circumcision_method != 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -6770,7 +6867,7 @@ indicators:
     indicatorQuery: " SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
 	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
 	WHERE  35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
-    AND (evp.-desc_intraoperative_ae_anaesthetic_related_event = 'anaphylaxis')
+    AND (evp.desc_intraoperative_ae_anaesthetic_related_event = 'anaphylaxis')
     AND male_circumcision_method != 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -6781,7 +6878,7 @@ indicators:
     indicatorQuery: " SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
 	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
 	WHERE  40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
-    AND (evp.-desc_intraoperative_ae_anaesthetic_related_event = 'anaphylaxis')
+    AND (evp.desc_intraoperative_ae_anaesthetic_related_event = 'anaphylaxis')
     AND male_circumcision_method != 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -6792,7 +6889,7 @@ indicators:
     indicatorQuery: " SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
 	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
 	WHERE  45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
-    AND (evp.-desc_intraoperative_ae_anaesthetic_related_event = 'anaphylaxis')
+    AND (evp.desc_intraoperative_ae_anaesthetic_related_event = 'anaphylaxis')
     AND male_circumcision_method != 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -6803,7 +6900,7 @@ indicators:
     indicatorQuery: " SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
 	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
 	WHERE  (date('now')-date(efm.dob))>=50
-    AND (evp.-desc_intraoperative_ae_anaesthetic_related_event = 'anaphylaxis')
+    AND (evp.desc_intraoperative_ae_anaesthetic_related_event = 'anaphylaxis')
     AND male_circumcision_method != 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -6814,14 +6911,14 @@ indicators:
 
 
 
-    # x QN 6 - b CM
+    # x QN 6 - b DM
 
   - key: "vmmc-6-b-x-1-dm"
     description: "Number of male circumcised who experienced one or more adverse events"
     indicatorQuery: " SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
 	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
 	WHERE  (date('now')-date(efm.dob))<1
-    AND (evp.-desc_intraoperative_ae_anaesthetic_related_event = 'anaphylaxis')
+    AND (evp.desc_intraoperative_ae_anaesthetic_related_event = 'anaphylaxis')
     AND male_circumcision_method = 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -6833,7 +6930,7 @@ indicators:
     indicatorQuery: " SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
 	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
 	WHERE  1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
-    AND (evp.-desc_intraoperative_ae_anaesthetic_related_event = 'anaphylaxis')
+    AND (evp.desc_intraoperative_ae_anaesthetic_related_event = 'anaphylaxis')
     AND male_circumcision_method = 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -6844,7 +6941,7 @@ indicators:
     indicatorQuery: " SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
 	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
 	WHERE  10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
-    AND (evp.-desc_intraoperative_ae_anaesthetic_related_event = 'anaphylaxis')
+    AND (evp.desc_intraoperative_ae_anaesthetic_related_event = 'anaphylaxis')
     AND male_circumcision_method = 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -6855,7 +6952,7 @@ indicators:
     indicatorQuery: " SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
 	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
 	WHERE  15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
-    AND (evp.-desc_intraoperative_ae_anaesthetic_related_event = 'anaphylaxis')
+    AND (evp.desc_intraoperative_ae_anaesthetic_related_event = 'anaphylaxis')
     AND male_circumcision_method = 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -6866,7 +6963,7 @@ indicators:
     indicatorQuery: " SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
 	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
 	WHERE  20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
-    AND (evp.-desc_intraoperative_ae_anaesthetic_related_event = 'anaphylaxis')
+    AND (evp.desc_intraoperative_ae_anaesthetic_related_event = 'anaphylaxis')
     AND male_circumcision_method = 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -6877,7 +6974,7 @@ indicators:
     indicatorQuery: " SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
 	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
 	WHERE  25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
-    AND (evp.-desc_intraoperative_ae_anaesthetic_related_event = 'anaphylaxis')
+    AND (evp.desc_intraoperative_ae_anaesthetic_related_event = 'anaphylaxis')
     AND male_circumcision_method = 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -6888,7 +6985,7 @@ indicators:
     indicatorQuery: " SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
 	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
 	WHERE  30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
-    AND (evp.-desc_intraoperative_ae_anaesthetic_related_event = 'anaphylaxis')
+    AND (evp.desc_intraoperative_ae_anaesthetic_related_event = 'anaphylaxis')
     AND male_circumcision_method = 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -6899,7 +6996,7 @@ indicators:
     indicatorQuery: " SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
 	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
 	WHERE  35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
-    AND (evp.-desc_intraoperative_ae_anaesthetic_related_event = 'anaphylaxis')
+    AND (evp.desc_intraoperative_ae_anaesthetic_related_event = 'anaphylaxis')
     AND male_circumcision_method = 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -6910,7 +7007,7 @@ indicators:
     indicatorQuery: " SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
 	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
 	WHERE  40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
-    AND (evp.-desc_intraoperative_ae_anaesthetic_related_event = 'anaphylaxis')
+    AND (evp.desc_intraoperative_ae_anaesthetic_related_event = 'anaphylaxis')
     AND male_circumcision_method = 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -6921,7 +7018,7 @@ indicators:
     indicatorQuery: " SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
 	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
 	WHERE  45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
-    AND (evp.-desc_intraoperative_ae_anaesthetic_related_event = 'anaphylaxis')
+    AND (evp.desc_intraoperative_ae_anaesthetic_related_event = 'anaphylaxis')
     AND male_circumcision_method = 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -6932,7 +7029,7 @@ indicators:
     indicatorQuery: " SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
 	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
 	WHERE  (date('now')-date(efm.dob))>=50
-    AND (evp.-desc_intraoperative_ae_anaesthetic_related_event = 'anaphylaxis')
+    AND (evp.desc_intraoperative_ae_anaesthetic_related_event = 'anaphylaxis')
     AND male_circumcision_method = 'device'
 	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
     date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -7073,6 +7170,2158 @@ indicators:
   substr(strftime('%Y-%m-%d', datetime(evn.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
 
   ###########################################################################
+
+
+  # QN 6-a xi
+
+  ###########################################################################
+
+
+
+
+  # QN 6-a xii a
+
+  - key: "vmmc-6-a-xi-1-cm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  (date('now')-date(efm.dob))<1
+    AND (evf.desc_of_post_op_adverse_excessive_skin_removed = 'additional_operative')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  (date('now')-date(efm.dob))<1
+    AND (evp.desc_intraoperative_ae_skin_removal = 'skin_tight')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+
+  - key: "vmmc-6-a-xi-1-9-cm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
+    AND (evf.desc_of_post_op_adverse_excessive_skin_removed = 'additional_operative')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
+    AND (evp.desc_intraoperative_ae_skin_removal = 'skin_tight')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-a-xi-10-14-cm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
+    AND (evf.desc_of_post_op_adverse_excessive_skin_removed = 'additional_operative')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
+    AND (evp.desc_intraoperative_ae_skin_removal = 'skin_tight')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-a-xi-15-19-cm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
+    AND (evf.desc_of_post_op_adverse_excessive_skin_removed = 'additional_operative')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
+    AND (evp.desc_intraoperative_ae_skin_removal = 'skin_tight')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-a-xi-20-24-cm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
+    AND (evf.desc_of_post_op_adverse_excessive_skin_removed = 'additional_operative')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
+    AND (evp.desc_intraoperative_ae_skin_removal = 'skin_tight')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-a-xi-25-29-cm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
+    AND (evf.desc_of_post_op_adverse_excessive_skin_removed = 'additional_operative')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
+    AND (evp.desc_intraoperative_ae_skin_removal = 'skin_tight')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-a-xi-30-34-cm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
+    AND (evf.desc_of_post_op_adverse_excessive_skin_removed = 'additional_operative')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
+    AND (evp.desc_intraoperative_ae_skin_removal = 'skin_tight')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-a-xi-35-39-cm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
+    AND (evf.desc_of_post_op_adverse_excessive_skin_removed = 'additional_operative')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
+    AND (evp.desc_intraoperative_ae_skin_removal = 'skin_tight')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-a-xi-40-44-cm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
+    AND (evf.desc_of_post_op_adverse_excessive_skin_removed = 'additional_operative')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
+    AND (evp.desc_intraoperative_ae_skin_removal = 'skin_tight')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-a-xi-45-49-cm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
+    AND (evf.desc_of_post_op_adverse_excessive_skin_removed = 'additional_operative')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
+    AND (evp.desc_intraoperative_ae_skin_removal = 'skin_tight')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-a-xi-50-cm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  (date('now')-date(efm.dob))>=50
+    AND (evf.desc_of_post_op_adverse_excessive_skin_removed = 'additional_operative')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  (date('now')-date(efm.dob))>=50
+    AND (evp.desc_intraoperative_ae_skin_removal = 'skin_tight')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+    #    DM
+
+  - key: "vmmc-6-a-xi-1-dm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  (date('now')-date(efm.dob))<1
+    AND (evf.desc_of_post_op_adverse_excessive_skin_removed = 'additional_operative')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  (date('now')-date(efm.dob))<1
+    AND (evp.desc_intraoperative_ae_skin_removal = 'skin_tight')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+
+  - key: "vmmc-6-a-xi-1-9-dm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
+    AND (evf.desc_of_post_op_adverse_excessive_skin_removed = 'additional_operative')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
+    AND (evp.desc_intraoperative_ae_skin_removal = 'skin_tight')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-a-xi-10-14-dm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
+    AND (evf.desc_of_post_op_adverse_excessive_skin_removed = 'additional_operative')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
+    AND (evp.desc_intraoperative_ae_skin_removal = 'skin_tight')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-a-xi-15-19-dm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
+    AND (evf.desc_of_post_op_adverse_excessive_skin_removed = 'additional_operative')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
+    AND (evp.desc_intraoperative_ae_skin_removal = 'skin_tight')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-a-xi-20-24-dm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
+    AND (evf.desc_of_post_op_adverse_excessive_skin_removed = 'additional_operative')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
+    AND (evp.desc_intraoperative_ae_skin_removal = 'skin_tight')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-a-xi-25-29-dm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
+    AND (evf.desc_of_post_op_adverse_excessive_skin_removed = 'additional_operative')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
+    AND (evp.desc_intraoperative_ae_skin_removal = 'skin_tight')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-a-xi-30-34-dm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
+    AND (evf.desc_of_post_op_adverse_excessive_skin_removed = 'additional_operative')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
+    AND (evp.desc_intraoperative_ae_skin_removal = 'skin_tight')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-a-xi-35-39-dm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
+    AND (evf.desc_of_post_op_adverse_excessive_skin_removed = 'additional_operative')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
+    AND (evp.desc_intraoperative_ae_skin_removal = 'skin_tight')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-a-xi-40-44-dm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
+    AND (evf.desc_of_post_op_adverse_excessive_skin_removed = 'additional_operative')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
+    AND (evp.desc_intraoperative_ae_skin_removal = 'skin_tight')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-a-xi-45-49-dm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
+    AND (evf.desc_of_post_op_adverse_excessive_skin_removed = 'additional_operative')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
+    AND (evp.desc_intraoperative_ae_skin_removal = 'skin_tight')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-a-xi-50-dm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  (date('now')-date(efm.dob))>=50
+    AND (evf.desc_of_post_op_adverse_excessive_skin_removed = 'additional_operative')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  (date('now')-date(efm.dob))>=50
+    AND (evp.desc_intraoperative_ae_skin_removal = 'skin_tight')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+    #############################################################################################
+
+
+  # QN 6-b-xi
+  - key: "vmmc-6-b-xi-1-cm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  (date('now')-date(efm.dob))<1
+    AND (evf.desc_of_post_op_adverse_excessive_skin_removed = 'operation_or_transfer_to_another_facility')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  (date('now')-date(efm.dob))<1
+    AND (evp.desc_intraoperative_ae_skin_removal = 'requires_reoperation')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+
+  - key: "vmmc-6-b-xi-1-9-cm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
+    AND (evf.desc_of_post_op_adverse_excessive_skin_removed = 'operation_or_transfer_to_another_facility')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
+    AND (evp.desc_intraoperative_ae_skin_removal = 'requires_reoperation')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-b-xi-10-14-cm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
+    AND (evf.desc_of_post_op_adverse_excessive_skin_removed = 'operation_or_transfer_to_another_facility')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
+    AND (evp.desc_intraoperative_ae_skin_removal = 'requires_reoperation')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-b-xi-15-19-cm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
+    AND (evf.desc_of_post_op_adverse_excessive_skin_removed = 'operation_or_transfer_to_another_facility')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
+    AND (evp.desc_intraoperative_ae_skin_removal = 'requires_reoperation')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-b-xi-20-24-cm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
+    AND (evf.desc_of_post_op_adverse_excessive_skin_removed = 'operation_or_transfer_to_another_facility')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
+    AND (evp.desc_intraoperative_ae_skin_removal = 'requires_reoperation')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-b-xi-25-29-cm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
+    AND (evf.desc_of_post_op_adverse_excessive_skin_removed = 'operation_or_transfer_to_another_facility')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
+    AND (evp.desc_intraoperative_ae_skin_removal = 'requires_reoperation')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-b-xi-30-34-cm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
+    AND (evf.desc_of_post_op_adverse_excessive_skin_removed = 'operation_or_transfer_to_another_facility')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
+    AND (evp.desc_intraoperative_ae_skin_removal = 'requires_reoperation')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-b-xi-35-39-cm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
+    AND (evf.desc_of_post_op_adverse_excessive_skin_removed = 'operation_or_transfer_to_another_facility')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
+    AND (evp.desc_intraoperative_ae_skin_removal = 'requires_reoperation')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-b-xi-40-44-cm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
+    AND (evf.desc_of_post_op_adverse_excessive_skin_removed = 'operation_or_transfer_to_another_facility')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
+    AND (evp.desc_intraoperative_ae_skin_removal = 'requires_reoperation')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-b-xi-45-49-cm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
+    AND (evf.desc_of_post_op_adverse_excessive_skin_removed = 'operation_or_transfer_to_another_facility')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
+    AND (evp.desc_intraoperative_ae_skin_removal = 'requires_reoperation')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-b-xi-50-cm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  (date('now')-date(efm.dob))>=50
+    AND (evf.desc_of_post_op_adverse_excessive_skin_removed = 'operation_or_transfer_to_another_facility')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  (date('now')-date(efm.dob))>=50
+    AND (evp.desc_intraoperative_ae_skin_removal = 'requires_reoperation')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+    #    DM
+
+  - key: "vmmc-6-b-xi-1-dm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  (date('now')-date(efm.dob))<1
+    AND (evf.desc_of_post_op_adverse_excessive_skin_removed = 'operation_or_transfer_to_another_facility')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  (date('now')-date(efm.dob))<1
+    AND (evp.desc_intraoperative_ae_skin_removal = 'requires_reoperation')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+
+  - key: "vmmc-6-b-xi-1-9-dm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
+    AND (evf.desc_of_post_op_adverse_excessive_skin_removed = 'operation_or_transfer_to_another_facility')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
+    AND (evp.desc_intraoperative_ae_skin_removal = 'requires_reoperation')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-b-xi-10-14-dm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
+    AND (evf.desc_of_post_op_adverse_excessive_skin_removed = 'operation_or_transfer_to_another_facility')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
+    AND (evp.desc_intraoperative_ae_skin_removal = 'requires_reoperation')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-b-xi-15-19-dm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
+    AND (evf.desc_of_post_op_adverse_excessive_skin_removed = 'operation_or_transfer_to_another_facility')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
+    AND (evp.desc_intraoperative_ae_skin_removal = 'requires_reoperation')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-b-xi-20-24-dm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
+    AND (evf.desc_of_post_op_adverse_excessive_skin_removed = 'operation_or_transfer_to_another_facility')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
+    AND (evp.desc_intraoperative_ae_skin_removal = 'requires_reoperation')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-b-xi-25-29-dm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
+    AND (evf.desc_of_post_op_adverse_excessive_skin_removed = 'operation_or_transfer_to_another_facility')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
+    AND (evp.desc_intraoperative_ae_skin_removal = 'requires_reoperation')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-b-xi-30-34-dm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
+    AND (evf.desc_of_post_op_adverse_excessive_skin_removed = 'operation_or_transfer_to_another_facility')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
+    AND (evp.desc_intraoperative_ae_skin_removal = 'requires_reoperation')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-b-xi-35-39-dm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
+    AND (evf.desc_of_post_op_adverse_excessive_skin_removed = 'operation_or_transfer_to_another_facility')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
+    AND (evp.desc_intraoperative_ae_skin_removal = 'requires_reoperation')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-b-xi-40-44-dm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
+    AND (evf.desc_of_post_op_adverse_excessive_skin_removed = 'operation_or_transfer_to_another_facility')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
+    AND (evp.desc_intraoperative_ae_skin_removal = 'requires_reoperation')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-b-xi-45-49-dm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
+    AND (evf.desc_of_post_op_adverse_excessive_skin_removed = 'operation_or_transfer_to_another_facility')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
+    AND (evp.desc_intraoperative_ae_skin_removal = 'requires_reoperation')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-b-xi-50-dm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  (date('now')-date(efm.dob))>=50
+    AND (evf.desc_of_post_op_adverse_excessive_skin_removed = 'operation_or_transfer_to_another_facility')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  (date('now')-date(efm.dob))>=50
+    AND (evp.desc_intraoperative_ae_skin_removal = 'requires_reoperation')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+    ###############################################################################
+
+  # QN 6-a xii a
+
+  - key: "vmmc-6-a-xii-1-cm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  (date('now')-date(efm.dob))<1
+    AND (evf.desc_of_post_op_adverse_event_swelling = 'pressure_dressing')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  (date('now')-date(efm.dob))<1
+    AND (evp.desc_intraoperative_ae_injury_to_penis = 'bruising_or_abrasion_of_the_glans_or_shaft_of_the_penis')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+
+  - key: "vmmc-6-a-xii-1-9-cm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
+    AND (evf.desc_of_post_op_adverse_event_swelling = 'pressure_dressing')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
+    AND (evp.desc_intraoperative_ae_injury_to_penis = 'bruising_or_abrasion_of_the_glans_or_shaft_of_the_penis')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-a-xii-10-14-cm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
+    AND (evf.desc_of_post_op_adverse_event_swelling = 'pressure_dressing')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
+    AND (evp.desc_intraoperative_ae_injury_to_penis = 'bruising_or_abrasion_of_the_glans_or_shaft_of_the_penis')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-a-xii-15-19-cm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
+    AND (evf.desc_of_post_op_adverse_event_swelling = 'pressure_dressing')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
+    AND (evp.desc_intraoperative_ae_injury_to_penis = 'bruising_or_abrasion_of_the_glans_or_shaft_of_the_penis')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-a-xii-20-24-cm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
+    AND (evf.desc_of_post_op_adverse_event_swelling = 'pressure_dressing')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
+    AND (evp.desc_intraoperative_ae_injury_to_penis = 'bruising_or_abrasion_of_the_glans_or_shaft_of_the_penis')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-a-xii-25-29-cm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
+    AND (evf.desc_of_post_op_adverse_event_swelling = 'pressure_dressing')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
+    AND (evp.desc_intraoperative_ae_injury_to_penis = 'bruising_or_abrasion_of_the_glans_or_shaft_of_the_penis')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-a-xii-30-34-cm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
+    AND (evf.desc_of_post_op_adverse_event_swelling = 'pressure_dressing')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
+    AND (evp.desc_intraoperative_ae_injury_to_penis = 'bruising_or_abrasion_of_the_glans_or_shaft_of_the_penis')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-a-xii-35-39-cm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
+    AND (evf.desc_of_post_op_adverse_event_swelling = 'pressure_dressing')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
+    AND (evp.desc_intraoperative_ae_injury_to_penis = 'bruising_or_abrasion_of_the_glans_or_shaft_of_the_penis')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-a-xii-40-44-cm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
+    AND (evf.desc_of_post_op_adverse_event_swelling = 'pressure_dressing')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
+    AND (evp.desc_intraoperative_ae_injury_to_penis = 'bruising_or_abrasion_of_the_glans_or_shaft_of_the_penis')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-a-xii-45-49-cm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
+    AND (evf.desc_of_post_op_adverse_event_swelling = 'pressure_dressing')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
+    AND (evp.desc_intraoperative_ae_injury_to_penis = 'bruising_or_abrasion_of_the_glans_or_shaft_of_the_penis')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-a-xii-50-cm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  (date('now')-date(efm.dob))>=50
+    AND (evf.desc_of_post_op_adverse_event_swelling = 'pressure_dressing')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  (date('now')-date(efm.dob))>=50
+    AND (evp.desc_intraoperative_ae_injury_to_penis = 'bruising_or_abrasion_of_the_glans_or_shaft_of_the_penis')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+    #    DM
+
+  - key: "vmmc-6-a-xii-1-dm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  (date('now')-date(efm.dob))<1
+    AND (evf.desc_of_post_op_adverse_event_swelling = 'pressure_dressing')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  (date('now')-date(efm.dob))<1
+    AND (evp.desc_intraoperative_ae_injury_to_penis = 'bruising_or_abrasion_of_the_glans_or_shaft_of_the_penis')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+
+  - key: "vmmc-6-a-xii-1-9-dm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
+    AND (evf.desc_of_post_op_adverse_event_swelling = 'pressure_dressing')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
+    AND (evp.desc_intraoperative_ae_injury_to_penis = 'bruising_or_abrasion_of_the_glans_or_shaft_of_the_penis')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-a-xii-10-14-dm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
+    AND (evf.desc_of_post_op_adverse_event_swelling = 'pressure_dressing')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
+    AND (evp.desc_intraoperative_ae_injury_to_penis = 'bruising_or_abrasion_of_the_glans_or_shaft_of_the_penis')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-a-xii-15-19-dm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
+    AND (evf.desc_of_post_op_adverse_event_swelling = 'pressure_dressing')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
+    AND (evp.desc_intraoperative_ae_injury_to_penis = 'bruising_or_abrasion_of_the_glans_or_shaft_of_the_penis')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-a-xii-20-24-dm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
+    AND (evf.desc_of_post_op_adverse_event_swelling = 'pressure_dressing')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
+    AND (evp.desc_intraoperative_ae_injury_to_penis = 'bruising_or_abrasion_of_the_glans_or_shaft_of_the_penis')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-a-xii-25-29-dm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
+    AND (evf.desc_of_post_op_adverse_event_swelling = 'pressure_dressing')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
+    AND (evp.desc_intraoperative_ae_injury_to_penis = 'bruising_or_abrasion_of_the_glans_or_shaft_of_the_penis')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-a-xii-30-34-dm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
+    AND (evf.desc_of_post_op_adverse_event_swelling = 'pressure_dressing')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
+    AND (evp.desc_intraoperative_ae_injury_to_penis = 'bruising_or_abrasion_of_the_glans_or_shaft_of_the_penis')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-a-xii-35-39-dm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
+    AND (evf.desc_of_post_op_adverse_event_swelling = 'pressure_dressing')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
+    AND (evp.desc_intraoperative_ae_injury_to_penis = 'bruising_or_abrasion_of_the_glans_or_shaft_of_the_penis')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-a-xii-40-44-dm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
+    AND (evf.desc_of_post_op_adverse_event_swelling = 'pressure_dressing')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
+    AND (evp.desc_intraoperative_ae_injury_to_penis = 'bruising_or_abrasion_of_the_glans_or_shaft_of_the_penis')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-a-xii-45-49-dm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
+    AND (evf.desc_of_post_op_adverse_event_swelling = 'pressure_dressing')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
+    AND (evp.desc_intraoperative_ae_injury_to_penis = 'bruising_or_abrasion_of_the_glans_or_shaft_of_the_penis')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-a-xii-50-dm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  (date('now')-date(efm.dob))>=50
+    AND (evf.desc_of_post_op_adverse_event_swelling = 'pressure_dressing')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  (date('now')-date(efm.dob))>=50
+    AND (evp.desc_intraoperative_ae_injury_to_penis = 'bruising_or_abrasion_of_the_glans_or_shaft_of_the_penis')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+    #############################################################################################
+
+
+  # QN 6-b-xii
+  - key: "vmmc-6-b-xii-1-cm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  (date('now')-date(efm.dob))<1
+    AND (evf.desc_of_post_op_adverse_event_swelling = 'penis_severed')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  (date('now')-date(efm.dob))<1
+    AND (evp.desc_intraoperative_ae_injury_to_penis = 'glans_or_shaft_of_penis_severed')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+
+  - key: "vmmc-6-b-xii-1-9-cm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
+    AND (evf.desc_of_post_op_adverse_event_swelling = 'penis_severed')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
+    AND (evp.desc_intraoperative_ae_injury_to_penis = 'glans_or_shaft_of_penis_severed')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-b-xii-10-14-cm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
+    AND (evf.desc_of_post_op_adverse_event_swelling = 'penis_severed')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
+    AND (evp.desc_intraoperative_ae_injury_to_penis = 'glans_or_shaft_of_penis_severed')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-b-xii-15-19-cm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
+    AND (evf.desc_of_post_op_adverse_event_swelling = 'penis_severed')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
+    AND (evp.desc_intraoperative_ae_injury_to_penis = 'glans_or_shaft_of_penis_severed')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-b-xii-20-24-cm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
+    AND (evf.desc_of_post_op_adverse_event_swelling = 'penis_severed')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
+    AND (evp.desc_intraoperative_ae_injury_to_penis = 'glans_or_shaft_of_penis_severed')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-b-xii-25-29-cm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
+    AND (evf.desc_of_post_op_adverse_event_swelling = 'penis_severed')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
+    AND (evp.desc_intraoperative_ae_injury_to_penis = 'glans_or_shaft_of_penis_severed')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-b-xii-30-34-cm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
+    AND (evf.desc_of_post_op_adverse_event_swelling = 'penis_severed')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
+    AND (evp.desc_intraoperative_ae_injury_to_penis = 'glans_or_shaft_of_penis_severed')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-b-xii-35-39-cm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
+    AND (evf.desc_of_post_op_adverse_event_swelling = 'penis_severed')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
+    AND (evp.desc_intraoperative_ae_injury_to_penis = 'glans_or_shaft_of_penis_severed')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-b-xii-40-44-cm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
+    AND (evf.desc_of_post_op_adverse_event_swelling = 'penis_severed')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
+    AND (evp.desc_intraoperative_ae_injury_to_penis = 'glans_or_shaft_of_penis_severed')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-b-xii-45-49-cm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
+    AND (evf.desc_of_post_op_adverse_event_swelling = 'penis_severed')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
+    AND (evp.desc_intraoperative_ae_injury_to_penis = 'glans_or_shaft_of_penis_severed')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-b-xii-50-cm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  (date('now')-date(efm.dob))>=50
+    AND (evf.desc_of_post_op_adverse_event_swelling = 'penis_severed')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  (date('now')-date(efm.dob))>=50
+    AND (evp.desc_intraoperative_ae_injury_to_penis = 'glans_or_shaft_of_penis_severed')
+    AND male_circumcision_method != 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+    #    DM
+
+  - key: "vmmc-6-b-xii-1-dm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  (date('now')-date(efm.dob))<1
+    AND (evf.desc_of_post_op_adverse_event_swelling = 'penis_severed')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  (date('now')-date(efm.dob))<1
+    AND (evp.desc_intraoperative_ae_injury_to_penis = 'glans_or_shaft_of_penis_severed')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+
+  - key: "vmmc-6-b-xii-1-9-dm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
+    AND (evf.desc_of_post_op_adverse_event_swelling = 'penis_severed')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
+    AND (evp.desc_intraoperative_ae_injury_to_penis = 'glans_or_shaft_of_penis_severed')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-b-xii-10-14-dm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
+    AND (evf.desc_of_post_op_adverse_event_swelling = 'penis_severed')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
+    AND (evp.desc_intraoperative_ae_injury_to_penis = 'glans_or_shaft_of_penis_severed')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-b-xii-15-19-dm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
+    AND (evf.desc_of_post_op_adverse_event_swelling = 'penis_severed')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
+    AND (evp.desc_intraoperative_ae_injury_to_penis = 'glans_or_shaft_of_penis_severed')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-b-xii-20-24-dm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
+    AND (evf.desc_of_post_op_adverse_event_swelling = 'penis_severed')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
+    AND (evp.desc_intraoperative_ae_injury_to_penis = 'glans_or_shaft_of_penis_severed')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-b-xii-25-29-dm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
+    AND (evf.desc_of_post_op_adverse_event_swelling = 'penis_severed')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
+    AND (evp.desc_intraoperative_ae_injury_to_penis = 'glans_or_shaft_of_penis_severed')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-b-xii-30-34-dm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
+    AND (evf.desc_of_post_op_adverse_event_swelling = 'penis_severed')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
+    AND (evp.desc_intraoperative_ae_injury_to_penis = 'glans_or_shaft_of_penis_severed')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-b-xii-35-39-dm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
+    AND (evf.desc_of_post_op_adverse_event_swelling = 'penis_severed')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
+    AND (evp.desc_intraoperative_ae_injury_to_penis = 'glans_or_shaft_of_penis_severed')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-b-xii-40-44-dm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
+    AND (evf.desc_of_post_op_adverse_event_swelling = 'penis_severed')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
+    AND (evp.desc_intraoperative_ae_injury_to_penis = 'glans_or_shaft_of_penis_severed')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-b-xii-45-49-dm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
+    AND (evf.desc_of_post_op_adverse_event_swelling = 'penis_severed')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
+    AND (evp.desc_intraoperative_ae_injury_to_penis = 'glans_or_shaft_of_penis_severed')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+  - key: "vmmc-6-b-xii-50-dm"
+    description: "Number of male circumcised who experienced one or more adverse events"
+    indicatorQuery: " SELECT SUM(distinct_count) AS count
+    FROM (
+    SELECT count(DISTINCT evf.entity_id) as distinct_count FROM ec_vmmc_follow_up_visit evf
+    INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
+	INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
+    WHERE  (date('now')-date(efm.dob))>=50
+    AND (evf.desc_of_post_op_adverse_event_swelling = 'penis_severed')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+	UNION ALL
+    SELECT COUNT(DISTINCT evp.entity_id) AS distinct_count FROM ec_vmmc_procedure evp
+	INNER JOIN ec_family_member efm ON efm.base_entity_id = evp.entity_id
+	WHERE  (date('now')-date(efm.dob))>=50
+    AND (evp.desc_intraoperative_ae_injury_to_penis = 'glans_or_shaft_of_penis_severed')
+    AND male_circumcision_method = 'device'
+	AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+    date(substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+    substr(strftime('%Y-%m-%d', datetime(evp.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')
+      ) AS counts"
+
+    ###############################################################################
 
   #      ii.
   - key: "vmmc-7-ii-1-cm"

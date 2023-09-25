@@ -119,7 +119,11 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "comment_vmmc_followup",
         "type": "edit_text",
-        "hint": "Notes"
+        "hint": "Notes",
+        "v_required": {
+          "value": "true",
+          "err": "Please type notes"
+        }
       },
       {
         "key": "post_op_adverse_event_occur",

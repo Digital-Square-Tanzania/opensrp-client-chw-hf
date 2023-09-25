@@ -122,6 +122,10 @@ public class HfWebAppInterface {
             return ReportUtils.getReportPeriodForCohortReport(reportKey);
         }
 
+        if(reportType.equalsIgnoreCase(Constants.ReportConstants.ReportTypes.VMMC_REPORT)){
+            return ReportUtils.getReportPeriodForCohortReport(reportKey);
+        }
+
         return ReportUtils.getReportPeriod();
     }
 
