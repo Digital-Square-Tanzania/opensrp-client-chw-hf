@@ -37,7 +37,7 @@ public class VmmcProcedureActivity extends BaseVmmcVisitActivity {
 
     @Override
     protected void registerPresenter() {
-        presenter = new BaseVmmcVisitPresenter(memberObject, this, new BaseVmmcVisitProcedureInteractor());
+        presenter = new BaseVmmcVisitPresenter(memberObject, this, new BaseVmmcVisitProcedureInteractor(Constants.EVENT_TYPE.VMMC_PROCEDURE));
     }
 
     @Override

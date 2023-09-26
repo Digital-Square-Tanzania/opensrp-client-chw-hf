@@ -37,7 +37,7 @@ public class VmmcFollowUpActivity extends BaseVmmcVisitActivity {
 
     @Override
     protected void registerPresenter() {
-        presenter = new BaseVmmcVisitPresenter(memberObject, this, new BaseVmmcFollowUpInteractor());
+        presenter = new BaseVmmcVisitPresenter(memberObject, this, new BaseVmmcFollowUpInteractor(Constants.EVENT_TYPE.VMMC_FOLLOW_UP_VISIT));
     }
 
     @Override
