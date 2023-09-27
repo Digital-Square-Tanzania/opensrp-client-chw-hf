@@ -148,6 +148,25 @@ indicators:
     description: "Jumla ya wateja (Binafsi) waliopata majibu chanya (Reactive) baada ya kujipima VVU Umri 20-24"
     indicatorQuery: " SELECT count(DISTINCT evc.id) as count FROM  ec_vmmc_enrollment evc
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = evc.id
+                      WHERE reffered_from = 'rchs'
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(evc.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                      substr(strftime('%Y-%m-%d', datetime(evc.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+
+  - key: "vmmc-2g-grandtotal"
+    description: "Jumla ya wateja (Binafsi) waliopata majibu chanya (Reactive) baada ya kujipima VVU Umri 20-24"
+    indicatorQuery: " SELECT count(DISTINCT evc.id) as count FROM  ec_vmmc_enrollment evc
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = evc.id
+                      WHERE reffered_from = 'radio'
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(evc.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                      substr(strftime('%Y-%m-%d', datetime(evc.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+
+  - key: "vmmc-2h-grandtotal"
+    description: "Jumla ya wateja (Binafsi) waliopata majibu chanya (Reactive) baada ya kujipima VVU Umri 20-24"
+    indicatorQuery: " SELECT count(DISTINCT evc.id) as count FROM  ec_vmmc_enrollment evc
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = evc.id
                       WHERE reffered_from = 'others'
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                       date(substr(strftime('%Y-%m-%d', datetime(evc.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -3067,7 +3086,7 @@ indicators:
                        INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
                        INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
                        WHERE  (date('now')-date(efm.dob))<1
-                       AND evf.additional_non_operative_treatment
+                       AND evf.desc_of_post_op_adverse_delayed_wound_healing = 'additional_non_operative_treatment'
                        AND male_circumcision_method != 'device'
                        AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                        date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -3080,7 +3099,7 @@ indicators:
                        INNER JOIN ec_family_member efm ON efm.base_entity_id = evf.entity_id
                        INNER JOIN ec_vmmc_procedure vp ON vp.entity_id = evf.entity_id
                        WHERE 1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
-                       AND evf.additional_non_operative_treatment
+                       AND evf.desc_of_post_op_adverse_delayed_wound_healing = 'additional_non_operative_treatment'
                        AND male_circumcision_method != 'device'
                        AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                        date(substr(strftime('%Y-%m-%d', datetime(evf.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
@@ -6251,6 +6270,7 @@ indicators:
 
   #########################################################################################
 
+  #############################################################################################
 
   # Viii QN 6
 
@@ -11341,7 +11361,7 @@ indicators:
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
   || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 2
-  AND evn.visit_number = '0'
+  AND evn.visit_number = '1'
   AND male_circumcision_method != 'device'
   AND (date('now')-date(efm.dob))<1
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -11359,7 +11379,7 @@ indicators:
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
   || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 2
-  AND evn.visit_number = '0'
+  AND evn.visit_number = '1'
   AND male_circumcision_method != 'device'
   AND 1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -11377,7 +11397,7 @@ indicators:
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
   || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 2
-  AND evn.visit_number = '0'
+  AND evn.visit_number = '1'
   AND male_circumcision_method != 'device'
   AND 10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -11395,7 +11415,7 @@ indicators:
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
   || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 2
-  AND evn.visit_number = '0'
+  AND evn.visit_number = '1'
   AND male_circumcision_method != 'device'
   AND 15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -11413,7 +11433,7 @@ indicators:
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
   || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 2
-  AND evn.visit_number = '0'
+  AND evn.visit_number = '1'
   AND male_circumcision_method != 'device'
   AND 20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -11431,7 +11451,7 @@ indicators:
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
   || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 2
-  AND evn.visit_number = '0'
+  AND evn.visit_number = '1'
   AND male_circumcision_method != 'device'
   AND 25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -11449,7 +11469,7 @@ indicators:
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
   || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 2
-  AND evn.visit_number = '0'
+  AND evn.visit_number = '1'
   AND male_circumcision_method != 'device'
   AND 30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -11467,7 +11487,7 @@ indicators:
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
   || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 2
-  AND evn.visit_number = '0'
+  AND evn.visit_number = '1'
   AND male_circumcision_method != 'device'
   AND 35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -11485,7 +11505,7 @@ indicators:
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
   || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 2
-  AND evn.visit_number = '0'
+  AND evn.visit_number = '1'
   AND male_circumcision_method != 'device'
   AND 40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -11503,7 +11523,7 @@ indicators:
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
   || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 2
-  AND evn.visit_number = '0'
+  AND evn.visit_number = '1'
   AND male_circumcision_method != 'device'
   AND 45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -11521,7 +11541,7 @@ indicators:
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
   || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 2
-  AND evn.visit_number = '0'
+  AND evn.visit_number = '1'
   AND male_circumcision_method != 'device'
   AND (date('now')-date(efm.dob))>=50
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -11541,7 +11561,7 @@ indicators:
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
   || substr(ds.discharge_date, 1, 2))))
-  AND evn.visit_number = '0'
+  AND evn.visit_number = '1'
   AND male_circumcision_method != 'device'
   AND (date('now')-date(efm.dob))<1
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -11559,7 +11579,7 @@ indicators:
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
   || substr(ds.discharge_date, 1, 2))))
-  AND evn.visit_number = '0'
+  AND evn.visit_number = '1'
   AND male_circumcision_method != 'device'
   AND 1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -11577,7 +11597,7 @@ indicators:
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
   || substr(ds.discharge_date, 1, 2))))
-  AND evn.visit_number = '0'
+  AND evn.visit_number = '1'
   AND male_circumcision_method != 'device'
   AND 10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -11595,7 +11615,7 @@ indicators:
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
   || substr(ds.discharge_date, 1, 2))))
-  AND evn.visit_number = '0'
+  AND evn.visit_number = '1'
   AND male_circumcision_method != 'device'
   AND 15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -11613,7 +11633,7 @@ indicators:
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
   || substr(ds.discharge_date, 1, 2))))
-  AND evn.visit_number = '0'
+  AND evn.visit_number = '1'
   AND male_circumcision_method != 'device'
   AND 20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -11631,7 +11651,7 @@ indicators:
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
   || substr(ds.discharge_date, 1, 2))))
-  AND evn.visit_number = '0'
+  AND evn.visit_number = '1'
   AND male_circumcision_method != 'device'
   AND 25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -11649,7 +11669,7 @@ indicators:
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
   || substr(ds.discharge_date, 1, 2))))
-  AND evn.visit_number = '0'
+  AND evn.visit_number = '1'
   AND male_circumcision_method != 'device'
   AND 30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -11667,7 +11687,7 @@ indicators:
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
   || substr(ds.discharge_date, 1, 2))))
-  AND evn.visit_number = '0'
+  AND evn.visit_number = '1'
   AND male_circumcision_method != 'device'
   AND 35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -11685,7 +11705,7 @@ indicators:
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
   || substr(ds.discharge_date, 1, 2))))
-  AND evn.visit_number = '0'
+  AND evn.visit_number = '1'
   AND male_circumcision_method != 'device'
   AND 40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -11703,7 +11723,7 @@ indicators:
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
   || substr(ds.discharge_date, 1, 2))))
-  AND evn.visit_number = '0'
+  AND evn.visit_number = '1'
   AND male_circumcision_method != 'device'
   AND 45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -11721,7 +11741,7 @@ indicators:
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
   || substr(ds.discharge_date, 1, 2))))
-  AND evn.visit_number = '0'
+  AND evn.visit_number = '1'
   AND male_circumcision_method != 'device'
   AND (date('now')-date(efm.dob))>=50
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -11741,7 +11761,7 @@ indicators:
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
   || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 7
-  AND evn.visit_number = '1'
+  AND evn.visit_number = '2'
   AND male_circumcision_method != 'device'
   AND (date('now')-date(efm.dob))<1
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -11759,7 +11779,7 @@ indicators:
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
   || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 7
-  AND evn.visit_number = '1'
+  AND evn.visit_number = '2'
   AND male_circumcision_method != 'device'
   AND 1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -11777,7 +11797,7 @@ indicators:
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
   || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 7
-  AND evn.visit_number = '1'
+  AND evn.visit_number = '2'
   AND male_circumcision_method != 'device'
   AND 10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -11795,7 +11815,7 @@ indicators:
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
   || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 7
-  AND evn.visit_number = '1'
+  AND evn.visit_number = '2'
   AND male_circumcision_method != 'device'
   AND 15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -11813,7 +11833,7 @@ indicators:
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
   || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 7
-  AND evn.visit_number = '1'
+  AND evn.visit_number = '2'
   AND male_circumcision_method != 'device'
   AND 20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -11831,7 +11851,7 @@ indicators:
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
   || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 7
-  AND evn.visit_number = '1'
+  AND evn.visit_number = '2'
   AND male_circumcision_method != 'device'
   AND 25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -11849,7 +11869,7 @@ indicators:
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
   || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 7
-  AND evn.visit_number = '1'
+  AND evn.visit_number = '2'
   AND male_circumcision_method != 'device'
   AND 30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -11867,7 +11887,7 @@ indicators:
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
   || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 7
-  AND evn.visit_number = '1'
+  AND evn.visit_number = '2'
   AND male_circumcision_method != 'device'
   AND 35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -11885,7 +11905,7 @@ indicators:
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
   || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 7
-  AND evn.visit_number = '1'
+  AND evn.visit_number = '2'
   AND male_circumcision_method != 'device'
   AND 40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -11903,7 +11923,7 @@ indicators:
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
   || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 7
-  AND evn.visit_number = '1'
+  AND evn.visit_number = '2'
   AND male_circumcision_method != 'device'
   AND 45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -11921,7 +11941,7 @@ indicators:
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
   || substr(ds.discharge_date, 1, 2))) BETWEEN 0 AND 7
-  AND evn.visit_number = '1'
+  AND evn.visit_number = '2'
   AND male_circumcision_method != 'device'
   AND (date('now')-date(efm.dob))>=50
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -11942,7 +11962,7 @@ indicators:
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
   || substr(ds.discharge_date, 1, 2))))
-  AND evn.visit_number = '1'
+  AND evn.visit_number = '2'
   AND male_circumcision_method != 'device'
   AND (date('now')-date(efm.dob))<1
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -11960,7 +11980,7 @@ indicators:
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
   || substr(ds.discharge_date, 1, 2))))
-  AND evn.visit_number = '1'
+  AND evn.visit_number = '2'
   AND male_circumcision_method != 'device'
   AND 1<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=9
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -11978,7 +11998,7 @@ indicators:
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
   || substr(ds.discharge_date, 1, 2))))
-  AND evn.visit_number = '1'
+  AND evn.visit_number = '2'
   AND male_circumcision_method != 'device'
   AND 10<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=14
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -11996,7 +12016,7 @@ indicators:
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
   || substr(ds.discharge_date, 1, 2))))
-  AND evn.visit_number = '1'
+  AND evn.visit_number = '2'
   AND male_circumcision_method != 'device'
   AND 15<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=19
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -12014,7 +12034,7 @@ indicators:
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
   || substr(ds.discharge_date, 1, 2))))
-  AND evn.visit_number = '1'
+  AND evn.visit_number = '2'
   AND male_circumcision_method != 'device'
   AND 20<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=24
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -12032,7 +12052,7 @@ indicators:
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
   || substr(ds.discharge_date, 1, 2))))
-  AND evn.visit_number = '1'
+  AND evn.visit_number = '2'
   AND male_circumcision_method != 'device'
   AND 25<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=29
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -12050,7 +12070,7 @@ indicators:
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
   || substr(ds.discharge_date, 1, 2))))
-  AND evn.visit_number = '1'
+  AND evn.visit_number = '2'
   AND male_circumcision_method != 'device'
   AND 30<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=34
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -12068,7 +12088,7 @@ indicators:
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
   || substr(ds.discharge_date, 1, 2))))
-  AND evn.visit_number = '1'
+  AND evn.visit_number = '2'
   AND male_circumcision_method != 'device'
   AND 35<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=39
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -12086,7 +12106,7 @@ indicators:
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
   || substr(ds.discharge_date, 1, 2))))
-  AND evn.visit_number = '1'
+  AND evn.visit_number = '2'
   AND male_circumcision_method != 'device'
   AND 40<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=44
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -12104,7 +12124,7 @@ indicators:
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
   || substr(ds.discharge_date, 1, 2))))
-  AND evn.visit_number = '1'
+  AND evn.visit_number = '2'
   AND male_circumcision_method != 'device'
   AND 45<=(date('Now')-date(efm.dob))  AND (date('Now')-date(efm.dob))<=49
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
@@ -12122,7 +12142,7 @@ indicators:
   || substr(followup_visit_date, 1, 2)) - julianday(substr(ds.discharge_date, 7, 4) || '-'
   || substr(ds.discharge_date, 4, 2) || '-'
   || substr(ds.discharge_date, 1, 2))))
-  AND evn.visit_number = '1'
+  AND evn.visit_number = '2'
   AND male_circumcision_method != 'device'
   AND (date('now')-date(efm.dob))>=50
   AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =

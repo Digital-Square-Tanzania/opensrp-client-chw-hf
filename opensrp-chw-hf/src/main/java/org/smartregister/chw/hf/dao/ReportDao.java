@@ -187,19 +187,19 @@ public class ReportDao extends AbstractDao {
     {
         String sql = "WITH VMMC_CTE AS (\n" +
                 "    SELECT\n" +
-                "\t    ec_vmmc_enrollment.enrollment_date,\n" +
+                "        ec_vmmc_enrollment.enrollment_date,\n" +
                 "        ec_family_member.first_name,\n" +
                 "        ec_family_member.middle_name,\n" +
                 "        ec_family_member.last_name,\n" +
-                "\t\tec_vmmc_enrollment.vmmc_client_id,\n" +
+                "        ec_vmmc_enrollment.vmmc_client_id,\n" +
                 "        ec_vmmc_enrollment.reffered_from,\n" +
                 "        ec_vmmc_services.tested_hiv,\n" +
                 "        ec_vmmc_services.hiv_result,\n" +
-                "\t\tec_vmmc_services.client_referred_to,\n" +
+                "        ec_vmmc_services.client_referred_to,\n" +
                 "        ec_vmmc_procedure.mc_procedure_date,\n" +
                 "        ec_vmmc_procedure.male_circumcision_method,\n" +
-                "        ec_vmmc_procedure.intraoperative_adverse_event_occured,\n" +
                 "        ec_vmmc_procedure.health_care_provider,\n" +
+                "        ec_vmmc_procedure.intraoperative_adverse_event_occured,\n" +
                 "        ec_vmmc_follow_up_visit.visit_number,\n" +
                 "        ec_vmmc_follow_up_visit.followup_visit_date AS visit_date,\n" +
                 "        ec_vmmc_follow_up_visit.post_op_adverse_event_occur AS post_op_adverse,\n" +
@@ -207,45 +207,43 @@ public class ReportDao extends AbstractDao {
                 "        ec_family_member.dob\n" +
                 "    FROM\n" +
                 "        ec_vmmc_enrollment\n" +
-                "            INNER JOIN\n" +
+                "    LEFT JOIN\n" +
                 "        ec_family_member ON ec_family_member.base_entity_id = ec_vmmc_enrollment.base_entity_id\n" +
-                "            INNER JOIN\n" +
+                "    LEFT JOIN\n" +
                 "        ec_vmmc_services ON ec_vmmc_services.entity_id = ec_vmmc_enrollment.base_entity_id\n" +
-                "            INNER JOIN\n" +
+                "    LEFT JOIN\n" +
                 "        ec_vmmc_procedure ON ec_vmmc_procedure.entity_id = ec_vmmc_enrollment.base_entity_id\n" +
-                "            INNER JOIN\n" +
+                "    LEFT JOIN\n" +
                 "        ec_vmmc_follow_up_visit ON ec_vmmc_follow_up_visit.entity_id = ec_vmmc_enrollment.base_entity_id\n" +
-                "            LEFT JOIN\n" +
+                "        AND ec_vmmc_follow_up_visit.follow_up_visit_type = 'routine'\n" +
+                "    LEFT JOIN\n" +
                 "        ec_vmmc_notifiable_ae ON ec_vmmc_notifiable_ae.entity_id = ec_vmmc_enrollment.base_entity_id\n" +
-                "    WHERE\n" +
-                "            ec_vmmc_follow_up_visit.follow_up_visit_type = 'routine'\n" +
                 ")\n" +
+                "\n" +
                 "SELECT\n" +
-                "      enrollment_date,\n" +
-                "      first_name || ' ' || middle_name || ' ' || last_name AS names,\n" +
-                "\t  vmmc_client_id,\n" +
+                "    enrollment_date,\n" +
+                "    first_name || ' ' || middle_name || ' ' || last_name AS names,\n" +
+                "    vmmc_client_id,\n" +
                 "    (strftime('%Y', 'now') - strftime('%Y', dob)) - (strftime('%m-%d', 'now') < strftime('%m-%d', dob)) AS age,\n" +
                 "    reffered_from,\n" +
-                "    tested_hiv,\n" +
-                "    hiv_result,\n" +
-                "\tclient_referred_to,\n" +
-                "    mc_procedure_date,\n" +
-                "    male_circumcision_method,\n" +
-                "    intraoperative_adverse_event_occured,\n" +
-                "    health_care_provider,\n" +
-                "    MAX(CASE WHEN visit_number = 0 THEN visit_date END) AS first_visit,\n" +
-                "    MAX(CASE WHEN visit_number = 1 THEN visit_date END) AS sec_visit,\n" +
+                "    MAX(tested_hiv) AS tested_hiv,\n" +
+                "    MAX(hiv_result) AS hiv_result,\n" +
+                "    MAX(client_referred_to) AS client_referred_to,\n" +
+                "    MAX(mc_procedure_date) AS mc_procedure_date,\n" +
+                "    MAX(male_circumcision_method) AS male_circumcision_method,\n" +
+                "    MAX(intraoperative_adverse_event_occured) AS intraoperative_adverse_event_occured,\n" +
+                "    MAX(CASE WHEN visit_number = 1 THEN visit_date END) AS first_visit,\n" +
+                "    MAX(CASE WHEN visit_number = 2 THEN visit_date END) AS sec_visit,\n" +
                 "    MAX(post_op_adverse) AS post_op_adverse,\n" +
-                "    MAX(NAE) AS NAE\n" +
+                "    MAX(NAE) AS NAE,\n" +
+                "    MAX(health_care_provider) AS health_care_provider\n" +
                 "FROM VMMC_CTE\n" +
                 "GROUP BY\n" +
+                "    enrollment_date,\n" +
                 "    names,\n" +
-                "    age,\n" +
+                "    vmmc_client_id,\n" +
                 "    reffered_from,\n" +
-                "    tested_hiv,\n" +
-                "    hiv_result,\n" +
-                "    mc_procedure_date,\n" +
-                "    male_circumcision_method;\n ";
+                "    dob;";
 
         String queryDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(reportDate);
 

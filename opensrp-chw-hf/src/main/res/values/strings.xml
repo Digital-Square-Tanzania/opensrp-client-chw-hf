@@ -957,7 +957,7 @@
     <string name="vmmc_male_circumcision_method">male circumcision method:</string>
     <string name="vmmc_device_name">device name:</string>
     <string name="vmmc_lot_number">lot number:</string>
-    <string name="vmmc_select_size_place">size place:</string>
+    <string name="vmmc_size_place">size place:</string>
     <string name="vmmc_surgeon_name">surgeon name:</string>
     <string name="vmmc_surgeons_cadre">surgeons cadre:</string>
     <string name="vmmc_assistant_name">assistant name:</string>

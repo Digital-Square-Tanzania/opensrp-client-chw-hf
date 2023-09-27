@@ -53,6 +53,10 @@
         "openmrs_entity_id": "hiv_viral_load_text",
         "type": "edit_text",
         "hint": "Viral load",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -119,6 +123,10 @@
             "openmrs_entity_id": "indeterminate"
           }
         ],
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
         "relevance": {
           "step1:tested_hiv": {
             "type": "string",
@@ -223,6 +231,10 @@
             "openmrs_entity_id": "other"
           }
         ],
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
         "relevance": {
           "step1:tested_hiv": {
             "type": "string",
@@ -237,6 +249,10 @@
         "openmrs_entity_id": "hiv_not_tested_reasons_others",
         "type": "edit_text",
         "hint": "Other(Specify)",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
         "relevance": {
           "step1:hiv_not_tested_reasons": {
             "type": "string",
@@ -335,6 +351,10 @@
             "openmrs_entity_id": "other"
           }
         ],
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
         "relevance": {
           "step1:was_client_referred": {
             "type": "string",
@@ -349,6 +369,10 @@
         "openmrs_entity_id": "client_referred_to_others",
         "type": "edit_text",
         "hint": "Other(Specify)",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
         "relevance": {
           "step1:client_referred_to": {
             "ex-checkbox": [

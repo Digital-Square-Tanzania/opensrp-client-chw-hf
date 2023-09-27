@@ -8787,6 +8787,22 @@
           }
         },
         {
+          "column_name": "surgeon_name",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "surgeon_name"
+          }
+        },
+        {
+          "column_name": "assistant_name",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "assistant_name"
+          }
+        },
+        {
           "column_name": "start_time",
           "type": "Event",
           "json_mapping": {
@@ -8904,6 +8920,14 @@
           "json_mapping": {
             "field": "obs.fieldCode",
             "concept": "device_name"
+          }
+        },
+        {
+          "column_name": "size_place",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "size_place"
           }
         },
         {

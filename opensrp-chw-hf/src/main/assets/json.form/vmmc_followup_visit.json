@@ -1649,6 +1649,7 @@
         "openmrs_entity_id": "provider_first_name",
         "type": "edit_text",
         "hint": "Provider's first name",
+        "edit_type": "name",
         "v_regex": {
           "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-\\']*",
           "err": "Please enter a valid name"
@@ -1665,6 +1666,7 @@
         "openmrs_entity_id": "provider_middle_name",
         "type": "edit_text",
         "hint": "Provider's middle name",
+        "edit_type": "name",
         "v_regex": {
           "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-\\']*",
           "err": "Please enter a valid name"
@@ -1688,6 +1690,7 @@
         "openmrs_entity_id": "provider_last_name",
         "type": "edit_text",
         "hint": "Provider's last name",
+        "edit_type": "name",
         "v_regex": {
           "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-\\']*",
           "err": "Please enter a valid name"

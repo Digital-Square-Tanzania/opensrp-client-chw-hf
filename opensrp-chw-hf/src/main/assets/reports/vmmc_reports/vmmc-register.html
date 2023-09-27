@@ -11,6 +11,10 @@
             -moz-box-sizing: border-box;
         }
 
+        .show-on-print {
+            display: none;
+        }
+
         body{
             font-family: Helvetica;
             -webkit-font-smoothing: antialiased;
@@ -52,11 +56,29 @@
             border-right: 1px solid black;
         }
 
+        @media print {
+       .show-on-print {
+          display: block;
+       }
+
+       .child-table {
+        width: 50%;
+        }
+}
+
     </style>
     <script src="../report-script.js"></script>
 
 </head>
 <body onload="loadData('vmmc_register')">
+<div class="show-on-print" style="font-size:12px;">
+    <h1>Male Circumcision Service Register</h1>
+    <div class="container">
+        <h2 class="h2">Reporting month: <span id="report_period"></span></h2>
+        <h2 class="h2">Facility name: <span id="reporting_facility"></span></h2>
+    </div>
+    <h2><span id="reporting_hfrcode"></span></h2>
+</div>
 <div class="table-wrapper">
     <table class="t">
         <thead>

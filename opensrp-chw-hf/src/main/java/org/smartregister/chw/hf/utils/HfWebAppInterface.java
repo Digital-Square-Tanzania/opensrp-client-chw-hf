@@ -17,6 +17,7 @@ import android.webkit.JavascriptInterface;
 
 public class HfWebAppInterface {
     private static final String DEFAULT_LOCALITY_NAME = "dfltLocName";
+    private static final String HFR_CODE = "userLocAttribute";
     Context mContext;
 
     String reportType;
@@ -132,5 +133,10 @@ public class HfWebAppInterface {
     @JavascriptInterface
     public String getReportingFacility() {
         return getAllSharedPreferences().getPreference(DEFAULT_LOCALITY_NAME);
+    }
+
+    @JavascriptInterface
+    public String getReportingHFRCODE() {
+        return getAllSharedPreferences().getPreference(HFR_CODE);
     }
 }

@@ -215,10 +215,10 @@
         }
       },
       {
-        "key": "select_size_place",
+        "key": "size_place",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "select_size_place",
+        "openmrs_entity_id": "size_place",
         "label": "Select size place",
         "text_color": "#000000",
         "type": "native_radio",
@@ -536,6 +536,10 @@
           "value": "true",
           "err": "Please enter a valid value"
         },
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -556,6 +560,10 @@
         "v_numeric": {
           "value": "true",
           "err": "Please enter a valid value"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
         },
         "v_max": {
           "value": "100",
@@ -582,6 +590,10 @@
           "value": "true",
           "err": "Please enter a valid value"
         },
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -607,6 +619,10 @@
           "value": "100",
           "err": "Bupivacaine (percent) value must be equal or less than 100"
         },
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -627,6 +643,10 @@
         "v_numeric": {
           "value": "true",
           "err": "Please enter a valid value"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
         },
         "relevance": {
           "rules-engine": {
@@ -649,6 +669,10 @@
           "value": "true",
           "err": "Please enter a valid value"
         },
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -664,6 +688,10 @@
         "openmrs_entity_id": "start_time_topical_cream_application",
         "type": "time_picker",
         "hint": "Start time of topical cream application",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -686,6 +714,10 @@
             "err": "End time cannot be less than the start time"
           }
         ],
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -701,6 +733,11 @@
         "openmrs_entity_id": "surgeon_first_name",
         "type": "edit_text",
         "hint": "Surgeon's first name",
+        "edit_type": "name",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
         "v_regex": {
           "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-\\']*",
           "err": "Please enter a valid name"
@@ -720,6 +757,7 @@
         "openmrs_entity_id": "surgeon_middle_name",
         "type": "edit_text",
         "hint": "Surgeon's middle name",
+        "edit_type": "name",
         "v_regex": {
           "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-\\']*",
           "err": "Please enter a valid name"
@@ -743,6 +781,7 @@
         "openmrs_entity_id": "surgeon_last_name",
         "type": "edit_text",
         "hint": "Surgeon's last name",
+        "edit_type": "name",
         "v_regex": {
           "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-\\']*",
           "err": "Please enter a valid name"
@@ -824,6 +863,10 @@
             "openmrs_entity_parent": ""
           }
         ],
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -839,9 +882,14 @@
         "openmrs_entity_id": "assistant_first_name",
         "type": "edit_text",
         "hint": "Assistant's first name",
+        "edit_type": "name",
         "v_regex": {
           "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-\\']*",
           "err": "Please enter a valid name"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
         },
         "relevance": {
           "rules-engine": {
@@ -858,6 +906,7 @@
         "openmrs_entity_id": "assistant_middle_name",
         "type": "edit_text",
         "hint": "Assistant's middle name",
+        "edit_type": "name",
         "v_regex": {
           "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-\\']*",
           "err": "Please enter a valid name"
@@ -881,6 +930,7 @@
         "openmrs_entity_id": "assistant_last_name",
         "type": "edit_text",
         "hint": "Assistant's last name",
+        "edit_type": "name",
         "v_regex": {
           "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-\\']*",
           "err": "Please enter a valid name"
@@ -962,6 +1012,10 @@
             "openmrs_entity_parent": ""
           }
         ],
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -1067,6 +1121,10 @@
             "openmrs_entity_parent": ""
           }
         ],
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -1120,6 +1178,10 @@
             "openmrs_entity_parent": ""
           }
         ],
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -1613,6 +1675,10 @@
         "openmrs_entity_id": "nature_of_ae",
         "type": "edit_text",
         "hint": "What was the nature of AE",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
         "relevance": {
           "step1:intraoperative_adverse_event_occured": {
             "type": "string",
@@ -1627,6 +1693,10 @@
         "openmrs_entity_id": "what_done",
         "type": "edit_text",
         "hint": "What was done",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
         "relevance": {
           "step1:intraoperative_adverse_event_occured": {
             "type": "string",
@@ -1665,6 +1735,10 @@
             "openmrs_entity_id": "adverse_event_unchanged"
           }
         ],
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
         "relevance": {
           "step1:intraoperative_adverse_event_occured": {
             "type": "string",

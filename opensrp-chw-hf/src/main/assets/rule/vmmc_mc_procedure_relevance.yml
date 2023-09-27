@@ -202,7 +202,7 @@ condition: "step1_aneathesia_administered.contains('topical_cream')"
 actions:
   - "isRelevant = true"
 ---
-name: step1_select_size_place
+name: step1_size_place
 description: select_size_place relevance
 priority: 1
 condition: "step1_male_circumcision_method.equalsIgnoreCase('device')"

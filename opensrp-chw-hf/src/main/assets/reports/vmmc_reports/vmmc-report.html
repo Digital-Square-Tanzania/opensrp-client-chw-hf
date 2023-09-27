@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
@@ -66,6 +65,17 @@ ul li > * {
     margin-bottom: 5px;
 }
 
+ .container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+ .heading {
+    flex: 0 0 calc(50% - 10px);
+    margin: 0 5px;
+}
+
 .no-data {
   background: #ccc;
 }
@@ -76,7 +86,9 @@ ul li > * {
 #report_period {
   font-weight: 700;
 }
-
+#reporting_hfrcode {
+  font-weight: 700;
+}
 @media print {
   .show-on-print {
     display: block;
@@ -91,11 +103,12 @@ ul li > * {
 
 <body onload="loadData('vmmc_reports')">
 <div class="show-on-print" style="font-size:12px;">
-    <h1>		MALE CIRCUMCISION SERVICES
-        VULUNTARY CIRCUMCISION
-        MONTHLY SUMMARY REPORT FORM		</h1>
-    <h2>Reporting month: <span id="report_period"></span></h2>
-    <h2>Facility name: <span id="reporting_facility"></span></h2>
+    <h1>MALE CIRCUMCISION SERVICES VULUNTARY CIRCUMCISION MONTHLY SUMMARY REPORT FORM</h1>
+    <div class="container">
+        <h2 class="h2">Reporting month: <span id="report_period"></span></h2>
+        <h2 class="h2">Facility name: <span id="reporting_facility"></span></h2>
+    </div>
+    <h2><span id="reporting_hfrcode"></span></h2>
 </div>
 <div class="table-wrapper">
     <table class="fl-table">
@@ -161,8 +174,8 @@ ul li > * {
             <td align="center" class="no-data"></td>
         </tr>
         <tr>
-            <th rowspan="7">2</th>
-            <td align="left" colspan="1" rowspan="7">Referred from</td>
+            <th rowspan="9">2</th>
+            <td align="left" colspan="1" rowspan="9">Referred from</td>
         </tr><tr>
             <th>2a.</th>
             <td>Self-referral</td>
@@ -194,7 +207,7 @@ ul li > * {
         </tr>
         <tr>
             <th>2b.</th>
-            <td>Community demand creation</td>
+            <td>CHW</td>
             <td align="center" id="vmmc-2b-grandtotal"></td>
             <td align="center" class="no-data"></td>
             <td align="center" class="no-data"></td>
@@ -310,7 +323,7 @@ ul li > * {
         </tr>
         <tr>
             <th>2f.</th>
-            <td>Others</td>
+            <td>RCHS</td>
             <td align="center" id="vmmc-2f-grandtotal"></td>
             <td align="center" class="no-data"></td>
             <td align="center" class="no-data"></td>
@@ -337,7 +350,64 @@ ul li > * {
             <td align="center" class="no-data"></td>
             <td align="center" class="no-data"></td>
         </tr>
-
+        <tr>
+            <th>2g.</th>
+            <td>Radio</td>
+            <td align="center" id="vmmc-2g-grandtotal"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+        </tr>
+        <tr>
+            <th>2h.</th>
+            <td>Others</td>
+            <td align="center" id="vmmc-2h-grandtotal"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+            <td align="center" class="no-data"></td>
+        </tr>
 
 
         <tr>
@@ -1723,6 +1793,8 @@ ul li > * {
   const keys = Object.keys(data.nameValuePairs);
   const reportPeriod = document.getElementById("report_period");
   const reportingFacility = document.getElementById("reporting_facility");
+  const reportingHfrCode = document.getElementById("reporting_hfrcode");
+
   keys.forEach((key) => {
     let element;
     if(reportType!== null && reportType === "pnc"){
@@ -1736,6 +1808,8 @@ ul li > * {
   });
   reportPeriod.innerHTML = Android.getDataPeriod();
   reportingFacility.innerHTML = Android.getReportingFacility();
+  reportingHfrCode.innerHTML = Android.getReportingHFRCODE();
+
 }
 </script>
 </body></html>

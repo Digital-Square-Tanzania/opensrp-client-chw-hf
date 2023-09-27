@@ -208,6 +208,10 @@
             "openmrs_entity_id": "milligram"
           }
         ],
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
         "relevance": {
           "step1:analgesics_given": {
             "type": "string",
@@ -226,6 +230,10 @@
         "v_numeric": {
           "value": "true",
           "err": "Please enter a valid value"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
         },
         "relevance": {
           "rules-engine": {
@@ -247,6 +255,10 @@
           "value": "true",
           "err": "Please enter a valid value"
         },
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -266,6 +278,10 @@
         "v_numeric": {
           "value": "true",
           "err": "Please enter a valid value"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
         },
         "relevance": {
           "rules-engine": {
@@ -305,6 +321,10 @@
         "duration": {
           "label": "Discharge Time"
         },
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -320,6 +340,7 @@
         "openmrs_entity_id": "health_care_provider_first_name",
         "type": "edit_text",
         "hint": "Discharging provider's first name",
+        "edit_type": "name",
         "v_regex": {
           "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-\\']*",
           "err": "Please enter a valid name"
@@ -343,6 +364,7 @@
         "openmrs_entity_id": "health_care_provider_middle_name",
         "type": "edit_text",
         "hint": "Discharging provider's middle name",
+        "edit_type": "name",
         "v_regex": {
           "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-\\']*",
           "err": "Please enter a valid name"
@@ -366,6 +388,7 @@
         "openmrs_entity_id": "health_care_provider_last_name",
         "type": "edit_text",
         "hint": "Discharging provider's last name",
+        "edit_type": "name",
         "v_regex": {
           "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-\\']*",
           "err": "Please enter a valid name"

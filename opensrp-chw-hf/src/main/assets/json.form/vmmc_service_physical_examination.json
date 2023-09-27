@@ -646,6 +646,10 @@
             "openmrs_entity_id": "device"
           }
         ],
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
