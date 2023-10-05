@@ -115,7 +115,10 @@ public class FamilyOtherMemberProfileActivity extends CoreFamilyOtherMemberProfi
     @Override
     protected void startVmmcRegister() {
         VmmcRegisterActivity.startVmmcRegistrationActivity(FamilyOtherMemberProfileActivity.this, baseEntityId);
-
+    }
+  
+    protected void startIntegratedCommunityCaseManagementEnrollment() {
+        //Not Required
     }
 
     @Override

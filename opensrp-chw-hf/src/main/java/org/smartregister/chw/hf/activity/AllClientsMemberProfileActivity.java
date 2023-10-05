@@ -181,8 +181,12 @@ public class AllClientsMemberProfileActivity extends CoreAllClientsMemberProfile
 
     @Override
     protected void startVmmcRegister() {
-
         VmmcRegisterActivity.startVmmcRegistrationActivity(AllClientsMemberProfileActivity.this, baseEntityId);
+    }
+  
+    @Override
+    protected void startIntegratedCommunityCaseManagementEnrollment() {
+        //Not Required
     }
 
     @Override
