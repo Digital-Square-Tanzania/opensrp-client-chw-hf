@@ -298,6 +298,7 @@
     <string name="ltfu_clinic_pmtct">PMTCT</string>
     <string name="ltfu_clinic_tb">TB</string>
     <string name="promised_return_date">Tarehe aliyoahidi kurudi</string>
+    <string name="last_visit_date">Tarehe ya hudhurio la mwisho</string>
     <string name="date_of_death">Tarehe ya kifo</string>
     <string name="reasons">Sababu</string>
     <string name="followup_status">Matokeo ya Ufuatiliaji</string>
@@ -375,6 +376,8 @@
     <string name="referral_submitted">Rufaa imetumwa</string>
     <string name="ltfu_title">LTFU</string>
 
+    <string name="vmmc_reports">Ripoti za VMMC</string>
+    <string name="vmmc_reports_subtitle">Tazama Ripoti za VMMC</string>
 
     <!--    CDP-->
     <string name="add_outlet">Ongeza kituo</string>
@@ -456,5 +459,8 @@
     <string name="facility_response_label">Majibu Kutoka Kituoni</string>
     <string name="hts_return_to_previous_page">Rudi kwenye wateja wa HTS</string>
 
+
+    <!--    VMMC-->
+    <string name="vmmc">VMMC</string>
 
 </resources>
