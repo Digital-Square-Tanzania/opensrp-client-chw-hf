@@ -200,9 +200,9 @@ android {
         nacp {
             applicationId "org.smartregister.chw.moh.hf"
             minSdkVersion 21
-            targetSdkVersion 31
-            versionCode 28
-            versionName "1.2.3"
+            targetSdkVersion 33
+            versionCode 29
+            versionName "1.2.4"
             testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
             multiDexEnabled true
             buildConfigField "String", 'opensrp_url', '"https://ucs.nacp.go.tz/opensrp/"'
