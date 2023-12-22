@@ -836,7 +836,7 @@
             {
                 "key": "prompt_for_fsw_kvp",
                 "type": "toaster_notes",
-                "text": "Mteja huyu ni Mwanamke anayefanya biashara ya ngono, mteja anatakiwa kuandikishwa kwenye huduma rafiki za makundi mahalumu",
+                "text": "Mteja huyu ni mwanamke aliye katika uhatarishi zaidi wa maambukizi ya VVU, mteja anatakiwa kuandikishwa kwenye huduma rafiki za makundi mahalumu",
                 "openmrs_entity_id": "",
                 "openmrs_entity": "concept",
                 "openmrs_entity_parent": "",
@@ -1008,7 +1008,7 @@
                 "options": [
                     {
                         "key": "fsw",
-                        "text": "Mwanamke anayefanya biashara ya ngono ",
+                        "text": "Wanawake waliokatika uhatarishi zaidi wa maambukizi ya VVU",
                         "openmrs_entity_parent": "",
                         "openmrs_entity": "concept",
                         "openmrs_entity_id": "fsw"

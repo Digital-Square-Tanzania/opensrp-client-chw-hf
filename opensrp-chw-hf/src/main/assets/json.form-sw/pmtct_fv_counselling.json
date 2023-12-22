@@ -99,7 +99,7 @@
           },
           {
             "key": "chk_promote_testing",
-            "text": "Kuhamasisha upimaji wa wenza na wenza walio katika mnyororo wa kingono",
+            "text": "Kuhamasisha upimaji wa wenza na wenza waliokatika mnyororo wa kingono",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "chk_promote_testing"
           },
