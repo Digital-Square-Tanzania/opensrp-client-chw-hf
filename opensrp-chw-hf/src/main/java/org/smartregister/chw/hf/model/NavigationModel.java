@@ -39,7 +39,7 @@ public class NavigationModel implements org.smartregister.chw.core.model.Navigat
             NavigationOption op20 = new NavigationOption(R.mipmap.sidemenu_hiv, R.mipmap.sidemenu_hiv_active, R.string.menu_prep, CoreConstants.DrawerMenu.PrEP, 0);
             NavigationOption op21 = new NavigationOption(R.mipmap.sidemenu_updates, R.mipmap.sidemenu_updates_active, R.string.sbc, CoreConstants.DrawerMenu.SBC, 0);
             NavigationOption op22 = new NavigationOption(R.mipmap.sidemenu_hiv, R.mipmap.sidemenu_hiv_active, R.string.vmmc, CoreConstants.DrawerMenu.VMMC, 0);
-            NavigationOption op23 = new NavigationOption(R.mipmap.sidemenu_gbv_disabled, R.mipmap.sidemenu_gbv_active, R.string.gbv, CoreConstants.DrawerMenu.GBV, 0);
+            NavigationOption op23 = new NavigationOption(R.mipmap.sidemenu_gbv_disabled, R.mipmap.sidemenu_gbv_active, R.string.gbv_register, CoreConstants.DrawerMenu.GBV, 0);
 
 
             // ANC, PMTCT, LD, PNC, HEI, Child,LTFU, Referrals

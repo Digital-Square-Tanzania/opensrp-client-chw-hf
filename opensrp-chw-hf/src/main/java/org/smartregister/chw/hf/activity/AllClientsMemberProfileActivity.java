@@ -29,6 +29,7 @@ import org.smartregister.chw.core.form_data.NativeFormsDataBinder;
 import org.smartregister.chw.core.fragment.FamilyCallDialogFragment;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.core.utils.Utils;
+import org.smartregister.chw.gbv.dao.GbvDao;
 import org.smartregister.chw.hf.BuildConfig;
 import org.smartregister.chw.hf.HealthFacilityApplication;
 import org.smartregister.chw.hf.R;
@@ -128,7 +129,7 @@ public class AllClientsMemberProfileActivity extends CoreAllClientsMemberProfile
             menu.findItem(R.id.action_sbc_registration).setVisible(!SbcDao.isRegisteredForSbc(baseEntityId) && age >= 10);
         }
         if (HealthFacilityApplication.getApplicationFlavor().hasGbv()) {
-            menu.findItem(R.id.action_gbv_registration).setVisible(!SbcDao.isRegisteredForSbc(baseEntityId));
+            menu.findItem(R.id.action_gbv_registration).setVisible(!GbvDao.isRegisteredForGbv(baseEntityId));
         }
         return true;
     }
