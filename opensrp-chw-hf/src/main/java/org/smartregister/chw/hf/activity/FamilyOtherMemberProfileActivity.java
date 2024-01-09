@@ -209,6 +209,11 @@ public class FamilyOtherMemberProfileActivity extends CoreFamilyOtherMemberProfi
     }
 
     @Override
+    protected void startGbvRegistration() {
+        GbvRegisterActivity.startRegistration(FamilyOtherMemberProfileActivity.this, baseEntityId);
+    }
+
+    @Override
     protected void setIndependentClient(boolean b) {
         this.isIndependent = false;
     }
@@ -282,9 +287,7 @@ public class FamilyOtherMemberProfileActivity extends CoreFamilyOtherMemberProfi
             }
             if (viewId == R.id.refer_to_facility_layout) {
                 String gender = Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.GENDER, false);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                    LFTUFormUtils.startLTFUReferral(this, baseEntityId, gender, Utils.getAgeFromDate(dob));
-                }
+                LFTUFormUtils.startLTFUReferral(this, baseEntityId, gender, Utils.getAgeFromDate(dob));
             }
         };
     }
@@ -355,7 +358,6 @@ public class FamilyOtherMemberProfileActivity extends CoreFamilyOtherMemberProfi
             menu.findItem(R.id.action_kvp_registration).setVisible(!KvpDao.isRegisteredForKvp(baseEntityId) && age >= 15);
         }
 
-        //TODO ChrissDisigale: vmmc-menu-option
         if (gender.equalsIgnoreCase("male") && HealthFacilityApplication.getApplicationFlavor().hasVmmc()){
             menu.findItem(R.id.action_vmmc_registration).setVisible(!VmmcDao.isRegisteredForVmmc(baseEntityId));
         }
