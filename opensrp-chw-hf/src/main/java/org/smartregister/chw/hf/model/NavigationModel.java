@@ -68,7 +68,7 @@ public class NavigationModel implements org.smartregister.chw.core.model.Navigat
                     navigationOptions.add(10, op17);
                 }
                 if (HealthFacilityApplication.getApplicationFlavor().hasVmmc()) {
-                    navigationOptions.add(13, op21);
+                    navigationOptions.add(13, op22);
                 }
             } else {
                 navigationOptions.addAll(Arrays.asList(op1, op2, op3, op4, op5, op6, op7, op12));

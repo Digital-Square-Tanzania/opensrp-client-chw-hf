@@ -28,7 +28,7 @@ public class DefaultHFApplicationFlv implements HealthFacilityApplication.Flavor
 
     @Override
     public boolean hasFp() {
-        return true;
+        return false;
     }
 
     @Override
@@ -43,7 +43,7 @@ public class DefaultHFApplicationFlv implements HealthFacilityApplication.Flavor
 
     @Override
     public boolean hasSbc() {
-        return true;
+        return false;
     }
 
     @Override
