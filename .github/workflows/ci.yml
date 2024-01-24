@@ -5,9 +5,9 @@ name: Android CI with Gradle
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, tanzania-ministry-of-health-nacp ]
   pull_request:
-    branches: [ master ]
+    branches: [ master, tanzania-ministry-of-health-nacp ]
 
 jobs:
   unit_tests:
@@ -20,12 +20,12 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-      - name: Install NDK
-        run: echo "y" | sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;21.0.6113669" --sdk_root=${ANDROID_SDK_ROOT}
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Run unit tests with Gradle
         run: ./gradlew :opensrp-chw-hf:clean :opensrp-chw-hf:jacocoTestReport  --stacktrace
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
       - name: Upload coverage to Coveralls with Gradle
         run: ./gradlew coveralls --stacktrace
         env:
