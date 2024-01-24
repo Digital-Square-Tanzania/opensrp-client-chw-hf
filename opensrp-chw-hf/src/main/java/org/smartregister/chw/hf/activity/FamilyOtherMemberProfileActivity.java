@@ -340,6 +340,7 @@ public class FamilyOtherMemberProfileActivity extends CoreFamilyOtherMemberProfi
         }
 
         menu.findItem(R.id.action_sick_child_follow_up).setVisible(false);
+        menu.findItem(R.id.action_malaria_diagnosis).setVisible(false);
         if (HealthFacilityApplication.getApplicationFlavor().hasMalaria())
             menu.findItem(R.id.action_malaria_diagnosis).setVisible(!MalariaDao.isRegisteredForMalaria(baseEntityId));
 
