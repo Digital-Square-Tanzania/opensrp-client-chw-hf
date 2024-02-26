@@ -1111,6 +1111,34 @@
             "creates_case": [
               "ec_sbc_visit"
             ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "CECAP Enrollment",
+            "creates_case": [
+              "ec_cecap_register"
+            ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "CECAP Follow-up Visit",
+            "creates_case": [
+              "ec_cecap_visit"
+            ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "HPV Findings",
+            "creates_case": [
+              "ec_cecap_test_results"
+            ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "PAP Findings",
+            "creates_case": [
+              "ec_cecap_test_results"
+            ]
           }
         ]
       }

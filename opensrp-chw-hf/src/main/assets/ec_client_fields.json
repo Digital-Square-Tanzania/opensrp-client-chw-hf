@@ -10265,7 +10265,294 @@
           }
         }
       ]
+    },
+    {
+      "name": "ec_cecap_register",
+      "columns": [
+        {
+          "column_name": "base_entity_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "baseEntityId"
+          }
+        },
+        {
+          "column_name": "relational_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "relational_id"
+          }
+        },
+        {
+          "column_name": "hiv_status",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "computed_hiv_status"
+          }
+        },
+        {
+          "column_name": "hiv_test_done",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "hiv_test_done"
+          }
+        },
+        {
+          "column_name": "hiv_test_not_done_reason",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "hiv_test_not_done_reason"
+          }
+        },
+        {
+          "column_name": "hiv_test_results",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "hiv_test_results"
+          }
+        },
+        {
+          "column_name": "parity",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "parity"
+          }
+        },
+        {
+          "column_name": "partner_accompaniment",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "partner_accompaniment"
+          }
+        },
+        {
+          "column_name": "partner_education",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "partner_education"
+          }
+        },
+        {
+          "column_name": "reproductive_cancer_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "reproductive_cancer_id"
+          }
+        },
+        {
+          "column_name": "services_enrolled",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "services_enrolled"
+          }
+        },
+        {
+          "column_name": "last_interacted_with",
+          "type": "Event",
+          "json_mapping": {
+            "field": "version"
+          }
+        }
+      ]
+    },
+    {
+      "name": "ec_cecap_visit",
+      "columns": [
+        {
+          "column_name": "entity_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "baseEntityId"
+          }
+        },
+        {
+          "column_name": "base_entity_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "formSubmissionId"
+          }
+        },
+        {
+          "column_name": "relational_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "relational_id"
+          }
+        },
+        {
+          "column_name": "screening_test_performed",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "screening_test_performed"
+          }
+        },
+        {
+          "column_name": "via_findings",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "via_findings"
+          }
+        },
+        {
+          "column_name": "was_dna_specimen_collected",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "was_dna_specimen_collected"
+          }
+        },
+        {
+          "column_name": "hpv_dna_specimen_sample_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "hpv_dna_specimen_sample_id"
+          }
+        },
+        {
+          "column_name": "hpv_dna_specimen_collection_date",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "hpv_dna_specimen_collection_date"
+          }
+        },
+        {
+          "column_name": "hpv_dna_specimen_collection_time",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "hpv_dna_specimen_collection_time"
+          }
+        },
+        {
+          "column_name": "can_the_facility_perform_pap_smear",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "can_the_facility_perform_pap_smear"
+          }
+        },
+        {
+          "column_name": "pap_smear_sample_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "pap_smear_sample_id"
+          }
+        },
+        {
+          "column_name": "pap_smear_sample_collection_date",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "pap_smear_sample_collection_date"
+          }
+        },
+        {
+          "column_name": "pap_smear_sample_collection_time",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "pap_smear_sample_collection_time"
+          }
+        },
+        {
+          "column_name": "last_interacted_with",
+          "type": "Event",
+          "json_mapping": {
+            "field": "version"
+          }
+        }
+      ]
+    },
+    {
+      "name": "ec_cecap_test_results",
+      "columns": [
+        {
+          "column_name": "entity_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "baseEntityId"
+          }
+        },
+        {
+          "column_name": "base_entity_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "formSubmissionId"
+          }
+        },
+        {
+          "column_name": "hpv_dna_specimen_sample_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "hpv_dna_specimen_sample_id"
+          }
+        },
+        {
+          "column_name": "pap_smear_sample_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "pap_smear_sample_id"
+          }
+        },
+        {
+          "column_name": "cecap_test_results_followup_form_submission_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "cecap_test_results_followup_form_submission_id"
+          }
+        },
+        {
+          "column_name": "hpv_dna_findings",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "hpv_dna_findings"
+          }
+        },
+        {
+          "column_name": "type_of_hpv_positive",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "type_of_hpv_positive"
+          }
+        },
+        {
+          "column_name": "pap_findings",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "pap_findings"
+          }
+        },
+        {
+          "column_name": "test_results_date",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "test_results_date"
+          }
+        }
+      ]
     }
-
   ]
 }
