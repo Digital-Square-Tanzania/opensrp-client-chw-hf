@@ -1,0 +1,307 @@
+{
+  "count": "1",
+  "encounter_type": "CECAP Treatment",
+  "entity_id": "",
+  "relational_id": "",
+  "metadata": {
+    "start": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "start",
+      "openmrs_entity_id": "165000AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "end": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "end",
+      "openmrs_entity_id": "165001AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "today": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "encounter",
+      "openmrs_entity_id": "encounter_date"
+    },
+    "deviceid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "deviceid",
+      "openmrs_entity_id": "165003AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "subscriberid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "subscriberid",
+      "openmrs_entity_id": "165004AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "simserial": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "simserial",
+      "openmrs_entity_id": "165005AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "phonenumber": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "phonenumber",
+      "openmrs_entity_id": "165006AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "encounter_location": "",
+    "look_up": {
+      "entity_id": "",
+      "value": ""
+    }
+  },
+  "global": {
+  },
+  "step1": {
+    "title": "CECAP Treatment",
+    "fields": [
+      {
+        "key": "cryotherapy_thermocoagulation",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "cryotherapy_thermocoagulation",
+        "type": "native_radio",
+        "label": "Can the facility offer cryotherapy or thermocoagulation?",
+        "text_color": "#000000",
+        "options": [
+          {
+            "key": "yes",
+            "text": "Yes",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "yes"
+          },
+          {
+            "key": "no",
+            "text": "No",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "no"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Required"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cecap_treatment_rule.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "treatment_option_with_cryotherapy_thermocoagulation",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "treatment_option_with_cryotherapy_thermocoagulation",
+        "type": "native_radio",
+        "label": "Treatment",
+        "text_color": "#000000",
+        "options": [
+          {
+            "key": "cryotherapy",
+            "text": "Cryotherapy",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "cryotherapy"
+          },
+          {
+            "key": "thermocoagulation",
+            "text": "Thermocoagulation",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "thermocoagulation"
+          },
+          {
+            "key": "postponed",
+            "text": "Postponed",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "postponed"
+          },
+          {
+            "key": "referred",
+            "text": "Referred",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "referred"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cecap_treatment_rule.yml"
+            }
+          }
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Required"
+        }
+      },
+      {
+        "key": "treatment_option_without_cryotherapy_thermocoagulation",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "treatment_option_without_cryotherapy_thermocoagulation",
+        "type": "native_radio",
+        "label": "Treatment",
+        "text_color": "#000000",
+        "options": [
+          {
+            "key": "postponed",
+            "text": "Postponed",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "postponed"
+          },
+          {
+            "key": "referred",
+            "text": "Referred",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "referred"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cecap_treatment_rule.yml"
+            }
+          }
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Required"
+        }
+      },
+      {
+        "key": "treatment_option",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "treatment_option",
+        "type": "hidden",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cecap_treatment_rule.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "postpone_reason",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "postpone_reason",
+        "type": "check_box",
+        "combine_checkbox_option_values": "true",
+        "label": "Reason for postponing",
+        "options": [
+          {
+            "key": "consult_spouse",
+            "text": "Need to consult spouse",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "consult_spouse"
+          },
+          {
+            "key": "other",
+            "text": "Other",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "other"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cecap_treatment_rule.yml"
+            }
+          }
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Required"
+        }
+      },
+      {
+        "key": "leep_treatment",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "leep_treatment",
+        "type": "native_radio",
+        "label": "Can the facility offer LEEP treatment?",
+        "text_color": "#000000",
+        "options": [
+          {
+            "key": "yes",
+            "text": "Yes",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "yes"
+          },
+          {
+            "key": "no",
+            "text": "No",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "no"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cecap_treatment_rule.yml"
+            }
+          }
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Required"
+        }
+      },
+      {
+        "key": "leep_performed",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "leep_performed",
+        "type": "native_radio",
+        "label": "LEEP performed",
+        "text_color": "#000000",
+        "options": [
+          {
+            "key": "yes",
+            "text": "Yes",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "yes"
+          },
+          {
+            "key": "no",
+            "text": "No",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "no"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cecap_treatment_rule.yml"
+            }
+          }
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Required"
+        }
+      },
+      {
+        "key": "prompt_for_referral",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "prompt_for_referral",
+        "type": "toaster_notes",
+        "text": "Refer for cryotherapy or thermocoagulation",
+        "toaster_type": "warning",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cecap_treatment_rule.yml"
+            }
+          }
+        }
+      }
+    ]
+  }
+}

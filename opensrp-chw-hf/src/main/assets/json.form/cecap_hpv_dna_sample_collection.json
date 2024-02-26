@@ -1,0 +1,284 @@
+{
+  "count": "1",
+  "encounter_type": "HPV DNA Sample Collection",
+  "entity_id": "",
+  "relational_id": "",
+  "metadata": {
+    "start": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "start",
+      "openmrs_entity_id": "165000AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "end": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "end",
+      "openmrs_entity_id": "165001AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "today": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "encounter",
+      "openmrs_entity_id": "encounter_date"
+    },
+    "deviceid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "deviceid",
+      "openmrs_entity_id": "165003AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "subscriberid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "subscriberid",
+      "openmrs_entity_id": "165004AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "simserial": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "simserial",
+      "openmrs_entity_id": "165005AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "phonenumber": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "phonenumber",
+      "openmrs_entity_id": "165006AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "encounter_location": "",
+    "look_up": {
+      "entity_id": "",
+      "value": ""
+    }
+  },
+  "step1": {
+    "title": "HPV DNA Sample Collection",
+    "fields": [
+      {
+        "key": "was_dna_specimen_collected",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "was_dna_specimen_collected",
+        "type": "native_radio",
+        "label": "Was HPV DNA specimen collected?",
+        "text_color": "#000000",
+        "options": [
+          {
+            "key": "yes",
+            "text": "Yes",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "yes"
+          },
+          {
+            "key": "no",
+            "text": "No",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "no"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Required"
+        }
+      },
+      {
+        "key": "reasons_for_not_collecting_dna_specimen",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "reasons_for_not_collecting_dna_specimen",
+        "type": "native_radio",
+        "label": "Select reasons for not collecting HPV specimen?",
+        "text_color": "#000000",
+        "options": [
+          {
+            "key": "used_lubricants_and_fungicides_within_24hrs_prior_to_screening",
+            "text": "If the woman used lubricants and fungicides within 24 hours prior screening",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "used_lubricants_and_fungicides_within_24hrs_prior_to_screening"
+          },
+          {
+            "key": "other",
+            "text": "Other (Specify)",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "other"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Required"
+        },
+        "relevance": {
+          "step1:was_dna_specimen_collected": {
+            "type": "string",
+            "ex": "equalTo(., \"no\")"
+          }
+        }
+      },
+      {
+        "key": "other_reasons_for_not_collecting_dna_specimen",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "other_reasons_for_not_collecting_dna_specimen",
+        "type": "edit_text",
+        "hint": "Other (Specify)",
+        "v_required": {
+          "value": true,
+          "err": "Required"
+        },
+        "relevance": {
+          "step1:reasons_for_not_collecting_dna_specimen": {
+            "type": "string",
+            "ex": "equalTo(., \"other\")"
+          }
+        }
+      },
+      {
+        "key": "dna_specimen_collection_clinician_name",
+        "type": "edit_text",
+        "hint": "Healthcare Provider's Name",
+        "openmrs_entity_id": "dna_specimen_collection_clinician_name",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "v_regex": {
+          "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-\\']*",
+          "err": "Please enter the healthcare provider's name"
+        },
+        "v_required": {
+          "value": true,
+          "err": "Please enter the healthcare provider's name"
+        },
+        "relevance": {
+          "step1:was_dna_specimen_collected": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
+        }
+      },
+      {
+        "key": "dna_specimen_collection_clinician_position",
+        "type": "spinner",
+        "hint": "Healthcare Provider's Title",
+        "openmrs_entity_id": "dna_specimen_collection_clinician_position",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "values": [
+          "Medical Officer",
+          "Assistant Medical Officer",
+          "Clinical Officer",
+          "Assistant Clinical Officer",
+          "Nurse",
+          "Laboratory personnel"
+        ],
+        "keys": [
+          "medical_officer",
+          "assistant_medical_officer",
+          "clinical_officer",
+          "assistant_clinical_officer",
+          "nurse",
+          "laboratory_personnel"
+        ],
+        "openmrs_choice_ids": {
+          "medical_officer": "medical_officer",
+          "assistant_medical_officer": "assistant_medical_officer",
+          "clinical_officer": "clinical_officer",
+          "assistant_clinical_officer": "assistant_clinical_officer",
+          "nurse": "nurse",
+          "laboratory_personnel": "laboratory_personnel"
+        },
+        "v_required": {
+          "value": true,
+          "err": "Please enter the healthcare provider's title"
+        },
+        "relevance": {
+          "step1:was_dna_specimen_collected": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
+        }
+      },
+      {
+        "key": "dna_specimen_collection_clinician_phone_number",
+        "type": "edit_text",
+        "hint": "Healthcare Provider's Phone Number",
+        "edit_type": "number",
+        "openmrs_entity_id": "dna_specimen_collection_clinician_phone_number",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "v_numeric": {
+          "value": "true",
+          "err": "Number must be a total of 10 digits and must start with 06 au 07."
+        },
+        "v_regex": {
+          "value": "(0[6-7][1-9][0-9][0-9]{6})|\\s*",
+          "err": "Number must be 10 digits and must start with 06 or 07."
+        },
+        "v_required": {
+          "value": true,
+          "err": "Please enter the healthcare provider's phone number"
+        },
+        "relevance": {
+          "step1:was_dna_specimen_collected": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
+        }
+      },
+      {
+        "key": "hpv_dna_specimen_collection_date",
+        "type": "date_picker",
+        "hint": "HPV DNA Specimen Collection Date",
+        "openmrs_entity_id": "hpv_dna_specimen_collection_date",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "min_date": "today-5y",
+        "max_date": "today",
+        "v_required": {
+          "value": true,
+          "err": "Please enter the collection date"
+        },
+        "relevance": {
+          "step1:was_dna_specimen_collected": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
+        }
+      },
+      {
+        "key": "hpv_dna_specimen_collection_time",
+        "type": "time_picker",
+        "hint": "HPV DNA Specimen Collection Time",
+        "openmrs_entity_id": "hpv_dna_specimen_collection_time",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "v_required": {
+          "value": true,
+          "err": "Please enter the collection time"
+        },
+        "relevance": {
+          "step1:was_dna_specimen_collected": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
+        }
+      },
+      {
+        "key": "hpv_dna_specimen_sample_id",
+        "type": "edit_text",
+        "hint": "HPV DNA Specimen ID",
+        "openmrs_entity_id": "hpv_dna_specimen_sample_id",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "v_required": {
+          "value": true,
+          "err": "Please enter the Specimen ID"
+        },
+        "relevance": {
+          "step1:was_dna_specimen_collected": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,7 @@
+---
+name: step1_prompt_for_referral
+description: prompt_for_referral
+priority: 1
+condition: "step1_difficulty_micturition.equals('yes') && global_age >= 45"
+actions:
+  - "isRelevant = true"

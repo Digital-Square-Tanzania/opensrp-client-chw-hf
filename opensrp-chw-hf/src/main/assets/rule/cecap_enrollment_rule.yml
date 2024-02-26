@@ -1,0 +1,49 @@
+---
+name: step1_parity
+description: parity
+priority: 1
+condition: "global_age > 10 && global_sex == 'Female' "
+actions:
+  - "isRelevant = true"
+---
+name: step1_partner_accompaniment
+description: partner_accompaniment
+priority: 1
+condition: "global_age >= 18"
+actions:
+  - "isRelevant = true"
+---
+name: step1_partner_education
+description: partner_education
+priority: 1
+condition: "step1_partner_accompaniment.equals('yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_services_enrolled_for_male_clients
+description: services_enrolled_for_male_clients
+priority: 1
+condition: "global_sex == 'Male'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_services_enrolled_for_female_clients
+description: services_enrolled_for_female_clients
+priority: 1
+condition: "global_sex == 'Female'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_computed_hiv_status
+description: computed_hiv_status
+priority: 1
+condition: "true"
+actions:
+  - "calculation = step1_hiv_test_results.isEmpty() ? step1_hiv_status : step1_hiv_test_results"
+---
+name: step1_services_enrolled
+description: services_enrolled
+priority: 1
+condition: "true"
+actions:
+  - "calculation = global_sex == 'Female'? step1_services_enrolled_for_female_clients : step1_services_enrolled_for_male_clients"

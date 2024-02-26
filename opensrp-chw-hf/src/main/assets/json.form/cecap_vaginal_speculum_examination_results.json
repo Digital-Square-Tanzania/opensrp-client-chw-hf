@@ -1,0 +1,143 @@
+{
+  "count": "1",
+  "encounter_type": "Vaginal speculum examination results",
+  "entity_id": "",
+  "relational_id": "",
+  "metadata": {
+    "start": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "start",
+      "openmrs_entity_id": "165000AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "end": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "end",
+      "openmrs_entity_id": "165001AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "today": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "encounter",
+      "openmrs_entity_id": "encounter_date"
+    },
+    "deviceid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "deviceid",
+      "openmrs_entity_id": "165003AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "subscriberid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "subscriberid",
+      "openmrs_entity_id": "165004AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "simserial": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "simserial",
+      "openmrs_entity_id": "165005AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "phonenumber": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "phonenumber",
+      "openmrs_entity_id": "165006AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "encounter_location": "",
+    "look_up": {
+      "entity_id": "",
+      "value": ""
+    }
+  },
+  "step1": {
+    "title": "Vaginal speculum examination results",
+    "fields": [
+      {
+        "key": "vaginal_speculum_examination",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "vaginal_speculum_examination",
+        "type": "check_box",
+        "combine_checkbox_option_values": "true",
+        "label": "Does the client have any of the following",
+        "exclusive": [
+          "none"
+        ],
+        "options": [
+          {
+            "key": "total_hysterectomy",
+            "text": "Total Hysterectomy",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "total_hysterectomy"
+          },
+          {
+            "key": "heavy_vaginal_bleeding",
+            "text": "Heavy vaginal bleeding",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "heavy_vaginal_bleeding"
+          },
+          {
+            "key": "abnormal_discharge",
+            "text": "Abnormal discharge",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "abnormal_discharge"
+          },
+          {
+            "key": "abnormal_growth",
+            "text": "Abnormal growth (Cervical Polyp)",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "abnormal_growth"
+          },
+          {
+            "key": "suspicious_for_cancer",
+            "text": "Suspicious for cancer",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "suspicious_for_cancer"
+          },
+          {
+            "key": "none",
+            "text": "None",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "none"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Required"
+        }
+      },
+      {
+        "key": "prompt_for_ineligibility",
+        "type": "toaster_notes",
+        "text": "The client is not eligible for cervical cancer screening",
+        "openmrs_entity_id": "prompt_for_ineligibility",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cecap_viganal_speculum_examination_results_rule.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "eligible_for_cervical_cancer_screening_after_speculum_examination_results",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "eligible_for_cervical_cancer_screening_after_speculum_examination_results",
+        "type": "hidden",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cecap_viganal_speculum_examination_results_rule.yml"
+            }
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,167 @@
+{
+  "count": "1",
+  "encounter_type": "HPV Findings",
+  "entity_id": "",
+  "metadata": {
+    "start": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "start",
+      "openmrs_entity_id": "163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "end": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "end",
+      "openmrs_entity_id": "163138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "deviceid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "deviceid",
+      "openmrs_entity_id": "163149AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "subscriberid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "subscriberid",
+      "openmrs_entity_id": "163150AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "simserial": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "simserial",
+      "openmrs_entity_id": "163151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "phonenumber": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "phonenumber",
+      "openmrs_entity_id": "163152AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "encounter_location": ""
+  },
+  "global": {
+    "hiv_status": "negative"
+  },
+  "step1": {
+    "title": "HPV Findings",
+    "fields": [
+      {
+        "key": "hpv_dna_specimen_sample_id",
+        "type": "hidden",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "hpv_dna_specimen_sample_id",
+        "openmrs_entity_parent": ""
+      },
+      {
+        "key": "hpv_dna_findings",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "hpv_dna_findings",
+        "type": "native_radio",
+        "label": "Record HPV findings",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "options": [
+          {
+            "key": "negative",
+            "text": "Negative",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "negative"
+          },
+          {
+            "key": "positive",
+            "text": "Positive",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "positive"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select an answer"
+        }
+      },
+      {
+        "key": "type_of_hpv_positive",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "type_of_hpv_positive",
+        "type": "native_radio",
+        "label": "Type of HPV Positive",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "options": [
+          {
+            "key": "hpv_16_and_18",
+            "text": "HPV 16&18",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "hpv_16_and_18"
+          },
+          {
+            "key": "other",
+            "text": "Other",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "other"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select an answer"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cecap_hpv_dna_findings_rules.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "prompt_for_hiv_negative_client",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "prompt",
+        "type": "toaster_notes",
+        "text": "The client should return after 10 years",
+        "toaster_type": "info",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cecap_hpv_dna_findings_rules.yml"
+            }
+          }
+        }
+      }, {
+        "key": "prompt_for_hiv_positive_client",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "prompt",
+        "type": "toaster_notes",
+        "text": "The client should return after 5 years",
+        "toaster_type": "info",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cecap_hpv_dna_findings_rules.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "test_results_date",
+        "type": "hidden",
+        "openmrs_entity_id": "test_results_date",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cecap_hpv_dna_findings_rules.yml"
+            }
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "count": "1",
+  "encounter_type": "Clinical breast examination",
+  "entity_id": "",
+  "relational_id": "",
+  "metadata": {
+    "start": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "start",
+      "openmrs_entity_id": "165000AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "end": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "end",
+      "openmrs_entity_id": "165001AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "today": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "encounter",
+      "openmrs_entity_id": "encounter_date"
+    },
+    "deviceid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "deviceid",
+      "openmrs_entity_id": "165003AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "subscriberid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "subscriberid",
+      "openmrs_entity_id": "165004AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "simserial": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "simserial",
+      "openmrs_entity_id": "165005AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "phonenumber": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "phonenumber",
+      "openmrs_entity_id": "165006AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "encounter_location": "",
+    "look_up": {
+      "entity_id": "",
+      "value": ""
+    }
+  },
+  "step1": {
+    "title": "Clinical breast examination",
+    "fields": [
+      {
+        "key": "clinical_breast_examination",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "clinical_breast_examination",
+        "type": "check_box",
+        "combine_checkbox_option_values": "true",
+        "label": "Does the client have any of the following",
+        "exclusive": [
+          "none"
+        ],
+        "options": [
+          {
+            "key": "nipple_retraction",
+            "text": "Nipple retraction",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "nipple_retraction"
+          },
+          {
+            "key": "change_of_breast_skin_color",
+            "text": "Change of breast skin color",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "change_of_breast_skin_color"
+          },
+          {
+            "key": "lump",
+            "text": "Lump",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "lump"
+          },
+          {
+            "key": "abnormal_discharge",
+            "text": "Abnormal Discharge",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "abnormal_discharge"
+          },
+          {
+            "key": "dimpling_of_breast",
+            "text": "Dimpling of breast",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "dimpling_of_breast"
+          },
+          {
+            "key": "soreness",
+            "text": "Soreness",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "soreness"
+          },
+          {
+            "key": "palpable_axillary",
+            "text": "Palpable Axillary or Supra Clavicular Lymph node",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "palpable_axillary"
+          },
+          {
+            "key": "other",
+            "text": "Other (Specify)",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "other"
+          },
+          {
+            "key": "none",
+            "text": "None",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "none"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Required"
+        }
+      },
+      {
+        "key": "other_clinical_breast_examination_findings",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "other_clinical_breast_examination_findings",
+        "type": "edit_text",
+        "hint": "Other (Specify)",
+        "v_required": {
+          "value": true,
+          "err": "Required"
+        },
+        "relevance": {
+          "step1:clinical_breast_examination": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "other"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "prompt_for_referral",
+        "type": "toaster_notes",
+        "text": "Refer for further investigation",
+        "openmrs_entity_id": "prompt_for_referral",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cecap_clinical_breast_examination_rule.yml"
+            }
+          }
+        }
+      }
+    ]
+  }
+}

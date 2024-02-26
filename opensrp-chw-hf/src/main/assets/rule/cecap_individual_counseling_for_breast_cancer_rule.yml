@@ -1,0 +1,28 @@
+---
+name: step1_family_history_breast_cancer
+description: family_history_breast_cancer
+priority: 1
+condition: "step1_abnormal_breast_concern.equals('yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_prompt_for_ineligibility
+description: prompt_for_ineligibility
+priority: 1
+condition: "step1_abnormal_breast_concern.equals('no') && global_age < 40"
+actions:
+  - "isRelevant = true"
+---
+name: step1_prompt_for_mammograph
+description: prompt_for_mammograph
+priority: 1
+condition: "step1_abnormal_breast_concern.equals('no') && global_age >= 40"
+actions:
+  - "isRelevant = true"
+---
+name: step1_eligible_for_breast_cancer_screening
+description: eligible_for_breast_cancer_screening
+priority: 1
+condition: "true"
+actions:
+  - "calculation = step1_abnormal_breast_concern.equals('yes')"

@@ -1,0 +1,431 @@
+{
+  "count": "1",
+  "encounter_type": "CECAP Enrollment",
+  "entity_id": "",
+  "relational_id": "",
+  "metadata": {
+    "start": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "start",
+      "openmrs_entity_id": "165000AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "end": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "end",
+      "openmrs_entity_id": "165001AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "today": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "encounter",
+      "openmrs_entity_id": "encounter_date"
+    },
+    "deviceid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "deviceid",
+      "openmrs_entity_id": "165003AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "subscriberid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "subscriberid",
+      "openmrs_entity_id": "165004AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "simserial": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "simserial",
+      "openmrs_entity_id": "165005AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "phonenumber": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "phonenumber",
+      "openmrs_entity_id": "165006AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "encounter_location": "",
+    "look_up": {
+      "entity_id": "",
+      "value": ""
+    }
+  },
+  "global": {},
+  "step1": {
+    "title": "Reproductive cancer preventive services Enrollment",
+    "fields": [
+      {
+        "key": "hiv_status",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "hiv_status",
+        "type": "native_radio",
+        "label": "Clients HIV Status",
+        "text_color": "#000000",
+        "options": [
+          {
+            "key": "positive",
+            "text": "Positive",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "positive"
+          },
+          {
+            "key": "negative",
+            "text": "Negative",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "negative"
+          },
+          {
+            "key": "unknown",
+            "text": "Unknown",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "unknown"
+          }
+        ],
+        "v_required": {
+          "value": true,
+          "err": "Required"
+        }
+      },
+      {
+        "key": "ctc_number",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "ctc_number",
+        "type": "mask_edit_text",
+        "mask": "##-##-####-######",
+        "mask_hint": "12345678912345",
+        "allowed_chars": "0123456789",
+        "hint": "CTC Number",
+        "edit_type": "number",
+        "v_regex": {
+          "value": "(\\d{2}-\\d{2}-\\d{4}-\\d{6})?",
+          "err": "CTC number should be of the format (XX-XX-XXXX-XXXXXX)"
+        },
+        "v_max_length": {
+          "value": "17",
+          "is_fixed_size": "true",
+          "err": "Please enter a valid CTC Number"
+        },
+        "v_required": {
+          "value": true,
+          "err": "Please enter a valid CTC Number"
+        },
+        "relevance": {
+          "step1:hiv_status": {
+            "type": "string",
+            "ex": "equalTo(., \"positive\")"
+          }
+        }
+      },
+      {
+        "key": "hiv_test_done",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "hiv_test_done",
+        "type": "native_radio",
+        "label": "Was HIV test done?",
+        "text_color": "#000000",
+        "options": [
+          {
+            "key": "yes",
+            "text": "Yes",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "yes"
+          },
+          {
+            "key": "no",
+            "text": "No",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "no"
+          }
+        ],
+        "v_required": {
+          "value": true,
+          "err": "Required"
+        },
+        "relevance": {
+          "step1:hiv_status": {
+            "type": "string",
+            "ex": "equalTo(., \"unknown\")"
+          }
+        }
+      },
+      {
+        "key": "hiv_test_not_done_reason",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "hiv_test_not_done_reason",
+        "type": "native_radio",
+        "label": "Reason for not conducting HIV test",
+        "text_color": "#000000",
+        "options": [
+          {
+            "key": "client_denied",
+            "text": "Client denied",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "client_denied"
+          },
+          {
+            "key": "no_reagents",
+            "text": "No Reagents",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "no_reagents"
+          }
+        ],
+        "relevance": {
+          "step1:hiv_test_done": {
+            "type": "string",
+            "ex": "equalTo(., \"no\")"
+          }
+        }
+      },
+      {
+        "key": "hiv_test_results",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "hiv_test_results",
+        "type": "native_radio",
+        "label": "HIV Test results",
+        "text_color": "#000000",
+        "options": [
+          {
+            "key": "positive",
+            "text": "Positive",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "positive"
+          },
+          {
+            "key": "negative",
+            "text": "Negative",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "negative"
+          }
+        ],
+        "v_required": {
+          "value": true,
+          "err": "Required"
+        },
+        "relevance": {
+          "step1:hiv_test_done": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
+        }
+      },
+      {
+        "key": "computed_hiv_status",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "computed_hiv_status",
+        "openmrs_entity_parent": "",
+        "type": "hidden",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cecap_enrollment_rule.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "parity",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "parity",
+        "type": "edit_text",
+        "edit_type": "number",
+        "hint": "Parity",
+        "v_required": {
+          "value": true,
+          "err": "Required"
+        },
+        "v_max_length": {
+          "value": "2",
+          "is_fixed_size": "true",
+          "err": "Please enter the correct parity"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cecap_enrollment_rule.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "partner_accompaniment",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "partner_accompaniment",
+        "type": "native_radio",
+        "label": "Did client come with partner?",
+        "text_color": "#000000",
+        "options": [
+          {
+            "key": "yes",
+            "text": "Yes",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "yes"
+          },
+          {
+            "key": "no",
+            "text": "No",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "no"
+          }
+        ],
+        "v_required": {
+          "value": true,
+          "err": "Required"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cecap_enrollment_rule.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "partner_education",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "partner_education",
+        "type": "native_radio",
+        "label": "Did the partner receive Reproductive cancer education?",
+        "text_color": "#000000",
+        "options": [
+          {
+            "key": "yes",
+            "text": "Yes",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "yes"
+          },
+          {
+            "key": "no",
+            "text": "No",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "no"
+          }
+        ],
+        "v_required": {
+          "value": true,
+          "err": "Required"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cecap_enrollment_rule.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "reproductive_cancer_id",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "reproductive_cancer_id",
+        "type": "mask_edit_text",
+        "mask": "####-##-##",
+        "mask_hint": "00010124",
+        "allowed_chars": "0123456789",
+        "hint": "Client Reproductive cancer prevention identification number",
+        "edit_type": "number",
+        "v_regex": {
+          "value": "(\\d{4}-\\d{2}-\\d{2})?",
+          "err": "Reproductive cancer prevention identification number should be of the format (XXXX-XX-XX)"
+        },
+        "v_max_length": {
+          "value": "10",
+          "is_fixed_size": "true",
+          "err": "Please enter the correct identification number"
+        },
+        "v_required": {
+          "value": true,
+          "err": "Required"
+        }
+      },
+      {
+        "key": "services_enrolled_for_male_clients",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "services_enrolled_for_male_clients",
+        "type": "check_box",
+        "label": "Service enrolled",
+        "options": [
+          {
+            "key": "breast_cancer",
+            "text": "Breast cancer",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "breast_cancer"
+          },
+          {
+            "key": "prostate_cancer",
+            "text": "Prostate cancer",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "prostate_cancer"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cecap_enrollment_rule.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "services_enrolled_for_female_clients",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "services_enrolled_for_female_clients",
+        "type": "check_box",
+        "label": "Service enrolled",
+        "options": [
+          {
+            "key": "cervical_cancer",
+            "text": "Cervical cancer",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "cervical_cancer"
+          },
+          {
+            "key": "breast_cancer",
+            "text": "Breast cancer",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "breast_cancer"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cecap_enrollment_rule.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "services_enrolled",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "services_enrolled",
+        "type": "hidden",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cecap_enrollment_rule.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "comments_remarks",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "comments_remarks",
+        "type": "text",
+        "label": "Comment/remarks"
+      }
+    ]
+  }
+}

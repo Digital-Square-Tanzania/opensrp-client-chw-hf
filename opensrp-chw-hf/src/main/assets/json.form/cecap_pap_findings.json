@@ -1,0 +1,117 @@
+{
+  "count": "1",
+  "encounter_type": "PAP Findings",
+  "entity_id": "",
+  "metadata": {
+    "start": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "start",
+      "openmrs_entity_id": "163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "end": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "end",
+      "openmrs_entity_id": "163138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "deviceid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "deviceid",
+      "openmrs_entity_id": "163149AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "subscriberid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "subscriberid",
+      "openmrs_entity_id": "163150AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "simserial": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "simserial",
+      "openmrs_entity_id": "163151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "phonenumber": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "phonenumber",
+      "openmrs_entity_id": "163152AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "encounter_location": ""
+  },
+  "global": {
+    "is_after_eac": false
+  },
+  "step1": {
+    "title": "Pap Findings",
+    "fields": [
+      {
+        "key": "pap_smear_sample_id",
+        "type": "hidden",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "pap_smear_sample_id",
+        "openmrs_entity_parent": ""
+      },
+      {
+        "key": "pap_findings",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "pap_findings",
+        "type": "native_radio",
+        "label": "Record PAP findings",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "options": [
+          {
+            "key": "normal",
+            "text": "Normal",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "normal"
+          },
+          {
+            "key": "abnormal",
+            "text": "Abnormal",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "abnormal"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select an answer"
+        }
+      },
+      {
+        "key": "prompt",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "prompt",
+        "type": "toaster_notes",
+        "text": "The client should return after 5 years",
+        "toaster_type": "info",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cecap_pap_findings_rules.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "test_results_date",
+        "type": "hidden",
+        "openmrs_entity_id": "test_results_date",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cecap_pap_findings_rules.yml"
+            }
+          }
+        }
+      }
+    ]
+  }
+}

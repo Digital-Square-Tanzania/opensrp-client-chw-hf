@@ -1,0 +1,15 @@
+---
+name: step1_eligible_for_cervical_cancer_screening_after_speculum_examination_results
+description: eligible_for_cervical_cancer_screening_after_speculum_examination_results
+priority: 1
+condition: "true"
+actions:
+  - "calculation = !step1_vaginal_speculum_examination.isEmpty() && step1_vaginal_speculum_examination.contains('none')"
+---
+name: step1_prompt_for_ineligibility
+description: prompt_for_ineligibility
+priority: 1
+condition: "!step1_vaginal_speculum_examination.isEmpty() && !step1_vaginal_speculum_examination.contains('none')"
+actions:
+  - "isRelevant = true"
+

@@ -1,0 +1,56 @@
+---
+name: step1_cryotherapy_thermocoagulation
+description: cryotherapy_thermocoagulation
+priority: 1
+condition: "global_viaFindings.equals('positive_with_small_lesion')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_leep_treatment
+description: leep_treatment
+priority: 1
+condition: "global_viaFindings.equals('positive_with_large_lesion')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_treatment_option_with_cryotherapy_thermocoagulation
+description: treatment_option_with_cryotherapy_thermocoagulation
+priority: 1
+condition: "step1_cryotherapy_thermocoagulation.equals('yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_treatment_option_without_cryotherapy_thermocoagulation
+description: treatment_option_without_cryotherapy_thermocoagulation
+priority: 1
+condition: "step1_cryotherapy_thermocoagulation.equals('no')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_postpone_reason
+description: postpone_reason
+priority: 1
+condition: "step1_treatment_option.contains('postponed')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_leep_performed
+description: leep_performed
+priority: 1
+condition: "step1_leep_treatment == 'yes'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_treatment_option
+description: treatment_option
+priority: 1
+condition: "global_viaFindings.equals('positive_with_small_lesion')"
+actions:
+  - "calculation = step1_cryotherapy_thermocoagulation.equals('yes')? step1_treatment_option_with_cryotherapy_thermocoagulation : step1_treatment_option_without_cryotherapy_thermocoagulation"
+---
+name: step1_prompt_for_referral
+description: prompt_for_referral
+priority: 1
+condition:  "step1_leep_treatment == 'no' || step1_leep_performed == 'no'"
+actions:
+  - "isRelevant = true"
