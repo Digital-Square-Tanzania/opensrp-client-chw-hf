@@ -809,6 +809,7 @@
     <string name="gbv">GBV</string>
     <string name="pep">PEP</string>
     <string name="vmmc">VMMC</string>
+    <string name="cecap">CECAP</string>
     <string name="cacx">CaCx</string>
     <string name="drug_use_disorder">Drug use disorder</string>
     <string name="hiv_aids">HIV and AIDS couple</string>
@@ -1722,6 +1723,7 @@
     <string name="sbc_reports">SBC Reports</string>
     <string name="sbc_reports_subtitle">View SBC Report</string>
     <string name="sbc_registration">SBC Registration</string>
+    <string name="cecap_registration">Cecap Enrollment</string>
     <string name="sbc_campaign">Campaign</string>
     <string name="sbc_religious_events">Religious events</string>
     <string name="sbc_community_meetings">Community meetings</string>
@@ -1804,6 +1806,72 @@
     <string name="sbc_print_materials">Print Materials</string>
     <string name="sbc_other_hiv_interventions">Other HIV Interventions</string>
     <string name="sbc_income_generating_activity">Income Generating Activity (IGA)</string>
+
+    <!--    CECAP   -->
+    <string name="cecap_abnormal_breast_concern">Any abnormal breast concern:</string>
+    <string name="cecap_family_history_breast_cancer">Is there family history of Breast Cancer:</string>
+    <string name="cecap_yes">Yes</string>
+    <string name="cecap_no">No</string>
+    <string name="cecap_client_pregnancy_status">Client\’s pregnancy status:</string>
+    <string name="cecap_pregnant">Pregnant</string>
+    <string name="cecap_not_pregnant">Not Pregnant</string>
+    <string name="cecap_heavy_bleeding">Has Heavy bleeding:</string>
+    <string name="cecap_virginity_status">Is client a virgin:</string>
+    <string name="cecap_last_delivery_or_miscarriage_date">Date of last delivery/Miscarriage:</string>
+    <string name="cecap_total_hysterectomy">Total Hysterectomy:</string>
+    <string name="cecap_family_history_prostate_cancer">Is there history of prostate cancer in the family:</string>
+    <string name="cecap_difficulty_micturition">Any difficulty during micturition:</string>
+    <string name="cecap_vaginal_speculum_examination">Vaginal Speculum Examination Findings:</string>
+    <string name="cecap_heavy_vaginal_bleeding">Heavy vaginal bleeding</string>
+    <string name="cecap_abnormal_discharge">Abnormal discharge</string>
+    <string name="cecap_abnormal_growth">Abnormal growth (Cervical Polyp)</string>
+    <string name="cecap_suspicious_for_cancer">Suspicious for cancer</string>
+    <string name="cecap_none">None</string>
+    <string name="cecap_can_the_facility_perform_hpv_dna_test">Can the facility perform HPV DNA test:</string>
+    <string name="cecap_squamo_columnar_junction">Is the squamo-columnar junction completely visible:</string>
+    <string name="cecap_screening_test_performed">Which type of screening test was performed:</string>
+    <string name="cecap_hpv_dna">HPV DNA</string>
+    <string name="cecap_via">VIA</string>
+    <string name="cecap_pap">Pap</string>
+    <string name="cecap_via_findings">VIA Findings:</string>
+    <string name="cecap_negative">Negative</string>
+    <string name="cecap_positive_with_small_lesion">Positive, with small/moderate lesion</string>
+    <string name="cecap_positive_with_large_lesion">Positive, with large lesion</string>
+    <string name="cecap_suspicious">Suspicious</string>
+    <string name="cecap_lesion_location">Lesion Location:</string>
+    <string name="cecap_cryotherapy_thermocoagulation">Can the facility offer cryotherapy or thermocoagulation:</string>
+    <string name="cecap_treatment_option">Treatment:</string>
+    <string name="cecap_cryotherapy">Cryotherapy</string>
+    <string name="cecap_thermocoagulation">Thermocoagulation</string>
+    <string name="cecap_postponed">Postponed</string>
+    <string name="cecap_referred">Referred</string>
+    <string name="cecap_postpone_reason">Reason for postponing:</string>
+    <string name="cecap_consult_spouse">Need to consult spouse</string>
+    <string name="cecap_other">Other</string>
+    <string name="cecap_leep_treatment">Can the facility offer LEEP treatment:</string>
+    <string name="cecap_leep_performed">LEEP performed:</string>
+    <string name="cecap_can_the_facility_perform_pap_smear">Can the facility perform Pap smear:</string>
+    <string name="cecap_pap_smear_sample_collection_clinician_name">PAP Smear Collection - Healthcare Provider\'s Name:</string>
+    <string name="cecap_pap_smear_sample_collection_clinician_position">PAP Smear Collection - Healthcare Provider\'s Title:</string>
+    <string name="cecap_pap_smear_sample_collection_clinician_phone_number">PAP Smear Collection - Healthcare Provider\'s Phone Number:</string>
+    <string name="cecap_pap_smear_sample_collection_date">PAP Smear Collection Date:</string>
+    <string name="cecap_pap_smear_sample_collection_time">PAP Smear Sample Collection Time:</string>
+    <string name="cecap_pap_smear_sample_id">PAP Smear Sample ID:</string>
+    <string name="cecap_was_dna_specimen_collected">Was HPV DNA specimen collected:</string>
+    <string name="cecap_reasons_for_not_collecting_dna_specimen">Reasons for not collecting HPV specimen:</string>
+    <string name="cecap_used_lubricants_and_fungicides_within_24hrs_prior_to_screening">The woman used lubricants and fungicides within 24 hours prior to screening</string>
+    <string name="cecap_other_reasons_for_not_collecting_dna_specimen">Other reasons for not collecting HPV specimen:</string>
+    <string name="cecap_dna_specimen_collection_clinician_name">HPV DNA Sample Collection - Healthcare Provider\'s Name:</string>
+    <string name="cecap_dna_specimen_collection_clinician_position">HPV DNA Sample Collection - Healthcare Provider\'s Title:</string>
+    <string name="cecap_dna_specimen_collection_clinician_phone_number">HPV DNA Sample Collection - Healthcare Provider\'s Phone Number:</string>
+    <string name="cecap_hpv_dna_specimen_collection_date">HPV DNA Sample Collection Date:</string>
+    <string name="cecap_hpv_dna_specimen_collection_time">HPV DNA Sample Collection Time:</string>
+    <string name="cecap_hpv_dna_specimen_sample_id">HPV DNA Sample ID:</string>
+
+
+
+
+
 
 
 </resources>
