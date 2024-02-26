@@ -16,6 +16,8 @@ import org.smartregister.chw.ld.model.BaseLDRegisterModel;
 import org.smartregister.chw.ld.util.Constants;
 import org.smartregister.view.fragment.BaseRegisterFragment;
 
+import timber.log.Timber;
+
 public class LDRegisterActivity extends CoreLDRegisterActivity {
     @Override
     protected BaseRegisterFragment getRegisterFragment() {
@@ -48,5 +50,14 @@ public class LDRegisterActivity extends CoreLDRegisterActivity {
         Fragment[] otherFragments = new Fragment[1];
         otherFragments[0] = new LDDischargedRegisterFragment();
         return otherFragments;
+    }
+
+    @Override
+    public void hideProgressDialog() {
+        try {
+            super.hideProgressDialog();
+        }catch (Exception e){
+            Timber.e(e);
+        }
     }
 }

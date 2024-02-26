@@ -21,6 +21,7 @@ import com.vijay.jsonwizard.utils.FormUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.smartregister.chw.cecap.dao.CecapDao;
 import org.smartregister.chw.core.activity.CoreAllClientsMemberProfileActivity;
 import org.smartregister.chw.core.activity.CoreFamilyProfileActivity;
 import org.smartregister.chw.core.contract.CoreAllClientsMemberContract;
@@ -126,6 +127,11 @@ public class AllClientsMemberProfileActivity extends CoreAllClientsMemberProfile
             String dob = Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.DOB, false);
             int age = Utils.getAgeFromDate(dob);
             menu.findItem(R.id.action_sbc_registration).setVisible(!SbcDao.isRegisteredForSbc(baseEntityId) && age >= 10);
+        }
+        if (HealthFacilityApplication.getApplicationFlavor().hasCecap()) {
+            String dob = Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.DOB, false);
+            int age = Utils.getAgeFromDate(dob);
+            menu.findItem(R.id.action_cancer_preventive_services_registration).setVisible(!CecapDao.isRegisteredForCecap(baseEntityId) && age >= 14);
         }
         return true;
     }
@@ -378,6 +384,21 @@ public class AllClientsMemberProfileActivity extends CoreAllClientsMemberProfile
     @Override
     protected void startSbcRegistration() {
         SbcRegisterActivity.startRegistration(AllClientsMemberProfileActivity.this, baseEntityId);
+    }
+
+    @Override
+    protected void startGbvRegistration() {
+        //Implement
+    }
+
+    @Override
+    protected void startCancerPreventiveServicesRegistration() {
+        CecapRegisterActivity.startRegistration(AllClientsMemberProfileActivity.this, baseEntityId);
+    }
+
+    @Override
+    protected void startAsrhRegistration() {
+        //Not Required
     }
 
     @Override
