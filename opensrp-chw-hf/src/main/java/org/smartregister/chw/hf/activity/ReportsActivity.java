@@ -48,10 +48,7 @@ public class ReportsActivity extends SecuredActivity implements View.OnClickList
     @Override
     protected void onCreation() {
         ChwIndicatorGeneratingJob.scheduleJobImmediately(ChwIndicatorGeneratingJob.TAG);
-<<<<<<< Updated upstream
-=======
 //        GenerateMonthlyTalliesJob.scheduleJobImmediately(GenerateMonthlyTalliesJob.TAG);
->>>>>>> Stashed changes
         setContentView(R.layout.activity_reports);
         setUpToolbar();
         setUpViews();

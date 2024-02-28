@@ -292,7 +292,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "prompt_for_referral",
         "type": "toaster_notes",
-        "text": "Refer for cryotherapy or thermocoagulation",
+        "text": "Refer for LEEP treatment",
         "toaster_type": "warning",
         "relevance": {
           "rules-engine": {

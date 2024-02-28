@@ -1,6 +1,7 @@
 package org.smartregister.chw.hf.activity;
 
 import static org.smartregister.chw.pmtct.util.DBConstants.KEY.FORM_SUBMISSION_ID;
+import static org.smartregister.client.utils.constants.JsonFormConstants.JSON_FORM_KEY.GLOBAL;
 
 import android.app.Activity;
 import android.content.Context;
@@ -16,10 +17,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.anc.dao.HomeVisitDao;
 import org.smartregister.chw.cecap.activity.BaseTestResultsViewActivity;
+import org.smartregister.chw.cecap.dao.CecapDao;
 import org.smartregister.chw.cecap.fragment.BaseTestResultsFragment;
 import org.smartregister.chw.cecap.util.Constants;
 import org.smartregister.chw.cecap.util.DBConstants;
 import org.smartregister.chw.cecap.util.NCUtils;
+import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.fragment.CecapTestResultsFragment;
 import org.smartregister.chw.hf.utils.PmtctVisitUtils;
@@ -66,6 +69,7 @@ public class CecapTestResultsViewActivity extends BaseTestResultsViewActivity im
         } else {
             try {
                 JSONObject form = new JSONObject(jsonString);
+                form.getJSONObject(GLOBAL).put("hiv_status",CecapDao.getMember(baseEntityId).getHivStatus());
                 startFormActivity(form);
             } catch (JSONException e) {
                 e.printStackTrace();

@@ -123,7 +123,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "prompt",
         "type": "toaster_notes",
-        "text": "The client should return after 10 years",
+        "text": "The client should return after 5 years",
         "toaster_type": "info",
         "relevance": {
           "rules-engine": {
@@ -138,7 +138,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "prompt",
         "type": "toaster_notes",
-        "text": "The client should return after 5 years",
+        "text": "The client should return after 3 years",
         "toaster_type": "info",
         "relevance": {
           "rules-engine": {

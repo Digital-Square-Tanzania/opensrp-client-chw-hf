@@ -90,7 +90,23 @@
         "type": "toaster_notes",
         "text": "The client should return after 5 years",
         "toaster_type": "info",
-        "calculation": {
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cecap_pap_findings_rules.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "prompt_for_referral",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "prompt_for_referral",
+        "type": "toaster_notes",
+        "text": "Refer for further management",
+        "toaster_type": "problem",
+        "relevance": {
           "rules-engine": {
             "ex-rules": {
               "rules-file": "cecap_pap_findings_rules.yml"

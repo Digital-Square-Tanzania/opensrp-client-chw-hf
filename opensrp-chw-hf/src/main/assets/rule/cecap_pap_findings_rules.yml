@@ -9,6 +9,13 @@ actions:
 name: step1_prompt
 description: prompt relevance
 priority: 1
-condition: "step1_hpv_dna_findings.equals('normal')"
+condition: "step1_pap_findings.equals('normal')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_prompt_for_referral
+description: prompt_for_referral relevance
+priority: 1
+condition: "step1_pap_findings.equals('abnormal')"
 actions:
   - "isRelevant = true"
