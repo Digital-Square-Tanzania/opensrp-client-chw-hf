@@ -278,6 +278,55 @@
             "ex": "equalTo(., \"yes\")"
           }
         }
+      },
+      {
+        "key": "does_the_client_require_a_followup_visit",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "does_the_client_require_a_followup_visit",
+        "type": "native_radio",
+        "label": "Does the client require a followup visit to get the results?",
+        "options": [
+          {
+            "key": "yes",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "yes",
+            "text": "Yes"
+          },
+          {
+            "key": "no",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "no",
+            "text": "No"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select whether the client requires a followup visit"
+        }
+      },
+      {
+        "key": "next_appointment_date",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "next_appointment_date",
+        "type": "date_picker",
+        "min_date": "today",
+        "max_date": "today+5y",
+        "expanded": false,
+        "hint": "Select appointment date",
+        "v_required": {
+          "value": "true",
+          "err": "Required"
+        },
+        "relevance": {
+          "step1:does_the_client_require_a_followup_visit": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
+        }
       }
     ]
   }

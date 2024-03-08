@@ -424,7 +424,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "comments_remarks",
         "type": "text",
-        "label": "Comment/remarks"
+        "label": "Remark on other types of cancers"
       }
     ]
   }

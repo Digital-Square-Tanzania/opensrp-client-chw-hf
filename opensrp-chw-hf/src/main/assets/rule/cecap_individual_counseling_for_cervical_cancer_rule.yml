@@ -9,7 +9,7 @@ actions:
 name: step1_virginity_status
 description: virginity_status
 priority: 1
-condition: "step1_client_pregnancy_status.equals('not_pregnant') && step1_heavy_bleeding.equals('no')"
+condition: "step1_client_pregnancy_status.equals('not_pregnant') && step1_heavy_bleeding.equals('no')  && global_parity == 0"
 actions:
   - "isRelevant = true"
 ---
