@@ -328,6 +328,16 @@ public class HfChwRepository extends CoreChwRepository {
         }
     }
 
+    private static void upgradeToVersion24(SQLiteDatabase db) {
+        try {
+            //Force resync of all events to the server fixing an issue in some events not being synched to the server
+            db.execSQL("UPDATE event SET syncStatus = 'Unsynced';");
+            db.execSQL("UPDATE client SET syncStatus = 'Unsynced';");
+        } catch (Exception e) {
+            Timber.e(e, "upgradeToVersion24");
+        }
+    }
+
     private static void upgradeToVersion10ForBaSouth(SQLiteDatabase db) {
         try {
             db.execSQL("ALTER TABLE ec_family_member ADD COLUMN reasons_for_registration TEXT NULL;");
@@ -457,6 +467,9 @@ public class HfChwRepository extends CoreChwRepository {
                     break;
                 case 23:
                     upgradeToVersion23(db);
+                    break;
+                case 24:
+                    upgradeToVersion24(db);
                     break;
                 default:
                     break;

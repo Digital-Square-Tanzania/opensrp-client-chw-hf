@@ -448,6 +448,8 @@ public class HeiProfileActivity extends BasePmtctProfileActivity {
 
         menu.findItem(R.id.action_edit_hei_number).setVisible(HeiDao.hasHeiNumber(baseEntityId));
 
+        menu.findItem(R.id.action_collect_dna_pcr_sample).setVisible(true);
+
         menu.findItem(R.id.action_remove_member).setVisible(true);
         return true;
     }
