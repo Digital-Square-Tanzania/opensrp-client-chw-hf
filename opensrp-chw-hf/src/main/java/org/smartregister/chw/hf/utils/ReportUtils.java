@@ -7,7 +7,6 @@ import static org.smartregister.chw.hf.utils.Constants.ReportConstants.PMTCTRepo
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.Build;
 import android.print.PrintAttributes;
 import android.print.PrintDocumentAdapter;
 import android.print.PrintManager;
@@ -16,13 +15,15 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ProgressBar;
 
-import androidx.annotation.RequiresApi;
 import androidx.webkit.WebViewAssetLoader;
 
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 import org.json.JSONException;
+import org.smartregister.chw.hf.domain.AsrhMonthlyReportObject;
+import org.smartregister.chw.hf.domain.CecapMonthlyReportObject;
 import org.smartregister.chw.hf.domain.FpMonthlyReportObject;
+import org.smartregister.chw.hf.domain.SbcReportObject;
 import org.smartregister.chw.hf.domain.anc_reports.AncMonthlyReportObject;
 import org.smartregister.chw.hf.domain.cbhs_reports.CbhsMonthlyReportObject;
 import org.smartregister.chw.hf.domain.cdp_reports.CdpIssuingAtFacilityReportObject;
@@ -144,7 +145,6 @@ public class ReportUtils {
         return reportPeriod;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public static void printTheWebPage(WebView webView, Context context) {
 
         // Creating  PrintManager instance
@@ -166,15 +166,14 @@ public class ReportUtils {
         final WebViewAssetLoader assetLoader = new WebViewAssetLoader.Builder()
                 .addPathHandler("/assets/", new WebViewAssetLoader.AssetsPathHandler(context))
                 .build();
-        mWebView.setWebViewClient(new LocalContentWebViewClient(assetLoader,mWebView,progressBar));
+        mWebView.setWebViewClient(new LocalContentWebViewClient(assetLoader, mWebView, progressBar));
         mWebView.addJavascriptInterface(new HfWebAppInterface(context, reportType), "Android");
 
-        if (reportType.equals(Constants.ReportConstants.ReportTypes.CONDOM_DISTRIBUTION_REPORT)){
+        if (reportType.equals(Constants.ReportConstants.ReportTypes.CONDOM_DISTRIBUTION_REPORT)) {
             mWebView.loadUrl("https://appassets.androidplatform.net/assets/reports/cdp_reports/" + reportPath + ".html");
-        } else if(reportType.equals(Constants.ReportConstants.ReportTypes.VMMC_REPORT)){
+        } else if (reportType.equals(Constants.ReportConstants.ReportTypes.VMMC_REPORT)) {
             mWebView.loadUrl("https://appassets.androidplatform.net/assets/reports/vmmc_reports/" + reportPath + ".html");
-        }
-        else {
+        } else {
             mWebView.loadUrl("https://appassets.androidplatform.net/assets/reports/" + reportPath + ".html");
         }
 
@@ -408,12 +407,50 @@ public class ReportUtils {
         }
     }
 
+    public static class SbcReport {
+        public static String computeReport(Date startDate) {
+            SbcReportObject sbcReportObject = new SbcReportObject(startDate);
+            try {
+                return sbcReportObject.getIndicatorDataAsGson(sbcReportObject.getIndicatorData());
+            } catch (JSONException e) {
+                Timber.e(e);
+            }
+            return "";
+        }
+    }
+
     public static class FpReport {
         public static String computeReport(Date now) {
             String report = "";
             FpMonthlyReportObject fpMonthlyReportObject = new FpMonthlyReportObject(now);
             try {
                 report = fpMonthlyReportObject.getIndicatorDataAsGson(fpMonthlyReportObject.getIndicatorData());
+            } catch (Exception e) {
+                Timber.e(e);
+            }
+            return report;
+        }
+    }
+
+    public static class CecapReport {
+        public static String computeReport(Date now) {
+            String report = "";
+            CecapMonthlyReportObject cecapMonthlyReportObject = new CecapMonthlyReportObject(now);
+            try {
+                report = cecapMonthlyReportObject.getIndicatorDataAsGson(cecapMonthlyReportObject.getIndicatorData());
+            } catch (Exception e) {
+                Timber.e(e);
+            }
+            return report;
+        }
+    }
+
+    public static class AsrhReport {
+        public static String computeReport(Date now) {
+            String report = "";
+            AsrhMonthlyReportObject asrhMonthlyReportObject = new AsrhMonthlyReportObject(now);
+            try {
+                report = asrhMonthlyReportObject.getIndicatorDataAsGson(asrhMonthlyReportObject.getIndicatorData());
             } catch (Exception e) {
                 Timber.e(e);
             }

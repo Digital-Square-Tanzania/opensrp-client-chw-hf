@@ -18,7 +18,7 @@ description: last_delivery_or_miscarriage_date
 priority: 1
 condition: "step1_client_pregnancy_status.equals('not_pregnant') &&
             step1_heavy_bleeding.equals('no') &&
-            step1_virginity_status.equals('no') && global_parity > 0
+            !step1_virginity_status.equals('no') && global_parity > 0
             "
 actions:
   - "isRelevant = true"

@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <style>
+*{
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+.show-on-print {
+  display: none;
+}
+body{
+    font-family: Helvetica;
+    -webkit-font-smoothing: antialiased;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+
+/* Table Styles */
+
+.table-wrapper{
+    margin: 10px;
+    margin-right: 10px;
+}
+
+.fl-table {
+    border-radius: 5px;
+    font-size: 10px;
+    font-weight: normal;
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 100%;
+    background-color: white;
+}
+
+.fl-table td, .fl-table th {
+    padding: 5px;
+}
+
+.table-th-color {
+    background-color: #CCCCCC;
+}
+
+.table-total-color {
+    background-color: #74b9ff;
+}
+
+.category-color {
+    background-color: #74b65f;
+}
+
+.table-category-color {
+    background-color: #f39c12;
+}
+
+
+ul {
+    width: 100%;
+}
+ul li {
+    width: 49%;
+    display: inline-block;
+}
+
+ul li > * {
+    width: 30%;
+    margin-bottom: 5px;
+}
+
+.no-data {
+  background: #ccc;
+}
+
+.bold-text {
+    font-weight: bold;
+}
+
+#reporting_facility {
+  font-weight: 700;
+}
+#report_period {
+  font-weight: 700;
+}
+
+@media print {
+  .show-on-print {
+    display: block;
+  }
+
+  .child-table {
+    width: 50%;
+  }
+}
+
+
+
+
+
+    </style>
+</head>
+
+<body onload="loadData(&#39;monthly&#39;, &#39;asrh_report&#39;)">
+<div class="show-on-print" style="font-size:12px;">
+    <h1> FAMILY PLANNING MONTHLY REPORT FORM</h1>
+    <h2>REPORT OF [MONTH/YEAR]: <span id="report_period"></span></h2>
+    <h2>CENTER: <span id="reporting_facility"></span></h2>
+</div>
+<div class="table-wrapper">
+    <table class="fl-table">
+        <thead>
+        <tr>
+            <th rowspan="2">S/N</th>
+            <th rowspan="2">INDICATOR</th>
+            <th rowspan="2">TOTAL (M+F)</th>
+            <th colspan="4">MALE</th>
+            <th colspan="4">FEMALE</th>
+        </tr>
+        <tr>
+            <th>TOTAL (MALE)</th>
+            <th>10 - 14</th>
+            <th>15 - 19</th>
+            <th>20 - 24</th>
+            <th>TOTAL (FEMALE)</th>
+            <th>10 - 14</th>
+            <th>15 - 19</th>
+            <th>20 - 24</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td>Number of clients received family planning services</td>
+            <td align="center" id="asrh-1-grand-total"></td>
+            <td align="center" id="asrh-1-male-total"></td>
+            <td align="center" id="asrh-1-male-10-14"></td>
+            <td align="center" id="asrh-1-male-15-19"></td>
+            <td align="center" id="asrh-1-male-20-24"></td>
+            <td align="center" id="asrh-1-female-total"></td>
+            <td align="center" id="asrh-1-female-10-14"></td>
+            <td align="center" id="asrh-1-female-15-19"></td>
+            <td align="center" id="asrh-1-female-20-24"></td>
+        </tr>
+        <tr class="table-th-color">
+            <td>2</td>
+            <td>Number of clients received family planning services by methods</td>
+            <td colspan="10"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>a) Pills</td>
+            <td align="center" id="asrh-2a-grand-total"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" id="asrh-2a-female-total"></td>
+            <td align="center" id="asrh-2a-female-10-14"></td>
+            <td align="center" id="asrh-2a-female-15-19"></td>
+            <td align="center" id="asrh-2a-female-20-24"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>b) Injectable</td>
+            <td align="center" id="asrh-2b-grand-total"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" id="asrh-2b-female-total"></td>
+            <td align="center" id="asrh-2b-female-10-14"></td>
+            <td align="center" id="asrh-2b-female-15-19"></td>
+            <td align="center" id="asrh-2b-female-20-24"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>c) Condom</td>
+            <td align="center" id="asrh-2c-grand-total"></td>
+            <td align="center" id="asrh-2c-male-total"></td>
+            <td align="center" id="asrh-2c-male-10-14"></td>
+            <td align="center" id="asrh-2c-male-15-19"></td>
+            <td align="center" id="asrh-2c-male-20-24"></td>
+            <td align="center" id="asrh-2c-female-total"></td>
+            <td align="center" id="asrh-2c-female-10-14"></td>
+            <td align="center" id="asrh-2c-female-15-19"></td>
+            <td align="center" id="asrh-2c-female-20-24"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>d) Implanon</td>
+            <td align="center" id="asrh-2d-grand-total"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" id="asrh-2d-female-total"></td>
+            <td align="center" id="asrh-2d-female-10-14"></td>
+            <td align="center" id="asrh-2d-female-15-19"></td>
+            <td align="center" id="asrh-2d-female-20-24"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>e) Jadelle</td>
+            <td align="center" id="asrh-2e-grand-total"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" id="asrh-2e-female-total"></td>
+            <td align="center" id="asrh-2e-female-10-14"></td>
+            <td align="center" id="asrh-2e-female-15-19"></td>
+            <td align="center" id="asrh-2e-female-20-24"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>f) IUCD</td>
+            <
+            <td align="center" id="asrh-2f-grand-total"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" id="asrh-2f-female-total"></td>
+            <td align="center" id="asrh-2f-female-10-14"></td>
+            <td align="center" id="asrh-2f-female-15-19"></td>
+            <td align="center" id="asrh-2f-female-20-24"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>g) NSV</td>
+            <td align="center" id="asrh-2g-grand-total"></td>
+            <td align="center" id="asrh-2g-male-total"></td>
+            <td align="center" id="asrh-2g-male-10-14"></td>
+            <td align="center" id="asrh-2g-male-15-19"></td>
+            <td align="center" id="asrh-2g-male-20-24"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>h) BTL</td>
+            <td align="center" id="asrh-2h-grand-total"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" id="asrh-2h-female-total"></td>
+            <td align="center" id="asrh-2h-female-10-14"></td>
+            <td align="center" id="asrh-2h-female-15-19"></td>
+            <td align="center" id="asrh-2h-female-20-24"></td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Number of sexual violence survivors who reported within 72 hours</td>
+            <td align="center" id="asrh-3-grand-total"></td>
+            <td align="center" id="asrh-3-male-total"></td>
+            <td align="center" id="asrh-3-male-10-14"></td>
+            <td align="center" id="asrh-3-male-15-19"></td>
+            <td align="center" id="asrh-3-male-20-24"></td>
+            <td align="center" id="asrh-3-female-total"></td>
+            <td align="center" id="asrh-3-female-10-14"></td>
+            <td align="center" id="asrh-3-female-15-19"></td>
+            <td align="center" id="asrh-3-female-20-24"></td>
+        </tr>
+        <tr class="table-th-color">
+            <td>4</td>
+            <td colspan="11">Number of clients who received post GBV Care</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>a) HIV testing</td>
+            <td align="center" id="asrh-4a-grand-total"></td>
+            <td align="center" id="asrh-4a-male-total"></td>
+            <td align="center" id="asrh-4a-male-10-14"></td>
+            <td align="center" id="asrh-4a-male-15-19"></td>
+            <td align="center" id="asrh-4a-male-20-24"></td>
+            <td align="center" id="asrh-4a-female-total"></td>
+            <td align="center" id="asrh-4a-female-10-14"></td>
+            <td align="center" id="asrh-4a-female-15-19"></td>
+            <td align="center" id="asrh-4a-female-20-24"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>b) STI treatment</td>
+            <td align="center" id="asrh-4b-grand-total"></td>
+            <td align="center" id="asrh-4b-male-total"></td>
+            <td align="center" id="asrh-4b-male-10-14"></td>
+            <td align="center" id="asrh-4b-male-15-19"></td>
+            <td align="center" id="asrh-4b-male-20-24"></td>
+            <td align="center" id="asrh-4b-female-total"></td>
+            <td align="center" id="asrh-4b-female-10-14"></td>
+            <td align="center" id="asrh-4b-female-15-19"></td>
+            <td align="center" id="asrh-4b-female-20-24"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>c) PreP</td>
+            <td align="center" id="asrh-4c-grand-total"></td>
+            <td align="center" id="asrh-4c-male-total"></td>
+            <td align="center" id="asrh-4c-male-10-14"></td>
+            <td align="center" id="asrh-4c-male-15-19"></td>
+            <td align="center" id="asrh-4c-male-20-24"></td>
+            <td align="center" id="asrh-4c-female-total"></td>
+            <td align="center" id="asrh-4c-female-10-14"></td>
+            <td align="center" id="asrh-4c-female-15-19"></td>
+            <td align="center" id="asrh-4c-female-20-24"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>d) Emergency contraceptive</td>
+            <td align="center" id="asrh-4d-grand-total"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" id="asrh-4d-female-total"></td>
+            <td align="center" id="asrh-4d-female-10-14"></td>
+            <td align="center" id="asrh-4d-female-15-19"></td>
+            <td align="center" id="asrh-4d-female-20-24"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>e) Legal aid</td>
+            <td align="center" id="asrh-4e-grand-total"></td>
+            <td align="center" id="asrh-4e-male-total"></td>
+            <td align="center" id="asrh-4e-male-10-14"></td>
+            <td align="center" id="asrh-4e-male-15-19"></td>
+            <td align="center" id="asrh-4e-male-20-24"></td>
+            <td align="center" id="asrh-4e-female-total"></td>
+            <td align="center" id="asrh-4e-female-10-14"></td>
+            <td align="center" id="asrh-4e-female-15-19"></td>
+            <td align="center" id="asrh-4e-female-20-24"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>f) Psychosocial support</td>
+            <td align="center" id="asrh-4f-grand-total"></td>
+            <td align="center" id="asrh-4f-male-total"></td>
+            <td align="center" id="asrh-4f-male-10-14"></td>
+            <td align="center" id="asrh-4f-male-15-19"></td>
+            <td align="center" id="asrh-4f-male-20-24"></td>
+            <td align="center" id="asrh-4f-female-total"></td>
+            <td align="center" id="asrh-4f-female-10-14"></td>
+            <td align="center" id="asrh-4f-female-15-19"></td>
+            <td align="center" id="asrh-4f-female-20-24"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>g) Forensic investigation</td>
+            <td align="center" id="asrh-4g-grand-total"></td>
+            <td align="center" id="asrh-4g-male-total"></td>
+            <td align="center" id="asrh-4g-male-10-14"></td>
+            <td align="center" id="asrh-4g-male-15-19"></td>
+            <td align="center" id="asrh-4g-male-20-24"></td>
+            <td align="center" id="asrh-4g-female-total"></td>
+            <td align="center" id="asrh-4g-female-10-14"></td>
+            <td align="center" id="asrh-4g-female-15-19"></td>
+            <td align="center" id="asrh-4g-female-20-24"></td>
+        </tr>
+        <tr class="table-th-color">
+            <td>5</td>
+            <td colspan="11">Number of clients received postpartum family planning services</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>a) PPFP_within 48 hours</td>
+            <td align="center" id="asrh-5a-grand-total"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" id="asrh-5a-female-total"></td>
+            <td align="center" id="asrh-5a-female-10-14"></td>
+            <td align="center" id="asrh-5a-female-15-19"></td>
+            <td align="center" id="asrh-5a-female-20-24"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>b) PPFP_42 days and above</td>
+            <td align="center" id="asrh-5b-grand-total"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" id="asrh-5b-female-total"></td>
+            <td align="center" id="asrh-5b-female-10-14"></td>
+            <td align="center" id="asrh-5b-female-15-19"></td>
+            <td align="center" id="asrh-5b-female-20-24"></td>
+        </tr>
+        <tr class="table-th-color">
+            <td>6</td>
+            <td colspan="11">Number of pregnant AGYW attending first ANC visit.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>a) &lt;12 weeks</td>
+            <td align="center" id="asrh-6a-grand-total"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" id="asrh-6a-female-total"></td>
+            <td align="center" id="asrh-6a-female-10-14"></td>
+            <td align="center" id="asrh-6a-female-15-19"></td>
+            <td align="center" id="asrh-6a-female-20-24"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>b) &gt;12 weeks</td>
+            <td align="center" id="asrh-6b-grand-total"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" id="asrh-6b-female-total"></td>
+            <td align="center" id="asrh-6b-female-10-14"></td>
+            <td align="center" id="asrh-6b-female-15-19"></td>
+            <td align="center" id="asrh-6b-female-20-24"></td>
+        </tr>
+        <tr class="table-th-color">
+            <td>7</td>
+            <td colspan="11">Number of AGYW deliveries</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>a) AGYW who delivered at the facility</td>
+            <td align="center" id="asrh-7a-grand-total"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" id="asrh-7a-female-total"></td>
+            <td align="center" id="asrh-7a-female-10-14"></td>
+            <td align="center" id="asrh-7a-female-15-19"></td>
+            <td align="center" id="asrh-7a-female-20-24"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>b) AGYW who delivered at home</td>
+            <td align="center" id="asrh-7b-grand-total"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" id="asrh-7b-female-total"></td>
+            <td align="center" id="asrh-7b-female-10-14"></td>
+            <td align="center" id="asrh-7b-female-15-19"></td>
+            <td align="center" id="asrh-7b-female-20-24"></td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>Number of girls immunized by HPV vaccine by 14 years of age</td>
+            <td align="center" id="asrh-8-grand-total"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" id="asrh-8-female-total"></td>
+            <td align="center" id="asrh-8-female-10-14"></td>
+            <td align="center" id="asrh-8-female-15-19"></td>
+            <td align="center" id="asrh-8-female-20-24"></td>
+        </tr>
+        <tr class="table-th-color">
+            <td>9</td>
+            <td colspan="11">Number of clients girls tested for HIV</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>a) Tested negative</td>
+
+            <td align="center" id="asrh-9a-grand-total"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" id="asrh-9a-female-total"></td>
+            <td align="center" id="asrh-9a-female-10-14"></td>
+            <td align="center" id="asrh-9a-female-15-19"></td>
+            <td align="center" id="asrh-9a-female-20-24"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>b) Tested positive</td>
+
+
+            <td align="center" id="asrh-9b-grand-total"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" id="asrh-9b-female-total"></td>
+            <td align="center" id="asrh-9b-female-10-14"></td>
+            <td align="center" id="asrh-9b-female-15-19"></td>
+            <td align="center" id="asrh-9b-female-20-24"></td>
+        </tr>
+        <tr>
+            <td>10</td>
+            <td>Number of clients who tested HIV positive and linked into HIV care</td>
+            <td align="center" id="asrh-10-grand-total"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" class="table-th-color"></td>
+            <td align="center" id="asrh-10-female-total"></td>
+            <td align="center" id="asrh-10-female-10-14"></td>
+            <td align="center" id="asrh-10-female-15-19"></td>
+            <td align="center" id="asrh-10-female-20-24"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    function loadData(reportKey, reportType) {
+  const data = JSON.parse(Android.getData(reportKey));
+  const keys = Object.keys(data.nameValuePairs);
+  const reportPeriod = document.getElementById("report_period");
+  const reportingFacility = document.getElementById("reporting_facility");
+  keys.forEach((key) => {
+    let element;
+    if(reportType!== null && reportType === "sbc"){
+      element = document.getElementById(key.replace("sbc-",""));
+    }else{
+      element = document.getElementById(key);
+    }
+    if (element !== null && typeof element !== "undefined") {
+      element.innerHTML = data.nameValuePairs[key];
+    }
+  });
+  reportPeriod.innerHTML = Android.getDataPeriod();
+  reportingFacility.innerHTML = Android.getReportingFacility();
+}
+
+</script>
+</body>
+</html>

@@ -594,6 +594,22 @@
         <activity
             android:name=".activity.CecapMedicalHistoryActivity"
             android:theme="@style/HFTheme.NoActionBar" />
+
+        <activity
+            android:name=".activity.CecapReportsActivity"
+            android:theme="@style/HFTheme.NoActionBar" />
+
+        <activity
+            android:name=".activity.CecapReportsViewActivity"
+            android:theme="@style/HFTheme.NoActionBar" />
+
+        <activity
+            android:name=".activity.AsrhReportsActivity"
+            android:theme="@style/HFTheme.NoActionBar" />
+
+        <activity
+            android:name=".activity.AsrhReportsViewActivity"
+            android:theme="@style/HFTheme.NoActionBar" />
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="3f94f9c3caeff331b3a2bd8c2182b663ad6a955a" />

@@ -131,12 +131,27 @@
           "err": "Required"
         }
       },
-
       {
-        "key": "prompt_for_applying_acetic_acid",
+        "key": "prompt_for_via",
         "type": "toaster_notes",
-        "text": "Apply acetic acid",
-        "openmrs_entity_id": "prompt_for_applying_acetic_acid",
+        "text": "Perform VIA",
+        "openmrs_entity_id": "prompt_for_via",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "info",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cecap_screening_method_rule.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "prompt_for_pap",
+        "type": "toaster_notes",
+        "text": "Perform Pap Smear",
+        "openmrs_entity_id": "prompt_for_pap",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "info",
@@ -161,12 +176,6 @@
             "text": "VIA",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "via"
-          },
-          {
-            "key": "pap",
-            "text": "Pap",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "pap"
           },
           {
             "key": "none",

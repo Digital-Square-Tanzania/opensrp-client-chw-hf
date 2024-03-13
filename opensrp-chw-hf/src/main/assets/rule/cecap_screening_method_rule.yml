@@ -13,10 +13,17 @@ condition: "step1_can_the_facility_perform_hpv_dna_test.equals('no')"
 actions:
   - "isRelevant = true"
 ---
-name: step1_prompt_for_applying_acetic_acid
-description: prompt_for_applying_acetic_acid
+name: step1_prompt_for_via
+description: prompt_for_via
 priority: 1
 condition: "step1_squamo_columnar_junction.equals('yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_prompt_for_pap
+description: prompt_for_pap
+priority: 1
+condition: "step1_squamo_columnar_junction.equals('no')"
 actions:
   - "isRelevant = true"
 ---

@@ -168,8 +168,7 @@ public class CecapMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
                 int x = 0;
                 for (LinkedHashMap<String, String> vals : community_visits) {
                     View view = inflater.inflate(R.layout.medical_history_visit, null);
-                    view.findViewById(R.id.title).setVisibility(View.GONE);
-                    TextView tvTypeOfService = view.findViewById(R.id.type_of_service);
+                    TextView tvTypeOfService = view.findViewById(R.id.title);
                     LinearLayout visitDetailsLayout = view.findViewById(R.id.visit_details_layout);
                     TextView tvEdit = view.findViewById(R.id.textview_edit);
 

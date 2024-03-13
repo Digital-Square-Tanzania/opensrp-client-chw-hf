@@ -34,6 +34,13 @@ condition: "step1_treatment_option.contains('postponed')"
 actions:
   - "isRelevant = true"
 ---
+name: step1_referral_reasons
+description: referral_reasons
+priority: 1
+condition: "step1_treatment_option.contains('referred')"
+actions:
+  - "isRelevant = true"
+---
 name: step1_leep_performed
 description: leep_performed
 priority: 1
@@ -52,5 +59,12 @@ name: step1_prompt_for_referral
 description: prompt_for_referral
 priority: 1
 condition:  "step1_leep_treatment == 'no' || step1_leep_performed == 'no'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_prompt_for_cryotherapy
+description: prompt_for_cryotherapy
+priority: 1
+condition:  "step1_treatment_option.contains('referred')"
 actions:
   - "isRelevant = true"

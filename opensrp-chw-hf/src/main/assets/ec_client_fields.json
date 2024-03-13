@@ -10399,6 +10399,14 @@
           }
         },
         {
+          "column_name": "clinical_breast_examination",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "clinical_breast_examination"
+          }
+        },
+        {
           "column_name": "via_findings",
           "type": "Event",
           "json_mapping": {
@@ -10542,6 +10550,22 @@
           "json_mapping": {
             "field": "obs.fieldCode",
             "concept": "pap_findings"
+          }
+        },
+        {
+          "column_name": "treatment_option",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "treatment_option"
+          }
+        },
+        {
+          "column_name": "leep_performed",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "leep_performed"
           }
         },
         {

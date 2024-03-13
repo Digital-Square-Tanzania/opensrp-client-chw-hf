@@ -219,6 +219,98 @@
         }
       },
       {
+        "key": "other_postpone_reason",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "other_postpone_reason",
+        "type": "edit_text",
+        "hint": "Specify other reasons",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify the other reasons"
+        },
+        "relevance": {
+          "step1:postpone_reason": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "other"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "referral_reasons",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "referral_reasons",
+        "type": "check_box",
+        "combine_checkbox_option_values": "true",
+        "label": "Reasons for referral",
+        "options": [
+          {
+            "key": "no_gas_available",
+            "text": "No gas available",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "no_gas_available"
+          },
+          {
+            "key": "no_treatment_equipment",
+            "text": "No treatment equipment",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "no_treatment_equipment"
+          },
+          {
+            "key": "machine_not_functional",
+            "text": "Machine not functional",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "machine_not_functional"
+          },
+          {
+            "key": "other",
+            "text": "Other",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "other"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cecap_treatment_rule.yml"
+            }
+          }
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Required"
+        }
+      },
+      {
+        "key": "other_referral_reasons",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "other_referral_reasons",
+        "type": "edit_text",
+        "hint": "Specify other reasons",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify the other reasons"
+        },
+        "relevance": {
+          "step1:referral_reasons": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "other"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
         "key": "leep_treatment",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -293,6 +385,22 @@
         "openmrs_entity_id": "prompt_for_referral",
         "type": "toaster_notes",
         "text": "Refer for LEEP treatment",
+        "toaster_type": "warning",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cecap_treatment_rule.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "prompt_for_cryotherapy",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "prompt_for_cryotherapy",
+        "type": "toaster_notes",
+        "text": "Refer for Cryotherapy or thermocoagulation treatment",
         "toaster_type": "warning",
         "relevance": {
           "rules-engine": {
