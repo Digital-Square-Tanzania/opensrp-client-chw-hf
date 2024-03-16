@@ -305,7 +305,8 @@ public class HfChwRepository extends CoreChwRepository {
 
     private static void upgradeToVersion22(SQLiteDatabase db) {
         try {
-            db.execSQL("ALTER TABLE ec_family_member ADD COLUMN IF NOT EXISTS data_source TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_ltfu_feedback ADD COLUMN IF NOT EXISTS last_appointment_date TEXT NULL;");
+            DatabaseMigrationUtils.createAddedECTables(db, new HashSet<>(Arrays.asList("ec_anc_partner_community_followup", "ec_sbc_register", "ec_sbc_visit","ec_sbc_mobilization_session","ec_kvp_prep_register")), HealthFacilityApplication.createCommonFtsObject());
         } catch (Exception e) {
             Timber.e(e, "upgradeToVersion22");
         }
@@ -330,7 +331,28 @@ public class HfChwRepository extends CoreChwRepository {
 
     private static void upgradeToVersion24(SQLiteDatabase db) {
         try {
+            DatabaseMigrationUtils.createAddedECTables(db,
+                    new HashSet<>(Arrays.asList("ec_fp_counseling")),
+                    HealthFacilityApplication.createCommonFtsObject());
+        } catch (Exception e) {
+            Timber.e(e, "upgradeToVersion24");
+        }
+
+        try {
             db.execSQL("UPDATE event SET syncStatus = 'Unsynced';");
+            db.execSQL("UPDATE client SET syncStatus = 'Unsynced';");
+        } catch (Exception e) {
+            Timber.e(e, "upgradeToVersion24");
+        }
+
+        try {
+            db.execSQL("ALTER TABLE ec_ltfu_feedback ADD COLUMN IF NOT EXISTS last_appointment_date TEXT NULL;");
+        } catch (Exception e) {
+            Timber.e(e, "upgradeToVersion24");
+        }
+
+        try {
+            DatabaseMigrationUtils.createAddedECTables(db, new HashSet<>(Arrays.asList("ec_anc_partner_community_followup", "ec_sbc_register", "ec_sbc_visit","ec_sbc_mobilization_session","ec_kvp_prep_register")), HealthFacilityApplication.createCommonFtsObject());
         } catch (Exception e) {
             Timber.e(e, "upgradeToVersion24");
         }
