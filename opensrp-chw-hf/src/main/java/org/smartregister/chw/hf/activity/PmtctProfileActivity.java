@@ -178,6 +178,9 @@ public class PmtctProfileActivity extends CorePmtctProfileActivity {
             } else if (itemId == org.smartregister.chw.core.R.id.action_hivst_registration) {
                 startHivstRegistration();
                 return true;
+            } else if (itemId == org.smartregister.chw.core.R.id.action_collect_hvl_sample) {
+                startLabSampleCollection();
+                return true;
             }
         } catch (JSONException e) {
             Timber.e(e);
@@ -189,6 +192,10 @@ public class PmtctProfileActivity extends CorePmtctProfileActivity {
         CommonPersonObjectClient commonPersonObjectClient = getClientDetailsByBaseEntityID(baseEntityId);
         String gender = org.smartregister.chw.core.utils.Utils.getValue(commonPersonObjectClient.getColumnmaps(), org.smartregister.family.util.DBConstants.KEY.GENDER, false);
         HivstRegisterActivity.startHivstRegistrationActivity(this, baseEntityId, gender);
+    }
+
+    private void startLabSampleCollection() {
+        LabRegisterActivity.startLabRegisterActivity(this,memberObject.getBaseEntityId(),org.smartregister.chw.lab.util.Constants.FORMS.LAB_HVL_SAMPLE_COLLECTION);
     }
 
 

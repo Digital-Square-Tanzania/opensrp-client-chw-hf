@@ -134,6 +134,11 @@
         "openmrs_entity_id": "clinician_phone_number",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
+        "v_max_length": {
+          "value": "10",
+          "is_fixed_size": "true",
+          "err": "Please enter a valid phone number"
+        },
         "v_numeric": {
           "value": "true",
           "err": "Number must be a total of 10 digits and must start with 06 au 07."
@@ -199,6 +204,14 @@
         "openmrs_entity_id": "test_at_age",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": ""
+      },
+      {
+        "key": "sample_type",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "sample_type",
+        "openmrs_entity_parent": "",
+        "type": "hidden",
+        "value": "DNA PCR"
       }
     ]
   }

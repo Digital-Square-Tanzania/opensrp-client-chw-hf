@@ -1111,6 +1111,20 @@
             "creates_case": [
               "ec_sbc_visit"
             ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "Lab HVL Sample Collection",
+            "creates_case": [
+              "ec_lab_requests"
+            ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "HEI DNA PCR Sample Collection",
+            "creates_case": [
+              "ec_lab_requests"
+            ]
           }
         ]
       }

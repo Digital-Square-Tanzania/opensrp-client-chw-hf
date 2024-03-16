@@ -27,6 +27,11 @@ public class DefaultHFApplicationFlv implements HealthFacilityApplication.Flavor
     }
 
     @Override
+    public boolean hasLab() {
+        return true;
+    }
+
+    @Override
     public boolean hasFp() {
         return true;
     }

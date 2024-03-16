@@ -135,6 +135,11 @@
         "openmrs_entity_id": "clinician_phone_number",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
+        "v_max_length": {
+          "value": "10",
+          "is_fixed_size": "true",
+          "err": "Please enter a valid phone number"
+        },
         "v_numeric": {
           "value": "true",
           "err": "Number must be a total of 10 digits and must start with 06 au 07."
@@ -149,10 +154,10 @@
         }
       },
       {
-        "key": "hvl_collection_date",
+        "key": "sample_collection_date",
         "type": "date_picker",
         "hint": "HVL Sample Collection Date",
-        "openmrs_entity_id": "hvl_collection_date",
+        "openmrs_entity_id": "sample_collection_date",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "min_date": "today-5y",
@@ -175,16 +180,24 @@
         }
       },
       {
-        "key": "hvl_sample_id",
+        "key": "sample_id",
         "type": "edit_text",
         "hint": "HVL Sample ID",
-        "openmrs_entity_id": "hvl_sample_id",
+        "openmrs_entity_id": "sample_id",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "v_required": {
           "value": true,
           "err": "Please enter the sample ID"
         }
+      },
+      {
+        "key": "sample_type",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "sample_type",
+        "openmrs_entity_parent": "",
+        "type": "hidden",
+        "value": "HVL"
       }
     ]
   }

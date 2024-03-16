@@ -1806,4 +1806,8 @@
     <string name="sbc_income_generating_activity">Income Generating Activity (IGA)</string>
 
 
+    <!--    LAB Module-->
+    <string name="lab">LAB</string>
+
+
 </resources>
