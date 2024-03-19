@@ -1,0 +1,1105 @@
+indicators:
+  - key: "cecap-other-1-hiv-positive-15-19"
+    grouping: "CECAP"
+    description: "Number of women screened for cervical cancer accampained by partner"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     WHERE 15 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 20
+                     AND ecr.partner_accompaniment = 'yes'
+                     AND ecr.hiv_status = 'positive'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+    
+  - key: "cecap-other-1-hiv-positive-20-24"
+    grouping: "CECAP"
+    description: "Number of women screened for cervical cancer accampained by partner"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     WHERE 20 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 25
+                     AND ecr.partner_accompaniment = 'yes'
+                     AND ecr.hiv_status = 'positive'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+    
+  - key: "cecap-other-1-hiv-positive-25-29"
+    grouping: "CECAP"
+    description: "Number of women screened for cervical cancer accampained by partner"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     WHERE 25 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 30
+                     AND ecr.partner_accompaniment = 'yes'
+                     AND ecr.hiv_status = 'positive'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+    
+  - key: "cecap-other-1-hiv-positive-30-34"
+    grouping: "CECAP"
+    description: "Number of women screened for cervical cancer accampained by partner"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     WHERE 30 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 35
+                     AND ecr.partner_accompaniment = 'yes'
+                     AND ecr.hiv_status = 'positive'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+
+    
+  - key: "cecap-other-1-hiv-positive-35-39"
+    grouping: "CECAP"
+    description: "Number of women screened for cervical cancer accampained by partner"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     WHERE 35 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 40
+                     AND ecr.partner_accompaniment = 'yes'
+                     AND ecr.hiv_status = 'positive'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+
+    
+  - key: "cecap-other-1-hiv-positive-40-44"
+    grouping: "CECAP"
+    description: "Number of women screened for cervical cancer accampained by partner"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     WHERE 40 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 45
+                     AND ecr.partner_accompaniment = 'yes'
+                     AND ecr.hiv_status = 'positive'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+
+    
+  - key: "cecap-other-1-hiv-positive-45-49"
+    grouping: "CECAP"
+    description: "Number of women screened for cervical cancer accampained by partner"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     WHERE 45 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 50
+                     AND ecr.partner_accompaniment = 'yes'
+                     AND ecr.hiv_status = 'positive'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+
+    
+  - key: "cecap-other-1-hiv-positive-50+"
+    grouping: "CECAP"
+    description: "Number of women screened for cervical cancer accampained by partner"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     WHERE 50 <= (date('Now') - date(efm.dob))
+                     AND ecr.partner_accompaniment = 'yes'
+                     AND ecr.hiv_status = 'positive'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+    
+    
+#    cecap-other-1-hiv-negative
+  
+  - key: "cecap-other-1-hiv-negative-15-19"
+    grouping: "CECAP"
+    description: "Number of women screened for cervical cancer accampained by partner"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     WHERE 15 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 20
+                     AND ecr.partner_accompaniment = 'yes'
+                     AND ecr.hiv_status = 'negative'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+  
+  - key: "cecap-other-1-hiv-negative-20-24"
+    grouping: "CECAP"
+    description: "Number of women screened for cervical cancer accampained by partner"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     WHERE 20 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 25
+                     AND ecr.partner_accompaniment = 'yes'
+                     AND ecr.hiv_status = 'negative'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+  
+  - key: "cecap-other-1-hiv-negative-25-29"
+    grouping: "CECAP"
+    description: "Number of women screened for cervical cancer accampained by partner"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     WHERE 25 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 30
+                     AND ecr.partner_accompaniment = 'yes'
+                     AND ecr.hiv_status = 'negative'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+  
+  - key: "cecap-other-1-hiv-negative-30-34"
+    grouping: "CECAP"
+    description: "Number of women screened for cervical cancer accampained by partner"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     WHERE 30 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 35
+                     AND ecr.partner_accompaniment = 'yes'
+                     AND ecr.hiv_status = 'negative'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+  
+  
+  - key: "cecap-other-1-hiv-negative-35-39"
+    grouping: "CECAP"
+    description: "Number of women screened for cervical cancer accampained by partner"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     WHERE 35 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 40
+                     AND ecr.partner_accompaniment = 'yes'
+                     AND ecr.hiv_status = 'negative'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+  
+  
+  - key: "cecap-other-1-hiv-negative-40-44"
+    grouping: "CECAP"
+    description: "Number of women screened for cervical cancer accampained by partner"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     WHERE 40 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 45
+                     AND ecr.partner_accompaniment = 'yes'
+                     AND ecr.hiv_status = 'negative'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+  
+  
+  - key: "cecap-other-1-hiv-negative-45-49"
+    grouping: "CECAP"
+    description: "Number of women screened for cervical cancer accampained by partner"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     WHERE 45 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 50
+                     AND ecr.partner_accompaniment = 'yes'
+                     AND ecr.hiv_status = 'negative'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+  
+  
+  - key: "cecap-other-1-hiv-negative-50+"
+    grouping: "CECAP"
+    description: "Number of women screened for cervical cancer accampained by partner"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     WHERE 50 <= (date('Now') - date(efm.dob))
+                     AND ecr.partner_accompaniment = 'yes'
+                     AND ecr.hiv_status = 'negative'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+    
+    
+#    cecap-other-1-hiv-unknown
+  
+  - key: "cecap-other-1-hiv-unknown-15-19"
+    grouping: "CECAP"
+    description: "Number of women screened for cervical cancer accampained by partner"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     WHERE 15 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 20
+                     AND ecr.partner_accompaniment = 'yes'
+                     AND ecr.hiv_status = 'unknown'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+  
+  - key: "cecap-other-1-hiv-unknown-20-24"
+    grouping: "CECAP"
+    description: "Number of women screened for cervical cancer accampained by partner"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     WHERE 20 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 25
+                     AND ecr.partner_accompaniment = 'yes'
+                     AND ecr.hiv_status = 'unknown'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+  
+  - key: "cecap-other-1-hiv-unknown-25-29"
+    grouping: "CECAP"
+    description: "Number of women screened for cervical cancer accampained by partner"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     WHERE 25 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 30
+                     AND ecr.partner_accompaniment = 'yes'
+                     AND ecr.hiv_status = 'unknown'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+  
+  - key: "cecap-other-1-hiv-unknown-30-34"
+    grouping: "CECAP"
+    description: "Number of women screened for cervical cancer accampained by partner"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     WHERE 30 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 35
+                     AND ecr.partner_accompaniment = 'yes'
+                     AND ecr.hiv_status = 'unknown'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+  
+  
+  - key: "cecap-other-1-hiv-unknown-35-39"
+    grouping: "CECAP"
+    description: "Number of women screened for cervical cancer accampained by partner"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     WHERE 35 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 40
+                     AND ecr.partner_accompaniment = 'yes'
+                     AND ecr.hiv_status = 'unknown'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+  
+  
+  - key: "cecap-other-1-hiv-unknown-40-44"
+    grouping: "CECAP"
+    description: "Number of women screened for cervical cancer accampained by partner"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     WHERE 40 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 45
+                     AND ecr.partner_accompaniment = 'yes'
+                     AND ecr.hiv_status = 'unknown'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+  
+  
+  - key: "cecap-other-1-hiv-unknown-45-49"
+    grouping: "CECAP"
+    description: "Number of women screened for cervical cancer accampained by partner"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     WHERE 45 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 50
+                     AND ecr.partner_accompaniment = 'yes'
+                     AND ecr.hiv_status = 'unknown'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+  
+  
+  - key: "cecap-other-1-hiv-unknown-50+"
+    grouping: "CECAP"
+    description: "Number of women screened for cervical cancer accampained by partner"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     WHERE 50 <= (date('Now') - date(efm.dob))
+                     AND ecr.partner_accompaniment = 'yes'
+                     AND ecr.hiv_status = 'unknown'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+
+ 
+  - key: "cecap-other-2-hiv-positive-15-19"
+    grouping: "CECAP"
+    description: "Number of women screened for the first time using Pap Smear"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     WHERE 15 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 20
+                     AND pap_smear_sample_id is NOT NULL
+                     AND ecr.hiv_status = 'positive'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-other-2-hiv-positive-20-24"
+    grouping: "CECAP"
+    description: "Number of women screened for the first time using Pap Smear"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     WHERE 20 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 25
+                     AND pap_smear_sample_id is NOT NULL
+                     AND ecr.hiv_status = 'positive'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-other-2-hiv-positive-25-29"
+    grouping: "CECAP"
+    description: "Number of women screened for the first time using Pap Smear"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     WHERE 25 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 30
+                     AND pap_smear_sample_id is NOT NULL
+                     AND ecr.hiv_status = 'positive'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-other-2-hiv-positive-30-34"
+    grouping: "CECAP"
+    description: "Number of women screened for the first time using Pap Smear"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     WHERE 30 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 35
+                     AND pap_smear_sample_id is NOT NULL
+                     AND ecr.hiv_status = 'positive'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-other-2-hiv-positive-35-39"
+    grouping: "CECAP"
+    description: "Number of women screened for the first time using Pap Smear"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     WHERE 35 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 40
+                     AND pap_smear_sample_id is NOT NULL
+                     AND ecr.hiv_status = 'positive'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-other-2-hiv-positive-40-44"
+    grouping: "CECAP"
+    description: "Number of women screened for the first time using Pap Smear"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     WHERE 40 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 45
+                     AND pap_smear_sample_id is NOT NULL
+                     AND ecr.hiv_status = 'positive'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-other-2-hiv-positive-45-49"
+    grouping: "CECAP"
+    description: "Number of women screened for the first time using Pap Smear"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     WHERE 45 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 50
+                     AND pap_smear_sample_id is NOT NULL
+                     AND ecr.hiv_status = 'positive'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-other-2-hiv-positive-50+"
+    grouping: "CECAP"
+    description: "Number of women screened for the first time using Pap Smear"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     WHERE 50 <= (date('Now') - date(efm.dob))
+                     AND pap_smear_sample_id is NOT NULL
+                     AND ecr.hiv_status = 'positive'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+    
+#    CECAP 2 HIV Negative
+  
+  
+  - key: "cecap-other-2-hiv-negative-15-19"
+    grouping: "CECAP"
+    description: "Number of women screened for the first time using Pap Smear"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     WHERE 15 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 20
+                     AND pap_smear_sample_id is NOT NULL
+                     AND ecr.hiv_status = 'negative'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+  
+  
+  - key: "cecap-other-2-hiv-negative-20-24"
+    grouping: "CECAP"
+    description: "Number of women screened for the first time using Pap Smear"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     WHERE 20 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 25
+                     AND pap_smear_sample_id is NOT NULL
+                     AND ecr.hiv_status = 'negative'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+  
+  
+  - key: "cecap-other-2-hiv-negative-25-29"
+    grouping: "CECAP"
+    description: "Number of women screened for the first time using Pap Smear"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     WHERE 25 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 30
+                     AND pap_smear_sample_id is NOT NULL
+                     AND ecr.hiv_status = 'negative'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+  
+  
+  - key: "cecap-other-2-hiv-negative-30-34"
+    grouping: "CECAP"
+    description: "Number of women screened for the first time using Pap Smear"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     WHERE 30 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 35
+                     AND pap_smear_sample_id is NOT NULL
+                     AND ecr.hiv_status = 'negative'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+  
+  
+  - key: "cecap-other-2-hiv-negative-35-39"
+    grouping: "CECAP"
+    description: "Number of women screened for the first time using Pap Smear"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     WHERE 35 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 40
+                     AND pap_smear_sample_id is NOT NULL
+                     AND ecr.hiv_status = 'negative'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+  
+  
+  - key: "cecap-other-2-hiv-negative-40-44"
+    grouping: "CECAP"
+    description: "Number of women screened for the first time using Pap Smear"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     WHERE 40 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 45
+                     AND pap_smear_sample_id is NOT NULL
+                     AND ecr.hiv_status = 'negative'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+  
+  
+  - key: "cecap-other-2-hiv-negative-45-49"
+    grouping: "CECAP"
+    description: "Number of women screened for the first time using Pap Smear"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     WHERE 45 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 50
+                     AND pap_smear_sample_id is NOT NULL
+                     AND ecr.hiv_status = 'negative'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+  
+  
+  - key: "cecap-other-2-hiv-negative-50+"
+    grouping: "CECAP"
+    description: "Number of women screened for the first time using Pap Smear"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     WHERE 50 <= (date('Now') - date(efm.dob))
+                     AND pap_smear_sample_id is NOT NULL
+                     AND ecr.hiv_status = 'negative'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+    
+#    CECAP 2 HIV Unknown
+  
+  
+  - key: "cecap-other-2-hiv-unknown-15-19"
+    grouping: "CECAP"
+    description: "Number of women screened for the first time using Pap Smear"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     WHERE 15 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 20
+                     AND pap_smear_sample_id is NOT NULL
+                     AND ecr.hiv_status = 'unknown'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+  
+  
+  - key: "cecap-other-2-hiv-unknown-20-24"
+    grouping: "CECAP"
+    description: "Number of women screened for the first time using Pap Smear"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     WHERE 20 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 25
+                     AND pap_smear_sample_id is NOT NULL
+                     AND ecr.hiv_status = 'unknown'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+  
+  
+  - key: "cecap-other-2-hiv-unknown-25-29"
+    grouping: "CECAP"
+    description: "Number of women screened for the first time using Pap Smear"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     WHERE 25 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 30
+                     AND pap_smear_sample_id is NOT NULL
+                     AND ecr.hiv_status = 'unknown'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+  
+  
+  - key: "cecap-other-2-hiv-unknown-30-34"
+    grouping: "CECAP"
+    description: "Number of women screened for the first time using Pap Smear"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     WHERE 30 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 35
+                     AND pap_smear_sample_id is NOT NULL
+                     AND ecr.hiv_status = 'unknown'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+  
+  
+  - key: "cecap-other-2-hiv-unknown-35-39"
+    grouping: "CECAP"
+    description: "Number of women screened for the first time using Pap Smear"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     WHERE 35 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 40
+                     AND pap_smear_sample_id is NOT NULL
+                     AND ecr.hiv_status = 'unknown'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+  
+  
+  - key: "cecap-other-2-hiv-unknown-40-44"
+    grouping: "CECAP"
+    description: "Number of women screened for the first time using Pap Smear"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     WHERE 40 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 45
+                     AND pap_smear_sample_id is NOT NULL
+                     AND ecr.hiv_status = 'unknown'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+  
+  
+  - key: "cecap-other-2-hiv-unknown-45-49"
+    grouping: "CECAP"
+    description: "Number of women screened for the first time using Pap Smear"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     WHERE 45 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 50
+                     AND pap_smear_sample_id is NOT NULL
+                     AND ecr.hiv_status = 'unknown'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+  
+  
+  - key: "cecap-other-2-hiv-unknown-50+"
+    grouping: "CECAP"
+    description: "Number of women screened for the first time using Pap Smear"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     WHERE 50 <= (date('Now') - date(efm.dob))
+                     AND pap_smear_sample_id is NOT NULL
+                     AND ecr.hiv_status = 'unknown'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+  - key: "cecap-other-3-hiv-positive-15-19"
+    grouping: "CECAP"
+    description: "Number of women screened and found with abnormal Pap Smear"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     WHERE 15 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 20
+                     AND (efm.gender='Female')
+                     AND ectr.pap_findings = 'abnormal'
+                     AND ecr.hiv_status = 'positive'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+  - key: "cecap-other-3-hiv-positive-20-24"
+    grouping: "CECAP"
+    description: "Number of women screened and found with abnormal Pap Smear"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     WHERE 20 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 25
+                     AND (efm.gender='Female')
+                     AND ectr.pap_findings = 'abnormal'
+                     AND ecr.hiv_status = 'positive'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+  - key: "cecap-other-3-hiv-positive-25-29"
+    grouping: "CECAP"
+    description: "Number of women screened and found with abnormal Pap Smear"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     WHERE 25 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 30
+                     AND (efm.gender='Female')
+                     AND ectr.pap_findings = 'abnormal'
+                     AND ecr.hiv_status = 'positive'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+  - key: "cecap-other-3-hiv-positive-30-34"
+    grouping: "CECAP"
+    description: "Number of women screened and found with abnormal Pap Smear"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     WHERE 30 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 35
+                     AND (efm.gender='Female')
+                     AND ectr.pap_findings = 'abnormal'
+                     AND ecr.hiv_status = 'positive'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+  - key: "cecap-other-3-hiv-positive-35-39"
+    grouping: "CECAP"
+    description: "Number of women screened and found with abnormal Pap Smear"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     WHERE 35 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 40
+                     AND (efm.gender='Female')
+                     AND ectr.pap_findings = 'abnormal'
+                     AND ecr.hiv_status = 'positive'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+  - key: "cecap-other-3-hiv-positive-40-44"
+    grouping: "CECAP"
+    description: "Number of women screened and found with abnormal Pap Smear"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     WHERE 40 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 45
+                     AND (efm.gender='Female')
+                     AND ectr.pap_findings = 'abnormal'
+                     AND ecr.hiv_status = 'positive'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+  - key: "cecap-other-3-hiv-positive-45-49"
+    grouping: "CECAP"
+    description: "Number of women screened and found with abnormal Pap Smear"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     WHERE 45 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 50
+                     AND (efm.gender='Female')
+                     AND ectr.pap_findings = 'abnormal'
+                     AND ecr.hiv_status = 'positive'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+  - key: "cecap-other-3-hiv-positive-50+"
+    grouping: "CECAP"
+    description: "Number of women screened and found with abnormal Pap Smear"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     WHERE 50 <= (date('Now') - date(efm.dob))
+                     AND (efm.gender='Female')
+                     AND ectr.pap_findings = 'abnormal'
+                     AND ecr.hiv_status = 'positive'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+  - key: "cecap-other-3-hiv-negative-15-19"
+    grouping: "CECAP"
+    description: "Number of women screened and found with abnormal Pap Smear"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     WHERE 15 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 20
+                     AND (efm.gender='Female')
+                     AND ectr.pap_findings = 'abnormal'
+                     AND ecr.hiv_status = 'negative'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+  - key: "cecap-other-3-hiv-negative-20-24"
+    grouping: "CECAP"
+    description: "Number of women screened and found with abnormal Pap Smear"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     WHERE 20 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 25
+                     AND (efm.gender='Female')
+                     AND ectr.pap_findings = 'abnormal'
+                     AND ecr.hiv_status = 'negative'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+  - key: "cecap-other-3-hiv-negative-25-29"
+    grouping: "CECAP"
+    description: "Number of women screened and found with abnormal Pap Smear"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     WHERE 25 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 30
+                     AND (efm.gender='Female')
+                     AND ectr.pap_findings = 'abnormal'
+                     AND ecr.hiv_status = 'negative'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+  - key: "cecap-other-3-hiv-negative-30-34"
+    grouping: "CECAP"
+    description: "Number of women screened and found with abnormal Pap Smear"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     WHERE 30 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 35
+                     AND (efm.gender='Female')
+                     AND ectr.pap_findings = 'abnormal'
+                     AND ecr.hiv_status = 'negative'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+  - key: "cecap-other-3-hiv-negative-35-39"
+    grouping: "CECAP"
+    description: "Number of women screened and found with abnormal Pap Smear"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     WHERE 35 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 40
+                     AND (efm.gender='Female')
+                     AND ectr.pap_findings = 'abnormal'
+                     AND ecr.hiv_status = 'negative'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+  - key: "cecap-other-3-hiv-negative-40-44"
+    grouping: "CECAP"
+    description: "Number of women screened and found with abnormal Pap Smear"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     WHERE 40 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 45
+                     AND (efm.gender='Female')
+                     AND ectr.pap_findings = 'abnormal'
+                     AND ecr.hiv_status = 'negative'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+  - key: "cecap-other-3-hiv-negative-45-49"
+    grouping: "CECAP"
+    description: "Number of women screened and found with abnormal Pap Smear"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     WHERE 45 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 50
+                     AND (efm.gender='Female')
+                     AND ectr.pap_findings = 'abnormal'
+                     AND ecr.hiv_status = 'negative'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+  - key: "cecap-other-3-hiv-negative-50+"
+    grouping: "CECAP"
+    description: "Number of women screened and found with abnormal Pap Smear"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     WHERE 50 <= (date('Now') - date(efm.dob))
+                     AND (efm.gender='Female')
+                     AND ectr.pap_findings = 'abnormal'
+                     AND ecr.hiv_status = 'negative'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+  - key: "cecap-other-3-hiv-unknown-15-19"
+    grouping: "CECAP"
+    description: "Number of women screened and found with abnormal Pap Smear"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     WHERE 15 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 20
+                     AND (efm.gender='Female')
+                     AND ectr.pap_findings = 'abnormal'
+                     AND ecr.hiv_status = 'unknown'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+  - key: "cecap-other-3-hiv-unknown-20-24"
+    grouping: "CECAP"
+    description: "Number of women screened and found with abnormal Pap Smear"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     WHERE 20 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 25
+                     AND (efm.gender='Female')
+                     AND ectr.pap_findings = 'abnormal'
+                     AND ecr.hiv_status = 'unknown'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+  - key: "cecap-other-3-hiv-unknown-25-29"
+    grouping: "CECAP"
+    description: "Number of women screened and found with abnormal Pap Smear"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     WHERE 25 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 30
+                     AND (efm.gender='Female')
+                     AND ectr.pap_findings = 'abnormal'
+                     AND ecr.hiv_status = 'unknown'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+  - key: "cecap-other-3-hiv-unknown-30-34"
+    grouping: "CECAP"
+    description: "Number of women screened and found with abnormal Pap Smear"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     WHERE 30 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 35
+                     AND (efm.gender='Female')
+                     AND ectr.pap_findings = 'abnormal'
+                     AND ecr.hiv_status = 'unknown'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+  - key: "cecap-other-3-hiv-unknown-35-39"
+    grouping: "CECAP"
+    description: "Number of women screened and found with abnormal Pap Smear"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     WHERE 35 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 40
+                     AND (efm.gender='Female')
+                     AND ectr.pap_findings = 'abnormal'
+                     AND ecr.hiv_status = 'unknown'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+  - key: "cecap-other-3-hiv-unknown-40-44"
+    grouping: "CECAP"
+    description: "Number of women screened and found with abnormal Pap Smear"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     WHERE 40 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 45
+                     AND (efm.gender='Female')
+                     AND ectr.pap_findings = 'abnormal'
+                     AND ecr.hiv_status = 'unknown'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+  - key: "cecap-other-3-hiv-unknown-45-49"
+    grouping: "CECAP"
+    description: "Number of women screened and found with abnormal Pap Smear"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     WHERE 45 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 50
+                     AND (efm.gender='Female')
+                     AND ectr.pap_findings = 'abnormal'
+                     AND ecr.hiv_status = 'unknown'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+  - key: "cecap-other-3-hiv-unknown-50+"
+    grouping: "CECAP"
+    description: "Number of women screened and found with abnormal Pap Smear"
+    indicatorQuery: "SELECT count(DISTINCT ecr.base_entity_id) as count
+                     FROM ec_cecap_register ecr
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
+                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     WHERE 50 <= (date('Now') - date(efm.dob))
+                     AND (efm.gender='Female')
+                     AND ectr.pap_findings = 'abnormal'
+                     AND ecr.hiv_status = 'unknown'
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                     date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                     '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+
+
