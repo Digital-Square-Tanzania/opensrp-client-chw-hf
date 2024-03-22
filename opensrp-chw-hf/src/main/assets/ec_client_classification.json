@@ -1125,6 +1125,13 @@
             "creates_case": [
               "ec_lab_requests"
             ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "HVL Processing",
+            "creates_case": [
+              "ec_lab_requests"
+            ]
           }
         ]
       }

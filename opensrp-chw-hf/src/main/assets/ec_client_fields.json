@@ -10280,7 +10280,24 @@
           "column_name": "base_entity_id",
           "type": "Event",
           "json_mapping": {
-            "field": "formSubmissionId"
+            "field": "obs.fieldCode",
+            "concept": "sample_id"
+          }
+        },
+        {
+          "column_name": "sample_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "sample_id"
+          }
+        },
+        {
+          "column_name": "patient_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "patient_id"
           }
         },
         {
@@ -10297,14 +10314,6 @@
           "json_mapping": {
             "field": "obs.fieldCode",
             "concept": "sample_collection_date"
-          }
-        },
-        {
-          "column_name": "sample_id",
-          "type": "Event",
-          "json_mapping": {
-            "field": "obs.fieldCode",
-            "concept": "sample_id"
           }
         },
         {
@@ -10337,6 +10346,14 @@
           "json_mapping": {
             "field": "obs.fieldCode",
             "concept": "sample_separation_date"
+          }
+        },
+        {
+          "column_name": "sample_separation_time",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "sample_separation_time"
           }
         },
         {

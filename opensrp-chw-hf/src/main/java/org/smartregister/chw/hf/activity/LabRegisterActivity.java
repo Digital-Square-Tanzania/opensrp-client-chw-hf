@@ -1,34 +1,23 @@
 package org.smartregister.chw.hf.activity;
 
-import static org.smartregister.util.Utils.getAllSharedPreferences;
-
 import android.app.Activity;
 import android.content.Intent;
-import android.util.TypedValue;
-import android.view.Gravity;
-import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
-
-import com.google.android.material.bottomnavigation.BottomNavigationItemView;
-import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
-import com.google.android.material.bottomnavigation.LabelVisibilityMode;
 
 import org.smartregister.chw.core.activity.CoreLabRegisterActivity;
 import org.smartregister.chw.core.custom_views.NavigationMenu;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.fp.util.FamilyPlanningConstants;
-import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.fragment.LabManifestsRegisterFragment;
 import org.smartregister.chw.hf.fragment.LabTestRequestsRegisterFragment;
-import org.smartregister.chw.hf.listener.CdpBottomNavigationListener;
+import org.smartregister.chw.hf.model.LabRegisterModel;
+import org.smartregister.chw.lab.interactor.BaseLabRegisterInteractor;
+import org.smartregister.chw.lab.presenter.BaseLabRegisterPresenter;
 import org.smartregister.chw.lab.util.Constants;
-import org.smartregister.helper.BottomNavigationHelper;
-import org.smartregister.listener.BottomNavigationListener;
 import org.smartregister.view.fragment.BaseRegisterFragment;
 
 public class LabRegisterActivity extends CoreLabRegisterActivity {
-    private final String userLocationTag = getAllSharedPreferences().fetchUserLocationTag();
 
     public static void startLabRegisterActivity(Activity activity, String baseEntityID, String formName) {
         Intent intent = new Intent(activity, LabRegisterActivity.class);
@@ -45,9 +34,7 @@ public class LabRegisterActivity extends CoreLabRegisterActivity {
 
     @Override
     protected Fragment[] getOtherFragments() {
-        return new Fragment[]{
-                new LabManifestsRegisterFragment(),
-        };
+        return new Fragment[]{new LabManifestsRegisterFragment(),};
     }
 
     @Override
@@ -57,5 +44,10 @@ public class LabRegisterActivity extends CoreLabRegisterActivity {
         if (menu != null) {
             menu.getNavigationAdapter().setSelectedView(CoreConstants.DrawerMenu.LAB);
         }
+    }
+
+    @Override
+    protected void initializePresenter() {
+        presenter = new BaseLabRegisterPresenter(this, new LabRegisterModel(), new BaseLabRegisterInteractor());
     }
 }

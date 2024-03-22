@@ -41,6 +41,7 @@
     },
     "encounter_location": ""
   },
+  "global": {},
   "step1": {
     "title": "DNA-PCR Sample Collection",
     "fields": [
@@ -180,14 +181,17 @@
       },
       {
         "key": "sample_id",
-        "type": "edit_text",
+        "type": "hidden",
         "hint": "DNA-PCR Sample ID",
         "openmrs_entity_id": "sample_id",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
-        "v_required": {
-          "value": true,
-          "err": "Please enter the sample ID"
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "lab_sample_collection_rule.yml"
+            }
+          }
         }
       },
       {
@@ -211,7 +215,29 @@
         "openmrs_entity_id": "sample_type",
         "openmrs_entity_parent": "",
         "type": "hidden",
-        "value": "DNA PCR"
+        "value": "HEID"
+      },
+      {
+        "key": "patient_id",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "patient_id",
+        "openmrs_entity_parent": "",
+        "type": "edit_text",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "lab_sample_collection_rule.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "sample_processed",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "sample_processed",
+        "type": "hidden",
+        "value": "true"
       }
     ]
   }
