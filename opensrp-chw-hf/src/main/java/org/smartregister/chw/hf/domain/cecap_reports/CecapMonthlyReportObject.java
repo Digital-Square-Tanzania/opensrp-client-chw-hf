@@ -1,8 +1,9 @@
-package org.smartregister.chw.hf.domain;
+package org.smartregister.chw.hf.domain.cecap_reports;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.hf.dao.ReportDao;
+import org.smartregister.chw.hf.domain.ReportObject;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,30 +11,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class AsrhMonthlyReportObject extends ReportObject {
+public class CecapMonthlyReportObject extends ReportObject {
 
     private final List<String> indicatorCodesWithAgeGroups = new ArrayList<>();
 
     private final String[] indicatorCodes = new String[]{
-            "asrh-1",
-            "asrh-2a", "asrh-2b", "asrh-2c", "asrh-2d", "asrh-2e", "asrh-2f", "asrh-2g", "asrh-2h",
-            "asrh-3",
-            "asrh-4a", "asrh-4b", "asrh-4c", "asrh-4d", "asrh-4e", "asrh-4f", "asrh-4g",
-            "asrh-5a", "asrh-5b",
-            "asrh-6a", "asrh-6b",
-            "asrh-7a", "asrh-7b",
-            "asrh-8a", "asrh-8b",
-            "asrh-9a", "asrh-9b",
-            "asrh-10"
+            "cecap-1", "cecap-2", "cecap-3", "cecap-4", "cecap-5", "cecap-6", "cecap-7", "cecap-8", "cecap-9", "cecap-10", "cecap-11", "cecap-12", "cecap-13", "cecap-14", "cecap-15", "cecap-16"
     };
 
-    private final String[] clientType = new String[]{"male", "female"};
+    private final String[] hivStatus = new String[]{"hiv-positive", "hiv-negative", "hiv-unknown"};
 
-    private final String[] indicatorAgeGroups = new String[]{"10-14", "15-19", "20-24"};
+    private final String[] indicatorAgeGroups = new String[]{"15-19", "20-24", "25-29", "30-34", "35-39", "40-44", "45-49", "50+"};
 
     private final Date reportDate;
 
-    public AsrhMonthlyReportObject(Date reportDate) {
+    public CecapMonthlyReportObject(Date reportDate) {
         super(reportDate);
         this.reportDate = reportDate;
         setIndicatorCodesWithAgeGroups(indicatorCodesWithAgeGroups);
@@ -46,7 +38,7 @@ public class AsrhMonthlyReportObject extends ReportObject {
             String key = entry.getKey().toLowerCase();
             Integer value = entry.getValue();
 
-            if (key.startsWith(specificKey.toLowerCase())) {
+            if (key.contains(specificKey.toLowerCase())) {
                 total += value;
             }
         }
@@ -56,9 +48,9 @@ public class AsrhMonthlyReportObject extends ReportObject {
 
     public void setIndicatorCodesWithAgeGroups(List<String> indicatorCodesWithAgeGroups) {
         for (String indicatorCode : indicatorCodes) {
-            for (String clientType : clientType) {
-                for (String indicatorKey : indicatorAgeGroups) {
-                    indicatorCodesWithAgeGroups.add(indicatorCode + "-" + clientType + "-" + indicatorKey);
+            for (String hivStatus : hivStatus) {
+                for (String ageGroup : indicatorAgeGroups) {
+                    indicatorCodesWithAgeGroups.add(indicatorCode + "-" + hivStatus + "-" + ageGroup);
                 }
             }
         }
@@ -75,14 +67,15 @@ public class AsrhMonthlyReportObject extends ReportObject {
             indicatorDataObject.put(indicatorCode, value);
         }
 
-
-        // Calculate and add total values
+        // Calculate and add total values for "totals"
         for (String indicatorCode : indicatorCodes) {
-            int maleTotal = calculateAsrhSpecificTotal(indicatorsValues, indicatorCode+ "-male");
-            int femaleTotal = calculateAsrhSpecificTotal(indicatorsValues, indicatorCode + "-female");
-            indicatorDataObject.put(indicatorCode + "-male-total", maleTotal);
-            indicatorDataObject.put(indicatorCode + "-female-total", femaleTotal);
-            indicatorDataObject.put(indicatorCode+ "-grand-total", maleTotal + femaleTotal);
+            int hivPositiveTotal = calculateAsrhSpecificTotal(indicatorsValues, indicatorCode + "-hiv-positive");
+            int hivNegativeTotal = calculateAsrhSpecificTotal(indicatorsValues, indicatorCode + "-hiv-negative");
+            int hivUnknownTotal = calculateAsrhSpecificTotal(indicatorsValues, indicatorCode + "-hiv-unknown");
+            indicatorDataObject.put(indicatorCode + "-hiv-positive-total", hivPositiveTotal);
+            indicatorDataObject.put(indicatorCode + "-hiv-negative-total", hivNegativeTotal);
+            indicatorDataObject.put(indicatorCode + "-hiv-unknown-total", hivUnknownTotal);
+            indicatorDataObject.put(indicatorCode + "-grand-total", hivPositiveTotal + hivNegativeTotal + hivUnknownTotal);
         }
 
         return indicatorDataObject;

@@ -21,7 +21,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 import org.json.JSONException;
 import org.smartregister.chw.hf.domain.AsrhMonthlyReportObject;
-import org.smartregister.chw.hf.domain.CecapMonthlyReportObject;
 import org.smartregister.chw.hf.domain.FpMonthlyReportObject;
 import org.smartregister.chw.hf.domain.SbcReportObject;
 import org.smartregister.chw.hf.domain.anc_reports.AncMonthlyReportObject;
@@ -29,6 +28,8 @@ import org.smartregister.chw.hf.domain.cbhs_reports.CbhsMonthlyReportObject;
 import org.smartregister.chw.hf.domain.cdp_reports.CdpIssuingAtFacilityReportObject;
 import org.smartregister.chw.hf.domain.cdp_reports.CdpIssuingFromFacilityReportObject;
 import org.smartregister.chw.hf.domain.cdp_reports.CdpReceivingReportObject;
+import org.smartregister.chw.hf.domain.cecap_reports.CecapMonthlyReportObject;
+import org.smartregister.chw.hf.domain.cecap_reports.CecapOtherMonthlyReportObject;
 import org.smartregister.chw.hf.domain.kvp_reports.KvpMonthlyReportObject;
 import org.smartregister.chw.hf.domain.ld_reports.LdMonthlyReportObject;
 import org.smartregister.chw.hf.domain.ltfu_summary.LTFUSummaryObject;
@@ -438,6 +439,17 @@ public class ReportUtils {
             CecapMonthlyReportObject cecapMonthlyReportObject = new CecapMonthlyReportObject(now);
             try {
                 report = cecapMonthlyReportObject.getIndicatorDataAsGson(cecapMonthlyReportObject.getIndicatorData());
+            } catch (Exception e) {
+                Timber.e(e);
+            }
+            return report;
+        }
+
+        public static String computeOtherReport(Date now) {
+            String report = "";
+            CecapOtherMonthlyReportObject cecapOtherMonthlyReportObject = new CecapOtherMonthlyReportObject(now);
+            try {
+                report = cecapOtherMonthlyReportObject.getIndicatorDataAsGson(cecapOtherMonthlyReportObject.getIndicatorData());
             } catch (Exception e) {
                 Timber.e(e);
             }

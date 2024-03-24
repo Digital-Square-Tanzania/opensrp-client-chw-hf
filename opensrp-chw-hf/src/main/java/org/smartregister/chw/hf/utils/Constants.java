@@ -762,6 +762,11 @@ public class Constants extends CoreConstants {
             String RECEIVING_REPORTS = "receiving_reports";
         }
 
+        public interface CECAPReportKeys {
+            String MONTHLY_REPORTS = "monthly_reports";
+            String OTHER_MONTHLY_REPORTS = "other_monthly_reports";
+        }
+
         public interface VmmcKeys {
             String VMMC_REPORT = "vmmc_reports";
 
@@ -844,6 +849,8 @@ public class Constants extends CoreConstants {
             String SBC_REPORT_PATH = "sbc-report";
 
             String CECAP_REPORT_PATH = "cecap-report";
+
+            String CECAP_OTHER_REPORT_PATH = "cecap-other-report";
 
             String ASRH_REPORT_PATH = "asrh-report";
         }

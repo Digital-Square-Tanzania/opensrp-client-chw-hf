@@ -1,8 +1,9 @@
-package org.smartregister.chw.hf.domain;
+package org.smartregister.chw.hf.domain.cecap_reports;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.hf.dao.ReportDao;
+import org.smartregister.chw.hf.domain.ReportObject;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,12 +11,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CecapMonthlyReportObject extends ReportObject {
+public class CecapOtherMonthlyReportObject extends ReportObject {
 
     private final List<String> indicatorCodesWithAgeGroups = new ArrayList<>();
 
     private final String[] indicatorCodes = new String[]{
-            "cecap-1", "cecap-2", "cecap-3", "cecap-4", "cecap-5", "cecap-6", "cecap-7", "cecap-8", "cecap-9", "cecap-10", "cecap-11", "cecap-12", "cecap-13", "cecap-14", "cecap-15", "cecap-16"
+            "cecap-other-1", "cecap-other-2", "cecap-other-3"
     };
 
     private final String[] hivStatus = new String[]{"hiv-positive", "hiv-negative", "hiv-unknown"};
@@ -24,7 +25,7 @@ public class CecapMonthlyReportObject extends ReportObject {
 
     private final Date reportDate;
 
-    public CecapMonthlyReportObject(Date reportDate) {
+    public CecapOtherMonthlyReportObject(Date reportDate) {
         super(reportDate);
         this.reportDate = reportDate;
         setIndicatorCodesWithAgeGroups(indicatorCodesWithAgeGroups);

@@ -109,7 +109,7 @@ ul li > * {
 
 <body onload="loadData(&#39;monthly&#39;, &#39;asrh_report&#39;)">
 <div class="show-on-print" style="font-size:12px;">
-    <h1> FAMILY PLANNING MONTHLY REPORT FORM</h1>
+    <h1>ASRH MONTHLY REPORT FORM</h1>
     <h2>REPORT OF [MONTH/YEAR]: <span id="report_period"></span></h2>
     <h2>CENTER: <span id="reporting_facility"></span></h2>
 </div>
@@ -221,7 +221,6 @@ ul li > * {
         <tr>
             <td></td>
             <td>f) IUCD</td>
-            <
             <td align="center" id="asrh-2f-grand-total"></td>
             <td align="center" class="table-th-color"></td>
             <td align="center" class="table-th-color"></td>
@@ -521,25 +520,20 @@ ul li > * {
 
 <script>
     function loadData(reportKey, reportType) {
-  const data = JSON.parse(Android.getData(reportKey));
-  const keys = Object.keys(data.nameValuePairs);
-  const reportPeriod = document.getElementById("report_period");
-  const reportingFacility = document.getElementById("reporting_facility");
-  keys.forEach((key) => {
-    let element;
-    if(reportType!== null && reportType === "sbc"){
-      element = document.getElementById(key.replace("sbc-",""));
-    }else{
-      element = document.getElementById(key);
+        const data = JSON.parse(Android.getData(reportKey));
+        const keys = Object.keys(data.nameValuePairs);
+        const reportPeriod = document.getElementById("report_period");
+        const reportingFacility = document.getElementById("reporting_facility");
+        keys.forEach((key) => {
+            let element;
+            element = document.getElementById(key);
+            if (element !== null && typeof element !== "undefined") {
+              element.innerHTML = data.nameValuePairs[key];
+            }
+        });
+        reportPeriod.innerHTML = Android.getDataPeriod();
+        reportingFacility.innerHTML = Android.getReportingFacility();
     }
-    if (element !== null && typeof element !== "undefined") {
-      element.innerHTML = data.nameValuePairs[key];
-    }
-  });
-  reportPeriod.innerHTML = Android.getDataPeriod();
-  reportingFacility.innerHTML = Android.getReportingFacility();
-}
-
 </script>
 </body>
 </html>

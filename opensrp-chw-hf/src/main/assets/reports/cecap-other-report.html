@@ -108,9 +108,9 @@ ul li > * {
     </style>
 </head>
 
-<body onload="loadData(&#39;monthly&#39;, &#39;cecap_report&#39;)">
+<body onload="loadData()">
 <div class="show-on-print" style="font-size:12px;">
-    <h1> FAMILY PLANNING MONTHLY REPORT FORM</h1>
+    <h1>CECAP OTHER MONTHLY REPORT FORM</h1>
     <h2>REPORT OF [MONTH/YEAR]: <span id="report_period"></span></h2>
     <h2>CENTER: <span id="reporting_facility"></span></h2>
 </div>
@@ -266,26 +266,21 @@ ul li > * {
 </div>
 
 <script>
-    function loadData(reportKey, reportType) {
-  const data = JSON.parse(Android.getData(reportKey));
-  const keys = Object.keys(data.nameValuePairs);
-  const reportPeriod = document.getElementById("report_period");
-  const reportingFacility = document.getElementById("reporting_facility");
-  keys.forEach((key) => {
-    let element;
-    if(reportType!== null && reportType === "sbc"){
-      element = document.getElementById(key.replace("sbc-",""));
-    }else{
-      element = document.getElementById(key);
+    function loadData() {
+        const data = JSON.parse(Android.getData("other_monthly_reports"));
+        const keys = Object.keys(data.nameValuePairs);
+        const reportPeriod = document.getElementById("report_period");
+        const reportingFacility = document.getElementById("reporting_facility");
+        keys.forEach((key) => {
+            let element;
+            element = document.getElementById(key);
+            if (element !== null && typeof element !== "undefined") {
+              element.innerHTML = data.nameValuePairs[key];
+            }
+        });
+        reportPeriod.innerHTML = Android.getDataPeriod();
+        reportingFacility.innerHTML = Android.getReportingFacility();
     }
-    if (element !== null && typeof element !== "undefined") {
-      element.innerHTML = data.nameValuePairs[key];
-    }
-  });
-  reportPeriod.innerHTML = Android.getDataPeriod();
-  reportingFacility.innerHTML = Android.getReportingFacility();
-}
-
 </script>
 </body>
 </html>
