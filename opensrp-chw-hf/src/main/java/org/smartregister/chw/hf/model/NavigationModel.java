@@ -47,7 +47,7 @@ public class NavigationModel implements org.smartregister.chw.core.model.Navigat
                 if (BuildConfig.BUILD_FOR_PMTCT_CASE_BASED_MANAGEMENT) {
                     navigationOptions.addAll(Arrays.asList(op1, op3, op15, op4, op13, op14, op12));
                 } else {
-                    navigationOptions.addAll(Arrays.asList(op1, op3, op15, op4, op13, op14, op9, op8, op10));
+                    navigationOptions.addAll(Arrays.asList(op1, op3, op15, op4, op13, op14,op23, op9, op8, op10));
                     if (HealthFacilityApplication.getApplicationFlavor().hasChildModule()) {
                         navigationOptions.add(4, op5);
                     }
@@ -82,9 +82,9 @@ public class NavigationModel implements org.smartregister.chw.core.model.Navigat
                 if (HealthFacilityApplication.getApplicationFlavor().hasVmmc()) {
                     navigationOptions.add(14, op22);
                 }
-                if (HealthFacilityApplication.getApplicationFlavor().hasLab()) {
-                    navigationOptions.add(14, op23);
-                }
+//                if (HealthFacilityApplication.getApplicationFlavor().hasLab()) {
+//                    navigationOptions.add(14, op23);
+//                }
             } else {
                 navigationOptions.addAll(Arrays.asList(op1, op2, op3, op4, op5, op6, op7, op12));
             }

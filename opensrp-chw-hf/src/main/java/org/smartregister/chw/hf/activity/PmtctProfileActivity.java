@@ -195,7 +195,7 @@ public class PmtctProfileActivity extends CorePmtctProfileActivity {
     }
 
     private void startLabSampleCollection() {
-        LabRegisterActivity.startLabRegisterActivity(this,memberObject.getBaseEntityId(),org.smartregister.chw.lab.util.Constants.FORMS.LAB_HVL_SAMPLE_COLLECTION);
+        LabRegisterActivity.startLabRegisterActivity(this, memberObject.getBaseEntityId(), org.smartregister.chw.lab.util.Constants.FORMS.LAB_HVL_SAMPLE_COLLECTION);
     }
 
 
@@ -425,6 +425,12 @@ public class PmtctProfileActivity extends CorePmtctProfileActivity {
                 } catch (Exception e) {
                     Timber.e(e);
                 }
+            }else if (textView.getText().equals(getResources().getString(R.string.collect_hvl_sample))) {
+                try {
+                    startLabSampleCollection();
+                } catch (Exception e) {
+                    Timber.e(e);
+                }
             } else {
                 PmtctFollowupVisitActivity.startPmtctFollowUpActivity(this, baseEntityId, false);
             }
@@ -619,6 +625,10 @@ public class PmtctProfileActivity extends CorePmtctProfileActivity {
                 textViewRecordPmtct.setText(R.string.record_pmtct_visit);
             } else {
                 textViewRecordPmtct.setText(R.string.record_pmtct);
+            }
+
+            if (HfPmtctDao.hasPendingLabSampleCollection(baseEntityId)) {
+                textViewRecordPmtct.setText(R.string.collect_hvl_sample);
             }
 
             Visit lastFolllowUpVisit = getVisit(Constants.EVENT_TYPE.PMTCT_FOLLOWUP);

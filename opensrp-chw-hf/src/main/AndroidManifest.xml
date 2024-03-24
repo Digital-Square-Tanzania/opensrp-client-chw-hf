@@ -584,6 +584,11 @@
             android:name=".activity.LabTestRequestDetailsActivity"
             android:theme="@style/HFTheme.NoActionBar" />
 
+
+        <activity
+            android:name=".activity.LabManifestDetailsActivity"
+            android:theme="@style/HFTheme.NoActionBar" />
+
         <activity
             android:name="org.smartregister.chw.lab.activity.CreateManifestActivity"
             android:theme="@style/HFTheme.NoActionBar" />

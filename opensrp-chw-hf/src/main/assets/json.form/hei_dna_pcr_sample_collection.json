@@ -133,6 +133,12 @@
         "v_required": {
           "value": "true",
           "err": null
+        },
+        "relevance": {
+          "step1:do_you_want_to_request_for_dna_pcr_sample_collection": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
         }
       },
       {
@@ -147,6 +153,12 @@
         "v_required": {
           "value": true,
           "err": "Please enter the request date"
+        },
+        "relevance": {
+          "step1:do_you_want_to_request_for_dna_pcr_sample_collection": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
         }
       },
       {
@@ -163,7 +175,27 @@
         "v_required": {
           "value": true,
           "err": "Please enter the healthcare provider's name"
+        },
+        "relevance": {
+          "step1:do_you_want_to_request_for_dna_pcr_sample_collection": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
         }
+      },
+      {
+        "key": "test_at_age",
+        "type": "hidden",
+        "openmrs_entity_id": "test_at_age",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": ""
+      },
+      {
+        "key": "sample_id",
+        "type": "hidden",
+        "openmrs_entity_id": "sample_id",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": ""
       }
     ]
   }

@@ -134,6 +134,12 @@
         "v_required": {
           "value": "true",
           "err": null
+        },
+        "relevance": {
+          "step1:do_you_want_to_request_for_hvl_sample_collection": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
         }
       },
       {
@@ -148,7 +154,12 @@
         "v_required": {
           "value": true,
           "err": "Please enter the request date"
+        },"relevance": {
+        "step1:do_you_want_to_request_for_hvl_sample_collection": {
+          "type": "string",
+          "ex": "equalTo(., \"yes\")"
         }
+      }
       },
       {
         "key": "requester_clinician_name",
@@ -164,6 +175,12 @@
         "v_required": {
           "value": true,
           "err": "Please enter the healthcare provider's name"
+        },
+        "relevance": {
+          "step1:do_you_want_to_request_for_hvl_sample_collection": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
         }
       }
     ]

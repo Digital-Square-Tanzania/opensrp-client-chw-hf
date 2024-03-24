@@ -433,8 +433,15 @@ public class HeiProfileActivity extends BasePmtctProfileActivity {
             return true;
         } else if (itemId == R.id.action_edit_hei_number) {
             editHeiNumber();
+        } else if (itemId == org.smartregister.chw.core.R.id.action_collect_dna_pcr_sample) {
+            startLabSampleCollection();
+            return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void startLabSampleCollection() {
+        LabRegisterActivity.startLabRegisterActivity(this, memberObject.getBaseEntityId(), org.smartregister.chw.lab.util.Constants.FORMS.LAB_HEID_SAMPLE_COLLECTION);
     }
 
     @Override

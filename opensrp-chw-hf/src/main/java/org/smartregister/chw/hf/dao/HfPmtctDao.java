@@ -659,4 +659,17 @@ public class HfPmtctDao extends CorePmtctDao {
         String sql = "delete from " + tableName + " where base_entity_id = '" + submissionId + "'";
         updateDB(sql);
     }
+
+
+    public static boolean hasPendingLabSampleCollection(String baseEntityId) {
+        String sql = "SELECT sample_request_date " +
+                "FROM ec_pmtct_followup " +
+                "WHERE entity_id = '" + baseEntityId + "'";
+        DataMap<String> dataMap = cursor -> getCursorValue(cursor, "sample_request_date");
+        List<String> res = readData(sql, dataMap);
+        if (res != null && !res.isEmpty() && res.get(0) != null) {
+            return res.get(0) != null;
+        }
+        return false;
+    }
 }

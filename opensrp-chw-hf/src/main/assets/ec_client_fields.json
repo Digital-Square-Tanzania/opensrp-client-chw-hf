@@ -150,6 +150,14 @@
           }
         },
         {
+          "column_name": "sample_request_date",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "sample_request_date"
+          }
+        },
+        {
           "column_name": "cd4_sample_id",
           "type": "Event",
           "json_mapping": {
@@ -10408,11 +10416,19 @@
           }
         },
         {
-          "column_name": "destination_hub",
+          "column_name": "destination_hub_name",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
-            "concept": "destination_hub"
+            "concept": "destination_hub_name"
+          }
+        },
+        {
+          "column_name": "destination_hub_uuid",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "destination_hub_uuid"
           }
         },
         {
@@ -10452,6 +10468,34 @@
           "type": "Event",
           "json_mapping": {
             "field": "version"
+          }
+        }
+      ]
+    },
+    {
+      "name": "ec_lab_settings",
+      "columns": [
+        {
+          "column_name": "base_entity_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "base_entity_id"
+          }
+        },
+        {
+          "column_name": "destination_hub_name",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "destination_hub_name"
+          }
+        },
+        {
+          "column_name": "destination_hub_uuid",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "destination_hub_uuid"
           }
         }
       ]
