@@ -539,7 +539,6 @@
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.SelfTestingReportsViewActivity"
-            android:screenOrientation="landscape"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.CdpReportsViewActivity"
@@ -549,7 +548,6 @@
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.KvpReportsViewActivity"
-            android:screenOrientation="landscape"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.KvpReportsActivity"
