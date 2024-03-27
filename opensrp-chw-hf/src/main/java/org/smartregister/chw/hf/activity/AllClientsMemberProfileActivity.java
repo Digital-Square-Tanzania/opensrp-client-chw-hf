@@ -406,7 +406,6 @@ public class AllClientsMemberProfileActivity extends CoreAllClientsMemberProfile
         super.isIndependent = isIndependentClient;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void onClickMenu(int viewId) {
         if (viewId == R.id.call_layout) {
