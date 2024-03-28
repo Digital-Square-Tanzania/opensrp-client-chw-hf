@@ -333,8 +333,8 @@
         "hint": "Client Reproductive cancer prevention identification number",
         "edit_type": "number",
         "v_regex": {
-          "value": "(\\d{4}-\\d{2}-\\d{2})?",
-          "err": "Reproductive cancer prevention identification number should be of the format (XXXX-XX-XX)"
+          "value": "(\\d{4}-(0[1-9]|1[0-2])-(20|21|22|23|24|25|26|27|28|29|30))?",
+          "err": "Reproductive cancer prevention identification number should be of the format (XXXX-MM-YY) where MM are months and YY are the last two digits of the Year"
         },
         "v_max_length": {
           "value": "10",
