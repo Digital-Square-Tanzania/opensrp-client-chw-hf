@@ -1,4 +1,4 @@
-{
+ {
   "count": "2",
   "encounter_type": "Family Registration",
   "entity_id": "",
@@ -421,7 +421,7 @@
           "err": "Number must be a total of 10 digits in length"
         },
         "v_regex": {
-          "value": "(0[6-7][1-9][0-9][0-9]{6})|\\s*",
+          "value": "(0[6-7][1-9][0-9]{6})|\\s*",
           "err": "Number must be 10 digits and must start with 06 or 07."
         }
       },
