@@ -1,6 +1,5 @@
 package org.smartregister.chw.hf.activity;
 
-import static org.smartregister.chw.core.utils.CoreJsonFormUtils.TITLE;
 import static org.smartregister.chw.hf.utils.Constants.JsonFormConstants.STEP1;
 import static org.smartregister.opd.utils.OpdConstants.JSON_FORM_KEY.FIELDS;
 import static org.smartregister.opd.utils.OpdConstants.JSON_FORM_KEY.VALUE;
@@ -8,21 +7,15 @@ import static org.smartregister.opd.utils.OpdConstants.JSON_FORM_KEY.VALUE;
 import android.app.Activity;
 import android.content.Intent;
 
-import com.vijay.jsonwizard.constants.JsonFormConstants;
-import com.vijay.jsonwizard.domain.Form;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.smartregister.AllConstants;
 import org.smartregister.Context;
 import org.smartregister.chw.core.utils.FormUtils;
 import org.smartregister.chw.hf.domain.JSONObjectHolder;
-import org.smartregister.chw.lab.activity.BaseLabTestRequestDetailsActivity;
 import org.smartregister.chw.lab.activity.BaseManifestDetailsActivity;
 import org.smartregister.chw.lab.util.Constants;
 import org.smartregister.chw.lab.util.LabJsonFormUtils;
-import org.smartregister.family.util.JsonFormUtils;
-import org.smartregister.family.util.Utils;
 
 import java.util.UUID;
 
@@ -45,7 +38,7 @@ public class LabManifestDetailsActivity extends BaseManifestDetailsActivity {
 
             JSONArray fields = sampleProcessingJson.getJSONObject(STEP1).getJSONArray(FIELDS);
             JSONObject batchNumberObj = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "batch_number");
-            batchNumberObj.put(VALUE,batchNumber);
+            batchNumberObj.put(VALUE, batchNumber);
 
             startFormActivity(sampleProcessingJson);
         } catch (Exception e) {

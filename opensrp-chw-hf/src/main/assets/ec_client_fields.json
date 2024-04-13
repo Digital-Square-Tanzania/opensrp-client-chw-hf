@@ -10373,11 +10373,83 @@
           }
         },
         {
+          "column_name": "tested_by",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "tested_by"
+          }
+        },
+        {
+          "column_name": "authorized_by",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "authorized_by"
+          }
+        },
+        {
+          "column_name": "tested_date",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "tested_date"
+          }
+        },
+        {
+          "column_name": "authorized_date",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "authorized_date"
+          }
+        },
+        {
           "column_name": "results",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
             "concept": "results"
+          }
+        },
+        {
+          "column_name": "results_date",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "results_date"
+          }
+        },
+        {
+          "column_name": "reasons_for_rejection",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "reasons_for_rejection"
+          }
+        },
+        {
+          "column_name": "rejection_date",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "rejection_date"
+          }
+        },
+        {
+          "column_name": "rejected_by",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "rejected_by"
+          }
+        },
+        {
+          "column_name": "rejection_contact_info",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "rejection_contact_info"
           }
         },
         {

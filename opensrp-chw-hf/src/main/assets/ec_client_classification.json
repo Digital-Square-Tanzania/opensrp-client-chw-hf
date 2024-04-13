@@ -1132,6 +1132,20 @@
             "creates_case": [
               "ec_lab_requests"
             ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "Lab HVL Results",
+            "creates_case": [
+              "ec_lab_requests"
+            ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "HEID Test Results",
+            "creates_case": [
+              "ec_lab_requests"
+            ]
           }
         ]
       }

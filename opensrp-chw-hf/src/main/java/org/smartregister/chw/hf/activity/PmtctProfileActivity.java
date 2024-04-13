@@ -46,6 +46,7 @@ import org.smartregister.chw.hf.HealthFacilityApplication;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.adapter.PmtctReferralCardViewAdapter;
 import org.smartregister.chw.hf.custom_view.PmtctFloatingMenu;
+import org.smartregister.chw.hf.dao.HeiDao;
 import org.smartregister.chw.hf.dao.HfPmtctDao;
 import org.smartregister.chw.hf.interactor.PmtctProfileInteractor;
 import org.smartregister.chw.hf.model.FamilyProfileModel;
@@ -59,6 +60,8 @@ import org.smartregister.chw.hf.utils.TimeUtils;
 import org.smartregister.chw.hiv.dao.HivDao;
 import org.smartregister.chw.hiv.domain.HivMemberObject;
 import org.smartregister.chw.hivst.dao.HivstDao;
+import org.smartregister.chw.lab.dao.LabDao;
+import org.smartregister.chw.lab.domain.TestSample;
 import org.smartregister.chw.pmtct.PmtctLibrary;
 import org.smartregister.chw.pmtct.dao.PmtctDao;
 import org.smartregister.chw.pmtct.domain.Visit;
@@ -114,6 +117,7 @@ public class PmtctProfileActivity extends CorePmtctProfileActivity {
         if (notificationAndReferralRecyclerView != null && notificationAndReferralRecyclerView.getAdapter() != null) {
             notificationAndReferralRecyclerView.getAdapter().notifyDataSetChanged();
         }
+        invalidateOptionsMenu();
     }
 
     @Override
@@ -140,7 +144,8 @@ public class PmtctProfileActivity extends CorePmtctProfileActivity {
             int age = memberObject.getAge();
             menu.findItem(R.id.action_hivst_registration).setVisible(HivstDao.isRegisteredForHivst(baseEntityId) && age >= 15);
         }
-        menu.findItem(R.id.action_collect_hvl_sample).setVisible(true);
+        List<TestSample> testSamples = LabDao.getTestSamplesRequestsWithNoResultsBySampleTypeAndPatientId(org.smartregister.chw.lab.util.Constants.SAMPLE_TYPES.HVL, HivDao.getMember(memberObject.getBaseEntityId()).getCtcNumber());
+        menu.findItem(R.id.action_collect_hvl_sample).setVisible(testSamples == null || testSamples.isEmpty());
         return true;
     }
 

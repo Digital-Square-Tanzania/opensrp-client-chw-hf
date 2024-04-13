@@ -9,7 +9,6 @@ import org.smartregister.chw.core.fragment.CoreLabManifestsRegisterFragment;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.activity.LabManifestDetailsActivity;
 import org.smartregister.chw.hf.activity.LabRegisterActivity;
-import org.smartregister.chw.hf.activity.LabTestRequestDetailsActivity;
 import org.smartregister.chw.lab.activity.CreateManifestActivity;
 import org.smartregister.chw.lab.dao.LabDao;
 import org.smartregister.chw.lab.model.BaseLabManifestsRegisterFragmentModel;
@@ -26,7 +25,7 @@ public class LabManifestsRegisterFragment extends CoreLabManifestsRegisterFragme
 
     @Override
     public void createHvlManifest() {
-        if (LabDao.getTestSamplesRequests(Constants.MANIFEST_TYPE.HVL).size() == 0) {
+        if (LabDao.getTestSamplesRequestsNotInManifests(Constants.MANIFEST_TYPE.HVL).isEmpty()) {
             showShortToast(getActivity(), getActivity().getString(R.string.no_test_samples));
         } else if (StringUtils.isNotBlank(LabDao.getDestinationHubName())) {
             Intent intent = new Intent(getActivity(), CreateManifestActivity.class);
@@ -40,7 +39,7 @@ public class LabManifestsRegisterFragment extends CoreLabManifestsRegisterFragme
 
     @Override
     public void createHeidManifest() {
-        if (LabDao.getTestSamplesRequests(Constants.MANIFEST_TYPE.HEID).size() == 0) {
+        if (LabDao.getTestSamplesRequestsNotInManifests(Constants.MANIFEST_TYPE.HEID).isEmpty()) {
             showShortToast(getActivity(), getActivity().getString(R.string.no_test_samples));
         } else if (StringUtils.isNotBlank(LabDao.getDestinationHubName())) {
             Intent intent = new Intent(getActivity(), CreateManifestActivity.class);
@@ -58,7 +57,7 @@ public class LabManifestsRegisterFragment extends CoreLabManifestsRegisterFragme
     }
 
     protected void openProfile(String batchNumber) {
-        LabManifestDetailsActivity.startProfileActivity(getActivity(),  batchNumber);
+        LabManifestDetailsActivity.startProfileActivity(getActivity(), batchNumber);
     }
 
 }

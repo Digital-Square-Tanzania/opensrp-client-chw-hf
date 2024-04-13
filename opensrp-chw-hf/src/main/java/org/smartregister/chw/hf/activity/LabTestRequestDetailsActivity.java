@@ -2,7 +2,6 @@ package org.smartregister.chw.hf.activity;
 
 import static org.smartregister.chw.core.utils.CoreJsonFormUtils.TITLE;
 import static org.smartregister.chw.hf.utils.Constants.JsonFormConstants.STEP1;
-import static org.smartregister.client.utils.constants.JsonFormConstants.GLOBAL;
 import static org.smartregister.opd.utils.OpdConstants.JSON_FORM_KEY.FIELDS;
 import static org.smartregister.opd.utils.OpdConstants.JSON_FORM_KEY.VALUE;
 
@@ -43,9 +42,33 @@ public class LabTestRequestDetailsActivity extends BaseLabTestRequestDetailsActi
 
             JSONArray fields = sampleProcessingJson.getJSONObject(STEP1).getJSONArray(FIELDS);
             JSONObject sampleId = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "sample_id");
-            sampleId.put(VALUE,testRequestSampleId);
+            sampleId.put(VALUE, testRequestSampleId);
 
             startFormActivity(sampleProcessingJson);
+        } catch (Exception e) {
+            Timber.e(e);
+        }
+
+    }
+
+    @Override
+    public void recordSampleRequestResults(String baseEntityId, String testRequestSampleId) {
+        try {
+            JSONObject sampleResultsJson;
+            if (testSample.getSampleType().equalsIgnoreCase("hvl")) {
+                sampleResultsJson = FormUtils.getFormUtils().getFormJson(Constants.FORMS.LAB_HVL_RESULTS);
+            } else {
+                sampleResultsJson = FormUtils.getFormUtils().getFormJson(Constants.FORMS.LAB_HEID_RESULTS);
+            }
+
+            String locationId = Context.getInstance().allSharedPreferences().getPreference(AllConstants.CURRENT_LOCATION_ID);
+            LabJsonFormUtils.getRegistrationForm(sampleResultsJson, baseEntityId, locationId);
+
+            JSONArray fields = sampleResultsJson.getJSONObject(STEP1).getJSONArray(FIELDS);
+            JSONObject sampleId = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "sample_id");
+            sampleId.put(VALUE, testRequestSampleId);
+
+            startFormActivity(sampleResultsJson);
         } catch (Exception e) {
             Timber.e(e);
         }
