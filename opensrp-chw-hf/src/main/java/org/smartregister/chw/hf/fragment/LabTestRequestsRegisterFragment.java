@@ -12,7 +12,7 @@ public class LabTestRequestsRegisterFragment extends CoreLabRequestsRegisterFrag
     }
 
     protected void openProfile(String baseEntityId, String sampleId) {
-        LabTestRequestDetailsActivity.startProfileActivity(getActivity(), baseEntityId.toLowerCase(), sampleId);
+        LabTestRequestDetailsActivity.startProfileActivity(getActivity(), baseEntityId.toLowerCase(), sampleId, false);
     }
 
 }

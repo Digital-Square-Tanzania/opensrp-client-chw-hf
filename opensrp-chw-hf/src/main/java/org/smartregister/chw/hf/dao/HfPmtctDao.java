@@ -233,16 +233,29 @@ public class HfPmtctDao extends CorePmtctDao {
         return Months.monthsBetween(startLocalDate, now).getMonths();
     }
 
+    // TODO clean this
+//    public static boolean hasHvlResults(String baseEntityId) {
+//        String sql = "SELECT hvl_sample_id from ec_pmtct_followup\n" +
+//                "       WHERE entity_id = '" + baseEntityId + "'" +
+//                "       AND hvl_sample_id IS NOT NULL";
+//
+//
+//        DataMap<String> dataMap = cursor -> getCursorValue(cursor, "hvl_sample_id");
+//        List<String> res = readData(sql, dataMap);
+//
+//        return res != null && res.size() > 0;
+//    }
+
     public static boolean hasHvlResults(String baseEntityId) {
-        String sql = "SELECT hvl_sample_id from ec_pmtct_followup\n" +
+        String sql = "SELECT sample_id from ec_lab_requests" +
                 "       WHERE entity_id = '" + baseEntityId + "'" +
-                "       AND hvl_sample_id IS NOT NULL";
+                "       AND results IS NOT NULL";
 
 
-        DataMap<String> dataMap = cursor -> getCursorValue(cursor, "hvl_sample_id");
+        DataMap<String> dataMap = cursor -> getCursorValue(cursor, "sample_id");
         List<String> res = readData(sql, dataMap);
 
-        return res != null && res.size() > 0;
+        return res != null && !res.isEmpty();
     }
 
     public static boolean hasCd4Results(String baseEntityId) {

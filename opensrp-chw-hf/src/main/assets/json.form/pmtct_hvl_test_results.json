@@ -568,6 +568,32 @@
         }
       },
       {
+        "key": "date_results_provided_to_client",
+        "type": "date_picker",
+        "hint": "Date Results Provided to Client",
+        "openmrs_entity_id": "date_results_provided_to_client",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "min_date": "today-5y",
+        "max_date": "today",
+        "v_required": {
+          "value": true,
+          "err": "Please enter the date"
+        }
+      },
+      {
+        "key": "time_results_provided_to_client",
+        "type": "time_picker",
+        "hint": "Time Results Provided to Client",
+        "openmrs_entity_id": "time_results_provided_to_client",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "v_required": {
+          "value": true,
+          "err": "Please enter the time"
+        }
+      },
+      {
         "key": "enroll_to_eac",
         "type": "hidden",
         "openmrs_entity_parent": "",

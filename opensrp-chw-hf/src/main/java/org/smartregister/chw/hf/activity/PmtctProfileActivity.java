@@ -568,7 +568,8 @@ public class PmtctProfileActivity extends CorePmtctProfileActivity {
 
     @Override
     public void openHvlResultsHistory() {
-        Intent intent = new Intent(this, HvlResultsViewActivity.class);
+//        Intent intent = new Intent(this, HvlResultsViewActivity.class);
+        Intent intent = new Intent(this, LabHvlResultsViewActivity.class);
         intent.putExtra(Constants.ACTIVITY_PAYLOAD.BASE_ENTITY_ID, baseEntityId);
         startActivity(intent);
     }

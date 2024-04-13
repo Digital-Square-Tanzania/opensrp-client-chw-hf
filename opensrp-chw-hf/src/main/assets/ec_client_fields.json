@@ -10445,6 +10445,22 @@
           }
         },
         {
+          "column_name": "time_results_provided_to_client",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "time_results_provided_to_client"
+          }
+        },
+        {
+          "column_name": "date_results_provided_to_client",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "date_results_provided_to_client"
+          }
+        },
+        {
           "column_name": "rejection_contact_info",
           "type": "Event",
           "json_mapping": {
