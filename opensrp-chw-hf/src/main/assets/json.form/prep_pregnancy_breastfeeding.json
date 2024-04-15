@@ -1,6 +1,6 @@
 {
   "count": "1",
-  "encounter_type": "KVP VMMC",
+  "encounter_type": "Pregnancy and Breast Feeding",
   "entity_id": "",
   "metadata": {
     "start": {
@@ -43,31 +43,35 @@
   },
   "global": {},
   "step1": {
-    "title": "VMMC",
+    "title": "Pregnancy and Breast Feeding Status",
     "fields": [
       {
-        "key": "vmcc_provided",
+        "key": "pregnancy_breastfeeding",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "vmcc_provided",
+        "openmrs_entity_id": "pregnancy_breastfeeding",
+        "label": "",
+        "text_color": "#000000",
         "type": "native_radio",
-        "label": "Was the client provided with VMMC services?",
         "options": [
           {
-            "key": "provided",
-            "text": "Provided",
+            "key": "pregnant",
+            "text": "Pregnancy",
+            "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "provided"
+            "openmrs_entity_id": "pregnant"
           },
           {
-            "key": "not_provided",
-            "text": "Not provided",
+            "key": "breast_feeding",
+            "text": "Breast Feeding",
+            "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "not_provided"
+            "openmrs_entity_id": "breast_feeding"
           },
           {
             "key": "not_applicable",
-            "text": "Not applicable",
+            "text": "Not Applicable",
+            "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "not_applicable"
           }

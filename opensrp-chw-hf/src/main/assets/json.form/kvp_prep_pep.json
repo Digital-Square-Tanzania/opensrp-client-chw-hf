@@ -77,13 +77,6 @@
             "openmrs_entity_id": "facility"
           },
           {
-            "key": "referred",
-            "text": "Referred",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "referred"
-          },
-          {
             "key": "not_applicable",
             "text": "Not applicable",
             "openmrs_entity_parent": "",
