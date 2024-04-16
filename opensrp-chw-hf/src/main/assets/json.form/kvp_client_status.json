@@ -111,21 +111,21 @@
           },
           {
             "key": "fsw",
-            "text": "FSW",
+            "text": "WHR",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "fsw"
           },
           {
             "key": "msm",
-            "text": "High Risk Men",
+            "text": "MRH",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "msm"
           },
           {
             "key": "agyw",
-            "text": "AGYW",
+            "text": "vAGYW",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "agyw"

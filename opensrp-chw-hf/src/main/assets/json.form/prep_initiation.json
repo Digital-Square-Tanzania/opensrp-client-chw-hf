@@ -70,7 +70,7 @@
           },
           {
             "key": "re_start",
-            "text": "Re-start",
+            "text": "Re-started",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "re_start"

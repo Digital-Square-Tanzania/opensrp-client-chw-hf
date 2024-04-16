@@ -109,11 +109,11 @@
             "openmrs_entity_id": "cacx"
           },
           {
-            "key": "drug_use_disorder",
+            "key": "drug_disorder",
             "text": "Drug use disorder",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "drug_use_disorder"
+            "openmrs_entity_id": "drug_disorder"
           },
           {
             "key": "hiv_aids",
@@ -123,18 +123,11 @@
             "openmrs_entity_id": "hiv_aids"
           },
           {
-            "key": "others",
-            "text": "Others",
+            "key": " er",
+            "text": "Other",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "others"
-          },
-          {
-            "key": "none",
-            "text": "None",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "none"
+            "openmrs_entity_id": "other"
           }
         ],
         "v_required": {
@@ -143,12 +136,12 @@
         }
       },
       {
-        "key": "health_education_provided",
+        "key": "others_health_education_provided",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "health_education_provided",
+        "openmrs_entity_id": "others_health_education_provided",
         "type": "edit_text",
-        "hint": "Other(Specify)",
+        "hint": "Other",
         "v_required": {
           "value": "true",
           "err": "Please specify"

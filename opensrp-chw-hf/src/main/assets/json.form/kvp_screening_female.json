@@ -431,7 +431,7 @@
     ]
   },
   "step6": {
-    "title": "AGYW",
+    "title": "vAGYW",
     "next": "step7",
     "fields": [
       {
@@ -804,7 +804,7 @@
       {
         "key": "prompt_for_agyw_kvp",
         "type": "toaster_notes",
-        "text": "The client falls in AGYW KVP group\nThe client should be enrolled to KVP friendly services",
+        "text": "The client falls in vAGYW KVP group\nThe client should be enrolled to KVP friendly services",
         "openmrs_entity_id": "",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
@@ -836,7 +836,7 @@
       {
         "key": "prompt_for_fsw_kvp",
         "type": "toaster_notes",
-        "text": "The client falls in FSW KVP group\nThe client should be enrolled to KVP friendly services",
+        "text": "The client falls in WHR KVP group\nThe client should be enrolled to KVP friendly services",
         "openmrs_entity_id": "",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
@@ -1009,7 +1009,7 @@
         "options": [
           {
             "key": "fsw",
-            "text": "FSW",
+            "text": "WHR",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "fsw"
@@ -1044,7 +1044,7 @@
           },
           {
             "key": "agyw",
-            "text": "AGYW",
+            "text": "vAGYW",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "agyw"

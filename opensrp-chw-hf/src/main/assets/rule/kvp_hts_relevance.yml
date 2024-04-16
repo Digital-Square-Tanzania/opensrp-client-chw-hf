@@ -6,6 +6,13 @@ condition: "!step1_previous_hiv_testing_method.isEmpty() && !step1_previous_hiv_
 actions:
   - "isRelevant = true"
 ---
+name: step1_client_type
+description: client_type relevance
+priority: 1
+condition: "!step1_previous_hiv_testing_method.isEmpty() && !step1_previous_hiv_testing_method.equals('not_tested')"
+actions:
+  - "isRelevant = true"
+---
 name: step1_testing_approach
 description: testing_approach relevance
 priority: 1
@@ -15,6 +22,13 @@ actions:
 ---
 name: step1_hiv_status
 description: hiv_status relevance
+priority: 1
+condition: "step1_tested_hiv.equals('yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_previous_hiv_testing_method
+description: previous_hiv_testing_method relevance
 priority: 1
 condition: "step1_tested_hiv.equals('yes')"
 actions:
@@ -31,5 +45,13 @@ name: step1_ctc_number
 description: ctc_number relevance
 priority: 1
 condition: "step1_ctc_services.equals('enrolled_but_not_on_arv') || step1_ctc_services.equals('enrolled_and_on_arv')"
+actions:
+  - "isRelevant = true"
+
+---
+name: step1_enroll_prep_services
+description: enroll_prep_services relevance
+priority: 1
+condition: "step1_hiv_status.equals('negative')"
 actions:
   - "isRelevant = true"

@@ -59,12 +59,7 @@
             "openmrs_entity": "concept",
             "openmrs_entity_id": "positive"
           },
-          {
-            "key": "positive_and_referred",
-            "text": "Positive and referred",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "positive_and_referred"
-          },
+
           {
             "key": "negative",
             "text": "Negative",
@@ -96,12 +91,6 @@
             "text": "Positive",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "positive"
-          },
-          {
-            "key": "positive_and_referred",
-            "text": "Positive and referred",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "positive_and_referred"
           },
           {
             "key": "negative",

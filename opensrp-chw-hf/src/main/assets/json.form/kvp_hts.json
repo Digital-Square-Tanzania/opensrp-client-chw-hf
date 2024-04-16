@@ -46,6 +46,42 @@
     "title": "HTS",
     "fields": [
       {
+        "key": "tested_hiv",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "tested_hiv",
+        "label": "Has the client tested for HIV?",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "yes",
+            "text": "Yes",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "yes"
+          },
+          {
+            "key": "no",
+            "text": "No",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "no"
+          },
+          {
+            "key": "not_applicable",
+            "text": "Not applicable",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "not_applicable"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select one"
+        }
+      },
+      {
         "key": "previous_hiv_testing_method",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -93,6 +129,13 @@
         "v_required": {
           "value": "true",
           "err": "Please select one"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kvp_hts_relevance.yml"
+            }
+          }
         }
       },
       {
@@ -131,10 +174,17 @@
           },
           {
             "key": "facility",
-            "text": "Facility",
+            "text": " Facility",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "facility"
+          },
+          {
+            "key": "not_app",
+            "text": "N/A",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "not_app"
           }
         ],
         "v_required": {
@@ -150,77 +200,41 @@
         }
       },
       {
-        "key": "tested_hiv",
+        "key": "client_type",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "tested_hiv",
-        "label": "Has the client tested for HIV?",
+        "openmrs_entity_id": "client_type",
+        "label": "Client Type",
         "text_color": "#000000",
         "type": "native_radio",
         "options": [
           {
-            "key": "yes",
-            "text": "Yes",
+            "key": "sns_client",
+            "text": "SNS",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "yes"
+            "openmrs_entity_id": "sns_client"
           },
           {
-            "key": "no",
-            "text": "No",
+            "key": "index_client",
+            "text": " Index",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "no"
+            "openmrs_entity_id": "index_client"
+          },
+          {
+            "key": "normal_client",
+            "text": "Normal Client",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "normal_client"
           },
           {
             "key": "not_applicable",
-            "text": "Not applicable",
+            "text": "Not Applicable",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "not_applicable"
-          }
-        ],
-        "v_required": {
-          "value": "true",
-          "err": "Please select one"
-        }
-      },
-      {
-        "key": "testing_approach",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "testing_approach",
-        "label": "Client's testing approach",
-        "text_color": "#000000",
-        "type": "native_radio",
-        "options": [
-          {
-            "key": "citc",
-            "text": "CITC",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "citc"
-          },
-          {
-            "key": "pitc",
-            "text": "PITC",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "pitc"
-          },
-          {
-            "key": "cbhts",
-            "text": "CBHTS",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "CBHTS"
-          },
-          {
-            "key": "index",
-            "text": "Index Option",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "Index Option"
           }
         ],
         "v_required": {
@@ -294,18 +308,18 @@
             "openmrs_entity_id": "negative"
           },
           {
-            "key": "inconclusive",
-            "text": "Inconclusive",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "inconclusive"
-          },
-          {
             "key": "known_positive",
             "text": "Known Positive",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "known_positive"
+          },
+          {
+            "key": "inconclusive",
+            "text": "Inconclusive",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "inconclusive"
           }
         ],
         "v_required": {
@@ -331,17 +345,24 @@
         "options": [
           {
             "key": "enrolled_but_not_on_arv",
-            "text": "Enrolled but not initiated on ARV",
+            "text": "Enrolled but not initiated on ART",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "enrolled_but_not_on_arv"
           },
           {
             "key": "enrolled_and_on_arv",
-            "text": "Enrolled and initiated on ARV",
+            "text": "Enrolled and initiated on ART",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "enrolled_and_on_arv"
+          },
+          {
+            "key": "not_app",
+            "text": "N/A",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "not_app"
           }
         ],
         "v_required": {
@@ -375,6 +396,49 @@
           "value": "17",
           "is_fixed_size": "true",
           "err": "Please enter a valid CTC Number"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kvp_hts_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "enroll_prep_services",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "enroll_prep_services",
+        "label": "Enrolled into PrEP services",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "enrolled",
+            "text": "Enrolled",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "enrolled"
+          },
+          {
+            "key": "not_enrolled",
+            "text": "Not Enrolled",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "not_enrolled"
+          },
+          {
+            "key": "not_app",
+            "text": "N/A",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "not_app"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select one"
         },
         "relevance": {
           "rules-engine": {
