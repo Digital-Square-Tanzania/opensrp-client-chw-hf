@@ -4,6 +4,9 @@ import org.joda.time.LocalDate;
 import org.joda.time.Months;
 import org.smartregister.chw.core.dao.CorePmtctDao;
 import org.smartregister.chw.hf.utils.TimeUtils;
+import org.smartregister.chw.hiv.dao.HivDao;
+import org.smartregister.chw.lab.dao.LabDao;
+import org.smartregister.chw.lab.domain.TestSample;
 import org.smartregister.chw.pmtct.domain.MemberObject;
 
 import java.text.ParseException;
@@ -232,19 +235,6 @@ public class HfPmtctDao extends CorePmtctDao {
 
         return Months.monthsBetween(startLocalDate, now).getMonths();
     }
-
-    // TODO clean this
-//    public static boolean hasHvlResults(String baseEntityId) {
-//        String sql = "SELECT hvl_sample_id from ec_pmtct_followup\n" +
-//                "       WHERE entity_id = '" + baseEntityId + "'" +
-//                "       AND hvl_sample_id IS NOT NULL";
-//
-//
-//        DataMap<String> dataMap = cursor -> getCursorValue(cursor, "hvl_sample_id");
-//        List<String> res = readData(sql, dataMap);
-//
-//        return res != null && res.size() > 0;
-//    }
 
     public static boolean hasHvlResults(String baseEntityId) {
         String sql = "SELECT sample_id from ec_lab_requests" +
@@ -675,14 +665,58 @@ public class HfPmtctDao extends CorePmtctDao {
 
 
     public static boolean hasPendingLabSampleCollection(String baseEntityId) {
+        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+
         String sql = "SELECT sample_request_date " +
                 "FROM ec_pmtct_followup " +
-                "WHERE entity_id = '" + baseEntityId + "'";
+                "WHERE entity_id = '" + baseEntityId + "' ORDER BY last_interacted_with DESC LIMIT 1";
         DataMap<String> dataMap = cursor -> getCursorValue(cursor, "sample_request_date");
         List<String> res = readData(sql, dataMap);
         if (res != null && !res.isEmpty() && res.get(0) != null) {
-            return res.get(0) != null;
+            List<TestSample> sampleRequests = LabDao.getTestSamplesRequestsBySampleTypeAndPatientId(org.smartregister.chw.lab.util.Constants.SAMPLE_TYPES.HVL, HivDao.getMember(baseEntityId).getCtcNumber());
+
+            if (sampleRequests == null || sampleRequests.isEmpty()) {
+                return true;
+            } else {
+                try {
+                    Date sampleRequestDate = df.parse(res.get(0));
+
+                    TestSample testSample = sampleRequests.get(sampleRequests.size() - 1);
+                    Date sampleCollectionDate = df.parse(testSample.getSampleCollectionDate());
+
+                    if (sampleCollectionDate != null) {
+                        return sampleCollectionDate.before(sampleRequestDate);
+                    } else return true;
+                } catch (Exception e) {
+                    Timber.e(e);
+                }
+            }
+
         }
         return false;
+    }
+
+    public static String getSampleRequestDate(String baseEntityId) {
+        String sql = "SELECT sample_request_date " +
+                "FROM ec_pmtct_followup " +
+                "WHERE entity_id = '" + baseEntityId + "' ORDER BY last_interacted_with DESC LIMIT 1";
+        DataMap<String> dataMap = cursor -> getCursorValue(cursor, "sample_request_date");
+        List<String> res = readData(sql, dataMap);
+        if (res != null && !res.isEmpty() && res.get(0) != null) {
+            return res.get(0);
+        }
+        return null;
+    }
+
+    public static String getRequesterClinicianName(String baseEntityId) {
+        String sql = "SELECT requester_clinician_name " +
+                "FROM ec_pmtct_followup " +
+                "WHERE entity_id = '" + baseEntityId + "' ORDER BY last_interacted_with DESC LIMIT 1";
+        DataMap<String> dataMap = cursor -> getCursorValue(cursor, "requester_clinician_name");
+        List<String> res = readData(sql, dataMap);
+        if (res != null && !res.isEmpty() && res.get(0) != null) {
+            return res.get(0);
+        }
+        return null;
     }
 }

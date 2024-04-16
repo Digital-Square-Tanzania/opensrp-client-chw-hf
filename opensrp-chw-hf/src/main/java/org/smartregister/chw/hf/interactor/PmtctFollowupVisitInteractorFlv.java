@@ -22,6 +22,9 @@ import org.smartregister.chw.hf.actionhelper.PmtctTbScreeningAction;
 import org.smartregister.chw.hf.actionhelper.PmtctVisitAction;
 import org.smartregister.chw.hf.dao.HfPmtctDao;
 import org.smartregister.chw.hf.utils.Constants;
+import org.smartregister.chw.hiv.dao.HivDao;
+import org.smartregister.chw.lab.dao.LabDao;
+import org.smartregister.chw.lab.domain.TestSample;
 import org.smartregister.chw.pmtct.PmtctLibrary;
 import org.smartregister.chw.pmtct.contract.BasePmtctHomeVisitContract;
 import org.smartregister.chw.pmtct.domain.MemberObject;
@@ -219,7 +222,8 @@ public class PmtctFollowupVisitInteractorFlv implements PmtctFollowupVisitIntera
             e.printStackTrace();
         }
 
-        if (HfPmtctDao.isEligibleForHlvTest(memberObject.getBaseEntityId()))
+        List<TestSample> testSamples = LabDao.getTestSamplesRequestsWithNoResultsBySampleTypeAndPatientId(org.smartregister.chw.lab.util.Constants.SAMPLE_TYPES.HVL, HivDao.getMember(memberObject.getBaseEntityId()).getCtcNumber());
+        if (HfPmtctDao.isEligibleForHlvTest(memberObject.getBaseEntityId()) && (testSamples == null || testSamples.isEmpty()))
             actionList.put(context.getString(R.string.hvl_sample_collection), HvlSampleCollection);
 
         BasePmtctHomeVisitAction Cd4SampleCollection = null;
@@ -325,7 +329,7 @@ public class PmtctFollowupVisitInteractorFlv implements PmtctFollowupVisitIntera
         public void onPayloadReceived(String jsonPayload) {
             try {
                 JSONObject jsonObject = new JSONObject(jsonPayload);
-                clinician_name = CoreJsonFormUtils.getValue(jsonObject, "clinician_name");
+                clinician_name = CoreJsonFormUtils.getValue(jsonObject, "requester_clinician_name");
             } catch (JSONException e) {
                 Timber.e(e);
             }

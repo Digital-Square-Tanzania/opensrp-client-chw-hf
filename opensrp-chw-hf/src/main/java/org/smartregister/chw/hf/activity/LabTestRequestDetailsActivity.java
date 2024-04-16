@@ -94,6 +94,8 @@ public class LabTestRequestDetailsActivity extends BaseLabTestRequestDetailsActi
 
             fields.getJSONObject(0).put("value", testRequestSampleId);
 
+            fields.getJSONObject(1).put("value", testRequestSampleId);
+
             JSONObject global = jsonObject.getJSONObject("global");
             global.put("is_after_eac", HfPmtctDao.isAfterEAC(baseEntityId));
 

@@ -55,6 +55,13 @@
         "openmrs_entity_parent": ""
       },
       {
+        "key": "sample_id",
+        "type": "hidden",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "sample_id",
+        "openmrs_entity_parent": ""
+      },
+      {
         "key": "notify_tnd_results",
         "type": "toaster_notes",
         "text": "For HVL results that is TND, fill the results as 11",
