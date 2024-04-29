@@ -123,8 +123,8 @@
             "openmrs_entity_id": "hiv_aids"
           },
           {
-            "key": " er",
-            "text": "Other",
+            "key": "other",
+            "text": "Other(Please specify)",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "other"

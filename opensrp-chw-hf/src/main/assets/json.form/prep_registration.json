@@ -92,27 +92,20 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "is_the_client_pregnant",
-        "label": "Client Pregnancy/breast feeding status ",
+        "label": "Is the client pregnant?",
         "text_color": "#000000",
         "type": "native_radio",
         "options": [
           {
             "key": "yes",
-            "text": "Pregnant",
+            "text": "Yes",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "yes"
           },
           {
-            "key": "breast_feeding",
-            "text": "Breast feeding",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "breast_feeding"
-          },
-          {
             "key": "no",
-            "text": "Not Applicable",
+            "text": "No",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "no"
