@@ -470,6 +470,9 @@
     <string name="prep_visit_type">Visit Type</string>
     <string name="prep_initiation">PrEP Initiation</string>
     <string name="prep_screening">PrEP Screening</string>
+    <string name="kvp_fsw">WHR</string>
+    <string name="kvp_msm">MRH</string>
+    <string name="kvp_agyw">vAGYW</string>
 
     <string name="vmmc_medical_history">Medical History</string>
     <string name="vmmc_followup_visit">Follow Up Visit</string>
