@@ -98,11 +98,11 @@
             "openmrs_entity_id": "negative"
           },
           {
-            "key": "not_applicable",
+            "key": "not_screened",
             "text": "Not Screened",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "not_applicable"
+            "openmrs_entity_id": "not_screened"
           }
         ],
         "v_required": {
@@ -132,13 +132,6 @@
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "not_treated"
-          },
-          {
-            "key": "referred",
-            "text": "Referred",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "referred"
           },
           {
             "key": "not_applicable",
