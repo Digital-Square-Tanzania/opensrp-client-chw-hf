@@ -69,6 +69,7 @@ public class LabRegisterModel extends BaseLabRegisterModel {
             } else return null;
         } else {
             patientId = HeiDao.getHeiNumber(entityId);
+            refreshHeidRequesterDetails(form, entityId);
         }
 
         form.getJSONObject(GLOBAL).put("PatientId", patientId);
@@ -182,6 +183,27 @@ public class LabRegisterModel extends BaseLabRegisterModel {
             JSONObject requesterClinicianName = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "requester_clinician_name");
             if (requesterClinicianName != null) {
                 requesterClinicianName.put(VALUE, HfPmtctDao.getRequesterClinicianName(entityId));
+                requesterClinicianName.put(READ_ONLY, true);
+            }
+        } catch (Exception e) {
+            Timber.e(e);
+        }
+    }
+
+    private void refreshHeidRequesterDetails(JSONObject form, String entityId) {
+        try {
+            JSONArray fields = form.getJSONObject(org.smartregister.chw.hf.utils.Constants.JsonFormConstants.STEP1)
+                    .getJSONArray(JsonFormConstants.FIELDS);
+
+            JSONObject sampleRequestDate = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "sample_request_date");
+            if (sampleRequestDate != null) {
+                sampleRequestDate.put(VALUE, HeiDao.getSampleRequestDate(entityId));
+                sampleRequestDate.put(READ_ONLY, true);
+            }
+
+            JSONObject requesterClinicianName = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "requester_clinician_name");
+            if (requesterClinicianName != null) {
+                requesterClinicianName.put(VALUE, HeiDao.getRequesterClinicianName(entityId));
                 requesterClinicianName.put(READ_ONLY, true);
             }
         } catch (Exception e) {

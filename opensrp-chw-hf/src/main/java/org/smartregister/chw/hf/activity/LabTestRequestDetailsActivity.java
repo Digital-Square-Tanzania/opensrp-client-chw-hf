@@ -19,11 +19,15 @@ import org.json.JSONObject;
 import org.smartregister.AllConstants;
 import org.smartregister.Context;
 import org.smartregister.chw.core.utils.FormUtils;
+import org.smartregister.chw.hf.dao.HeiDao;
 import org.smartregister.chw.hf.dao.HfPmtctDao;
+import org.smartregister.chw.hiv.dao.HivDao;
+import org.smartregister.chw.hiv.domain.HivMemberObject;
 import org.smartregister.chw.lab.activity.BaseLabTestRequestDetailsActivity;
 import org.smartregister.chw.lab.dao.LabDao;
 import org.smartregister.chw.lab.util.Constants;
 import org.smartregister.chw.lab.util.LabJsonFormUtils;
+import org.smartregister.chw.pmtct.dao.PmtctDao;
 import org.smartregister.family.util.JsonFormUtils;
 import org.smartregister.family.util.Utils;
 
@@ -84,28 +88,55 @@ public class LabTestRequestDetailsActivity extends BaseLabTestRequestDetailsActi
     @Override
     public void recordProvisionOfResultsToClient(String baseEntityId, String testRequestSampleId) {
         try {
-            JSONObject jsonObject = (new com.vijay.jsonwizard.utils.FormUtils()).getFormJsonFromRepositoryOrAssets(getBaseContext(), org.smartregister.chw.hf.utils.Constants.JsonForm.getHvlTestResultsForm());
-            assert jsonObject != null;
+            JSONObject jsonObject;
+            if (PmtctDao.isRegisteredForPmtct(baseEntityId)) {
+                jsonObject = (new com.vijay.jsonwizard.utils.FormUtils()).getFormJsonFromRepositoryOrAssets(getBaseContext(), org.smartregister.chw.hf.utils.Constants.JsonForm.getHvlTestResultsForm());
+                assert jsonObject != null;
 
-            String locationId = Context.getInstance().allSharedPreferences().getPreference(AllConstants.CURRENT_LOCATION_ID);
-            LabJsonFormUtils.getRegistrationForm(jsonObject, baseEntityId, locationId);
+                String locationId = Context.getInstance().allSharedPreferences().getPreference(AllConstants.CURRENT_LOCATION_ID);
+                LabJsonFormUtils.getRegistrationForm(jsonObject, baseEntityId, locationId);
 
-            JSONArray fields = jsonObject.getJSONObject(STEP1).getJSONArray(FIELDS);
+                JSONArray fields = jsonObject.getJSONObject(STEP1).getJSONArray(FIELDS);
 
-            fields.getJSONObject(0).put("value", testRequestSampleId);
+                fields.getJSONObject(0).put("value", testRequestSampleId);
 
-            fields.getJSONObject(1).put("value", testRequestSampleId);
+                fields.getJSONObject(1).put("value", testRequestSampleId);
 
-            JSONObject global = jsonObject.getJSONObject("global");
-            global.put("is_after_eac", HfPmtctDao.isAfterEAC(baseEntityId));
+                JSONObject global = jsonObject.getJSONObject("global");
+                global.put("is_after_eac", HfPmtctDao.isAfterEAC(baseEntityId));
 
 
-            JSONObject notifyTndResults = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "notify_tnd_results");
-            notifyTndResults.put(TYPE, "hidden");
+                JSONObject notifyTndResults = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "notify_tnd_results");
+                notifyTndResults.put(TYPE, "hidden");
 
-            JSONObject hvlResults = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "hvl_result");
-            hvlResults.put(READ_ONLY, true);
-            hvlResults.put(VALUE, LabDao.getTestSamplesRequestsBySampleId(testRequestSampleId).get(0).getResults());
+                JSONObject hvlResults = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "hvl_result");
+                hvlResults.put(READ_ONLY, true);
+                hvlResults.put(VALUE, LabDao.getTestSamplesRequestsBySampleId(testRequestSampleId).get(0).getResults());
+            } else {
+                jsonObject = (new com.vijay.jsonwizard.utils.FormUtils()).getFormJsonFromRepositoryOrAssets(getBaseContext(), org.smartregister.chw.hf.utils.Constants.JsonForm.getHeiHivTestResults());
+                assert jsonObject != null;
+
+                String locationId = Context.getInstance().allSharedPreferences().getPreference(AllConstants.CURRENT_LOCATION_ID);
+                LabJsonFormUtils.getRegistrationForm(jsonObject, baseEntityId, locationId);
+
+                JSONArray fields = jsonObject.getJSONObject(STEP1).getJSONArray(FIELDS);
+
+                fields.getJSONObject(0).put("value", testRequestSampleId);
+
+                JSONObject hivResultsDate = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "hiv_test_result_date");
+                hivResultsDate.put(TYPE, "hidden");
+                hivResultsDate.put(VALUE, LabDao.getTestSamplesRequestsBySampleId(testRequestSampleId).get(0).getResultsDate());
+
+                JSONObject resultsProvidedToParents = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "results_provided_to_parents");
+                resultsProvidedToParents.put(TYPE, "hidden");
+                resultsProvidedToParents.put(VALUE, "yes");
+
+                JSONObject hvlResults = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "hiv_test_result");
+                hvlResults.put(TYPE, "hidden");
+                hvlResults.put(VALUE, LabDao.getTestSamplesRequestsBySampleId(testRequestSampleId).get(0).getResults());
+            }
+
+
 
             startFormActivity(jsonObject);
         } catch (JSONException e) {

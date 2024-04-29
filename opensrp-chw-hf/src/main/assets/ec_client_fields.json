@@ -561,6 +561,22 @@
           }
         },
         {
+          "column_name": "requester_clinician_name",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "requester_clinician_name"
+          }
+        },
+        {
+          "column_name": "sample_request_date",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "sample_request_date"
+          }
+        },
+        {
           "column_name": "sample_collection_date",
           "type": "Event",
           "json_mapping": {
@@ -622,6 +638,13 @@
           "json_mapping": {
             "field": "obs.fieldCode",
             "concept": "next_facility_visit_date"
+          }
+        },
+        {
+          "column_name": "last_interacted_with",
+          "type": "Event",
+          "json_mapping": {
+            "field": "version"
           }
         }
       ]

@@ -411,11 +411,17 @@ public class HeiDao extends AbstractDao {
     }
 
     public static boolean hasHivResults(String baseEntityId) {
-        String sql = "SELECT sample_id FROM ec_hei_followup WHERE sample_id IS NOT NULL AND entity_id = '" + baseEntityId + "'";
+        String sql = "SELECT sample_id from ec_lab_requests" +
+                "       WHERE entity_id = '" + baseEntityId + "'" +
+                "       AND results IS NOT NULL";
+
+
         DataMap<String> dataMap = cursor -> getCursorValue(cursor, "sample_id");
         List<String> res = readData(sql, dataMap);
-        return res != null && res.size() > 0;
+
+        return res != null && !res.isEmpty();
     }
+
 
     public static List<MemberObject> getMember() {
         String sql = "select m.base_entity_id , m.unique_id , m.relational_id , m.dob , m.first_name , m.middle_name , m.last_name , m.gender , m.phone_number , m.other_phone_number , f.first_name family_name ,f.primary_caregiver , f.family_head , f.village_town ,fh.first_name family_head_first_name , fh.middle_name family_head_middle_name , fh.last_name family_head_last_name, fh.phone_number family_head_phone_number , ancr.is_closed anc_is_closed, pncr.is_closed pnc_is_closed, pcg.first_name pcg_first_name , pcg.last_name pcg_last_name , pcg.middle_name pcg_middle_name , pcg.phone_number  pcg_phone_number , mr.* from ec_family_member m inner join ec_family f on m.relational_id = f.base_entity_id inner join ec_hei mr on mr.base_entity_id = m.base_entity_id left join ec_family_member fh on fh.base_entity_id = f.family_head left join ec_family_member pcg on pcg.base_entity_id = f.primary_caregiver left join ec_anc_register ancr on ancr.base_entity_id = m.base_entity_id left join ec_pregnancy_outcome pncr on pncr.base_entity_id = m.base_entity_id where mr.is_closed = 0 ";
@@ -522,5 +528,30 @@ public class HeiDao extends AbstractDao {
     public static void saveAntiBodyTestResults(String baseEntityID, String formSubmissionId, String hivTestResults, String hivTestResultsDate, String ctcNumber) {
         String sql = String.format("INSERT INTO ec_hei_hiv_results (id, entity_id, base_entity_id, hei_followup_form_submission_id, hiv_test_result, hiv_test_result_date, ctc_number) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s') ON CONFLICT (id) DO UPDATE SET hiv_test_result = '%s', hiv_test_result_date = '%s', ctc_number = '%s'", baseEntityID, baseEntityID, formSubmissionId, formSubmissionId, hivTestResults, hivTestResultsDate, ctcNumber, hivTestResults, hivTestResultsDate, ctcNumber);
         updateDB(sql);
+    }
+
+    public static String getSampleRequestDate(String baseEntityId) {
+        String sql = "SELECT sample_request_date " +
+                "FROM ec_hei_followup " +
+                "WHERE entity_id = '" + baseEntityId + "' ORDER BY last_interacted_with DESC LIMIT 1";
+        DataMap<String> dataMap = cursor -> getCursorValue(cursor, "sample_request_date");
+        List<String> res = readData(sql, dataMap);
+        if (res != null && !res.isEmpty() && res.get(0) != null) {
+            return res.get(0);
+        }
+        return null;
+    }
+
+
+    public static String getRequesterClinicianName(String baseEntityId) {
+        String sql = "SELECT requester_clinician_name " +
+                "FROM ec_hei_followup " +
+                "WHERE entity_id = '" + baseEntityId + "' ORDER BY last_interacted_with DESC LIMIT 1";
+        DataMap<String> dataMap = cursor -> getCursorValue(cursor, "requester_clinician_name");
+        List<String> res = readData(sql, dataMap);
+        if (res != null && !res.isEmpty() && res.get(0) != null) {
+            return res.get(0);
+        }
+        return null;
     }
 }
