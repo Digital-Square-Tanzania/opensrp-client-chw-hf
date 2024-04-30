@@ -301,7 +301,7 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "services",
-        "label": "Services provided to a Client",
+        "label": "Other Services provided to a Client",
         "text_color": "#000000",
         "type": "check_box",
         "exclusive": [
@@ -323,25 +323,11 @@
             "openmrs_entity_id": "mental_health"
           },
           {
-            "key": "covid_vaccine",
-            "text": "COVID-19 vaccine",
+            "key": "vaccine",
+            "text": "Vaccination (Specify)",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "covid_vaccine"
-          },
-          {
-            "key": "legal_service",
-            "text": "Legal services",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "legal_service"
-          },
-          {
-            "key": "iga1",
-            "text": "IGA",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "iga1"
+            "openmrs_entity_id": "vaccine"
           },
           {
             "key": "other",
@@ -376,6 +362,29 @@
         }
       },
       {
+        "key": "services_and_referrals_vaccine",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "services_and_referrals_vaccine",
+        "type": "edit_text",
+        "hint": "Specify",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
+        "relevance": {
+          "step1:services": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "vaccine"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
         "key": "services_and_referral",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -400,13 +409,6 @@
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "psychosocial"
-          },
-          {
-            "key": "covid_vaccination",
-            "text": "COVID Vaccination",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "covid_vaccination"
           },
           {
             "key": "legal_service",
@@ -437,6 +439,13 @@
             "openmrs_entity_id": "sti"
           },
           {
+            "key": "vaccination",
+            "text": "Vaccination (Specify)",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "vaccination"
+          },
+          {
             "key": "other",
             "text": "Other (Specify)",
             "openmrs_entity_parent": "",
@@ -462,6 +471,29 @@
               {
                 "or": [
                   "other"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "vaccination",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "vaccination",
+        "type": "edit_text",
+        "hint": "Specify",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
+        "relevance": {
+          "step1:services_and_referral": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "vaccination"
                 ]
               }
             ]
