@@ -120,6 +120,46 @@
         }
       },
       {
+        "key": "source_of_hiv_status_information",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "source_of_hiv_status_information",
+        "type": "native_radio",
+        "label": "Source of HIV Status Information",
+        "text_color": "#000000",
+        "options": [
+          {
+            "key": "ctc1",
+            "text": "CTC 1 Card",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "ctc1"
+          },
+          {
+            "key": "pitc_citc",
+            "text": "PITC/CITC",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "pitc_citc"
+          },
+          {
+            "key": "himself_or_herself",
+            "text": "Himself/Herself",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "himself_or_herself"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cecap_enrollment_rule.yml"
+            }
+          }
+        },
+        "v_required": {
+          "value": true,
+          "err": "Required"
+        }
+      },
+      {
         "key": "hiv_test_done",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",

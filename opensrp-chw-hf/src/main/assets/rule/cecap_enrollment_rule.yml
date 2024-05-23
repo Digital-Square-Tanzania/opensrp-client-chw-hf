@@ -6,6 +6,13 @@ condition: "global_age > 10 && global_sex == 'Female' "
 actions:
   - "isRelevant = true"
 ---
+name: step1_source_of_hiv_status_information
+description: source_of_hiv_status_information
+priority: 1
+condition: "step1_hiv_status == 'positive' || step1_hiv_status == 'negative' "
+actions:
+  - "isRelevant = true"
+---
 name: step1_partner_accompaniment
 description: partner_accompaniment
 priority: 1

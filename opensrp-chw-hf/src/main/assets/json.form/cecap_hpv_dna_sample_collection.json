@@ -310,6 +310,12 @@
         "v_required": {
           "value": "true",
           "err": "Please select whether the client requires a followup visit"
+        },
+        "relevance": {
+          "step1:was_dna_specimen_collected": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
         }
       },
       {
