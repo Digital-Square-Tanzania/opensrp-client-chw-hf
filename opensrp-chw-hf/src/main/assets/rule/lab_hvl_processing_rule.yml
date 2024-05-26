@@ -1,7 +1,7 @@
 ---
-name: step1_sample_id
-description: sample_id
+name: step1_sample_separation_time_limit
+description: sample_separation_time_limit
 priority: 1
 condition: "true"
 actions:
-  - "calculation = global_sampleId.toString()"
+  - "calculation = step1_sample_collection_date.equals(step1_sample_separation_date) ? step1_sample_collection_time : '00:00'"

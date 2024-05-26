@@ -10363,6 +10363,14 @@
           }
         },
         {
+          "column_name": "sample_collection_time",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "sample_collection_time"
+          }
+        },
+        {
           "column_name": "sample_type",
           "type": "Event",
           "json_mapping": {

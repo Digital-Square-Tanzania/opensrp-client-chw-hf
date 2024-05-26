@@ -51,8 +51,16 @@ public class LabTestRequestDetailsActivity extends BaseLabTestRequestDetailsActi
 
 
             JSONArray fields = sampleProcessingJson.getJSONObject(STEP1).getJSONArray(FIELDS);
+
             JSONObject sampleId = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "sample_id");
             sampleId.put(VALUE, testRequestSampleId);
+
+
+            JSONObject sampleCollectionDate = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "sample_collection_date");
+            sampleCollectionDate.put(VALUE, testSample.getSampleCollectionDate());
+
+            JSONObject sampleCollectionTime = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "sample_collection_time");
+            sampleCollectionTime.put(VALUE,  testSample.getSampleCollectionTime());
 
             startFormActivity(sampleProcessingJson);
         } catch (Exception e) {

@@ -160,7 +160,7 @@
         "openmrs_entity_id": "sample_collection_date",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
-        "min_date": "today-5y",
+        "min_date": "step1_sample_request_date",
         "max_date": "today",
         "v_required": {
           "value": true,
@@ -168,10 +168,10 @@
         }
       },
       {
-        "key": "dna_pcr_collection_time",
+        "key": "sample_collection_time",
         "type": "time_picker",
         "hint": "DNA-PCR Sample Collection Time",
-        "openmrs_entity_id": "dna_pcr_collection_time",
+        "openmrs_entity_id": "sample_collection_time",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "v_required": {

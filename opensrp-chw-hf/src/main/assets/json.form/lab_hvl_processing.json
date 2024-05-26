@@ -53,6 +53,34 @@
         "type": "hidden"
       },
       {
+        "key": "sample_collection_date",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "sample_collection_date",
+        "type": "hidden"
+      },
+      {
+        "key": "sample_collection_time",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "sample_collection_time",
+        "type": "hidden"
+      },
+      {
+        "key": "sample_separation_time_limit",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "sample_separation_time_limit",
+        "type": "hidden",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "lab_hvl_processing_rule.yml"
+            }
+          }
+        }
+      },
+      {
         "key": "separation_done_at_the_facility",
         "type": "native_radio",
         "openmrs_entity": "",
@@ -121,7 +149,7 @@
         "openmrs_entity_id": "sample_separation_date",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
-        "min_date": "today-5y",
+        "min_date": "step1_sample_collection_date",
         "max_date": "today",
         "v_required": {
           "value": true,
@@ -145,6 +173,13 @@
           "value": true,
           "err": "Please enter the separation time"
         },
+        "constraints": [
+          {
+            "type": "time",
+            "ex": "greaterThan(., step1:sample_separation_time_limit)",
+            "err": "The sample separation time cannot be before the sample collection time"
+          }
+        ],
         "relevance": {
           "step1:separation_done_at_the_facility": {
             "type": "string",

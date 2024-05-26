@@ -7,6 +7,7 @@ import static org.smartregister.opd.utils.OpdConstants.JSON_FORM_KEY.VALUE;
 import android.app.Activity;
 import android.content.Intent;
 
+import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.smartregister.AllConstants;
@@ -14,9 +15,16 @@ import org.smartregister.Context;
 import org.smartregister.chw.core.utils.FormUtils;
 import org.smartregister.chw.hf.domain.JSONObjectHolder;
 import org.smartregister.chw.lab.activity.BaseManifestDetailsActivity;
+import org.smartregister.chw.lab.dao.LabDao;
+import org.smartregister.chw.lab.domain.Manifest;
+import org.smartregister.chw.lab.domain.TestSample;
 import org.smartregister.chw.lab.util.Constants;
 import org.smartregister.chw.lab.util.LabJsonFormUtils;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
 
 import timber.log.Timber;
@@ -40,6 +48,16 @@ public class LabManifestDetailsActivity extends BaseManifestDetailsActivity {
             JSONObject batchNumberObj = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "batch_number");
             batchNumberObj.put(VALUE, batchNumber);
 
+
+            String maxDate = getMaxDate(manifest);
+            if(StringUtils.isNotBlank(maxDate)){
+                JSONObject maxSampleDate = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "max_sample_date");
+                maxSampleDate.put(VALUE, maxDate.split(" ")[0]);
+
+                JSONObject maxSampleTime = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "max_sample_time");
+                maxSampleTime.put(VALUE, maxDate.split(" ")[1]);
+            }
+
             startFormActivity(sampleProcessingJson);
         } catch (Exception e) {
             Timber.e(e);
@@ -56,4 +74,23 @@ public class LabManifestDetailsActivity extends BaseManifestDetailsActivity {
         startActivityForResult(intent, Constants.REQUEST_CODE_GET_JSON);
     }
 
+    private String getMaxDate(Manifest manifest) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault());
+
+        String maxDate = "";
+        List<String> sampleList = convertToList(manifest.getSampleList());
+        for (String sampleId : sampleList) {
+            TestSample testSample = LabDao.getTestSamplesRequestsBySampleId(sampleId).get(0);
+            if (StringUtils.isNotBlank(testSample.getSampleSeparationDate()) && StringUtils.isNotBlank(testSample.getSampleSeparationTime())) {
+                if (maxDate.isEmpty() || sdf.parse(testSample.getSampleSeparationDate() + " " + testSample.getSampleSeparationTime()).after(sdf.parse(maxDate))) {
+                    maxDate = testSample.getSampleSeparationDate() + " " + testSample.getSampleSeparationTime();
+                }
+            } else if (StringUtils.isNotBlank(testSample.getSampleCollectionDate()) && StringUtils.isNotBlank(testSample.getSampleCollectionTime())) {
+                if (maxDate.isEmpty() || sdf.parse(testSample.getSampleCollectionDate() + " " + testSample.getSampleCollectionTime()).after(sdf.parse(maxDate))) {
+                    maxDate = testSample.getSampleCollectionDate() + " " + testSample.getSampleCollectionTime();
+                }
+            }
+        }
+        return maxDate;
+    }
 }

@@ -53,13 +53,41 @@
         "type": "hidden"
       },
       {
+        "key": "max_sample_date",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "max_sample_date",
+        "type": "hidden"
+      },
+      {
+        "key": "max_sample_time",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "max_sample_time",
+        "type": "hidden"
+      },
+      {
+        "key": "time_limit",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "time_limit",
+        "type": "hidden",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "lab_manifest_dispatch_rule.yml"
+            }
+          }
+        }
+      },
+      {
         "key": "dispatch_date",
         "type": "date_picker",
         "hint": "Dispatch Date",
         "openmrs_entity_id": "dispatch_date",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
-        "min_date": "today-5y",
+        "min_date": "step1_max_sample_date",
         "max_date": "today",
         "v_required": {
           "value": true,
@@ -76,7 +104,14 @@
         "v_required": {
           "value": true,
           "err": "Please enter the dispatch time"
-        }
+        },
+        "constraints": [
+          {
+            "type": "time",
+            "ex": "greaterThan(., step1:time_limit)",
+            "err": "The sample separation time cannot be before the sample collection/processing time"
+          }
+        ]
       },
       {
         "key": "dispatcher_name",
