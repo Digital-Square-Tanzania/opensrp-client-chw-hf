@@ -62,6 +62,13 @@
         "openmrs_entity_parent": ""
       },
       {
+        "key": "sample_results_date",
+        "type": "hidden",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "sample_results_date",
+        "openmrs_entity_parent": ""
+      },
+      {
         "key": "notify_tnd_results",
         "type": "toaster_notes",
         "text": "For HVL results that is TND, fill the results as 11",
@@ -581,7 +588,7 @@
         "openmrs_entity_id": "date_results_provided_to_client",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
-        "min_date": "today-5y",
+        "min_date": "step1_sample_results_date",
         "max_date": "today",
         "v_required": {
           "value": true,

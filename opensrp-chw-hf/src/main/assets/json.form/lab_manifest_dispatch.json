@@ -109,7 +109,7 @@
           {
             "type": "time",
             "ex": "greaterThan(., step1:time_limit)",
-            "err": "The sample separation time cannot be before the sample collection/processing time"
+            "err": "The Dispatch time cannot be before the sample collection/processing time"
           }
         ]
       },

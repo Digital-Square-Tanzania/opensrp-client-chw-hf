@@ -55,6 +55,13 @@
         "openmrs_entity_parent": ""
       },
       {
+        "key": "dispatch_date",
+        "type": "hidden",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "dispatch_date",
+        "openmrs_entity_parent": ""
+      },
+      {
         "key": "type_of_results",
         "type": "native_radio",
         "openmrs_entity": "concept",
@@ -195,7 +202,7 @@
         "openmrs_entity_id": "tested_date",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
-        "min_date": "today-5y",
+        "min_date": "step1_dispatch_date",
         "max_date": "today",
         "v_required": {
           "value": true,
@@ -215,7 +222,7 @@
         "openmrs_entity_id": "authorized_date",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
-        "min_date": "today-5y",
+        "min_date": "step1_tested_date",
         "max_date": "today",
         "v_required": {
           "value": true,
@@ -253,7 +260,7 @@
         "openmrs_entity_id": "rejection_date",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
-        "min_date": "today-5y",
+        "min_date": "step1_dispatch_date",
         "max_date": "today",
         "v_required": {
           "value": true,

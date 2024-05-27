@@ -53,6 +53,13 @@
         "openmrs_entity_parent": ""
       },
       {
+        "key": "sample_results_date",
+        "type": "hidden",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "sample_results_date",
+        "openmrs_entity_parent": ""
+      },
+      {
         "key": "hiv_test_result",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -198,7 +205,7 @@
         "type": "date_picker",
         "hint": "Date Results given to Mother/Caregiver",
         "expanded": false,
-        "min_date": "today-3y",
+        "min_date": "step1_sample_results_date",
         "max_date": "today",
         "v_required": {
           "value": "true",
