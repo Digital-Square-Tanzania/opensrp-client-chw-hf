@@ -313,6 +313,12 @@
             "openmrs_entity_id": "not_at_risk"
           },
           {
+            "key": "kvp_mobility",
+            "text": "Mobility",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "kvp_mobility"
+          },
+          {
             "key": "others",
             "text": "Others",
             "openmrs_entity": "concept",
