@@ -12,7 +12,7 @@ public class KvpMonthlyReportObject extends ReportObject {
 
     private final String[] kvpQuestionsGroups = new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14-a",
             "14-b-i", "14-b-ii", "14-b-iii", "14-b-iv", "14-b-v", "14-b-vi",
-            "15", "16", "18", "19", "20", "21", "22",
+            "15", "16-a","16-b","16-c","16-d", "18", "19", "20", "21", "22",
             "17-a", "17-b", "17-c", "17-d"
     };
     private final String[] kvpAgeGroups = new String[]{
