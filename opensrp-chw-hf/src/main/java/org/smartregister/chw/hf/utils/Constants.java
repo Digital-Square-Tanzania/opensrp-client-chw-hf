@@ -20,6 +20,8 @@ public class Constants extends CoreConstants {
 
     public static int REQUEST_FILTERS = 2004;
 
+    public static final String ADDO_REFERRAL_TYPE = "addo_to_facility_referral";
+
     public enum FamilyRegisterOptionsUtil {Miscarriage, Other}
 
     public interface ScheduleGroups {
