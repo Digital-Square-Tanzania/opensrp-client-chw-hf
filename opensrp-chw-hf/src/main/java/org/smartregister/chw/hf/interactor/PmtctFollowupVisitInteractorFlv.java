@@ -212,7 +212,7 @@ public class PmtctFollowupVisitInteractorFlv implements PmtctFollowupVisitIntera
 
         BasePmtctHomeVisitAction HvlSampleCollection = null;
         try {
-            HvlSampleCollection = new BasePmtctHomeVisitAction.Builder(context, context.getString(R.string.hvl_sample_collection))
+            HvlSampleCollection = new BasePmtctHomeVisitAction.Builder(context, context.getString(R.string.hvl_sample_request))
                     .withOptional(true)
                     .withDetails(details)
                     .withFormName(Constants.JsonForm.getHvlClinicianDetailsForm())
@@ -224,7 +224,7 @@ public class PmtctFollowupVisitInteractorFlv implements PmtctFollowupVisitIntera
 
         List<TestSample> testSamples = LabDao.getTestSamplesRequestsWithNoResultsBySampleTypeAndPatientId(org.smartregister.chw.lab.util.Constants.SAMPLE_TYPES.HVL, HivDao.getMember(memberObject.getBaseEntityId()).getCtcNumber());
         if (HfPmtctDao.isEligibleForHvlTest(memberObject.getBaseEntityId()) && (testSamples == null || testSamples.isEmpty()))
-            actionList.put(context.getString(R.string.hvl_sample_collection), HvlSampleCollection);
+            actionList.put(context.getString(R.string.hvl_sample_request), HvlSampleCollection);
 
         BasePmtctHomeVisitAction Cd4SampleCollection = null;
         try {
@@ -423,7 +423,7 @@ public class PmtctFollowupVisitInteractorFlv implements PmtctFollowupVisitIntera
             } else {
                 actionList.remove(context.getString(R.string.pmtct_counselling_title));
                 actionList.remove(context.getString(R.string.pmtct_baseline_investigation_title));
-                actionList.remove(context.getString(R.string.hvl_sample_collection));
+                actionList.remove(context.getString(R.string.hvl_sample_request));
                 actionList.remove(context.getString(R.string.cd4_sample_collection));
                 actionList.remove(context.getString(R.string.clinical_staging_of_hiv));
                 actionList.remove(context.getString(R.string.tb_screening_title));
