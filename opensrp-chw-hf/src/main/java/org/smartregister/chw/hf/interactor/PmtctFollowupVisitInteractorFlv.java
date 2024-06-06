@@ -223,7 +223,7 @@ public class PmtctFollowupVisitInteractorFlv implements PmtctFollowupVisitIntera
         }
 
         List<TestSample> testSamples = LabDao.getTestSamplesRequestsWithNoResultsBySampleTypeAndPatientId(org.smartregister.chw.lab.util.Constants.SAMPLE_TYPES.HVL, HivDao.getMember(memberObject.getBaseEntityId()).getCtcNumber());
-        if (HfPmtctDao.isEligibleForHlvTest(memberObject.getBaseEntityId()) && (testSamples == null || testSamples.isEmpty()))
+        if (HfPmtctDao.isEligibleForHvlTest(memberObject.getBaseEntityId()) && (testSamples == null || testSamples.isEmpty()))
             actionList.put(context.getString(R.string.hvl_sample_collection), HvlSampleCollection);
 
         BasePmtctHomeVisitAction Cd4SampleCollection = null;

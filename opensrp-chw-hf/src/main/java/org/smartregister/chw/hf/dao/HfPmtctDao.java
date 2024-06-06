@@ -35,24 +35,24 @@ public class HfPmtctDao extends CorePmtctDao {
         return false;
     }
 
-    public static boolean isEligibleForHlvTest(String baseEntityID) {
-        Boolean eligible = isEligibleForHlvTestForNewlyRegisteredClients(baseEntityID);
+    public static boolean isEligibleForHvlTest(String baseEntityID) {
+        Boolean eligible = isEligibleForHvlTestForNewlyRegisteredClients(baseEntityID);
         if (eligible != null) {
             return eligible;
         }
 
-        eligible = isEligibleForHlvTestForNewlyRegisteredClientsWithVisitsButNotTestedViralLoad(baseEntityID);
+        eligible = isEligibleForHvlTestForNewlyRegisteredClientsWithVisitsButNotTestedViralLoad(baseEntityID);
         if (eligible != null) {
             return eligible;
         }
 
 
-        eligible = isEligibleForHlvTestForClientsWithPreviousLackOfSuppression(baseEntityID);
+        eligible = isEligibleForHvlTestForClientsWithPreviousLackOfSuppression(baseEntityID);
         if (eligible != null) {
             return eligible;
         }
 
-        eligible = isEligibleForHlvTestForClientsWithPreviousHvlTests(baseEntityID);
+        eligible = isEligibleForHvlTestForClientsWithPreviousHvlTests(baseEntityID);
         if (eligible != null) {
             return eligible;
         }
@@ -60,7 +60,7 @@ public class HfPmtctDao extends CorePmtctDao {
         return false;
     }
 
-    public static Boolean isEligibleForHlvTestForNewlyRegisteredClients(String baseEntityID) {
+    public static Boolean isEligibleForHvlTestForNewlyRegisteredClients(String baseEntityID) {
         //Checking eligibility for newly registered PMTCT Clients
         String sql = "SELECT known_on_art FROM ec_pmtct_registration p WHERE p.base_entity_id = '" + baseEntityID + "'  AND p.base_entity_id NOT IN (SELECT entity_id FROM ec_pmtct_followup)";
 
@@ -73,7 +73,7 @@ public class HfPmtctDao extends CorePmtctDao {
         return null;
     }
 
-    public static Boolean isEligibleForHlvTestForNewlyRegisteredClientsWithVisitsButNotTestedViralLoad(String baseEntityID) {
+    public static Boolean isEligibleForHvlTestForNewlyRegisteredClientsWithVisitsButNotTestedViralLoad(String baseEntityID) {
         //Checking eligibility for newly registered PMTCT clients with visits but who have not tested Viral Load
         String sql = "SELECT pmtct_register_date FROM ec_pmtct_registration p WHERE p.base_entity_id = '" + baseEntityID + "' AND known_on_art = 'no' AND p.base_entity_id NOT IN (SELECT entity_id FROM ec_pmtct_followup WHERE hvl_sample_id IS NOT NULL)";
 
@@ -85,7 +85,7 @@ public class HfPmtctDao extends CorePmtctDao {
         return null;
     }
 
-    public static Boolean isEligibleForHlvTestForClientsWithPreviousLackOfSuppression(String baseEntityID) {
+    public static Boolean isEligibleForHvlTestForClientsWithPreviousLackOfSuppression(String baseEntityID) {
         //Checking eligibility for  PMTCT clients with lack of suppression after EAC visits
         String sql = "SELECT hvl_collection_date\n" +
                 "FROM (SELECT *\n" +
@@ -129,7 +129,7 @@ public class HfPmtctDao extends CorePmtctDao {
         return null;
     }
 
-    public static Boolean isEligibleForHlvTestForClientsWithPreviousHvlTests(String baseEntityID) {
+    public static Boolean isEligibleForHvlTestForClientsWithPreviousHvlTests(String baseEntityID) {
         //Checking eligibility for  registered PMTCT clients with previous Viral Load tests
         String sql =
                 "SELECT  hvl_collection_date " +

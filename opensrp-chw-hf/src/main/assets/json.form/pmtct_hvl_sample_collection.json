@@ -51,7 +51,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "do_you_want_to_request_for_hvl_sample_collection",
         "openmrs_entity_parent": "",
-        "label": "Do you want to request for HLV sample Collection?",
+        "label": "Do you want to request for HVL sample Collection?",
         "options": [
           {
             "key": "yes",
