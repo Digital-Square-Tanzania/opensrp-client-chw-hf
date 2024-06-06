@@ -160,7 +160,7 @@
         "openmrs_entity_id": "sample_collection_date",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
-        "min_date": "step1_sample_request_date",
+        "min_date": "today-1m",
         "max_date": "today",
         "v_required": {
           "value": true,
@@ -181,9 +181,10 @@
       },
       {
         "key": "sample_id",
-        "type": "hidden",
+        "type": "edit_text",
         "hint": "HVL Sample ID",
         "openmrs_entity_id": "sample_id",
+        "read_only": true,
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "calculation": {

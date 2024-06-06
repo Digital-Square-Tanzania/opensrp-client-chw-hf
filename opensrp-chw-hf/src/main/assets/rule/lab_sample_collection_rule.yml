@@ -9,7 +9,7 @@ actions:
 name: step1_sample_id
 description: sample_id
 priority: 1
-condition: "true"
+condition: "step1_sample_id.isEmpty()"
 actions:
   - "def getDate(dateFormat) {
         import java.util.*;

@@ -205,11 +205,10 @@
         "type": "date_picker",
         "hint": "Date Results given to Mother/Caregiver",
         "expanded": false,
-        "min_date": "step1_sample_results_date",
         "max_date": "today",
         "v_required": {
           "value": "true",
-          "err": "Tafadhali chagua Tarehe ya majibu kupewa mzazi"
+          "err": "Please select the date results are provided to Parents"
         },
         "relevance": {
           "step1:results_provided_to_parents": {

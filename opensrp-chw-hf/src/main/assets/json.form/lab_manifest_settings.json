@@ -63,6 +63,13 @@
           "value": true,
           "err": "Please select the Destination Hub/Lab"
         }
+      },
+      {
+        "key": "location_id",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "location_id",
+        "type": "hidden"
       }
     ]
   }

@@ -1,6 +1,7 @@
 package org.smartregister.chw.hf.activity;
 
 import static org.smartregister.chw.hf.utils.Constants.JsonFormConstants.STEP1;
+import static org.smartregister.client.utils.constants.JsonFormConstants.MIN_DATE;
 import static org.smartregister.opd.utils.OpdConstants.JSON_FORM_KEY.FIELDS;
 import static org.smartregister.opd.utils.OpdConstants.JSON_FORM_KEY.VALUE;
 
@@ -53,6 +54,9 @@ public class LabManifestDetailsActivity extends BaseManifestDetailsActivity {
             if(StringUtils.isNotBlank(maxDate)){
                 JSONObject maxSampleDate = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "max_sample_date");
                 maxSampleDate.put(VALUE, maxDate.split(" ")[0]);
+
+                JSONObject dispatchDate = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "dispatch_date");
+                dispatchDate.put(MIN_DATE, maxDate.split(" ")[0]);
 
                 JSONObject maxSampleTime = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "max_sample_time");
                 maxSampleTime.put(VALUE, maxDate.split(" ")[1]);

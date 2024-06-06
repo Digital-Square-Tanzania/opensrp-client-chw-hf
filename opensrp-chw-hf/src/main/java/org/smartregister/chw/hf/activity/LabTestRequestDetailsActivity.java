@@ -3,6 +3,7 @@ package org.smartregister.chw.hf.activity;
 import static org.smartregister.AllConstants.DEFAULT_LOCALITY_NAME;
 import static org.smartregister.chw.core.utils.CoreJsonFormUtils.TITLE;
 import static org.smartregister.chw.hf.utils.Constants.JsonFormConstants.STEP1;
+import static org.smartregister.client.utils.constants.JsonFormConstants.MIN_DATE;
 import static org.smartregister.client.utils.constants.JsonFormConstants.TYPE;
 import static org.smartregister.family.util.JsonFormUtils.READ_ONLY;
 import static org.smartregister.opd.utils.OpdConstants.JSON_FORM_KEY.FIELDS;
@@ -77,6 +78,9 @@ public class LabTestRequestDetailsActivity extends BaseLabTestRequestDetailsActi
             JSONObject sampleCollectionDate = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "sample_collection_date");
             sampleCollectionDate.put(VALUE, testSample.getSampleCollectionDate());
 
+            JSONObject sampleSeparationDate = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "sample_separation_date");
+            sampleSeparationDate.put(MIN_DATE, testSample.getSampleCollectionDate());
+
             JSONObject sampleCollectionTime = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "sample_collection_time");
             sampleCollectionTime.put(VALUE, testSample.getSampleCollectionTime());
 
@@ -145,6 +149,9 @@ public class LabTestRequestDetailsActivity extends BaseLabTestRequestDetailsActi
 
                 JSONObject sampleResultsDate = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "sample_results_date");
                 sampleResultsDate.put(VALUE, testSample.getResultsDate());
+
+                JSONObject dateResultsProvidedToClient = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "date_results_provided_to_client");
+                dateResultsProvidedToClient.put(MIN_DATE, testSample.getResultsDate());
             } else {
                 jsonObject = (new com.vijay.jsonwizard.utils.FormUtils()).getFormJsonFromRepositoryOrAssets(getBaseContext(), org.smartregister.chw.hf.utils.Constants.JsonForm.getHeiHivTestResults());
                 assert jsonObject != null;
@@ -170,6 +177,9 @@ public class LabTestRequestDetailsActivity extends BaseLabTestRequestDetailsActi
 
                 JSONObject sampleResultsDate = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "sample_results_date");
                 sampleResultsDate.put(VALUE, testSample.getResultsDate());
+
+                JSONObject hivTestResultToParentDate = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "hiv_test_result_to_parent_date");
+                hivTestResultToParentDate.put(MIN_DATE, testSample.getResultsDate());
             }
 
 

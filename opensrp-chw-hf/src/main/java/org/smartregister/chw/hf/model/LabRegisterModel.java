@@ -5,6 +5,7 @@ import static org.smartregister.chw.lab.util.Constants.EVENT_TYPE.LAB_SET_MANIFE
 import static org.smartregister.chw.lab.util.LabUtil.getHfrCode;
 import static org.smartregister.client.utils.constants.JsonFormConstants.ENCOUNTER_TYPE;
 import static org.smartregister.client.utils.constants.JsonFormConstants.GLOBAL;
+import static org.smartregister.client.utils.constants.JsonFormConstants.MIN_DATE;
 import static org.smartregister.client.utils.constants.JsonFormConstants.READ_ONLY;
 import static org.smartregister.client.utils.constants.JsonFormConstants.VALUE;
 
@@ -175,13 +176,15 @@ public class LabRegisterModel extends BaseLabRegisterModel {
                     .getJSONArray(JsonFormConstants.FIELDS);
 
             JSONObject sampleRequestDate = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "sample_request_date");
-            if (sampleRequestDate != null) {
+            JSONObject sampleCollectionDate = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "sample_collection_date");
+            if (HfPmtctDao.getSampleRequestDate(entityId) != null) {
                 sampleRequestDate.put(VALUE, HfPmtctDao.getSampleRequestDate(entityId));
                 sampleRequestDate.put(READ_ONLY, true);
+                sampleCollectionDate.put(MIN_DATE, HfPmtctDao.getSampleRequestDate(entityId));
             }
 
             JSONObject requesterClinicianName = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "requester_clinician_name");
-            if (requesterClinicianName != null) {
+            if (HfPmtctDao.getRequesterClinicianName(entityId) != null) {
                 requesterClinicianName.put(VALUE, HfPmtctDao.getRequesterClinicianName(entityId));
                 requesterClinicianName.put(READ_ONLY, true);
             }
@@ -196,13 +199,15 @@ public class LabRegisterModel extends BaseLabRegisterModel {
                     .getJSONArray(JsonFormConstants.FIELDS);
 
             JSONObject sampleRequestDate = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "sample_request_date");
-            if (sampleRequestDate != null) {
+            JSONObject sampleCollectionDate = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "sample_collection_date");
+            if (HeiDao.getSampleRequestDate(entityId) != null) {
                 sampleRequestDate.put(VALUE, HeiDao.getSampleRequestDate(entityId));
                 sampleRequestDate.put(READ_ONLY, true);
+                sampleCollectionDate.put(MIN_DATE, HeiDao.getSampleRequestDate(entityId));
             }
 
             JSONObject requesterClinicianName = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "requester_clinician_name");
-            if (requesterClinicianName != null) {
+            if (HeiDao.getRequesterClinicianName(entityId) != null) {
                 requesterClinicianName.put(VALUE, HeiDao.getRequesterClinicianName(entityId));
                 requesterClinicianName.put(READ_ONLY, true);
             }

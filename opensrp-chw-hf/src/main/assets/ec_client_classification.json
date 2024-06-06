@@ -626,7 +626,8 @@
             "field_value": "HEI HIV Test Results",
             "creates_case": [
               "ec_hei_hiv_results",
-              "ec_hei"
+              "ec_hei",
+              "ec_lab_requests"
             ]
           },
           {

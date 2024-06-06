@@ -588,7 +588,6 @@
         "openmrs_entity_id": "date_results_provided_to_client",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
-        "min_date": "step1_sample_results_date",
         "max_date": "today",
         "v_required": {
           "value": true,

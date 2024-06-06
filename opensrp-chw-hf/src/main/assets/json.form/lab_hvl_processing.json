@@ -149,7 +149,6 @@
         "openmrs_entity_id": "sample_separation_date",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
-        "min_date": "step1_sample_collection_date",
         "max_date": "today",
         "v_required": {
           "value": true,

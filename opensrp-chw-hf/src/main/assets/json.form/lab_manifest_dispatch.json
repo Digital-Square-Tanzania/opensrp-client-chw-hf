@@ -87,7 +87,6 @@
         "openmrs_entity_id": "dispatch_date",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
-        "min_date": "step1_max_sample_date",
         "max_date": "today",
         "v_required": {
           "value": true,
