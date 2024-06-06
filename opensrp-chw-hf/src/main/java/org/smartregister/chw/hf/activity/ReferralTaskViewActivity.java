@@ -12,12 +12,16 @@ import androidx.annotation.NonNull;
 
 import org.json.JSONObject;
 import org.smartregister.chw.core.activity.BaseReferralTaskViewActivity;
+import org.smartregister.chw.core.application.CoreChwApplication;
+import org.smartregister.chw.core.repository.ChwTaskRepository;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.core.utils.CoreReferralUtils;
 import org.smartregister.chw.hf.BuildConfig;
 import org.smartregister.chw.hf.HealthFacilityApplication;
 import org.smartregister.chw.hf.R;
+import org.smartregister.chw.hf.repository.HfTaskRepository;
 import org.smartregister.chw.hf.utils.AllClientsUtils;
+import org.smartregister.chw.hf.utils.Constants;
 import org.smartregister.clientandeventmodel.Event;
 import org.smartregister.clientandeventmodel.Obs;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
@@ -27,6 +31,7 @@ import org.smartregister.family.util.Utils;
 import org.smartregister.opd.utils.OpdDbConstants;
 import org.smartregister.repository.AllSharedPreferences;
 import org.smartregister.repository.BaseRepository;
+import org.smartregister.repository.TaskRepository;
 import org.smartregister.sync.helper.ECSyncHelper;
 import org.smartregister.util.JsonFormUtils;
 import org.smartregister.view.customcontrols.CustomFontTextView;
@@ -172,8 +177,14 @@ public class ReferralTaskViewActivity extends BaseReferralTaskViewActivity imple
     private void completeTask() {
         Task currentTask = getTask();
         currentTask.setForEntity(getBaseEntityId());
-        currentTask.setStatus(Task.TaskStatus.IN_PROGRESS);
+        currentTask.setStatus((checkReferralType()) ? Task.TaskStatus.COMPLETED: Task.TaskStatus.IN_PROGRESS);
         CoreReferralUtils.completeTask(currentTask, false);
+    }
+
+    private boolean checkReferralType(){
+        TaskRepository taskRepository = CoreChwApplication.getInstance().getTaskRepository();
+        String referralType = ((HfTaskRepository) taskRepository).getTaskReferralType(getTask());
+        return referralType.equals(Constants.ADDO_REFERRAL_TYPE);
     }
 
     public String getBaseEntityId() {
