@@ -84,7 +84,8 @@ public class LabManifestDetailsActivity extends BaseManifestDetailsActivity {
         String maxDate = "";
         List<String> sampleList = convertToList(manifest.getSampleList());
         for (String sampleId : sampleList) {
-            TestSample testSample = LabDao.getTestSamplesRequestsBySampleId(sampleId).get(0);
+            String sampleIdText  = sampleId.replaceAll("^\"+|\"+$", "");
+            TestSample testSample = LabDao.getTestSamplesRequestsBySampleId(sampleIdText).get(0);
             if (StringUtils.isNotBlank(testSample.getSampleSeparationDate()) && StringUtils.isNotBlank(testSample.getSampleSeparationTime())) {
                 if (maxDate.isEmpty() || sdf.parse(testSample.getSampleSeparationDate() + " " + testSample.getSampleSeparationTime()).after(sdf.parse(maxDate))) {
                     maxDate = testSample.getSampleSeparationDate() + " " + testSample.getSampleSeparationTime();
