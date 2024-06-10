@@ -257,12 +257,6 @@
             "openmrs_entity_id": "no_gas_available"
           },
           {
-            "key": "no_treatment_equipment",
-            "text": "No treatment equipment",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "no_treatment_equipment"
-          },
-          {
             "key": "machine_not_functional",
             "text": "Machine not functional",
             "openmrs_entity": "concept",
