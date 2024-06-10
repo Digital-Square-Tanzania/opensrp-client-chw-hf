@@ -60,7 +60,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "can_the_facility_perform_hpv_dna_test",
         "type": "native_radio",
-        "label": "Can the facility perform HPV DNA test?",
+        "label": "Is the sample collected for the HPV DNA test?",
         "text_color": "#000000",
         "options": [
           {
