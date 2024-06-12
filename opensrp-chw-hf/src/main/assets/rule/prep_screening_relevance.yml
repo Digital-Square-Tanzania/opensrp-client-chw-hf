@@ -48,6 +48,20 @@ condition: "step1_tested_crcl == 'no'  && global_should_record_crcl_tests"
 actions:
   - "isRelevant = true"
 ---
+name: step1_should_test_for_hbv
+description: show prompt
+priority: 1
+condition: "step1_tested_hbv == 'no'  && global_should_record_hbv_tests"
+actions:
+  - "isRelevant = true"
+---
+name: step1_should_test_for_hcv
+description: show prompt
+priority: 1
+condition: "step1_tested_hcv == 'no'  && global_should_record_hcv_tests"
+actions:
+  - "isRelevant = true"
+---
 name: step1_hcv_results
 description: hcv_results relevance
 priority: 1

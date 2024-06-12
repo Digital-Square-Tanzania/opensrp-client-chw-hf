@@ -1,14 +1,12 @@
-package org.smartregister.chw.hf;
 
+package org.smartregister.chw.hf;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Build;
-
 import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.core.CrashlyticsCore;
 import com.evernote.android.job.JobManager;
 import com.mapbox.mapboxsdk.Mapbox;
-
 import org.jetbrains.annotations.NotNull;
 import org.smartregister.AllConstants;
 import org.smartregister.Context;
@@ -87,13 +85,11 @@ import org.smartregister.repository.Repository;
 import org.smartregister.repository.TaskNotesRepository;
 import org.smartregister.repository.TaskRepository;
 import org.smartregister.util.Utils;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
-
 import io.fabric.sdk.android.Fabric;
 import io.ona.kujaku.KujakuLibrary;
 import timber.log.Timber;
@@ -429,3 +425,4 @@ public class HealthFacilityApplication extends CoreChwApplication implements Cor
         boolean hasMap();
     }
 }
+

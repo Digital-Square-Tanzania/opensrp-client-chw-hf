@@ -96,12 +96,6 @@
             "text": "Not Treated",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "not_treated"
-          },
-          {
-            "key": "not_app",
-            "text": "Not Applicable",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "not_app"
           }
         ],
         "v_required": {
