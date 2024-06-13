@@ -110,22 +110,6 @@
         }
       },
       {
-        "key": "prompt_for_ineligibility",
-        "type": "toaster_notes",
-        "text": "The client is not eligible for breast cancer screening",
-        "openmrs_entity_id": "prompt_for_ineligibility",
-        "openmrs_entity": "concept",
-        "openmrs_entity_parent": "",
-        "toaster_type": "problem",
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "cecap_individual_counseling_for_breast_cancer_rule.yml"
-            }
-          }
-        }
-      },
-      {
         "key": "prompt_for_mammograph",
         "type": "toaster_notes",
         "text": "Recommend for Mammograph",

@@ -135,7 +135,7 @@
       {
         "key": "dna_specimen_collection_clinician_name",
         "type": "edit_text",
-        "hint": "Healthcare Provider's Name",
+        "hint": "Healthcare Provider's Name (First Name and Last Name)",
         "openmrs_entity_id": "dna_specimen_collection_clinician_name",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
