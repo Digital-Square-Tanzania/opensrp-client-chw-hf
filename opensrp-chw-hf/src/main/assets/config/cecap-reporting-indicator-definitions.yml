@@ -5390,8 +5390,1320 @@ indicators:
                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                      date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
-
+    
+#    CECAP 17
+  - key: "cecap-17-hiv-positive-15-19"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya mwaka mmoja (waliowahi kutibiwa kwa thermo, cryo au LEEP)"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 15 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 20
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'positive'
+                      AND (ecv1.treatment_option LIKE '%cryotherapy%' OR ecv1.treatment_option LIKE '%thermocoagulation%'  OR ecv1.leep_performed = 'yes')
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 31536000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
  
+ 
+  - key: "cecap-17-hiv-positive-20-24"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya mwaka mmoja (waliowahi kutibiwa kwa thermo, cryo au LEEP)"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 20 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 25
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'positive'
+                      AND (ecv1.treatment_option LIKE '%cryotherapy%' OR ecv1.treatment_option LIKE '%thermocoagulation%'  OR ecv1.leep_performed = 'yes')
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 31536000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-17-hiv-positive-25-29"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya mwaka mmoja (waliowahi kutibiwa kwa thermo, cryo au LEEP)"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 25 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 30
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'positive'
+                      AND (ecv1.treatment_option LIKE '%cryotherapy%' OR ecv1.treatment_option LIKE '%thermocoagulation%'  OR ecv1.leep_performed = 'yes')
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 31536000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-17-hiv-positive-30-34"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya mwaka mmoja (waliowahi kutibiwa kwa thermo, cryo au LEEP)"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 30 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 35
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'positive'
+                      AND (ecv1.treatment_option LIKE '%cryotherapy%' OR ecv1.treatment_option LIKE '%thermocoagulation%'  OR ecv1.leep_performed = 'yes')
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 31536000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-17-hiv-positive-35-39"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya mwaka mmoja (waliowahi kutibiwa kwa thermo, cryo au LEEP)"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 35 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 40
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'positive'
+                      AND (ecv1.treatment_option LIKE '%cryotherapy%' OR ecv1.treatment_option LIKE '%thermocoagulation%'  OR ecv1.leep_performed = 'yes')
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 31536000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-17-hiv-positive-40-44"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya mwaka mmoja (waliowahi kutibiwa kwa thermo, cryo au LEEP)"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 40 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 45
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'positive'
+                      AND (ecv1.treatment_option LIKE '%cryotherapy%' OR ecv1.treatment_option LIKE '%thermocoagulation%'  OR ecv1.leep_performed = 'yes')
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 31536000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-17-hiv-positive-45-49"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya mwaka mmoja (waliowahi kutibiwa kwa thermo, cryo au LEEP)"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 45 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 50
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'positive'
+                      AND (ecv1.treatment_option LIKE '%cryotherapy%' OR ecv1.treatment_option LIKE '%thermocoagulation%'  OR ecv1.leep_performed = 'yes')
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 31536000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-17-hiv-positive-50+"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya mwaka mmoja (waliowahi kutibiwa kwa thermo, cryo au LEEP)"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 50 <= (date('Now') - date(efm.dob))
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'positive'
+                      AND (ecv1.treatment_option LIKE '%cryotherapy%' OR ecv1.treatment_option LIKE '%thermocoagulation%'  OR ecv1.leep_performed = 'yes')
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 31536000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+
+  - key: "cecap-17-hiv-negative-15-19"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya mwaka mmoja (waliowahi kutibiwa kwa thermo, cryo au LEEP)"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 15 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 20
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'negative'
+                      AND (ecv1.treatment_option LIKE '%cryotherapy%' OR ecv1.treatment_option LIKE '%thermocoagulation%'  OR ecv1.leep_performed = 'yes')
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 31536000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-17-hiv-negative-20-24"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya mwaka mmoja (waliowahi kutibiwa kwa thermo, cryo au LEEP)"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 20 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 25
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'negative'
+                      AND (ecv1.treatment_option LIKE '%cryotherapy%' OR ecv1.treatment_option LIKE '%thermocoagulation%'  OR ecv1.leep_performed = 'yes')
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 31536000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-17-hiv-negative-25-29"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya mwaka mmoja (waliowahi kutibiwa kwa thermo, cryo au LEEP)"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 25 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 30
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'negative'
+                      AND (ecv1.treatment_option LIKE '%cryotherapy%' OR ecv1.treatment_option LIKE '%thermocoagulation%'  OR ecv1.leep_performed = 'yes')
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 31536000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-17-hiv-negative-30-34"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya mwaka mmoja (waliowahi kutibiwa kwa thermo, cryo au LEEP)"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 30 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 35
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'negative'
+                      AND (ecv1.treatment_option LIKE '%cryotherapy%' OR ecv1.treatment_option LIKE '%thermocoagulation%'  OR ecv1.leep_performed = 'yes')
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 31536000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-17-hiv-negative-35-39"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya mwaka mmoja (waliowahi kutibiwa kwa thermo, cryo au LEEP)"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 35 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 40
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'negative'
+                      AND (ecv1.treatment_option LIKE '%cryotherapy%' OR ecv1.treatment_option LIKE '%thermocoagulation%'  OR ecv1.leep_performed = 'yes')
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 31536000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-17-hiv-negative-40-44"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya mwaka mmoja (waliowahi kutibiwa kwa thermo, cryo au LEEP)"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 40 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 45
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'negative'
+                      AND (ecv1.treatment_option LIKE '%cryotherapy%' OR ecv1.treatment_option LIKE '%thermocoagulation%'  OR ecv1.leep_performed = 'yes')
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 31536000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-17-hiv-negative-45-49"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya mwaka mmoja (waliowahi kutibiwa kwa thermo, cryo au LEEP)"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 45 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 50
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'negative'
+                      AND (ecv1.treatment_option LIKE '%cryotherapy%' OR ecv1.treatment_option LIKE '%thermocoagulation%'  OR ecv1.leep_performed = 'yes')
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 31536000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-17-hiv-negative-50+"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya mwaka mmoja (waliowahi kutibiwa kwa thermo, cryo au LEEP)"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 50 <= (date('Now') - date(efm.dob))
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'negative'
+                      AND (ecv1.treatment_option LIKE '%cryotherapy%' OR ecv1.treatment_option LIKE '%thermocoagulation%'  OR ecv1.leep_performed = 'yes')
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 31536000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+
+  - key: "cecap-17-hiv-unknown-15-19"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya mwaka mmoja (waliowahi kutibiwa kwa thermo, cryo au LEEP)"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 15 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 20
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'unknown'
+                      AND (ecv1.treatment_option LIKE '%cryotherapy%' OR ecv1.treatment_option LIKE '%thermocoagulation%'  OR ecv1.leep_performed = 'yes')
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 31536000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-17-hiv-unknown-20-24"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya mwaka mmoja (waliowahi kutibiwa kwa thermo, cryo au LEEP)"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 20 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 25
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'unknown'
+                      AND (ecv1.treatment_option LIKE '%cryotherapy%' OR ecv1.treatment_option LIKE '%thermocoagulation%'  OR ecv1.leep_performed = 'yes')
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 31536000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-17-hiv-unknown-25-29"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya mwaka mmoja (waliowahi kutibiwa kwa thermo, cryo au LEEP)"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 25 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 30
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'unknown'
+                      AND (ecv1.treatment_option LIKE '%cryotherapy%' OR ecv1.treatment_option LIKE '%thermocoagulation%'  OR ecv1.leep_performed = 'yes')
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 31536000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-17-hiv-unknown-30-34"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya mwaka mmoja (waliowahi kutibiwa kwa thermo, cryo au LEEP)"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 30 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 35
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'unknown'
+                      AND (ecv1.treatment_option LIKE '%cryotherapy%' OR ecv1.treatment_option LIKE '%thermocoagulation%'  OR ecv1.leep_performed = 'yes')
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 31536000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-17-hiv-unknown-35-39"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya mwaka mmoja (waliowahi kutibiwa kwa thermo, cryo au LEEP)"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 35 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 40
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'unknown'
+                      AND (ecv1.treatment_option LIKE '%cryotherapy%' OR ecv1.treatment_option LIKE '%thermocoagulation%'  OR ecv1.leep_performed = 'yes')
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 31536000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-17-hiv-unknown-40-44"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya mwaka mmoja (waliowahi kutibiwa kwa thermo, cryo au LEEP)"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 40 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 45
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'unknown'
+                      AND (ecv1.treatment_option LIKE '%cryotherapy%' OR ecv1.treatment_option LIKE '%thermocoagulation%'  OR ecv1.leep_performed = 'yes')
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 31536000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-17-hiv-unknown-45-49"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya mwaka mmoja (waliowahi kutibiwa kwa thermo, cryo au LEEP)"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 45 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 50
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'unknown'
+                      AND (ecv1.treatment_option LIKE '%cryotherapy%' OR ecv1.treatment_option LIKE '%thermocoagulation%'  OR ecv1.leep_performed = 'yes')
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 31536000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-17-hiv-unknown-50+"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya mwaka mmoja (waliowahi kutibiwa kwa thermo, cryo au LEEP)"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 50 <= (date('Now') - date(efm.dob))
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'unknown'
+                      AND (ecv1.treatment_option LIKE '%cryotherapy%' OR ecv1.treatment_option LIKE '%thermocoagulation%'  OR ecv1.leep_performed = 'yes')
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 31536000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+    
+#    CECAP 18
+  - key: "cecap-18-hiv-positive-15-19"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitatu ya  uchunguzi-VIA negative"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 15 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 20
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'positive'
+                      AND ecv1.via_findings LIKE '%negative%'
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 94608000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-18-hiv-positive-20-24"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitatu ya  uchunguzi-VIA negative"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 20 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 25
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'positive'
+                      AND ecv1.via_findings LIKE '%negative%'
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 94608000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-18-hiv-positive-25-29"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitatu ya  uchunguzi-VIA negative"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 25 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 30
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'positive'
+                      AND ecv1.via_findings LIKE '%negative%'
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 94608000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-18-hiv-positive-30-34"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitatu ya  uchunguzi-VIA negative"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 30 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 35
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'positive'
+                      AND ecv1.via_findings LIKE '%negative%'
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 94608000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-18-hiv-positive-35-39"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitatu ya  uchunguzi-VIA negative"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 35 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 40
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'positive'
+                      AND ecv1.via_findings LIKE '%negative%'
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 94608000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-18-hiv-positive-40-44"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitatu ya  uchunguzi-VIA negative"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 40 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 45
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'positive'
+                      AND ecv1.via_findings LIKE '%negative%'
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 94608000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-18-hiv-positive-45-49"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitatu ya  uchunguzi-VIA negative"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 45 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 50
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'positive'
+                      AND ecv1.via_findings LIKE '%negative%'
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 94608000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-18-hiv-positive-50+"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitatu ya  uchunguzi-VIA negative"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 50 <= (date('Now') - date(efm.dob))
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'positive'
+                      AND ecv1.via_findings LIKE '%negative%'
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 94608000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+
+  - key: "cecap-18-hiv-negative-15-19"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitatu ya  uchunguzi-VIA negative"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 15 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 20
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'negative'
+                      AND ecv1.via_findings LIKE '%negative%'
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 94608000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-18-hiv-negative-20-24"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitatu ya  uchunguzi-VIA negative"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 20 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 25
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'negative'
+                      AND ecv1.via_findings LIKE '%negative%'
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 94608000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-18-hiv-negative-25-29"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitatu ya  uchunguzi-VIA negative"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 25 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 30
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'negative'
+                      AND ecv1.via_findings LIKE '%negative%'
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 94608000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-18-hiv-negative-30-34"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitatu ya  uchunguzi-VIA negative"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 30 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 35
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'negative'
+                      AND ecv1.via_findings LIKE '%negative%'
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 94608000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-18-hiv-negative-35-39"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitatu ya  uchunguzi-VIA negative"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 35 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 40
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'negative'
+                      AND ecv1.via_findings LIKE '%negative%'
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 94608000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-18-hiv-negative-40-44"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitatu ya  uchunguzi-VIA negative"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 40 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 45
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'negative'
+                      AND ecv1.via_findings LIKE '%negative%'
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 94608000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-18-hiv-negative-45-49"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitatu ya  uchunguzi-VIA negative"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 45 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 50
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'negative'
+                      AND ecv1.via_findings LIKE '%negative%'
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 94608000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-18-hiv-negative-50+"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitatu ya  uchunguzi-VIA negative"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 50 <= (date('Now') - date(efm.dob))
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'negative'
+                      AND ecv1.via_findings LIKE '%negative%'
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 94608000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+
+  - key: "cecap-18-hiv-unknown-15-19"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitatu ya  uchunguzi-VIA negative"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 15 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 20
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'unknown'
+                      AND ecv1.via_findings LIKE '%negative%'
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 94608000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-18-hiv-unknown-20-24"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitatu ya  uchunguzi-VIA negative"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 20 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 25
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'unknown'
+                      AND ecv1.via_findings LIKE '%negative%'
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 94608000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-18-hiv-unknown-25-29"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitatu ya  uchunguzi-VIA negative"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 25 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 30
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'unknown'
+                      AND ecv1.via_findings LIKE '%negative%'
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 94608000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-18-hiv-unknown-30-34"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitatu ya  uchunguzi-VIA negative"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 30 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 35
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'unknown'
+                      AND ecv1.via_findings LIKE '%negative%'
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 94608000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-18-hiv-unknown-35-39"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitatu ya  uchunguzi-VIA negative"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 35 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 40
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'unknown'
+                      AND ecv1.via_findings LIKE '%negative%'
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 94608000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-18-hiv-unknown-40-44"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitatu ya  uchunguzi-VIA negative"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 40 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 45
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'unknown'
+                      AND ecv1.via_findings LIKE '%negative%'
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 94608000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-18-hiv-unknown-45-49"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitatu ya  uchunguzi-VIA negative"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 45 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 50
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'unknown'
+                      AND ecv1.via_findings LIKE '%negative%'
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 94608000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-18-hiv-unknown-50+"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitatu ya  uchunguzi-VIA negative"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 50 <= (date('Now') - date(efm.dob))
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'unknown'
+                      AND ecv1.via_findings LIKE '%negative%'
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 94608000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+    
+#    CECAP 19
+  - key: "cecap-19-hiv-positive-15-19"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitano ya uchunguzi - HPV DNA negative"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecv1.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 15 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 20
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'positive'
+                      AND ectr.hpv_dna_findings = 'negative'
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 94608000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-19-hiv-positive-20-24"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitano ya uchunguzi - HPV DNA negative"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecv1.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 20 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 25
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'positive'
+                      AND ectr.hpv_dna_findings = 'negative'
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 94608000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-19-hiv-positive-25-29"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitano ya uchunguzi - HPV DNA negative"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecv1.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 25 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 30
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'positive'
+                      AND ectr.hpv_dna_findings = 'negative'
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 94608000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-19-hiv-positive-30-34"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitano ya uchunguzi - HPV DNA negative"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecv1.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 30 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 35
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'positive'
+                      AND ectr.hpv_dna_findings = 'negative'
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 94608000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-19-hiv-positive-35-39"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitano ya uchunguzi - HPV DNA negative"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecv1.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 35 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 40
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'positive'
+                      AND ectr.hpv_dna_findings = 'negative'
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 94608000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-19-hiv-positive-40-44"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitano ya uchunguzi - HPV DNA negative"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecv1.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 40 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 45
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'positive'
+                      AND ectr.hpv_dna_findings = 'negative'
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 94608000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-19-hiv-positive-45-49"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitano ya uchunguzi - HPV DNA negative"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecv1.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 45 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 50
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'positive'
+                      AND ectr.hpv_dna_findings = 'negative'
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 94608000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-19-hiv-positive-50+"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitano ya uchunguzi - HPV DNA negative"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecv1.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 50 <= (date('Now') - date(efm.dob))
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'positive'
+                      AND ectr.hpv_dna_findings = 'negative'
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 94608000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+
+  - key: "cecap-19-hiv-negative-15-19"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitano ya uchunguzi - HPV DNA negative"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecv1.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 15 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 20
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'negative'
+                      AND ectr.hpv_dna_findings = 'negative'
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 94608000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-19-hiv-negative-20-24"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitano ya uchunguzi - HPV DNA negative"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecv1.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 20 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 25
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'negative'
+                      AND ectr.hpv_dna_findings = 'negative'
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 94608000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-19-hiv-negative-25-29"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitano ya uchunguzi - HPV DNA negative"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecv1.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 25 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 30
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'negative'
+                      AND ectr.hpv_dna_findings = 'negative'
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 94608000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-19-hiv-negative-30-34"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitano ya uchunguzi - HPV DNA negative"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecv1.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 30 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 35
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'negative'
+                      AND ectr.hpv_dna_findings = 'negative'
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 94608000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-19-hiv-negative-35-39"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitano ya uchunguzi - HPV DNA negative"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecv1.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 35 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 40
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'negative'
+                      AND ectr.hpv_dna_findings = 'negative'
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 94608000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-19-hiv-negative-40-44"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitano ya uchunguzi - HPV DNA negative"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecv1.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 40 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 45
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'negative'
+                      AND ectr.hpv_dna_findings = 'negative'
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 94608000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-19-hiv-negative-45-49"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitano ya uchunguzi - HPV DNA negative"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecv1.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 45 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 50
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'negative'
+                      AND ectr.hpv_dna_findings = 'negative'
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 94608000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-19-hiv-negative-50+"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitano ya uchunguzi - HPV DNA negative"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecv1.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 50 <= (date('Now') - date(efm.dob))
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'negative'
+                      AND ectr.hpv_dna_findings = 'negative'
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 94608000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+
+  - key: "cecap-19-hiv-unknown-15-19"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitano ya uchunguzi - HPV DNA negative"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecv1.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 15 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 20
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'unknown'
+                      AND ectr.hpv_dna_findings = 'negative'
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 94608000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-19-hiv-unknown-20-24"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitano ya uchunguzi - HPV DNA negative"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecv1.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 20 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 25
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'unknown'
+                      AND ectr.hpv_dna_findings = 'negative'
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 94608000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-19-hiv-unknown-25-29"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitano ya uchunguzi - HPV DNA negative"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecv1.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 25 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 30
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'unknown'
+                      AND ectr.hpv_dna_findings = 'negative'
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 94608000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-19-hiv-unknown-30-34"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitano ya uchunguzi - HPV DNA negative"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecv1.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 30 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 35
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'unknown'
+                      AND ectr.hpv_dna_findings = 'negative'
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 94608000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-19-hiv-unknown-35-39"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitano ya uchunguzi - HPV DNA negative"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecv1.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 35 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 40
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'unknown'
+                      AND ectr.hpv_dna_findings = 'negative'
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 94608000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-19-hiv-unknown-40-44"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitano ya uchunguzi - HPV DNA negative"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecv1.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 40 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 45
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'unknown'
+                      AND ectr.hpv_dna_findings = 'negative'
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 94608000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-19-hiv-unknown-45-49"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitano ya uchunguzi - HPV DNA negative"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecv1.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 45 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 50
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'unknown'
+                      AND ectr.hpv_dna_findings = 'negative'
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 94608000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+ 
+ 
+  - key: "cecap-19-hiv-unknown-50+"
+    grouping: "CECAP"
+    description: "Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitano ya uchunguzi - HPV DNA negative"
+    indicatorQuery: " SELECT COUNT(DISTINCT ecr.base_entity_id) AS count
+                      FROM ec_cecap_register ecr
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv1 ON ecv1.entity_id = ecr.base_entity_id
+                      INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecv1.base_entity_id
+                      INNER JOIN ec_cecap_visit ecv2 ON ecv2.entity_id = ecr.base_entity_id AND ecv1.last_interacted_with < ecv2.last_interacted_with
+                      WHERE 50 <= (date('Now') - date(efm.dob))
+                      AND efm.gender = 'Female'
+                      AND ecr.hiv_status = 'unknown'
+                      AND ectr.hpv_dna_findings = 'negative'
+                      AND ABS(ecv2.last_interacted_with/1000 - ecv1.last_interacted_with/1000) >= 94608000
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                      date(substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv2.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
 
 
 

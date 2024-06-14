@@ -16,7 +16,7 @@ public class CecapMonthlyReportObject extends ReportObject {
     private final List<String> indicatorCodesWithAgeGroups = new ArrayList<>();
 
     private final String[] indicatorCodes = new String[]{
-            "cecap-1", "cecap-2", "cecap-3", "cecap-4", "cecap-5", "cecap-6", "cecap-7", "cecap-8", "cecap-9", "cecap-10", "cecap-11", "cecap-12", "cecap-13", "cecap-14", "cecap-15", "cecap-16"
+            "cecap-1", "cecap-2", "cecap-3", "cecap-4", "cecap-5", "cecap-6", "cecap-7", "cecap-8", "cecap-9", "cecap-10", "cecap-11", "cecap-12", "cecap-13", "cecap-14", "cecap-15", "cecap-16", "cecap-17", "cecap-18", "cecap-19"
     };
 
     private final String[] hivStatus = new String[]{"hiv-positive", "hiv-negative", "hiv-unknown"};
