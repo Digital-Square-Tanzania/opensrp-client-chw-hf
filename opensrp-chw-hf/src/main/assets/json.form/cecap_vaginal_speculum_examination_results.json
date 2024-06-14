@@ -63,7 +63,8 @@
         "combine_checkbox_option_values": "true",
         "label": "Does the client have any of the following",
         "exclusive": [
-          "none"
+          "none",
+          "suspicious_for_cancer"
         ],
         "options": [
           {
@@ -106,6 +107,104 @@
         "v_required": {
           "value": "true",
           "err": "Required"
+        }
+      },
+      {
+        "key": "prompt_for_taking_biopsy",
+        "type": "toaster_notes",
+        "text": "Biopsy should be taken for the client",
+        "openmrs_entity_id": "prompt_for_taking_biopsy",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "info",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cecap_viganal_speculum_examination_results_rule.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "was_biopsy_taken_for_the_client_with_suspicion_for_cancer",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "was_biopsy_taken_for_the_client_with_suspicion_for_cancer",
+        "type": "native_radio",
+        "label": "Was the biopsy taken?",
+        "options": [
+          {
+            "key": "yes",
+            "text": "Yes",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "yes"
+          },
+          {
+            "key": "no",
+            "text": "No",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "no"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Required"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cecap_viganal_speculum_examination_results_rule.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "was_the_clint_confirmed_with_cancer",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "was_the_clint_confirmed_with_cancer",
+        "type": "native_radio",
+        "label": "Was the client confirmed with Cancer?",
+        "options": [
+          {
+            "key": "yes",
+            "text": "Yes",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "yes"
+          },
+          {
+            "key": "no",
+            "text": "No",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "no"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Required"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cecap_viganal_speculum_examination_results_rule.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "prompt_for_referral_for_further_management",
+        "type": "toaster_notes",
+        "text": "The refer the client for further management",
+        "openmrs_entity_id": "prompt_for_referral_for_further_management",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cecap_viganal_speculum_examination_results_rule.yml"
+            }
+          }
         }
       },
       {

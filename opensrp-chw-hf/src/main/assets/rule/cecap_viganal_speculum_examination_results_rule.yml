@@ -4,12 +4,41 @@ description: eligible_for_cervical_cancer_screening_after_speculum_examination_r
 priority: 1
 condition: "true"
 actions:
-  - "calculation = !step1_vaginal_speculum_examination.isEmpty() && step1_vaginal_speculum_examination.contains('none')"
+  - "calculation = !step1_vaginal_speculum_examination.isEmpty() && (step1_vaginal_speculum_examination.contains('none') || step1_was_the_clint_confirmed_with_cancer.contains('no')   )"
 ---
 name: step1_prompt_for_ineligibility
 description: prompt_for_ineligibility
 priority: 1
-condition: "!step1_vaginal_speculum_examination.isEmpty() && !step1_vaginal_speculum_examination.contains('none')"
+condition: "!step1_vaginal_speculum_examination.isEmpty() && !step1_vaginal_speculum_examination.contains('none') && !step1_vaginal_speculum_examination.contains('suspicious_for_cancer')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_prompt_for_taking_biopsy
+description: prompt_for_taking_biopsy
+priority: 1
+condition: "!step1_vaginal_speculum_examination.isEmpty() && step1_vaginal_speculum_examination.contains('suspicious_for_cancer')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_was_biopsy_taken_for_the_client_with_suspicion_for_cancer
+description: was_biopsy_taken_for_the_client_with_suspicion_for_cancer
+priority: 1
+condition: "!step1_vaginal_speculum_examination.isEmpty() && step1_vaginal_speculum_examination.contains('suspicious_for_cancer')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_was_the_clint_confirmed_with_cancer
+description: was_the_clint_confirmed_with_cancer
+priority: 1
+condition: "step1_was_biopsy_taken_for_the_client_with_suspicion_for_cancer.contains('yes')"
+actions:
+  - "isRelevant = true"
+
+---
+name: step1_prompt_for_referral_for_further_management
+description: prompt_for_referral_for_further_management
+priority: 1
+condition: "step1_was_the_clint_confirmed_with_cancer.contains('yes') || step1_was_biopsy_taken_for_the_client_with_suspicion_for_cancer.contains('no')"
 actions:
   - "isRelevant = true"
 
