@@ -1,0 +1,28 @@
+---
+name: step1_test_results_date
+description: test_results_date calculation
+priority: 1
+condition: "true"
+actions:
+  - "calculation = helper.getDateToday()"
+---
+name: step1_type_of_hpv_positive
+description: type_of_hpv_positive relevance
+priority: 1
+condition: "step1_hpv_dna_findings.equals('positive')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_prompt_for_hiv_negative_client
+description: prompt_for_hiv_negative_client relevance
+priority: 1
+condition: "step1_hpv_dna_findings.equals('negative') && global_hiv_status == 'negative'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_prompt_for_hiv_positive_client
+description: prompt_for_hiv_positive_client relevance
+priority: 1
+condition: "step1_hpv_dna_findings.equals('negative') && global_hiv_status == 'positive'"
+actions:
+  - "isRelevant = true"

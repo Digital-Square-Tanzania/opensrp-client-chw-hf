@@ -1,0 +1,59 @@
+---
+name: step1_heavy_bleeding
+description: heavy_bleeding
+priority: 1
+condition: "step1_client_pregnancy_status.equals('not_pregnant')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_virginity_status
+description: virginity_status
+priority: 1
+condition: "step1_client_pregnancy_status.equals('not_pregnant') && step1_heavy_bleeding.equals('no')  && global_parity == 0"
+actions:
+  - "isRelevant = true"
+---
+name: step1_last_delivery_or_miscarriage_date
+description: last_delivery_or_miscarriage_date
+priority: 1
+condition: "step1_client_pregnancy_status.equals('not_pregnant') &&
+            step1_heavy_bleeding.equals('no') &&
+            !step1_virginity_status.equals('no') && global_parity > 0
+            "
+actions:
+  - "isRelevant = true"
+---
+name: step1_total_hysterectomy
+description: total_hysterectomy
+priority: 1
+condition: "step1_client_pregnancy_status.equals('not_pregnant') &&
+            step1_heavy_bleeding.equals('no') &&
+            step1_virginity_status.equals('no') &&
+            (helper.getDifferenceDays(step1_last_delivery_or_miscarriage_date) > 84 || global_parity == 0)
+            "
+actions:
+  - "isRelevant = true"
+---
+name: step1_prompt_for_ineligibility
+description: prompt_for_ineligibility
+priority: 1
+condition: "step1_client_pregnancy_status.equals('pregnant') ||
+            step1_heavy_bleeding.equals('yes') ||
+            step1_virginity_status.equals('yes') ||
+            (global_parity > 0 && helper.getDifferenceDays(step1_last_delivery_or_miscarriage_date) <= 84 && !step1_last_delivery_or_miscarriage_date.isEmpty()) ||
+            step1_total_hysterectomy.equals('yes')
+            "
+actions:
+  - "isRelevant = true"
+---
+name: step1_eligible_for_cervical_cancer_screening_after_individual_counselling_for_cervical_cancer
+description: eligible_for_cervical_cancer_screening_after_individual_counselling_for_cervical_cancer
+priority: 1
+condition: "true"
+actions:
+  - "calculation = !(step1_client_pregnancy_status.equals('pregnant') ||
+                    step1_heavy_bleeding.equals('yes') ||
+                    step1_virginity_status.equals('yes') ||
+                    (global_parity > 0 && helper.getDifferenceDays(step1_last_delivery_or_miscarriage_date) <= 84 && !step1_last_delivery_or_miscarriage_date.isEmpty()) ||
+                    step1_total_hysterectomy.equals('yes'))"
+

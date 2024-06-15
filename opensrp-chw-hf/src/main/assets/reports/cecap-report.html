@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <style>
+*{
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+.show-on-print {
+  display: none;
+}
+body{
+    font-family: Helvetica;
+    -webkit-font-smoothing: antialiased;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+
+/* Table Styles */
+
+.table-wrapper{
+    margin: 10px;
+    margin-right: 10px;
+}
+
+.fl-table {
+    border-radius: 5px;
+    font-size: 10px;
+    font-weight: normal;
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 100%;
+    background-color: white;
+}
+
+.fl-table td, .fl-table th {
+    padding: 5px;
+}
+
+.table-th-color {
+    background-color: #CCCCCC;
+}
+
+.table-total-color {
+    background-color: #74b9ff;
+}
+
+.category-color {
+    background-color: #74b65f;
+}
+
+.table-category-color {
+    background-color: #f39c12;
+}
+
+
+ul {
+    width: 100%;
+}
+ul li {
+    width: 49%;
+    display: inline-block;
+}
+
+ul li > * {
+    width: 30%;
+    margin-bottom: 5px;
+}
+
+.no-data {
+  background: #ccc;
+}
+
+.bold-text {
+    font-weight: bold;
+}
+
+#reporting_facility {
+  font-weight: 700;
+}
+#report_period {
+  font-weight: 700;
+}
+
+@media print {
+  .show-on-print {
+    display: block;
+  }
+
+  .child-table {
+    width: 50%;
+  }
+}
+
+
+
+
+
+
+    </style>
+</head>
+
+<body onload="loadData()">
+<div class="show-on-print" style="font-size:12px;">
+    <h1>CECAP MONTHLY REPORT FORM</h1>
+    <h2>REPORT OF [MONTH/YEAR]: <span id="report_period"></span></h2>
+    <h2>CENTER: <span id="reporting_facility"></span></h2>
+</div>
+<div class="table-wrapper">
+    <table class="fl-table">
+        <thead>
+        <tr>
+            <th rowspan="2">Na</th>
+            <th rowspan="2">VIASHIRIA</th>
+            <th rowspan="2">JUMLA KUU</th>
+            <th colspan="9">HIV +Ve</th>
+            <th colspan="9">HIV -Ve</th>
+            <th colspan="9">UNKNOWN</th>
+        </tr>
+        <tr>
+            <th>15-19</th>
+            <th>20-24</th>
+            <th>25-29</th>
+            <th>30-34</th>
+            <th>35-39</th>
+            <th>40-44</th>
+            <th>45-49</th>
+            <th>50+</th>
+            <th>JUMLA HIV+</th>
+            <th>15-19</th>
+            <th>20-24</th>
+            <th>25-29</th>
+            <th>30-34</th>
+            <th>35-39</th>
+            <th>40-44</th>
+            <th>45-49</th>
+            <th>50+</th>
+            <th>JUMLA HIV-</th>
+            <th>15-19</th>
+            <th>20-24</th>
+            <th>25-29</th>
+            <th>30-34</th>
+            <th>35-39</th>
+            <th>40-44</th>
+            <th>45-49</th>
+            <th>50+</th>
+            <th>JUMLA Unk</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="table-th-color">
+            <td></td>
+            <td colspan="29">Wanawake waliochunguzwa</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Idadi ya wanawake waliofanyiwa uchunguzi wa saratani ya mlango wa kizazi kwa mara ya
+                kwanza kwa kutumia VIA (ndani na nje ya kituo)
+            </td>
+            <td align="center" id="cecap-1-grand-total"></td>
+            <td align="center" id="cecap-1-hiv-positive-15-19"></td>
+            <td align="center" id="cecap-1-hiv-positive-20-24"></td>
+            <td align="center" id="cecap-1-hiv-positive-25-29"></td>
+            <td align="center" id="cecap-1-hiv-positive-30-34"></td>
+            <td align="center" id="cecap-1-hiv-positive-35-39"></td>
+            <td align="center" id="cecap-1-hiv-positive-40-44"></td>
+            <td align="center" id="cecap-1-hiv-positive-45-49"></td>
+            <td align="center" id="cecap-1-hiv-positive-50+"></td>
+            <td align="center" id="cecap-1-hiv-positive-total"></td>
+            <td align="center" id="cecap-1-hiv-negative-15-19"></td>
+            <td align="center" id="cecap-1-hiv-negative-20-24"></td>
+            <td align="center" id="cecap-1-hiv-negative-25-29"></td>
+            <td align="center" id="cecap-1-hiv-negative-30-34"></td>
+            <td align="center" id="cecap-1-hiv-negative-35-39"></td>
+            <td align="center" id="cecap-1-hiv-negative-40-44"></td>
+            <td align="center" id="cecap-1-hiv-negative-45-49"></td>
+            <td align="center" id="cecap-1-hiv-negative-50+"></td>
+            <td align="center" id="cecap-1-hiv-negative-total"></td>
+            <td align="center" id="cecap-1-hiv-unknown-15-19"></td>
+            <td align="center" id="cecap-1-hiv-unknown-20-24"></td>
+            <td align="center" id="cecap-1-hiv-unknown-25-29"></td>
+            <td align="center" id="cecap-1-hiv-unknown-30-34"></td>
+            <td align="center" id="cecap-1-hiv-unknown-35-39"></td>
+            <td align="center" id="cecap-1-hiv-unknown-40-44"></td>
+            <td align="center" id="cecap-1-hiv-unknown-45-49"></td>
+            <td align="center" id="cecap-1-hiv-unknown-50+"></td>
+            <td align="center" id="cecap-1-hiv-unknown-total"></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Idadi ya wanawake waliofanyiwa uchunguzi wa saratani ya mlango wa kizazi kwa mara ya
+                kwanza kwa kutumia HPV DNA (ndani na nje ya kituo)
+            </td>
+
+            <td align="center" id="cecap-2-grand-total"></td>
+            <td align="center" id="cecap-2-hiv-positive-15-19"></td>
+            <td align="center" id="cecap-2-hiv-positive-20-24"></td>
+            <td align="center" id="cecap-2-hiv-positive-25-29"></td>
+            <td align="center" id="cecap-2-hiv-positive-30-34"></td>
+            <td align="center" id="cecap-2-hiv-positive-35-39"></td>
+            <td align="center" id="cecap-2-hiv-positive-40-44"></td>
+            <td align="center" id="cecap-2-hiv-positive-45-49"></td>
+            <td align="center" id="cecap-2-hiv-positive-50+"></td>
+            <td align="center" id="cecap-2-hiv-positive-total"></td>
+            <td align="center" id="cecap-2-hiv-negative-15-19"></td>
+            <td align="center" id="cecap-2-hiv-negative-20-24"></td>
+            <td align="center" id="cecap-2-hiv-negative-25-29"></td>
+            <td align="center" id="cecap-2-hiv-negative-30-34"></td>
+            <td align="center" id="cecap-2-hiv-negative-35-39"></td>
+            <td align="center" id="cecap-2-hiv-negative-40-44"></td>
+            <td align="center" id="cecap-2-hiv-negative-45-49"></td>
+            <td align="center" id="cecap-2-hiv-negative-50+"></td>
+            <td align="center" id="cecap-2-hiv-negative-total"></td>
+            <td align="center" id="cecap-2-hiv-unknown-15-19"></td>
+            <td align="center" id="cecap-2-hiv-unknown-20-24"></td>
+            <td align="center" id="cecap-2-hiv-unknown-25-29"></td>
+            <td align="center" id="cecap-2-hiv-unknown-30-34"></td>
+            <td align="center" id="cecap-2-hiv-unknown-35-39"></td>
+            <td align="center" id="cecap-2-hiv-unknown-40-44"></td>
+            <td align="center" id="cecap-2-hiv-unknown-45-49"></td>
+            <td align="center" id="cecap-2-hiv-unknown-50+"></td>
+            <td align="center" id="cecap-2-hiv-unknown-total"></td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Idadi ya wanawake waliofanyiwa uchunguzi wa saratani ya mlango wa kizazi kwa mara ya
+                kwanza (ndani na nje ya kituo) (1+2)
+            </td>
+
+            <td align="center" id="cecap-3-grand-total"></td>
+            <td align="center" id="cecap-3-hiv-positive-15-19"></td>
+            <td align="center" id="cecap-3-hiv-positive-20-24"></td>
+            <td align="center" id="cecap-3-hiv-positive-25-29"></td>
+            <td align="center" id="cecap-3-hiv-positive-30-34"></td>
+            <td align="center" id="cecap-3-hiv-positive-35-39"></td>
+            <td align="center" id="cecap-3-hiv-positive-40-44"></td>
+            <td align="center" id="cecap-3-hiv-positive-45-49"></td>
+            <td align="center" id="cecap-3-hiv-positive-50+"></td>
+            <td align="center" id="cecap-3-hiv-positive-total"></td>
+            <td align="center" id="cecap-3-hiv-negative-15-19"></td>
+            <td align="center" id="cecap-3-hiv-negative-20-24"></td>
+            <td align="center" id="cecap-3-hiv-negative-25-29"></td>
+            <td align="center" id="cecap-3-hiv-negative-30-34"></td>
+            <td align="center" id="cecap-3-hiv-negative-35-39"></td>
+            <td align="center" id="cecap-3-hiv-negative-40-44"></td>
+            <td align="center" id="cecap-3-hiv-negative-45-49"></td>
+            <td align="center" id="cecap-3-hiv-negative-50+"></td>
+            <td align="center" id="cecap-3-hiv-negative-total"></td>
+            <td align="center" id="cecap-3-hiv-unknown-15-19"></td>
+            <td align="center" id="cecap-3-hiv-unknown-20-24"></td>
+            <td align="center" id="cecap-3-hiv-unknown-25-29"></td>
+            <td align="center" id="cecap-3-hiv-unknown-30-34"></td>
+            <td align="center" id="cecap-3-hiv-unknown-35-39"></td>
+            <td align="center" id="cecap-3-hiv-unknown-40-44"></td>
+            <td align="center" id="cecap-3-hiv-unknown-45-49"></td>
+            <td align="center" id="cecap-3-hiv-unknown-50+"></td>
+            <td align="center" id="cecap-3-hiv-unknown-total"></td>
+        </tr>
+        <tr class="table-th-color">
+            <td></td>
+            <td>Majibu ya Uchunguzi</td>
+            <td colspan="29"></td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Idadi ya wanawake waliogundulika kuwa na matokeo ya VIA positive</td>
+
+            <td align="center" id="cecap-4-grand-total"></td>
+            <td align="center" id="cecap-4-hiv-positive-15-19"></td>
+            <td align="center" id="cecap-4-hiv-positive-20-24"></td>
+            <td align="center" id="cecap-4-hiv-positive-25-29"></td>
+            <td align="center" id="cecap-4-hiv-positive-30-34"></td>
+            <td align="center" id="cecap-4-hiv-positive-35-39"></td>
+            <td align="center" id="cecap-4-hiv-positive-40-44"></td>
+            <td align="center" id="cecap-4-hiv-positive-45-49"></td>
+            <td align="center" id="cecap-4-hiv-positive-50+"></td>
+            <td align="center" id="cecap-4-hiv-positive-total"></td>
+            <td align="center" id="cecap-4-hiv-negative-15-19"></td>
+            <td align="center" id="cecap-4-hiv-negative-20-24"></td>
+            <td align="center" id="cecap-4-hiv-negative-25-29"></td>
+            <td align="center" id="cecap-4-hiv-negative-30-34"></td>
+            <td align="center" id="cecap-4-hiv-negative-35-39"></td>
+            <td align="center" id="cecap-4-hiv-negative-40-44"></td>
+            <td align="center" id="cecap-4-hiv-negative-45-49"></td>
+            <td align="center" id="cecap-4-hiv-negative-50+"></td>
+            <td align="center" id="cecap-4-hiv-negative-total"></td>
+            <td align="center" id="cecap-4-hiv-unknown-15-19"></td>
+            <td align="center" id="cecap-4-hiv-unknown-20-24"></td>
+            <td align="center" id="cecap-4-hiv-unknown-25-29"></td>
+            <td align="center" id="cecap-4-hiv-unknown-30-34"></td>
+            <td align="center" id="cecap-4-hiv-unknown-35-39"></td>
+            <td align="center" id="cecap-4-hiv-unknown-40-44"></td>
+            <td align="center" id="cecap-4-hiv-unknown-45-49"></td>
+            <td align="center" id="cecap-4-hiv-unknown-50+"></td>
+            <td align="center" id="cecap-4-hiv-unknown-total"></td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>Idadi ya wanawake waliogundulika na matokeo chanya HPV-DNA</td>
+
+            <td align="center" id="cecap-5-grand-total"></td>
+            <td align="center" id="cecap-5-hiv-positive-15-19"></td>
+            <td align="center" id="cecap-5-hiv-positive-20-24"></td>
+            <td align="center" id="cecap-5-hiv-positive-25-29"></td>
+            <td align="center" id="cecap-5-hiv-positive-30-34"></td>
+            <td align="center" id="cecap-5-hiv-positive-35-39"></td>
+            <td align="center" id="cecap-5-hiv-positive-40-44"></td>
+            <td align="center" id="cecap-5-hiv-positive-45-49"></td>
+            <td align="center" id="cecap-5-hiv-positive-50+"></td>
+            <td align="center" id="cecap-5-hiv-positive-total"></td>
+            <td align="center" id="cecap-5-hiv-negative-15-19"></td>
+            <td align="center" id="cecap-5-hiv-negative-20-24"></td>
+            <td align="center" id="cecap-5-hiv-negative-25-29"></td>
+            <td align="center" id="cecap-5-hiv-negative-30-34"></td>
+            <td align="center" id="cecap-5-hiv-negative-35-39"></td>
+            <td align="center" id="cecap-5-hiv-negative-40-44"></td>
+            <td align="center" id="cecap-5-hiv-negative-45-49"></td>
+            <td align="center" id="cecap-5-hiv-negative-50+"></td>
+            <td align="center" id="cecap-5-hiv-negative-total"></td>
+            <td align="center" id="cecap-5-hiv-unknown-15-19"></td>
+            <td align="center" id="cecap-5-hiv-unknown-20-24"></td>
+            <td align="center" id="cecap-5-hiv-unknown-25-29"></td>
+            <td align="center" id="cecap-5-hiv-unknown-30-34"></td>
+            <td align="center" id="cecap-5-hiv-unknown-35-39"></td>
+            <td align="center" id="cecap-5-hiv-unknown-40-44"></td>
+            <td align="center" id="cecap-5-hiv-unknown-45-49"></td>
+            <td align="center" id="cecap-5-hiv-unknown-50+"></td>
+            <td align="center" id="cecap-5-hiv-unknown-total"></td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>Idadi ya wanawake waliochunguzwa kwa mara ya kwanza wenye matokeo HPV DNA positive
+                na VIA positive
+            </td>
+
+            <td align="center" id="cecap-6-grand-total"></td>
+            <td align="center" id="cecap-6-hiv-positive-15-19"></td>
+            <td align="center" id="cecap-6-hiv-positive-20-24"></td>
+            <td align="center" id="cecap-6-hiv-positive-25-29"></td>
+            <td align="center" id="cecap-6-hiv-positive-30-34"></td>
+            <td align="center" id="cecap-6-hiv-positive-35-39"></td>
+            <td align="center" id="cecap-6-hiv-positive-40-44"></td>
+            <td align="center" id="cecap-6-hiv-positive-45-49"></td>
+            <td align="center" id="cecap-6-hiv-positive-50+"></td>
+            <td align="center" id="cecap-6-hiv-positive-total"></td>
+            <td align="center" id="cecap-6-hiv-negative-15-19"></td>
+            <td align="center" id="cecap-6-hiv-negative-20-24"></td>
+            <td align="center" id="cecap-6-hiv-negative-25-29"></td>
+            <td align="center" id="cecap-6-hiv-negative-30-34"></td>
+            <td align="center" id="cecap-6-hiv-negative-35-39"></td>
+            <td align="center" id="cecap-6-hiv-negative-40-44"></td>
+            <td align="center" id="cecap-6-hiv-negative-45-49"></td>
+            <td align="center" id="cecap-6-hiv-negative-50+"></td>
+            <td align="center" id="cecap-6-hiv-negative-total"></td>
+            <td align="center" id="cecap-6-hiv-unknown-15-19"></td>
+            <td align="center" id="cecap-6-hiv-unknown-20-24"></td>
+            <td align="center" id="cecap-6-hiv-unknown-25-29"></td>
+            <td align="center" id="cecap-6-hiv-unknown-30-34"></td>
+            <td align="center" id="cecap-6-hiv-unknown-35-39"></td>
+            <td align="center" id="cecap-6-hiv-unknown-40-44"></td>
+            <td align="center" id="cecap-6-hiv-unknown-45-49"></td>
+            <td align="center" id="cecap-6-hiv-unknown-50+"></td>
+            <td align="center" id="cecap-6-hiv-unknown-total"></td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>Idadi ya wanawake waliofanyiwa uchunguzi kwa mara ya kwanza na kukutwa na mabadiliko
+                ya awali makubwa
+            </td>
+
+            <td align="center" id="cecap-7-grand-total"></td>
+            <td align="center" id="cecap-7-hiv-positive-15-19"></td>
+            <td align="center" id="cecap-7-hiv-positive-20-24"></td>
+            <td align="center" id="cecap-7-hiv-positive-25-29"></td>
+            <td align="center" id="cecap-7-hiv-positive-30-34"></td>
+            <td align="center" id="cecap-7-hiv-positive-35-39"></td>
+            <td align="center" id="cecap-7-hiv-positive-40-44"></td>
+            <td align="center" id="cecap-7-hiv-positive-45-49"></td>
+            <td align="center" id="cecap-7-hiv-positive-50+"></td>
+            <td align="center" id="cecap-7-hiv-positive-total"></td>
+            <td align="center" id="cecap-7-hiv-negative-15-19"></td>
+            <td align="center" id="cecap-7-hiv-negative-20-24"></td>
+            <td align="center" id="cecap-7-hiv-negative-25-29"></td>
+            <td align="center" id="cecap-7-hiv-negative-30-34"></td>
+            <td align="center" id="cecap-7-hiv-negative-35-39"></td>
+            <td align="center" id="cecap-7-hiv-negative-40-44"></td>
+            <td align="center" id="cecap-7-hiv-negative-45-49"></td>
+            <td align="center" id="cecap-7-hiv-negative-50+"></td>
+            <td align="center" id="cecap-7-hiv-negative-total"></td>
+            <td align="center" id="cecap-7-hiv-unknown-15-19"></td>
+            <td align="center" id="cecap-7-hiv-unknown-20-24"></td>
+            <td align="center" id="cecap-7-hiv-unknown-25-29"></td>
+            <td align="center" id="cecap-7-hiv-unknown-30-34"></td>
+            <td align="center" id="cecap-7-hiv-unknown-35-39"></td>
+            <td align="center" id="cecap-7-hiv-unknown-40-44"></td>
+            <td align="center" id="cecap-7-hiv-unknown-45-49"></td>
+            <td align="center" id="cecap-7-hiv-unknown-50+"></td>
+            <td align="center" id="cecap-7-hiv-unknown-total"></td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>Idadi ya wanawake waliofanyiwa uchunguzi kwa mara ya kwanza na kudhaniwa kuwa na
+                saratani ya mlango wa kizazi
+            </td>
+
+            <td align="center" id="cecap-8-grand-total"></td>
+            <td align="center" id="cecap-8-hiv-positive-15-19"></td>
+            <td align="center" id="cecap-8-hiv-positive-20-24"></td>
+            <td align="center" id="cecap-8-hiv-positive-25-29"></td>
+            <td align="center" id="cecap-8-hiv-positive-30-34"></td>
+            <td align="center" id="cecap-8-hiv-positive-35-39"></td>
+            <td align="center" id="cecap-8-hiv-positive-40-44"></td>
+            <td align="center" id="cecap-8-hiv-positive-45-49"></td>
+            <td align="center" id="cecap-8-hiv-positive-50+"></td>
+            <td align="center" id="cecap-8-hiv-positive-total"></td>
+            <td align="center" id="cecap-8-hiv-negative-15-19"></td>
+            <td align="center" id="cecap-8-hiv-negative-20-24"></td>
+            <td align="center" id="cecap-8-hiv-negative-25-29"></td>
+            <td align="center" id="cecap-8-hiv-negative-30-34"></td>
+            <td align="center" id="cecap-8-hiv-negative-35-39"></td>
+            <td align="center" id="cecap-8-hiv-negative-40-44"></td>
+            <td align="center" id="cecap-8-hiv-negative-45-49"></td>
+            <td align="center" id="cecap-8-hiv-negative-50+"></td>
+            <td align="center" id="cecap-8-hiv-negative-total"></td>
+            <td align="center" id="cecap-8-hiv-unknown-15-19"></td>
+            <td align="center" id="cecap-8-hiv-unknown-20-24"></td>
+            <td align="center" id="cecap-8-hiv-unknown-25-29"></td>
+            <td align="center" id="cecap-8-hiv-unknown-30-34"></td>
+            <td align="center" id="cecap-8-hiv-unknown-35-39"></td>
+            <td align="center" id="cecap-8-hiv-unknown-40-44"></td>
+            <td align="center" id="cecap-8-hiv-unknown-45-49"></td>
+            <td align="center" id="cecap-8-hiv-unknown-50+"></td>
+            <td align="center" id="cecap-8-hiv-unknown-total"></td>
+        </tr>
+        <tr class="table-th-color">
+            <td></td>
+            <td>Matibabu ya wajeta waliofanyiwa uchunguzi</td>
+            <td colspan="29"></td>
+        </tr>
+        <tr>
+            <td>9</td>
+            <td>Idadi ya wanawake waliokutwa na mabadiliko ya awali madogo na kupatiwa matibabu siku
+                hiyo hiyo kwa kutumia Thermo
+            </td>
+
+            <td align="center" id="cecap-9-grand-total"></td>
+            <td align="center" id="cecap-9-hiv-positive-15-19"></td>
+            <td align="center" id="cecap-9-hiv-positive-20-24"></td>
+            <td align="center" id="cecap-9-hiv-positive-25-29"></td>
+            <td align="center" id="cecap-9-hiv-positive-30-34"></td>
+            <td align="center" id="cecap-9-hiv-positive-35-39"></td>
+            <td align="center" id="cecap-9-hiv-positive-40-44"></td>
+            <td align="center" id="cecap-9-hiv-positive-45-49"></td>
+            <td align="center" id="cecap-9-hiv-positive-50+"></td>
+            <td align="center" id="cecap-9-hiv-positive-total"></td>
+            <td align="center" id="cecap-9-hiv-negative-15-19"></td>
+            <td align="center" id="cecap-9-hiv-negative-20-24"></td>
+            <td align="center" id="cecap-9-hiv-negative-25-29"></td>
+            <td align="center" id="cecap-9-hiv-negative-30-34"></td>
+            <td align="center" id="cecap-9-hiv-negative-35-39"></td>
+            <td align="center" id="cecap-9-hiv-negative-40-44"></td>
+            <td align="center" id="cecap-9-hiv-negative-45-49"></td>
+            <td align="center" id="cecap-9-hiv-negative-50+"></td>
+            <td align="center" id="cecap-9-hiv-negative-total"></td>
+            <td align="center" id="cecap-9-hiv-unknown-15-19"></td>
+            <td align="center" id="cecap-9-hiv-unknown-20-24"></td>
+            <td align="center" id="cecap-9-hiv-unknown-25-29"></td>
+            <td align="center" id="cecap-9-hiv-unknown-30-34"></td>
+            <td align="center" id="cecap-9-hiv-unknown-35-39"></td>
+            <td align="center" id="cecap-9-hiv-unknown-40-44"></td>
+            <td align="center" id="cecap-9-hiv-unknown-45-49"></td>
+            <td align="center" id="cecap-9-hiv-unknown-50+"></td>
+            <td align="center" id="cecap-9-hiv-unknown-total"></td>
+        </tr>
+        <tr>
+            <td>10</td>
+            <td>Idadi ya wanawake waliokutwa na mabadiliko ya awali madogo na kupatiwa matibabu siku
+                hiyo hiyo kwa kutumia Cryo
+            </td>
+
+            <td align="center" id="cecap-10-grand-total"></td>
+            <td align="center" id="cecap-10-hiv-positive-15-19"></td>
+            <td align="center" id="cecap-10-hiv-positive-20-24"></td>
+            <td align="center" id="cecap-10-hiv-positive-25-29"></td>
+            <td align="center" id="cecap-10-hiv-positive-30-34"></td>
+            <td align="center" id="cecap-10-hiv-positive-35-39"></td>
+            <td align="center" id="cecap-10-hiv-positive-40-44"></td>
+            <td align="center" id="cecap-10-hiv-positive-45-49"></td>
+            <td align="center" id="cecap-10-hiv-positive-50+"></td>
+            <td align="center" id="cecap-10-hiv-positive-total"></td>
+            <td align="center" id="cecap-10-hiv-negative-15-19"></td>
+            <td align="center" id="cecap-10-hiv-negative-20-24"></td>
+            <td align="center" id="cecap-10-hiv-negative-25-29"></td>
+            <td align="center" id="cecap-10-hiv-negative-30-34"></td>
+            <td align="center" id="cecap-10-hiv-negative-35-39"></td>
+            <td align="center" id="cecap-10-hiv-negative-40-44"></td>
+            <td align="center" id="cecap-10-hiv-negative-45-49"></td>
+            <td align="center" id="cecap-10-hiv-negative-50+"></td>
+            <td align="center" id="cecap-10-hiv-negative-total"></td>
+            <td align="center" id="cecap-10-hiv-unknown-15-19"></td>
+            <td align="center" id="cecap-10-hiv-unknown-20-24"></td>
+            <td align="center" id="cecap-10-hiv-unknown-25-29"></td>
+            <td align="center" id="cecap-10-hiv-unknown-30-34"></td>
+            <td align="center" id="cecap-10-hiv-unknown-35-39"></td>
+            <td align="center" id="cecap-10-hiv-unknown-40-44"></td>
+            <td align="center" id="cecap-10-hiv-unknown-45-49"></td>
+            <td align="center" id="cecap-10-hiv-unknown-50+"></td>
+            <td align="center" id="cecap-10-hiv-unknown-total"></td>
+        </tr>
+        <tr>
+            <td>11</td>
+            <td>Idadi ya wanawake waliokutwa na mabadiliko ya awali makubwa na kupatiwa matibabu ya
+                LEEP
+            </td>
+
+            <td align="center" id="cecap-11-grand-total"></td>
+            <td align="center" id="cecap-11-hiv-positive-15-19"></td>
+            <td align="center" id="cecap-11-hiv-positive-20-24"></td>
+            <td align="center" id="cecap-11-hiv-positive-25-29"></td>
+            <td align="center" id="cecap-11-hiv-positive-30-34"></td>
+            <td align="center" id="cecap-11-hiv-positive-35-39"></td>
+            <td align="center" id="cecap-11-hiv-positive-40-44"></td>
+            <td align="center" id="cecap-11-hiv-positive-45-49"></td>
+            <td align="center" id="cecap-11-hiv-positive-50+"></td>
+            <td align="center" id="cecap-11-hiv-positive-total"></td>
+            <td align="center" id="cecap-11-hiv-negative-15-19"></td>
+            <td align="center" id="cecap-11-hiv-negative-20-24"></td>
+            <td align="center" id="cecap-11-hiv-negative-25-29"></td>
+            <td align="center" id="cecap-11-hiv-negative-30-34"></td>
+            <td align="center" id="cecap-11-hiv-negative-35-39"></td>
+            <td align="center" id="cecap-11-hiv-negative-40-44"></td>
+            <td align="center" id="cecap-11-hiv-negative-45-49"></td>
+            <td align="center" id="cecap-11-hiv-negative-50+"></td>
+            <td align="center" id="cecap-11-hiv-negative-total"></td>
+            <td align="center" id="cecap-11-hiv-unknown-15-19"></td>
+            <td align="center" id="cecap-11-hiv-unknown-20-24"></td>
+            <td align="center" id="cecap-11-hiv-unknown-25-29"></td>
+            <td align="center" id="cecap-11-hiv-unknown-30-34"></td>
+            <td align="center" id="cecap-11-hiv-unknown-35-39"></td>
+            <td align="center" id="cecap-11-hiv-unknown-40-44"></td>
+            <td align="center" id="cecap-11-hiv-unknown-45-49"></td>
+            <td align="center" id="cecap-11-hiv-unknown-50+"></td>
+            <td align="center" id="cecap-11-hiv-unknown-total"></td>
+        </tr>
+        <tr>
+            <td>12</td>
+            <td>Idadi ya wanawake waliopata matibabu ya mabadiliko ya awali ya saratani ya mlango wa
+                kizazi kwa kutumia Cryo, LEEP au Thermo (siku hiyo hiyo na walioahirishwa)
+            </td>
+
+            <td align="center" id="cecap-12-grand-total"></td>
+            <td align="center" id="cecap-12-hiv-positive-15-19"></td>
+            <td align="center" id="cecap-12-hiv-positive-20-24"></td>
+            <td align="center" id="cecap-12-hiv-positive-25-29"></td>
+            <td align="center" id="cecap-12-hiv-positive-30-34"></td>
+            <td align="center" id="cecap-12-hiv-positive-35-39"></td>
+            <td align="center" id="cecap-12-hiv-positive-40-44"></td>
+            <td align="center" id="cecap-12-hiv-positive-45-49"></td>
+            <td align="center" id="cecap-12-hiv-positive-50+"></td>
+            <td align="center" id="cecap-12-hiv-positive-total"></td>
+            <td align="center" id="cecap-12-hiv-negative-15-19"></td>
+            <td align="center" id="cecap-12-hiv-negative-20-24"></td>
+            <td align="center" id="cecap-12-hiv-negative-25-29"></td>
+            <td align="center" id="cecap-12-hiv-negative-30-34"></td>
+            <td align="center" id="cecap-12-hiv-negative-35-39"></td>
+            <td align="center" id="cecap-12-hiv-negative-40-44"></td>
+            <td align="center" id="cecap-12-hiv-negative-45-49"></td>
+            <td align="center" id="cecap-12-hiv-negative-50+"></td>
+            <td align="center" id="cecap-12-hiv-negative-total"></td>
+            <td align="center" id="cecap-12-hiv-unknown-15-19"></td>
+            <td align="center" id="cecap-12-hiv-unknown-20-24"></td>
+            <td align="center" id="cecap-12-hiv-unknown-25-29"></td>
+            <td align="center" id="cecap-12-hiv-unknown-30-34"></td>
+            <td align="center" id="cecap-12-hiv-unknown-35-39"></td>
+            <td align="center" id="cecap-12-hiv-unknown-40-44"></td>
+            <td align="center" id="cecap-12-hiv-unknown-45-49"></td>
+            <td align="center" id="cecap-12-hiv-unknown-50+"></td>
+            <td align="center" id="cecap-12-hiv-unknown-total"></td>
+        </tr>
+        <tr class="table-th-color">
+            <td></td>
+            <td>Madhara baada ya kupata tiba</td>
+            <td colspan="29"></td>
+        </tr>
+        <tr>
+            <td>13</td>
+            <td>Idadi ya wanawake waliopata madhara baada ya kupata tiba ya cryo,thermo na LEEP</td>
+
+            <td align="center" id="cecap-13-grand-total"></td>
+            <td align="center" id="cecap-13-hiv-positive-15-19"></td>
+            <td align="center" id="cecap-13-hiv-positive-20-24"></td>
+            <td align="center" id="cecap-13-hiv-positive-25-29"></td>
+            <td align="center" id="cecap-13-hiv-positive-30-34"></td>
+            <td align="center" id="cecap-13-hiv-positive-35-39"></td>
+            <td align="center" id="cecap-13-hiv-positive-40-44"></td>
+            <td align="center" id="cecap-13-hiv-positive-45-49"></td>
+            <td align="center" id="cecap-13-hiv-positive-50+"></td>
+            <td align="center" id="cecap-13-hiv-positive-total"></td>
+            <td align="center" id="cecap-13-hiv-negative-15-19"></td>
+            <td align="center" id="cecap-13-hiv-negative-20-24"></td>
+            <td align="center" id="cecap-13-hiv-negative-25-29"></td>
+            <td align="center" id="cecap-13-hiv-negative-30-34"></td>
+            <td align="center" id="cecap-13-hiv-negative-35-39"></td>
+            <td align="center" id="cecap-13-hiv-negative-40-44"></td>
+            <td align="center" id="cecap-13-hiv-negative-45-49"></td>
+            <td align="center" id="cecap-13-hiv-negative-50+"></td>
+            <td align="center" id="cecap-13-hiv-negative-total"></td>
+            <td align="center" id="cecap-13-hiv-unknown-15-19"></td>
+            <td align="center" id="cecap-13-hiv-unknown-20-24"></td>
+            <td align="center" id="cecap-13-hiv-unknown-25-29"></td>
+            <td align="center" id="cecap-13-hiv-unknown-30-34"></td>
+            <td align="center" id="cecap-13-hiv-unknown-35-39"></td>
+            <td align="center" id="cecap-13-hiv-unknown-40-44"></td>
+            <td align="center" id="cecap-13-hiv-unknown-45-49"></td>
+            <td align="center" id="cecap-13-hiv-unknown-50+"></td>
+            <td align="center" id="cecap-13-hiv-unknown-total"></td>
+        </tr>
+        <tr class="table-th-color">
+            <td></td>
+            <td>Rufaa</td>
+            <td colspan="29"></td>
+        </tr>
+        <tr>
+            <td>14</td>
+            <td>Idadi ya wanawake waliopima na kugundulika kuwa na maambukizi ya VVU wakati wa
+                huduma ya uchunguzi wa saratani ya mlango kizazi na kupewa rufaa kwenda CTC
+            </td>
+
+            <td align="center" id="cecap-14-grand-total"></td>
+            <td align="center" id="cecap-14-hiv-positive-15-19"></td>
+            <td align="center" id="cecap-14-hiv-positive-20-24"></td>
+            <td align="center" id="cecap-14-hiv-positive-25-29"></td>
+            <td align="center" id="cecap-14-hiv-positive-30-34"></td>
+            <td align="center" id="cecap-14-hiv-positive-35-39"></td>
+            <td align="center" id="cecap-14-hiv-positive-40-44"></td>
+            <td align="center" id="cecap-14-hiv-positive-45-49"></td>
+            <td align="center" id="cecap-14-hiv-positive-50+"></td>
+            <td align="center" id="cecap-14-hiv-positive-total"></td>
+            <td align="center" id="cecap-14-hiv-negative-15-19"></td>
+            <td align="center" id="cecap-14-hiv-negative-20-24"></td>
+            <td align="center" id="cecap-14-hiv-negative-25-29"></td>
+            <td align="center" id="cecap-14-hiv-negative-30-34"></td>
+            <td align="center" id="cecap-14-hiv-negative-35-39"></td>
+            <td align="center" id="cecap-14-hiv-negative-40-44"></td>
+            <td align="center" id="cecap-14-hiv-negative-45-49"></td>
+            <td align="center" id="cecap-14-hiv-negative-50+"></td>
+            <td align="center" id="cecap-14-hiv-negative-total"></td>
+            <td align="center" id="cecap-14-hiv-unknown-15-19"></td>
+            <td align="center" id="cecap-14-hiv-unknown-20-24"></td>
+            <td align="center" id="cecap-14-hiv-unknown-25-29"></td>
+            <td align="center" id="cecap-14-hiv-unknown-30-34"></td>
+            <td align="center" id="cecap-14-hiv-unknown-35-39"></td>
+            <td align="center" id="cecap-14-hiv-unknown-40-44"></td>
+            <td align="center" id="cecap-14-hiv-unknown-45-49"></td>
+            <td align="center" id="cecap-14-hiv-unknown-50+"></td>
+            <td align="center" id="cecap-14-hiv-unknown-total"></td>
+        </tr>
+        <tr class="table-th-color">
+            <td></td>
+            <td>Uchunguzi wa saratani ya matiti</td>
+            <td colspan="29"></td>
+        </tr>
+        <tr>
+            <td>15</td>
+            <td>Idadi ya wanawake waliofanyiwa uchunguzi wa saratani ya matiti</td>
+
+            <td align="center" id="cecap-15-grand-total"></td>
+            <td align="center" id="cecap-15-hiv-positive-15-19"></td>
+            <td align="center" id="cecap-15-hiv-positive-20-24"></td>
+            <td align="center" id="cecap-15-hiv-positive-25-29"></td>
+            <td align="center" id="cecap-15-hiv-positive-30-34"></td>
+            <td align="center" id="cecap-15-hiv-positive-35-39"></td>
+            <td align="center" id="cecap-15-hiv-positive-40-44"></td>
+            <td align="center" id="cecap-15-hiv-positive-45-49"></td>
+            <td align="center" id="cecap-15-hiv-positive-50+"></td>
+            <td align="center" id="cecap-15-hiv-positive-total"></td>
+            <td align="center" id="cecap-15-hiv-negative-15-19"></td>
+            <td align="center" id="cecap-15-hiv-negative-20-24"></td>
+            <td align="center" id="cecap-15-hiv-negative-25-29"></td>
+            <td align="center" id="cecap-15-hiv-negative-30-34"></td>
+            <td align="center" id="cecap-15-hiv-negative-35-39"></td>
+            <td align="center" id="cecap-15-hiv-negative-40-44"></td>
+            <td align="center" id="cecap-15-hiv-negative-45-49"></td>
+            <td align="center" id="cecap-15-hiv-negative-50+"></td>
+            <td align="center" id="cecap-15-hiv-negative-total"></td>
+            <td align="center" id="cecap-15-hiv-unknown-15-19"></td>
+            <td align="center" id="cecap-15-hiv-unknown-20-24"></td>
+            <td align="center" id="cecap-15-hiv-unknown-25-29"></td>
+            <td align="center" id="cecap-15-hiv-unknown-30-34"></td>
+            <td align="center" id="cecap-15-hiv-unknown-35-39"></td>
+            <td align="center" id="cecap-15-hiv-unknown-40-44"></td>
+            <td align="center" id="cecap-15-hiv-unknown-45-49"></td>
+            <td align="center" id="cecap-15-hiv-unknown-50+"></td>
+            <td align="center" id="cecap-15-hiv-unknown-total"></td>
+        </tr>
+        <tr>
+            <td>16</td>
+            <td>Idadi ya wanawake waliopatikana na dalili ya saratani ya matiti (subset ya 15)</td>
+
+            <td align="center" id="cecap-16-grand-total"></td>
+            <td align="center" id="cecap-16-hiv-positive-15-19"></td>
+            <td align="center" id="cecap-16-hiv-positive-20-24"></td>
+            <td align="center" id="cecap-16-hiv-positive-25-29"></td>
+            <td align="center" id="cecap-16-hiv-positive-30-34"></td>
+            <td align="center" id="cecap-16-hiv-positive-35-39"></td>
+            <td align="center" id="cecap-16-hiv-positive-40-44"></td>
+            <td align="center" id="cecap-16-hiv-positive-45-49"></td>
+            <td align="center" id="cecap-16-hiv-positive-50+"></td>
+            <td align="center" id="cecap-16-hiv-positive-total"></td>
+            <td align="center" id="cecap-16-hiv-negative-15-19"></td>
+            <td align="center" id="cecap-16-hiv-negative-20-24"></td>
+            <td align="center" id="cecap-16-hiv-negative-25-29"></td>
+            <td align="center" id="cecap-16-hiv-negative-30-34"></td>
+            <td align="center" id="cecap-16-hiv-negative-35-39"></td>
+            <td align="center" id="cecap-16-hiv-negative-40-44"></td>
+            <td align="center" id="cecap-16-hiv-negative-45-49"></td>
+            <td align="center" id="cecap-16-hiv-negative-50+"></td>
+            <td align="center" id="cecap-16-hiv-negative-total"></td>
+            <td align="center" id="cecap-16-hiv-unknown-15-19"></td>
+            <td align="center" id="cecap-16-hiv-unknown-20-24"></td>
+            <td align="center" id="cecap-16-hiv-unknown-25-29"></td>
+            <td align="center" id="cecap-16-hiv-unknown-30-34"></td>
+            <td align="center" id="cecap-16-hiv-unknown-35-39"></td>
+            <td align="center" id="cecap-16-hiv-unknown-40-44"></td>
+            <td align="center" id="cecap-16-hiv-unknown-45-49"></td>
+            <td align="center" id="cecap-16-hiv-unknown-50+"></td>
+            <td align="center" id="cecap-16-hiv-unknown-total"></td>
+        </tr>
+        <tr class="table-th-color">
+            <td></td>
+            <td>Hudhurio la marudio</td>
+            <td colspan="29"></td>
+        </tr>
+        <tr>
+            <td>17</td>
+            <td>Idadi ya wanawake wa hudhurio la marudio baada ya mwaka mmoja (waliowahi kutibiwa kwa thermo, cryo au LEEP)</td>
+
+            <td align="center" id="cecap-17-grand-total"></td>
+            <td align="center" id="cecap-17-hiv-positive-15-19"></td>
+            <td align="center" id="cecap-17-hiv-positive-20-24"></td>
+            <td align="center" id="cecap-17-hiv-positive-25-29"></td>
+            <td align="center" id="cecap-17-hiv-positive-30-34"></td>
+            <td align="center" id="cecap-17-hiv-positive-35-39"></td>
+            <td align="center" id="cecap-17-hiv-positive-40-44"></td>
+            <td align="center" id="cecap-17-hiv-positive-45-49"></td>
+            <td align="center" id="cecap-17-hiv-positive-50+"></td>
+            <td align="center" id="cecap-17-hiv-positive-total"></td>
+            <td align="center" id="cecap-17-hiv-negative-15-19"></td>
+            <td align="center" id="cecap-17-hiv-negative-20-24"></td>
+            <td align="center" id="cecap-17-hiv-negative-25-29"></td>
+            <td align="center" id="cecap-17-hiv-negative-30-34"></td>
+            <td align="center" id="cecap-17-hiv-negative-35-39"></td>
+            <td align="center" id="cecap-17-hiv-negative-40-44"></td>
+            <td align="center" id="cecap-17-hiv-negative-45-49"></td>
+            <td align="center" id="cecap-17-hiv-negative-50+"></td>
+            <td align="center" id="cecap-17-hiv-negative-total"></td>
+            <td align="center" id="cecap-17-hiv-unknown-15-19"></td>
+            <td align="center" id="cecap-17-hiv-unknown-20-24"></td>
+            <td align="center" id="cecap-17-hiv-unknown-25-29"></td>
+            <td align="center" id="cecap-17-hiv-unknown-30-34"></td>
+            <td align="center" id="cecap-17-hiv-unknown-35-39"></td>
+            <td align="center" id="cecap-17-hiv-unknown-40-44"></td>
+            <td align="center" id="cecap-17-hiv-unknown-45-49"></td>
+            <td align="center" id="cecap-17-hiv-unknown-50+"></td>
+            <td align="center" id="cecap-17-hiv-unknown-total"></td>
+        </tr>
+        <tr>
+            <td>18</td>
+            <td>Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitatu ya  uchunguzi-VIA negative</td>
+
+            <td align="center" id="cecap-18-grand-total"></td>
+            <td align="center" id="cecap-18-hiv-positive-15-19"></td>
+            <td align="center" id="cecap-18-hiv-positive-20-24"></td>
+            <td align="center" id="cecap-18-hiv-positive-25-29"></td>
+            <td align="center" id="cecap-18-hiv-positive-30-34"></td>
+            <td align="center" id="cecap-18-hiv-positive-35-39"></td>
+            <td align="center" id="cecap-18-hiv-positive-40-44"></td>
+            <td align="center" id="cecap-18-hiv-positive-45-49"></td>
+            <td align="center" id="cecap-18-hiv-positive-50+"></td>
+            <td align="center" id="cecap-18-hiv-positive-total"></td>
+            <td align="center" id="cecap-18-hiv-negative-15-19"></td>
+            <td align="center" id="cecap-18-hiv-negative-20-24"></td>
+            <td align="center" id="cecap-18-hiv-negative-25-29"></td>
+            <td align="center" id="cecap-18-hiv-negative-30-34"></td>
+            <td align="center" id="cecap-18-hiv-negative-35-39"></td>
+            <td align="center" id="cecap-18-hiv-negative-40-44"></td>
+            <td align="center" id="cecap-18-hiv-negative-45-49"></td>
+            <td align="center" id="cecap-18-hiv-negative-50+"></td>
+            <td align="center" id="cecap-18-hiv-negative-total"></td>
+            <td align="center" id="cecap-18-hiv-unknown-15-19"></td>
+            <td align="center" id="cecap-18-hiv-unknown-20-24"></td>
+            <td align="center" id="cecap-18-hiv-unknown-25-29"></td>
+            <td align="center" id="cecap-18-hiv-unknown-30-34"></td>
+            <td align="center" id="cecap-18-hiv-unknown-35-39"></td>
+            <td align="center" id="cecap-18-hiv-unknown-40-44"></td>
+            <td align="center" id="cecap-18-hiv-unknown-45-49"></td>
+            <td align="center" id="cecap-18-hiv-unknown-50+"></td>
+            <td align="center" id="cecap-18-hiv-unknown-total"></td>
+        </tr>
+        <tr>
+            <td>19</td>
+            <td>Idadi ya wanawake wa hudhurio la marudio baada ya miaka mitano ya uchunguzi - HPV DNA negative</td>
+
+            <td align="center" id="cecap-19-grand-total"></td>
+            <td align="center" id="cecap-19-hiv-positive-15-19"></td>
+            <td align="center" id="cecap-19-hiv-positive-20-24"></td>
+            <td align="center" id="cecap-19-hiv-positive-25-29"></td>
+            <td align="center" id="cecap-19-hiv-positive-30-34"></td>
+            <td align="center" id="cecap-19-hiv-positive-35-39"></td>
+            <td align="center" id="cecap-19-hiv-positive-40-44"></td>
+            <td align="center" id="cecap-19-hiv-positive-45-49"></td>
+            <td align="center" id="cecap-19-hiv-positive-50+"></td>
+            <td align="center" id="cecap-19-hiv-positive-total"></td>
+            <td align="center" id="cecap-19-hiv-negative-15-19"></td>
+            <td align="center" id="cecap-19-hiv-negative-20-24"></td>
+            <td align="center" id="cecap-19-hiv-negative-25-29"></td>
+            <td align="center" id="cecap-19-hiv-negative-30-34"></td>
+            <td align="center" id="cecap-19-hiv-negative-35-39"></td>
+            <td align="center" id="cecap-19-hiv-negative-40-44"></td>
+            <td align="center" id="cecap-19-hiv-negative-45-49"></td>
+            <td align="center" id="cecap-19-hiv-negative-50+"></td>
+            <td align="center" id="cecap-19-hiv-negative-total"></td>
+            <td align="center" id="cecap-19-hiv-unknown-15-19"></td>
+            <td align="center" id="cecap-19-hiv-unknown-20-24"></td>
+            <td align="center" id="cecap-19-hiv-unknown-25-29"></td>
+            <td align="center" id="cecap-19-hiv-unknown-30-34"></td>
+            <td align="center" id="cecap-19-hiv-unknown-35-39"></td>
+            <td align="center" id="cecap-19-hiv-unknown-40-44"></td>
+            <td align="center" id="cecap-19-hiv-unknown-45-49"></td>
+            <td align="center" id="cecap-19-hiv-unknown-50+"></td>
+            <td align="center" id="cecap-19-hiv-unknown-total"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    function loadData() {
+        const data = JSON.parse(Android.getData("monthly_reports"));
+        const keys = Object.keys(data.nameValuePairs);
+        const reportPeriod = document.getElementById("report_period");
+        const reportingFacility = document.getElementById("reporting_facility");
+        keys.forEach((key) => {
+            let element;
+            element = document.getElementById(key);
+            if (element !== null && typeof element !== "undefined") {
+              element.innerHTML = data.nameValuePairs[key];
+            }
+        });
+        reportPeriod.innerHTML = Android.getDataPeriod();
+        reportingFacility.innerHTML = Android.getReportingFacility();
+    }
+
+</script>
+</body>
+</html>

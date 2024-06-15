@@ -66,12 +66,6 @@
             "openmrs_entity_id": "not_provided"
           },
           {
-            "key": "referred",
-            "text": "Referred",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "referred"
-          },
-          {
             "key": "not_applicable",
             "text": "Not applicable",
             "openmrs_entity": "concept",

@@ -1,0 +1,28 @@
+---
+name: step1_prompt_for_negative
+description: prompt_for_negative
+priority: 1
+condition: "step1_via_findings.equals('negative')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_prompt_for_taking_biopsy
+description: prompt_for_taking_biopsy
+priority: 1
+condition: "step1_via_findings.equals('suspicious')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_illustration_of_lesion_location
+description: illustration_of_lesion_location
+priority: 1
+condition: "step1_via_findings.equals('positive_with_small_lesion') || step1_via_findings.equals('positive_with_large_lesion')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_lesion_location
+description: lesion_location
+priority: 1
+condition: "step1_via_findings.equals('positive_with_small_lesion') || step1_via_findings.equals('positive_with_large_lesion')"
+actions:
+  - "isRelevant = true"

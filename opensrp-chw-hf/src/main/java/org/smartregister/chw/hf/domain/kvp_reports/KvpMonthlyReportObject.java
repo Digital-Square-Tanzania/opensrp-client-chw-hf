@@ -10,21 +10,23 @@ import java.util.Date;
 public class KvpMonthlyReportObject extends ReportObject {
 
 
-    private final String[] kvpQuestionsGroups = new String[]{"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","18","19","20","21","22",
-            "17-a","17-b","17-c","17-d"
+    private final String[] kvpQuestionsGroups = new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14-a",
+            "14-b-i", "14-b-ii", "14-b-iii", "14-b-iv", "14-b-v", "14-b-vi",
+            "15", "16-a","16-b","16-c","16-d", "18", "19", "20", "21", "22",
+            "17"
     };
     private final String[] kvpAgeGroups = new String[]{
-            "<10","10-14","15-19","20-24","25-29","30-34","35-39","40-44","45-49",">50"
+            "<10", "10-14", "15-19", "20-24", "25-29", "30-34", "35-39", "40-44", "45-49", ">50"
     };
     private final String[] kvpGroups = new String[]{
-            "pwid","pwud","fsw","msm","agyw","mobile_population","serodiscordant_couple","other_vulnerable_population"
+            "pwid", "pwud", "fsw", "msm", "agyw", "mobile_population", "serodiscordant_couple", "other_vulnerable_population"
     };
     private final String[] kvpGenderGroups = new String[]{
-            "ME","KE"
+            "ME", "KE"
     };
 
     private final Date reportDate;
-    private JSONObject jsonObject ;
+    private JSONObject jsonObject;
 
     public KvpMonthlyReportObject(Date reportDate) {
         super(reportDate);
@@ -39,7 +41,7 @@ public class KvpMonthlyReportObject extends ReportObject {
                 for (String kvpGroup : kvpGroups) {
                     for (String genderGroup : kvpGenderGroups) {  //concstenate rows columns and gendergroup
                         jsonObject.put("kvp" + "-" + questionGroup + "-" + ageGroup + "-" + kvpGroup + "-" + genderGroup,
-                                ReportDao.getReportPerIndicatorCode("kvp" + "-" + questionGroup + "-" + ageGroup +"-" + kvpGroup + "-" + genderGroup, reportDate));
+                                ReportDao.getReportPerIndicatorCode("kvp" + "-" + questionGroup + "-" + ageGroup + "-" + kvpGroup + "-" + genderGroup, reportDate));
                     }
                 }
             }
@@ -51,15 +53,15 @@ public class KvpMonthlyReportObject extends ReportObject {
         return jsonObject;
     }
 
-    private int getTotalPerEachIndicator(String question,String kvpgroup) throws JSONException {
-        int  totalOfGenderGiven = 0;
+    private int getTotalPerEachIndicator(String question, String kvpgroup) throws JSONException {
+        int totalOfGenderGiven = 0;
         int returnedValue = 0;
-        for (String age: kvpAgeGroups){
-                totalOfGenderGiven += (ReportDao.getReportPerIndicatorCode("kvp" + "-"
-                        + question + "-" + age + "-" + kvpgroup + "-" + "ME", reportDate)
-                +ReportDao.getReportPerIndicatorCode("kvp" + "-"
-                        + question + "-" + age + "-" + kvpgroup + "-" + "KE", reportDate));
-            jsonObject.put("kvp"+"-"+question+"-"+kvpgroup+"-jumla-both-ME-KE",totalOfGenderGiven);  //display the total for both gender
+        for (String age : kvpAgeGroups) {
+            totalOfGenderGiven += (ReportDao.getReportPerIndicatorCode("kvp" + "-"
+                    + question + "-" + age + "-" + kvpgroup + "-" + "ME", reportDate)
+                    + ReportDao.getReportPerIndicatorCode("kvp" + "-"
+                    + question + "-" + age + "-" + kvpgroup + "-" + "KE", reportDate));
+            jsonObject.put("kvp" + "-" + question + "-" + kvpgroup + "-jumla-both-ME-KE", totalOfGenderGiven);  //display the total for both gender
             returnedValue = totalOfGenderGiven;
         }
         return returnedValue;
@@ -68,11 +70,11 @@ public class KvpMonthlyReportObject extends ReportObject {
 
     private void funcGetTotal() throws JSONException {
         int totalofthewholekvpgroup = 0;
-        for (String question: kvpQuestionsGroups) {
-                for (String kvpGroup : kvpGroups) {
-                    totalofthewholekvpgroup+=getTotalPerEachIndicator(question,kvpGroup);
-                    jsonObject.put("kvp"+"-"+question+"-jumla-kuu",totalofthewholekvpgroup); //total for all kvp groups
-                }
+        for (String question : kvpQuestionsGroups) {
+            for (String kvpGroup : kvpGroups) {
+                totalofthewholekvpgroup += getTotalPerEachIndicator(question, kvpGroup);
+                jsonObject.put("kvp" + "-" + question + "-jumla-kuu", totalofthewholekvpgroup); //total for all kvp groups
+            }
             totalofthewholekvpgroup = 0;
         }
     }

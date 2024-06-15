@@ -1,0 +1,49 @@
+---
+name: step1_prompt_for_sample_collection
+description: prompt_for_sample_collection
+priority: 1
+condition: "step1_can_the_facility_perform_hpv_dna_test.equals('yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_squamo_columnar_junction
+description: squamo_columnar_junction
+priority: 1
+condition: "step1_can_the_facility_perform_hpv_dna_test.equals('no')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_prompt_for_via
+description: prompt_for_via
+priority: 1
+condition: "step1_squamo_columnar_junction.equals('yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_prompt_for_pap
+description: prompt_for_pap
+priority: 1
+condition: "step1_squamo_columnar_junction.equals('no')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_screening_test_performed_with_via
+description: screening_test_performed_with_via
+priority: 1
+condition: "step1_squamo_columnar_junction.equals('yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_screening_test_performed_without_via
+description: screening_test_performed_without_via
+priority: 1
+condition: "step1_squamo_columnar_junction.equals('no')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_screening_test_performed
+description: screening_test_performed
+priority: 1
+condition: "true"
+actions:
+  - "calculation = step1_can_the_facility_perform_hpv_dna_test.equals('yes') ? 'hpv_dna' : step1_squamo_columnar_junction.equals('yes') ? step1_screening_test_performed_with_via : step1_screening_test_performed_without_via"

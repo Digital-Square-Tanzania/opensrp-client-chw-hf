@@ -70,7 +70,7 @@
           },
           {
             "key": "re_start",
-            "text": "Re-start",
+            "text": "Re-started",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "re_start"
@@ -94,6 +94,50 @@
           "value": "true",
           "err": "Please select an answer"
         }
+      },
+      {
+        "key": "pregnancy_breast_feeding_status",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "pregnancy_breast_feeding_status",
+        "label": "Pregnancy and Breastfeeding status",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "pregnant",
+            "text": "Pregnant",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "pregnant"
+          },
+          {
+            "key": "breast_feeding",
+            "text": "Breastfeeding",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "breast_feeding"
+          },
+          {
+            "key": "not_applicable",
+            "text": "Not Applicable",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "not_applicable"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select an answer"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "prep_initiation_relevance.yml"
+            }
+          }
+        }
+
       },
       {
         "key": "prep_drug_offered",
@@ -173,8 +217,8 @@
           }
         },
         "v_max": {
-          "value": "30",
-          "err": "Number of pills must be equal to or less than  30"
+          "value": "100",
+          "err": "Number of pills must be equal to or less than  100"
         }
       },
       {
@@ -267,6 +311,12 @@
             "text": "Not at risk",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "not_at_risk"
+          },
+          {
+            "key": "kvp_mobility",
+            "text": "Mobility",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "kvp_mobility"
           },
           {
             "key": "others",

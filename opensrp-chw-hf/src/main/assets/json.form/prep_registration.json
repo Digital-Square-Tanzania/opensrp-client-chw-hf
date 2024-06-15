@@ -92,7 +92,7 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "is_the_client_pregnant",
-        "label": "Is the Client Pregnant?",
+        "label": "Is the client pregnant?",
         "text_color": "#000000",
         "type": "native_radio",
         "options": [

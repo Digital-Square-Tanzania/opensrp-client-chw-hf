@@ -184,7 +184,7 @@
     ]
   },
   "step4": {
-    "title": "High Risk Men",
+    "title": "Men at High Risk(MHR)",
     "next": "step5",
     "fields": [
       {
@@ -664,7 +664,7 @@
       {
         "key": "prompt_for_msm_kvp",
         "type": "toaster_notes",
-        "text": "The client falls in High Risk Men KVP group\nThe client should be enrolled to KVP friendly services",
+        "text": "The client falls in MHR KVP group\nThe client should be enrolled to KVP friendly services",
         "openmrs_entity_id": "",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
@@ -852,7 +852,7 @@
         "options": [
           {
             "key": "msm",
-            "text": "High Risk Men",
+            "text": "MHR",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "msm"

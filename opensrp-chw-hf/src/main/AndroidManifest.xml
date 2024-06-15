@@ -539,7 +539,6 @@
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.SelfTestingReportsViewActivity"
-            android:screenOrientation="landscape"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.CdpReportsViewActivity"
@@ -549,7 +548,6 @@
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.KvpReportsViewActivity"
-            android:screenOrientation="landscape"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.KvpReportsActivity"
@@ -576,6 +574,40 @@
             android:name=".activity.SbcMedicalHistoryActivity"
             android:theme="@style/HFTheme.NoActionBar" />
 
+        <activity
+            android:name=".activity.CecapRegisterActivity"
+            android:theme="@style/HFTheme.NoActionBar" />
+        <activity
+            android:name=".activity.CecapMemberProfileActivity"
+            android:theme="@style/HFTheme.NoActionBar" />
+
+        <activity
+            android:name=".activity.CecapVisitActivity"
+            android:theme="@style/HFTheme.NoActionBar" />
+
+        <activity
+            android:name=".activity.CecapTestResultsViewActivity"
+            android:theme="@style/HFTheme.NoActionBar" />
+
+        <activity
+            android:name=".activity.CecapMedicalHistoryActivity"
+            android:theme="@style/HFTheme.NoActionBar" />
+
+        <activity
+            android:name=".activity.CecapReportsActivity"
+            android:theme="@style/HFTheme.NoActionBar" />
+
+        <activity
+            android:name=".activity.CecapReportsViewActivity"
+            android:theme="@style/HFTheme.NoActionBar" />
+
+        <activity
+            android:name=".activity.AsrhReportsActivity"
+            android:theme="@style/HFTheme.NoActionBar" />
+
+        <activity
+            android:name=".activity.AsrhReportsViewActivity"
+            android:theme="@style/HFTheme.NoActionBar" />
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="3f94f9c3caeff331b3a2bd8c2182b663ad6a955a" />

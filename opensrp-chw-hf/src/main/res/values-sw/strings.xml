@@ -353,6 +353,9 @@
     <string name="kvp_iec_sbcc">IEC/SBCC</string>
     <string name="kvp_health_education">Elimu ya Afya</string>
     <string name="kvp_gbv_analysis">Uchunguzi wa Ukatili wa Kijinsia</string>
+    <string name="kvp_fsw">WHR</string>
+    <string name="kvp_msm">MRH</string>
+    <string name="kvp_agyw">vAGYW</string>
     <string name="kvp_other_services_referrals">Afua Zinginezo na Rufaa</string>
     <string name="prep_visit_type">Aina ya Hudhurio</string>
     <string name="prep_initiation">Kuanzisha dawa kinga (PrEP)</string>
