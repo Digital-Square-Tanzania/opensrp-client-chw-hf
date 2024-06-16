@@ -42,7 +42,7 @@
     "encounter_location": ""
   },
   "step1": {
-    "title": "DNA-PCR Sample Collection",
+    "title": "DNA-PCR Sample Request",
     "fields": [
       {
         "key": "do_you_want_to_request_for_dna_pcr_sample_collection",
@@ -162,6 +162,18 @@
         }
       },
       {
+        "key": "sample_request_time",
+        "type": "time_picker",
+        "hint": "HVL Sample Request Time",
+        "openmrs_entity_id": "sample_request_time",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "v_required": {
+          "value": true,
+          "err": "Please enter the request time"
+        }
+      },
+      {
         "key": "requester_clinician_name",
         "type": "edit_text",
         "hint": "Name of the Requester",
@@ -181,6 +193,32 @@
             "type": "string",
             "ex": "equalTo(., \"yes\")"
           }
+        }
+      },
+      {
+        "key": "sample_requester_phone_number",
+        "type": "edit_text",
+        "hint": "Healthcare Provider's Phone Number",
+        "edit_type": "number",
+        "openmrs_entity_id": "sample_requester_phone_number",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "v_max_length": {
+          "value": "10",
+          "is_fixed_size": "true",
+          "err": "Please enter a valid phone number"
+        },
+        "v_numeric": {
+          "value": "true",
+          "err": "Number must be a total of 10 digits and must start with 06 au 07."
+        },
+        "v_regex": {
+          "value": "(0[6-7][1-9][0-9][0-9]{6})|\\s*",
+          "err": "Number must be 10 digits and must start with 06 or 07."
+        },
+        "v_required": {
+          "value": true,
+          "err": "Please enter the healthcare provider's phone number"
         }
       },
       {
