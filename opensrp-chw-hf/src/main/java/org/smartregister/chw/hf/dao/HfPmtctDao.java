@@ -708,11 +708,83 @@ public class HfPmtctDao extends CorePmtctDao {
         return null;
     }
 
+    public static String getSampleRequestTime(String baseEntityId) {
+        String sql = "SELECT sample_request_time " +
+                "FROM ec_pmtct_followup " +
+                "WHERE entity_id = '" + baseEntityId + "' ORDER BY last_interacted_with DESC LIMIT 1";
+        DataMap<String> dataMap = cursor -> getCursorValue(cursor, "sample_request_time");
+        List<String> res = readData(sql, dataMap);
+        if (res != null && !res.isEmpty() && res.get(0) != null) {
+            return res.get(0);
+        }
+        return null;
+    }
+
     public static String getRequesterClinicianName(String baseEntityId) {
         String sql = "SELECT requester_clinician_name " +
                 "FROM ec_pmtct_followup " +
                 "WHERE entity_id = '" + baseEntityId + "' ORDER BY last_interacted_with DESC LIMIT 1";
         DataMap<String> dataMap = cursor -> getCursorValue(cursor, "requester_clinician_name");
+        List<String> res = readData(sql, dataMap);
+        if (res != null && !res.isEmpty() && res.get(0) != null) {
+            return res.get(0);
+        }
+        return null;
+    }
+
+    public static String getRequesterPhoneNumber(String baseEntityId) {
+        String sql = "SELECT requester_phone_number " +
+                "FROM ec_pmtct_followup " +
+                "WHERE entity_id = '" + baseEntityId + "' ORDER BY last_interacted_with DESC LIMIT 1";
+        DataMap<String> dataMap = cursor -> getCursorValue(cursor, "requester_phone_number");
+        List<String> res = readData(sql, dataMap);
+        if (res != null && !res.isEmpty() && res.get(0) != null) {
+            return res.get(0);
+        }
+        return null;
+    }
+
+    public static String getReasonsForRequestingTest(String baseEntityId) {
+        String sql = "SELECT reason_for_requesting_test " +
+                "FROM ec_pmtct_followup " +
+                "WHERE entity_id = '" + baseEntityId + "' ORDER BY last_interacted_with DESC LIMIT 1";
+        DataMap<String> dataMap = cursor -> getCursorValue(cursor, "reason_for_requesting_test");
+        List<String> res = readData(sql, dataMap);
+        if (res != null && !res.isEmpty() && res.get(0) != null) {
+            return res.get(0);
+        }
+        return null;
+    }
+
+    public static String getOnTbTreatment(String baseEntityId) {
+        String sql = "SELECT on_tb_treatment " +
+                "FROM ec_pmtct_followup " +
+                "WHERE entity_id = '" + baseEntityId + "' ORDER BY last_interacted_with DESC LIMIT 1";
+        DataMap<String> dataMap = cursor -> getCursorValue(cursor, "on_tb_treatment");
+        List<String> res = readData(sql, dataMap);
+        if (res != null && !res.isEmpty() && res.get(0) != null) {
+            return res.get(0);
+        }
+        return null;
+    }
+
+    public static String getArvLine(String baseEntityId) {
+        String sql = "SELECT arv_line " +
+                "FROM ec_pmtct_followup " +
+                "WHERE entity_id = '" + baseEntityId + "' AND arv_line IS NOT NULL ORDER BY last_interacted_with DESC LIMIT 1";
+        DataMap<String> dataMap = cursor -> getCursorValue(cursor, "arv_line");
+        List<String> res = readData(sql, dataMap);
+        if (res != null && !res.isEmpty() && res.get(0) != null) {
+            return res.get(0);
+        }
+        return null;
+    }
+
+    public static String getArvDrug(String baseEntityId) {
+        String sql = "SELECT art_drug " +
+                "FROM ec_pmtct_followup " +
+                "WHERE entity_id = '" + baseEntityId + "' AND art_drug IS NOT NULL ORDER BY last_interacted_with DESC LIMIT 1";
+        DataMap<String> dataMap = cursor -> getCursorValue(cursor, "art_drug");
         List<String> res = readData(sql, dataMap);
         if (res != null && !res.isEmpty() && res.get(0) != null) {
             return res.get(0);

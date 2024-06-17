@@ -543,11 +543,84 @@ public class HeiDao extends AbstractDao {
     }
 
 
+    public static String getSampleRequestTime(String baseEntityId) {
+        String sql = "SELECT sample_request_time " +
+                "FROM ec_hei_followup " +
+                "WHERE entity_id = '" + baseEntityId + "' ORDER BY last_interacted_with DESC LIMIT 1";
+        DataMap<String> dataMap = cursor -> getCursorValue(cursor, "sample_request_time");
+        List<String> res = readData(sql, dataMap);
+        if (res != null && !res.isEmpty() && res.get(0) != null) {
+            return res.get(0);
+        }
+        return null;
+    }
+
+
     public static String getRequesterClinicianName(String baseEntityId) {
         String sql = "SELECT requester_clinician_name " +
                 "FROM ec_hei_followup " +
                 "WHERE entity_id = '" + baseEntityId + "' ORDER BY last_interacted_with DESC LIMIT 1";
         DataMap<String> dataMap = cursor -> getCursorValue(cursor, "requester_clinician_name");
+        List<String> res = readData(sql, dataMap);
+        if (res != null && !res.isEmpty() && res.get(0) != null) {
+            return res.get(0);
+        }
+        return null;
+    }
+
+    public static String getRequesterPhoneNumber(String baseEntityId) {
+        String sql = "SELECT requester_phone_number " +
+                "FROM ec_hei_followup " +
+                "WHERE entity_id = '" + baseEntityId + "' ORDER BY last_interacted_with DESC LIMIT 1";
+        DataMap<String> dataMap = cursor -> getCursorValue(cursor, "requester_phone_number");
+        List<String> res = readData(sql, dataMap);
+        if (res != null && !res.isEmpty() && res.get(0) != null) {
+            return res.get(0);
+        }
+        return null;
+    }
+
+    public static String getReasonsForRequestingTest(String baseEntityId) {
+        String sql = "SELECT reason_for_requesting_test " +
+                "FROM ec_hei_followup " +
+                "WHERE entity_id = '" + baseEntityId + "' ORDER BY last_interacted_with DESC LIMIT 1";
+        DataMap<String> dataMap = cursor -> getCursorValue(cursor, "reason_for_requesting_test");
+        List<String> res = readData(sql, dataMap);
+        if (res != null && !res.isEmpty() && res.get(0) != null) {
+            return res.get(0);
+        }
+        return null;
+    }
+
+    public static String getInfantFeedingPractice(String baseEntityId) {
+        String sql = "SELECT infant_feeding_practice " +
+                "FROM ec_hei_followup " +
+                "WHERE entity_id = '" + baseEntityId + "' ORDER BY last_interacted_with DESC LIMIT 1";
+        DataMap<String> dataMap = cursor -> getCursorValue(cursor, "infant_feeding_practice");
+        List<String> res = readData(sql, dataMap);
+        if (res != null && !res.isEmpty() && res.get(0) != null) {
+            return res.get(0);
+        }
+        return null;
+    }
+
+    public static String getPrescribedCtx(String baseEntityId) {
+        String sql = "SELECT prescribed_ctx " +
+                "FROM ec_hei_followup " +
+                "WHERE entity_id = '" + baseEntityId + "' AND prescribed_ctx IS NOT NULL ORDER BY last_interacted_with DESC LIMIT 1";
+        DataMap<String> dataMap = cursor -> getCursorValue(cursor, "prescribed_ctx");
+        List<String> res = readData(sql, dataMap);
+        if (res != null && !res.isEmpty() && res.get(0) != null) {
+            return res.get(0);
+        }
+        return null;
+    }
+
+    public static String getNumberOfCtxDaysDispensed(String baseEntityId) {
+        String sql = "SELECT number_of_ctx_days_dispensed " +
+                "FROM ec_hei_followup " +
+                "WHERE entity_id = '" + baseEntityId + "' AND number_of_ctx_days_dispensed IS NOT NULL ORDER BY last_interacted_with DESC LIMIT 1";
+        DataMap<String> dataMap = cursor -> getCursorValue(cursor, "number_of_ctx_days_dispensed");
         List<String> res = readData(sql, dataMap);
         if (res != null && !res.isEmpty() && res.get(0) != null) {
             return res.get(0);

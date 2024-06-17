@@ -60,6 +60,18 @@
         }
       },
       {
+        "key": "sample_request_time",
+        "type": "time_picker",
+        "hint": "HVL Sample Request Time",
+        "openmrs_entity_id": "sample_request_time",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "v_required": {
+          "value": true,
+          "err": "Please enter the request time"
+        }
+      },
+      {
         "key": "requester_clinician_name",
         "type": "edit_text",
         "hint": "Name of the Requester",
@@ -73,6 +85,95 @@
         "v_required": {
           "value": true,
           "err": "Please enter the healthcare provider's name"
+        }
+      },
+      {
+        "key": "requester_phone_number",
+        "type": "edit_text",
+        "hint": "Requester Phone Number",
+        "edit_type": "number",
+        "openmrs_entity_id": "requester_phone_number",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "v_max_length": {
+          "value": "10",
+          "is_fixed_size": "true",
+          "err": "Please enter a valid phone number"
+        },
+        "v_numeric": {
+          "value": "true",
+          "err": "Number must be a total of 10 digits and must start with 06 au 07."
+        },
+        "v_regex": {
+          "value": "(0[6-7][1-9][0-9][0-9]{6})|\\s*",
+          "err": "Number must be 10 digits and must start with 06 or 07."
+        },
+        "v_required": {
+          "value": true,
+          "err": "Please enter the healthcare provider's phone number"
+        }
+      },
+      {
+        "key": "reason_for_requesting_test",
+        "type": "native_radio",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "reason_for_requesting_test",
+        "openmrs_entity_parent": "",
+        "label": "Reasons for requesting DNA-PCR Sample Collection?",
+        "options": [
+          {
+            "key": "dna_pcr_diagnostic_test_at_birth",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "dna_pcr_diagnostic_test_at_birth",
+            "openmrs_entity_parent": "",
+            "text": "DNA PCR Diagnostic Test (At Birth)"
+          },
+          {
+            "key": "dna_pcr_diagnostic_test_6_weeks_after_birth",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "dna_pcr_diagnostic_test_6_weeks_after_birth",
+            "openmrs_entity_parent": "",
+            "text": "DNA PCR Diagnostic Test (Week 6 after Birth)"
+          },
+          {
+            "key": "dna_pcr_diagnostic_test_9_months_after_birth",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "dna_pcr_diagnostic_test_9_months_after_birth",
+            "openmrs_entity_parent": "",
+            "text": "Repeat DNA PCR Test (9 Months after Birth)."
+          },
+          {
+            "key": "dna_pcr_test_after_positive_antibody_results",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "dna_pcr_test_after_positive_antibody_results",
+            "openmrs_entity_parent": "",
+            "text": "DNA PCR test after positive antibody results."
+          },
+          {
+            "key": "confirmatory_test_for_positive_results",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "confirmatory_test_for_positive_results",
+            "openmrs_entity_parent": "",
+            "text": "Confirmation test for positive results."
+          },
+          {
+            "key": "repeat_test_after_final_sample_fails_or_is_rejected",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "repeat_test_after_final_sample_fails_or_is_rejected",
+            "openmrs_entity_parent": "",
+            "text": "Repeat test after the final sample fails or is rejected."
+          },
+          {
+            "key": "retesting_hvl_after_3_months_from_completion_of_eac",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "retesting_hvl_after_3_months_from_completion_of_eac",
+            "openmrs_entity_parent": "",
+            "text": "Retesting HVL after 3 months from completion of EAC"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": null
         }
       },
       {
@@ -174,6 +275,13 @@
         "openmrs_entity_id": "sample_collection_time",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
+        "constraints": [
+          {
+            "type": "time",
+            "ex": "greaterThanEqualTo(., step1:sample_request_time)",
+            "err": "The Dispatch time cannot be before the sample collection/processing time"
+          }
+        ],
         "v_required": {
           "value": true,
           "err": "Please enter the collection time"
@@ -239,6 +347,41 @@
         "openmrs_entity_id": "sample_processed",
         "type": "hidden",
         "value": "true"
+      },
+      {
+        "key": "mother_breast_feeding",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "mother_breast_feeding",
+        "type": "hidden"
+      },
+      {
+        "key": "drug_given_to_baby",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "drug_given_to_baby",
+        "type": "hidden"
+      },
+      {
+        "key": "baby_drug_period_in_days",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "baby_drug_period_in_days",
+        "type": "hidden"
+      },
+      {
+        "key": "mother_drug_during_pregnancy",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "mother_drug_during_pregnancy",
+        "type": "hidden"
+      },
+      {
+        "key": "mother_drug_during_labor",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "mother_drug_during_labor",
+        "type": "hidden"
       }
     ]
   }

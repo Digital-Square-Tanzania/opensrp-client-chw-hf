@@ -74,10 +74,10 @@
         }
       },
       {
-        "key": "reasons_for_requesting_hvl_sample_collection",
+        "key": "reason_for_requesting_test",
         "type": "native_radio",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "reasons_for_requesting_hvl_sample_collection",
+        "openmrs_entity_id": "reason_for_requesting_test",
         "openmrs_entity_parent": "",
         "label": "Reasons for requesting HVL Sample Collection",
         "options": [
@@ -174,11 +174,11 @@
         }
       },
       {
-        "key": "sample_requester_phone_number",
+        "key": "requester_phone_number",
         "type": "edit_text",
         "hint": "Healthcare Provider's Phone Number",
         "edit_type": "number",
-        "openmrs_entity_id": "sample_requester_phone_number",
+        "openmrs_entity_id": "requester_phone_number",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "v_max_length": {

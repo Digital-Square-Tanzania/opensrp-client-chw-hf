@@ -16,6 +16,7 @@ import org.json.JSONObject;
 import org.smartregister.AllConstants;
 import org.smartregister.Context;
 import org.smartregister.chw.hf.dao.HeiDao;
+import org.smartregister.chw.hf.dao.HfAncDao;
 import org.smartregister.chw.hf.dao.HfPmtctDao;
 import org.smartregister.chw.hf.repository.HfLocationRepository;
 import org.smartregister.chw.hiv.dao.HivDao;
@@ -176,18 +177,78 @@ public class LabRegisterModel extends BaseLabRegisterModel {
                     .getJSONArray(JsonFormConstants.FIELDS);
 
             JSONObject sampleRequestDate = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "sample_request_date");
+            JSONObject sampleRequestTime = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "sample_request_time");
             JSONObject sampleCollectionDate = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "sample_collection_date");
             if (HfPmtctDao.getSampleRequestDate(entityId) != null) {
                 sampleRequestDate.put(VALUE, HfPmtctDao.getSampleRequestDate(entityId));
+                sampleRequestTime.put(VALUE, HfPmtctDao.getSampleRequestTime(entityId));
+
                 sampleRequestDate.put(READ_ONLY, true);
+                sampleRequestTime.put(READ_ONLY, true);
+
                 sampleCollectionDate.put(MIN_DATE, HfPmtctDao.getSampleRequestDate(entityId));
             }
 
             JSONObject requesterClinicianName = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "requester_clinician_name");
+            JSONObject requesterPhoneNumber = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "requester_phone_number");
+            JSONObject reasonForRequestingTest = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "reason_for_requesting_test");
             if (HfPmtctDao.getRequesterClinicianName(entityId) != null) {
                 requesterClinicianName.put(VALUE, HfPmtctDao.getRequesterClinicianName(entityId));
+                requesterPhoneNumber.put(VALUE, HfPmtctDao.getRequesterPhoneNumber(entityId));
+                reasonForRequestingTest.put(VALUE, HfPmtctDao.getReasonsForRequestingTest(entityId));
+
                 requesterClinicianName.put(READ_ONLY, true);
+                requesterPhoneNumber.put(READ_ONLY, true);
+                reasonForRequestingTest.put(READ_ONLY, true);
             }
+
+            JSONObject hasTb = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "has_tb");
+            JSONObject isOnTbTreatment = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "is_on_tb_treatment");
+            if (HfPmtctDao.getOnTbTreatment(entityId) != null) {
+                hasTb.put(VALUE, HfPmtctDao.getOnTbTreatment(entityId).equalsIgnoreCase("yes") ? "Yes" : "No");
+                isOnTbTreatment.put(VALUE, HfPmtctDao.getOnTbTreatment(entityId).equalsIgnoreCase("yes") ? "Yes" : "No");
+            } else {
+                hasTb.put(VALUE, "Unknown");
+                isOnTbTreatment.put(VALUE, "Unknown");
+            }
+
+            JSONObject isPregnant = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "is_pregnant");
+            JSONObject isBreastFeeding = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "is_breast_feeding");
+            isPregnant.put(VALUE, HfAncDao.isANCMember(entityId));
+            isBreastFeeding.put(VALUE, !HfAncDao.isANCMember(entityId));
+
+
+            JSONObject ageGroup = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "client_age_group");
+            ageGroup.put(VALUE, PmtctDao.getMember(entityId).getAge() > 15 ? "Adult" : "Children");
+
+
+            JSONObject drugLine = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "drug_line");
+
+            String arvLine = HfPmtctDao.getArvLine(entityId);
+            if (arvLine != null && drugLine != null) {
+                switch (arvLine) {
+                    case "first_line":
+                        drugLine.put(VALUE, "First line");
+                        break;
+                    case "second_line":
+                        drugLine.put(VALUE, "Second line");
+                        break;
+                    case "third_line":
+                        drugLine.put(VALUE, "Third line");
+                        break;
+                    default:
+                        drugLine.put(VALUE, "NA");
+                        break;
+                }
+            }
+
+            JSONObject artDrug = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "art_drug");
+            if (HfPmtctDao.getArvDrug(entityId) != null) {
+                artDrug.put(VALUE, HfPmtctDao.getArvDrug(entityId));
+            } else {
+                artDrug.put(VALUE, "NA");
+            }
+
         } catch (Exception e) {
             Timber.e(e);
         }
@@ -199,18 +260,58 @@ public class LabRegisterModel extends BaseLabRegisterModel {
                     .getJSONArray(JsonFormConstants.FIELDS);
 
             JSONObject sampleRequestDate = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "sample_request_date");
+            JSONObject sampleRequestTime = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "sample_request_time");
             JSONObject sampleCollectionDate = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "sample_collection_date");
             if (HeiDao.getSampleRequestDate(entityId) != null) {
                 sampleRequestDate.put(VALUE, HeiDao.getSampleRequestDate(entityId));
+                sampleRequestTime.put(VALUE, HeiDao.getSampleRequestTime(entityId));
+
                 sampleRequestDate.put(READ_ONLY, true);
+                sampleRequestTime.put(READ_ONLY, true);
                 sampleCollectionDate.put(MIN_DATE, HeiDao.getSampleRequestDate(entityId));
             }
 
             JSONObject requesterClinicianName = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "requester_clinician_name");
+            JSONObject requesterPhoneNumber = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "requester_phone_number");
+            JSONObject reasonForRequestingTest = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "reason_for_requesting_test");
+
             if (HeiDao.getRequesterClinicianName(entityId) != null) {
                 requesterClinicianName.put(VALUE, HeiDao.getRequesterClinicianName(entityId));
+                requesterPhoneNumber.put(VALUE, HeiDao.getRequesterPhoneNumber(entityId));
+                reasonForRequestingTest.put(VALUE, HeiDao.getReasonsForRequestingTest(entityId));
+
                 requesterClinicianName.put(READ_ONLY, true);
+                requesterPhoneNumber.put(READ_ONLY, true);
+                reasonForRequestingTest.put(READ_ONLY, true);
             }
+
+            JSONObject motherBreastFeeding = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "mother_breast_feeding");
+            if (HeiDao.getInfantFeedingPractice(entityId) != null) {
+                motherBreastFeeding.put(VALUE, HeiDao.getInfantFeedingPractice(entityId).toUpperCase());
+            } else {
+                motherBreastFeeding.put(READ_ONLY, "NA");
+            }
+
+            JSONObject drugGivenToBaby = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "drug_given_to_baby");
+            if (HeiDao.getPrescribedCtx(entityId) != null) {
+                drugGivenToBaby.put(VALUE, HeiDao.getPrescribedCtx(entityId).equalsIgnoreCase("yes") ? "CTX" : "NA");
+            } else {
+                drugGivenToBaby.put(READ_ONLY, "NA");
+            }
+
+            JSONObject drugPeriodInDays = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "baby_drug_period_in_days");
+            if (HeiDao.getPrescribedCtx(entityId) != null) {
+                drugPeriodInDays.put(VALUE, HeiDao.getNumberOfCtxDaysDispensed(entityId));
+            } else {
+                drugPeriodInDays.put(READ_ONLY, "NA");
+            }
+
+            JSONObject motherDrugDuringPregnancy = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "mother_drug_during_pregnancy");
+            motherDrugDuringPregnancy.put(READ_ONLY, "NA");
+
+            JSONObject motherDrugDuringLabor = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "mother_drug_during_labor");
+            motherDrugDuringLabor.put(READ_ONLY, "NA");
+
         } catch (Exception e) {
             Timber.e(e);
         }

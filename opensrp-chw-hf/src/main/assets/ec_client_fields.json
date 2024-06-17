@@ -158,11 +158,43 @@
           }
         },
         {
+          "column_name": "requester_phone_number",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "requester_phone_number"
+          }
+        },
+        {
           "column_name": "sample_request_date",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
             "concept": "sample_request_date"
+          }
+        },
+        {
+          "column_name": "sample_request_time",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "sample_request_time"
+          }
+        },
+        {
+          "column_name": "reason_for_requesting_test",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "reason_for_requesting_test"
+          }
+        },
+        {
+          "column_name": "on_tb_treatment",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "on_tb_treatment"
           }
         },
         {
@@ -195,6 +227,14 @@
           "json_mapping": {
             "field": "obs.fieldCode",
             "concept": "arv_regimen"
+          }
+        },
+        {
+          "column_name": "art_drug",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "art_drug"
           }
         },
         {
@@ -569,11 +609,35 @@
           }
         },
         {
+          "column_name": "requester_phone_number",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "requester_phone_number"
+          }
+        },
+        {
           "column_name": "sample_request_date",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
             "concept": "sample_request_date"
+          }
+        },
+        {
+          "column_name": "sample_request_time",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "sample_request_time"
+          }
+        },
+        {
+          "column_name": "reason_for_requesting_test",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "reason_for_requesting_test"
           }
         },
         {
@@ -622,6 +686,22 @@
           "json_mapping": {
             "field": "obs.fieldCode",
             "concept": "prescribed_ctx"
+          }
+        },
+        {
+          "column_name": "number_of_ctx_days_dispensed",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "number_of_ctx_days_dispensed"
+          }
+        },
+        {
+          "column_name": "infant_feeding_practice",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "infant_feeding_practice"
           }
         },
         {
@@ -10352,6 +10432,14 @@
           "json_mapping": {
             "field": "obs.fieldCode",
             "concept": "sample_request_date"
+          }
+        },
+        {
+          "column_name": "sample_request_time",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "sample_request_time"
           }
         },
         {

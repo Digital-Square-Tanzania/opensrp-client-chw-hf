@@ -60,6 +60,18 @@
         }
       },
       {
+        "key": "sample_request_time",
+        "type": "time_picker",
+        "hint": "HVL Sample Request Time",
+        "openmrs_entity_id": "sample_request_time",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "v_required": {
+          "value": true,
+          "err": "Please enter the request time"
+        }
+      },
+      {
         "key": "requester_clinician_name",
         "type": "edit_text",
         "hint": "Name of the Requester",
@@ -73,6 +85,95 @@
         "v_required": {
           "value": true,
           "err": "Please enter the healthcare provider's name"
+        }
+      },
+      {
+        "key": "requester_phone_number",
+        "type": "edit_text",
+        "hint": "Requester Phone Number",
+        "edit_type": "number",
+        "openmrs_entity_id": "requester_phone_number",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "v_max_length": {
+          "value": "10",
+          "is_fixed_size": "true",
+          "err": "Please enter a valid phone number"
+        },
+        "v_numeric": {
+          "value": "true",
+          "err": "Number must be a total of 10 digits and must start with 06 au 07."
+        },
+        "v_regex": {
+          "value": "(0[6-7][1-9][0-9][0-9]{6})|\\s*",
+          "err": "Number must be 10 digits and must start with 06 or 07."
+        },
+        "v_required": {
+          "value": true,
+          "err": "Please enter the healthcare provider's phone number"
+        }
+      },
+      {
+        "key": "reason_for_requesting_test",
+        "type": "native_radio",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "reason_for_requesting_test",
+        "openmrs_entity_parent": "",
+        "label": "Reasons for requesting HVL Sample Collection",
+        "options": [
+          {
+            "key": "six_month_after_starting_art",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "six_month_after_starting_art",
+            "openmrs_entity_parent": "",
+            "text": "6 months after starting ART"
+          },
+          {
+            "key": "patient_with_immunological_failure",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "patient_with_immunological_failure",
+            "openmrs_entity_parent": "",
+            "text": "Patient with immunological failure"
+          },
+          {
+            "key": "conducting_vl_at_first_anc",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "conducting_vl_at_first_anc",
+            "openmrs_entity_parent": "",
+            "text": "Conducting VL at first ANC, review in 2 weeks."
+          },
+          {
+            "key": "conducting_vl_3_months_post_art_initiation",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "conducting_vl_3_months_post_art_initiation",
+            "openmrs_entity_parent": "",
+            "text": "Conducting VL 3 months post-ART initiation."
+          },
+          {
+            "key": "routine_hlv_every_6_month_until_breastfeeding_stops",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "routine_hlv_every_6_month_until_breastfeeding_stops",
+            "openmrs_entity_parent": "",
+            "text": "Routine HVL every 6 months until breastfeeding stops"
+          },
+          {
+            "key": "newly_enrolled_pmtct_for_known_positive_with_results_older_than_3_months",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "newly_enrolled_pmtct_for_known_positive_with_results_older_than_3_months",
+            "openmrs_entity_parent": "",
+            "text": "Conducting new test for newly enrolled PMTCT Known Positive Client with HVL results older than 3 months"
+          },
+          {
+            "key": "retesting_hvl_after_3_months_from_completion_of_eac",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "retesting_hvl_after_3_months_from_completion_of_eac",
+            "openmrs_entity_parent": "",
+            "text": "Retesting HVL after 3 months from completion of EAC"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": null
         }
       },
       {
@@ -174,6 +275,13 @@
         "openmrs_entity_id": "sample_collection_time",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
+        "constraints": [
+          {
+            "type": "time",
+            "ex": "greaterThanEqualTo(., step1:sample_request_time)",
+            "err": "The Dispatch time cannot be before the sample collection/processing time"
+          }
+        ],
         "v_required": {
           "value": true,
           "err": "Please enter the collection time"
@@ -216,6 +324,55 @@
             }
           }
         }
+      },
+      {
+        "key": "has_tb",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "has_tb",
+        "type": "hidden"
+      },
+      {
+        "key": "is_on_tb_treatment",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "is_on_tb_treatment",
+        "type": "hidden"
+      },
+      {
+        "key": "is_pregnant",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "is_pregnant",
+        "type": "hidden"
+      },
+      {
+        "key": "is_breast_feeding",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "is_breast_feeding",
+        "type": "hidden"
+      },
+      {
+        "key": "client_age_group",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "client_age_group",
+        "type": "hidden"
+      },
+      {
+        "key": "drug_line",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "drug_line",
+        "type": "hidden"
+      },
+      {
+        "key": "art_drug",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "art_drug",
+        "type": "hidden"
       }
     ]
   }
