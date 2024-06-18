@@ -107,7 +107,7 @@
         "constraints": [
           {
             "type": "time",
-            "ex": "greaterThan(., step1:time_limit)",
+            "ex": "greaterThanEqualTo(., step1:time_limit)",
             "err": "The Dispatch time cannot be before the sample collection/processing time"
           }
         ]

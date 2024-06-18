@@ -154,12 +154,13 @@
         "v_required": {
           "value": true,
           "err": "Please enter the request date"
-        },"relevance": {
-        "step1:do_you_want_to_request_for_hvl_sample_collection": {
-          "type": "string",
-          "ex": "equalTo(., \"yes\")"
+        },
+        "relevance": {
+          "step1:do_you_want_to_request_for_hvl_sample_collection": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
         }
-      }
       },
       {
         "key": "sample_request_time",
@@ -171,6 +172,12 @@
         "v_required": {
           "value": true,
           "err": "Please enter the request time"
+        },
+        "relevance": {
+          "step1:do_you_want_to_request_for_hvl_sample_collection": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
         }
       },
       {
@@ -197,6 +204,12 @@
         "v_required": {
           "value": true,
           "err": "Please enter the healthcare provider's phone number"
+        },
+        "relevance": {
+          "step1:do_you_want_to_request_for_hvl_sample_collection": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
         }
       },
       {
