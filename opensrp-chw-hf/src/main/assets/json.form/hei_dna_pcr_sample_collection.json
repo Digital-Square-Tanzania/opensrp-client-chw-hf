@@ -171,6 +171,12 @@
         "v_required": {
           "value": true,
           "err": "Please enter the request time"
+        },
+        "relevance": {
+          "step1:do_you_want_to_request_for_dna_pcr_sample_collection": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
         }
       },
       {
@@ -219,6 +225,12 @@
         "v_required": {
           "value": true,
           "err": "Please enter the healthcare provider's phone number"
+        },
+        "relevance": {
+          "step1:do_you_want_to_request_for_dna_pcr_sample_collection": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
         }
       },
       {
