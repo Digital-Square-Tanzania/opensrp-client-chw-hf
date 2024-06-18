@@ -382,6 +382,14 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "mother_drug_during_labor",
         "type": "hidden"
+      },
+      {
+        "key": "type_of_sample",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "type_of_sample",
+        "type": "hidden",
+        "value": "DBS"
       }
     ]
   }

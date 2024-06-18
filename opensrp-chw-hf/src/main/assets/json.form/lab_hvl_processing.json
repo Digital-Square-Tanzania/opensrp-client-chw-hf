@@ -109,26 +109,19 @@
         }
       },
       {
-        "key": "type_of_sample",
+        "key": "type_of_sample_after_separation",
         "type": "native_radio",
         "openmrs_entity": "",
-        "openmrs_entity_id": "type_of_sample",
+        "openmrs_entity_id": "type_of_sample_after_separation",
         "openmrs_entity_parent": "",
         "label": "Type of Sample",
         "options": [
           {
-            "key": "plasma",
+            "key": "Plasma",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "plasma",
+            "openmrs_entity_id": "Plasma",
             "openmrs_entity_parent": "",
             "text": "Plasma"
-          },
-          {
-            "key": "buffy_coat",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "buffy_coat",
-            "openmrs_entity_parent": "",
-            "text": "Buffy Coat"
           }
         ],
         "v_required": {
@@ -193,6 +186,20 @@
         "openmrs_entity_id": "sample_processed",
         "type": "hidden",
         "value": "true"
+      },
+      {
+        "key": "type_of_sample",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "type_of_sample",
+        "type": "hidden",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "lab_hvl_sample_processing_calculation.yml"
+            }
+          }
+        }
       }
     ]
   }
