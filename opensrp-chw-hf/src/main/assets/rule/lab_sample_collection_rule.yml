@@ -5,3 +5,10 @@ priority: 1
 condition: "true"
 actions:
   - "calculation = global_PatientId"
+---
+name: step1_sample_collection_time_limit
+description: sample_collection_time_limit
+priority: 1
+condition: "true"
+actions:
+  - "calculation = step1_sample_request_date.equals(step1_sample_collection_date) ? step1_sample_request_time : '00:00'"

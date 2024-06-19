@@ -72,6 +72,20 @@
         }
       },
       {
+        "key": "sample_collection_time_limit",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "sample_collection_time_limit",
+        "type": "hidden",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "lab_sample_collection_rule.yml"
+            }
+          }
+        }
+      },
+      {
         "key": "requester_clinician_name",
         "type": "edit_text",
         "hint": "Name of the Requester",
@@ -177,10 +191,10 @@
         }
       },
       {
-        "key": "clinician_name",
+        "key": "collector_clinician_name",
         "type": "edit_text",
-        "hint": "Healthcare Provider's Name",
-        "openmrs_entity_id": "clinician_name",
+        "hint": "Name of the Sample Collector",
+        "openmrs_entity_id": "collector_clinician_name",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "v_regex": {
@@ -278,7 +292,7 @@
         "constraints": [
           {
             "type": "time",
-            "ex": "greaterThanEqualTo(., step1:sample_request_time)",
+            "ex": "greaterThanEqualTo(., step1:sample_collection_time_limit)",
             "err": "The Dispatch time cannot be before the sample collection/processing time"
           }
         ],

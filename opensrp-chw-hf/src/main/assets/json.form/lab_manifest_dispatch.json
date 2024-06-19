@@ -127,6 +127,32 @@
           "value": true,
           "err": "Please enter the dispatcher's name"
         }
+      },
+      {
+        "key": "dispatcher_phone_number",
+        "type": "edit_text",
+        "hint": "Dispatcher Phone Number",
+        "edit_type": "number",
+        "openmrs_entity_id": "dispatcher_phone_number",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "v_max_length": {
+          "value": "10",
+          "is_fixed_size": "true",
+          "err": "Please enter a valid phone number"
+        },
+        "v_numeric": {
+          "value": "true",
+          "err": "Number must be a total of 10 digits and must start with 06 au 07."
+        },
+        "v_regex": {
+          "value": "(0[6-7][1-9][0-9][0-9]{6})|\\s*",
+          "err": "Number must be 10 digits and must start with 06 or 07."
+        },
+        "v_required": {
+          "value": true,
+          "err": "Please enter the dispatcher phone number"
+        }
       }
     ]
   }
