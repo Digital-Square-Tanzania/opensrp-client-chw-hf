@@ -277,7 +277,7 @@ public class LabRegisterModel extends BaseLabRegisterModel {
             UniqueId uniqueId = new UniqueLabTestSampleTrackingIdRepository().getNextUniqueId();
 
             if (uniqueId != null) {
-                sampleRequestSampleId.put(VALUE, "9" + LabUtil.getHfrCode() + uniqueId.getId());
+                sampleRequestSampleId.put(VALUE, "9" + LabUtil.getHfrCode() + uniqueId.getOpenmrsId());
                 sampleRequestSampleId.put(READ_ONLY, true);
             }
 
