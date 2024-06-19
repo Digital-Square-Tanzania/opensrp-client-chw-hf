@@ -22,6 +22,7 @@ import org.smartregister.immunization.util.IMDatabaseUtils;
 import org.smartregister.reporting.ReportingLibrary;
 import org.smartregister.repository.AlertRepository;
 import org.smartregister.repository.EventClientRepository;
+import org.smartregister.repository.UniqueIdRepository;
 import org.smartregister.util.DatabaseMigrationUtils;
 
 import java.util.ArrayList;
@@ -41,6 +42,12 @@ public class HfChwRepository extends CoreChwRepository {
     public HfChwRepository(Context context, org.smartregister.Context openSRPContext) {
         super(context, AllConstants.DATABASE_NAME, BuildConfig.DATABASE_VERSION, openSRPContext.session(), CoreChwApplication.createCommonFtsObject(), openSRPContext.sharedRepositoriesArray());
         this.context = context;
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase database) {
+        super.onCreate(database);
+        UniqueLabTestSampleTrackingIdRepository.createTable(database);
     }
 
     private static void upgradeToVersion2(Context context, SQLiteDatabase db) {

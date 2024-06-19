@@ -7,9 +7,9 @@ import android.content.Intent;
 import org.apache.commons.lang3.StringUtils;
 import org.smartregister.chw.core.fragment.CoreLabManifestsRegisterFragment;
 import org.smartregister.chw.hf.R;
+import org.smartregister.chw.hf.activity.HfCreateManifestActivity;
 import org.smartregister.chw.hf.activity.LabManifestDetailsActivity;
 import org.smartregister.chw.hf.activity.LabRegisterActivity;
-import org.smartregister.chw.lab.activity.CreateManifestActivity;
 import org.smartregister.chw.lab.dao.LabDao;
 import org.smartregister.chw.lab.model.BaseLabManifestsRegisterFragmentModel;
 import org.smartregister.chw.lab.presenter.BaseLabManifestsRegisterFragmentPresenter;
@@ -28,7 +28,7 @@ public class LabManifestsRegisterFragment extends CoreLabManifestsRegisterFragme
         if (LabDao.getTestSamplesRequestsNotInManifests(Constants.MANIFEST_TYPE.HVL).isEmpty()) {
             showShortToast(getActivity(), getActivity().getString(R.string.no_test_samples));
         } else if (StringUtils.isNotBlank(LabDao.getDestinationHubName())) {
-            Intent intent = new Intent(getActivity(), CreateManifestActivity.class);
+            Intent intent = new Intent(getActivity(), HfCreateManifestActivity.class);
 
             intent.putExtra(Constants.ACTIVITY_PAYLOAD.MANIFEST_TYPE, Constants.MANIFEST_TYPE.HVL);
             getActivity().startActivity(intent);
@@ -42,7 +42,7 @@ public class LabManifestsRegisterFragment extends CoreLabManifestsRegisterFragme
         if (LabDao.getTestSamplesRequestsNotInManifests(Constants.MANIFEST_TYPE.HEID).isEmpty()) {
             showShortToast(getActivity(), getActivity().getString(R.string.no_test_samples));
         } else if (StringUtils.isNotBlank(LabDao.getDestinationHubName())) {
-            Intent intent = new Intent(getActivity(), CreateManifestActivity.class);
+            Intent intent = new Intent(getActivity(), HfCreateManifestActivity.class);
 
             intent.putExtra(Constants.ACTIVITY_PAYLOAD.MANIFEST_TYPE, Constants.MANIFEST_TYPE.HEID);
             getActivity().startActivity(intent);

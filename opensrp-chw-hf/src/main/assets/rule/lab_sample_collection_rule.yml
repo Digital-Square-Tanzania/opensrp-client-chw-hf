@@ -5,15 +5,3 @@ priority: 1
 condition: "true"
 actions:
   - "calculation = global_PatientId"
----
-name: step1_sample_id
-description: sample_id
-priority: 1
-condition: "step1_sample_id.isEmpty()"
-actions:
-  - "def getDate(dateFormat) {
-        import java.util.*;
-        import java.text.SimpleDateFormat;
-        return new SimpleDateFormat(dateFormat).format(System.currentTimeMillis());
-    }"
-  - "calculation = global_HfrCode + getDate('yyMMddHHmmssSSS')"

@@ -19,15 +19,18 @@ import org.smartregister.chw.hf.dao.HeiDao;
 import org.smartregister.chw.hf.dao.HfAncDao;
 import org.smartregister.chw.hf.dao.HfPmtctDao;
 import org.smartregister.chw.hf.repository.HfLocationRepository;
+import org.smartregister.chw.hf.repository.UniqueLabTestSampleTrackingIdRepository;
 import org.smartregister.chw.hiv.dao.HivDao;
 import org.smartregister.chw.hiv.domain.HivMemberObject;
 import org.smartregister.chw.lab.dao.LabDao;
 import org.smartregister.chw.lab.model.BaseLabRegisterModel;
 import org.smartregister.chw.lab.util.LabJsonFormUtils;
+import org.smartregister.chw.lab.util.LabUtil;
 import org.smartregister.chw.pmtct.dao.PmtctDao;
 import org.smartregister.chw.referral.util.JsonFormConstants;
 import org.smartregister.domain.Location;
 import org.smartregister.domain.LocationTag;
+import org.smartregister.domain.UniqueId;
 import org.smartregister.repository.LocationRepository;
 
 import java.util.ArrayList;
@@ -176,6 +179,17 @@ public class LabRegisterModel extends BaseLabRegisterModel {
             JSONArray fields = form.getJSONObject(org.smartregister.chw.hf.utils.Constants.JsonFormConstants.STEP1)
                     .getJSONArray(JsonFormConstants.FIELDS);
 
+            JSONObject sampleRequestSampleId = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "sample_id");
+            UniqueId uniqueId = new UniqueLabTestSampleTrackingIdRepository().getNextUniqueId();
+
+            if (uniqueId != null) {
+                sampleRequestSampleId.put(VALUE, "9" + LabUtil.getHfrCode() + uniqueId.getOpenmrsId());
+                sampleRequestSampleId.put(READ_ONLY, true);
+            }
+
+            //TODO handle cases whereby there are no unique sample ids available
+
+
             JSONObject sampleRequestDate = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "sample_request_date");
             JSONObject sampleRequestTime = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "sample_request_time");
             JSONObject sampleCollectionDate = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "sample_collection_date");
@@ -258,6 +272,14 @@ public class LabRegisterModel extends BaseLabRegisterModel {
         try {
             JSONArray fields = form.getJSONObject(org.smartregister.chw.hf.utils.Constants.JsonFormConstants.STEP1)
                     .getJSONArray(JsonFormConstants.FIELDS);
+
+            JSONObject sampleRequestSampleId = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "sample_id");
+            UniqueId uniqueId = new UniqueLabTestSampleTrackingIdRepository().getNextUniqueId();
+
+            if (uniqueId != null) {
+                sampleRequestSampleId.put(VALUE, "9" + LabUtil.getHfrCode() + uniqueId.getId());
+                sampleRequestSampleId.put(READ_ONLY, true);
+            }
 
             JSONObject sampleRequestDate = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "sample_request_date");
             JSONObject sampleRequestTime = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "sample_request_time");
