@@ -68,9 +68,7 @@ public class LabRegisterModel extends BaseLabRegisterModel {
             HivMemberObject hivMemberObject = HivDao.getMember(entityId);
             if (hivMemberObject != null && hivMemberObject.getCtcNumber() != null) {
                 patientId = hivMemberObject.getCtcNumber();
-                if (HfPmtctDao.hasPendingLabSampleCollection(entityId)) {
-                    refreshHvlRequesterDetails(form, entityId);
-                }
+                refreshHvlRequesterDetails(form, entityId);
             } else return null;
         } else {
             patientId = HeiDao.getHeiNumber(entityId);

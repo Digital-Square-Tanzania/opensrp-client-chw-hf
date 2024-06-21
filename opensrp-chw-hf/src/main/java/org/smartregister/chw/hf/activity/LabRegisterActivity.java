@@ -1,16 +1,18 @@
 package org.smartregister.chw.hf.activity;
 
-import static com.vijay.jsonwizard.constants.JsonFormConstants.FIELDS;
-import static com.vijay.jsonwizard.constants.JsonFormConstants.STEP1;
-import static com.vijay.jsonwizard.constants.JsonFormConstants.VALUE;
+import static org.smartregister.chw.lab.util.Constants.FORMS.LAB_HEID_SAMPLE_COLLECTION;
+import static org.smartregister.chw.lab.util.Constants.FORMS.LAB_HVL_SAMPLE_COLLECTION;
+import static org.smartregister.client.utils.constants.JsonFormConstants.ENCOUNTER_TYPE;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
 import com.vijay.jsonwizard.constants.JsonFormConstants;
 
+import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,15 +25,9 @@ import org.smartregister.chw.hf.fragment.LabManifestsRegisterFragment;
 import org.smartregister.chw.hf.fragment.LabTestRequestsRegisterFragment;
 import org.smartregister.chw.hf.model.LabRegisterModel;
 import org.smartregister.chw.hf.repository.UniqueLabTestSampleTrackingIdRepository;
-import org.smartregister.chw.lab.LabLibrary;
-import org.smartregister.chw.lab.activity.BaseLabRegisterActivity;
 import org.smartregister.chw.lab.interactor.BaseLabRegisterInteractor;
-import org.smartregister.chw.lab.pojo.RegisterParams;
 import org.smartregister.chw.lab.presenter.BaseLabRegisterPresenter;
 import org.smartregister.chw.lab.util.Constants;
-import org.smartregister.chw.lab.util.LabJsonFormUtils;
-import org.smartregister.domain.Location;
-import org.smartregister.repository.LocationRepository;
 import org.smartregister.view.fragment.BaseRegisterFragment;
 
 import timber.log.Timber;
@@ -73,6 +69,21 @@ public class LabRegisterActivity extends CoreLabRegisterActivity {
 
     @Override
     public void startFormActivity(JSONObject jsonForm) {
+
+        try {
+            if (jsonForm.getString(ENCOUNTER_TYPE).equals(LAB_HVL_SAMPLE_COLLECTION) || jsonForm.getString(ENCOUNTER_TYPE).equals(LAB_HEID_SAMPLE_COLLECTION)) {
+                JSONArray fields = jsonForm.getJSONObject(org.smartregister.chw.hf.utils.Constants.JsonFormConstants.STEP1)
+                        .getJSONArray(org.smartregister.chw.referral.util.JsonFormConstants.FIELDS);
+                JSONObject sampleRequestSampleId = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "sample_id");
+                if (StringUtils.isBlank(sampleRequestSampleId.getString(org.smartregister.client.utils.constants.JsonFormConstants.VALUE))) {
+                    Toast.makeText(this, "The app is missing unique sample tracking id. Logout and Login to Sync the data", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            }
+        } catch (Exception e) {
+            Timber.e(e);
+        }
+
         Intent intent = new Intent(this, HfJsonWizardFormActivity.class);
 
         // Set the large JSONObject in JSONObjectHolder
