@@ -7,6 +7,7 @@ import static org.smartregister.opd.utils.OpdConstants.JSON_FORM_KEY.VALUE;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.widget.Toast;
 
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
@@ -51,7 +52,7 @@ public class LabManifestDetailsActivity extends BaseManifestDetailsActivity {
 
 
             String maxDate = getMaxDate(manifest);
-            if(StringUtils.isNotBlank(maxDate)){
+            if (StringUtils.isNotBlank(maxDate)) {
                 JSONObject maxSampleDate = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "max_sample_date");
                 maxSampleDate.put(VALUE, maxDate.split(" ")[0]);
 
@@ -84,7 +85,7 @@ public class LabManifestDetailsActivity extends BaseManifestDetailsActivity {
         String maxDate = "";
         List<String> sampleList = convertToList(manifest.getSampleList());
         for (String sampleId : sampleList) {
-            String sampleIdText  = sampleId.replaceAll("^\"+|\"+$", "");
+            String sampleIdText = sampleId.replaceAll("^\"+|\"+$", "");
             TestSample testSample = LabDao.getTestSamplesRequestsBySampleId(sampleIdText).get(0);
             if (StringUtils.isNotBlank(testSample.getSampleSeparationDate()) && StringUtils.isNotBlank(testSample.getSampleSeparationTime())) {
                 if (maxDate.isEmpty() || sdf.parse(testSample.getSampleSeparationDate() + " " + testSample.getSampleSeparationTime()).after(sdf.parse(maxDate))) {
@@ -97,5 +98,19 @@ public class LabManifestDetailsActivity extends BaseManifestDetailsActivity {
             }
         }
         return maxDate;
+    }
+
+    @Override
+    protected void openTestRequest(String sampleId) {
+        try {
+            sampleId = sampleId.replaceAll("^\"|\"$", "");
+
+            TestSample testSample = LabDao.getTestSamplesRequestsBySampleId(sampleId).get(0);
+            LabTestRequestDetailsActivity.startProfileActivity(this, testSample.getEntityId(), sampleId, false);
+
+        } catch (Exception e) {
+            Timber.e(e);
+            Toast.makeText(this, "Error Opening the Test Request: ", Toast.LENGTH_SHORT).show();
+        }
     }
 }
