@@ -10,11 +10,6 @@ public class LabTestRequestsRegisterFragmentPresenter extends BaseLabRequestsReg
         super(view, model, viewConfigurationIdentifier);
     }
 
-    @Override
-    public String getMainCondition() {
-        return Constants.TABLES.LAB_TEST_REQUESTS + "." + DBConstants.KEY.PATIENT_ID + " IS NOT NULL AND " + Constants.TABLES.LAB_TEST_REQUESTS + "." + DBConstants.KEY.SAMPLE_ID + " IS NOT NULL AND " + Constants.TABLES.LAB_TEST_REQUESTS + "." + DBConstants.KEY.SAMPLE_ID + " <> '' ";
-    }
-
     public String getTestSamplesWithResultsQuery(String baseEntityId) {
         return Constants.TABLES.LAB_TEST_REQUESTS + "." + DBConstants.KEY.PATIENT_ID + " IS NOT NULL AND " + Constants.TABLES.LAB_TEST_REQUESTS + "." + DBConstants.KEY.RESULTS + " IS NOT NULL AND " + Constants.TABLES.LAB_TEST_REQUESTS + "." + DBConstants.KEY.RESULTS + " <> ''  AND entity_id = '" + baseEntityId + "' ";
     }
