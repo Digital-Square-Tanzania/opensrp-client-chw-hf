@@ -28,7 +28,6 @@ public class LabHeidResultsViewActivity extends SecuredActivity  implements View
 
         String jsonString = getIntent().getStringExtra(Constants.ACTIVITY_PAYLOAD.PMTCT_FORM);
         String baseEntityId = getIntent().getStringExtra(Constants.ACTIVITY_PAYLOAD.BASE_ENTITY_ID);
-        String parentFormSubmissionId = getIntent().getStringExtra(Constants.ACTIVITY_PAYLOAD.PARENT_FORM_ENTITY_ID);
 
         this.baseEntityId = baseEntityId;
 

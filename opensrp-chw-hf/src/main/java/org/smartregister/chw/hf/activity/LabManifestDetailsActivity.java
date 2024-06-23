@@ -91,10 +91,8 @@ public class LabManifestDetailsActivity extends BaseManifestDetailsActivity {
                 if (maxDate.isEmpty() || sdf.parse(testSample.getSampleSeparationDate() + " " + testSample.getSampleSeparationTime()).after(sdf.parse(maxDate))) {
                     maxDate = testSample.getSampleSeparationDate() + " " + testSample.getSampleSeparationTime();
                 }
-            } else if (StringUtils.isNotBlank(testSample.getSampleCollectionDate()) && StringUtils.isNotBlank(testSample.getSampleCollectionTime())) {
-                if (maxDate.isEmpty() || sdf.parse(testSample.getSampleCollectionDate() + " " + testSample.getSampleCollectionTime()).after(sdf.parse(maxDate))) {
+            } else if (StringUtils.isNotBlank(testSample.getSampleCollectionDate()) && StringUtils.isNotBlank(testSample.getSampleCollectionTime()) &&  (maxDate.isEmpty() || sdf.parse(testSample.getSampleCollectionDate() + " " + testSample.getSampleCollectionTime()).after(sdf.parse(maxDate)))) {
                     maxDate = testSample.getSampleCollectionDate() + " " + testSample.getSampleCollectionTime();
-                }
             }
         }
         return maxDate;
@@ -103,10 +101,10 @@ public class LabManifestDetailsActivity extends BaseManifestDetailsActivity {
     @Override
     protected void openTestRequest(String sampleId) {
         try {
-            sampleId = sampleId.replaceAll("^\"|\"$", "");
+            String parsedSampleId = sampleId.replaceAll("^\"|\"$", "");
 
-            TestSample testSample = LabDao.getTestSamplesRequestsBySampleId(sampleId).get(0);
-            LabTestRequestDetailsActivity.startProfileActivity(this, testSample.getEntityId(), sampleId, false);
+            TestSample testSample = LabDao.getTestSamplesRequestsBySampleId(parsedSampleId).get(0);
+            LabTestRequestDetailsActivity.startProfileActivity(this, testSample.getEntityId(), parsedSampleId, false);
 
         } catch (Exception e) {
             Timber.e(e);

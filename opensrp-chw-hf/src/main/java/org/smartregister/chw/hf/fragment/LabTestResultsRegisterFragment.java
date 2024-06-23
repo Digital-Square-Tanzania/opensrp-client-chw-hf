@@ -40,7 +40,7 @@ public class LabTestResultsRegisterFragment extends CoreLabRequestsRegisterFragm
         LabTestRequestDetailsActivity.startProfileActivity(getActivity(), baseEntityId.toLowerCase(), sampleId, true);
     }
 
-    public void setupViews(android.view.View view) {
+    public void setupViews(View view) {
         try {
             super.setupViews(view);
         } catch (Exception e) {

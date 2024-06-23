@@ -26,11 +26,6 @@ public class PullUniqueLabTestSampleTrackingIdsIntentService extends PullUniqueI
     public static final String IDENTIFIERS = "identifiers";
     private UniqueLabTestSampleTrackingIdRepository uniqueLabTestSampleTrackingIdRepository;
 
-
-    public PullUniqueLabTestSampleTrackingIdsIntentService() {
-        super();
-    }
-
     @Override
     protected void onHandleIntent(Intent intent) {
         try {

@@ -23,7 +23,6 @@ public class LabHvlResultsViewActivity extends SecuredActivity  implements View.
         setContentView(R.layout.base_hvl_results_view_activity);
         String jsonString = getIntent().getStringExtra(Constants.ACTIVITY_PAYLOAD.PMTCT_FORM);
         String baseEntityId = getIntent().getStringExtra(Constants.ACTIVITY_PAYLOAD.BASE_ENTITY_ID);
-        String parentFormSubmissionId = getIntent().getStringExtra(Constants.ACTIVITY_PAYLOAD.PARENT_FORM_ENTITY_ID);
 
         this.baseEntityId = baseEntityId;
 
