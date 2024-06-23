@@ -1,7 +1,5 @@
 package org.smartregister.chw.hf.activity;
 
-import static org.smartregister.chw.lab.util.Constants.FORMS.LAB_HEID_SAMPLE_COLLECTION;
-import static org.smartregister.chw.lab.util.Constants.FORMS.LAB_HVL_SAMPLE_COLLECTION;
 import static org.smartregister.client.utils.constants.JsonFormConstants.ENCOUNTER_TYPE;
 
 import android.app.Activity;
