@@ -67,6 +67,8 @@ public class HfJobCreator implements JobCreator {
                 return new MarkPmtctAndHeiLtfServiceJob();
             case ProcessVisitsServiceJob.TAG:
                 return new ProcessVisitsServiceJob();
+            case PullUniqueLabTestSampleTrackingIdsServiceJob.TAG:
+                return new PullUniqueLabTestSampleTrackingIdsServiceJob();
             case PncCloseDateServiceJob.TAG:
                 return new PncCloseDateServiceJob();
             case P2pServiceJob.TAG:

@@ -1,0 +1,403 @@
+{
+  "count": "1",
+  "encounter_type": "HEI DNA PCR Sample Collection",
+  "entity_id": "",
+  "metadata": {
+    "start": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "start",
+      "openmrs_entity_id": "163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "end": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "end",
+      "openmrs_entity_id": "163138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "deviceid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "deviceid",
+      "openmrs_entity_id": "163149AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "subscriberid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "subscriberid",
+      "openmrs_entity_id": "163150AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "simserial": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "simserial",
+      "openmrs_entity_id": "163151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "phonenumber": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "phonenumber",
+      "openmrs_entity_id": "163152AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "encounter_location": ""
+  },
+  "global": {},
+  "step1": {
+    "title": "DNA-PCR Sample Collection",
+    "fields": [
+      {
+        "key": "sample_request_date",
+        "type": "date_picker",
+        "hint": "Sample Request Date",
+        "openmrs_entity_id": "sample_request_date",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "min_date": "today-5y",
+        "max_date": "today",
+        "v_required": {
+          "value": true,
+          "err": "Please enter the request date"
+        }
+      },
+      {
+        "key": "sample_request_time",
+        "type": "time_picker",
+        "hint": "HVL Sample Request Time",
+        "openmrs_entity_id": "sample_request_time",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "v_required": {
+          "value": true,
+          "err": "Please enter the request time"
+        }
+      },
+      {
+        "key": "sample_collection_time_limit",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "sample_collection_time_limit",
+        "type": "hidden",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "lab_sample_collection_rule.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "requester_clinician_name",
+        "type": "edit_text",
+        "hint": "Name of the Requester",
+        "openmrs_entity_id": "requester_clinician_name",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "v_regex": {
+          "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-\\']*",
+          "err": "Please enter the healthcare provider's name"
+        },
+        "v_required": {
+          "value": true,
+          "err": "Please enter the healthcare provider's name"
+        }
+      },
+      {
+        "key": "requester_phone_number",
+        "type": "edit_text",
+        "hint": "Requester Phone Number",
+        "edit_type": "number",
+        "openmrs_entity_id": "requester_phone_number",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "v_max_length": {
+          "value": "10",
+          "is_fixed_size": "true",
+          "err": "Please enter a valid phone number"
+        },
+        "v_numeric": {
+          "value": "true",
+          "err": "Number must be a total of 10 digits and must start with 06 au 07."
+        },
+        "v_regex": {
+          "value": "(0[6-7][1-9][0-9][0-9]{6})|\\s*",
+          "err": "Number must be 10 digits and must start with 06 or 07."
+        },
+        "v_required": {
+          "value": true,
+          "err": "Please enter the healthcare provider's phone number"
+        }
+      },
+      {
+        "key": "reason_for_requesting_test",
+        "type": "native_radio",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "reason_for_requesting_test",
+        "openmrs_entity_parent": "",
+        "label": "Reasons for requesting DNA-PCR Sample Collection?",
+        "options": [
+          {
+            "key": "dna_pcr_diagnostic_test_at_birth",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "dna_pcr_diagnostic_test_at_birth",
+            "openmrs_entity_parent": "",
+            "text": "DNA PCR Diagnostic Test (At Birth)"
+          },
+          {
+            "key": "dna_pcr_diagnostic_test_6_weeks_after_birth",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "dna_pcr_diagnostic_test_6_weeks_after_birth",
+            "openmrs_entity_parent": "",
+            "text": "DNA PCR Diagnostic Test (Week 6 after Birth)"
+          },
+          {
+            "key": "dna_pcr_diagnostic_test_9_months_after_birth",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "dna_pcr_diagnostic_test_9_months_after_birth",
+            "openmrs_entity_parent": "",
+            "text": "Repeat DNA PCR Test (9 Months after Birth)."
+          },
+          {
+            "key": "dna_pcr_test_after_positive_antibody_results",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "dna_pcr_test_after_positive_antibody_results",
+            "openmrs_entity_parent": "",
+            "text": "DNA PCR test after positive antibody results."
+          },
+          {
+            "key": "confirmatory_test_for_positive_results",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "confirmatory_test_for_positive_results",
+            "openmrs_entity_parent": "",
+            "text": "Confirmation test for positive results."
+          },
+          {
+            "key": "repeat_test_after_final_sample_fails_or_is_rejected",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "repeat_test_after_final_sample_fails_or_is_rejected",
+            "openmrs_entity_parent": "",
+            "text": "Repeat test after the final sample fails or is rejected."
+          },
+          {
+            "key": "retesting_hvl_after_3_months_from_completion_of_eac",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "retesting_hvl_after_3_months_from_completion_of_eac",
+            "openmrs_entity_parent": "",
+            "text": "Retesting HVL after 3 months from completion of EAC"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": null
+        }
+      },
+      {
+        "key": "collector_clinician_name",
+        "type": "edit_text",
+        "hint": "Name of the Sample Collector",
+        "openmrs_entity_id": "collector_clinician_name",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "v_regex": {
+          "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-\\']*",
+          "err": "Please enter the healthcare provider's name"
+        },
+        "v_required": {
+          "value": true,
+          "err": "Please enter the healthcare provider's name"
+        }
+      },
+      {
+        "key": "clinician_position",
+        "type": "spinner",
+        "hint": "Healthcare Provider's Title",
+        "openmrs_entity_id": "clinician_position",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "values": [
+          "Medical Officer",
+          "Assistant Medical Officer",
+          "Clinical Officer",
+          "Assistant Clinical Officer",
+          "Nurse",
+          "Laboratory personnel"
+        ],
+        "keys": [
+          "medical_officer",
+          "assistant_medical_officer",
+          "clinical_officer",
+          "assistant_clinical_officer",
+          "nurse",
+          "laboratory_personnel"
+        ],
+        "openmrs_choice_ids": {
+          "medical_officer": "medical_officer",
+          "assistant_medical_officer": "assistant_medical_officer",
+          "clinical_officer": "clinical_officer",
+          "assistant_clinical_officer": "assistant_clinical_officer",
+          "nurse": "nurse",
+          "laboratory_personnel": "laboratory_personnel"
+        },
+        "v_required": {
+          "value": true,
+          "err": "Please enter the healthcare provider's title"
+        }
+      },
+      {
+        "key": "clinician_phone_number",
+        "type": "edit_text",
+        "hint": "Healthcare Provider's Phone Number",
+        "edit_type": "number",
+        "openmrs_entity_id": "clinician_phone_number",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "v_max_length": {
+          "value": "10",
+          "is_fixed_size": "true",
+          "err": "Please enter a valid phone number"
+        },
+        "v_numeric": {
+          "value": "true",
+          "err": "Number must be a total of 10 digits and must start with 06 au 07."
+        },
+        "v_regex": {
+          "value": "(0[6-7][1-9][0-9][0-9]{6})|\\s*",
+          "err": "Number must be 10 digits and must start with 06 or 07."
+        },
+        "v_required": {
+          "value": true,
+          "err": "Please enter the healthcare provider's phone number"
+        }
+      },
+      {
+        "key": "sample_collection_date",
+        "type": "date_picker",
+        "hint": "DNA-PCR Sample Collection Date",
+        "openmrs_entity_id": "sample_collection_date",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "min_date": "today-1m",
+        "max_date": "today",
+        "v_required": {
+          "value": true,
+          "err": "Please enter the collection date"
+        }
+      },
+      {
+        "key": "sample_collection_time",
+        "type": "time_picker",
+        "hint": "DNA-PCR Sample Collection Time",
+        "openmrs_entity_id": "sample_collection_time",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "constraints": [
+          {
+            "type": "time",
+            "ex": "greaterThanEqualTo(., step1:sample_collection_time_limit)",
+            "err": "The Dispatch time cannot be before the sample collection/processing time"
+          }
+        ],
+        "v_required": {
+          "value": true,
+          "err": "Please enter the collection time"
+        }
+      },
+      {
+        "key": "sample_id",
+        "type": "edit_text",
+        "hint": "DNA-PCR Sample ID",
+        "read_only": true,
+        "openmrs_entity_id": "sample_id",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": ""
+      },
+      {
+        "key": "type_of_hiv_test",
+        "type": "hidden",
+        "openmrs_entity_id": "type_of_hiv_test",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "value": "DNA PCR"
+      },
+      {
+        "key": "test_at_age",
+        "type": "hidden",
+        "openmrs_entity_id": "test_at_age",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": ""
+      },
+      {
+        "key": "sample_type",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "sample_type",
+        "openmrs_entity_parent": "",
+        "type": "hidden",
+        "value": "HEID"
+      },
+      {
+        "key": "patient_id",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "patient_id",
+        "openmrs_entity_parent": "",
+        "type": "hidden",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "lab_sample_collection_rule.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "sample_processed",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "sample_processed",
+        "type": "hidden",
+        "value": "true"
+      },
+      {
+        "key": "mother_breast_feeding",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "mother_breast_feeding",
+        "type": "hidden"
+      },
+      {
+        "key": "drug_given_to_baby",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "drug_given_to_baby",
+        "type": "hidden"
+      },
+      {
+        "key": "baby_drug_period_in_days",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "baby_drug_period_in_days",
+        "type": "hidden"
+      },
+      {
+        "key": "mother_drug_during_pregnancy",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "mother_drug_during_pregnancy",
+        "type": "hidden"
+      },
+      {
+        "key": "mother_drug_during_labor",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "mother_drug_during_labor",
+        "type": "hidden"
+      },
+      {
+        "key": "type_of_sample",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "type_of_sample",
+        "type": "hidden",
+        "value": "DBS"
+      }
+    ]
+  }
+}

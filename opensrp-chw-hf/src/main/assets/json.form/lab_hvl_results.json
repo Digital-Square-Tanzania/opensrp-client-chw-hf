@@ -1,0 +1,356 @@
+{
+  "count": "1",
+  "encounter_type": "Lab HVL Results",
+  "entity_id": "",
+  "metadata": {
+    "start": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "start",
+      "openmrs_entity_id": "163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "end": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "end",
+      "openmrs_entity_id": "163138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "deviceid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "deviceid",
+      "openmrs_entity_id": "163149AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "subscriberid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "subscriberid",
+      "openmrs_entity_id": "163150AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "simserial": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "simserial",
+      "openmrs_entity_id": "163151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "phonenumber": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "phonenumber",
+      "openmrs_entity_id": "163152AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "encounter_location": ""
+  },
+  "global": {
+    "is_after_eac": false
+  },
+  "step1": {
+    "title": "HVL Suppression",
+    "fields": [
+      {
+        "key": "sample_id",
+        "type": "hidden",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "sample_id",
+        "openmrs_entity_parent": ""
+      },
+      {
+        "key": "dispatch_date",
+        "type": "hidden",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "dispatch_date",
+        "openmrs_entity_parent": ""
+      },
+      {
+        "key": "type_of_results",
+        "type": "native_radio",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "type_of_results",
+        "openmrs_entity_parent": "",
+        "label": "Type of Results",
+        "options": [
+          {
+            "key": "results",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "results",
+            "openmrs_entity_parent": "",
+            "text": "Results"
+          },
+          {
+            "key": "invalid",
+            "openmrs_entity": "",
+            "openmrs_entity_id": "invalid",
+            "openmrs_entity_parent": "",
+            "text": "Invalid"
+          },
+          {
+            "key": "rejected",
+            "openmrs_entity": "",
+            "openmrs_entity_id": "rejected",
+            "openmrs_entity_parent": "",
+            "text": "Rejected"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select the type of results"
+        }
+      },
+      {
+        "key": "notify_tnd_results",
+        "type": "toaster_notes",
+        "text": "For HVL results that is TND, fill the results as 11",
+        "openmrs_entity_id": "",
+        "openmrs_entity": "",
+        "openmrs_entity_parent": "",
+        "toaster_type": "warning",
+        "relevance": {
+          "step1:type_of_results": {
+            "type": "string",
+            "ex": "equalTo(., \"results\")"
+          }
+        }
+      },
+      {
+        "key": "hvl_results",
+        "type": "edit_text",
+        "hint": "HVL Results",
+        "openmrs_entity_id": "hvl_results",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "v_numeric": {
+          "value": "true",
+          "err": "Please enter a valid value"
+        },
+        "v_required": {
+          "value": true,
+          "err": "Please enter the HVL suppression value"
+        },
+        "relevance": {
+          "step1:type_of_results": {
+            "type": "string",
+            "ex": "equalTo(., \"results\")"
+          }
+        }
+      },
+      {
+        "key": "hvl_results_comment",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "hvl_results_comment",
+        "type": "edit_text",
+        "hint": "Remarks/Comments",
+        "v_required": {
+          "value": "false",
+          "err": "Please enter the your remarks/comments"
+        },
+        "relevance": {
+          "step1:hvl_results": {
+            "type": "string",
+            "ex": "equalTo(., \"11\")"
+          }
+        }
+      },
+      {
+        "key": "tested_by",
+        "type": "edit_text",
+        "hint": "Tested By",
+        "openmrs_entity_id": "tested_by",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "v_regex": {
+          "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-\\']*",
+          "err": "Please enter the healthcare provider's name"
+        },
+        "v_required": {
+          "value": true,
+          "err": "Please enter the tester's name"
+        },
+        "relevance": {
+          "step1:type_of_results": {
+            "type": "string",
+            "ex": "equalTo(., \"results\")"
+          }
+        }
+      },
+      {
+        "key": "authorized_by",
+        "type": "edit_text",
+        "hint": "Authorized By",
+        "openmrs_entity_id": "authorized_by",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "v_regex": {
+          "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-\\']*",
+          "err": "Please enter the healthcare provider's name"
+        },
+        "v_required": {
+          "value": true,
+          "err": "Please enter the authorizer's name"
+        },
+        "relevance": {
+          "step1:type_of_results": {
+            "type": "string",
+            "ex": "equalTo(., \"results\")"
+          }
+        }
+      },
+      {
+        "key": "tested_date",
+        "type": "date_picker",
+        "hint": "Tested Date",
+        "openmrs_entity_id": "tested_date",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "min_date": "step1_dispatch_date",
+        "max_date": "today",
+        "v_required": {
+          "value": true,
+          "err": "Please enter the test date"
+        },
+        "relevance": {
+          "step1:type_of_results": {
+            "type": "string",
+            "ex": "equalTo(., \"results\")"
+          }
+        }
+      },
+      {
+        "key": "authorized_date",
+        "type": "date_picker",
+        "hint": "Authorized Date",
+        "openmrs_entity_id": "authorized_date",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "min_date": "step1_tested_date",
+        "max_date": "today",
+        "v_required": {
+          "value": true,
+          "err": "Please enter the authorized date"
+        },
+        "relevance": {
+          "step1:type_of_results": {
+            "type": "string",
+            "ex": "equalTo(., \"results\")"
+          }
+        }
+      },
+      {
+        "key": "reasons_for_rejection",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "reasons_for_rejection",
+        "type": "edit_text",
+        "hint": "Reasons for rejection",
+        "v_required": {
+          "value": "false",
+          "err": "Please enter the your remarks/comments"
+        },
+        "relevance": {
+          "step1:type_of_results": {
+            "type": "string",
+            "ex": "equalTo(., \"rejected\")"
+          }
+        }
+      },
+      {
+        "key": "rejection_date",
+        "type": "date_picker",
+        "hint": "Rejection Date",
+        "openmrs_entity_id": "rejection_date",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "min_date": "step1_dispatch_date",
+        "max_date": "today",
+        "v_required": {
+          "value": true,
+          "err": "Please enter the authorized date"
+        },
+        "relevance": {
+          "step1:type_of_results": {
+            "type": "string",
+            "ex": "equalTo(., \"rejected\")"
+          }
+        }
+      },
+      {
+        "key": "rejected_by",
+        "type": "edit_text",
+        "hint": "Rejected By",
+        "openmrs_entity_id": "rejected_by",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "v_regex": {
+          "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-\\']*",
+          "err": "Please enter the healthcare provider's name"
+        },
+        "v_required": {
+          "value": true,
+          "err": "Please enter the authorizer's name"
+        },
+        "relevance": {
+          "step1:type_of_results": {
+            "type": "string",
+            "ex": "equalTo(., \"rejected\")"
+          }
+        }
+      },
+      {
+        "key": "rejection_contact_info",
+        "type": "edit_text",
+        "hint": "Contact Info",
+        "edit_type": "number",
+        "openmrs_entity_id": "rejection_contact_info",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "v_max_length": {
+          "value": "10",
+          "is_fixed_size": "true",
+          "err": "Please enter a valid phone number"
+        },
+        "v_numeric": {
+          "value": "true",
+          "err": "Number must be a total of 10 digits and must start with 06 au 07."
+        },
+        "v_regex": {
+          "value": "(0[6-7][1-9][0-9][0-9]{6})|\\s*",
+          "err": "Number must be 10 digits and must start with 06 or 07."
+        },
+        "relevance": {
+          "step1:type_of_results": {
+            "type": "string",
+            "ex": "equalTo(., \"rejected\")"
+          }
+        }
+      },
+      {
+        "key": "results",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "results",
+        "openmrs_entity_parent": "",
+        "type": "hidden",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "lab_hvl_results_rule.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "results_date",
+        "type": "hidden",
+        "openmrs_entity_id": "results_date",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "pmtct_hvl_test_results_calculation.yml"
+            }
+          }
+        }
+      }
+    ]
+  }
+}

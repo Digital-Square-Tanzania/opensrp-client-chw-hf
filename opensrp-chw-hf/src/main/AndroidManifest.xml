@@ -575,6 +575,31 @@
             android:name=".activity.SbcMedicalHistoryActivity"
             android:theme="@style/HFTheme.NoActionBar" />
 
+        <activity
+            android:name=".activity.LabRegisterActivity"
+            android:theme="@style/HFTheme.NoActionBar" />
+
+        <activity
+            android:name=".activity.LabHvlResultsViewActivity"
+            android:theme="@style/HFTheme.NoActionBar" />
+
+        <activity
+            android:name=".activity.LabHeidResultsViewActivity"
+            android:theme="@style/HFTheme.NoActionBar" />
+
+        <activity
+            android:name=".activity.LabTestRequestDetailsActivity"
+            android:theme="@style/HFTheme.NoActionBar" />
+
+
+        <activity
+            android:name=".activity.LabManifestDetailsActivity"
+            android:theme="@style/HFTheme.NoActionBar" />
+
+        <activity
+            android:name=".activity.HfCreateManifestActivity"
+            android:theme="@style/HFTheme.NoActionBar" />
+
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="3f94f9c3caeff331b3a2bd8c2182b663ad6a955a" />
@@ -610,6 +635,7 @@
         <service android:name=".sync.intent.PncCloseDateIntentService" />
         <service android:name=".sync.intent.GenerateMonthlyTalliesIntentService" />
         <service android:name=".sync.intent.CloseVmmcMembershipIntentService" />
+        <service android:name=".sync.intent.PullUniqueLabTestSampleTrackingIdsIntentService" />
 
         <receiver
             android:name="org.smartregister.view.receiver.ConnectivityChangeReceiver"

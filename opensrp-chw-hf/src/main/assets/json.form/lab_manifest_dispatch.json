@@ -1,0 +1,159 @@
+{
+  "count": "1",
+  "encounter_type": "LAB Manifest Dispatch",
+  "entity_id": "",
+  "metadata": {
+    "start": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "start",
+      "openmrs_entity_id": "163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "end": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "end",
+      "openmrs_entity_id": "163138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "deviceid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "deviceid",
+      "openmrs_entity_id": "163149AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "subscriberid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "subscriberid",
+      "openmrs_entity_id": "163150AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "simserial": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "simserial",
+      "openmrs_entity_id": "163151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "phonenumber": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "phonenumber",
+      "openmrs_entity_id": "163152AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "encounter_location": ""
+  },
+  "global": {},
+  "step1": {
+    "title": "Manifest Dispatch",
+    "fields": [
+      {
+        "key": "batch_number",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "batch_number",
+        "type": "hidden"
+      },
+      {
+        "key": "max_sample_date",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "max_sample_date",
+        "type": "hidden"
+      },
+      {
+        "key": "max_sample_time",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "max_sample_time",
+        "type": "hidden"
+      },
+      {
+        "key": "time_limit",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "time_limit",
+        "type": "hidden",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "lab_manifest_dispatch_rule.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "dispatch_date",
+        "type": "date_picker",
+        "hint": "Dispatch Date",
+        "openmrs_entity_id": "dispatch_date",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "max_date": "today",
+        "v_required": {
+          "value": true,
+          "err": "Please enter the dispatch date"
+        }
+      },
+      {
+        "key": "dispatch_time",
+        "type": "time_picker",
+        "hint": "Dispatch Time",
+        "openmrs_entity_id": "dispatch_time",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "v_required": {
+          "value": true,
+          "err": "Please enter the dispatch time"
+        },
+        "constraints": [
+          {
+            "type": "time",
+            "ex": "greaterThanEqualTo(., step1:time_limit)",
+            "err": "The Dispatch time cannot be before the sample collection/processing time"
+          }
+        ]
+      },
+      {
+        "key": "dispatcher_name",
+        "type": "edit_text",
+        "hint": "Name of the Dispatcher",
+        "openmrs_entity_id": "dispatcher_name",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "v_regex": {
+          "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-\\']*",
+          "err": "Please enter the dispatcher's name"
+        },
+        "v_required": {
+          "value": true,
+          "err": "Please enter the dispatcher's name"
+        }
+      },
+      {
+        "key": "dispatcher_phone_number",
+        "type": "edit_text",
+        "hint": "Dispatcher Phone Number",
+        "edit_type": "number",
+        "openmrs_entity_id": "dispatcher_phone_number",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "v_max_length": {
+          "value": "10",
+          "is_fixed_size": "true",
+          "err": "Please enter a valid phone number"
+        },
+        "v_numeric": {
+          "value": "true",
+          "err": "Number must be a total of 10 digits and must start with 06 au 07."
+        },
+        "v_regex": {
+          "value": "(0[6-7][1-9][0-9][0-9]{6})|\\s*",
+          "err": "Number must be 10 digits and must start with 06 or 07."
+        },
+        "v_required": {
+          "value": true,
+          "err": "Please enter the dispatcher phone number"
+        }
+      }
+    ]
+  }
+}

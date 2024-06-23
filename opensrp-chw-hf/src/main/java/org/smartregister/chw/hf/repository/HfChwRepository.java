@@ -22,6 +22,7 @@ import org.smartregister.immunization.util.IMDatabaseUtils;
 import org.smartregister.reporting.ReportingLibrary;
 import org.smartregister.repository.AlertRepository;
 import org.smartregister.repository.EventClientRepository;
+import org.smartregister.repository.UniqueIdRepository;
 import org.smartregister.util.DatabaseMigrationUtils;
 
 import java.util.ArrayList;
@@ -41,6 +42,12 @@ public class HfChwRepository extends CoreChwRepository {
     public HfChwRepository(Context context, org.smartregister.Context openSRPContext) {
         super(context, AllConstants.DATABASE_NAME, BuildConfig.DATABASE_VERSION, openSRPContext.session(), CoreChwApplication.createCommonFtsObject(), openSRPContext.sharedRepositoriesArray());
         this.context = context;
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase database) {
+        super.onCreate(database);
+        UniqueLabTestSampleTrackingIdRepository.createTable(database);
     }
 
     private static void upgradeToVersion2(Context context, SQLiteDatabase db) {
@@ -358,6 +365,36 @@ public class HfChwRepository extends CoreChwRepository {
         }
     }
 
+    private static void upgradeToVersion25(SQLiteDatabase db) {
+        try {
+            DatabaseMigrationUtils.createAddedECTables(db,
+                    new HashSet<>(Arrays.asList("ec_lab_requests", "ec_lab_manifests", "ec_lab_settings")),
+                    HealthFacilityApplication.createCommonFtsObject());
+        } catch (Exception e) {
+            Timber.e(e, "upgradeToVersion25");
+        }
+
+        try {
+            db.execSQL("ALTER TABLE ec_pmtct_followup ADD COLUMN requester_clinician_name TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_pmtct_followup ADD COLUMN requester_phone_number TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_pmtct_followup ADD COLUMN sample_request_date TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_pmtct_followup ADD COLUMN sample_request_time TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_pmtct_followup ADD COLUMN reason_for_requesting_test TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_pmtct_followup ADD COLUMN on_tb_treatment TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_pmtct_followup ADD COLUMN art_drug TEXT NULL;");
+
+            db.execSQL("ALTER TABLE ec_hei_followup ADD COLUMN requester_phone_number TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_hei_followup ADD COLUMN sample_request_date TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_hei_followup ADD COLUMN sample_request_time TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_hei_followup ADD COLUMN reason_for_requesting_test TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_hei_followup ADD COLUMN number_of_ctx_days_dispensed TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_hei_followup ADD COLUMN infant_feeding_practice TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_hei_followup ADD COLUMN last_interacted_with TEXT NULL;");
+        } catch (Exception e) {
+            Timber.e(e);
+        }
+    }
+
     private static void upgradeToVersion10ForBaSouth(SQLiteDatabase db) {
         try {
             db.execSQL("ALTER TABLE ec_family_member ADD COLUMN reasons_for_registration TEXT NULL;");
@@ -490,6 +527,9 @@ public class HfChwRepository extends CoreChwRepository {
                     break;
                 case 24:
                     upgradeToVersion24(db);
+                    break;
+                case 25:
+                    upgradeToVersion25(db);
                     break;
                 default:
                     break;
