@@ -37,14 +37,14 @@ public class PullUniqueLabTestSampleTrackingIdsIntentService extends PullUniqueI
             SyncConfiguration configs = CoreLibrary.getInstance().getSyncConfiguration();
             int numberToGenerate;
             if (uniqueLabTestSampleTrackingIdRepository.countUnUsedIds() == 0) { // first time pull no ids at all
-                numberToGenerate = configs.getUniqueIdInitialBatchSize();
-            } else if (uniqueLabTestSampleTrackingIdRepository.countUnUsedIds() <= 250) { //maintain a minimum of 250 else skip this pull
-                numberToGenerate = configs.getUniqueIdBatchSize();
+                numberToGenerate = 50;
+            } else if (uniqueLabTestSampleTrackingIdRepository.countUnUsedIds() <= 25) { //maintain a minimum of 25 else skip this pull
+                numberToGenerate = 50;
             } else {
                 return;
             }
             JSONObject ids = fetchOpenMRSIds(configs.getUniqueIdSource() + 1, numberToGenerate);
-            if (ids != null && ids.has(IDENTIFIERS)) {
+            if (ids.has(IDENTIFIERS)) {
                 parseResponse(ids);
             }
         } catch (Exception e) {
