@@ -104,7 +104,7 @@ public class LabRegisterActivity extends CoreLabRegisterActivity {
             try {
                 JSONObject jsonObject = new JSONObject(jsonString);
                 String encounter_type = jsonObject.getString("encounter_type");
-                if (encounter_type.equalsIgnoreCase(Constants.EVENT_TYPE.LAB_HVL_SAMPLE_COLLECTION)) {
+                if (encounter_type.equalsIgnoreCase(Constants.EVENT_TYPE.LAB_HVL_SAMPLE_COLLECTION) || encounter_type.equalsIgnoreCase(Constants.EVENT_TYPE.LAB_HEID_SAMPLE_COLLECTION)) {
                     JSONArray fields = jsonObject.getJSONObject(org.smartregister.chw.hf.utils.Constants.JsonFormConstants.STEP1)
                             .getJSONArray(org.smartregister.chw.referral.util.JsonFormConstants.FIELDS);
 
