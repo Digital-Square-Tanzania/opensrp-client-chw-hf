@@ -360,7 +360,7 @@ public class LabTestRequestDetailsActivity extends BaseLabTestRequestDetailsActi
                     NCUtils.processEvent(baseEvent.getBaseEntityId(), new JSONObject(org.smartregister.chw.pmtct.util.JsonFormUtils.gson.toJson(baseEvent)));
 
                     JSONObject jsonForm = new JSONObject(jsonString);
-                    JSONArray fields = jsonForm.getJSONObject(org.smartregister.chw.hf.utils.Constants.JsonFormConstants.STEP1).getJSONArray(org.smartregister.chw.referral.util.JsonFormConstants.FIELDS);
+                    JSONArray fields = jsonForm.getJSONObject(STEP1).getJSONArray(FIELDS);
 
                     JSONObject hivTestResultObj = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "hiv_test_result");
                     JSONObject confirmatoryTestResultObj = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "confirmation_hiv_test_result");
