@@ -55,6 +55,20 @@
         "openmrs_entity_parent": ""
       },
       {
+        "key": "sample_id",
+        "type": "hidden",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "sample_id",
+        "openmrs_entity_parent": ""
+      },
+      {
+        "key": "sample_results_date",
+        "type": "hidden",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "sample_results_date",
+        "openmrs_entity_parent": ""
+      },
+      {
         "key": "notify_tnd_results",
         "type": "toaster_notes",
         "text": "For HVL results that is TND, fill the results as 11",
@@ -565,6 +579,31 @@
               "rules-file": "pmtct_hvl_test_results_calculation.yml"
             }
           }
+        }
+      },
+      {
+        "key": "date_results_provided_to_client",
+        "type": "date_picker",
+        "hint": "Date Results Provided to Client",
+        "openmrs_entity_id": "date_results_provided_to_client",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "max_date": "today",
+        "v_required": {
+          "value": true,
+          "err": "Please enter the date"
+        }
+      },
+      {
+        "key": "time_results_provided_to_client",
+        "type": "time_picker",
+        "hint": "Time Results Provided to Client",
+        "openmrs_entity_id": "time_results_provided_to_client",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "v_required": {
+          "value": true,
+          "err": "Please enter the time"
         }
       },
       {
