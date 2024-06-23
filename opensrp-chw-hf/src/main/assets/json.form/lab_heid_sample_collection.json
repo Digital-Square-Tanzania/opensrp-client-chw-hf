@@ -308,14 +308,7 @@
         "read_only": true,
         "openmrs_entity_id": "sample_id",
         "openmrs_entity": "concept",
-        "openmrs_entity_parent": "",
-        "calculation": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "lab_sample_collection_rule.yml"
-            }
-          }
-        }
+        "openmrs_entity_parent": ""
       },
       {
         "key": "type_of_hiv_test",

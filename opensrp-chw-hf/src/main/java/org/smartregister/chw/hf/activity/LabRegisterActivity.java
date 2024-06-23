@@ -71,17 +71,21 @@ public class LabRegisterActivity extends CoreLabRegisterActivity {
     public void startFormActivity(JSONObject jsonForm) {
 
         try {
-            if (jsonForm.getString(ENCOUNTER_TYPE).equals(LAB_HVL_SAMPLE_COLLECTION) || jsonForm.getString(ENCOUNTER_TYPE).equals(LAB_HEID_SAMPLE_COLLECTION)) {
+            if (jsonForm.getString(ENCOUNTER_TYPE).equals(Constants.EVENT_TYPE.LAB_HVL_SAMPLE_COLLECTION) || jsonForm.getString(ENCOUNTER_TYPE).equals(Constants.EVENT_TYPE.LAB_HEID_SAMPLE_COLLECTION)) {
                 JSONArray fields = jsonForm.getJSONObject(org.smartregister.chw.hf.utils.Constants.JsonFormConstants.STEP1)
                         .getJSONArray(org.smartregister.chw.referral.util.JsonFormConstants.FIELDS);
                 JSONObject sampleRequestSampleId = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "sample_id");
                 if (StringUtils.isBlank(sampleRequestSampleId.getString(org.smartregister.client.utils.constants.JsonFormConstants.VALUE))) {
                     Toast.makeText(this, "The app is missing unique sample tracking id. Logout and Login to Sync the data", Toast.LENGTH_SHORT).show();
+                    finish();
                     return;
                 }
             }
         } catch (Exception e) {
             Timber.e(e);
+            Toast.makeText(this, "The app is missing unique sample tracking id. Logout and Login to Sync the data", Toast.LENGTH_SHORT).show();
+            finish();
+            return;
         }
 
         Intent intent = new Intent(this, HfJsonWizardFormActivity.class);
@@ -112,8 +116,10 @@ public class LabRegisterActivity extends CoreLabRegisterActivity {
                     if (sampleRequestSampleId != null) {
                         String obtainedSampleTrackingId = sampleRequestSampleId.getString(JsonFormConstants.VALUE);
 
-                        String extractedSampleTrackingId = obtainedSampleTrackingId.substring(8, 15);
-                        new UniqueLabTestSampleTrackingIdRepository().close(extractedSampleTrackingId);
+                        if (StringUtils.isNotBlank(obtainedSampleTrackingId)) {
+                            String extractedSampleTrackingId = obtainedSampleTrackingId.substring(8, 15);
+                            new UniqueLabTestSampleTrackingIdRepository().close(extractedSampleTrackingId);
+                        }
                     }
                 }
             } catch (JSONException e) {
