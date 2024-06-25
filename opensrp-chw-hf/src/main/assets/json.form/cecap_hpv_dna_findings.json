@@ -132,7 +132,8 @@
             }
           }
         }
-      }, {
+      },
+      {
         "key": "prompt_for_hiv_positive_client",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",

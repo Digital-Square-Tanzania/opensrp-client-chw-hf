@@ -189,7 +189,7 @@
       {
         "key": "prompt_for_referral_for_further_management",
         "type": "toaster_notes",
-        "text": "The refer the client for further management",
+        "text": "Refer the client for further management",
         "openmrs_entity_id": "prompt_for_referral_for_further_management",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",

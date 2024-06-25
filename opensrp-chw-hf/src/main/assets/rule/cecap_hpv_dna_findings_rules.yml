@@ -23,6 +23,6 @@ actions:
 name: step1_prompt_for_hiv_positive_client
 description: prompt_for_hiv_positive_client relevance
 priority: 1
-condition: "step1_hpv_dna_findings.equals('negative') && global_hiv_status == 'positive'"
+condition: "step1_hpv_dna_findings.equals('negative') && ( global_hiv_status == 'positive' ||  global_hiv_status == 'known_positive')"
 actions:
   - "isRelevant = true"

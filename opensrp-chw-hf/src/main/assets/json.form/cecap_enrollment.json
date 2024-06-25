@@ -60,10 +60,10 @@
         "text_color": "#000000",
         "options": [
           {
-            "key": "positive",
-            "text": "Positive",
+            "key": "known_positive",
+            "text": "Known Positive",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "positive"
+            "openmrs_entity_id": "known_positive"
           },
           {
             "key": "negative",
@@ -110,7 +110,7 @@
         "relevance": {
           "step1:hiv_status": {
             "type": "string",
-            "ex": "equalTo(., \"positive\")"
+            "ex": "equalTo(., \"known_positive\")"
           }
         }
       },

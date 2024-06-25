@@ -118,7 +118,7 @@ public class CecapTestResultsFragment extends BaseTestResultsFragment {
 
     private void openEditResultsForm(CommonPersonObjectClient client) {
         String baseEntityId = Utils.getValue(client.getColumnmaps(), DBConstants.KEY.BASE_ENTITY_ID, false);
-        String formSubmissionId = Utils.getValue(client.getColumnmaps(), DBConstants.KEY.ENTITY_ID, false);
+        String formSubmissionId = Utils.getValue(client.getColumnmaps(), "form_submission_id", false);
         try {
             JSONObject jsonObject=null;
             String testType = Utils.getValue(client.getColumnmaps(), DBConstants.KEY.SCREENING_TEST_PERFORMED, false);
