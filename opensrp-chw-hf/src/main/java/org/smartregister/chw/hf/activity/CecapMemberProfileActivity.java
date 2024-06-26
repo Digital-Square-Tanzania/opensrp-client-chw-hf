@@ -1,21 +1,48 @@
 package org.smartregister.chw.hf.activity;
 
+import static org.smartregister.chw.hf.utils.JsonFormUtils.getAutoPopulatedJsonEditFormString;
+import static org.smartregister.util.Utils.getName;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.vijay.jsonwizard.constants.JsonFormConstants;
+import com.vijay.jsonwizard.domain.Form;
+
 import org.apache.commons.lang3.StringUtils;
+import org.jetbrains.annotations.NotNull;
+import org.json.JSONObject;
 import org.smartregister.chw.cecap.CecapLibrary;
 import org.smartregister.chw.cecap.dao.CecapDao;
 import org.smartregister.chw.cecap.domain.MemberObject;
 import org.smartregister.chw.cecap.util.Constants;
 import org.smartregister.chw.cecap.util.VisitUtils;
 import org.smartregister.chw.core.activity.CoreCecapMemberProfileActivity;
+import org.smartregister.chw.core.dao.AncDao;
 import org.smartregister.chw.core.listener.OnClickFloatingMenu;
+import org.smartregister.chw.core.utils.CoreConstants;
+import org.smartregister.chw.core.utils.CoreReferralUtils;
+import org.smartregister.chw.core.utils.Utils;
+import org.smartregister.chw.hf.BuildConfig;
+import org.smartregister.chw.hf.HealthFacilityApplication;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.custom_view.CecapFloatingMenu;
+import org.smartregister.chw.hf.utils.AllClientsUtils;
+import org.smartregister.chw.hivst.dao.HivstDao;
+import org.smartregister.chw.kvp.dao.KvpDao;
+import org.smartregister.chw.ld.dao.LDDao;
+import org.smartregister.chw.malaria.dao.MalariaDao;
+import org.smartregister.chw.sbc.dao.SbcDao;
+import org.smartregister.chw.vmmc.dao.VmmcDao;
+import org.smartregister.commonregistry.CommonPersonObject;
+import org.smartregister.commonregistry.CommonPersonObjectClient;
+import org.smartregister.commonregistry.CommonRepository;
+import org.smartregister.family.util.DBConstants;
 
 import timber.log.Timber;
 
@@ -29,10 +56,7 @@ public class CecapMemberProfileActivity extends CoreCecapMemberProfileActivity {
 
     @Override
     public void recordCecap(MemberObject memberObject) {
-        if (textViewRecordCecap.getText().equals(getString(R.string.cecap_via_approach)))
-            CecapVisitActivity.startMe(this, memberObject.getBaseEntityId(), false, true);
-        else
-            CecapVisitActivity.startMe(this, memberObject.getBaseEntityId(), false, false);
+        CecapVisitActivity.startMe(this, memberObject.getBaseEntityId(), false, textViewRecordCecap.getText().equals(getString(R.string.cecap_via_approach)));
     }
 
     @Override
@@ -126,5 +150,160 @@ public class CecapMemberProfileActivity extends CoreCecapMemberProfileActivity {
             }
         }
         return hasPendingVia;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        CommonRepository commonRepository = org.smartregister.family.util.Utils.context().commonrepository(org.smartregister.family.util.Utils.metadata().familyMemberRegister.tableName);
+
+        // show profile view
+        CommonPersonObject personObject = commonRepository.findByBaseEntityId(memberObject.getBaseEntityId());
+        CommonPersonObjectClient commonPersonObject = new CommonPersonObjectClient(personObject.getCaseId(), personObject.getDetails(), "");
+        commonPersonObject.setColumnmaps(personObject.getColumnmaps());
+
+        String gender = Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.GENDER, false);
+        menu.findItem(R.id.action_location_info).setVisible(true);
+        menu.findItem(R.id.action_pregnancy_out_come).setVisible(false);
+        menu.findItem(R.id.action_remove_member).setVisible(true);
+        if (isOfReproductiveAge(commonPersonObject, gender) && gender.equalsIgnoreCase("female") && !AncDao.isANCMember(memberObject.getBaseEntityId())) {
+            menu.findItem(R.id.action_pregnancy_confirmation).setVisible(true);
+            menu.findItem(R.id.action_anc_registration).setVisible(true);
+            menu.findItem(R.id.action_pregnancy_out_come).setVisible(true);
+            menu.findItem(R.id.action_pmtct_register).setVisible(true);
+        } else {
+            menu.findItem(R.id.action_anc_registration).setVisible(false);
+            menu.findItem(R.id.action_pregnancy_confirmation).setVisible(false);
+            menu.findItem(R.id.action_anc_registration).setVisible(false);
+            menu.findItem(R.id.action_pregnancy_out_come).setVisible(false);
+            menu.findItem(R.id.action_pmtct_register).setVisible(false);
+        }
+
+        if (isOfReproductiveAge(commonPersonObject, gender))
+            menu.findItem(R.id.action_fp_initiation).setVisible(HealthFacilityApplication.getApplicationFlavor().hasFp());
+
+        if (isOfReproductiveAge(commonPersonObject, gender) && gender.equalsIgnoreCase("female"))
+            menu.findItem(R.id.action_fp_ecp_provision).setVisible(HealthFacilityApplication.getApplicationFlavor().hasFp());
+
+
+        if (HealthFacilityApplication.getApplicationFlavor().hasLD()) {
+            menu.findItem(R.id.action_ld_registration).setVisible(isOfReproductiveAge(commonPersonObject, gender) && gender.equalsIgnoreCase("female") && !LDDao.isRegisteredForLD(memberObject.getBaseEntityId()));
+        }
+
+        if (gender.equalsIgnoreCase("male") && HealthFacilityApplication.getApplicationFlavor().hasVmmc())
+            menu.findItem(R.id.action_vmmc_registration).setVisible(!VmmcDao.isRegisteredForVmmc(memberObject.getBaseEntityId()));
+
+        if (HealthFacilityApplication.getApplicationFlavor().hasHivst()) {
+            String dob = Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.DOB, false);
+            int age = Utils.getAgeFromDate(dob);
+            menu.findItem(R.id.action_hivst_registration).setVisible(!HivstDao.isRegisteredForHivst(memberObject.getBaseEntityId()) && age >= 15);
+        }
+        if (HealthFacilityApplication.getApplicationFlavor().hasKvpPrEP()) {
+            String dob = Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.DOB, false);
+            int age = Utils.getAgeFromDate(dob);
+            menu.findItem(R.id.action_kvp_registration).setVisible(!KvpDao.isRegisteredForKvp(memberObject.getBaseEntityId()) && age >= 15);
+        }
+        if (HealthFacilityApplication.getApplicationFlavor().hasSbc()) {
+            String dob = Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.DOB, false);
+            int age = Utils.getAgeFromDate(dob);
+            menu.findItem(R.id.action_sbc_registration).setVisible(!SbcDao.isRegisteredForSbc(memberObject.getBaseEntityId()) && age >= 10);
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+        if (itemId == org.smartregister.chw.core.R.id.action_pregnancy_confirmation) {
+            startPregnancyConfirmation();
+            return true;
+        } else if (itemId == org.smartregister.chw.core.R.id.action_ld_registration) {
+            startLDRegistration();
+            return true;
+        } else if (itemId == org.smartregister.chw.core.R.id.action_pmtct_register) {
+            startPmtctRegisration();
+            return true;
+        } else if (itemId == org.smartregister.chw.core.R.id.action_anc_registration) {
+            startAncTransferInRegistration();
+            return true;
+        } else if (itemId == org.smartregister.chw.core.R.id.action_location_info) {
+            JSONObject preFilledForm = getAutoPopulatedJsonEditFormString(CoreConstants.JSON_FORM.getFamilyDetailsRegister(), this, getFamilyRegistrationDetails(), Utils.metadata().familyRegister.updateEventType);
+            if (preFilledForm != null) startFormActivity(preFilledForm);
+            return true;
+        } else if (itemId == org.smartregister.chw.core.R.id.action_hivst_registration) {
+            startHivstRegistration();
+            return true;
+        } else if (itemId == org.smartregister.chw.core.R.id.action_kvp_registration) {
+            startKvpRegistration();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    protected void startPregnancyConfirmation() {
+        AncRegisterActivity.startAncRegistrationActivity(this, memberObject.getBaseEntityId(), "", CoreConstants.JSON_FORM.ANC_PREGNANCY_CONFIRMATION, null, memberObject.getFamilyBaseEntityId(), memberObject.getFamilyName());
+    }
+
+    protected void startAncTransferInRegistration() {
+        AncRegisterActivity.startAncRegistrationActivity(this, memberObject.getBaseEntityId(), "", org.smartregister.chw.hf.utils.Constants.JSON_FORM.ANC_TRANSFER_IN_REGISTRATION, null, memberObject.getFamilyBaseEntityId(), memberObject.getFamilyName());
+    }
+
+
+    protected void startPmtctRegisration() {
+        PncRegisterActivity.startPncRegistrationActivity(this, memberObject.getBaseEntityId(), "", org.smartregister.chw.hf.utils.Constants.JsonForm.getPmtctRegistrationForClientsPostPnc(), null, memberObject.getFamilyBaseEntityId(), memberObject.getFamilyName(), null, false);
+    }
+
+
+    protected void startLDRegistration() {
+        try {
+            LDRegistrationFormActivity.startMe(this, memberObject.getBaseEntityId(), false, getName(getName(memberObject.getFirstName(), memberObject.getMiddleName()), memberObject.getLastName()), String.valueOf(memberObject.getAge()));
+        } catch (Exception e) {
+            Timber.e(e);
+        }
+    }
+
+    protected void startHivstRegistration() {
+        HivstRegisterActivity.startHivstRegistrationActivity(this, memberObject.getBaseEntityId(), memberObject.getGender(), memberObject.getAge());
+    }
+
+
+    protected void startKvpRegistration() {
+
+        if (memberObject.getGender().equalsIgnoreCase(org.smartregister.chw.hf.utils.Constants.GENDER.MALE)) {
+            KvpRegisterActivity.startKvpScreeningMale(this, memberObject.getBaseEntityId(), memberObject.getGender(), memberObject.getAge());
+        }
+        if (memberObject.getGender().equalsIgnoreCase(org.smartregister.chw.hf.utils.Constants.GENDER.FEMALE)) {
+            KvpRegisterActivity.startKvpScreeningFemale(this, memberObject.getBaseEntityId(), memberObject.getGender(), memberObject.getAge());
+        }
+    }
+
+    private boolean isOfReproductiveAge(CommonPersonObjectClient commonPersonObject, String gender) {
+        if (gender.equalsIgnoreCase("Female")) {
+            return Utils.isMemberOfReproductiveAge(commonPersonObject, 10, 55);
+        } else if (gender.equalsIgnoreCase("Male")) {
+            return Utils.isMemberOfReproductiveAge(commonPersonObject, 15, 49);
+        } else {
+            return false;
+        }
+    }
+
+    protected @NotNull CommonPersonObjectClient getFamilyRegistrationDetails() {
+        CommonRepository commonRepository = CoreReferralUtils.getCommonRepository(Utils.metadata().familyRegister.tableName);
+        CommonPersonObject personObject = commonRepository.findByBaseEntityId(memberObject.getFamilyBaseEntityId());
+        String caseId = personObject.getCaseId();
+        CommonPersonObjectClient commonPersonObjectClient = new CommonPersonObjectClient(caseId, personObject.getDetails(), "");
+        commonPersonObjectClient.setColumnmaps(personObject.getColumnmaps());
+        commonPersonObjectClient.setDetails(personObject.getDetails());
+        return commonPersonObjectClient;
+    }
+
+    public void startFormActivity(JSONObject jsonForm) {
+        Form form = new Form();
+        form.setWizard(false);
+
+        Intent intent = new Intent(this, org.smartregister.family.util.Utils.metadata().familyMemberFormActivity);
+        intent.putExtra(Constants.JSON_FORM_EXTRA.JSON, jsonForm.toString());
+        intent.putExtra(JsonFormConstants.JSON_FORM_KEY.FORM, form);
+        startActivityForResult(intent, Constants.REQUEST_CODE_GET_JSON);
     }
 }
