@@ -24,14 +24,17 @@ import org.smartregister.chw.cecap.util.Constants;
 import org.smartregister.chw.cecap.util.VisitUtils;
 import org.smartregister.chw.core.activity.CoreCecapMemberProfileActivity;
 import org.smartregister.chw.core.dao.AncDao;
+import org.smartregister.chw.core.form_data.NativeFormsDataBinder;
 import org.smartregister.chw.core.listener.OnClickFloatingMenu;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.core.utils.CoreReferralUtils;
+import org.smartregister.chw.core.utils.UpdateDetailsUtil;
 import org.smartregister.chw.core.utils.Utils;
 import org.smartregister.chw.hf.BuildConfig;
 import org.smartregister.chw.hf.HealthFacilityApplication;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.custom_view.CecapFloatingMenu;
+import org.smartregister.chw.hf.dataloader.FamilyMemberDataLoader;
 import org.smartregister.chw.hf.utils.AllClientsUtils;
 import org.smartregister.chw.hivst.dao.HivstDao;
 import org.smartregister.chw.kvp.dao.KvpDao;
@@ -43,6 +46,7 @@ import org.smartregister.commonregistry.CommonPersonObject;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.commonregistry.CommonRepository;
 import org.smartregister.family.util.DBConstants;
+import org.smartregister.family.util.JsonFormUtils;
 
 import timber.log.Timber;
 
@@ -87,16 +91,6 @@ public class CecapMemberProfileActivity extends CoreCecapMemberProfileActivity {
             rlTestResults.setVisibility(View.GONE);
             viewSeparator1.setVisibility(View.GONE);
         }
-
-        if (hasPendingVia(memberObject.getBaseEntityId())) {
-            textViewRecordCecap.setVisibility(View.VISIBLE);
-            textViewRecordCecap.setText(getString(R.string.cecap_via_approach));
-        } else if (CecapDao.hasTestResults(memberObject.getBaseEntityId())) {
-            textViewRecordCecap.setVisibility(View.GONE);
-        } else {
-            textViewRecordCecap.setVisibility(View.VISIBLE);
-            textViewRecordCecap.setText(getString(R.string.record_cecap));
-        }
     }
 
     @Override
@@ -138,23 +132,15 @@ public class CecapMemberProfileActivity extends CoreCecapMemberProfileActivity {
         startActivity(intent);
     }
 
-    public boolean hasPendingVia(String baseEntityID) {
-
-        String screenTestPerformed = CecapDao.getScreenTestPerformed(baseEntityID);
-        boolean hasPendingVia = false;
-
-        if (screenTestPerformed != null && screenTestPerformed.contains("hpv_dna")) {
-            String hpvFindings = CecapDao.getHpvFindings(baseEntityID);
-            if (hpvFindings != null && hpvFindings.equals("positive")) {
-                hasPendingVia = true;
-            }
-        }
-        return hasPendingVia;
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
+        MenuItem addMember = menu.findItem(org.smartregister.chw.core.R.id.add_member);
+        if (addMember != null) {
+            addMember.setVisible(false);
+        }
+
+        getMenuInflater().inflate(org.smartregister.chw.core.R.menu.other_member_menu, menu);
+
         CommonRepository commonRepository = org.smartregister.family.util.Utils.context().commonrepository(org.smartregister.family.util.Utils.metadata().familyMemberRegister.tableName);
 
         // show profile view
@@ -235,6 +221,15 @@ public class CecapMemberProfileActivity extends CoreCecapMemberProfileActivity {
             return true;
         } else if (itemId == org.smartregister.chw.core.R.id.action_kvp_registration) {
             startKvpRegistration();
+        } else if (itemId == org.smartregister.chw.core.R.id.action_registration) {
+            if (UpdateDetailsUtil.isIndependentClient(memberObject.getBaseEntityId())) {
+                startFormForEdit(org.smartregister.chw.core.R.string.registration_info,
+                        CoreConstants.JSON_FORM.getAllClientUpdateRegistrationInfoForm());
+            } else {
+                startFormForEdit(org.smartregister.chw.core.R.string.edit_member_form_title,
+                        CoreConstants.JSON_FORM.getFamilyMemberRegister());
+            }
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -305,5 +300,44 @@ public class CecapMemberProfileActivity extends CoreCecapMemberProfileActivity {
         intent.putExtra(Constants.JSON_FORM_EXTRA.JSON, jsonForm.toString());
         intent.putExtra(JsonFormConstants.JSON_FORM_KEY.FORM, form);
         startActivityForResult(intent, Constants.REQUEST_CODE_GET_JSON);
+    }
+
+    public void startFormForEdit(Integer title_resource, String formName) {
+        try {
+            JSONObject form = null;
+            boolean isPrimaryCareGiver = memberObject.getPrimaryCareGiver().equals(memberObject.getBaseEntityId());
+            String titleString = title_resource != null ? getResources().getString(title_resource) : null;
+
+           if (formName.equals(CoreConstants.JSON_FORM.getFamilyMemberRegister())) {
+
+                String eventName = Utils.metadata().familyMemberRegister.updateEventType;
+
+                NativeFormsDataBinder binder = new NativeFormsDataBinder(this, memberObject.getBaseEntityId());
+                binder.setDataLoader(new FamilyMemberDataLoader(memberObject.getFamilyName(), isPrimaryCareGiver, titleString, eventName, memberObject.getUniqueId()));
+
+                form = binder.getPrePopulatedForm(CoreConstants.JSON_FORM.getFamilyMemberRegister());
+            } else if (formName.equals(CoreConstants.JSON_FORM.getAllClientUpdateRegistrationInfoForm())) {
+                String eventName = Utils.metadata().familyMemberRegister.updateEventType;
+
+                NativeFormsDataBinder binder = new NativeFormsDataBinder(this, memberObject.getBaseEntityId());
+                binder.setDataLoader(new FamilyMemberDataLoader(memberObject.getFamilyName(), isPrimaryCareGiver, titleString, eventName, memberObject.getUniqueId()));
+
+                form = binder.getPrePopulatedForm(CoreConstants.JSON_FORM.getAllClientUpdateRegistrationInfoForm());
+            }
+
+            startFormActivity(form);
+        } catch (Exception e) {
+            Timber.e(e);
+        }
+    }
+
+    protected void removeIndividualProfile() {
+        CommonRepository commonRepository = org.smartregister.family.util.Utils.context().commonrepository(org.smartregister.family.util.Utils.metadata().familyMemberRegister.tableName);
+        final CommonPersonObject commonPersonObject = commonRepository.findByBaseEntityId(memberObject.getBaseEntityId());
+        final CommonPersonObjectClient client = new CommonPersonObjectClient(commonPersonObject.getCaseId(), commonPersonObject.getDetails(), "");
+        client.setColumnmaps(commonPersonObject.getColumnmaps());
+
+        IndividualProfileRemoveActivity.startIndividualProfileActivity(CecapMemberProfileActivity.this,
+                client, memberObject.getFamilyBaseEntityId(), memberObject.getFamilyHead(), memberObject.getPrimaryCareGiver(), FamilyRegisterActivity.class.getCanonicalName());
     }
 }
