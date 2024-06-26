@@ -132,13 +132,6 @@
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "not_treated"
-          },
-          {
-            "key": "not_applicable",
-            "text": "Not applicable",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "not_applicable"
           }
         ],
         "v_required": {
@@ -335,6 +328,13 @@
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "other"
+          },
+          {
+            "key": "none",
+            "text": "None",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "none"
           }
         ]
       },
@@ -367,7 +367,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "services_and_referrals_vaccine",
         "type": "edit_text",
-        "hint": "Specify",
+        "hint": "Specify Vaccination",
         "v_required": {
           "value": "true",
           "err": "Please specify"
@@ -451,6 +451,13 @@
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "other"
+          },
+          {
+            "key": "none",
+            "text": "None",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "none"
           }
         ]
       },
@@ -483,7 +490,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "vaccination",
         "type": "edit_text",
-        "hint": "Specify",
+        "hint": "Specify Vaccination",
         "v_required": {
           "value": "true",
           "err": "Please specify"

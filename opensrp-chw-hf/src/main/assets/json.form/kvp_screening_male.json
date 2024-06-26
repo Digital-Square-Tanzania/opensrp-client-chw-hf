@@ -157,7 +157,7 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "sexual_intercourse",
-        "label": "Has the client ever had sexual intercourse?",
+        "label": "Have you ever engaged in sexual activity, do you think about engaging in sexual activity, or are you at risk of engaging in sexual activity?",
         "text_color": "#000000",
         "type": "native_radio",
         "options": [
@@ -430,11 +430,11 @@
             "openmrs_entity_id": "rumandee"
           },
           {
-            "key": "not_applicable",
-            "text": "Not applicable",
+            "key": "none",
+            "text": "None",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "not_applicable"
+            "openmrs_entity_id": "none"
           }
         ],
         "v_required": {
@@ -487,11 +487,11 @@
             "openmrs_entity_id": "road_builders"
           },
           {
-            "key": "not_applicable",
-            "text": "Not applicable",
+            "key": "none",
+            "text": "None",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "not_applicable"
+            "openmrs_entity_id": "none"
           }
         ],
         "v_required": {
@@ -530,11 +530,11 @@
             "openmrs_entity_id": "street_working_children"
           },
           {
-            "key": "not_applicable",
-            "text": "Not applicable",
+            "key": "none",
+            "text": "None",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "not_applicable"
+            "openmrs_entity_id": "none"
           }
         ],
         "v_required": {

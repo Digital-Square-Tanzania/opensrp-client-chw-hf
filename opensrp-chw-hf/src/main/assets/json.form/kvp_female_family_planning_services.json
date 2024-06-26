@@ -102,16 +102,16 @@
             "openmrs_entity_id": "referral"
           },
           {
-            "key": "not_applicable",
-            "text": "Not applicable",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "not_applicable"
-          },
-          {
             "key": "refused",
             "text": "Refused",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "refused"
+          },
+          {
+            "key": "none",
+            "text": "None",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "none"
           }
         ],
         "v_required": {

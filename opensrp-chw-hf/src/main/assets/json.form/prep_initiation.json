@@ -119,11 +119,11 @@
             "openmrs_entity_id": "breast_feeding"
           },
           {
-            "key": "not_applicable",
-            "text": "Not Applicable",
+            "key": "none",
+            "text": "None",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "not_applicable"
+            "openmrs_entity_id": "none"
           }
         ],
         "v_required": {
@@ -243,13 +243,6 @@
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "poor"
-          },
-          {
-            "key": "not_applicable",
-            "text": "Not applicable",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "not_applicable"
           }
         ],
         "v_required": {
@@ -323,12 +316,6 @@
             "text": "Others",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "others"
-          },
-          {
-            "key": "not_applicable",
-            "text": "Not applicable",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "not_applicable"
           }
         ],
         "v_required": {
@@ -355,8 +342,13 @@
         },
         "relevance": {
           "step1:poor_prep_adherence_reason": {
-            "type": "string",
-            "ex": "equalTo(., \"others\")"
+            "ex-checkbox": [
+              {
+                "or": [
+                  "others"
+                ]
+              }
+            ]
           }
         }
       },
@@ -420,12 +412,6 @@
             "text": "No side effects",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "no_side_effects"
-          },
-          {
-            "key": "not_applicable",
-            "text": "Not applicable",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "not_applicable"
           }
         ],
         "v_required": {
@@ -494,12 +480,6 @@
             "openmrs_entity_id": "poor_adherence"
           },
           {
-            "key": "client_decision",
-            "text": "Client's decision",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "client_decision"
-          },
-          {
             "key": "not_at_risk",
             "text": "Client has stopped, not at risk",
             "openmrs_entity": "concept",
@@ -510,12 +490,6 @@
             "text": "Others (Specify)",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "others"
-          },
-          {
-            "key": "not_applicable",
-            "text": "Not applicable",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "not_applicable"
           }
         ],
         "v_required": {

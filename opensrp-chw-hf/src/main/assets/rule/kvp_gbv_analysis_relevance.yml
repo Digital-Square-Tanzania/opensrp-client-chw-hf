@@ -1,0 +1,7 @@
+---
+name: step1_post_gbv_care_provision
+description: gbv_analysis relevance
+priority: 1
+condition: "!step1_gbv_screening.isEmpty() && (step1_gbv_screening.equals('physical_violence')||step1_gbv_screening.equals('sexual_violence')||step1_gbv_screening.equals('emotional_violence'))"
+actions:
+  - "isRelevant = true"

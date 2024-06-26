@@ -32,7 +32,7 @@ description: check if client falls in other vunerable population
 priority: 1
 condition: "true"
 actions:
-  - "calculation = !(step6_prisoner_or_rumandee.equals('not_applicable') && step6_mobile_population.equals('not_applicable') && step6_other_groups_at_risk.equals('not_applicable')) ? 'yes' : 'no' "
+  - "calculation = !(step6_prisoner_or_rumandee.equals('none') && step6_mobile_population.equals('none') && step6_other_groups_at_risk.equals('none')) ? 'yes' : 'no' "
 ---
 name: step7_should_enroll
 description: check if should enroll client if they belong to any kvp group

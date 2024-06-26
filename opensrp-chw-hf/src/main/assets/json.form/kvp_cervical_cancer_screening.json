@@ -70,12 +70,6 @@
             "text": "Referred for treatment",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "referred"
-          },
-          {
-            "key": "not_applicable",
-            "text": "Not applicable",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "not_applicable"
           }
         ],
         "v_required": {

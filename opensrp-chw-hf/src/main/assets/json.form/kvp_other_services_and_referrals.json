@@ -75,7 +75,7 @@
           },
           {
             "key": "covid_vaccine",
-            "text": "Covid-19 vaccine",
+            "text": "Vaccination(Specify)",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "covid_vaccine"
@@ -100,6 +100,13 @@
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "other"
+          },
+          {
+            "key": "none",
+            "text": "None",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "none"
           }
         ],
         "v_required": {
@@ -108,12 +115,35 @@
         }
       },
       {
+        "key": "covid_vaccine",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "covid_vaccine",
+        "type": "edit_text",
+        "hint": "Specify Vaccination",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
+        "relevance": {
+          "step1:other_services_provided": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "covid_vaccine"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
         "key": "others_services_provided",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "others_services_provided",
         "type": "edit_text",
-        "hint": "Other",
+        "hint": "Specify other services",
         "v_required": {
           "value": "true",
           "err": "Please specify"
@@ -159,11 +189,11 @@
             "openmrs_entity_id": "psychosocial"
           },
           {
-            "key": "covid_vaccination",
-            "text": "COVID Vaccination",
+            "key": "vaccine_type",
+            "text": "Vaccination (Specify)",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "covid_vaccination"
+            "openmrs_entity_id": "vaccine_type"
           },
           {
             "key": "legal_service",
@@ -216,7 +246,7 @@
           },
           {
             "key": "cecap",
-            "text": "CECAPi",
+            "text": "CECAP",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "cecap"
@@ -227,11 +257,41 @@
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "mat"
+          },
+          {
+            "key": "none",
+            "text": "None",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "none"
           }
         ],
         "v_required": {
           "value": "true",
           "err": "Please pick at least one"
+        }
+      },
+      {
+        "key": "vaccine",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "vaccine",
+        "type": "edit_text",
+        "hint": "Specify Vaccination",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
+        "relevance": {
+          "step1:other_services_referrals_provided": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "vaccine_type"
+                ]
+              }
+            ]
+          }
         }
       }
     ]
