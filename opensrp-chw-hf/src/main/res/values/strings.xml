@@ -1878,6 +1878,10 @@
     <string name="view_cecap_report">View CECAP Report</string>
 
 
+    <string name="kvp_tomorrow_visits">Tomorrow visits</string>
+    <string name="kvp_due_clients">Due</string>
+    <string name="kvp_overdue_clients">Over Due</string>
+
 
 
 
