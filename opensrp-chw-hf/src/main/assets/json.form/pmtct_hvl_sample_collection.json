@@ -129,6 +129,13 @@
             "openmrs_entity_id": "retesting_hvl_after_3_months_from_completion_of_eac",
             "openmrs_entity_parent": "",
             "text": "Retesting HVL after 3 months from completion of EAC"
+          },
+          {
+            "key": "other",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "other",
+            "openmrs_entity_parent": "",
+            "text": "Other (Specify)"
           }
         ],
         "v_required": {
@@ -140,6 +147,25 @@
             "type": "string",
             "ex": "equalTo(., \"yes\")"
           }
+        }
+      },
+      {
+        "key": "other_reason_for_requesting_test",
+        "type": "edit_text",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "other_reason_for_requesting_test",
+        "openmrs_entity_parent": "",
+        "edit_type": "name",
+        "hint": "Other reasons for requesting HVL Sample Collection",
+        "relevance": {
+          "step1:reason_for_requesting_test": {
+            "type": "string",
+            "ex": "equalTo(., \"other\")"
+          }
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please enter other danger sign"
         }
       },
       {

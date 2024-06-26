@@ -380,6 +380,7 @@ public class HfChwRepository extends CoreChwRepository {
             db.execSQL("ALTER TABLE ec_pmtct_followup ADD COLUMN sample_request_date TEXT NULL;");
             db.execSQL("ALTER TABLE ec_pmtct_followup ADD COLUMN sample_request_time TEXT NULL;");
             db.execSQL("ALTER TABLE ec_pmtct_followup ADD COLUMN reason_for_requesting_test TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_pmtct_followup ADD COLUMN other_reason_for_requesting_test TEXT NULL;");
             db.execSQL("ALTER TABLE ec_pmtct_followup ADD COLUMN on_tb_treatment TEXT NULL;");
             db.execSQL("ALTER TABLE ec_pmtct_followup ADD COLUMN art_drug TEXT NULL;");
 
@@ -387,6 +388,7 @@ public class HfChwRepository extends CoreChwRepository {
             db.execSQL("ALTER TABLE ec_hei_followup ADD COLUMN sample_request_date TEXT NULL;");
             db.execSQL("ALTER TABLE ec_hei_followup ADD COLUMN sample_request_time TEXT NULL;");
             db.execSQL("ALTER TABLE ec_hei_followup ADD COLUMN reason_for_requesting_test TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_hei_followup ADD COLUMN other_reason_for_requesting_test TEXT NULL;");
             db.execSQL("ALTER TABLE ec_hei_followup ADD COLUMN number_of_ctx_days_dispensed TEXT NULL;");
             db.execSQL("ALTER TABLE ec_hei_followup ADD COLUMN infant_feeding_practice TEXT NULL;");
             db.execSQL("ALTER TABLE ec_hei_followup ADD COLUMN last_interacted_with TEXT NULL;");

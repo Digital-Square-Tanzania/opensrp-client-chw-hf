@@ -190,6 +190,14 @@
           }
         },
         {
+          "column_name": "other_reason_for_requesting_test",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "other_reason_for_requesting_test"
+          }
+        },
+        {
           "column_name": "on_tb_treatment",
           "type": "Event",
           "json_mapping": {
@@ -638,6 +646,14 @@
           "json_mapping": {
             "field": "obs.fieldCode",
             "concept": "reason_for_requesting_test"
+          }
+        },
+        {
+          "column_name": "other_reason_for_requesting_test",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "other_reason_for_requesting_test"
           }
         },
         {

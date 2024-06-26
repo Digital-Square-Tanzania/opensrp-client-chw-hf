@@ -221,16 +221,19 @@ public class LabRegisterModel extends BaseLabRegisterModel {
         JSONObject requesterClinicianName = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "requester_clinician_name");
         JSONObject requesterPhoneNumber = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "requester_phone_number");
         JSONObject reasonForRequestingTest = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "reason_for_requesting_test");
+        JSONObject otherReasonForRequestingTest = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "other_reason_for_requesting_test");
 
         String clinicianName = HfPmtctDao.getRequesterClinicianName(entityId);
         if (clinicianName != null) {
             requesterClinicianName.put(VALUE, clinicianName);
             requesterPhoneNumber.put(VALUE, HfPmtctDao.getRequesterPhoneNumber(entityId));
             reasonForRequestingTest.put(VALUE, HfPmtctDao.getReasonsForRequestingTest(entityId));
+            otherReasonForRequestingTest.put(VALUE, HfPmtctDao.getOtherReasonsForRequestingTest(entityId));
 
             requesterClinicianName.put(READ_ONLY, true);
             requesterPhoneNumber.put(READ_ONLY, true);
             reasonForRequestingTest.put(READ_ONLY, true);
+            otherReasonForRequestingTest.put(READ_ONLY, true);
         }
     }
 
@@ -318,15 +321,18 @@ public class LabRegisterModel extends BaseLabRegisterModel {
             JSONObject requesterClinicianName = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "requester_clinician_name");
             JSONObject requesterPhoneNumber = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "requester_phone_number");
             JSONObject reasonForRequestingTest = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "reason_for_requesting_test");
+            JSONObject otherReasonForRequestingTest = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "other_reason_for_requesting_test");
 
             if (HeiDao.getRequesterClinicianName(entityId) != null) {
                 requesterClinicianName.put(VALUE, HeiDao.getRequesterClinicianName(entityId));
                 requesterPhoneNumber.put(VALUE, HeiDao.getRequesterPhoneNumber(entityId));
                 reasonForRequestingTest.put(VALUE, HeiDao.getReasonsForRequestingTest(entityId));
+                otherReasonForRequestingTest.put(VALUE, HeiDao.getOtherReasonsForRequestingTest(entityId));
 
                 requesterClinicianName.put(READ_ONLY, true);
                 requesterPhoneNumber.put(READ_ONLY, true);
                 reasonForRequestingTest.put(READ_ONLY, true);
+                otherReasonForRequestingTest.put(READ_ONLY, true);
             }
 
             JSONObject motherBreastFeeding = org.smartregister.family.util.JsonFormUtils.getFieldJSONObject(fields, "mother_breast_feeding");
