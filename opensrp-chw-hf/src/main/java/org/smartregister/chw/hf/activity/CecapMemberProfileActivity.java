@@ -330,14 +330,4 @@ public class CecapMemberProfileActivity extends CoreCecapMemberProfileActivity {
             Timber.e(e);
         }
     }
-
-    protected void removeIndividualProfile() {
-        CommonRepository commonRepository = org.smartregister.family.util.Utils.context().commonrepository(org.smartregister.family.util.Utils.metadata().familyMemberRegister.tableName);
-        final CommonPersonObject commonPersonObject = commonRepository.findByBaseEntityId(memberObject.getBaseEntityId());
-        final CommonPersonObjectClient client = new CommonPersonObjectClient(commonPersonObject.getCaseId(), commonPersonObject.getDetails(), "");
-        client.setColumnmaps(commonPersonObject.getColumnmaps());
-
-        IndividualProfileRemoveActivity.startIndividualProfileActivity(CecapMemberProfileActivity.this,
-                client, memberObject.getFamilyBaseEntityId(), memberObject.getFamilyHead(), memberObject.getPrimaryCareGiver(), FamilyRegisterActivity.class.getCanonicalName());
-    }
 }
