@@ -13,6 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 import org.joda.time.Days;
@@ -24,6 +26,7 @@ import org.smartregister.chw.core.activity.DefaultAncMedicalHistoryActivityFlv;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.interactor.KvpMedicalHistoryInteractor;
 import org.smartregister.chw.kvp.domain.MemberObject;
+import org.smartregister.chw.kvp.repository.VisitRepository;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -31,6 +34,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import timber.log.Timber;
 
@@ -95,7 +99,7 @@ public class KvpMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
         @Override
         public void processViewData(List<Visit> visits, Context context) {
 
-            if (visits.size() > 0) {
+            if (!visits.isEmpty()) {
                 int days = 0;
                 List<LinkedHashMap<String, String>> hf_visits = new ArrayList<>();
 
@@ -165,7 +169,7 @@ public class KvpMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
                     List<VisitDetail> details = sourceVisits.get(iteration).getVisitDetails().get(param);
                     map.put(param, getTexts(context, details));
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    Timber.e(e);
                 }
 
             }
@@ -184,7 +188,8 @@ public class KvpMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
 
 
         protected void processVisit(List<LinkedHashMap<String, String>> community_visits, Context context, List<Visit> visits) {
-            if (community_visits != null && community_visits.size() > 0) {
+            VisitRepository visitRepository = new VisitRepository();
+            if (community_visits != null && !community_visits.isEmpty()) {
                 linearLayoutHealthFacilityVisit.setVisibility(View.VISIBLE);
 
                 int x = 0;
@@ -196,7 +201,7 @@ public class KvpMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
 
                     tvTitle.setText(visits.get(x).getVisitType() + " " + visits.get(x).getDate());
 
-                    if (x == visits.size() - 1) {
+                    if (Objects.equals(visits.get(x).getVisitId(), visitRepository.getLatestVisit(visits.get(x).getBaseEntityId(), visits.get(x).getVisitType()).getVisitId())) {
                         edit.setVisibility(View.VISIBLE);
                         int position = x;
                         edit.setOnClickListener(view1 -> {
@@ -214,14 +219,7 @@ public class KvpMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
 
 
                     for (LinkedHashMap.Entry<String, String> entry : vals.entrySet()) {
-                        TextView visitDetailTv = new TextView(context);
-                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams
-                                ((int) LinearLayout.LayoutParams.MATCH_PARENT, (int) LinearLayout.LayoutParams.WRAP_CONTENT);
-
-                        visitDetailTv.setLayoutParams(params);
-                        float scale = context.getResources().getDisplayMetrics().density;
-                        int dpAsPixels = (int) (10 * scale + 0.5f);
-                        visitDetailTv.setPadding(dpAsPixels, 0, 0, 0);
+                        TextView visitDetailTv = getTextView(context);
                         visitDetailsLayout.addView(visitDetailTv);
 
 
@@ -237,6 +235,18 @@ public class KvpMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
                     x++;
                 }
             }
+        }
+
+        private static @NonNull TextView getTextView(Context context) {
+            TextView visitDetailTv = new TextView(context);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams
+                    ((int) LinearLayout.LayoutParams.MATCH_PARENT, (int) LinearLayout.LayoutParams.WRAP_CONTENT);
+
+            visitDetailTv.setLayoutParams(params);
+            float scale = context.getResources().getDisplayMetrics().density;
+            int dpAsPixels = (int) (10 * scale + 0.5f);
+            visitDetailTv.setPadding(dpAsPixels, 0, 0, 0);
+            return visitDetailTv;
         }
 
         private void evaluateView(Context context, Map<String, String> vals, TextView tv, String valueKey, int viewTitleStringResource, String valuePrefixInStringResources) {
