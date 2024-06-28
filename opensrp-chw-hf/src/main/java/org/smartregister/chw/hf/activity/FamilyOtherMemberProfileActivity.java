@@ -2,6 +2,7 @@ package org.smartregister.chw.hf.activity;
 
 import static org.smartregister.chw.core.utils.Utils.updateToolbarTitle;
 import static org.smartregister.chw.hf.utils.Constants.JsonForm.HIV_REGISTRATION;
+import static org.smartregister.util.Utils.getName;
 
 import android.content.Context;
 import android.content.Intent;
@@ -160,8 +161,15 @@ public class FamilyOtherMemberProfileActivity extends CoreFamilyOtherMemberProfi
 
     @Override
     protected void startLDRegistration() {
+        String firstName = org.smartregister.family.util.Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.FIRST_NAME, true);
+        String middleName = org.smartregister.family.util.Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.MIDDLE_NAME, true);
+        String lastName = org.smartregister.family.util.Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.LAST_NAME, true);
+
+        String dob = org.smartregister.family.util.Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.DOB, true);
+        int age = StringUtils.isNotBlank(dob) ? org.smartregister.family.util.Utils.getAgeFromDate(dob) : 0;
+
         try {
-            LDRegisterActivity.startLDRegistrationActivity(FamilyOtherMemberProfileActivity.this, baseEntityId);
+            LDRegistrationFormActivity.startMe(this, baseEntityId, false, getName(getName(firstName, middleName), lastName), String.valueOf(age));
         } catch (Exception e) {
             Timber.e(e);
         }
