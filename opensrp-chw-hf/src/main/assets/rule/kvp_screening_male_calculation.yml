@@ -40,5 +40,43 @@ priority: 1
 condition: "true"
 actions:
   - "calculation = (step1_is_pwud.equals('yes') || step2_is_pwid.equals('yes') || step4_is_msm.equals('yes') || step5_is_sdc.equals('yes') || step6_is_ovp_kvp.equals('yes')) ? 'yes' : 'no' "
+---
+name: step8_other_screened_client_group
+description: other KVP Groups Calculation
+priority: 1
+condition: "true"
+actions:
+  - "def getOtherKvpGroups(pwud,pwid,sdc,msm,ovp) {
+        String otherGroups = '';
+               
+        if(pwud.contains('yes')){
+          otherGroups+='pwud,';
+        }
+        
+        
+        if(pwid.equals('yes')){
+           otherGroups+='pwid,';
+        }
+        
+        if(sdc.equals('yes')){
+          otherGroups+='sdc,';
+        }
+        
+        if(msm.equals('yes')){
+          otherGroups+='msm,';
+        }
+     
+        if(ovp.equals('yes')){
+          otherGroups+='other_vulnerable_population,';
+        }
+        
+        if (otherGroups != null && otherGroups.length() > 0 && otherGroups.charAt(otherGroups.length() - 1) == ',') {
+          String modified = otherGroups.substring(0, otherGroups.length() - 1);
+          return modified;
+        }
+        return otherGroups;
+               
+     }"
+  - "calculation = '['+getOtherKvpGroups(step1_is_pwud, step2_is_pwid, step4_is_sdc, step5_is_fsw, step6_is_agyw, step7_is_ovp_kvp)+']'"
 
 

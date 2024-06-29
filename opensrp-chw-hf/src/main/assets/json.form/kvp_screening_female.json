@@ -1082,6 +1082,20 @@
             }
           }
         }
+      },
+      {
+        "key": "other_screened_client_group",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "other_screened_client_group",
+        "type": "hidden",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kvp_screening_female_calculation.yml"
+            }
+          }
+        }
       }
     ]
   }
