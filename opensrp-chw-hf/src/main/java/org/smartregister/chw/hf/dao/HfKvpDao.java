@@ -38,6 +38,20 @@ public class HfKvpDao extends KvpDao {
         return "";
     }
 
+    public static String getOtherKvpClientGroups(String baseEntityId) {
+        String sql = "SELECT other_screened_client_group FROM ec_kvp_register p " +
+                " WHERE p.base_entity_id = '" + baseEntityId + "'";
+
+        DataMap<String> dataMap = cursor -> getCursorValue(cursor, "other_screened_client_group");
+
+        List<String> res = readData(sql, dataMap);
+        if (res != null && !res.isEmpty() && res.get(0) != null) {
+            return res.get(0);
+        }
+        return "";
+    }
+
+
     public static boolean hasPrepFollowup(String baseEntityId) {
         String sql = "SELECT visit_type FROM ec_prep_followup p " +
                 " WHERE p.entity_id = '" + baseEntityId + "'";

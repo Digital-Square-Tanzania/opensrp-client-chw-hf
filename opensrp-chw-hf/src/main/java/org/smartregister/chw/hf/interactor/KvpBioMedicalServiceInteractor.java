@@ -22,6 +22,7 @@ import org.smartregister.chw.hf.actionhelper.kvp.KvpVmmcActionHelper;
 import org.smartregister.chw.hf.dao.HfKvpDao;
 import org.smartregister.chw.kvp.contract.BaseKvpVisitContract;
 import org.smartregister.chw.kvp.dao.KvpDao;
+import org.smartregister.chw.kvp.domain.MemberObject;
 import org.smartregister.chw.kvp.domain.VisitDetail;
 import org.smartregister.chw.kvp.interactor.BaseKvpVisitInteractor;
 import org.smartregister.chw.kvp.model.BaseKvpVisitAction;
@@ -136,7 +137,7 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
         }
 
 
-        KvpClientStatusActionHelper actionHelper = new KvpClientStatusActionHelper();
+        KvpClientStatusActionHelper actionHelper = new KvpClientStatusActionHelper(memberObject);
         BaseKvpVisitAction action = getBuilder(context.getString(R.string.kvp_client_status))
                 .withOptional(false)
                 .withDetails(details)
@@ -323,6 +324,10 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
 
     private class KvpClientStatusActionHelper extends org.smartregister.chw.hf.actionhelper.kvp.KvpClientStatusActionHelper {
         private String other_kvp_category;
+
+        public KvpClientStatusActionHelper(MemberObject memberObject) {
+            super(memberObject);
+        }
 
         @Override
         public void onPayloadReceived(String jsonPayload) {
