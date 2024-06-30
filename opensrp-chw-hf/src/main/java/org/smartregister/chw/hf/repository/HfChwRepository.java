@@ -346,6 +346,8 @@ public class HfChwRepository extends CoreChwRepository {
 
         try {
             db.execSQL("ALTER TABLE ec_kvp_register ADD COLUMN IF NOT EXISTS other_screened_client_group TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_kvp_bio_medical_services ADD COLUMN IF NOT EXISTS number_needle_syringe_distributed TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_kvp_bio_medical_services ADD COLUMN IF NOT EXISTS ost_provided TEXT NULL;");
         } catch (Exception e) {
             Timber.e(e, "upgradeToVersion25");
         }

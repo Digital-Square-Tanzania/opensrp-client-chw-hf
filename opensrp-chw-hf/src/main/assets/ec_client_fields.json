@@ -8019,6 +8019,22 @@
           }
         },
         {
+          "column_name": "number_needle_syringe_distributed",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "number_needle_syringe_distributed"
+          }
+        },
+        {
+          "column_name": "ost_provided",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "ost_provided"
+          }
+        },
+        {
           "column_name": "kvp_visit_date",
           "type": "Event",
           "json_mapping": {
