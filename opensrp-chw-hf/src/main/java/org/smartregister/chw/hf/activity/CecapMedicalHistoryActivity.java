@@ -120,7 +120,7 @@ public class CecapMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
                             "via_findings", "lesion_location",
                             "cryotherapy_thermocoagulation","treatment_option","postpone_reason","leep_treatment","leep_performed",
                             "was_dna_specimen_collected","reasons_for_not_collecting_dna_specimen","other_reasons_for_not_collecting_dna_specimen","dna_specimen_collection_clinician_name","dna_specimen_collection_clinician_position","dna_specimen_collection_clinician_phone_number","hpv_dna_specimen_collection_date","hpv_dna_specimen_collection_time","hpv_dna_specimen_sample_id",
-                            "can_the_facility_perform_pap_smear","pap_smear_sample_collection_clinician_name","pap_smear_sample_collection_clinician_position","pap_smear_sample_collection_clinician_phone_number","pap_smear_sample_collection_date","pap_smear_sample_collection_time","pap_smear_sample_id"
+                            "can_the_facility_perform_pap_smear","pap_smear_sample_collection_clinician_name","pap_smear_sample_collection_clinician_position","pap_smear_sample_collection_clinician_phone_number","pap_smear_sample_collection_date","pap_smear_sample_collection_time","pap_smear_sample_id","next_appointment_date"
                     };
                     extractVisitDetails(visits, visitTypeParams, visitDetails, x, context);
 

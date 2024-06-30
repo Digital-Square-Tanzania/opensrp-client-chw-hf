@@ -2239,7 +2239,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 15 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 20
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_large_lesion'
@@ -2256,7 +2256,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 20 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 25
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_large_lesion'
@@ -2273,7 +2273,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 25 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 30
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_large_lesion'
@@ -2290,7 +2290,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 30 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 35
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_large_lesion'
@@ -2307,7 +2307,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 35 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 40
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_large_lesion'
@@ -2324,7 +2324,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 40 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 45
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_large_lesion'
@@ -2341,7 +2341,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 45 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 50
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_large_lesion'
@@ -2358,7 +2358,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 50 <= (date('Now') - date(efm.dob))
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_large_lesion'
@@ -2375,7 +2375,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 15 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 20
                      AND (efm.gender='Female')
                      AND via_findings = 'suspicious'
@@ -2392,7 +2392,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 20 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 25
                      AND (efm.gender='Female')
                      AND via_findings = 'suspicious'
@@ -2409,7 +2409,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 25 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 30
                      AND (efm.gender='Female')
                      AND via_findings = 'suspicious'
@@ -2426,7 +2426,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 30 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 35
                      AND (efm.gender='Female')
                      AND via_findings = 'suspicious'
@@ -2443,7 +2443,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 35 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 40
                      AND (efm.gender='Female')
                      AND via_findings = 'suspicious'
@@ -2460,7 +2460,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 40 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 45
                      AND (efm.gender='Female')
                      AND via_findings = 'suspicious'
@@ -2477,7 +2477,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 45 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 50
                      AND (efm.gender='Female')
                      AND via_findings = 'suspicious'
@@ -2494,7 +2494,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 50 <= (date('Now') - date(efm.dob))
                      AND (efm.gender='Female')
                      AND via_findings = 'suspicious'
@@ -2511,7 +2511,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 15 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 20
                      AND (efm.gender='Female')
                      AND via_findings = 'suspicious'
@@ -2528,7 +2528,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 20 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 25
                      AND (efm.gender='Female')
                      AND via_findings = 'suspicious'
@@ -2545,7 +2545,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 25 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 30
                      AND (efm.gender='Female')
                      AND via_findings = 'suspicious'
@@ -2562,7 +2562,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 30 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 35
                      AND (efm.gender='Female')
                      AND via_findings = 'suspicious'
@@ -2579,7 +2579,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 35 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 40
                      AND (efm.gender='Female')
                      AND via_findings = 'suspicious'
@@ -2596,7 +2596,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 40 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 45
                      AND (efm.gender='Female')
                      AND via_findings = 'suspicious'
@@ -2613,7 +2613,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 45 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 50
                      AND (efm.gender='Female')
                      AND via_findings = 'suspicious'
@@ -2630,7 +2630,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 50 <= (date('Now') - date(efm.dob))
                      AND (efm.gender='Female')
                      AND via_findings = 'suspicious'
@@ -2647,7 +2647,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 15 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 20
                      AND (efm.gender='Female')
                      AND via_findings = 'suspicious'
@@ -2664,7 +2664,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 20 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 25
                      AND (efm.gender='Female')
                      AND via_findings = 'suspicious'
@@ -2681,7 +2681,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 25 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 30
                      AND (efm.gender='Female')
                      AND via_findings = 'suspicious'
@@ -2698,7 +2698,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 30 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 35
                      AND (efm.gender='Female')
                      AND via_findings = 'suspicious'
@@ -2715,7 +2715,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 35 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 40
                      AND (efm.gender='Female')
                      AND via_findings = 'suspicious'
@@ -2732,7 +2732,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 40 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 45
                      AND (efm.gender='Female')
                      AND via_findings = 'suspicious'
@@ -2749,7 +2749,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 45 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 50
                      AND (efm.gender='Female')
                      AND via_findings = 'suspicious'
@@ -2766,7 +2766,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 50 <= (date('Now') - date(efm.dob))
                      AND (efm.gender='Female')
                      AND via_findings = 'suspicious'
@@ -2783,7 +2783,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 15 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 20
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_small_lesion'
@@ -2801,7 +2801,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 20 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 25
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_small_lesion'
@@ -2819,7 +2819,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 25 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 30
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_small_lesion'
@@ -2837,7 +2837,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 30 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 35
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_small_lesion'
@@ -2855,7 +2855,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 35 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 40
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_small_lesion'
@@ -2873,7 +2873,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 40 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 45
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_small_lesion'
@@ -2891,7 +2891,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 45 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 50
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_small_lesion'
@@ -2909,7 +2909,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 50 <= (date('Now') - date(efm.dob))
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_small_lesion'
@@ -2927,7 +2927,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 15 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 20
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_small_lesion'
@@ -2945,7 +2945,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 20 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 25
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_small_lesion'
@@ -2963,7 +2963,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 25 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 30
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_small_lesion'
@@ -2981,7 +2981,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 30 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 35
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_small_lesion'
@@ -2999,7 +2999,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 35 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 40
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_small_lesion'
@@ -3017,7 +3017,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 40 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 45
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_small_lesion'
@@ -3035,7 +3035,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 45 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 50
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_small_lesion'
@@ -3053,7 +3053,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 50 <= (date('Now') - date(efm.dob))
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_small_lesion'
@@ -3071,7 +3071,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 15 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 20
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_small_lesion'
@@ -3089,7 +3089,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 20 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 25
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_small_lesion'
@@ -3107,7 +3107,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 25 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 30
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_small_lesion'
@@ -3125,7 +3125,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 30 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 35
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_small_lesion'
@@ -3143,7 +3143,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 35 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 40
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_small_lesion'
@@ -3161,7 +3161,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 40 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 45
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_small_lesion'
@@ -3179,7 +3179,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 45 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 50
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_small_lesion'
@@ -3197,7 +3197,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 50 <= (date('Now') - date(efm.dob))
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_small_lesion'
@@ -3215,7 +3215,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 15 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 20
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_small_lesion'
@@ -3233,7 +3233,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 20 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 25
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_small_lesion'
@@ -3251,7 +3251,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 25 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 30
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_small_lesion'
@@ -3269,7 +3269,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 30 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 35
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_small_lesion'
@@ -3287,7 +3287,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 35 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 40
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_small_lesion'
@@ -3305,7 +3305,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 40 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 45
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_small_lesion'
@@ -3323,7 +3323,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 45 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 50
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_small_lesion'
@@ -3341,7 +3341,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 50 <= (date('Now') - date(efm.dob))
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_small_lesion'
@@ -3359,7 +3359,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 15 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 20
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_small_lesion'
@@ -3377,7 +3377,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 20 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 25
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_small_lesion'
@@ -3395,7 +3395,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 25 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 30
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_small_lesion'
@@ -3413,7 +3413,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 30 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 35
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_small_lesion'
@@ -3431,7 +3431,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 35 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 40
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_small_lesion'
@@ -3449,7 +3449,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 40 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 45
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_small_lesion'
@@ -3467,7 +3467,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 45 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 50
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_small_lesion'
@@ -3485,7 +3485,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 50 <= (date('Now') - date(efm.dob))
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_small_lesion'
@@ -3503,7 +3503,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 15 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 20
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_small_lesion'
@@ -3521,7 +3521,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 20 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 25
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_small_lesion'
@@ -3539,7 +3539,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 25 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 30
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_small_lesion'
@@ -3557,7 +3557,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 30 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 35
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_small_lesion'
@@ -3575,7 +3575,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 35 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 40
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_small_lesion'
@@ -3593,7 +3593,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 40 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 45
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_small_lesion'
@@ -3611,7 +3611,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 45 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 50
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_small_lesion'
@@ -3629,7 +3629,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 50 <= (date('Now') - date(efm.dob))
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_small_lesion'
@@ -3646,7 +3646,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 15 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 20
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_large_lesion'
@@ -3663,7 +3663,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 20 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 25
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_large_lesion'
@@ -3680,7 +3680,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 25 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 30
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_large_lesion'
@@ -3697,7 +3697,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 30 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 34
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_large_lesion'
@@ -3714,7 +3714,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 35 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 40
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_large_lesion'
@@ -3731,7 +3731,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 40 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 45
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_large_lesion'
@@ -3748,7 +3748,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 45 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 50
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_large_lesion'
@@ -3765,7 +3765,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 50 <= (date('Now') - date(efm.dob))
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_large_lesion'
@@ -3782,7 +3782,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 15 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 20
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_large_lesion'
@@ -3799,7 +3799,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 20 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 25
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_large_lesion'
@@ -3816,7 +3816,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 25 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 30
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_large_lesion'
@@ -3833,7 +3833,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 30 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 34
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_large_lesion'
@@ -3850,7 +3850,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 35 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 40
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_large_lesion'
@@ -3867,7 +3867,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 40 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 45
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_large_lesion'
@@ -3884,7 +3884,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 45 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 50
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_large_lesion'
@@ -3901,7 +3901,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 50 <= (date('Now') - date(efm.dob))
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_large_lesion'
@@ -3918,7 +3918,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 15 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 20
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_large_lesion'
@@ -3935,7 +3935,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 20 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 25
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_large_lesion'
@@ -3952,7 +3952,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 25 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 30
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_large_lesion'
@@ -3969,7 +3969,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 30 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 34
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_large_lesion'
@@ -3986,7 +3986,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 35 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 40
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_large_lesion'
@@ -4003,7 +4003,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 40 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 45
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_large_lesion'
@@ -4020,7 +4020,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 45 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 50
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_large_lesion'
@@ -4037,7 +4037,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 50 <= (date('Now') - date(efm.dob))
                      AND (efm.gender='Female')
                      AND via_findings = 'positive_with_large_lesion'
@@ -4055,7 +4055,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 15 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 20
                      AND (efm.gender='Female')
                      AND via_findings LIKE '%positive%'
@@ -4073,7 +4073,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 20 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 25
                      AND (efm.gender='Female')
                      AND via_findings LIKE '%positive%'
@@ -4091,7 +4091,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 25 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 30
                      AND (efm.gender='Female')
                      AND via_findings LIKE '%positive%'
@@ -4109,7 +4109,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 30 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 35
                      AND (efm.gender='Female')
                      AND via_findings LIKE '%positive%'
@@ -4127,7 +4127,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 35 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 40
                      AND (efm.gender='Female')
                      AND via_findings LIKE '%positive%'
@@ -4145,7 +4145,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 40 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 45
                      AND (efm.gender='Female')
                      AND via_findings LIKE '%positive%'
@@ -4163,7 +4163,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 45 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 50
                      AND (efm.gender='Female')
                      AND via_findings LIKE '%positive%'
@@ -4181,7 +4181,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 50 <= (date('Now') - date(efm.dob))
                      AND (efm.gender='Female')
                      AND via_findings LIKE '%positive%'
@@ -4199,7 +4199,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 15 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 20
                      AND (efm.gender='Female')
                      AND via_findings LIKE '%positive%'
@@ -4217,7 +4217,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 20 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 25
                      AND (efm.gender='Female')
                      AND via_findings LIKE '%positive%'
@@ -4235,7 +4235,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 25 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 30
                      AND (efm.gender='Female')
                      AND via_findings LIKE '%positive%'
@@ -4253,7 +4253,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 30 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 35
                      AND (efm.gender='Female')
                      AND via_findings LIKE '%positive%'
@@ -4271,7 +4271,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 35 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 40
                      AND (efm.gender='Female')
                      AND via_findings LIKE '%positive%'
@@ -4289,7 +4289,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 40 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 45
                      AND (efm.gender='Female')
                      AND via_findings LIKE '%positive%'
@@ -4307,7 +4307,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 45 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 50
                      AND (efm.gender='Female')
                      AND via_findings LIKE '%positive%'
@@ -4325,7 +4325,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 50 <= (date('Now') - date(efm.dob))
                      AND (efm.gender='Female')
                      AND via_findings LIKE '%positive%'
@@ -4343,7 +4343,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 15 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 20
                      AND (efm.gender='Female')
                      AND via_findings LIKE '%positive%'
@@ -4361,7 +4361,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 20 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 25
                      AND (efm.gender='Female')
                      AND via_findings LIKE '%positive%'
@@ -4379,7 +4379,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 25 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 30
                      AND (efm.gender='Female')
                      AND via_findings LIKE '%positive%'
@@ -4397,7 +4397,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 30 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 35
                      AND (efm.gender='Female')
                      AND via_findings LIKE '%positive%'
@@ -4415,7 +4415,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 35 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 40
                      AND (efm.gender='Female')
                      AND via_findings LIKE '%positive%'
@@ -4433,7 +4433,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 40 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 45
                      AND (efm.gender='Female')
                      AND via_findings LIKE '%positive%'
@@ -4451,7 +4451,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 45 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 50
                      AND (efm.gender='Female')
                      AND via_findings LIKE '%positive%'
@@ -4469,7 +4469,7 @@ indicators:
                      FROM ec_cecap_register ecr
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ecr.base_entity_id
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
-                     INNER JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
+                     LEFT JOIN ec_cecap_test_results ectr ON ectr.entity_id = ecr.base_entity_id
                      WHERE 50 <= (date('Now') - date(efm.dob))
                      AND (efm.gender='Female')
                      AND via_findings LIKE '%positive%'

@@ -1873,7 +1873,7 @@
     <string name="cecap_hpv_dna_specimen_collection_date">HPV DNA Sample Collection Date:</string>
     <string name="cecap_hpv_dna_specimen_collection_time">HPV DNA Sample Collection Time:</string>
     <string name="cecap_hpv_dna_specimen_sample_id">HPV DNA Sample ID:</string>
-
+    <string name="cecap_next_appointment_date">Next appointment date:</string>
     <string name="view_asrh_report">View ASRH Report</string>
     <string name="view_cecap_report">View CECAP Report</string>
 
