@@ -18,6 +18,7 @@
     <string name="chw">Mtoa Huduma</string>
     <string name="referral_date">Tarehe ya rufaa</string>
     <string name="problem">Tatizo</string>
+    <string name="services_before_referral">Huduma kabla ya rufaa</string>
     <string name="phone">Simu</string>
     <string name="client_name_age_suffix">%s, %s</string>
     <string name="mark_as_done_title">Imefanyika?</string>
