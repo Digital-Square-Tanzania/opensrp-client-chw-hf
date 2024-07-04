@@ -42,13 +42,148 @@
     "encounter_location": ""
   },
   "step1": {
-    "title": "DNA-PCR Sample Collection",
+    "title": "DNA-PCR Sample Request",
     "fields": [
       {
-        "key": "clinician_name",
+        "key": "do_you_want_to_request_for_dna_pcr_sample_collection",
+        "type": "native_radio",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "do_you_want_to_request_for_dna_pcr_sample_collection",
+        "openmrs_entity_parent": "",
+        "label": "Do you want to request the client DNA-PCR sample?",
+        "options": [
+          {
+            "key": "yes",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "yes",
+            "openmrs_entity_parent": "",
+            "text": "Yes"
+          },
+          {
+            "key": "no",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "no",
+            "openmrs_entity_parent": "",
+            "text": "No"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": null
+        }
+      },
+      {
+        "key": "reason_for_requesting_test",
+        "type": "native_radio",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "reason_for_requesting_test",
+        "openmrs_entity_parent": "",
+        "label": "Reasons for requesting DNA-PCR Sample Collection?",
+        "options": [
+          {
+            "key": "dna_pcr_diagnostic_test_at_birth",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "dna_pcr_diagnostic_test_at_birth",
+            "openmrs_entity_parent": "",
+            "text": "DNA PCR Diagnostic Test (At Birth)"
+          },
+          {
+            "key": "dna_pcr_diagnostic_test_6_weeks_after_birth",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "dna_pcr_diagnostic_test_6_weeks_after_birth",
+            "openmrs_entity_parent": "",
+            "text": "DNA PCR Diagnostic Test (Week 6 after Birth)"
+          },
+          {
+            "key": "dna_pcr_diagnostic_test_9_months_after_birth",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "dna_pcr_diagnostic_test_9_months_after_birth",
+            "openmrs_entity_parent": "",
+            "text": "Repeat DNA PCR Test (9 Months after Birth)."
+          },
+          {
+            "key": "dna_pcr_test_after_positive_antibody_results",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "dna_pcr_test_after_positive_antibody_results",
+            "openmrs_entity_parent": "",
+            "text": "DNA PCR test after positive antibody results."
+          },
+          {
+            "key": "confirmatory_test_for_positive_results",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "confirmatory_test_for_positive_results",
+            "openmrs_entity_parent": "",
+            "text": "Confirmation test for positive results."
+          },
+          {
+            "key": "repeat_test_after_final_sample_fails_or_is_rejected",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "repeat_test_after_final_sample_fails_or_is_rejected",
+            "openmrs_entity_parent": "",
+            "text": "Repeat test after the final sample fails or is rejected."
+          },
+          {
+            "key": "retesting_hvl_after_3_months_from_completion_of_eac",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "retesting_hvl_after_3_months_from_completion_of_eac",
+            "openmrs_entity_parent": "",
+            "text": "Retesting HVL after 3 months from completion of EAC"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": null
+        },
+        "relevance": {
+          "step1:do_you_want_to_request_for_dna_pcr_sample_collection": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
+        }
+      },
+      {
+        "key": "sample_request_date",
+        "type": "date_picker",
+        "hint": "Sample Request Date",
+        "openmrs_entity_id": "sample_request_date",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "min_date": "today-5y",
+        "max_date": "today",
+        "v_required": {
+          "value": true,
+          "err": "Please enter the request date"
+        },
+        "relevance": {
+          "step1:do_you_want_to_request_for_dna_pcr_sample_collection": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
+        }
+      },
+      {
+        "key": "sample_request_time",
+        "type": "time_picker",
+        "hint": "HVL Sample Request Time",
+        "openmrs_entity_id": "sample_request_time",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "v_required": {
+          "value": true,
+          "err": "Please enter the request time"
+        },
+        "relevance": {
+          "step1:do_you_want_to_request_for_dna_pcr_sample_collection": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
+        }
+      },
+      {
+        "key": "requester_clinician_name",
         "type": "edit_text",
-        "hint": "Healthcare Provider's Name",
-        "openmrs_entity_id": "clinician_name",
+        "hint": "Name of the Requester",
+        "openmrs_entity_id": "requester_clinician_name",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "v_regex": {
@@ -58,52 +193,27 @@
         "v_required": {
           "value": true,
           "err": "Please enter the healthcare provider's name"
-        }
-      },
-      {
-        "key": "clinician_position",
-        "type": "spinner",
-        "hint": "Healthcare Provider's Title",
-        "openmrs_entity_id": "clinician_position",
-        "openmrs_entity": "concept",
-        "openmrs_entity_parent": "",
-        "values": [
-          "Medical Officer",
-          "Assistant Medical Officer",
-          "Clinical Officer",
-          "Assistant Clinical Officer",
-          "Nurse",
-          "Laboratory personnel"
-        ],
-        "keys": [
-          "medical_officer",
-          "assistant_medical_officer",
-          "clinical_officer",
-          "assistant_clinical_officer",
-          "nurse",
-          "laboratory_personnel"
-        ],
-        "openmrs_choice_ids": {
-          "medical_officer": "medical_officer",
-          "assistant_medical_officer": "assistant_medical_officer",
-          "clinical_officer": "clinical_officer",
-          "assistant_clinical_officer": "assistant_clinical_officer",
-          "nurse": "nurse",
-          "laboratory_personnel": "laboratory_personnel"
         },
-        "v_required": {
-          "value": true,
-          "err": "Please enter the healthcare provider's title"
+        "relevance": {
+          "step1:do_you_want_to_request_for_dna_pcr_sample_collection": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
         }
       },
       {
-        "key": "clinician_phone_number",
+        "key": "requester_phone_number",
         "type": "edit_text",
         "hint": "Healthcare Provider's Phone Number",
         "edit_type": "number",
-        "openmrs_entity_id": "clinician_phone_number",
+        "openmrs_entity_id": "requester_phone_number",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
+        "v_max_length": {
+          "value": "10",
+          "is_fixed_size": "true",
+          "err": "Please enter a valid phone number"
+        },
         "v_numeric": {
           "value": "true",
           "err": "Number must be a total of 10 digits and must start with 06 au 07."
@@ -115,58 +225,25 @@
         "v_required": {
           "value": true,
           "err": "Please enter the healthcare provider's phone number"
+        },
+        "relevance": {
+          "step1:do_you_want_to_request_for_dna_pcr_sample_collection": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
         }
-      },
-      {
-        "key": "sample_collection_date",
-        "type": "date_picker",
-        "hint": "DNA-PCR Sample Collection Date",
-        "openmrs_entity_id": "sample_collection_date",
-        "openmrs_entity": "concept",
-        "openmrs_entity_parent": "",
-        "min_date": "today-5y",
-        "max_date": "today",
-        "v_required": {
-          "value": true,
-          "err": "Please enter the collection date"
-        }
-      },
-      {
-        "key": "dna_pcr_collection_time",
-        "type": "time_picker",
-        "hint": "DNA-PCR Sample Collection Time",
-        "openmrs_entity_id": "dna_pcr_collection_time",
-        "openmrs_entity": "concept",
-        "openmrs_entity_parent": "",
-        "v_required": {
-          "value": true,
-          "err": "Please enter the collection time"
-        }
-      },
-      {
-        "key": "sample_id",
-        "type": "edit_text",
-        "hint": "DNA-PCR Sample ID",
-        "openmrs_entity_id": "sample_id",
-        "openmrs_entity": "concept",
-        "openmrs_entity_parent": "",
-        "v_required": {
-          "value": true,
-          "err": "Please enter the sample ID"
-        }
-      },
-      {
-        "key": "type_of_hiv_test",
-        "type": "hidden",
-        "openmrs_entity_id": "type_of_hiv_test",
-        "openmrs_entity": "concept",
-        "openmrs_entity_parent": "",
-        "value": "DNA PCR"
       },
       {
         "key": "test_at_age",
         "type": "hidden",
         "openmrs_entity_id": "test_at_age",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": ""
+      },
+      {
+        "key": "sample_id",
+        "type": "hidden",
+        "openmrs_entity_id": "sample_id",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": ""
       }

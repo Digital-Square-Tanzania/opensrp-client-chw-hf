@@ -160,7 +160,7 @@
     <string name="pmtct_counselling_title">Continuous Health Education</string>
     <string name="pmtct_baseline_investigation_title">Baseline Investigation</string>
     <string name="cd4_sample_collection">CD4 Sample Collection</string>
-    <string name="hvl_sample_collection">HVL Sample Collection</string>
+    <string name="hvl_sample_request">HVL Sample Request</string>
     <string name="arv_prescription_title">ARV prescription</string>
     <string name="tb_screening_title">TB Screening</string>
     <string name="pmtct_followup_status">Followup Status:</string>
@@ -1805,6 +1805,10 @@
     <string name="sbc_print_materials">Print Materials</string>
     <string name="sbc_other_hiv_interventions">Other HIV Interventions</string>
     <string name="sbc_income_generating_activity">Income Generating Activity (IGA)</string>
+
+
+    <!--    LAB Module-->
+    <string name="lab">LAB</string>
 
 
 </resources>

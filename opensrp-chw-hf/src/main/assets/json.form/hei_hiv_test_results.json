@@ -53,6 +53,13 @@
         "openmrs_entity_parent": ""
       },
       {
+        "key": "sample_results_date",
+        "type": "hidden",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "sample_results_date",
+        "openmrs_entity_parent": ""
+      },
+      {
         "key": "hiv_test_result",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -191,24 +198,35 @@
         }
       },
       {
-        "key": "hiv_test_result_to_parent_date",
+        "key": "date_results_provided_to_client",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "hiv_test_result_to_parent_date",
+        "openmrs_entity_id": "date_results_provided_to_client",
         "type": "date_picker",
         "hint": "Date Results given to Mother/Caregiver",
         "expanded": false,
-        "min_date": "today-3y",
         "max_date": "today",
         "v_required": {
           "value": "true",
-          "err": "Tafadhali chagua Tarehe ya majibu kupewa mzazi"
+          "err": "Please select the date results are provided to Parents"
         },
         "relevance": {
           "step1:results_provided_to_parents": {
             "type": "string",
             "ex": "equalTo(., \"yes\")"
           }
+        }
+      },
+      {
+        "key": "time_results_provided_to_client",
+        "type": "time_picker",
+        "hint": "Time Results Provided to Client",
+        "openmrs_entity_id": "time_results_provided_to_client",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "v_required": {
+          "value": true,
+          "err": "Please enter the time"
         }
       },
       {

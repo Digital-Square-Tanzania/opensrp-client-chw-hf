@@ -46,6 +46,7 @@ import org.smartregister.chw.hf.HealthFacilityApplication;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.adapter.PmtctReferralCardViewAdapter;
 import org.smartregister.chw.hf.custom_view.PmtctFloatingMenu;
+import org.smartregister.chw.hf.dao.HeiDao;
 import org.smartregister.chw.hf.dao.HfPmtctDao;
 import org.smartregister.chw.hf.interactor.PmtctProfileInteractor;
 import org.smartregister.chw.hf.model.FamilyProfileModel;
@@ -59,6 +60,8 @@ import org.smartregister.chw.hf.utils.TimeUtils;
 import org.smartregister.chw.hiv.dao.HivDao;
 import org.smartregister.chw.hiv.domain.HivMemberObject;
 import org.smartregister.chw.hivst.dao.HivstDao;
+import org.smartregister.chw.lab.dao.LabDao;
+import org.smartregister.chw.lab.domain.TestSample;
 import org.smartregister.chw.pmtct.PmtctLibrary;
 import org.smartregister.chw.pmtct.dao.PmtctDao;
 import org.smartregister.chw.pmtct.domain.Visit;
@@ -114,6 +117,7 @@ public class PmtctProfileActivity extends CorePmtctProfileActivity {
         if (notificationAndReferralRecyclerView != null && notificationAndReferralRecyclerView.getAdapter() != null) {
             notificationAndReferralRecyclerView.getAdapter().notifyDataSetChanged();
         }
+        invalidateOptionsMenu();
     }
 
     @Override
@@ -140,6 +144,8 @@ public class PmtctProfileActivity extends CorePmtctProfileActivity {
             int age = memberObject.getAge();
             menu.findItem(R.id.action_hivst_registration).setVisible(HivstDao.isRegisteredForHivst(baseEntityId) && age >= 15);
         }
+        List<TestSample> testSamples = LabDao.getTestSamplesRequestsWithNoResultsBySampleTypeAndPatientId(org.smartregister.chw.lab.util.Constants.SAMPLE_TYPES.HVL, HivDao.getMember(memberObject.getBaseEntityId()).getCtcNumber());
+        menu.findItem(R.id.action_collect_hvl_sample).setVisible(testSamples == null || testSamples.isEmpty());
         return true;
     }
 
@@ -177,6 +183,9 @@ public class PmtctProfileActivity extends CorePmtctProfileActivity {
             } else if (itemId == org.smartregister.chw.core.R.id.action_hivst_registration) {
                 startHivstRegistration();
                 return true;
+            } else if (itemId == org.smartregister.chw.core.R.id.action_collect_hvl_sample) {
+                startLabSampleCollection();
+                return true;
             }
         } catch (JSONException e) {
             Timber.e(e);
@@ -188,6 +197,10 @@ public class PmtctProfileActivity extends CorePmtctProfileActivity {
         CommonPersonObjectClient commonPersonObjectClient = getClientDetailsByBaseEntityID(baseEntityId);
         String gender = org.smartregister.chw.core.utils.Utils.getValue(commonPersonObjectClient.getColumnmaps(), org.smartregister.family.util.DBConstants.KEY.GENDER, false);
         HivstRegisterActivity.startHivstRegistrationActivity(this, baseEntityId, gender);
+    }
+
+    private void startLabSampleCollection() {
+        LabRegisterActivity.startLabRegisterActivity(this, memberObject.getBaseEntityId(), org.smartregister.chw.lab.util.Constants.FORMS.LAB_HVL_SAMPLE_COLLECTION);
     }
 
 
@@ -417,6 +430,12 @@ public class PmtctProfileActivity extends CorePmtctProfileActivity {
                 } catch (Exception e) {
                     Timber.e(e);
                 }
+            }else if (textView.getText().equals(getResources().getString(R.string.collect_hvl_sample))) {
+                try {
+                    startLabSampleCollection();
+                } catch (Exception e) {
+                    Timber.e(e);
+                }
             } else {
                 PmtctFollowupVisitActivity.startPmtctFollowUpActivity(this, baseEntityId, false);
             }
@@ -549,7 +568,7 @@ public class PmtctProfileActivity extends CorePmtctProfileActivity {
 
     @Override
     public void openHvlResultsHistory() {
-        Intent intent = new Intent(this, HvlResultsViewActivity.class);
+        Intent intent = new Intent(this, LabHvlResultsViewActivity.class);
         intent.putExtra(Constants.ACTIVITY_PAYLOAD.BASE_ENTITY_ID, baseEntityId);
         startActivity(intent);
     }
@@ -611,6 +630,16 @@ public class PmtctProfileActivity extends CorePmtctProfileActivity {
                 textViewRecordPmtct.setText(R.string.record_pmtct_visit);
             } else {
                 textViewRecordPmtct.setText(R.string.record_pmtct);
+            }
+
+            if (HfPmtctDao.hasPendingLabSampleCollection(baseEntityId)) {
+                TextView linkedMotherChampion = findViewById(R.id.linked_to_mother_champion);
+                if (textViewClientRegNumber.getVisibility() == View.VISIBLE)
+                    findViewById(R.id.family_head_separator).setVisibility(View.VISIBLE);
+
+                linkedMotherChampion.setVisibility(View.VISIBLE);
+                linkedMotherChampion.setText(getString(R.string.has_pending_sample_collection));
+                linkedMotherChampion.setTextColor(getResources().getColor(R.color.visit_status_over_due));
             }
 
             Visit lastFolllowUpVisit = getVisit(Constants.EVENT_TYPE.PMTCT_FOLLOWUP);
