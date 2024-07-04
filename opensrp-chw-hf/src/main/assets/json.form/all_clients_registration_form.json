@@ -861,7 +861,7 @@
           },
           {
             "key": "albinism",
-            "text": "Ualbino",
+            "text": "Albinism",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "albinism"
           }
