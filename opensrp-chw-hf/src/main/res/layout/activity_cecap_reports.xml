@@ -37,7 +37,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center_vertical|start"
                 android:paddingEnd="0dp"
-                android:text="CECAP Reports"
+                android:text="Reproductive Cancers Reports"
                 android:textColor="@color/white"
                 android:textSize="17sp" />
         </androidx.appcompat.widget.Toolbar>
@@ -84,7 +84,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="20dp"
-            android:text="CECAP Report"
+            android:text="Reproductive Cancers Report"
             android:textAlignment="center"
             android:textAppearance="?attr/textAppearanceHeadline2"
             android:textSize="18sp"
@@ -143,7 +143,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="20dp"
-            android:text="CECAP Other Report"
+            android:text="Reproductive Cancers Other Report"
             android:textAlignment="center"
             android:textAppearance="?attr/textAppearanceHeadline2"
             android:textSize="18sp"

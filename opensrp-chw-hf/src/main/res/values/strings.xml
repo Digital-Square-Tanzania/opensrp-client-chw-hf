@@ -812,7 +812,7 @@
     <string name="gbv">GBV</string>
     <string name="pep">PEP</string>
     <string name="vmmc">VMMC</string>
-    <string name="cecap">CECAP</string>
+    <string name="cecap">Reproductive Cancers</string>
     <string name="cacx">CaCx</string>
     <string name="drug_use_disorder">Drug use disorder</string>
     <string name="hiv_aids">HIV and AIDS couple</string>
@@ -1723,13 +1723,13 @@
     <string name="sbc_mobilization_sessions_title">SBC Mobilizations</string>
     <string name="sbc_type_of_sbc_activity">Type of SBC Activity</string>
     <string name="sbc_reports_title">SBC Report</string>
-    <string name="cecap_reports_title">CECAP Report</string>
-    <string name="cecap_other_reports_title">CECAP Other Reports</string>
+    <string name="cecap_reports_title">Reproductive Cancers Report</string>
+    <string name="cecap_other_reports_title">Reproductive Cancers Other Reports</string>
     <string name="asrh_reports_title">ASRH Report</string>
     <string name="sbc_reports">SBC Reports</string>
     <string name="sbc_reports_subtitle">View SBC Report</string>
     <string name="sbc_registration">SBC Registration</string>
-    <string name="cecap_registration">Cecap Enrollment</string>
+    <string name="cecap_registration">Reproductive Cancers Enrollment</string>
     <string name="sbc_campaign">Campaign</string>
     <string name="sbc_religious_events">Religious events</string>
     <string name="sbc_community_meetings">Community meetings</string>
@@ -1875,7 +1875,7 @@
     <string name="cecap_hpv_dna_specimen_sample_id">HPV DNA Sample ID:</string>
     <string name="cecap_next_appointment_date">Next appointment date:</string>
     <string name="view_asrh_report">View ASRH Report</string>
-    <string name="view_cecap_report">View CECAP Report</string>
+    <string name="view_cecap_report">View Reproductive Cancers Report</string>
 
 
     <string name="kvp_tomorrow_visits">Tomorrow visits</string>
