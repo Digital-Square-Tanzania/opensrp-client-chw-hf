@@ -8,7 +8,7 @@ indicators:
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
                      WHERE 15 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 20
                      AND ecr.partner_accompaniment = 'yes'
-                     AND ecr.hiv_status = 'positive'
+                     AND ecr.hiv_status LIKE '%positive%'
                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                      date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
@@ -22,7 +22,7 @@ indicators:
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
                      WHERE 20 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 25
                      AND ecr.partner_accompaniment = 'yes'
-                     AND ecr.hiv_status = 'positive'
+                      AND ecr.hiv_status LIKE '%positive%'
                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                      date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
@@ -36,7 +36,7 @@ indicators:
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
                      WHERE 25 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 30
                      AND ecr.partner_accompaniment = 'yes'
-                     AND ecr.hiv_status = 'positive'
+                      AND ecr.hiv_status LIKE '%positive%'
                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                      date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
@@ -50,7 +50,7 @@ indicators:
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
                      WHERE 30 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 35
                      AND ecr.partner_accompaniment = 'yes'
-                     AND ecr.hiv_status = 'positive'
+                      AND ecr.hiv_status LIKE '%positive%'
                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                      date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
@@ -65,7 +65,7 @@ indicators:
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
                      WHERE 35 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 40
                      AND ecr.partner_accompaniment = 'yes'
-                     AND ecr.hiv_status = 'positive'
+                      AND ecr.hiv_status LIKE '%positive%'
                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                      date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
@@ -80,7 +80,7 @@ indicators:
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
                      WHERE 40 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 45
                      AND ecr.partner_accompaniment = 'yes'
-                     AND ecr.hiv_status = 'positive'
+                      AND ecr.hiv_status LIKE '%positive%'
                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                      date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
@@ -95,7 +95,7 @@ indicators:
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
                      WHERE 45 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 50
                      AND ecr.partner_accompaniment = 'yes'
-                     AND ecr.hiv_status = 'positive'
+                      AND ecr.hiv_status LIKE '%positive%'
                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                      date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
@@ -110,7 +110,7 @@ indicators:
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
                      WHERE 50 <= (date('Now') - date(efm.dob))
                      AND ecr.partner_accompaniment = 'yes'
-                     AND ecr.hiv_status = 'positive'
+                      AND ecr.hiv_status LIKE '%positive%'
                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                      date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
@@ -363,7 +363,7 @@ indicators:
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
                      WHERE 15 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 20
                      AND pap_smear_sample_id is NOT NULL
-                     AND ecr.hiv_status = 'positive'
+                      AND ecr.hiv_status LIKE '%positive%'
                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                      date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
@@ -378,7 +378,7 @@ indicators:
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
                      WHERE 20 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 25
                      AND pap_smear_sample_id is NOT NULL
-                     AND ecr.hiv_status = 'positive'
+                      AND ecr.hiv_status LIKE '%positive%'
                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                      date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
@@ -393,7 +393,7 @@ indicators:
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
                      WHERE 25 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 30
                      AND pap_smear_sample_id is NOT NULL
-                     AND ecr.hiv_status = 'positive'
+                      AND ecr.hiv_status LIKE '%positive%'
                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                      date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
@@ -408,7 +408,7 @@ indicators:
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
                      WHERE 30 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 35
                      AND pap_smear_sample_id is NOT NULL
-                     AND ecr.hiv_status = 'positive'
+                      AND ecr.hiv_status LIKE '%positive%'
                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                      date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
@@ -423,7 +423,7 @@ indicators:
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
                      WHERE 35 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 40
                      AND pap_smear_sample_id is NOT NULL
-                     AND ecr.hiv_status = 'positive'
+                      AND ecr.hiv_status LIKE '%positive%'
                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                      date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
@@ -438,7 +438,7 @@ indicators:
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
                      WHERE 40 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 45
                      AND pap_smear_sample_id is NOT NULL
-                     AND ecr.hiv_status = 'positive'
+                      AND ecr.hiv_status LIKE '%positive%'
                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                      date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
@@ -453,7 +453,7 @@ indicators:
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
                      WHERE 45 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 50
                      AND pap_smear_sample_id is NOT NULL
-                     AND ecr.hiv_status = 'positive'
+                      AND ecr.hiv_status LIKE '%positive%'
                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                      date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
@@ -468,7 +468,7 @@ indicators:
                      INNER JOIN ec_cecap_visit ecv ON ecv.entity_id = ecr.base_entity_id
                      WHERE 50 <= (date('Now') - date(efm.dob))
                      AND pap_smear_sample_id is NOT NULL
-                     AND ecr.hiv_status = 'positive'
+                      AND ecr.hiv_status LIKE '%positive%'
                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                      date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
@@ -728,7 +728,7 @@ indicators:
                      WHERE 15 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 20
                      AND (efm.gender='Female')
                      AND ectr.pap_findings = 'abnormal'
-                     AND ecr.hiv_status = 'positive'
+                      AND ecr.hiv_status LIKE '%positive%'
                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                      date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
@@ -744,7 +744,7 @@ indicators:
                      WHERE 20 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 25
                      AND (efm.gender='Female')
                      AND ectr.pap_findings = 'abnormal'
-                     AND ecr.hiv_status = 'positive'
+                      AND ecr.hiv_status LIKE '%positive%'
                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                      date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
@@ -760,7 +760,7 @@ indicators:
                      WHERE 25 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 30
                      AND (efm.gender='Female')
                      AND ectr.pap_findings = 'abnormal'
-                     AND ecr.hiv_status = 'positive'
+                      AND ecr.hiv_status LIKE '%positive%'
                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                      date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
@@ -776,7 +776,7 @@ indicators:
                      WHERE 30 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 35
                      AND (efm.gender='Female')
                      AND ectr.pap_findings = 'abnormal'
-                     AND ecr.hiv_status = 'positive'
+                      AND ecr.hiv_status LIKE '%positive%'
                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                      date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
@@ -792,7 +792,7 @@ indicators:
                      WHERE 35 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 40
                      AND (efm.gender='Female')
                      AND ectr.pap_findings = 'abnormal'
-                     AND ecr.hiv_status = 'positive'
+                      AND ecr.hiv_status LIKE '%positive%'
                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                      date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
@@ -808,7 +808,7 @@ indicators:
                      WHERE 40 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 45
                      AND (efm.gender='Female')
                      AND ectr.pap_findings = 'abnormal'
-                     AND ecr.hiv_status = 'positive'
+                      AND ecr.hiv_status LIKE '%positive%'
                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                      date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
@@ -824,7 +824,7 @@ indicators:
                      WHERE 45 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 50
                      AND (efm.gender='Female')
                      AND ectr.pap_findings = 'abnormal'
-                     AND ecr.hiv_status = 'positive'
+                     AND ecr.hiv_status LIKE '%positive%'
                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                      date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
@@ -840,7 +840,7 @@ indicators:
                      WHERE 50 <= (date('Now') - date(efm.dob))
                      AND (efm.gender='Female')
                      AND ectr.pap_findings = 'abnormal'
-                     AND ecr.hiv_status = 'positive'
+                      AND ecr.hiv_status LIKE '%positive%'
                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
                      date(substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
                      '-' || substr(strftime('%Y-%m-%d', datetime(ecv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
