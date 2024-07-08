@@ -75,18 +75,6 @@
             "openmrs_entity_id": "heavy_vaginal_bleeding"
           },
           {
-            "key": "abnormal_discharge",
-            "text": "Abnormal discharge",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "abnormal_discharge"
-          },
-          {
-            "key": "abnormal_growth",
-            "text": "Abnormal growth (Cervical Polyp)",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "abnormal_growth"
-          },
-          {
             "key": "suspicious_for_cancer",
             "text": "Suspicious for cancer",
             "openmrs_entity": "concept",
