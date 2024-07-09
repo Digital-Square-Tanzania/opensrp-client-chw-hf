@@ -8045,6 +8045,73 @@
       ]
     },
     {
+      "name": "ec_kvp_hepatitis_test_results",
+      "columns": [
+        {
+          "column_name": "base_entity_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "formSubmissionId"
+          }
+        },
+        {
+          "column_name": "entity_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "baseEntityId"
+          }
+        },
+        {
+          "column_name": "hep_b_testing",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "hep_b_testing"
+          }
+        },
+        {
+          "column_name": "hep_b_result_given",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "hep_b_result_given"
+          }
+        },
+        {
+          "column_name": "hep_b_result",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "hep_b_result"
+          }
+        },
+        {
+          "column_name": "hep_c_result_given",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "hep_c_result_given"
+          }
+        },
+        {
+          "column_name": "hep_c_result",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "hep_c_result"
+          }
+        },
+        {
+          "column_name": "kvp_visit_date",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "kvp_visit_date"
+          }
+        }
+      ]
+    },
+    {
       "name": "ec_kvp_behavioral_services",
       "columns": [
         {
