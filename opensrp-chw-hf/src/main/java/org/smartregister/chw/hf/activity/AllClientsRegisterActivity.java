@@ -1,6 +1,7 @@
 package org.smartregister.chw.hf.activity;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -20,6 +21,7 @@ import org.smartregister.family.util.Utils;
 import org.smartregister.helper.BottomNavigationHelper;
 import org.smartregister.opd.contract.OpdRegisterActivityContract;
 import org.smartregister.opd.presenter.BaseOpdRegisterActivityPresenter;
+import org.smartregister.task.SaveTeamLocationsTask;
 import org.smartregister.view.fragment.BaseRegisterFragment;
 
 import java.util.Arrays;
@@ -28,6 +30,18 @@ import java.util.List;
 import timber.log.Timber;
 
 public class AllClientsRegisterActivity extends CoreAllClientsRegisterActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            boolean remote = extras.getBoolean("remote");
+            if (remote) {
+                Utils.startAsyncTask(new SaveTeamLocationsTask(), null);
+            }
+        }
+        super.onCreate(savedInstanceState);
+    }
 
     @Override
     protected BaseRegisterFragment getRegisterFragment() {

@@ -17,7 +17,9 @@ import org.smartregister.chw.hf.fragment.FamilyRegisterFragment;
 import org.smartregister.chw.hf.listener.HfFamilyBottomNavListener;
 import org.smartregister.chw.hf.model.FamilyRegisterModel;
 import org.smartregister.family.presenter.BaseFamilyRegisterPresenter;
+import org.smartregister.family.util.Utils;
 import org.smartregister.helper.BottomNavigationHelper;
+import org.smartregister.task.SaveTeamLocationsTask;
 import org.smartregister.view.fragment.BaseRegisterFragment;
 
 public class FamilyRegisterActivity extends CoreFamilyRegisterActivity {
@@ -59,6 +61,14 @@ public class FamilyRegisterActivity extends CoreFamilyRegisterActivity {
         super.onCreate(savedInstanceState);
         FacilityMenu.getInstance(this, null, null);
         HealthFacilityApplication.getInstance().notifyAppContextChange(); // initialize the language (bug in translation)
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            boolean remote = extras.getBoolean("remote");
+            if (remote) {
+                Utils.startAsyncTask(new SaveTeamLocationsTask(), null);
+            }
+        }
 
         action = getIntent().getStringExtra(CoreConstants.ACTIVITY_PAYLOAD.ACTION);
         if (action != null && action.equals(CoreConstants.ACTION.START_REGISTRATION)) {
