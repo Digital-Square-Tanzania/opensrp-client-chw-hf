@@ -51,13 +51,19 @@ public class LoginActivity extends BaseLoginActivity implements BaseLoginContrac
 
     @Override
     public void goToHome(boolean remote) {
-        if (remote) {
-            Utils.startAsyncTask(new SaveTeamLocationsTask(), null);
-        }
+
+        //moved here from login LoginInteractor to allow other executions to take place before we
+        //dismiss the progress dialog
+        showProgress(false);
 
         getToFamilyList(remote);
-
         finish();
+    }
+
+    @Override
+    public void showProgress(boolean show) {
+
+        super.showProgress(show);
     }
 
     private void getToFamilyList(boolean remote) {
