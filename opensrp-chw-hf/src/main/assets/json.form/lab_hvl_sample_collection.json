@@ -199,21 +199,20 @@
       },
       {
         "key": "other_reason_for_requesting_test",
-        "type": "edit_text",
+        "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "other_reason_for_requesting_test",
-        "openmrs_entity_parent": "",
-        "edit_type": "name",
-        "hint": "Other reasons for requesting HVL Sample Collection",
+        "type": "edit_text",
+        "hint": "Specify other reasons for requesting test",
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the reason"
+        },
         "relevance": {
           "step1:reason_for_requesting_test": {
             "type": "string",
             "ex": "equalTo(., \"other\")"
           }
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Please enter other danger sign"
         }
       },
       {

@@ -144,8 +144,10 @@ public class PmtctProfileActivity extends CorePmtctProfileActivity {
             int age = memberObject.getAge();
             menu.findItem(R.id.action_hivst_registration).setVisible(HivstDao.isRegisteredForHivst(baseEntityId) && age >= 15);
         }
-        List<TestSample> testSamples = LabDao.getTestSamplesRequestsWithNoResultsBySampleTypeAndPatientId(org.smartregister.chw.lab.util.Constants.SAMPLE_TYPES.HVL, HivDao.getMember(memberObject.getBaseEntityId()).getCtcNumber());
-        menu.findItem(R.id.action_collect_hvl_sample).setVisible(testSamples == null || testSamples.isEmpty());
+        if (HealthFacilityApplication.getApplicationFlavor().hasLab()) {
+            List<TestSample> testSamples = LabDao.getTestSamplesRequestsWithNoResultsBySampleTypeAndPatientId(org.smartregister.chw.lab.util.Constants.SAMPLE_TYPES.HVL, HivDao.getMember(memberObject.getBaseEntityId()).getCtcNumber());
+            menu.findItem(R.id.action_collect_hvl_sample).setVisible(testSamples == null || testSamples.isEmpty());
+        }
         return true;
     }
 
@@ -568,7 +570,12 @@ public class PmtctProfileActivity extends CorePmtctProfileActivity {
 
     @Override
     public void openHvlResultsHistory() {
-        Intent intent = new Intent(this, LabHvlResultsViewActivity.class);
+        Intent intent = null;
+        if (HealthFacilityApplication.getApplicationFlavor().hasLab()) {
+            intent =  new Intent(this, LabHvlResultsViewActivity.class);
+        }else {
+            intent =  new Intent(this, HvlResultsViewActivity.class);
+        }
         intent.putExtra(Constants.ACTIVITY_PAYLOAD.BASE_ENTITY_ID, baseEntityId);
         startActivity(intent);
     }
@@ -632,7 +639,7 @@ public class PmtctProfileActivity extends CorePmtctProfileActivity {
                 textViewRecordPmtct.setText(R.string.record_pmtct);
             }
 
-            if (HfPmtctDao.hasPendingLabSampleCollection(baseEntityId)) {
+            if (HealthFacilityApplication.getApplicationFlavor().hasLab() && HfPmtctDao.hasPendingLabSampleCollection(baseEntityId)) {
                 TextView linkedMotherChampion = findViewById(R.id.linked_to_mother_champion);
                 if (textViewClientRegNumber.getVisibility() == View.VISIBLE)
                     findViewById(R.id.family_head_separator).setVisibility(View.VISIBLE);
