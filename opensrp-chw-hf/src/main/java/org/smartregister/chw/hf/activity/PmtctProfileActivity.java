@@ -570,7 +570,12 @@ public class PmtctProfileActivity extends CorePmtctProfileActivity {
 
     @Override
     public void openHvlResultsHistory() {
-        Intent intent = new Intent(this, LabHvlResultsViewActivity.class);
+        Intent intent = null;
+        if (HealthFacilityApplication.getApplicationFlavor().hasLab()) {
+            intent =  new Intent(this, LabHvlResultsViewActivity.class);
+        }else {
+            intent =  new Intent(this, HvlResultsViewActivity.class);
+        }
         intent.putExtra(Constants.ACTIVITY_PAYLOAD.BASE_ENTITY_ID, baseEntityId);
         startActivity(intent);
     }
@@ -634,7 +639,7 @@ public class PmtctProfileActivity extends CorePmtctProfileActivity {
                 textViewRecordPmtct.setText(R.string.record_pmtct);
             }
 
-            if (HfPmtctDao.hasPendingLabSampleCollection(baseEntityId)) {
+            if (HealthFacilityApplication.getApplicationFlavor().hasLab() && HfPmtctDao.hasPendingLabSampleCollection(baseEntityId)) {
                 TextView linkedMotherChampion = findViewById(R.id.linked_to_mother_champion);
                 if (textViewClientRegNumber.getVisibility() == View.VISIBLE)
                     findViewById(R.id.family_head_separator).setVisibility(View.VISIBLE);

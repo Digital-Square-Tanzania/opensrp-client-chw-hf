@@ -239,14 +239,15 @@ public class HeiProfileActivity extends BasePmtctProfileActivity {
             HeiFollowupVisitActivity.startHeiFollowUpActivity(this, baseEntityId, false);
         }
         if (id == R.id.rlHvlResults) {
-//            Intent intent = new Intent(this, HeiHivResultsViewActivity.class);
-//            intent.putExtra(Constants.ACTIVITY_PAYLOAD.BASE_ENTITY_ID, baseEntityId);
-//            startActivity(intent);
-
-            Intent intent = new Intent(this, LabHvlResultsViewActivity.class);
-            intent.putExtra(Constants.ACTIVITY_PAYLOAD.BASE_ENTITY_ID, baseEntityId);
-            startActivity(intent);
-
+            if (HealthFacilityApplication.getApplicationFlavor().hasLab()) {
+                Intent intent = new Intent(this, LabHvlResultsViewActivity.class);
+                intent.putExtra(Constants.ACTIVITY_PAYLOAD.BASE_ENTITY_ID, baseEntityId);
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(this, HeiHivResultsViewActivity.class);
+                intent.putExtra(Constants.ACTIVITY_PAYLOAD.BASE_ENTITY_ID, baseEntityId);
+                startActivity(intent);
+            }
         }
         if (id == R.id.textview_record_hei_number) {
             JSONObject jsonForm = org.smartregister.chw.core.utils.FormUtils.getFormUtils().getFormJson(getHeiNumberRegistration());
