@@ -37,6 +37,7 @@ import org.smartregister.chw.core.interactor.CoreChildProfileInteractor;
 import org.smartregister.chw.core.listener.OnClickFloatingMenu;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.core.utils.CoreJsonFormUtils;
+import org.smartregister.chw.hf.HealthFacilityApplication;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.custom_view.PmtctFloatingMenu;
 import org.smartregister.chw.hf.dao.HeiDao;
@@ -461,8 +462,10 @@ public class HeiProfileActivity extends BasePmtctProfileActivity {
 
         menu.findItem(R.id.action_edit_hei_number).setVisible(HeiDao.hasHeiNumber(baseEntityId));
 
-        List<TestSample> testSamples = LabDao.getTestSamplesRequestsWithNoResultsBySampleTypeAndPatientId(org.smartregister.chw.lab.util.Constants.SAMPLE_TYPES.HEID, HeiDao.getHeiNumber(baseEntityId));
-        menu.findItem(R.id.action_collect_dna_pcr_sample).setVisible(HeiDao.hasHeiNumber(baseEntityId) && (testSamples == null || testSamples.isEmpty()));
+        if (HealthFacilityApplication.getApplicationFlavor().hasLab()) {
+            List<TestSample> testSamples = LabDao.getTestSamplesRequestsWithNoResultsBySampleTypeAndPatientId(org.smartregister.chw.lab.util.Constants.SAMPLE_TYPES.HEID, HeiDao.getHeiNumber(baseEntityId));
+            menu.findItem(R.id.action_collect_dna_pcr_sample).setVisible(HeiDao.hasHeiNumber(baseEntityId) && (testSamples == null || testSamples.isEmpty()));
+        }
 
         menu.findItem(R.id.action_remove_member).setVisible(true);
         return true;

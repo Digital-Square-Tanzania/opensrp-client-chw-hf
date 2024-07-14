@@ -144,8 +144,10 @@ public class PmtctProfileActivity extends CorePmtctProfileActivity {
             int age = memberObject.getAge();
             menu.findItem(R.id.action_hivst_registration).setVisible(HivstDao.isRegisteredForHivst(baseEntityId) && age >= 15);
         }
-        List<TestSample> testSamples = LabDao.getTestSamplesRequestsWithNoResultsBySampleTypeAndPatientId(org.smartregister.chw.lab.util.Constants.SAMPLE_TYPES.HVL, HivDao.getMember(memberObject.getBaseEntityId()).getCtcNumber());
-        menu.findItem(R.id.action_collect_hvl_sample).setVisible(testSamples == null || testSamples.isEmpty());
+        if (HealthFacilityApplication.getApplicationFlavor().hasLab()) {
+            List<TestSample> testSamples = LabDao.getTestSamplesRequestsWithNoResultsBySampleTypeAndPatientId(org.smartregister.chw.lab.util.Constants.SAMPLE_TYPES.HVL, HivDao.getMember(memberObject.getBaseEntityId()).getCtcNumber());
+            menu.findItem(R.id.action_collect_hvl_sample).setVisible(testSamples == null || testSamples.isEmpty());
+        }
         return true;
     }
 
