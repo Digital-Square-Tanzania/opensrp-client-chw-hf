@@ -6,12 +6,14 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
 
+import org.smartregister.chw.cecap.dao.CecapDao;
 import org.smartregister.chw.core.activity.CoreKvpProfileActivity;
 import org.smartregister.chw.hf.HealthFacilityApplication;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.dao.HfKvpDao;
 import org.smartregister.chw.hivst.dao.HivstDao;
 import org.smartregister.chw.kvp.KvpLibrary;
+import org.smartregister.chw.kvp.dao.KvpDao;
 import org.smartregister.chw.kvp.domain.Visit;
 import org.smartregister.chw.kvp.util.Constants;
 import org.smartregister.chw.kvp.util.DBConstants;
@@ -156,5 +158,26 @@ public class KvpProfileActivity extends CoreKvpProfileActivity {
 
     private Visit getVisit(String eventType) {
         return KvpLibrary.getInstance().visitRepository().getLatestVisit(memberObject.getBaseEntityId(), eventType);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setupViews();
+        fetchProfileData();
+        profilePresenter.refreshProfileBottom();
+        if (KvpDao.hasTestResults(memberObject.getBaseEntityId())) {
+            rlTestResults.setVisibility(View.VISIBLE);
+            viewSeparator1.setVisibility(View.VISIBLE);
+        } else {
+            rlTestResults.setVisibility(View.GONE);
+            viewSeparator1.setVisibility(View.GONE);
+        }
+    }
+
+    public void openTestResults() {
+        Intent intent = new Intent(this, KvpTestResultsViewActivity.class);
+        intent.putExtra(org.smartregister.chw.cecap.util.Constants.ACTIVITY_PAYLOAD.BASE_ENTITY_ID, memberObject.getBaseEntityId());
+        startActivity(intent);
     }
 }

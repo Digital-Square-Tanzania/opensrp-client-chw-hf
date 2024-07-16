@@ -32,13 +32,13 @@ import java.util.ArrayList;
 
 import timber.log.Timber;
 
-public class KvpHepatitisTestResultsViewActivity extends BaseTestResultsViewActivity implements View.OnClickListener {
+public class KvpTestResultsViewActivity extends BaseTestResultsViewActivity implements View.OnClickListener {
 
     private String baseEntityId;
     private String parentFormSubmissionId;
 
     public static void startResultsForm(Context context, String jsonString, String baseEntityId, String parentFormSubmissionId) {
-        Intent intent = new Intent(context, KvpHepatitisTestResultsViewActivity.class);
+        Intent intent = new Intent(context, KvpTestResultsViewActivity.class);
         intent.putExtra(Constants.ACTIVITY_PAYLOAD.KVP_FORM_NAME, jsonString);
         intent.putExtra(Constants.ACTIVITY_PAYLOAD.BASE_ENTITY_ID, baseEntityId);
         intent.putExtra(Constants.ACTIVITY_PAYLOAD.PARENT_FORM_ENTITY_ID, parentFormSubmissionId);
@@ -113,7 +113,8 @@ public class KvpHepatitisTestResultsViewActivity extends BaseTestResultsViewActi
                 Event baseEvent = org.smartregister.chw.pmtct.util.JsonFormUtils.processJsonForm(allSharedPreferences, jsonString, Constants.TABLES.KVP_HEPATITIS_TEST_RESULTS);
                 org.smartregister.chw.pmtct.util.JsonFormUtils.tagEvent(allSharedPreferences, baseEvent);
                 baseEvent.setBaseEntityId(baseEntityId);
-                baseEvent.addObs((new Obs()).withFormSubmissionField(DBConstants.KEY.KVP_HEPATITIS_TEST_RESULTS_FOLLOWUP_FORM_SUBMISSION_ID).withValue(parentFormSubmissionId).withFieldCode(DBConstants.KEY.KVP_HEPATITIS_TEST_RESULTS_FOLLOWUP_FORM_SUBMISSION_ID).withFieldType("formsubmissionField").withFieldDataType("text").withParentCode("").withHumanReadableValues(new ArrayList<>()));
+
+                baseEvent.addObs((new Obs()).withFormSubmissionField(DBConstants.KEY.VISIT_ID).withValue(parentFormSubmissionId).withFieldCode(DBConstants.KEY.VISIT_ID).withFieldType("formsubmissionField").withFieldDataType("text").withParentCode("").withHumanReadableValues(new ArrayList<>()));
 
                 JSONObject jsonObject = new JSONObject(jsonString);
                 if (jsonObject.has(FORM_SUBMISSION_ID)) {

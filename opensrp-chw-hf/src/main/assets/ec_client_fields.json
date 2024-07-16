@@ -8051,7 +8051,8 @@
           "column_name": "base_entity_id",
           "type": "Event",
           "json_mapping": {
-            "field": "formSubmissionId"
+            "field": "obs.fieldCode",
+            "concept": "visit_id"
           }
         },
         {
@@ -8062,51 +8063,41 @@
           }
         },
         {
-          "column_name": "hep_b_testing",
+          "column_name": "form_submission_id",
           "type": "Event",
           "json_mapping": {
-            "field": "obs.fieldCode",
-            "concept": "hep_b_testing"
+            "field": "formSubmissionId"
           }
         },
         {
-          "column_name": "hep_b_result_given",
+          "column_name": "test_type",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
-            "concept": "hep_b_result_given"
+            "concept": "test_type"
           }
         },
         {
-          "column_name": "hep_b_result",
+          "column_name": "test_results",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
-            "concept": "hep_b_result"
+            "concept": "test_results"
           }
         },
         {
-          "column_name": "hep_c_result_given",
+          "column_name": "test_date",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
-            "concept": "hep_c_result_given"
+            "concept": "test_date"
           }
         },
         {
-          "column_name": "hep_c_result",
+          "column_name": "last_interacted_with",
           "type": "Event",
           "json_mapping": {
-            "field": "obs.fieldCode",
-            "concept": "hep_c_result"
-          }
-        },
-        {
-          "column_name": "kvp_visit_date",
-          "type": "Event",
-          "json_mapping": {
-            "field": "obs.fieldCode",
-            "concept": "kvp_visit_date"
+            "field": "version"
           }
         }
       ]

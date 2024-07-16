@@ -14,6 +14,7 @@ import com.vijay.jsonwizard.utils.FormUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.smartregister.chw.hf.activity.KvpTestResultsViewActivity;
 import org.smartregister.chw.hf.model.KvpHepatitisTestResultsFragmentModel;
 import org.smartregister.chw.hf.presenter.KvpHepatitisTestResultsFragmentPresenter;
 import org.smartregister.chw.kvp.fragment.BaseTestResultsFragment;
@@ -86,25 +87,25 @@ public class KvpHepatitisTestResultsFragment extends BaseTestResultsFragment {
     public void openResultsForm(CommonPersonObjectClient client) {
         String testType = Utils.getValue(client.getColumnmaps(), DBConstants.KEY.HEPATITIS_TEST_TYPE, false);
 
-        if (testType.contains("hepatitis_b")) {
+        if (testType.contains("hep_b")) {
             String baseEntityId = Utils.getValue(client.getColumnmaps(), DBConstants.KEY.BASE_ENTITY_ID, false);
-            String formSubmissionId = Utils.getValue(client.getColumnmaps(), DBConstants.KEY.ENTITY_ID, false);
+            String entityId = Utils.getValue(client.getColumnmaps(), DBConstants.KEY.ENTITY_ID, false);
 
             try {
-                JSONObject jsonObject = (new FormUtils()).getFormJsonFromRepositoryOrAssets(requireContext(), Constants.FORMS.HPV_DNA_FINDINGS);
+                JSONObject jsonObject = (new FormUtils()).getFormJsonFromRepositoryOrAssets(requireContext(), Constants.FORMS.HEPATITIS_B_RESULTS);
                 assert jsonObject != null;
-                CecapTestResultsViewActivity.startResultsForm(getContext(), jsonObject.toString(), baseEntityId, formSubmissionId);
+                KvpTestResultsViewActivity.startResultsForm(getContext(), jsonObject.toString(), entityId, baseEntityId);
             } catch (JSONException e) {
                 Timber.e(e);
             }
-        } else if (testType.contains("hepatitis_c")) {
+        } else if (testType.contains("hep_c")) {
             String baseEntityId = Utils.getValue(client.getColumnmaps(), DBConstants.KEY.BASE_ENTITY_ID, false);
-            String formSubmissionId = Utils.getValue(client.getColumnmaps(), DBConstants.KEY.ENTITY_ID, false);
+            String entityId = Utils.getValue(client.getColumnmaps(), DBConstants.KEY.ENTITY_ID, false);
 
             try {
-                JSONObject jsonObject = (new FormUtils()).getFormJsonFromRepositoryOrAssets(requireContext(), Constants.FORMS.PAP_FINDINGS);
+                JSONObject jsonObject = (new FormUtils()).getFormJsonFromRepositoryOrAssets(requireContext(), Constants.FORMS.HEPATITIS_C_RESULTS);
                 assert jsonObject != null;
-                CecapTestResultsViewActivity.startResultsForm(getContext(), jsonObject.toString(), baseEntityId, formSubmissionId);
+                KvpTestResultsViewActivity.startResultsForm(getContext(), jsonObject.toString(), entityId, baseEntityId);
             } catch (JSONException e) {
                 Timber.e(e);
             }
@@ -120,10 +121,10 @@ public class KvpHepatitisTestResultsFragment extends BaseTestResultsFragment {
         try {
             JSONObject jsonObject=null;
             String testType = Utils.getValue(client.getColumnmaps(), DBConstants.KEY.HEPATITIS_TEST_TYPE, false);
-            if (testType.contains("hepatitis_b")) {
-                 jsonObject = (new FormUtils()).getFormJsonFromRepositoryOrAssets(requireContext(),  Constants.FORMS.HPV_DNA_FINDINGS);
-            }else if (testType.contains("hepatitis_c")) {
-                jsonObject = (new FormUtils()).getFormJsonFromRepositoryOrAssets(requireContext(), Constants.FORMS.PAP_FINDINGS);
+            if (testType.contains("hep_b")) {
+                 jsonObject = (new FormUtils()).getFormJsonFromRepositoryOrAssets(requireContext(),  Constants.FORMS.HEPATITIS_B_RESULTS);
+            }else if (testType.contains("hep_c")) {
+                jsonObject = (new FormUtils()).getFormJsonFromRepositoryOrAssets(requireContext(), Constants.FORMS.HEPATITIS_C_RESULTS);
             }
 
             assert jsonObject != null;
