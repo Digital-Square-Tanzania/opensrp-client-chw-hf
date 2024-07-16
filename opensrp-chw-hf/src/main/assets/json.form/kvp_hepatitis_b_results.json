@@ -79,6 +79,20 @@
           "value": "true",
           "err": "Please select an answer"
         }
+      },
+      {
+        "key": "test_results",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "test_results",
+        "type": "hidden",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kvp_hepatitis_b_results_calculation.yml"
+            }
+          }
+        }
       }
     ]
   }

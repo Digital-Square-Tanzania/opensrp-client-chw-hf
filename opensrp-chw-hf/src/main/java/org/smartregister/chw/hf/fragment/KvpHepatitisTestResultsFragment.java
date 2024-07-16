@@ -14,16 +14,13 @@ import com.vijay.jsonwizard.utils.FormUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.smartregister.chw.core.utils.CoreJsonFormUtils;
 import org.smartregister.chw.hf.activity.KvpTestResultsViewActivity;
 import org.smartregister.chw.hf.model.KvpHepatitisTestResultsFragmentModel;
 import org.smartregister.chw.hf.presenter.KvpHepatitisTestResultsFragmentPresenter;
 import org.smartregister.chw.kvp.fragment.BaseTestResultsFragment;
 import org.smartregister.chw.kvp.util.Constants;
 import org.smartregister.chw.kvp.util.DBConstants;
-import org.smartregister.chw.core.utils.CoreJsonFormUtils;
-import org.smartregister.chw.hf.activity.CecapTestResultsViewActivity;
-import org.smartregister.chw.hf.model.CecapTestResultsFragmentModel;
-import org.smartregister.chw.hf.presenter.CecapTestResultsFragmentPresenter;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.util.Utils;
 
@@ -94,7 +91,7 @@ public class KvpHepatitisTestResultsFragment extends BaseTestResultsFragment {
             try {
                 JSONObject jsonObject = (new FormUtils()).getFormJsonFromRepositoryOrAssets(requireContext(), Constants.FORMS.HEPATITIS_B_RESULTS);
                 assert jsonObject != null;
-                KvpTestResultsViewActivity.startResultsForm(getContext(), jsonObject.toString(), entityId, baseEntityId);
+                KvpTestResultsViewActivity.startResultsForm(getContext(), jsonObject.toString(), baseEntityId, entityId);
             } catch (JSONException e) {
                 Timber.e(e);
             }
@@ -105,7 +102,7 @@ public class KvpHepatitisTestResultsFragment extends BaseTestResultsFragment {
             try {
                 JSONObject jsonObject = (new FormUtils()).getFormJsonFromRepositoryOrAssets(requireContext(), Constants.FORMS.HEPATITIS_C_RESULTS);
                 assert jsonObject != null;
-                KvpTestResultsViewActivity.startResultsForm(getContext(), jsonObject.toString(), entityId, baseEntityId);
+                KvpTestResultsViewActivity.startResultsForm(getContext(), jsonObject.toString(), baseEntityId, entityId);
             } catch (JSONException e) {
                 Timber.e(e);
             }
@@ -119,11 +116,11 @@ public class KvpHepatitisTestResultsFragment extends BaseTestResultsFragment {
         String baseEntityId = Utils.getValue(client.getColumnmaps(), DBConstants.KEY.BASE_ENTITY_ID, false);
         String formSubmissionId = Utils.getValue(client.getColumnmaps(), DBConstants.KEY.ENTITY_ID, false);
         try {
-            JSONObject jsonObject=null;
+            JSONObject jsonObject = null;
             String testType = Utils.getValue(client.getColumnmaps(), DBConstants.KEY.HEPATITIS_TEST_TYPE, false);
             if (testType.contains("hep_b")) {
-                 jsonObject = (new FormUtils()).getFormJsonFromRepositoryOrAssets(requireContext(),  Constants.FORMS.HEPATITIS_B_RESULTS);
-            }else if (testType.contains("hep_c")) {
+                jsonObject = (new FormUtils()).getFormJsonFromRepositoryOrAssets(requireContext(), Constants.FORMS.HEPATITIS_B_RESULTS);
+            } else if (testType.contains("hep_c")) {
                 jsonObject = (new FormUtils()).getFormJsonFromRepositoryOrAssets(requireContext(), Constants.FORMS.HEPATITIS_C_RESULTS);
             }
 
@@ -141,7 +138,7 @@ public class KvpHepatitisTestResultsFragment extends BaseTestResultsFragment {
 
             CoreJsonFormUtils.populateJsonForm(jsonObject, client.getColumnmaps());
 
-            CecapTestResultsViewActivity.startResultsForm(getContext(), jsonObject.toString(), baseEntityId, formSubmissionId);
+            KvpTestResultsViewActivity.startResultsForm(getContext(), jsonObject.toString(), baseEntityId, formSubmissionId);
         } catch (JSONException e) {
             e.printStackTrace();
         }

@@ -1005,6 +1005,13 @@
           },
           {
             "field": "eventType",
+            "field_value": "KVP Hepatitis Results",
+            "creates_case": [
+              "ec_kvp_hepatitis_test_results"
+            ]
+          },
+          {
+            "field": "eventType",
             "field_value": "KVP Other Service Visit",
             "creates_case": [
               "ec_kvp_other_services"
