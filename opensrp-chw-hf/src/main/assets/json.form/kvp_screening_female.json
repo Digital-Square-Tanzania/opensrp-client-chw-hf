@@ -1088,7 +1088,7 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "other_screened_client_group",
-        "type": "hidden",
+        "type": "edit_text",
         "calculation": {
           "rules-engine": {
             "ex-rules": {
