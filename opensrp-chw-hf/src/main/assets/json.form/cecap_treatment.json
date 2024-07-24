@@ -86,6 +86,22 @@
         }
       },
       {
+        "key": "prompt_for_referral_for_cryotherapy",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "prompt_for_referral_for_cryotherapy",
+        "type": "toaster_notes",
+        "text": "Refer for Cryotherapy or Thermocoagulation",
+        "toaster_type": "warning",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cecap_treatment_rule.yml"
+            }
+          }
+        }
+      },
+      {
         "key": "treatment_option_with_cryotherapy_thermocoagulation",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -111,12 +127,6 @@
             "text": "Postponed",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "postponed"
-          },
-          {
-            "key": "referred",
-            "text": "Referred",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "referred"
           }
         ],
         "relevance": {

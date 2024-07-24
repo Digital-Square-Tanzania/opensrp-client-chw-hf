@@ -27,6 +27,13 @@ condition: "step1_cryotherapy_thermocoagulation.equals('no')"
 actions:
   - "isRelevant = true"
 ---
+name: step1_prompt_for_referral_for_cryotherapy
+description: prompt_for_referral_for_cryotherapy
+priority: 1
+condition: "step1_cryotherapy_thermocoagulation.equals('no')"
+actions:
+  - "isRelevant = true"
+---
 name: step1_postpone_reason
 description: postpone_reason
 priority: 1

@@ -84,6 +84,21 @@
         }
       },
       {
+        "key": "prompt_for_pitc",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "prompt_for_pitc",
+        "type": "toaster_notes",
+        "text": "Perform PITC",
+        "toaster_type": "warning",
+        "relevance": {
+          "step1:hiv_status": {
+            "type": "string",
+            "ex": "equalTo(., \"unknown\")"
+          }
+        }
+      },
+      {
         "key": "ctc_number",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -124,12 +139,6 @@
         "text_color": "#000000",
         "options": [
           {
-            "key": "ctc1",
-            "text": "CTC 1 Card",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "ctc1"
-          },
-          {
             "key": "pitc_citc",
             "text": "PITC/CITC",
             "openmrs_entity": "concept",
@@ -137,7 +146,7 @@
           },
           {
             "key": "himself_or_herself",
-            "text": "Himself/Herself",
+            "text": "Self",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "himself_or_herself"
           }

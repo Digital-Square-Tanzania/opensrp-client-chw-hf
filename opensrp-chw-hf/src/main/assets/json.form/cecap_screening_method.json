@@ -55,7 +55,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "can_the_facility_perform_hpv_dna_test",
         "type": "native_radio",
-        "label": "Is the sample collected for the HPV DNA test?",
+        "label": "Can a facility collect HPV DNA Sample?",
         "text_color": "#000000",
         "options": [
           {
@@ -74,6 +74,39 @@
         "v_required": {
           "value": "true",
           "err": "Required"
+        }
+      },
+      {
+        "key": "reasons_for_not_collecting_hpv_dna_test",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "reasons_for_not_collecting_hpv_dna_test",
+        "type": "native_radio",
+        "label": "Reason for not collecting HPV DNA Sample",
+        "options": [
+          {
+            "key": "no_reagents",
+            "text": "No reagents",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "no_reagents"
+          },
+          {
+            "key": "facility_can_not_offer_hpv_dna",
+            "text": "Facility can not offer HPV DNA",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "facility_can_not_offer_hpv_dna"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Required"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cecap_screening_method_rule.yml"
+            }
+          }
         }
       },
       {
@@ -98,7 +131,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "squamo_columnar_junction",
         "type": "native_radio",
-        "label": "Is the squamo-columnar junction completely visible?",
+        "label": "Is the squamo-columnar junction visible?",
         "text_color": "#000000",
         "options": [
           {

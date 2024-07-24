@@ -1834,7 +1834,7 @@
     <string name="cecap_suspicious_for_cancer">Suspicious for cancer</string>
     <string name="cecap_none">None</string>
     <string name="cecap_can_the_facility_perform_hpv_dna_test">Can the facility perform HPV DNA test:</string>
-    <string name="cecap_squamo_columnar_junction">Is the squamo-columnar junction completely visible:</string>
+    <string name="cecap_squamo_columnar_junction">Is the squamo-columnar junction visible:</string>
     <string name="cecap_screening_test_performed">Which type of screening test was performed:</string>
     <string name="cecap_hpv_dna">HPV DNA</string>
     <string name="cecap_via">VIA</string>
