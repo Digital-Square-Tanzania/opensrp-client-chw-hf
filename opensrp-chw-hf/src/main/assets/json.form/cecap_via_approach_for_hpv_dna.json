@@ -1,6 +1,6 @@
 {
   "count": "1",
-  "encounter_type": "Screening Method",
+  "encounter_type": "VIA Approach",
   "entity_id": "",
   "relational_id": "",
   "metadata": {
@@ -47,84 +47,8 @@
     }
   },
   "step1": {
-    "title": "Screening Method",
+    "title": "VIA Approach",
     "fields": [
-      {
-        "key": "can_the_facility_perform_hpv_dna_test",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "can_the_facility_perform_hpv_dna_test",
-        "type": "native_radio",
-        "label": "Can a facility collect HPV DNA Sample?",
-        "text_color": "#000000",
-        "options": [
-          {
-            "key": "yes",
-            "text": "Yes",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "yes"
-          },
-          {
-            "key": "no",
-            "text": "No",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "no"
-          }
-        ],
-        "v_required": {
-          "value": "true",
-          "err": "Required"
-        }
-      },
-      {
-        "key": "reasons_for_not_collecting_hpv_dna_test",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "reasons_for_not_collecting_hpv_dna_test",
-        "type": "native_radio",
-        "label": "Reason for not collecting HPV DNA Sample",
-        "options": [
-          {
-            "key": "no_reagents",
-            "text": "No reagents",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "no_reagents"
-          },
-          {
-            "key": "facility_can_not_offer_hpv_dna",
-            "text": "Facility can not offer HPV DNA",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "facility_can_not_offer_hpv_dna"
-          }
-        ],
-        "v_required": {
-          "value": "true",
-          "err": "Required"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "cecap_screening_method_rule.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "prompt_for_sample_collection",
-        "type": "toaster_notes",
-        "text": "Collect Specimen Samples",
-        "openmrs_entity_id": "prompt_for_sample_collection",
-        "openmrs_entity": "concept",
-        "openmrs_entity_parent": "",
-        "toaster_type": "info",
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "cecap_screening_method_rule.yml"
-            }
-          }
-        }
-      },
       {
         "key": "squamo_columnar_junction",
         "openmrs_entity_parent": "",
@@ -147,69 +71,138 @@
             "openmrs_entity_id": "no"
           }
         ],
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "cecap_screening_method_rule.yml"
-            }
-          }
-        },
         "v_required": {
           "value": "true",
           "err": "Required"
         }
       },
       {
-        "key": "prompt_for_via",
-        "type": "toaster_notes",
-        "text": "Perform VIA",
-        "openmrs_entity_id": "prompt_for_via",
-        "openmrs_entity": "concept",
-        "openmrs_entity_parent": "",
-        "toaster_type": "info",
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "cecap_screening_method_rule.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "prompt_for_pap",
-        "type": "toaster_notes",
-        "text": "Perform Pap Smear",
-        "openmrs_entity_id": "prompt_for_pap",
-        "openmrs_entity": "concept",
-        "openmrs_entity_parent": "",
-        "toaster_type": "info",
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "cecap_screening_method_rule.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "screening_test_performed_without_via",
+        "key": "via_findings",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "screening_test_performed_without_via",
+        "openmrs_entity_id": "via_findings",
         "type": "native_radio",
-        "label": "Which type of screening test was performed?",
+        "label": "Record VIA Findings?",
+        "text_color": "#000000",
         "options": [
           {
-            "key": "pap",
-            "text": "Pap",
+            "key": "negative",
+            "text": "Negative",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "pap"
+            "openmrs_entity_id": "negative"
           },
           {
-            "key": "none",
-            "text": "None",
+            "key": "positive_with_small_lesion",
+            "text": "Positive, with small/moderate lesion",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "none"
+            "openmrs_entity_id": "positive_with_small_lesion"
+          },
+          {
+            "key": "positive_with_large_lesion",
+            "text": "Positive, with large lesion",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "positive_with_large_lesion"
+          },
+          {
+            "key": "suspicious",
+            "text": "Suspicious",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "suspicious"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Required"
+        },
+        "relevance": {
+          "step1:squamo_columnar_junction": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
+        }
+      },
+      {
+        "key": "prompt_for_negative",
+        "type": "toaster_notes",
+        "text": "The Client should return after 3 years",
+        "openmrs_entity_id": "prompt_for_negative",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "info",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cecap_via_approach_rule.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "prompt_for_taking_biopsy",
+        "type": "toaster_notes",
+        "text": "Take Biopsy or Refer the client for further services",
+        "openmrs_entity_id": "prompt_for_taking_biopsy",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "info",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cecap_via_approach_rule.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "illustration_of_lesion_location",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "image_view",
+        "text": "Select the location of lesion based on the illustration below",
+        "label_text_size": "18sp",
+        "image_file": "lesion_location.png",
+        "text_color": "#000000",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cecap_via_approach_rule.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "lesion_location",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "lesion_location",
+        "type": "check_box",
+        "combine_checkbox_option_values": "true",
+        "label": "Lesion location",
+        "options": [
+          {
+            "key": "A",
+            "text": "A",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "A"
+          },
+          {
+            "key": "B",
+            "text": "B",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "B"
+          },
+          {
+            "key": "C",
+            "text": "C",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "C"
+          },
+          {
+            "key": "D",
+            "text": "D",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "D"
           }
         ],
         "v_required": {
@@ -219,21 +212,7 @@
         "relevance": {
           "rules-engine": {
             "ex-rules": {
-              "rules-file": "cecap_screening_method_rule.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "screening_test_performed",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "screening_test_performed",
-        "type": "hidden",
-        "calculation": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "cecap_screening_method_rule.yml"
+              "rules-file": "cecap_via_approach_rule.yml"
             }
           }
         }
