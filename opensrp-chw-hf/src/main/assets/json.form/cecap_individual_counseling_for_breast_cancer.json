@@ -105,10 +105,25 @@
         }
       },
       {
-        "key": "prompt_for_mammograph",
+        "key": "prompt_for_further_investigation",
         "type": "toaster_notes",
-        "text": "Recommend for Mammograph",
-        "openmrs_entity_id": "prompt_for_mammograph",
+        "text": "Refer for further investigation",
+        "openmrs_entity_id": "prompt_for_further_investigation",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cecap_individual_counseling_for_breast_cancer_rule.yml"
+            }
+          }
+        }
+      },{
+        "key": "prompt_return_after_one_year",
+        "type": "toaster_notes",
+        "text": "Return after 1 year",
+        "openmrs_entity_id": "prompt_return_after_one_year",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "problem",

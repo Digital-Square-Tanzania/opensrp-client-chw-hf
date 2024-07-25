@@ -49,7 +49,7 @@
   "global": {
   },
   "step1": {
-    "title": "CECAP Treatment",
+    "title": "VIA Treatment",
     "fields": [
       {
         "key": "cryotherapy_thermocoagulation",
