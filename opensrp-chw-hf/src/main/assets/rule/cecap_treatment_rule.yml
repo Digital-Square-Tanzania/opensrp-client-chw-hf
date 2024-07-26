@@ -23,7 +23,7 @@ actions:
 name: step1_treatment_option_without_cryotherapy_thermocoagulation
 description: treatment_option_without_cryotherapy_thermocoagulation
 priority: 1
-condition: "step1_cryotherapy_thermocoagulation.equals('yes')"
+condition: "step1_cryotherapy_thermocoagulation.equals('no')"
 actions:
   - "isRelevant = true"
 ---
