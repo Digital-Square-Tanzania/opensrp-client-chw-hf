@@ -62,11 +62,18 @@
             "openmrs_entity_id": "opd"
           },
           {
-            "key": "anc",
-            "text": "ANC",
+            "key": "ipd",
+            "text": "IPD",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "anc"
+            "openmrs_entity_id": "ipd"
+          },
+          {
+            "key": "rch",
+            "text": "RCH",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "rch"
           },
           {
             "key": "ctc",
@@ -74,6 +81,13 @@
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "ctc"
+          },
+          {
+            "key": "outreach",
+            "text": "Outreach",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "outreach"
           }
         ],
         "v_required": {
