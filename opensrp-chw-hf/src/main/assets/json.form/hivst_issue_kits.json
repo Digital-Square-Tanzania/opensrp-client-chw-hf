@@ -46,6 +46,42 @@
     "title": "Providing Self Test Kits",
     "fields": [
       {
+        "key": "service_delivery_point",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "service_delivery_point",
+        "label": "Select the service delivery point?",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "opd",
+            "text": "OPD",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "opd"
+          },
+          {
+            "key": "anc",
+            "text": "ANC",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "anc"
+          },
+          {
+            "key": "ctc",
+            "text": "CTC",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "ctc"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select an answer"
+        }
+      },
+      {
         "key": "pre_test_counselling_and_instructions",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
