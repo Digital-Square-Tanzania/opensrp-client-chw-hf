@@ -794,4 +794,16 @@ public class HfAncDao extends AncDao {
         }
         return false;
     }
+
+    public static boolean wereSelfTestingKitsDistributed(String baseEntityId) {
+        String sql = "SELECT hivst_kits_distributed FROM ec_anc_followup p " +
+                " WHERE p.entity_id = '" + baseEntityId + "' ORDER BY visit_date DESC LIMIT 1";
+        DataMap<String> dataMap = cursor -> getCursorValue(cursor, "hivst_kits_distributed");
+
+        List<String> res = readData(sql, dataMap);
+        if (res != null && !res.isEmpty() && res.get(0) != null) {
+            return res.get(0).equalsIgnoreCase("yes");
+        }
+        return false;
+    }
 }

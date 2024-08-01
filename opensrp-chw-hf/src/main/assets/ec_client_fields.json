@@ -2320,6 +2320,14 @@
           }
         },
         {
+          "column_name": "hivst_kits_distributed",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "hivst_kits_distributed"
+          }
+        },
+        {
           "column_name": "visit_number",
           "type": "Event",
           "json_mapping": {
