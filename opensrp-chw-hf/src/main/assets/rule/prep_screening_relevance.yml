@@ -1,4 +1,25 @@
 ---
+name: step1_should_wait_for_crcl_result
+description: show prompt
+priority: 1
+condition: "step1_crcl_result_returned == 'no_waiting_result'  && global_should_record_crcl_tests"
+actions:
+  - "isRelevant = true"
+---
+name: step1_should_wait_for_hbv_result
+description: show prompt
+priority: 1
+condition: "step1_hbv_result_returned == 'no'  && global_should_record_hbv_tests"
+actions:
+  - "isRelevant = true"
+---
+name: step1_should_wait_for_hcv_result
+description: show prompt
+priority: 1
+condition: "step1_hcv_result_returned == 'no'  && global_should_record_hcv_tests"
+actions:
+  - "isRelevant = true"
+---
 name: step1_blood_pressure
 description: check if client is eligible to initiate for prep
 priority: 1
@@ -72,7 +93,7 @@ actions:
 name: step1_weight_35_or_above
 description: check if client is eligible to initiate for prep
 priority: 1
-condition: "(step1_tested_crcl != '' && (step1_tested_crcl == 'no' || (step1_tested_crcl == 'yes' && step1_crcl_results != '' && step1_crcl_results != 'less_than_60')) || (step1_nephrotoxic_drugs != '' && step1_nephrotoxic_drugs != 'yes' && !global_should_record_crcl_tests)) "
+condition: "(step1_tested_crcl != '' && (step1_tested_crcl == 'no' || (step1_tested_crcl == 'yes' && step1_crcl_result_returned != '' && step1_crcl_result_returned == 'no_waiting_result') || (step1_tested_crcl == 'yes' && step1_crcl_results != '' && step1_crcl_results != 'less_than_60')) || (step1_nephrotoxic_drugs != '' && step1_nephrotoxic_drugs != 'yes' && !global_should_record_crcl_tests)) "
 actions:
   - "isRelevant = true "
 ---
