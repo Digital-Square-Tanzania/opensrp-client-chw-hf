@@ -1046,6 +1046,21 @@
               "ec_prep_followup"
             ]
           },
+
+          {
+            "field": "eventType",
+            "field_value": "Hepatitis and CrCL Test Results Registration",
+            "creates_case": [
+              "ec_prep_hepatitis_and_crcl_test_results"
+            ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "Prep Test Results",
+            "creates_case": [
+              "ec_prep_hepatitis_and_crcl_test_results"
+            ]
+          },
           {
             "field": "eventType",
             "field_value": "Point of Service Delivery",

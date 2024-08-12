@@ -175,6 +175,7 @@ public class KvpProfileActivity extends CoreKvpProfileActivity {
         }
     }
 
+    @Override
     public void openTestResults() {
         Intent intent = new Intent(this, KvpTestResultsViewActivity.class);
         intent.putExtra(org.smartregister.chw.cecap.util.Constants.ACTIVITY_PAYLOAD.BASE_ENTITY_ID, memberObject.getBaseEntityId());

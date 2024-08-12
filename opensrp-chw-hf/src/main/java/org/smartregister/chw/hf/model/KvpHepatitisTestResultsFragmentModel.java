@@ -43,10 +43,10 @@ public class KvpHepatitisTestResultsFragmentModel extends BaseTestResultsFragmen
         columnList.add(CoreConstants.TABLE_NAME.FAMILY_MEMBER + "." + DBConstants.KEY.OTHER_PHONE_NUMBER);
         columnList.add(tableName + "." + org.smartregister.chw.cecap.util.DBConstants.KEY.ENTITY_ID + " as " + DBConstants.KEY.BASE_ENTITY_ID);
         columnList.add(tableName + "." + DBConstants.KEY.BASE_ENTITY_ID + " as " + org.smartregister.chw.cecap.util.DBConstants.KEY.ENTITY_ID);
-        columnList.add(Constants.TABLES.KVP_HEPATITIS_TEST_RESULTS + "." + org.smartregister.chw.kvp.util.DBConstants.KEY.HEPATITIS_TEST_TYPE);
-        columnList.add(Constants.TABLES.KVP_HEPATITIS_TEST_RESULTS + "." + org.smartregister.chw.kvp.util.DBConstants.KEY.TEST_DATE);
-        columnList.add(Constants.TABLES.KVP_HEPATITIS_TEST_RESULTS + "." + org.smartregister.chw.kvp.util.DBConstants.KEY.HEP_TEST_RESULTS);
-        columnList.add(Constants.TABLES.KVP_HEPATITIS_TEST_RESULTS + "." + FORM_SUBMISSION_ID);
+        columnList.add(tableName+ "." + org.smartregister.chw.kvp.util.DBConstants.KEY.HEPATITIS_TEST_TYPE);
+        columnList.add(tableName+ "." + org.smartregister.chw.kvp.util.DBConstants.KEY.TEST_DATE);
+        columnList.add(tableName+ "." + org.smartregister.chw.kvp.util.DBConstants.KEY.HEP_TEST_RESULTS);
+        columnList.add(tableName+ "." + FORM_SUBMISSION_ID);
 
         return columnList.toArray(new String[columnList.size()]);
 

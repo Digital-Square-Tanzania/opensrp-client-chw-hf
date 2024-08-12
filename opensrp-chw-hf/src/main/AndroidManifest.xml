@@ -72,6 +72,9 @@
             android:name=".activity.KvpTestResultsViewActivity"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
+            android:name=".activity.PrepTestResultsViewActivity"
+            android:theme="@style/HFTheme.NoActionBar" />
+        <activity
             android:name=".activity.PrEPRegisterActivity"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
