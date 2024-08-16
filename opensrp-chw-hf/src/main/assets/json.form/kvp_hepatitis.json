@@ -86,7 +86,6 @@
             "openmrs_entity": "concept",
             "openmrs_entity_id": "yes"
           },
-
           {
             "key": "no",
             "text": "No,waiting result",

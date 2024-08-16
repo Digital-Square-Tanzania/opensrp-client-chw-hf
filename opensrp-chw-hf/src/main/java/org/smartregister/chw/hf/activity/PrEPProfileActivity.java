@@ -14,6 +14,7 @@ import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.utils.LFTUFormUtils;
 import org.smartregister.chw.hivst.dao.HivstDao;
 import org.smartregister.chw.kvp.KvpLibrary;
+import org.smartregister.chw.kvp.dao.KvpDao;
 import org.smartregister.chw.kvp.domain.Visit;
 import org.smartregister.chw.kvp.listener.OnClickFloatingMenu;
 import org.smartregister.chw.kvp.util.Constants;
@@ -139,5 +140,27 @@ public class PrEPProfileActivity extends CoreKvpProfileActivity {
         };
 
         baseKvpFloatingMenu.setFloatMenuClickListener(onClickFloatingMenu);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setupViews();
+        fetchProfileData();
+        profilePresenter.refreshProfileBottom();
+        if (KvpDao.hasPrepTestResults(memberObject.getBaseEntityId())) {
+            rlTestResults.setVisibility(View.VISIBLE);
+            viewSeparator1.setVisibility(View.VISIBLE);
+        } else {
+            rlTestResults.setVisibility(View.GONE);
+            viewSeparator1.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void openTestResults() {
+        Intent intent = new Intent(this, PrepTestResultsViewActivity.class);
+        intent.putExtra(org.smartregister.chw.cecap.util.Constants.ACTIVITY_PAYLOAD.BASE_ENTITY_ID, memberObject.getBaseEntityId());
+        startActivity(intent);
     }
 }

@@ -77,6 +77,6 @@ actions:
         return otherGroups;
                
      }"
-  - "calculation = '['+getOtherKvpGroups(step1_is_pwud, step2_is_pwid, step4_is_sdc, step5_is_fsw, step6_is_agyw, step7_is_ovp_kvp)+']'"
+  - "calculation = '['+getOtherKvpGroups(step1_is_pwud, step2_is_pwid, step5_is_sdc, step4_is_msm, step6_is_ovp_kvp)+']'"
 
 

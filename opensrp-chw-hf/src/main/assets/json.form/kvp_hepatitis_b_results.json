@@ -1,6 +1,6 @@
 {
   "count": "1",
-  "encounter_type": "KVP Family Planning",
+  "encounter_type": "KVP Hepatitis Results",
   "entity_id": "",
   "metadata": {
     "start": {
@@ -43,45 +43,36 @@
   },
   "global": {},
   "step1": {
-    "title": "Family Planning",
+    "title": "Hepatitis B",
     "fields": [
       {
-        "key": "family_planning_service",
+        "key": "hep_b_result_given",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "family_planning_service",
+        "openmrs_entity_id": "hep_b_testing_given",
+        "type": "hidden",
+        "value": "yes"
+      },
+      {
+        "key": "hep_b_result",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "hep_b_result",
         "type": "native_radio",
-        "label": "Family planning service provided",
+        "label": "Client HBV test result",
         "options": [
           {
-            "key": "vasectomy",
-            "text": "Vasectomy",
+            "key": "positive",
+            "text": "Positive",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "vasectomy"
+            "openmrs_entity_id": "positive"
           },
+
           {
-            "key": "traditional",
-            "text": "Traditional",
+            "key": "negative",
+            "text": "Negative",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "traditional"
-          },
-          {
-            "key": "referral",
-            "text": "Referral",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "referral"
-          },
-          {
-            "key": "refused",
-            "text": "Refused",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "refused"
-          },
-          {
-            "key": "none",
-            "text": "None",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "none"
+            "openmrs_entity_id": "negative"
           }
         ],
         "v_required": {
@@ -90,37 +81,15 @@
         }
       },
       {
-        "key": "condom_provided",
+        "key": "test_results",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "condom_provided",
-        "label": "Was the client also provided with condom as a family planning method?",
-        "text_color": "#000000",
-        "type": "native_radio",
-        "options": [
-          {
-            "key": "yes",
-            "text": "Yes",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "yes"
-          },
-          {
-            "key": "no",
-            "text": "No",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "no"
-          }
-        ],
-        "v_required": {
-          "value": "true",
-          "err": "Please select an answer"
-        },
-        "relevance": {
+        "openmrs_entity_id": "test_results",
+        "type": "hidden",
+        "calculation": {
           "rules-engine": {
             "ex-rules": {
-              "rules-file": "kvp_family_planning_services_relevance.yml"
+              "rules-file": "kvp_hepatitis_b_results_calculation.yml"
             }
           }
         }

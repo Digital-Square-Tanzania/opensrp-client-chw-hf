@@ -1,6 +1,6 @@
 {
   "count": "1",
-  "encounter_type": "KVP Family Planning",
+  "encounter_type": "Prep Test Results",
   "entity_id": "",
   "metadata": {
     "start": {
@@ -43,45 +43,37 @@
   },
   "global": {},
   "step1": {
-    "title": "Family Planning",
+    "title": "Serum Creatinine (CrCL)",
     "fields": [
       {
-        "key": "family_planning_service",
+        "key": "crcl_result_given",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "family_planning_service",
+        "openmrs_entity_id": "crcl_result_given",
+        "type": "hidden",
+        "value": "yes"
+      },
+      {
+        "key": "crcl_results",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "crcl_results",
         "type": "native_radio",
-        "label": "Family planning service provided",
+        "label": "Creatinine Clearance (CrCL) results",
         "options": [
           {
-            "key": "vasectomy",
-            "text": "Vasectomy",
+            "key": "greater_than_60",
+            "text": "> 60 ml/min",
+            "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "vasectomy"
+            "openmrs_entity_id": "greater_than_60"
           },
           {
-            "key": "traditional",
-            "text": "Traditional",
+            "key": "less_than_60",
+            "text": "< 60 ml/min",
+            "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "traditional"
-          },
-          {
-            "key": "referral",
-            "text": "Referral",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "referral"
-          },
-          {
-            "key": "refused",
-            "text": "Refused",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "refused"
-          },
-          {
-            "key": "none",
-            "text": "None",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "none"
+            "openmrs_entity_id": "less_than_60"
           }
         ],
         "v_required": {
@@ -90,37 +82,15 @@
         }
       },
       {
-        "key": "condom_provided",
+        "key": "test_results",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "condom_provided",
-        "label": "Was the client also provided with condom as a family planning method?",
-        "text_color": "#000000",
-        "type": "native_radio",
-        "options": [
-          {
-            "key": "yes",
-            "text": "Yes",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "yes"
-          },
-          {
-            "key": "no",
-            "text": "No",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "no"
-          }
-        ],
-        "v_required": {
-          "value": "true",
-          "err": "Please select an answer"
-        },
-        "relevance": {
+        "openmrs_entity_id": "test_results",
+        "type": "hidden",
+        "calculation": {
           "rules-engine": {
             "ex-rules": {
-              "rules-file": "kvp_family_planning_services_relevance.yml"
+              "rules-file": "prep_crcl_results_calculation.yml"
             }
           }
         }

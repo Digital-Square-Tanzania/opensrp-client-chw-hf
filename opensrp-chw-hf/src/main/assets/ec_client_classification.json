@@ -998,6 +998,20 @@
           },
           {
             "field": "eventType",
+            "field_value": "Hepatitis Test Results Registration",
+            "creates_case": [
+              "ec_kvp_hepatitis_test_results"
+            ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "KVP Hepatitis Results",
+            "creates_case": [
+              "ec_kvp_hepatitis_test_results"
+            ]
+          },
+          {
+            "field": "eventType",
             "field_value": "KVP Other Service Visit",
             "creates_case": [
               "ec_kvp_other_services"
@@ -1030,6 +1044,21 @@
             "creates_case": [
               "ec_prep_register",
               "ec_prep_followup"
+            ]
+          },
+
+          {
+            "field": "eventType",
+            "field_value": "Hepatitis and CrCL Test Results Registration",
+            "creates_case": [
+              "ec_prep_hepatitis_and_crcl_test_results"
+            ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "Prep Test Results",
+            "creates_case": [
+              "ec_prep_hepatitis_and_crcl_test_results"
             ]
           },
           {

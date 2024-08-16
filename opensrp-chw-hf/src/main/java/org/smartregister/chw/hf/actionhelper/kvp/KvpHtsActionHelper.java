@@ -15,7 +15,7 @@ import java.util.Map;
 public class KvpHtsActionHelper implements BaseKvpVisitAction.KvpVisitActionHelper {
 
     protected String hiv_status;
-    private String previous_hiv_testing_method;
+    private String testedHiv;
     private String jsonPayload;
 
     @Override
@@ -39,7 +39,7 @@ public class KvpHtsActionHelper implements BaseKvpVisitAction.KvpVisitActionHelp
     public void onPayloadReceived(String jsonPayload) {
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
-            previous_hiv_testing_method = CoreJsonFormUtils.getValue(jsonObject, "previous_hiv_testing_method");
+            testedHiv = CoreJsonFormUtils.getValue(jsonObject, "tested_hiv");
             hiv_status = CoreJsonFormUtils.getValue(jsonObject, "hiv_status");
         } catch (JSONException e) {
             e.printStackTrace();
@@ -68,7 +68,7 @@ public class KvpHtsActionHelper implements BaseKvpVisitAction.KvpVisitActionHelp
 
     @Override
     public BaseKvpVisitAction.Status evaluateStatusOnPayload() {
-        if (StringUtils.isBlank(previous_hiv_testing_method))
+        if (StringUtils.isBlank(testedHiv))
             return BaseKvpVisitAction.Status.PENDING;
         else {
             return BaseKvpVisitAction.Status.COMPLETED;
