@@ -100,7 +100,7 @@
           },
           {
             "key": "other",
-            "text": "Other",
+            "text": "Other (specify)",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "other"
           }
@@ -114,6 +114,24 @@
             "ex-rules": {
               "rules-file": "cecap_hpv_dna_findings_rules.yml"
             }
+          }
+        }
+      },
+      {
+        "key": "other_type_of_hpv_positive_results",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "other_type_of_hpv_positive_results",
+        "type": "edit_text",
+        "hint": "Specify Other HPV Positive Results",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify other"
+        },
+        "relevance": {
+          "step1:type_of_hpv_positive": {
+            "type": "string",
+            "ex": "equalTo(., \"other\")"
           }
         }
       },

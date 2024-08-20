@@ -259,6 +259,21 @@
         }
       },
       {
+        "key": "prompt_for_linking_with_ctc",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "prompt_for_linking_with_ctc",
+        "type": "toaster_notes",
+        "text": "Refer the client to CTC",
+        "toaster_type": "warning",
+        "relevance": {
+          "step1:hiv_test_results": {
+            "type": "string",
+            "ex": "equalTo(., \"positive\")"
+          }
+        }
+      },
+      {
         "key": "computed_hiv_status",
         "openmrs_entity": "",
         "openmrs_entity_id": "computed_hiv_status",
