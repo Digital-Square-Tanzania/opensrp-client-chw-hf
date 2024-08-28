@@ -99,71 +99,6 @@
         }
       },
       {
-        "key": "ctc_number",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "ctc_number",
-        "type": "mask_edit_text",
-        "mask": "##-##-####-######",
-        "mask_hint": "12345678912345",
-        "allowed_chars": "0123456789",
-        "hint": "CTC Number",
-        "edit_type": "number",
-        "v_regex": {
-          "value": "(\\d{2}-\\d{2}-\\d{4}-\\d{6})?",
-          "err": "CTC number should be of the format (XX-XX-XXXX-XXXXXX)"
-        },
-        "v_max_length": {
-          "value": "17",
-          "is_fixed_size": "true",
-          "err": "Please enter a valid CTC Number"
-        },
-        "v_required": {
-          "value": true,
-          "err": "Please enter a valid CTC Number"
-        },
-        "relevance": {
-          "step1:hiv_status": {
-            "type": "string",
-            "ex": "equalTo(., \"known_positive\")"
-          }
-        }
-      },
-      {
-        "key": "source_of_hiv_status_information",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "source_of_hiv_status_information",
-        "type": "native_radio",
-        "label": "Source of HIV Status Information",
-        "text_color": "#000000",
-        "options": [
-          {
-            "key": "pitc_citc",
-            "text": "PITC/CITC",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "pitc_citc"
-          },
-          {
-            "key": "himself_or_herself",
-            "text": "Self",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "himself_or_herself"
-          }
-        ],
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "cecap_enrollment_rule.yml"
-            }
-          }
-        },
-        "v_required": {
-          "value": true,
-          "err": "Required"
-        }
-      },
-      {
         "key": "hiv_test_done",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -190,9 +125,10 @@
           "err": "Required"
         },
         "relevance": {
-          "step1:hiv_status": {
-            "type": "string",
-            "ex": "equalTo(., \"unknown\")"
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cecap_enrollment_rule.yml"
+            }
           }
         }
       },
@@ -259,18 +195,103 @@
         }
       },
       {
-        "key": "prompt_for_linking_with_ctc",
+        "key": "client_enrolled_to_ctc",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "prompt_for_linking_with_ctc",
-        "type": "toaster_notes",
-        "text": "Refer the client to CTC",
-        "toaster_type": "warning",
-        "relevance": {
-          "step1:hiv_test_results": {
-            "type": "string",
-            "ex": "equalTo(., \"positive\")"
+        "openmrs_entity_id": "client_enrolled_to_ctc",
+        "type": "native_radio",
+        "label": "Was a client enrolled to CTC Services?",
+        "text_color": "#000000",
+        "options": [
+          {
+            "key": "yes",
+            "text": "Yes",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "yes"
+          },
+          {
+            "key": "no",
+            "text": "No",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "no"
           }
+        ],
+        "v_required": {
+          "value": true,
+          "err": "Required"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cecap_enrollment_rule.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "ctc_number",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "ctc_number",
+        "type": "mask_edit_text",
+        "mask": "##-##-####-######",
+        "mask_hint": "12345678912345",
+        "allowed_chars": "0123456789",
+        "hint": "CTC Number",
+        "edit_type": "number",
+        "v_regex": {
+          "value": "(\\d{2}-\\d{2}-\\d{4}-\\d{6})?",
+          "err": "CTC number should be of the format (XX-XX-XXXX-XXXXXX)"
+        },
+        "v_max_length": {
+          "value": "17",
+          "is_fixed_size": "true",
+          "err": "Please enter a valid CTC Number"
+        },
+        "v_required": {
+          "value": true,
+          "err": "Please enter a valid CTC Number"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cecap_enrollment_rule.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "source_of_hiv_status_information",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "source_of_hiv_status_information",
+        "type": "native_radio",
+        "label": "Source of HIV Status Information",
+        "text_color": "#000000",
+        "options": [
+          {
+            "key": "pitc_citc",
+            "text": "PITC/CITC",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "pitc_citc"
+          },
+          {
+            "key": "himself_or_herself",
+            "text": "Self",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "himself_or_herself"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "cecap_enrollment_rule.yml"
+            }
+          }
+        },
+        "v_required": {
+          "value": true,
+          "err": "Required"
         }
       },
       {

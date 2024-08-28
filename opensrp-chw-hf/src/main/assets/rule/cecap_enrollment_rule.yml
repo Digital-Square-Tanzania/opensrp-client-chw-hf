@@ -54,3 +54,24 @@ priority: 1
 condition: "true"
 actions:
   - "calculation = global_sex == 'Female'? step1_services_enrolled_for_female_clients : step1_services_enrolled_for_male_clients"
+---
+name: step1_ctc_number
+description: ctc_number
+priority: 1
+condition: "step1_hiv_status == 'known_positive' || step1_client_enrolled_to_ctc == 'yes'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_hiv_test_done
+description: hiv_test_done
+priority: 1
+condition: "step1_hiv_status == 'unknown'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_client_enrolled_to_ctc
+description: client_enrolled_to_ctc
+priority: 1
+condition: "step1_hiv_test_results == 'positive' && step1_hiv_test_done == 'yes' && step1_hiv_status == 'unknown'"
+actions:
+  - "isRelevant = true"
