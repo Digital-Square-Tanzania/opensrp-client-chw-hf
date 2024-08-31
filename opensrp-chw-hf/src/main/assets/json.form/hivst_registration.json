@@ -106,7 +106,7 @@
         "options": [
           {
             "key": "fsw",
-            "text": "FSW",
+            "text": "WHR",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "fsw"
@@ -163,7 +163,7 @@
         "options": [
           {
             "key": "fsw",
-            "text": "FSW",
+            "text": "WHR",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "fsw"

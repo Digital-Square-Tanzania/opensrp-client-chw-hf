@@ -566,7 +566,7 @@ public class AncMemberProfileActivity extends CoreAncMemberProfileActivity {
 
         boolean hivstPendingDistribution = false;
         String lastSelfTestingFollowupDateString = HivstDao.clientLastFollowup(memberObject.getBaseEntityId());
-        if (lastSelfTestingFollowupDateString == null) {
+        if (lastSelfTestingFollowupDateString == null && HfAncDao.wereSelfTestingKitsDistributed(baseEntityID)) {
             hivstPendingDistribution = true;
         } else {
             try {
@@ -640,15 +640,15 @@ public class AncMemberProfileActivity extends CoreAncMemberProfileActivity {
             imageViewCross.setImageResource(org.smartregister.chw.core.R.drawable.activityrow_notvisited);
         } else if (hivstPendingRegistration) {
             layoutNotRecordView.setVisibility(View.VISIBLE);
-            textViewNotVisitMonth.setText(getContext().getString(R.string.pmtct_pending_registration));
-            tvEdit.setText(getContext().getString(R.string.pending_hivst_registration));
+            textViewNotVisitMonth.setText(getContext().getString(R.string.pending_hivst_registration));
+            tvEdit.setText(getContext().getString(R.string.register_button_text));
             tvEdit.setVisibility(View.VISIBLE);
             tvEdit.setOnClickListener(v -> startHivstRegistration());
             imageViewCross.setImageResource(org.smartregister.chw.core.R.drawable.activityrow_notvisited);
         } else if (hivstPendingDistribution) {
             layoutNotRecordView.setVisibility(View.VISIBLE);
-            textViewNotVisitMonth.setText(getContext().getString(R.string.pmtct_pending_registration));
-            tvEdit.setText(getContext().getString(R.string.pending_hivst_followup));
+            textViewNotVisitMonth.setText(getContext().getString(R.string.pending_hivst_followup));
+            tvEdit.setText(getContext().getString(R.string.distribute_button_text));
             tvEdit.setVisibility(View.VISIBLE);
             tvEdit.setOnClickListener(v -> HivstProfileActivity.startProfile(AncMemberProfileActivity.this, memberObject.getBaseEntityId(), true));
             imageViewCross.setImageResource(org.smartregister.chw.core.R.drawable.activityrow_notvisited);
