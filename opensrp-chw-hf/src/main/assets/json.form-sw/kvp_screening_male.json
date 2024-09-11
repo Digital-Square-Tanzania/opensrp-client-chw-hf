@@ -184,7 +184,7 @@
     ]
   },
   "step4": {
-    "title": "Mwanaume Anayefanya Ngono na Mwanaume Mwenzie",
+    "title": "Wanaume waliokatika uhatarishi zaidi wa maambukizi ya VVU",
     "next": "step5",
     "fields": [
       {
@@ -664,7 +664,7 @@
       {
         "key": "prompt_for_msm_kvp",
         "type": "toaster_notes",
-        "text": "Mteja huyu ni Mwanaume anayefanya ngono na mwanaume mwenzie, Mteja anatakiwa kuandikishwa kwenye huduma rafiki za makundi maalum ",
+        "text": "Mteja huyu ni mwanaume aliyekatika uhatarishi zaidi wa maambukizi ya VVU, Mteja anatakiwa kuandikishwa kwenye huduma rafiki za makundi maalum ",
         "openmrs_entity_id": "",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
@@ -852,7 +852,7 @@
         "options": [
           {
             "key": "msm",
-            "text": "High Risk Men",
+            "text": "Men At High Risk",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "msm"

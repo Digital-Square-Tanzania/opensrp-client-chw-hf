@@ -458,7 +458,8 @@
         "openmrs_entity_id": "reasons_stopping_prep",
         "openmrs_entity_parent": "",
         "exclusive": [
-          "not_applicable"
+          "not_applicable",
+          "hiv_positive"
         ],
         "options": [
           {

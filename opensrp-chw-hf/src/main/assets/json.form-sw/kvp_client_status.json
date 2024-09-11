@@ -111,14 +111,14 @@
           },
           {
             "key": "fsw",
-            "text": "Mwanamke anayefanya biashara ya ngono",
+            "text": "Wanawake waliokatika uhatarishi zaidi wa maambukizi ya VVU",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "fsw"
           },
           {
             "key": "msm",
-            "text": "Mwanaume anayefanya ngono na mwanaume mwenzie",
+            "text": "Wanaume waliokatika uhatarishi zaidi wa maambukizi ya VVU",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "msm"
