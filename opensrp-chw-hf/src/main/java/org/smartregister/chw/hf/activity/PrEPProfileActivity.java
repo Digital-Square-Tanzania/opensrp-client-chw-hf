@@ -1,14 +1,20 @@
 package org.smartregister.chw.hf.activity;
 
+import static org.smartregister.chw.core.utils.CoreJsonFormUtils.getAutoPopulatedJsonEditFormString;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
 import org.joda.time.DateTime;
 import org.joda.time.Days;
+import org.json.JSONObject;
 import org.smartregister.chw.core.activity.CoreKvpProfileActivity;
+import org.smartregister.chw.core.utils.CoreConstants;
+import org.smartregister.chw.core.utils.UpdateDetailsUtil;
 import org.smartregister.chw.hf.HealthFacilityApplication;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.utils.LFTUFormUtils;
@@ -41,6 +47,8 @@ public class PrEPProfileActivity extends CoreKvpProfileActivity {
         if (evaluateProvisionOfPrepService()) {
             textViewRecordKvp.setVisibility(View.GONE);
         }
+
+        ((TextView)findViewById(R.id.textview_baseline_results)).setText(R.string.test_results);
     }
 
     private boolean evaluateProvisionOfPrepService() {
@@ -162,5 +170,34 @@ public class PrEPProfileActivity extends CoreKvpProfileActivity {
         Intent intent = new Intent(this, PrepTestResultsViewActivity.class);
         intent.putExtra(org.smartregister.chw.cecap.util.Constants.ACTIVITY_PAYLOAD.BASE_ENTITY_ID, memberObject.getBaseEntityId());
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+        if (itemId == android.R.id.home) {
+            onBackPressed();
+            return true;
+        } else if (itemId == org.smartregister.chw.core.R.id.action_registration) {
+            if (UpdateDetailsUtil.isIndependentClient(memberObject.getBaseEntityId())) {
+                startFormForEdit(org.smartregister.chw.core.R.string.registration_info,
+                        CoreConstants.JSON_FORM.getAllClientUpdateRegistrationInfoForm());
+            } else {
+                startFormForEdit(org.smartregister.chw.core.R.string.edit_member_form_title,
+                        CoreConstants.JSON_FORM.getFamilyMemberRegister());
+            }
+            return true;
+        } else if (itemId == org.smartregister.chw.core.R.id.action_location_info) {
+            JSONObject preFilledForm = getAutoPopulatedJsonEditFormString(
+                    CoreConstants.JSON_FORM.getFamilyDetailsRegister(), this,
+                    UpdateDetailsUtil.getFamilyRegistrationDetails(memberObject.getFamilyBaseEntityId()), Utils.metadata().familyRegister.updateEventType);
+            if (preFilledForm != null)
+                UpdateDetailsUtil.startUpdateClientDetailsActivity(preFilledForm, this);
+            return true;
+        } else if (itemId == org.smartregister.chw.core.R.id.action_hivst_registration) {
+            startHivstRegistration();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

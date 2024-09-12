@@ -102,10 +102,10 @@
         }
       },
       {
-        "key": "treatment_option_with_cryotherapy_thermocoagulation",
+        "key": "treatment_option",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "treatment_option_with_cryotherapy_thermocoagulation",
+        "openmrs_entity_id": "treatment_option",
         "type": "native_radio",
         "label": "Treatment",
         "text_color": "#000000",
@@ -139,54 +139,6 @@
         "v_required": {
           "value": "true",
           "err": "Required"
-        }
-      },
-      {
-        "key": "treatment_option_without_cryotherapy_thermocoagulation",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "treatment_option_without_cryotherapy_thermocoagulation",
-        "type": "native_radio",
-        "label": "Treatment",
-        "text_color": "#000000",
-        "options": [
-          {
-            "key": "postponed",
-            "text": "Postponed",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "postponed"
-          },
-          {
-            "key": "referred",
-            "text": "Referred",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "referred"
-          }
-        ],
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "cecap_treatment_rule.yml"
-            }
-          }
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Required"
-        }
-      },
-      {
-        "key": "treatment_option",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "treatment_option",
-        "type": "hidden",
-        "calculation": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "cecap_treatment_rule.yml"
-            }
-          }
         }
       },
       {
