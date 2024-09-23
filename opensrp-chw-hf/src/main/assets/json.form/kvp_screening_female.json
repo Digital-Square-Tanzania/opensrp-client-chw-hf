@@ -778,6 +778,13 @@
             "type": "string",
             "ex": "equalTo(., \"yes\")"
           }
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kvp_screening_female_relevance.yml"
+            }
+          }
         }
       }
     ]

@@ -208,7 +208,7 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "tested_hbv",
-        "label": "Tested for HBV",
+        "label": "Has a client been tested for Hepatitis B virus(HBV)?",
         "text_color": "#000000",
         "type": "native_radio",
         "options": [
@@ -276,7 +276,7 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "hbv_results",
-        "label": "HBV results",
+        "label": "Client HBV test result",
         "text_color": "#000000",
         "type": "native_radio",
         "options": [
@@ -342,7 +342,7 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "tested_hcv",
-        "label": "Tested for HCV",
+        "label": "Has a client been tested for Hepatitis C Virus(HCV)?",
         "text_color": "#000000",
         "type": "native_radio",
         "options": [
@@ -410,7 +410,7 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "hcv_results",
-        "label": "HCV results",
+        "label": "Client HCV test results",
         "text_color": "#000000",
         "type": "native_radio",
         "options": [

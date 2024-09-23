@@ -156,12 +156,20 @@
             "openmrs_entity_id": "tdf_ftc"
           },
           {
+            "key": "injectable",
+            "text": "Injectable",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "injectable"
+          },
+          {
             "key": "other_drugs",
             "text": "Other Drugs",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "other_drugs"
           }
+
         ],
         "v_required": {
           "value": "true",
