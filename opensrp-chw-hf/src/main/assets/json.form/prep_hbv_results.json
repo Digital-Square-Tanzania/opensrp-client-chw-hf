@@ -93,6 +93,22 @@
             }
           }
         }
+      },
+      {
+        "key": "prompt_for_further_management",
+        "type": "toaster_notes",
+        "text": "Client should stop PrEP Services",
+        "openmrs_entity_id": "prompt_for_further_management",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "prep_hbv_results_calculation.yml"
+            }
+          }
+        }
       }
     ]
   }

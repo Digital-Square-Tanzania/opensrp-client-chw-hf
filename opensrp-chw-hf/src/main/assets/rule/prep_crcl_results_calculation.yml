@@ -5,3 +5,10 @@ priority: 1
 condition: "true"
 actions:
   - "calculation = step1_crcl_results"
+---
+name: step1_prompt_for_stopping_prep
+description: prompt_for_stopping_prep
+priority: 1
+condition: "step1_crcl_results == 'less_than_60'"
+actions:
+  - "isRelevant = true"

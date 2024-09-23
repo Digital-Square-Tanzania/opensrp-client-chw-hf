@@ -94,6 +94,22 @@
             }
           }
         }
+      },
+      {
+        "key": "prompt_for_stopping_prep",
+        "type": "toaster_notes",
+        "text": "Client should stop PrEP Services",
+        "openmrs_entity_id": "prompt_for_stopping_prep",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "prep_crcl_results_calculation.yml"
+            }
+          }
+        }
       }
     ]
   }
