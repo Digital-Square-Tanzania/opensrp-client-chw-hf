@@ -50,6 +50,8 @@ public class VmmcServiceRegisterObject extends ReportObject {
             reportJsonObject.put("post_op_adverse", getCbhsClientDetails(getVmmcRegister, "post_op_adverse"));
             reportJsonObject.put("NAE", getCbhsClientDetails(getVmmcRegister, "NAE"));
             reportJsonObject.put("health_care_provider", getCbhsClientDetails(getVmmcRegister, "health_care_provider"));
+            reportJsonObject.put("mc_procedure_comment", getCbhsClientDetails(getVmmcRegister, "mc_procedure_comment"));
+
 
             dataArray.put(reportJsonObject);
         }

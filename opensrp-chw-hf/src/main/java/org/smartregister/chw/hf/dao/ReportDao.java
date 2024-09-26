@@ -1,6 +1,7 @@
 package org.smartregister.chw.hf.dao;
 
 import android.database.Cursor;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -204,6 +205,7 @@ public class ReportDao extends AbstractDao {
                 "        ec_vmmc_procedure.male_circumcision_method,\n" +
                 "        ec_vmmc_procedure.health_care_provider,\n" +
                 "        ec_vmmc_procedure.intraoperative_adverse_event_occured,\n" +
+                "        ec_vmmc_procedure.reason,\n" +
                 "        ec_vmmc_follow_up_visit.visit_number,\n" +
                 "        ec_vmmc_follow_up_visit.followup_visit_date AS visit_date,\n" +
                 "        ec_vmmc_follow_up_visit.post_op_adverse_event_occur AS post_op_adverse,\n" +
@@ -237,6 +239,7 @@ public class ReportDao extends AbstractDao {
                 "    MAX(hiv_result) AS hiv_result,\n" +
                 "    MAX(client_referred_to) AS client_referred_to,\n" +
                 "    MAX(mc_procedure_date) AS mc_procedure_date,\n" +
+                "    MAX(reason) AS mc_procedure_comment,\n" +
                 "    MAX(male_circumcision_method) AS male_circumcision_method,\n" +
                 "    MAX(intraoperative_adverse_event_occured) AS intraoperative_adverse_event_occured,\n" +
                 "    MAX(CASE WHEN visit_number = 1 THEN visit_date END) AS first_visit,\n" +
@@ -274,6 +277,7 @@ public class ReportDao extends AbstractDao {
             data.put("post_op_adverse", cursor.getString(cursor.getColumnIndex("post_op_adverse")));
             data.put("NAE", cursor.getString(cursor.getColumnIndex("NAE")));
             data.put("health_care_provider", cursor.getString(cursor.getColumnIndex("health_care_provider")));
+            data.put("mc_procedure_comment", cursor.getString(cursor.getColumnIndex("mc_procedure_comment")));
 
             return data;
         };
