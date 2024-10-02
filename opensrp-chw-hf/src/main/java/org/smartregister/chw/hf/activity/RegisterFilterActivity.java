@@ -1,10 +1,12 @@
 package org.smartregister.chw.hf.activity;
 
 import static org.smartregister.chw.hf.utils.Constants.ENABLE_HIV_STATUS_FILTER;
+import static org.smartregister.chw.hf.utils.Constants.ENABLE_PREP_STATUS_FILTER;
 import static org.smartregister.chw.hf.utils.Constants.FILTERS_ENABLED;
 import static org.smartregister.chw.hf.utils.Constants.FILTER_APPOINTMENT_DATE;
 import static org.smartregister.chw.hf.utils.Constants.FILTER_HIV_STATUS;
 import static org.smartregister.chw.hf.utils.Constants.FILTER_IS_REFERRED;
+import static org.smartregister.chw.hf.utils.Constants.FILTER_PREP_STATUS;
 import static org.smartregister.chw.hf.utils.Constants.REQUEST_FILTERS;
 
 import android.app.DatePickerDialog;
@@ -40,8 +42,11 @@ public class RegisterFilterActivity extends AppCompatActivity {
     private TextView summaryAppointmentDate;
     private SwitchCompat referredFromCommunityFilter;
     private Spinner hivStatusFilter;
+    private Spinner prepStatusFilter;
     private List<String> hivFilterOptions;
+    private List<String> prepStatusFilterOptions;
     private boolean enableHivStatusFilter;
+    private boolean enablePrepStatusFilter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,12 +66,15 @@ public class RegisterFilterActivity extends AppCompatActivity {
         }
         toolbar.setNavigationOnClickListener(v -> finish());
         hivFilterOptions = Arrays.asList(getResources().getStringArray(R.array.hiv_status_filter_options));
+        prepStatusFilterOptions = Arrays.asList(getResources().getStringArray(R.array.prep_status_filter_options));
         enableHivStatusFilter = getIntent().getBooleanExtra(ENABLE_HIV_STATUS_FILTER, true);
+        enablePrepStatusFilter = getIntent().getBooleanExtra(ENABLE_PREP_STATUS_FILTER, false);
 
         setupViews();
         boolean filterEnabled = getIntent().getBooleanExtra(FILTERS_ENABLED, false);
         boolean filterIsReferred = getIntent().getBooleanExtra(FILTER_IS_REFERRED, false);
         String filterHivStatus = getIntent().getStringExtra(FILTER_HIV_STATUS);
+        String filterPrepStatus = getIntent().getStringExtra(FILTER_PREP_STATUS);
         String appointmentDate = getIntent().getStringExtra(FILTER_APPOINTMENT_DATE);
         if (filterEnabled) {
             enableFilter.setChecked(true);
@@ -83,6 +91,12 @@ public class RegisterFilterActivity extends AppCompatActivity {
                     hivStatusFilter.setSelection(hivFilterOptions.indexOf(filterHivStatus));
                 }
             }
+
+            if (filterPrepStatus != null) {
+                if (prepStatusFilterOptions.contains(filterPrepStatus)) {
+                    prepStatusFilter.setSelection(prepStatusFilterOptions.indexOf(filterPrepStatus));
+                }
+            }
         }
     }
 
@@ -92,6 +106,7 @@ public class RegisterFilterActivity extends AppCompatActivity {
         summaryAppointmentDate = findViewById(R.id.summary_appointment_date);
         LinearLayout filterList = findViewById(R.id.filters_list);
         hivStatusFilter = findViewById(R.id.hiv_status_filter);
+        prepStatusFilter = findViewById(R.id.prep_status_filter);
         referredFromCommunityFilter = findViewById(R.id.switch_for_referred);
         LinearLayout nextAppointmentDate = findViewById(R.id.next_appointment_date);
 
@@ -110,6 +125,7 @@ public class RegisterFilterActivity extends AppCompatActivity {
                 filterList.setVisibility(View.GONE);
                 summaryAppointmentDate.setText(R.string.none);
                 hivStatusFilter.setSelection(0);
+                prepStatusFilter.setSelection(0);
                 referredFromCommunityFilter.setChecked(false);
             }
         });
@@ -118,6 +134,12 @@ public class RegisterFilterActivity extends AppCompatActivity {
             findViewById(R.id.hiv_status_filter_rl).setVisibility(View.VISIBLE);
         } else {
             findViewById(R.id.hiv_status_filter_rl).setVisibility(View.GONE);
+        }
+
+        if (enablePrepStatusFilter) {
+            findViewById(R.id.prep_client_status_filter_rl).setVisibility(View.VISIBLE);
+        } else {
+            findViewById(R.id.prep_client_status_filter_rl).setVisibility(View.GONE);
         }
 
         DatePickerDialog.OnDateSetListener datePickerListener = (mView, year, monthOfYear, dayOfMonth) -> {
@@ -157,6 +179,7 @@ public class RegisterFilterActivity extends AppCompatActivity {
                 intent.putExtra(FILTER_APPOINTMENT_DATE, summaryAppointmentDate.getText());
                 intent.putExtra(FILTER_IS_REFERRED, referredFromCommunityFilter.isChecked());
                 intent.putExtra(FILTER_HIV_STATUS, hivFilterOptions.get(hivStatusFilter.getSelectedItemPosition()));
+                intent.putExtra(FILTER_PREP_STATUS, prepStatusFilterOptions.get(prepStatusFilter.getSelectedItemPosition()));
             }
 
             setResult(REQUEST_FILTERS, intent);

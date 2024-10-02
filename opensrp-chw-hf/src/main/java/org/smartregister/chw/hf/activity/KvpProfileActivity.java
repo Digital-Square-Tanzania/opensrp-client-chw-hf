@@ -1,16 +1,23 @@
 package org.smartregister.chw.hf.activity;
 
+import static org.smartregister.chw.hf.utils.Constants.JsonForm.HIV_REGISTRATION;
+import static org.smartregister.util.Utils.getName;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import org.smartregister.chw.cecap.dao.CecapDao;
+import com.vijay.jsonwizard.utils.FormUtils;
+
+import org.json.JSONException;
 import org.smartregister.chw.core.activity.CoreKvpProfileActivity;
-import org.smartregister.chw.hf.HealthFacilityApplication;
+import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.dao.HfKvpDao;
+import org.smartregister.chw.hf.utils.AllClientsUtils;
 import org.smartregister.chw.hivst.dao.HivstDao;
 import org.smartregister.chw.kvp.KvpLibrary;
 import org.smartregister.chw.kvp.dao.KvpDao;
@@ -122,8 +129,10 @@ public class KvpProfileActivity extends CoreKvpProfileActivity {
             findViewById(R.id.view_notification_and_referral_row).setVisibility(View.VISIBLE);
             ((TextView) findViewById(R.id.vViewHistory)).setText(R.string.visits_history);
             ((TextView) findViewById(R.id.ivViewHistoryArrow)).setText(getString(R.string.view_visits_history));
+            textViewRecordKvp.setText(R.string.record_kvp_followup_visit);
         } else {
             rlLastVisit.setVisibility(View.GONE);
+            textViewRecordKvp.setText(R.string.record_kvp);
         }
     }
 
@@ -131,13 +140,145 @@ public class KvpProfileActivity extends CoreKvpProfileActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
 
-        if (HealthFacilityApplication.getApplicationFlavor().hasHivst()) {
-            int age = memberObject.getAge();
-            menu.findItem(R.id.action_hivst_registration).setVisible(!HivstDao.isRegisteredForHivst(memberObject.getBaseEntityId()) && age >= 15);
-        }
+        CommonRepository commonRepository = Utils.context().commonrepository(Utils.metadata().familyMemberRegister.tableName);
+        final CommonPersonObject commonPersonObject = commonRepository.findByBaseEntityId(memberObject.getBaseEntityId());
+        final CommonPersonObjectClient client = new CommonPersonObjectClient(commonPersonObject.getCaseId(), commonPersonObject.getDetails(), "");
+        client.setColumnmaps(commonPersonObject.getColumnmaps());
+
+        AllClientsUtils.updateOptionsMenu(menu, client);
 
         return true;
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int i = item.getItemId();
+        if (i == android.R.id.home) {
+            onBackPressed();
+            return true;
+        } else if (i == org.smartregister.chw.core.R.id.action_anc_registration) {
+            startAncRegister();
+            return true;
+        } else if (i == org.smartregister.chw.core.R.id.action_pregnancy_out_come) {
+            startPncRegister();
+            return true;
+        } else if (i == org.smartregister.chw.core.R.id.action_fp_initiation) {
+            startFpRegister();
+            return true;
+        } else if (i == org.smartregister.chw.core.R.id.action_fp_ecp_provision) {
+            startFpEcpScreening();
+            return true;
+        } else if (i == org.smartregister.chw.core.R.id.action_malaria_registration) {
+            startMalariaRegister();
+            return true;
+        } else if (i == org.smartregister.chw.core.R.id.action_iccm_registration) {
+            startIntegratedCommunityCaseManagementEnrollment();
+            return true;
+        } else if (i == org.smartregister.chw.core.R.id.action_vmmc_registration) {
+            startVmmcRegister();
+            return true;
+        } else if (i == org.smartregister.chw.core.R.id.action_hiv_registration) {
+            startHivRegister();
+            return true;
+        } else if (i == org.smartregister.chw.core.R.id.action_cbhs_registration) {
+            startHivRegister();
+            return true;
+        } else if (i == org.smartregister.chw.core.R.id.action_tb_registration) {
+            startTbRegister();
+        } else if (i == org.smartregister.chw.core.R.id.action_pmtct_register) {
+            startPmtctRegisration();
+            return true;
+        } else if (i == org.smartregister.chw.core.R.id.action_ld_registration) {
+            startLDRegistration();
+            return true;
+        } else if (i == org.smartregister.chw.core.R.id.action_hivst_registration) {
+            startHivstRegistration();
+            return true;
+        } else if (i == org.smartregister.chw.core.R.id.action_prep_registration) {
+            startPrEPRegistration();
+        } else if (i == org.smartregister.chw.core.R.id.action_sbc_registration) {
+            startSbcRegistration();
+        } else if (i == org.smartregister.chw.core.R.id.action_gbv_registration) {
+            startGbvRegistration();
+        } else if (i == org.smartregister.chw.core.R.id.action_cancer_preventive_services_registration) {
+            startCancerPreventiveServicesRegistration();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    protected void startSbcRegistration() {
+        SbcRegisterActivity.startRegistration(KvpProfileActivity.this, memberObject.getBaseEntityId());
+    }
+
+    protected void startAncRegister() {
+        AncRegisterActivity.startAncRegistrationActivity(KvpProfileActivity.this, memberObject.getBaseEntityId(), memberObject.getPhoneNumber(), CoreConstants.JSON_FORM.getAncRegistration(), null, memberObject.getFamilyBaseEntityId(), memberObject.getFamilyName());
+    }
+
+    protected void startPncRegister() {
+        PncRegisterActivity.startPncRegistrationActivity(KvpProfileActivity.this, memberObject.getBaseEntityId(), memberObject.getPhoneNumber(), CoreConstants.JSON_FORM.getPregnancyOutcome(), null, memberObject.getFamilyBaseEntityId(), memberObject.getFamilyName(), null, false);
+    }
+
+    protected void startMalariaRegister() {
+        MalariaRegisterActivity.startMalariaRegistrationActivity(KvpProfileActivity.this, memberObject.getBaseEntityId());
+
+    }
+
+    protected void startVmmcRegister() {
+
+        VmmcRegisterActivity.startVmmcRegistrationActivity(KvpProfileActivity.this, memberObject.getBaseEntityId());
+    }
+
+    protected void startIntegratedCommunityCaseManagementEnrollment() {
+
+    }
+
+    protected void startHivRegister() {
+        try {
+            HivRegisterActivity.startHIVFormActivity(KvpProfileActivity.this, memberObject.getBaseEntityId(), HIV_REGISTRATION, (new FormUtils()).getFormJsonFromRepositoryOrAssets(this, HIV_REGISTRATION).toString());
+        } catch (JSONException e) {
+            Timber.e(e);
+        }
+    }
+
+    protected void startTbRegister() {
+        try {
+            TbRegisterActivity.startTbFormActivity(KvpProfileActivity.this, memberObject.getBaseEntityId(), CoreConstants.JSON_FORM.getTbRegistration(), (new FormUtils()).getFormJsonFromRepositoryOrAssets(this, CoreConstants.JSON_FORM.getTbRegistration()).toString());
+        } catch (JSONException e) {
+            Timber.e(e);
+        }
+    }
+
+    protected void startFpRegister() {
+        FpRegisterActivity.startFpRegistrationActivity(this, memberObject.getBaseEntityId(), CoreConstants.JSON_FORM.getFpRegistrationForm(memberObject.getGender()));
+    }
+
+    protected void startFpEcpScreening() {
+        FpRegisterActivity.startFpRegistrationActivity(this, memberObject.getBaseEntityId(), org.smartregister.chw.hf.utils.Constants.JsonForm.getFPEcpScreening());
+    }
+
+    protected void startPmtctRegisration() {
+        PncRegisterActivity.startPncRegistrationActivity(KvpProfileActivity.this, memberObject.getBaseEntityId(), memberObject.getPhoneNumber(), org.smartregister.chw.hf.utils.Constants.JsonForm.getPmtctRegistrationForClientsPostPnc(), null, memberObject.getFamilyBaseEntityId(), memberObject.getFamilyName(), null, false);
+    }
+
+    protected void startLDRegistration() {
+        String firstName = memberObject.getFirstName();
+        String middleName = memberObject.getMiddleName();
+        String lastName = memberObject.getLastName();
+        try {
+            LDRegistrationFormActivity.startMe(this, memberObject.getBaseEntityId(), false, getName(getName(firstName, middleName), lastName), String.valueOf(memberObject.getAge()));
+        } catch (Exception e) {
+            Timber.e(e);
+        }
+    }
+
+    protected void startGbvRegistration() {
+        //Implement
+    }
+
+    protected void startCancerPreventiveServicesRegistration() {
+        CecapRegisterActivity.startRegistration(KvpProfileActivity.this, memberObject.getBaseEntityId());
+    }
+
 
     @Override
     public void startHivstRegistration() {

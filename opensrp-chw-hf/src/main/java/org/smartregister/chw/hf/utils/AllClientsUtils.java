@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
@@ -16,9 +17,13 @@ import androidx.fragment.app.FragmentActivity;
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
 import org.smartregister.chw.anc.domain.MemberObject;
+import org.smartregister.chw.cecap.dao.CecapDao;
 import org.smartregister.chw.core.application.CoreChwApplication;
+import org.smartregister.chw.core.dao.AncDao;
 import org.smartregister.chw.core.utils.CoreChildUtils;
 import org.smartregister.chw.core.utils.CoreConstants;
+import org.smartregister.chw.hf.BuildConfig;
+import org.smartregister.chw.hf.HealthFacilityApplication;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.activity.AboveFiveChildProfileActivity;
 import org.smartregister.chw.hf.activity.AllClientsMemberProfileActivity;
@@ -39,8 +44,14 @@ import org.smartregister.chw.hf.dao.HfHivDao;
 import org.smartregister.chw.hf.dao.HfHtsDao;
 import org.smartregister.chw.hf.model.FamilyDetailsModel;
 import org.smartregister.chw.hiv.dao.HivDao;
+import org.smartregister.chw.hivst.dao.HivstDao;
+import org.smartregister.chw.kvp.dao.KvpDao;
+import org.smartregister.chw.ld.dao.LDDao;
+import org.smartregister.chw.malaria.dao.MalariaDao;
 import org.smartregister.chw.pmtct.dao.PmtctDao;
+import org.smartregister.chw.sbc.dao.SbcDao;
 import org.smartregister.chw.tb.dao.TbDao;
+import org.smartregister.chw.vmmc.dao.VmmcDao;
 import org.smartregister.clientandeventmodel.Client;
 import org.smartregister.commonregistry.CommonPersonObject;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
@@ -239,10 +250,11 @@ public class AllClientsUtils {
     }
 
     public static void updateHivMenuItems(String baseEntityId, Menu menu) {
-        if (HfHivDao.isHivMember(baseEntityId)) {
-            menu.findItem(R.id.action_hiv_registration).setVisible(false);
-        } else {
-            menu.findItem(R.id.action_hiv_registration).setVisible(true);
+        MenuItem hivRegistrationItem = menu.findItem(R.id.action_hiv_registration);
+
+        if (hivRegistrationItem != null) {
+            boolean isHivMember = HfHivDao.isHivMember(baseEntityId);
+            hivRegistrationItem.setVisible(!isHivMember);  // Show if not registered, hide if registered
         }
     }
 
@@ -277,5 +289,111 @@ public class AllClientsUtils {
         final CommonPersonObjectClient client = new CommonPersonObjectClient(commonPersonObject.getCaseId(), commonPersonObject.getDetails(), "");
         client.setColumnmaps(commonPersonObject.getColumnmaps());
         return Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.GENDER, false);
+    }
+
+    public static void updateOptionsMenu(Menu menu, CommonPersonObjectClient commonPersonObject) {
+        String baseEntityId = commonPersonObject.entityId();
+
+        // Retrieve common repository and person object
+        CommonRepository commonRepository = org.smartregister.family.util.Utils.context()
+                .commonrepository(org.smartregister.family.util.Utils.metadata().familyMemberRegister.tableName);
+        CommonPersonObject personObject = commonRepository.findByBaseEntityId(baseEntityId);
+        commonPersonObject = new CommonPersonObjectClient(personObject.getCaseId(), personObject.getDetails(), "");
+        commonPersonObject.setColumnmaps(personObject.getColumnmaps());
+
+        // Get commonly used values
+        String gender = org.smartregister.chw.core.utils.Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.GENDER, false);
+        String dob = org.smartregister.chw.core.utils.Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.DOB, false);
+        int age = org.smartregister.chw.core.utils.Utils.getAgeFromDate(dob);
+
+        // Show location info and remove member options
+        setMenuItemVisibility(menu, R.id.action_location_info, true);
+        setMenuItemVisibility(menu, R.id.action_remove_member, true);
+
+        // For specific builds
+        if (BuildConfig.BUILD_FOR_BORESHA_AFYA_SOUTH) {
+            AllClientsUtils.updateHivMenuItems(baseEntityId, menu);
+            // AllClientsUtils.updateTbMenuItems(baseEntityId, menu);
+        }
+
+        // ANC and Pregnancy related items
+        boolean isFemaleOfReproductiveAge = isOfReproductiveAge(commonPersonObject, gender) && gender.equalsIgnoreCase("female");
+        if (isFemaleOfReproductiveAge && !AncDao.isANCMember(baseEntityId)) {
+            setMenuItemVisibility(menu, R.id.action_pregnancy_confirmation, true);
+            setMenuItemVisibility(menu, R.id.action_anc_registration, true);
+            setMenuItemVisibility(menu, R.id.action_pregnancy_out_come, true);
+            setMenuItemVisibility(menu, R.id.action_pmtct_register, true);
+        } else {
+            setPregnancyRelatedMenuItemsVisibility(menu, false);
+        }
+
+        // Family Planning options
+        if (isOfReproductiveAge(commonPersonObject, gender)) {
+            setMenuItemVisibility(menu, R.id.action_fp_initiation, HealthFacilityApplication.getApplicationFlavor().hasFp());
+            if (gender.equalsIgnoreCase("female")) {
+                setMenuItemVisibility(menu, R.id.action_fp_ecp_provision, HealthFacilityApplication.getApplicationFlavor().hasFp());
+            }
+        }
+
+        // Labor and Delivery options
+        if (HealthFacilityApplication.getApplicationFlavor().hasLD() && isFemaleOfReproductiveAge) {
+            setMenuItemVisibility(menu, R.id.action_ld_registration, !LDDao.isRegisteredForLD(baseEntityId));
+        }
+
+        // Malaria options
+        setMenuItemVisibility(menu, R.id.action_sick_child_follow_up, false);
+        if (HealthFacilityApplication.getApplicationFlavor().hasMalaria()) {
+            setMenuItemVisibility(menu, R.id.action_malaria_diagnosis, !MalariaDao.isRegisteredForMalaria(baseEntityId));
+        }
+
+        // VMMC options for male gender
+        if (gender.equalsIgnoreCase("male") && HealthFacilityApplication.getApplicationFlavor().hasVmmc()) {
+            setMenuItemVisibility(menu, R.id.action_vmmc_registration, !VmmcDao.isRegisteredForVmmc(baseEntityId));
+        }
+
+        // HIVST options
+        if (HealthFacilityApplication.getApplicationFlavor().hasHivst()) {
+            setMenuItemVisibility(menu, R.id.action_hivst_registration, !HivstDao.isRegisteredForHivst(baseEntityId) && age >= 15);
+        }
+
+        // KVP PrEP options
+        if (HealthFacilityApplication.getApplicationFlavor().hasKvpPrEP()) {
+            setMenuItemVisibility(menu, R.id.action_kvp_registration, !KvpDao.isRegisteredForKvp(baseEntityId) && age >= 15);
+        }
+
+        // SBC options
+        if (HealthFacilityApplication.getApplicationFlavor().hasSbc()) {
+            setMenuItemVisibility(menu, R.id.action_sbc_registration, !SbcDao.isRegisteredForSbc(baseEntityId) && age >= 10);
+        }
+
+        // Cecap options
+        if (HealthFacilityApplication.getApplicationFlavor().hasCecap()) {
+            setMenuItemVisibility(menu, R.id.action_cancer_preventive_services_registration, !CecapDao.isRegisteredForCecap(baseEntityId) && age >= 14);
+        }
+    }
+
+    private static void setPregnancyRelatedMenuItemsVisibility(Menu menu, boolean visible) {
+        setMenuItemVisibility(menu, R.id.action_pregnancy_confirmation, visible);
+        setMenuItemVisibility(menu, R.id.action_anc_registration, visible);
+        setMenuItemVisibility(menu, R.id.action_pregnancy_out_come, visible);
+        setMenuItemVisibility(menu, R.id.action_pmtct_register, visible);
+    }
+
+    private static void setMenuItemVisibility(Menu menu, int itemId, boolean visible) {
+        MenuItem item = menu.findItem(itemId);
+        if (item != null) {
+            item.setVisible(visible);
+        }
+    }
+
+
+    public static boolean isOfReproductiveAge(CommonPersonObjectClient commonPersonObject, String gender) {
+        if (gender.equalsIgnoreCase("Female")) {
+            return org.smartregister.chw.core.utils.Utils.isMemberOfReproductiveAge(commonPersonObject, 10, 55);
+        } else if (gender.equalsIgnoreCase("Male")) {
+            return org.smartregister.chw.core.utils.Utils.isMemberOfReproductiveAge(commonPersonObject, 15, 49);
+        } else {
+            return false;
+        }
     }
 }

@@ -1508,7 +1508,16 @@
         <item>Negative</item>
     </string-array>
 
+    <string-array name="prep_status_filter_options">
+        <item>Initiated</item>
+        <item>Not initiated</item>
+        <item>Continuing</item>
+        <item>Restarted</item>
+        <item>Discontinued/Quit</item>
+    </string-array>
+
     <string name="hiv_status_filter_title">HIV Status</string>
+    <string name="prep_status_filter_title">PrEP Client Status</string>
     <string name="referred_from_community_filter_title">Referred From Community</string>
     <string name="next_facility_visit_date_filter_title">Next Facility Visit Date</string>
     <string name="global_search_description"><![CDATA[Fill in client’s name & search through UCS’s global database]]></string>
