@@ -20,6 +20,13 @@ condition: "step1_is_male_procedure_circumcision_conducted.equalsIgnoreCase('yes
 actions:
   - "isRelevant = true"
 ---
+name: step1_reason_prolonged_time
+description: reason_prolonged_time relevance
+priority: 1
+condition: "(step1_more_than_minutes.equalsIgnoreCase('More than 30 minutes') && (step1_male_circumcision_method.equalsIgnoreCase('dorsal_slit') || step1_male_circumcision_method.equalsIgnoreCase('sleeve_resection'))) || (step1_more_than_minutes.equalsIgnoreCase('More than 10 minutes') && step1_male_circumcision_method.equalsIgnoreCase('device'))"
+actions:
+  - "isRelevant = true"
+---
 name: step1_aneathesia_administered_conventional
 description: aneathesia_administered_conventional relevance
 priority: 1
@@ -185,6 +192,13 @@ name: step1_dosage_percent
 description: dosage relevance
 priority: 1
 condition: "step1_aneathesia_administered_device.contains('topical_cream')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_reason_max_dosage
+description: reason_max_dosage relevance
+priority: 1
+condition: "((step1_lignocaine_dosage_ml > 5 || step1_bupivacaine_dosage_ml > 5) && global_client_weight > 50) || ((step1_lignocaine_dosage_ml > 4 || step1_bupivacaine_dosage_ml > 4) && (global_client_weight >= 40 && global_client_weight <= 50)) || ((step1_lignocaine_dosage_ml > 3 || step1_bupivacaine_dosage_ml > 3) && (global_client_weight >= 30 && global_client_weight <= 39)) || ((step1_lignocaine_dosage_ml > 2 || step1_bupivacaine_dosage_ml > 2) && (global_client_weight >= 20 && global_client_weight <= 29))"
 actions:
   - "isRelevant = true"
 ---

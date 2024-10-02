@@ -949,6 +949,11 @@
     <string name="needs_followup">Needs follow-up</string>
     <string name="not_discharged">Not Discharged</string>
 
+    <string name="vmmc_reffered_from">Reffered From:</string>
+    <string name="vmmc_service_delivery_approach">service delivery approach:</string>
+    <string name="vmmc_outreach_mobile_location">outreach mobile location:</string>
+    <string name="vmmc_vmmc_client_id">client ID:</string>
+
     <!--    Vmmc Medical History-->
     <string name="vmmc_consent_from">Consent from:</string>
     <string name="vmmc_has_client_had_any_sti">STI:</string>
@@ -1030,6 +1035,7 @@
     <string name="vmmc_discharge_time">discharge time:</string>
     <string name="vmmc_discharging_provider_name">discharging provider name:</string>
     <string name="vmmc_provider_cadre">Providers cadre:</string>
+
 
     <string name="vmmc_first_vital_sign_pulse_rate">First Vital Sign Pulse Rate (Beats per minute):</string>
     <string name="vmmc_first_vital_sign_systolic">First Vital Sign Systolic (Blood Pressure):</string>

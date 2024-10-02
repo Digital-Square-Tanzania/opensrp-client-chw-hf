@@ -42,6 +42,7 @@
     },
     "encounter_location": ""
   },
+  "global": {},
   "step1": {
     "title": "Male circumcision procedure",
     "fields": [
@@ -109,6 +110,45 @@
         }
       },
       {
+        "key": "male_circumcision_method",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "male_circumcision_method",
+        "label": "Male circumcision method used",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "dorsal_slit",
+            "text": "Dorsal slit",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "dorsal_slit"
+          },
+          {
+            "key": "sleeve_resection",
+            "text": "Sleeve resection",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "sleeve_resection"
+          },
+          {
+            "key": "device",
+            "text": "Device",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "device"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_mc_procedure_relevance.yml"
+            }
+          }
+        }
+      },
+      {
         "key": "start_time",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -146,36 +186,30 @@
         }
       },
       {
-        "key": "male_circumcision_method",
+        "key": "more_than_minutes",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "male_circumcision_method",
-        "label": "Male circumcision method used",
-        "text_color": "#000000",
-        "type": "native_radio",
-        "options": [
-          {
-            "key": "dorsal_slit",
-            "text": "Dorsal slit",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "dorsal_slit"
-          },
-          {
-            "key": "sleeve_resection",
-            "text": "Sleeve resection",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "sleeve_resection"
-          },
-          {
-            "key": "device",
-            "text": "Device",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "device"
+        "openmrs_entity_id": "more_than_minutes",
+        "type": "hidden",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_mc_procedure_calculation.yml"
+            }
           }
-        ],
+        }
+      },
+      {
+        "key": "reason_prolonged_time",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "reason_prolonged_time",
+        "type": "edit_text",
+        "hint": "Give reason why the procedure was prolonged",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -613,6 +647,26 @@
           "value": "100",
           "err": "Bupivacaine (percent) value must be equal or less than 100"
         },
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_mc_procedure_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "reason_max_dosage",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "reason_max_dosage",
+        "entity_id": "",
+        "type": "edit_text",
+        "hint": "Reason for maximun dosage",
         "v_required": {
           "value": "true",
           "err": "Please specify"

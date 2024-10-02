@@ -251,9 +251,10 @@
         "openmrs_entity_parent": "",
         "toaster_type": "problem",
         "relevance": {
-          "step1:pulse_rate": {
-            "type": "numeric",
-            "ex": "lessThan(.,\"60\")"
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_physcial_exam_relevance.yml"
+            }
           }
         }
       },
@@ -266,9 +267,10 @@
         "openmrs_entity_parent": "",
         "toaster_type": "problem",
         "relevance": {
-          "step1:pulse_rate": {
-            "type": "numeric",
-            "ex": "greaterThan(.,\"100\")"
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_physcial_exam_relevance.yml"
+            }
           }
         }
       },
@@ -426,9 +428,10 @@
         "openmrs_entity_parent": "",
         "toaster_type": "problem",
         "relevance": {
-          "step1:respiration_rate": {
-            "type": "numeric",
-            "ex": "lessThan(.,\"14.0\")"
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_physcial_exam_relevance.yml"
+            }
           }
         }
       },
@@ -441,9 +444,10 @@
         "openmrs_entity_parent": "",
         "toaster_type": "problem",
         "relevance": {
-          "step1:respiration_rate": {
-            "type": "numeric",
-            "ex": "greaterThan(.,\"20\")"
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_physcial_exam_relevance.yml"
+            }
           }
         }
       },

@@ -202,6 +202,13 @@
         "type": "hidden"
       },
       {
+        "key": "mc_procedure_date",
+        "type": "hidden",
+        "openmrs_entity_id": "mc_procedure_date",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": ""
+      },
+      {
         "key": "date_nae_occured",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -209,7 +216,7 @@
         "type": "date_picker",
         "hint": "Date NAE occured",
         "expanded": false,
-        "min_date": "today-1y",
+        "min_date": "step1_mc_procedure_date",
         "max_date": "today",
         "v_required": {
           "value": "true",

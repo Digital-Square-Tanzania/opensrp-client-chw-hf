@@ -8452,6 +8452,14 @@
           }
         },
         {
+          "column_name": "reffered_from_others",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "reffered_from_others"
+          }
+        },
+        {
           "column_name": "next_followup_date",
           "type": "Event",
           "json_mapping": {

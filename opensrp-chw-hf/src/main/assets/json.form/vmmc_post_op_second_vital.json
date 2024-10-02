@@ -1,6 +1,6 @@
 {
   "count": "1",
-  "encounter_type": "Post Operation Vital Sign",
+  "encounter_type": "Post Operation Second Vital Sign",
   "validate_on_submit": true,
   "entity_id": "",
   "relational_id": "",
@@ -54,7 +54,7 @@
   },
   "global": {},
   "step1": {
-    "title": "Post Operation Vital Sign",
+    "title": "Post Operation Second Vital Sign",
     "fields": [
       {
         "key": "second_vital_pulse_rate",
@@ -282,18 +282,11 @@
         }
       },
       {
-        "key": "first_vital_sign_time_taken_previous",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "first_vital_sign_time_taken_previous",
+        "key": "first_time",
         "type": "hidden",
-        "calculation": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "vmmc_post_op_second_vital_calculation.yml"
-            }
-          }
-        }
+        "openmrs_entity_id": "first_time",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": ""
       },
       {
         "key": "second_vital_sign_time_taken",
@@ -308,13 +301,23 @@
         "constraints": [
           {
             "type": "time",
-            "ex": "greaterThan(., step1:first_vital_sign_time_taken_previous)",
-            "err": "time cannot be less than the First vital time"
+            "ex": "greaterThan(., step1:first_time)",
+            "err": "Time must be 15 minutes after the first vital"
           }
-        ],
-        "v_required": {
-          "value": "true",
-          "err": "time taken is required"
+        ]
+      },
+      {
+        "key": "more_than_time",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "more_than_time",
+        "type": "hidden",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_second_vital_sign_calculation.yml"
+            }
+          }
         }
       },
       {
@@ -325,7 +328,6 @@
         "openmrs_entity_parent": "",
         "value": "pending"
       }
-
     ]
   }
 }

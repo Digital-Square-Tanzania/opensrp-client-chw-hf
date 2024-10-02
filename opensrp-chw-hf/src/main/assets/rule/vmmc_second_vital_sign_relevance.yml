@@ -27,8 +27,8 @@ condition: "(!step1_second_vital_sign_systolic.equals('') && step1_second_vital_
 actions:
   - "isRelevant = true"
 ---
-name: step1_prompt_for_time_more_than_proceduree
-description: prompt_for_time_more_than_procedure relevance
+name: step1_prompt_for_time_first_vital
+description: prompt_for_time_first_vital relevance
 priority: 1
 condition: "step1_more_than_time.equalsIgnoreCase('Incorrect')"
 actions:

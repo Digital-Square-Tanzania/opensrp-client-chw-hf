@@ -52,9 +52,47 @@
       "value": ""
     }
   },
+  "global": {},
   "step1": {
     "title": "Discharge Form",
     "fields": [
+      {
+        "key": "discharge_time",
+        "type": "label",
+        "text": "Please submit previous form",
+        "hint_on_text": false,
+        "text_color": "#c90808",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "discharge_time",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_discharge_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "more_than_15min_reasons",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "more_than_15min_reasons",
+        "type": "edit_text",
+        "hint": "Give Reason why Discharge was delayed",
+        "edit_type": "text",
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the reason"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_discharge_relevance.yml"
+            }
+          }
+        }
+      },
       {
         "key": "discharge_date",
         "type": "edit_text",
@@ -307,29 +345,6 @@
           "step1:analgesics_given": {
             "type": "string",
             "ex": "equalTo(., \"no\")"
-          }
-        }
-      },
-      {
-        "key": "discharge_time",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "discharge_time",
-        "type": "time_picker",
-        "hint": "Discharge Time",
-        "expandable": false,
-        "duration": {
-          "label": "Discharge Time"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Please specify"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "vmmc_discharge_relevance.yml"
-            }
           }
         }
       },

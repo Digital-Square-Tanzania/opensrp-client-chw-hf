@@ -85,6 +85,13 @@
         "openmrs_entity_id": "post_op_dates"
       },
       {
+        "key": "mc_procedure_date",
+        "type": "hidden",
+        "openmrs_entity_id": "mc_procedure_date",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": ""
+      },
+      {
         "key": "follow_up_visit_type",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -162,7 +169,7 @@
         "type": "date_picker",
         "hint": "Date adverse event occured",
         "expanded": false,
-        "min_date": "today-1y",
+        "min_date": "step1_mc_procedure_date",
         "max_date": "today",
         "v_required": {
           "value": "true",
