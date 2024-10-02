@@ -99,10 +99,10 @@ public class PrEPRegisterFragment extends CoreKvpRegisterFragment implements and
             intent.putExtra(FILTERS_ENABLED, filterEnabled);
             intent.putExtra(FILTER_HIV_STATUS, filterHivStatus);
             intent.putExtra(FILTER_PREP_STATUS, filterPrepStatus);
-            intent.putExtra(ENABLE_HIV_STATUS_FILTER, false);
-            intent.putExtra(ENABLE_PREP_STATUS_FILTER, true);
             intent.putExtra(FILTER_IS_REFERRED, filterIsReferred);
             intent.putExtra(FILTER_APPOINTMENT_DATE, appointmentDate);
+            intent.putExtra(ENABLE_HIV_STATUS_FILTER, false);
+            intent.putExtra(ENABLE_PREP_STATUS_FILTER, true);
             ((Activity) getContext()).startActivityForResult(intent, REQUEST_FILTERS);
         }
 
