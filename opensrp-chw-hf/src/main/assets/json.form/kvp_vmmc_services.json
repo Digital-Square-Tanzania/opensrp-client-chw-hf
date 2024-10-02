@@ -64,6 +64,12 @@
             "text": "Not provided",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "not_provided"
+          },
+          {
+            "key": "circumcised",
+            "text": "Circumcised",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "circumcised"
           }
         ],
         "v_required": {

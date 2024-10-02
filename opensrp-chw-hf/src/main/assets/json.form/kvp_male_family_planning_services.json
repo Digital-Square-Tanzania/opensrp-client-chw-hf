@@ -66,12 +66,6 @@
             "openmrs_entity_id": "traditional"
           },
           {
-            "key": "referral",
-            "text": "Referral",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "referral"
-          },
-          {
             "key": "refused",
             "text": "Refused",
             "openmrs_entity": "concept",

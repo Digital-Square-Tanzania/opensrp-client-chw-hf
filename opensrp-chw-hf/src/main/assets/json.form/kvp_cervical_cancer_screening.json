@@ -64,12 +64,6 @@
             "text": "Not screened",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "not_provided"
-          },
-          {
-            "key": "referred",
-            "text": "Referred for treatment",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "referred"
           }
         ],
         "v_required": {

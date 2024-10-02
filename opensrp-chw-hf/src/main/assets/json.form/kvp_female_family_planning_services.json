@@ -96,12 +96,6 @@
             "openmrs_entity_id": "tube_ligation"
           },
           {
-            "key": "referral",
-            "text": "Referral",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "referral"
-          },
-          {
             "key": "refused",
             "text": "Refused",
             "openmrs_entity": "concept",

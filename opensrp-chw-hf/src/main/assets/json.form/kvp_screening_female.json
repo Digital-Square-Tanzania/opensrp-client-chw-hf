@@ -271,6 +271,9 @@
         "label": "Select the partner's criteria of HIV care status",
         "text_color": "#000000",
         "type": "check_box",
+        "exclusive": [
+          "none"
+        ],
         "options": [
           {
             "key": "not_started_art",
@@ -299,6 +302,13 @@
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "no_evidence_low_vl"
+          },
+          {
+            "key": "none",
+            "text": "None",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "none"
           }
         ],
         "relevance": {
