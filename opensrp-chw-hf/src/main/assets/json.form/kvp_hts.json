@@ -207,13 +207,6 @@
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "normal_client"
-          },
-          {
-            "key": "none",
-            "text": "None",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "none"
           }
         ],
         "v_required": {
@@ -332,6 +325,21 @@
           "step1:hiv_status": {
             "type": "string",
             "ex": "equalTo(., \"negative\")"
+          }
+        }
+      },
+      {
+        "key": "prompt_for_hiv_status_inconclusive",
+        "type": "toaster_notes",
+        "text": "Repeat Test after 14 Days",
+        "openmrs_entity_id": "prompt_for_hiv_status_inconclusive",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "warning",
+        "relevance": {
+          "step1:hiv_status": {
+            "type": "string",
+            "ex": "equalTo(., \"inconclusive\")"
           }
         }
       },

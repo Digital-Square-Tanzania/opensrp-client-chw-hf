@@ -26,9 +26,10 @@ priority: 1
 condition: "step5_hiv_status_on_screening.equals('negative')"
 actions:
   - "isRelevant = true"
+
 ---
 name: step8_prompt_for_sdc_kvp
-description: prompt_for_sdc_kvp relevance
+description: prompt_for_sdc_kvp relevance0
 priority: 1
 condition: "step5_is_sdc.equals('yes')"
 actions:
