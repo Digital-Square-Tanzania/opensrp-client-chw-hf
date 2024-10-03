@@ -1,7 +1,5 @@
 package org.smartregister.chw.hf.domain.vmmc_reports;
 
-import android.util.Log;
-
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -13,18 +11,19 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-public class VmmcServiceRegisterObject extends ReportObject {
+public class VmmcOutreachServiceRegisterObject extends ReportObject {
 
     private Date reportDate;
     private Date startDate;
     private Date endDate;
 
-    public VmmcServiceRegisterObject(Date reportDate) {
-        super(reportDate, null, null);
+    public VmmcOutreachServiceRegisterObject(Date reportDate) {
+        super(reportDate);
         this.reportDate = reportDate;
     }
 
-    public VmmcServiceRegisterObject(Date reportDate, Date startDate, Date endDate) {
+
+    public VmmcOutreachServiceRegisterObject(Date reportDate, Date startDate, Date endDate) {
         super(reportDate, startDate, endDate);
         this.reportDate = reportDate;
         this.startDate = startDate;
@@ -35,7 +34,8 @@ public class VmmcServiceRegisterObject extends ReportObject {
     @Override
     public JSONObject getIndicatorData() throws JSONException {
         JSONArray dataArray = new JSONArray();
-        List<Map<String, String>> getVmmcRegisterList = ReportDao.getVmmcServiceRegister(reportDate, startDate, endDate);
+        List<Map<String, String>> getVmmcRegisterList = ReportDao.getVmmcOutreachServiceRegister(reportDate, startDate, endDate);
+
         int i = 0;
 
         for (Map<String, String> getVmmcRegister : getVmmcRegisterList) {

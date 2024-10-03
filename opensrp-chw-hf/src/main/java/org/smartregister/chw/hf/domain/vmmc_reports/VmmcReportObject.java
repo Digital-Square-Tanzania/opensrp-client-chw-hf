@@ -7,7 +7,7 @@ import org.smartregister.chw.hf.domain.ReportObject;
 
 import java.util.Date;
 
-public class VmmcMonthlyReportObject extends ReportObject {
+public class VmmcReportObject extends ReportObject {
 
     private final String[] vmmcQuestionsGroups = new String[]{"1", "2", "3-i", "3-ii", "4", "5", "6-a-i", "6-a-ii", "6-a-iii", "6-a-iv", "6-a-v", "6-a-vi", "6-a-vii",
             "6-a-viii", "6-a-ix", "6-a-x", "6-a-xi", "6-a-xii", "6-b-i", "6-b-ii", "6-b-iii", "6-b-iv", "6-b-v", "6-b-vi", "6-b-vii", "6-b-viii", "6-b-ix", "6-b-x",
@@ -27,7 +27,7 @@ public class VmmcMonthlyReportObject extends ReportObject {
 
     private JSONObject jsonObject;
 
-    public VmmcMonthlyReportObject(Date reportDate) {
+    public VmmcReportObject(Date reportDate) {
         super(reportDate);
         this.reportDate = reportDate;
     }

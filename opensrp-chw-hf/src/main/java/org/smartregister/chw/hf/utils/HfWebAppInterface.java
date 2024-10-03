@@ -7,8 +7,14 @@ import static org.smartregister.chw.hf.utils.Constants.ReportConstants.PMTCTRepo
 import static org.smartregister.chw.hf.utils.Constants.ReportConstants.PMTCTReportKeys.THREE_MONTHS;
 import static org.smartregister.chw.hf.utils.Constants.ReportConstants.PMTCTReportKeys.TWELVE_MONTHS;
 import static org.smartregister.chw.hf.utils.Constants.ReportConstants.PMTCTReportKeys.TWENTY_FOUR_MONTHS;
+import static org.smartregister.chw.hf.utils.Constants.ReportConstants.VmmcKeys.VMMC_OUTREACH_REPORT;
+import static org.smartregister.chw.hf.utils.Constants.ReportConstants.VmmcKeys.VMMC_OUTREACH_SERVICE_REGISTER;
+import static org.smartregister.chw.hf.utils.Constants.ReportConstants.VmmcKeys.VMMC_OUTREACH_THEATRE_REGISTER;
 import static org.smartregister.chw.hf.utils.Constants.ReportConstants.VmmcKeys.VMMC_REPORT;
 import static org.smartregister.chw.hf.utils.Constants.ReportConstants.VmmcKeys.VMMC_SERVICE_REGISTER;
+import static org.smartregister.chw.hf.utils.Constants.ReportConstants.VmmcKeys.VMMC_STATIC_REPORT;
+import static org.smartregister.chw.hf.utils.Constants.ReportConstants.VmmcKeys.VMMC_STATIC_SERVICE_REGISTER;
+import static org.smartregister.chw.hf.utils.Constants.ReportConstants.VmmcKeys.VMMC_STATIC_THEATRE_REGISTER;
 import static org.smartregister.chw.hf.utils.Constants.ReportConstants.VmmcKeys.VMMC_THEATRE_REGISTER;
 import static org.smartregister.util.Utils.getAllSharedPreferences;
 
@@ -83,12 +89,71 @@ public class HfWebAppInterface {
                 case VMMC_REPORT:
                     ReportUtils.setPrintJobName("vmmc_report_ya_mwezi-" + ReportUtils.getReportPeriod() + ".pdf");
                     return ReportUtils.VmmcReport.computeReport(ReportUtils.getReportDate());
+                case VMMC_STATIC_REPORT:
+                    ReportUtils.setPrintJobName("vmmc_static_report_ya_mwezi-" + ReportUtils.getReportPeriod() + ".pdf");
+                    return ReportUtils.VmmcStaticReport.computeReport(ReportUtils.getReportDate());
+                case VMMC_OUTREACH_REPORT:
+                    ReportUtils.setPrintJobName("vmmc_outreach_report_ya_mwezi-" + ReportUtils.getReportPeriod() + ".pdf");
+                    return ReportUtils.VmmcOutreachReport.computeReport(ReportUtils.getReportDate());
+
                 case VMMC_SERVICE_REGISTER:
-                    ReportUtils.setPrintJobName("vmmc_register_ya_mwezi-" + ReportUtils.getReportPeriod() + ".pdf");
-                    return ReportUtils.VmmcServiceRegister.computeReport(ReportUtils.getReportDate());
+                    if (ReportUtils.getStartDate() != null && ReportUtils.getEndDate() != null){
+                        ReportUtils.setPrintJobName("vmmc_register_ya_mwezi-" + ReportUtils.getStartDate() + "to "
+                                + ReportUtils.getEndDate() + ".pdf");
+                        return ReportUtils.VmmcServiceRegister.computeReport(ReportUtils.getReportDate(), ReportUtils.getStartReportDate(), ReportUtils.getEndReportDate());
+                    }else {
+                        ReportUtils.setPrintJobName("vmmc_register_ya_mwezi-" + ReportUtils.getReportPeriod() + ".pdf");
+                        return ReportUtils.VmmcServiceRegister.computeReport(ReportUtils.getReportDate());
+                    }
+
+                case VMMC_STATIC_SERVICE_REGISTER:
+                    if (ReportUtils.getStartDate() != null && ReportUtils.getEndDate() != null){
+                        ReportUtils.setPrintJobName("vmmc_static_register_ya_mwezi-" + ReportUtils.getStartDate() + "to "
+                                + ReportUtils.getEndDate() + ".pdf");
+                        return ReportUtils.VmmcStaticServiceRegister.computeReport(ReportUtils.getReportDate(), ReportUtils.getStartReportDate(), ReportUtils.getEndReportDate());
+                    }else {
+                        ReportUtils.setPrintJobName("vmmc_static_register_ya_mwezi-" + ReportUtils.getReportPeriod() + ".pdf");
+                        return ReportUtils.VmmcStaticServiceRegister.computeReport(ReportUtils.getReportDate());
+                    }
+                case VMMC_OUTREACH_SERVICE_REGISTER:
+                    if (ReportUtils.getStartDate() != null && ReportUtils.getEndDate() != null){
+                        ReportUtils.setPrintJobName("vmmc_outreach_register_ya_mwezi-" + ReportUtils.getStartDate() + "to "
+                                + ReportUtils.getEndDate() + ".pdf");
+                        return ReportUtils.VmmcOutreachServiceRegister.computeReport(ReportUtils.getReportDate(), ReportUtils.getStartReportDate(), ReportUtils.getEndReportDate());
+                    }else {
+                        ReportUtils.setPrintJobName("vmmc_outreach_register_ya_mwezi-" + ReportUtils.getReportPeriod() + ".pdf");
+                        return ReportUtils.VmmcOutreachServiceRegister.computeReport(ReportUtils.getReportDate());
+                    }
+
                 case VMMC_THEATRE_REGISTER:
-                    ReportUtils.setPrintJobName("vmmc_theatre_register_ya_mwezi-" + ReportUtils.getReportPeriod() + ".pdf");
-                    return ReportUtils.VmmcTheatreRegister.computeReport(ReportUtils.getReportDate());
+                    if (ReportUtils.getStartDate() != null && ReportUtils.getEndDate() != null){
+                        ReportUtils.setPrintJobName("vmmc_theatre_register_ya_mwezi-" + ReportUtils.getStartDate() + "to "
+                                + ReportUtils.getEndDate() + ".pdf");
+                        return ReportUtils.VmmcTheatreRegister.computeReport(ReportUtils.getReportDate(), ReportUtils.getStartReportDate(), ReportUtils.getEndReportDate());
+                    }else {
+                        ReportUtils.setPrintJobName("vmmc_theatre_register_ya_mwezi-" + ReportUtils.getReportPeriod() + ".pdf");
+                        return ReportUtils.VmmcTheatreRegister.computeReport(ReportUtils.getReportDate());
+                    }
+
+                case VMMC_STATIC_THEATRE_REGISTER:
+                    if (ReportUtils.getStartDate() != null && ReportUtils.getEndDate() != null){
+                        ReportUtils.setPrintJobName("vmmc_static_theatre_register_ya_mwezi-" + ReportUtils.getStartDate() + "to "
+                                + ReportUtils.getEndDate() + ".pdf");
+                        return ReportUtils.VmmcStaticTheatreRegister.computeReport(ReportUtils.getReportDate(), ReportUtils.getStartReportDate(), ReportUtils.getEndReportDate());
+                    }else {
+                        ReportUtils.setPrintJobName("vmmc_static_theatre_register_ya_mwezi-" + ReportUtils.getReportPeriod() + ".pdf");
+                        return ReportUtils.VmmcStaticTheatreRegister.computeReport(ReportUtils.getReportDate());
+                    }
+
+                case VMMC_OUTREACH_THEATRE_REGISTER:
+                    if (ReportUtils.getStartDate() != null && ReportUtils.getEndDate() != null){
+                        ReportUtils.setPrintJobName("vmmc_outreach_theatre_register_ya_mwezi-" + ReportUtils.getStartDate() + "to "
+                                + ReportUtils.getEndDate() + ".pdf");
+                        return ReportUtils.VmmcOutreachTheatreRegister.computeReport(ReportUtils.getReportDate(), ReportUtils.getStartReportDate(), ReportUtils.getEndReportDate());
+                    }else {
+                        ReportUtils.setPrintJobName("vmmc_outreach_theatre_register_ya_mwezi-" + ReportUtils.getReportPeriod() + ".pdf");
+                        return ReportUtils.VmmcOutreachTheatreRegister.computeReport(ReportUtils.getReportDate());
+                    }
                 default:
                     return "";
             }

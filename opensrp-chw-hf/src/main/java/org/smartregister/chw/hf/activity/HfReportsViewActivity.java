@@ -30,6 +30,10 @@ public class HfReportsViewActivity extends AppCompatActivity {
 
     protected static final String ARG_REPORT_DATE = "ARG_REPORT_DATE";
 
+    protected static final String ARG_REPORT_START_DATE = "ARG_REPORT_START_DATE";
+
+    protected static final String ARG_REPORT_END_DATE = "ARG_REPORT_END_DATE";
+
     protected static final String ARG_REPORT_TYPE = "ARG_REPORT_TYPE";
 
     public static WebView printWebView;
@@ -41,6 +45,10 @@ public class HfReportsViewActivity extends AppCompatActivity {
     String reportPath;
 
     String reportDate;
+
+    String startDate;
+
+    String endDate;
 
     String reportType;
 
@@ -56,6 +64,8 @@ public class HfReportsViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_reports_view);
         reportPath = getIntent().getStringExtra(ARG_REPORT_PATH);
         reportDate = getIntent().getStringExtra(ARG_REPORT_DATE);
+        startDate = getIntent().getStringExtra(ARG_REPORT_START_DATE);
+        endDate = getIntent().getStringExtra(ARG_REPORT_END_DATE);
         reportType = getIntent().getStringExtra(ARG_REPORT_TYPE);
         reportTitle = getIntent().getIntExtra(ARG_REPORT_TITLE, 0);
         setUpToolbar(reportTitle);
@@ -65,6 +75,8 @@ public class HfReportsViewActivity extends AppCompatActivity {
         webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         ReportUtils.setReportPeriod(reportDate);
+        ReportUtils.setStartDate(startDate);
+        ReportUtils.setEndDate(endDate);
         ReportUtils.loadReportView(reportPath, webView, progressBar, this, reportType);
     }
 
