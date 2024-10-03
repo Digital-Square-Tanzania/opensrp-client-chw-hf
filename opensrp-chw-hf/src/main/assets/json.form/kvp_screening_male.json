@@ -553,6 +553,48 @@
         }
       },
       {
+        "key": "is_prisoner",
+        "type": "hidden",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "is_prisoner_or_rumandee",
+        "openmrs_entity_parent": "",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kvp_screening_male_calculation.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "is_rumandee",
+        "type": "hidden",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "is_prisoner_or_rumandee",
+        "openmrs_entity_parent": "",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kvp_screening_male_calculation.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "is_mobile_population",
+        "type": "hidden",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "is_mobile_population",
+        "openmrs_entity_parent": "",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kvp_screening_male_calculation.yml"
+            }
+          }
+        }
+      },
+      {
         "key": "is_ovp_kvp",
         "type": "hidden",
         "openmrs_entity": "concept",
@@ -644,9 +686,10 @@
           "err": "Please select an answer"
         },
         "relevance": {
-          "step7:prep_assessment": {
-            "type": "string",
-            "ex": "equalTo(., \"yes\")"
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kvp_screening_male_relevance.yml"
+            }
           }
         }
       }

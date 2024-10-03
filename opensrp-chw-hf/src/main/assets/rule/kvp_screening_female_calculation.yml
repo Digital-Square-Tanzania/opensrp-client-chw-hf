@@ -34,26 +34,47 @@ condition: "true"
 actions:
   - "calculation = (!step6_harsh_condition_impact.isEmpty() && !step6_harsh_condition_impact.contains('not_applicable')) ? 'yes' : 'no'"
 ---
-name: step7_is_ovp_kvp
-description: check if client falls in other vunerable population
+name: step7_is_prisoner
+description: check if client is prisoner
 priority: 1
 condition: "true"
 actions:
-  - "calculation = !(step7_prisoner_or_rumandee.equals('not_applicable') && step7_mobile_population.equals('not_applicable') && step7_other_groups_at_risk.equals('not_applicable')) ? 'yes' : 'no' "
+  - "calculation = step7_prisoner_or_rumandee.contains('prisoner') ? 'yes' : 'no' "
+---
+name: step7_is_rumandee
+description: check if client is rumandee
+priority: 1
+condition: "true"
+actions:
+  - "calculation = step7_prisoner_or_rumandee.contains('rumandee') ? 'yes' : 'no' "
+---
+name: step7_is_mobile_population
+description: check if client is a mobile population
+priority: 1
+condition: "true"
+actions:
+  - "calculation = !step7_mobile_population.equals('none') ? 'yes' : 'no' "
+---
+name: step7_is_ovp_kvp
+description: check if client falls in other groups at risk of hiv infection
+priority: 1
+condition: "true"
+actions:
+  - "calculation = !step7_other_groups_at_risk.equals('none') ? 'yes' : 'no' "
 ---
 name: step8_should_enroll
 description: check if should enroll client if they belong to any kvp group
 priority: 1
 condition: "true"
 actions:
-  - "calculation = (step1_is_pwud.equals('yes') || step2_is_pwid.equals('yes') || step5_is_fsw.equals('yes') || step6_is_agyw.equals('yes') || step4_is_sdc.equals('yes') || step7_is_ovp_kvp.equals('yes')) ? 'yes' : 'no' "
+  - "calculation = (step1_is_pwud.equals('yes') || step2_is_pwid.equals('yes') || step5_is_fsw.equals('yes') || step6_is_agyw.equals('yes') || step4_is_sdc.equals('yes') || step7_is_prisoner.equals('yes')  || step7_is_rumandee.equals('yes') || step7_is_mobile_population.equals('yes')  step7_is_ovp_kvp.equals('yes')) ? 'yes' : 'no' "
 ---
 name: step9_other_screened_client_group
 description: other KVP Groups Calculation
 priority: 1
 condition: "true"
 actions:
-  - "def getOtherKvpGroups(pwud,pwid,sdc,fsw,agyw,ovp) {
+  - "def getOtherKvpGroups(pwud,pwid,sdc,fsw,agyw,prisoner,rumandee,mobile_population,ovp) {
         String otherGroups = '';
                
         if(pwud.contains('yes')){
@@ -76,6 +97,18 @@ actions:
         if(agyw.equals('yes')){
           otherGroups+='agyw,';
         }
+
+         if(prisoner.equals('yes')){
+           otherGroups+='prisoner,';
+         }
+
+         if(rumandee.equals('yes')){
+           otherGroups+='rumandee,';
+         }
+
+         if(mobile_population.equals('yes')){
+           otherGroups+='mobile_population,';
+         }
         
         if(ovp.equals('yes')){
           otherGroups+='other_vulnerable_population,';
@@ -89,6 +122,6 @@ actions:
         return otherGroups;
                
      }"
-  - "calculation = '['+getOtherKvpGroups(step1_is_pwud, step2_is_pwid, step4_is_sdc, step5_is_fsw, step6_is_agyw, step7_is_ovp_kvp)+']'"
+  - "calculation = '['+getOtherKvpGroups(step1_is_pwud, step2_is_pwid, step4_is_sdc, step5_is_fsw, step6_is_agyw, step7_is_prisoner, step7_is_rumandee, step7_is_mobile_population, step7_is_ovp_kvp)+']'"
 
 

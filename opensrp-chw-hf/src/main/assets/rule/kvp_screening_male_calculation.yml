@@ -27,26 +27,47 @@ condition: "true"
 actions:
   - "calculation = (step5_hiv_status_on_screening.equals('negative') && step5_hiv_positive_partner.equals('yes')) ? 'yes' : 'no' "
 ---
-name: step6_is_ovp_kvp
-description: check if client falls in other vunerable population
+name: step6_is_prisoner
+description: check if client is prisoner
 priority: 1
 condition: "true"
 actions:
-  - "calculation = !(step6_prisoner_or_rumandee.equals('none') && step6_mobile_population.equals('none') && step6_other_groups_at_risk.equals('none')) ? 'yes' : 'no' "
+  - "calculation = step6_prisoner_or_rumandee.contains('prisoner') ? 'yes' : 'no' "
+---
+name: step6_is_rumandee
+description: check if client is rumandee
+priority: 1
+condition: "true"
+actions:
+  - "calculation = step6_prisoner_or_rumandee.contains('rumandee') ? 'yes' : 'no' "
+---
+name: step6_is_mobile_population
+description: check if client is a mobile population
+priority: 1
+condition: "true"
+actions:
+  - "calculation = !step6_mobile_population.equals('none') ? 'yes' : 'no' "
+---
+name: step6_is_ovp_kvp
+description: check if client falls in other groups at risk of hiv infection
+priority: 1
+condition: "true"
+actions:
+  - "calculation = !step6_other_groups_at_risk.equals('none') ? 'yes' : 'no' "
 ---
 name: step7_should_enroll
 description: check if should enroll client if they belong to any kvp group
 priority: 1
 condition: "true"
 actions:
-  - "calculation = (step1_is_pwud.equals('yes') || step2_is_pwid.equals('yes') || step4_is_msm.equals('yes') || step5_is_sdc.equals('yes') || step6_is_ovp_kvp.equals('yes')) ? 'yes' : 'no' "
+  - "calculation = (step1_is_pwud.equals('yes') || step2_is_pwid.equals('yes') || step4_is_msm.equals('yes') || step5_is_sdc.equals('yes') || step6_is_prisoner.equals('yes')  || step6_is_rumandee.equals('yes') || step6_is_mobile_population.equals('yes') || step6_is_ovp_kvp.equals('yes')) ? 'yes' : 'no' "
 ---
 name: step8_other_screened_client_group
 description: other KVP Groups Calculation
 priority: 1
 condition: "true"
 actions:
-  - "def getOtherKvpGroups(pwud,pwid,sdc,msm,ovp) {
+  - "def getOtherKvpGroups(pwud,pwid,sdc,msm,prisoner,rumandee,mobile_population,ovp) {
         String otherGroups = '';
                
         if(pwud.contains('yes')){
@@ -65,6 +86,18 @@ actions:
         if(msm.equals('yes')){
           otherGroups+='msm,';
         }
+        
+        if(prisoner.equals('yes')){
+          otherGroups+='prisoner,';
+        }
+        
+        if(rumandee.equals('yes')){
+          otherGroups+='rumandee,';
+        }
+        
+        if(mobile_population.equals('yes')){
+          otherGroups+='mobile_population,';
+        }
      
         if(ovp.equals('yes')){
           otherGroups+='other_vulnerable_population,';
@@ -77,6 +110,6 @@ actions:
         return otherGroups;
                
      }"
-  - "calculation = '['+getOtherKvpGroups(step1_is_pwud, step2_is_pwid, step5_is_sdc, step4_is_msm, step6_is_ovp_kvp)+']'"
+  - "calculation = '['+getOtherKvpGroups(step1_is_pwud, step2_is_pwid, step5_is_sdc, step4_is_msm, step6_is_prisoner,step6_is_rumandee, step6_is_mobile_population, step6_is_ovp_kvp)+']'"
 
 

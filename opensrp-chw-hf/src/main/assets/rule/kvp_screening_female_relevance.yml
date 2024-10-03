@@ -1,4 +1,10 @@
-
+---
+name: step8_prep_qualified
+description: is the client eligible for prep
+priority: 1
+condition: "step8_prep_assessment.equals('yes')  && !step4_hiv_status_on_screening.equals('positive')"
+actions:
+  - "isRelevant = true"
 ---
 name: step2_drug_injection
 description: drug_injection relevance
