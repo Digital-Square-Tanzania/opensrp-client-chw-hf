@@ -615,20 +615,6 @@
     "next": "step8",
     "fields": [
       {
-        "key": "should_enroll",
-        "type": "hidden",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "should_enroll",
-        "openmrs_entity_parent": "",
-        "calculation": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "kvp_screening_male_calculation.yml"
-            }
-          }
-        }
-      },
-      {
         "key": "prep_assessment",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -655,6 +641,13 @@
         "v_required": {
           "value": "true",
           "err": "Please select an answer"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kvp_screening_male_relevance.yml"
+            }
+          }
         }
       },
       {
@@ -698,6 +691,20 @@
   "step8": {
     "title": "KVP Enrollment",
     "fields": [
+      {
+        "key": "should_enroll",
+        "type": "hidden",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "should_enroll",
+        "openmrs_entity_parent": "",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kvp_screening_male_calculation.yml"
+            }
+          }
+        }
+      },
       {
         "key": "prompt_for_sdc_kvp",
         "type": "toaster_notes",

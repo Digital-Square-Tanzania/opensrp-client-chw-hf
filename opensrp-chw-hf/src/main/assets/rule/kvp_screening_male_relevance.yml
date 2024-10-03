@@ -1,4 +1,11 @@
 ---
+name: step7_prep_assessment
+description: is the client eligible for prep
+priority: 1
+condition: "!step5_hiv_status_on_screening.equals('positive')"
+actions:
+  - "isRelevant = true"
+---
 name: step7_prep_qualified
 description: is the client eligible for prep
 priority: 1
@@ -74,27 +81,27 @@ actions:
 name: step8_prompt_no_group
 description: prompt_no_group
 priority: 1
-condition: "step7_should_enroll.equals('no')"
+condition: "step8_should_enroll.equals('no')"
 actions:
   - "isRelevant = true"
 ---
 name: step8_birth_region
 description: prompt_no_group
 priority: 1
-condition: "step7_should_enroll.equals('yes')"
+condition: "step8_should_enroll.equals('yes')"
 actions:
   - "isRelevant = true"
 ---
 name: step8_enrollment_date
 description: prompt_no_group
 priority: 1
-condition: "step7_should_enroll.equals('yes')"
+condition: "step8_should_enroll.equals('yes')"
 actions:
   - "isRelevant = true"
 ---
 name: step8_client_group
 description: prompt_no_group
 priority: 1
-condition: "step7_should_enroll.equals('yes')"
+condition: "step8_should_enroll.equals('yes')"
 actions:
   - "isRelevant = true"
