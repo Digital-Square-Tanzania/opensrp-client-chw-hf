@@ -148,9 +148,9 @@
           "value": "true",
           "err": "Please enter a valid number"
         },
-        "v_min": {
-          "value": "1",
-          "err": "The number must be equal or greater than 1"
+        "v_max": {
+          "value": 99,
+          "err": "The required quantity must be less than 100"
         },
         "v_required": {
           "value": true,
@@ -164,6 +164,7 @@
           }
         }
       }
+
     ]
   }
 }

@@ -272,7 +272,7 @@
         "text_color": "#000000",
         "type": "check_box",
         "exclusive": [
-          "none"
+          "not_started_art"
         ],
         "options": [
           {
@@ -302,13 +302,6 @@
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "no_evidence_low_vl"
-          },
-          {
-            "key": "none",
-            "text": "None",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "none"
           }
         ],
         "relevance": {
