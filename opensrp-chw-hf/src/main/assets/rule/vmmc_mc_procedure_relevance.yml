@@ -23,9 +23,31 @@ actions:
 name: step1_reason_prolonged_time
 description: reason_prolonged_time relevance
 priority: 1
-condition: "(step1_more_than_minutes.equalsIgnoreCase('More than 30 minutes') && (step1_male_circumcision_method.equalsIgnoreCase('dorsal_slit') || step1_male_circumcision_method.equalsIgnoreCase('sleeve_resection'))) || (step1_more_than_minutes.equalsIgnoreCase('More than 10 minutes') && step1_male_circumcision_method.equalsIgnoreCase('device'))"
+condition: "!step1_start_time.isEmpty() && !step1_end_time.isEmpty()"
 actions:
-  - "isRelevant = true"
+  - "def getTimeDifference(mc_start_time, mc_end_time) {
+          import org.joda.time.LocalTime;
+          import org.joda.time.Minutes;
+
+          LocalTime start_time = LocalTime.parse(mc_start_time);
+          LocalTime end_time = LocalTime.parse(mc_end_time);
+
+          int minutesDiff = Minutes.minutesBetween(start_time, end_time).getMinutes();
+
+          if(minutesDiff > 30){
+             return 'More than 30 minutes';
+          }else if(minutesDiff > 10){
+             return 'More than 10 minutes';
+          } 
+          else {
+             return '';
+          }
+
+       }"
+  - "isRelevant = (
+        !getTimeDifference(step1_start_time, step1_end_time) && step1_more_than_minutes.equalsIgnoreCase('More than 30 minutes') && (step1_male_circumcision_method.equalsIgnoreCase('dorsal_slit') || 
+        step1_male_circumcision_method.equalsIgnoreCase('sleeve_resection'))) || (!getTimeDifference(step1_start_time, step1_end_time) && step1_more_than_minutes.equalsIgnoreCase('More than 10 minutes') && step1_male_circumcision_method.equalsIgnoreCase('device')
+  )"
 ---
 name: step1_aneathesia_administered_conventional
 description: aneathesia_administered_conventional relevance

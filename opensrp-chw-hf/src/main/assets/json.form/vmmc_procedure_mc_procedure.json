@@ -168,6 +168,20 @@
         }
       },
       {
+        "key": "end_time_limit",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "end_time_limit",
+        "type": "edit_text",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_mc_procedure_calculation.yml"
+            }
+          }
+        }
+      },
+      {
         "key": "start_time",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -194,26 +208,17 @@
             "type": "time",
             "ex": "greaterThan(., step1:start_time)",
             "err": "End time cannot be less than the start time"
+          },
+          {
+            "type": "time",
+            "ex": "lessThanEqualTo(., step1:end_time_limit)",
+            "err": "End time cannot be future time"
           }
         ],
         "relevance": {
           "rules-engine": {
             "ex-rules": {
               "rules-file": "vmmc_mc_procedure_relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "more_than_minutes",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "more_than_minutes",
-        "type": "hidden",
-        "calculation": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "vmmc_mc_procedure_calculation.yml"
             }
           }
         }

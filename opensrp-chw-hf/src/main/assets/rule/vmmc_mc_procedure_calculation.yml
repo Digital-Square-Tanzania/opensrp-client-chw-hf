@@ -6,30 +6,17 @@ condition: "true"
 actions:
   - "calculation = helper.getDateToday()"
 ---
-name: step1_more_than_minutes
-description: Calculate the time difference
+name: step1_end_time_limit
+description: end_time_limit
 priority: 1
-condition: "step1_end_time != '' "
+condition: "true"
 actions:
-  - "def getTimeDifference(mc_start_time, mc_end_time) {
-        import org.joda.time.LocalTime;
-        import org.joda.time.Minutes;
-        
-        LocalTime start_time = LocalTime.parse(mc_start_time);
-        LocalTime end_time = LocalTime.parse(mc_end_time);
-        
-        int minutesDiff = Minutes.minutesBetween(start_time, end_time).getMinutes();
-    
-        if(minutesDiff > 30){
-           return 'More than 30 minutes';
-        }else if(minutesDiff > 10){
-           return 'More than 10 minutes';
-        } 
-        else {
-           return ' ';
-        }
-     }"
-  - "calculation = getTimeDifference(step1_start_time, step1_end_time)"
+  - "def getTime(){
+    import java.util.*;
+    import java.text.SimpleDateFormat;
+    return new SimpleDateFormat('hh:mm').format(Calendar.getInstance().getTime());
+  }"
+  - "calculation = getTime()"
 ---
 name: step1_type_of_adverse_event
 description: type of adverse event
