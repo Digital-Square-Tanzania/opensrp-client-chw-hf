@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
@@ -28,6 +29,8 @@ import java.util.Objects;
 import timber.log.Timber;
 
 import android.app.DatePickerDialog;
+import android.view.View;
+import android.widget.DatePicker;
 import android.widget.Toast;
 
 public class VmmcReportsActivity extends SecuredActivity {
@@ -142,33 +145,67 @@ public class VmmcReportsActivity extends SecuredActivity {
         Timber.e(e);
     }
   }
+
     private void showDateRangePicker() {
-        final Calendar calendar = Calendar.getInstance();
-        DatePickerDialog startDatePickerDialog = new DatePickerDialog(this, (view, year, monthOfYear, dayOfMonth) -> {
-            String startDate = String.format(Locale.getDefault(), "%04d-%02d-%02d", year, monthOfYear + 1, dayOfMonth);
+        // Inflate the custom layout
+        View dialogView = getLayoutInflater().inflate(R.layout.custom_date_range_picker, null);
 
-            DatePickerDialog endDatePickerDialog = new DatePickerDialog(this, (view1, year1, monthOfYear1, dayOfMonth1) -> {
-                String endDate = String.format(Locale.getDefault(), "%04d-%02d-%02d", year1, monthOfYear1 + 1, dayOfMonth1);
+        final DatePicker startDatePicker = dialogView.findViewById(R.id.start_date_picker);
+        final DatePicker endDatePicker = dialogView.findViewById(R.id.end_date_picker);
 
-                // Display the selected date range
-                snackbar = Snackbar.make(getWindow().getDecorView(),"Selected Date Range: " + startDate + " to " + endDate, Snackbar.LENGTH_INDEFINITE);
+        new AlertDialog.Builder(this)
+                .setTitle("Select Date Range")
+                .setView(dialogView)
+                .setPositiveButton("OK", (dialog, which) -> {
+                    // Retrieve the selected dates
+                    String startDate = String.format(Locale.getDefault(), "%04d-%02d-%02d",
+                            startDatePicker.getYear(), startDatePicker.getMonth() + 1, startDatePicker.getDayOfMonth());
+                    String endDate = String.format(Locale.getDefault(), "%04d-%02d-%02d",
+                            endDatePicker.getYear(), endDatePicker.getMonth() + 1, endDatePicker.getDayOfMonth());
 
-                // Update the fragments in the ViewPager with the selected date range
-                vmmcViewPagerAdapter.updateFragment(viewPager, 0, reportPeriod, startDate, endDate);
-                vmmcViewPagerAdapter.updateFragment(viewPager, 1, reportPeriod, startDate, endDate);
-                vmmcViewPagerAdapter.updateFragment(viewPager, 2, reportPeriod, startDate, endDate);
+                    // Display the selected date range
+                    snackbar = Snackbar.make(getWindow().getDecorView(), "Selected Date Range: " + startDate + " to " + endDate, Snackbar.LENGTH_INDEFINITE);
 
-                if (snackbar != null){
-                    snackbar.show();
-                }
+                    // Update the fragments in the ViewPager with the selected date range
+                    vmmcViewPagerAdapter.updateFragment(viewPager, 0, reportPeriod, startDate, endDate);
+                    vmmcViewPagerAdapter.updateFragment(viewPager, 1, reportPeriod, startDate, endDate);
+                    vmmcViewPagerAdapter.updateFragment(viewPager, 2, reportPeriod, startDate, endDate);
 
-
-            }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
-            endDatePickerDialog.setTitle("Select End Date");
-            endDatePickerDialog.show();
-
-        }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
-        startDatePickerDialog.setTitle("Select Start Date");
-        startDatePickerDialog.show();
+                    if (snackbar != null) {
+                        snackbar.show();
+                    }
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
     }
+
+//    private void showDateRangePicker() {
+//        final Calendar calendar = Calendar.getInstance();
+//        DatePickerDialog startDatePickerDialog = new DatePickerDialog(this, (view, year, monthOfYear, dayOfMonth) -> {
+//            String startDate = String.format(Locale.getDefault(), "%04d-%02d-%02d", year, monthOfYear + 1, dayOfMonth);
+//
+//            DatePickerDialog endDatePickerDialog = new DatePickerDialog(this, (view1, year1, monthOfYear1, dayOfMonth1) -> {
+//                String endDate = String.format(Locale.getDefault(), "%04d-%02d-%02d", year1, monthOfYear1 + 1, dayOfMonth1);
+//
+//                // Display the selected date range
+//                snackbar = Snackbar.make(getWindow().getDecorView(),"Selected Date Range: " + startDate + " to " + endDate, Snackbar.LENGTH_INDEFINITE);
+//
+//                // Update the fragments in the ViewPager with the selected date range
+//                vmmcViewPagerAdapter.updateFragment(viewPager, 0, reportPeriod, startDate, endDate);
+//                vmmcViewPagerAdapter.updateFragment(viewPager, 1, reportPeriod, startDate, endDate);
+//                vmmcViewPagerAdapter.updateFragment(viewPager, 2, reportPeriod, startDate, endDate);
+//
+//                if (snackbar != null){
+//                    snackbar.show();
+//                }
+//
+//
+//            }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+//            endDatePickerDialog.setTitle("Select End Date");
+//            endDatePickerDialog.show();
+//
+//        }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+//        startDatePickerDialog.setTitle("Select Start Date");
+//        startDatePickerDialog.show();
+//    }
 }
