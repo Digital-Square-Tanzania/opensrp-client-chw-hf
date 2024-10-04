@@ -12,6 +12,8 @@ import org.smartregister.chw.kvp.model.BaseKvpVisitAction;
 import java.util.List;
 import java.util.Map;
 
+import timber.log.Timber;
+
 public class KvpCondomProvisionActionHelper implements BaseKvpVisitAction.KvpVisitActionHelper {
 
     private String condoms_given;
@@ -28,7 +30,7 @@ public class KvpCondomProvisionActionHelper implements BaseKvpVisitAction.KvpVis
             JSONObject jsonObject = new JSONObject(jsonPayload);
             return jsonObject.toString();
         } catch (JSONException e) {
-            e.printStackTrace();
+            Timber.e(e);
         }
 
         return null;
@@ -40,7 +42,7 @@ public class KvpCondomProvisionActionHelper implements BaseKvpVisitAction.KvpVis
             JSONObject jsonObject = new JSONObject(jsonPayload);
             condoms_given = CoreJsonFormUtils.getValue(jsonObject, "condoms_given");
         } catch (JSONException e) {
-            e.printStackTrace();
+            Timber.e(e);
         }
     }
 
