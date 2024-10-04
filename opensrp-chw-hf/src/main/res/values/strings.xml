@@ -1815,5 +1815,8 @@
     <!--    LAB Module-->
     <string name="lab">LAB</string>
 
+    <string name="vmmc_tomorrow_visits">Tomorrow visits</string>
+    <string name="vmmc_due_clients">Due</string>
+    <string name="vmmc_overdue_clients">Over Due</string>
 
 </resources>

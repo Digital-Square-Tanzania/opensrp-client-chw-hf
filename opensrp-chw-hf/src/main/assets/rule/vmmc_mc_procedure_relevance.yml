@@ -306,4 +306,10 @@ priority: 1
 condition: "step1_desc_of_adverse_event_device_displacement.equalsIgnoreCase('intentional_movement_of_device_by_client_or_self_removal_that_requires_surgical_intervention_hospitalization_transfer') && step1_intraoperative_adverse_event_occured.equalsIgnoreCase('yes')"
 actions:
   - "isRelevant = true"
-
+---
+name: step1_reason_method_change
+description: reason_method_change relevance
+priority: 1
+condition: "((step1_male_circumcision_method.equalsIgnoreCase('dorsal_slit') || step1_male_circumcision_method.equalsIgnoreCase('sleeve_resection')) && global_preferred_client_mc_method.equalsIgnoreCase('device')) || (step1_male_circumcision_method.equalsIgnoreCase('device') && global_preferred_client_mc_method.contains('convectional_surgical_procedure'))"
+actions:
+  - "isRelevant = true"

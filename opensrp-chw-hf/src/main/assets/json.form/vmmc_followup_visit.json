@@ -85,17 +85,24 @@
         "openmrs_entity_id": "post_op_dates"
       },
       {
-        "key": "mc_procedure_date",
+        "key": "male_circumcision_method",
         "type": "hidden",
-        "openmrs_entity_id": "mc_procedure_date",
+        "openmrs_entity_id": "male_circumcision_method",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": ""
       },
       {
-        "key": "follow_up_visit_type",
+        "key": "no_of_days",
+        "type": "hidden",
+        "openmrs_entity_id": "no_of_days",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": ""
+      },
+      {
+        "key": "follow_up_visit_type_normal",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "follow_up_visit_type",
+        "openmrs_entity_id": "follow_up_visit_type_normal",
         "label": "Follow up visit type",
         "text_color": "#000000",
         "type": "native_radio",
@@ -118,6 +125,56 @@
         "v_required": {
           "value": "true",
           "err": "Please select the visit type"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_followup_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "follow_up_visit_type_emergence",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "follow_up_visit_type_emergence",
+        "label": "Follow up visit type",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "emergence",
+            "text": "Emergence",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "emergence"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select the visit type"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_followup_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "follow_up_visit_type",
+        "type": "hidden",
+        "openmrs_entity_id": "follow_up_visit_type",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_followup_calculation.yml"
+            }
+          }
         }
       },
       {
@@ -169,7 +226,6 @@
         "type": "date_picker",
         "hint": "Date adverse event occured",
         "expanded": false,
-        "min_date": "step1_mc_procedure_date",
         "max_date": "today",
         "v_required": {
           "value": "true",

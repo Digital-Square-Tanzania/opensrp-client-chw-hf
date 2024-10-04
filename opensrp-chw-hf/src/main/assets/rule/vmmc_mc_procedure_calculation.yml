@@ -28,7 +28,6 @@ actions:
         else {
            return ' ';
         }
-       
      }"
   - "calculation = getTimeDifference(step1_start_time, step1_end_time)"
 ---

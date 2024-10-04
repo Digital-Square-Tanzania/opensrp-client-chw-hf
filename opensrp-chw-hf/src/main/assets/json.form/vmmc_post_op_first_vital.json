@@ -57,6 +57,25 @@
     "title": "Post Operation First Vital Sign",
     "fields": [
       {
+        "key": "reason_delay_from_mc",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "reason_delay_from_mc",
+        "type": "edit_text",
+        "hint": "Give reason why delayed from mc time",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_vital_sign_relevance.yml"
+            }
+          }
+        }
+      },
+      {
         "key": "first_vital_sign_pulse_rate",
         "type": "edit_text",
         "hint": "Pulse Rate (Beats per minute)",

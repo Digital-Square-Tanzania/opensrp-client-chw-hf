@@ -149,6 +149,25 @@
         }
       },
       {
+        "key": "reason_method_change",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "reason_method_change",
+        "type": "edit_text",
+        "hint": "Give reason why preferred method was changed",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_mc_procedure_relevance.yml"
+            }
+          }
+        }
+      },
+      {
         "key": "start_time",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -744,6 +763,13 @@
           "value": "true",
           "err": "Please specify"
         },
+        "constraints": [
+          {
+            "type": "time",
+            "ex": "greaterThan(., step1:end_time)",
+            "err": "End time cannot be less than the MC time"
+          }
+        ],
         "relevance": {
           "rules-engine": {
             "ex-rules": {

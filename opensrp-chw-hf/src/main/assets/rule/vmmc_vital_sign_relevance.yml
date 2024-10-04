@@ -33,3 +33,10 @@ priority: 1
 condition: "step1_more_than_time.equalsIgnoreCase('Incorrect')"
 actions:
   - "isRelevant = true"
+---
+name: step1_reason_delay_from_mc
+description: reason_delay_from_mc relevance
+priority: 1
+condition: "global_duration > 15"
+actions:
+  - "isRelevant = true"

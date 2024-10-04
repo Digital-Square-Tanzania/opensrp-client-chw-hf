@@ -61,3 +61,10 @@ priority: 1
 condition: "true"
 actions:
   - "calculation = global_method_used.contains('device') ? step1_desc_of_post_op_adverse_pass_urine_with_device : step1_desc_of_post_op_adverse_pass_urine_without_device"
+---
+name: step1_follow_up_visit_type
+description: follow_up_visit_type
+priority: 1
+condition: "true"
+actions:
+  - "calculation = step1_follow_up_visit_type_normal.isEmpty() ? step1_follow_up_visit_type_emergence : step1_follow_up_visit_type_normal"

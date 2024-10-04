@@ -15,8 +15,10 @@ public class Constants extends CoreConstants {
     public static String FILTER_APPOINTMENT_DATE = "FILTER_APPOINTMENT_DATE";
     public static String FILTER_IS_REFERRED = "FILTER_IS_REFERRED";
     public static String FILTER_HIV_STATUS = "FILTER_HIV_STATUS";
+    public static String FILTER_PREP_STATUS = "FILTER_PREP_STATUS";
     public static String FILTERS_ENABLED = "FILTERS_ENABLED";
     public static String ENABLE_HIV_STATUS_FILTER = "ENABLE_HIV_STATUS_FILTER";
+    public static String ENABLE_PREP_STATUS_FILTER = "ENABLE_PREP_STATUS_FILTER";
 
     public static int REQUEST_FILTERS = 2004;
 
@@ -762,6 +764,11 @@ public class Constants extends CoreConstants {
             String RECEIVING_REPORTS = "receiving_reports";
         }
 
+        public interface CECAPReportKeys {
+            String MONTHLY_REPORTS = "monthly_reports";
+            String OTHER_MONTHLY_REPORTS = "other_monthly_reports";
+        }
+
         public interface VmmcKeys {
             String VMMC_REPORT = "vmmc_reports";
 
@@ -796,6 +803,10 @@ public class Constants extends CoreConstants {
             String FP_REPORT = "fp_report";
 
             String SBC_REPORT = "sbc_report";
+
+            String ASRH_REPORT = "asrh_report";
+
+            String CECAP_REPORT = "cecap_report";
         }
 
         public interface ReportPaths {
@@ -838,6 +849,12 @@ public class Constants extends CoreConstants {
             String FP_REPORT_PATH = "fp-report";
 
             String SBC_REPORT_PATH = "sbc-report";
+
+            String CECAP_REPORT_PATH = "cecap-report";
+
+            String CECAP_OTHER_REPORT_PATH = "cecap-other-report";
+
+            String ASRH_REPORT_PATH = "asrh-report";
         }
     }
 
