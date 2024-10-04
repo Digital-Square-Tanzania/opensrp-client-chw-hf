@@ -12,10 +12,17 @@ import org.smartregister.chw.kvp.model.BaseKvpVisitAction;
 import java.util.List;
 import java.util.Map;
 
+import timber.log.Timber;
+
 public class KvpFamilyPlanningActionHelper implements BaseKvpVisitAction.KvpVisitActionHelper {
 
+    private final String wasCondomGiven;
     private String family_planning_service;
     private String jsonPayload;
+
+    public KvpFamilyPlanningActionHelper(String wasCondomGiven) {
+        this.wasCondomGiven = wasCondomGiven;
+    }
 
     @Override
     public void onJsonFormLoaded(String jsonPayload, Context context, Map<String, List<VisitDetail>> map) {
@@ -26,9 +33,10 @@ public class KvpFamilyPlanningActionHelper implements BaseKvpVisitAction.KvpVisi
     public String getPreProcessed() {
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
+            jsonObject.getJSONObject("global").put("wasCondomGiven", wasCondomGiven == null || wasCondomGiven.equals("yes"));
             return jsonObject.toString();
         } catch (JSONException e) {
-            e.printStackTrace();
+            Timber.e(e);
         }
 
         return null;
@@ -40,7 +48,7 @@ public class KvpFamilyPlanningActionHelper implements BaseKvpVisitAction.KvpVisi
             JSONObject jsonObject = new JSONObject(jsonPayload);
             family_planning_service = CoreJsonFormUtils.getValue(jsonObject, "family_planning_service");
         } catch (JSONException e) {
-            e.printStackTrace();
+            Timber.e(e);
         }
     }
 

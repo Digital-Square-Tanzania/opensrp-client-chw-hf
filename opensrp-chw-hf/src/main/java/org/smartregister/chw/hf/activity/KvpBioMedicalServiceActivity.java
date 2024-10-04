@@ -95,6 +95,17 @@ public class KvpBioMedicalServiceActivity extends BaseKvpVisitActivity {
             BaseKvpVisitAction PrEPPepAction = map.get(getString(R.string.kvp_pep_assesment));
             actionList.put(getString(R.string.kvp_pep_assesment), PrEPPepAction);
         }
+
+        if (map.containsKey(getString(R.string.kvp_condom_provision))) {
+            BaseKvpVisitAction condomProvisionAction = map.get(getString(R.string.kvp_condom_provision));
+            actionList.put(getString(R.string.kvp_condom_provision), condomProvisionAction);
+        }
+
+        if (map.containsKey(getString(R.string.kvp_family_planning))) {
+            BaseKvpVisitAction familyPlanningAction = map.get(getString(R.string.kvp_family_planning));
+            actionList.put(getString(R.string.kvp_family_planning), familyPlanningAction);
+        }
+
         for (Map.Entry<String, BaseKvpVisitAction> entry : map.entrySet()) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 actionList.putIfAbsent(entry.getKey(), entry.getValue());

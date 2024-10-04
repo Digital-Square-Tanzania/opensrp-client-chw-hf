@@ -14,7 +14,7 @@ import java.util.Map;
 
 import timber.log.Timber;
 
-public class KvpCondomProvisionActionHelper implements BaseKvpVisitAction.KvpVisitActionHelper {
+public abstract class KvpCondomProvisionActionHelper implements BaseKvpVisitAction.KvpVisitActionHelper {
 
     private String condoms_given;
     private String jsonPayload;
@@ -41,10 +41,12 @@ public class KvpCondomProvisionActionHelper implements BaseKvpVisitAction.KvpVis
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
             condoms_given = CoreJsonFormUtils.getValue(jsonObject, "condoms_given");
+            processCondomsResults(condoms_given);
         } catch (JSONException e) {
             Timber.e(e);
         }
     }
+     public abstract void processCondomsResults(String wasCondomGiven);
 
     @Override
     public BaseKvpVisitAction.ScheduleStatus getPreProcessedStatus() {
