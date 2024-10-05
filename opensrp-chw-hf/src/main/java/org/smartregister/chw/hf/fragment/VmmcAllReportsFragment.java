@@ -60,7 +60,7 @@ public class VmmcAllReportsFragment extends Fragment implements View.OnClickList
         vmmc_theatre_register_title = view.findViewById(R.id.vmmc_theatre_register_title);
 
         vmmc_monthly_report_title.setText("Vmmc All Reports");
-        vmmc_register_title.setText("Vmmc All Register Repot");
+        vmmc_register_title.setText("Vmmc All Register Report");
         vmmc_theatre_register_title.setText("Vmmc All Theatre Register Report");
 
         vmmc_monthly_report.setOnClickListener(this);

@@ -117,6 +117,8 @@
 
 package org.smartregister.chw.hf.domain.vmmc_reports;
 
+import android.os.Build;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.hf.dao.ReportDao;
@@ -213,15 +215,18 @@ public class VmmcReportObject extends ReportObject {
         int totalOfAgeGroup = 0;
 
         for (String age : vmmcAgeGroups) {
-            totalOfAgeGroup += cachedData.getOrDefault("vmmc" + "-" + question + "-" + age + "-" + "a", 0)
-                    + cachedData.getOrDefault("vmmc" + "-" + question + "-" + age + "-" + "cm", 0)
-                    + cachedData.getOrDefault("vmmc" + "-" + question + "-" + age + "-" + "dm", 0);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                totalOfAgeGroup += cachedData.getOrDefault("vmmc" + "-" + question + "-" + age + "-" + "a", 0)
+                        + cachedData.getOrDefault("vmmc" + "-" + question + "-" + age + "-" + "cm", 0)
+                        + cachedData.getOrDefault("vmmc" + "-" + question + "-" + age + "-" + "dm", 0);
+                // Total of Device
+                totalOfDeviceGroup += cachedData.getOrDefault("vmmc" + "-" + question + "-" + age + "-" + "cm", 0);
 
-            // Total of Device
-            totalOfDeviceGroup += cachedData.getOrDefault("vmmc" + "-" + question + "-" + age + "-" + "cm", 0);
+                // Total of Conventional
+                totalOfConventionalGroup += cachedData.getOrDefault("vmmc" + "-" + question + "-" + age + "-" + "dm", 0);
+            }
 
-            // Total of Conventional
-            totalOfConventionalGroup += cachedData.getOrDefault("vmmc" + "-" + question + "-" + age + "-" + "dm", 0);
+
         }
 
         // Store totals in jsonObject
