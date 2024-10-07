@@ -15,6 +15,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import timber.log.Timber;
+
 public class ReportDao extends AbstractDao {
     public static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
 
@@ -598,7 +600,7 @@ public class ReportDao extends AbstractDao {
             String queryStartDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(startDate);
             String queryEndDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(endDate);
             sql += String.format(
-                    "    WHERE date(substr(ec_vmmc_enrollment.enrollment_date, 7, 4) || '-' || " +
+                    "    WHERE date(substr(ec_vmmc_procedure.mc_procedure_date, 7, 4) || '-' || " +
                             "substr(ec_vmmc_procedure.mc_procedure_date, 4, 2) || '-' || substr(ec_vmmc_procedure.mc_procedure_date, 1, 2)) " +
                             "BETWEEN date('%s') AND date('%s')\n",
                     queryStartDate, queryEndDate
@@ -704,7 +706,7 @@ public class ReportDao extends AbstractDao {
             String queryEndDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(endDate);
             sql += String.format(
                     "    WHERE ec_vmmc_enrollment.service_delivery_approach = 'static_or_routine'" +
-                            "AND date(substr(ec_vmmc_enrollment.enrollment_date, 7, 4) || '-' || " +
+                            "AND date(substr(ec_vmmc_procedure.mc_procedure_date, 7, 4) || '-' || " +
                             "substr(ec_vmmc_procedure.mc_procedure_date, 4, 2) || '-' || substr(ec_vmmc_procedure.mc_procedure_date, 1, 2)) " +
                             "BETWEEN date('%s') AND date('%s')\n",
                     queryStartDate, queryEndDate
@@ -811,7 +813,7 @@ public class ReportDao extends AbstractDao {
             String queryEndDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(endDate);
             sql += String.format(
                     "    WHERE ec_vmmc_enrollment.service_delivery_approach = 'outreach_or_mobile'" +
-                            "AND date(substr(ec_vmmc_enrollment.enrollment_date, 7, 4) || '-' || " +
+                            "AND date(substr(ec_vmmc_procedure.mc_procedure_date, 7, 4) || '-' || " +
                             "substr(ec_vmmc_procedure.mc_procedure_date, 4, 2) || '-' || substr(ec_vmmc_procedure.mc_procedure_date, 1, 2)) " +
                             "BETWEEN date('%s') AND date('%s')\n",
                     queryStartDate, queryEndDate
@@ -932,6 +934,45 @@ public class ReportDao extends AbstractDao {
                 "  AND date((substr('" + reportDateString + "', 7, 4) || '-' || substr('" + reportDateString + "', 4, 2) || '-' || '01')) = date((substr(day, 1, 4) || '-' || substr(day, 6, 2) || '-' || '01'))\n" +
                 "ORDER BY day DESC LIMIT 1";
 
+        DataMap<Integer> map = cursor -> getCursorIntValue(cursor, "indicator_value");
+
+        List<Integer> res = readData(sql, map);
+
+
+        if (res != null && res.size() > 0 && res.get(0) != null) {
+            return res.get(0);
+        } else
+            return 0;
+    }
+
+    //    for vmmc reports
+    public static int getReportPerIndicatorCode(String indicatorCode, Date reportDate, Date startDate, Date endDate) {
+        String reportDateString = simpleDateFormat.format(reportDate);
+        String sql = "";
+
+        sql = "SELECT indicator_value\n" +
+                "FROM indicator_daily_tally\n" +
+                "WHERE indicator_code = '" + indicatorCode + "'\n" +
+                "  AND date((substr('" + reportDateString + "', 7, 4) || '-' || substr('" + reportDateString + "', 4, 2) || '-' || '01')) = date((substr(day, 1, 4) || '-' || substr(day, 6, 2) || '-' || '01'))\n" +
+                "ORDER BY day DESC LIMIT 1";
+
+//        if (startDate != null && endDate != null) {
+//            String queryStartDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(startDate);
+//            String queryEndDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(endDate);
+//            sql = "SELECT indicator_value\n" +
+//                            "FROM indicator_daily_tally\n" +
+//                            "WHERE indicator_code = '" + indicatorCode + "'\n" +
+//                            "AND date((substr(day, 1, 4) || '-' || substr(day, 6, 2) || '-' || substr(day, 1, 2))) " +
+//                            "BETWEEN date('"+queryStartDate+"') AND date('"+queryEndDate+"')";
+//        } else {
+//            sql = "SELECT indicator_value\n" +
+//                    "FROM indicator_daily_tally\n" +
+//                    "WHERE indicator_code = '" + indicatorCode + "'\n" +
+//                    "  AND date((substr('" + reportDateString + "', 7, 4) || '-' || substr('" + reportDateString + "', 4, 2) || '-' || '01')) = date((substr(day, 1, 4) || '-' || substr(day, 6, 2) || '-' || '01'))\n" +
+//                    "ORDER BY day DESC LIMIT 1";
+//        }
+
+        Timber.e("tbwa: "+sql);
         DataMap<Integer> map = cursor -> getCursorIntValue(cursor, "indicator_value");
 
         List<Integer> res = readData(sql, map);

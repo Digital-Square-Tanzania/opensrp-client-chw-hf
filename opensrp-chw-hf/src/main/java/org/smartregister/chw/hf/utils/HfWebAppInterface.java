@@ -87,8 +87,14 @@ public class HfWebAppInterface {
         } else if (reportType.equalsIgnoreCase(Constants.ReportConstants.ReportTypes.VMMC_REPORT)) {
             switch (key) {
                 case VMMC_REPORT:
-                    ReportUtils.setPrintJobName("vmmc_report_ya_mwezi-" + ReportUtils.getReportPeriod() + ".pdf");
-                    return ReportUtils.VmmcReport.computeReport(ReportUtils.getReportDate());
+                    if (ReportUtils.getStartDate() != null && ReportUtils.getEndDate() != null){
+                        ReportUtils.setPrintJobName("vmmc_report_ya_mwezi-" + ReportUtils.getStartDate() + "to "
+                                + ReportUtils.getEndDate() + ".pdf");
+                        return ReportUtils.VmmcReport.computeReport(ReportUtils.getReportDate(), ReportUtils.getStartReportDate(), ReportUtils.getEndReportDate());
+                    }else {
+                        ReportUtils.setPrintJobName("vmmc_report_ya_mwezi-" + ReportUtils.getReportPeriod() + ".pdf");
+                        return ReportUtils.VmmcReport.computeReport(ReportUtils.getReportDate());
+                    }
                 case VMMC_STATIC_REPORT:
                     ReportUtils.setPrintJobName("vmmc_static_report_ya_mwezi-" + ReportUtils.getReportPeriod() + ".pdf");
                     return ReportUtils.VmmcStaticReport.computeReport(ReportUtils.getReportDate());
