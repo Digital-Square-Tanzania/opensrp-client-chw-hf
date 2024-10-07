@@ -188,13 +188,6 @@
         "openmrs_entity_id": "start_time",
         "type": "time_picker",
         "hint": "Start time",
-        "constraints": [
-          {
-            "type": "time",
-            "ex": "lessThanEqualTo(., step1:end_time_limit)",
-            "err": "End time cannot be future time"
-          }
-        ],
         "relevance": {
           "rules-engine": {
             "ex-rules": {

@@ -62,7 +62,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "reason_delay_from_mc",
         "type": "edit_text",
-        "hint": "Give reason why delayed from mc time",
+        "hint": "Give reason why first vital sign was delayed to be check",
         "v_required": {
           "value": "true",
           "err": "Please specify"
