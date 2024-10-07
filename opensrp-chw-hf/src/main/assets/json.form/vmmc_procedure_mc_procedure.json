@@ -756,13 +756,6 @@
           "value": "true",
           "err": "Please specify"
         },
-        "constraints": [
-          {
-            "type": "time",
-            "ex": "greaterThan(., step1:end_time)",
-            "err": "End time cannot be less than the MC time"
-          }
-        ],
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -778,13 +771,6 @@
         "openmrs_entity_id": "end_time_topical_cream_application",
         "type": "time_picker",
         "hint": "End time of topical cream application",
-        "constraints": [
-          {
-            "type": "time",
-            "ex": "greaterThan(., step1:start_time_topical_cream_application)",
-            "err": "End time cannot be less than the start time"
-          }
-        ],
         "v_required": {
           "value": "true",
           "err": "Please specify"
