@@ -47,7 +47,7 @@
     "fields": [
       {
         "key": "visit_number",
-        "type": "hidden",
+        "type": "edit_text",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "visit_number",
         "openmrs_entity_parent": "",
@@ -86,14 +86,14 @@
       },
       {
         "key": "male_circumcision_method",
-        "type": "hidden",
+        "type": "edit_text",
         "openmrs_entity_id": "male_circumcision_method",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": ""
       },
       {
         "key": "no_of_days",
-        "type": "hidden",
+        "type": "edit_text",
         "openmrs_entity_id": "no_of_days",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": ""
@@ -1585,7 +1585,6 @@
           }
         }
       },
-
       {
         "key": "number_of_male_condoms_issued",
         "openmrs_entity_parent": "",
@@ -1989,10 +1988,10 @@
         }
       },
       {
-        "key": "next_followup_date",
+        "key": "next_followup_date_filled",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "next_followup_date",
+        "openmrs_entity_id": "next_followup_date_filled",
         "type": "date_picker",
         "hint": "Next followup date",
         "expanded": false,
@@ -2006,6 +2005,21 @@
           "rules-engine": {
             "ex-rules": {
               "rules-file": "vmmc_followup_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "next_followup_date",
+        "type": "edit_text",
+        "hidden": "true",
+        "openmrs_entity_id": "next_followup_date",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_followup_calculation.yml"
             }
           }
         }

@@ -1,8 +1,8 @@
 ---
-name: step1_next_followup_date
-description: if next_followup_date
+name: step1_next_followup_date_filled
+description: if next_followup_date_filled
 priority: 1
-condition: "(!(global_last_follow_up_date.equals(global_today_date)) || (global_last_follow_up_date == null)) && (step1_notifiable_adverse_event_occured.equalsIgnoreCase('no') || step1_post_op_adverse_event_occur.equalsIgnoreCase('no'))"
+condition: "(step1_visit_number == 1 && step1_follow_up_visit_type.equalsIgnoreCase('routine') && (step1_male_circumcision_method.equalsIgnoreCase('dorsal_slit') || step1_male_circumcision_method.equalsIgnoreCase('sleeve_resection'))) || step1_notifiable_adverse_event_occured.equalsIgnoreCase('yes') || step1_post_op_adverse_event_occur.equalsIgnoreCase('yes')"
 actions:
   - "isRelevant = true "
 ---
@@ -212,13 +212,19 @@ actions:
 name: step1_follow_up_visit_type_normal
 description: if follow_up_visit_type_normal
 priority: 1
-condition: "((step1_no_of_days >= 2 && step1_visit_number == 0) && (step1_male_circumcision_method.equalsIgnoreCase('dorsal_slit') || step1_male_circumcision_method.equalsIgnoreCase('sleeve_resection'))) || ((step1_no_of_days >= 7 && step1_visit_number == 0) && step1_male_circumcision_method.equalsIgnoreCase('device')) || ((step1_no_of_days >= 7  && step1_visit_number == 1) && (step1_male_circumcision_method.equalsIgnoreCase('dorsal_slit') || step1_male_circumcision_method.equalsIgnoreCase('sleeve_resection')))"
+condition: "((step1_no_of_days >= 2 && step1_visit_number == 0) && (step1_male_circumcision_method.equalsIgnoreCase('dorsal_slit') || step1_male_circumcision_method.equalsIgnoreCase('sleeve_resection'))) || 
+((step1_no_of_days >= 7 && step1_visit_number == 0) && step1_male_circumcision_method.equalsIgnoreCase('device')) || ((step1_no_of_days >= 7  && step1_visit_number == 1) && (step1_male_circumcision_method.equalsIgnoreCase('dorsal_slit') || step1_male_circumcision_method.equalsIgnoreCase('sleeve_resection'))) || 
+(step1_visit_number == 1 && !step1_follow_up_visit_type_normal.isEmpty() || step1_visit_number == 2 && !step1_follow_up_visit_type_normal.isEmpty())"
 actions:
   - "isRelevant = true "
 ---
 name: step1_follow_up_visit_type_emergence
 description: if follow_up_visit_type_emergence
 priority: 1
-condition: "((step1_no_of_days < 2 || (step1_no_of_days >= 2 && step1_no_of_days < 7 && step1_visit_number == 1 && !step1_follow_up_visit_type.equalsIgnoreCase('routine')) || (step1_no_of_days >= 7 && step1_visit_number == 2 && !step1_follow_up_visit_type.equalsIgnoreCase('routine'))) && (step1_male_circumcision_method.equalsIgnoreCase('dorsal_slit') || step1_male_circumcision_method.equalsIgnoreCase('sleeve_resection'))) || ((step1_no_of_days < 7 || (step1_no_of_days > 7 && step1_visit_number == 1 && !step1_follow_up_visit_type.equalsIgnoreCase('routine'))) && step1_male_circumcision_method.equalsIgnoreCase('device')) && !step1_follow_up_visit_type.equalsIgnoreCase('routine')"
+condition: "(step1_no_of_days < 2 && (step1_male_circumcision_method.equalsIgnoreCase('dorsal_slit') || step1_male_circumcision_method.equalsIgnoreCase('sleeve_resection'))) ||
+(step1_no_of_days < 7 && step1_male_circumcision_method.equalsIgnoreCase('device')) ||
+(step1_no_of_days >= 2 && step1_no_of_days < 7 && step1_visit_number == 1 && !step1_follow_up_visit_type_normal.equalsIgnoreCase('routine') && (step1_male_circumcision_method.equalsIgnoreCase('dorsal_slit') || step1_male_circumcision_method.equalsIgnoreCase('sleeve_resection'))) ||
+(step1_no_of_days >= 7 && step1_visit_number == 1 && (step1_male_circumcision_method.equalsIgnoreCase('device')) && !step1_follow_up_visit_type_normal.equalsIgnoreCase('routine')) ||
+(step1_no_of_days >= 7 && step1_visit_number == 2 && (step1_male_circumcision_method.equalsIgnoreCase('dorsal_slit') || step1_male_circumcision_method.equalsIgnoreCase('sleeve_resection')) && !step1_follow_up_visit_type_normal.equalsIgnoreCase('routine'))"
 actions:
   - "isRelevant = true "
