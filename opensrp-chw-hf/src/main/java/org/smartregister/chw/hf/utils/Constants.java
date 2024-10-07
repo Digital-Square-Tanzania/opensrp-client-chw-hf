@@ -771,10 +771,16 @@ public class Constants extends CoreConstants {
 
         public interface VmmcKeys {
             String VMMC_REPORT = "vmmc_reports";
+            String VMMC_STATIC_REPORT = "vmmc_static_reports";
+            String VMMC_OUTREACH_REPORT = "vmmc_outreach_reports";
 
             String VMMC_SERVICE_REGISTER = "vmmc_service_register";
+            String VMMC_STATIC_SERVICE_REGISTER = "vmmc_static_service_register";
+            String VMMC_OUTREACH_SERVICE_REGISTER = "vmmc_outreach_service_register";
 
             String VMMC_THEATRE_REGISTER = "vmmc_theatre_register";
+            String VMMC_STATIC_THEATRE_REGISTER = "vmmc_static_theatre_register";
+            String VMMC_OUTREACH_THEATRE_REGISTER = "vmmc_outreach_theatre_register";
         }
 
         public interface ReportTypes {
@@ -842,9 +848,21 @@ public class Constants extends CoreConstants {
 
             String VMMC_REPORT_PATH = "vmmc-report";
 
+            String VMMC_STATIC_REPORT_PATH = "vmmc-static-report";
+
+            String VMMC_OUTREACH_REPORT_PATH = "vmmc-outreach-report";
+
             String VMMC_REGISTER_PATH = "vmmc-service-register";
 
+            String VMMC_STATIC_REGISTER_PATH = "vmmc-static-service-register";
+
+            String VMMC_OUTREACH_REGISTER_PATH = "vmmc-outreach-service-register";
+
             String VMMC_THEATRE_REGISTER_PATH = "vmmc-theatre-register";
+
+            String VMMC_STATIC_THEATRE_REGISTER_PATH = "vmmc-static-theatre-register";
+
+            String VMMC_OUTREACH_THEATRE_REGISTER_PATH = "vmmc-outreach-theatre-register";
 
             String FP_REPORT_PATH = "fp-report";
 

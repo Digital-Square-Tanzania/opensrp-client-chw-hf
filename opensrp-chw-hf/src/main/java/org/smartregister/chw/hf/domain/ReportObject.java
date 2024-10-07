@@ -12,10 +12,21 @@ public abstract class ReportObject {
 
     private List<String> indicatorCodes;
     private final Date reportDate;
+    private final Date startDate;
+    private final Date endDate;
 
-    public ReportObject( Date reportDate) {
+    public ReportObject(Date reportDate) {
         this.reportDate = reportDate;
+        startDate = null;
+        endDate = null;
     }
+
+    public ReportObject(Date reportDate, Date startDate, Date endDate) {
+        this.reportDate = reportDate;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
+
 
     public List<String> getIndicatorCodes() {
         return indicatorCodes;
@@ -23,6 +34,14 @@ public abstract class ReportObject {
 
     public Date getReportDate() {
         return reportDate;
+    }
+
+    public Date getReportStartDate() {
+        return startDate;
+    }
+
+    public Date getReportEndDate() {
+        return endDate;
     }
 
     public JSONObject getIndicatorData() throws JSONException {

@@ -11,18 +11,18 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-public class VmmcTheatreRegisterObject extends ReportObject {
+public class VmmcOutreachTheatreRegisterObject extends ReportObject {
 
     private Date reportDate;
     private Date startDate;
     private Date endDate;
 
-    public VmmcTheatreRegisterObject(Date reportDate) {
+    public VmmcOutreachTheatreRegisterObject(Date reportDate) {
         super(reportDate);
         this.reportDate = reportDate;
     }
 
-    public VmmcTheatreRegisterObject(Date reportDate, Date startDate, Date endDate) {
+    public VmmcOutreachTheatreRegisterObject(Date reportDate, Date startDate, Date endDate) {
         super(reportDate, startDate, endDate);
         this.reportDate = reportDate;
         this.startDate = startDate;
@@ -33,7 +33,7 @@ public class VmmcTheatreRegisterObject extends ReportObject {
     @Override
     public JSONObject getIndicatorData() throws JSONException {
         JSONArray dataArray = new JSONArray();
-        List<Map<String, String>> getVmmcRegisterList = ReportDao.getVmmcTheatreRegister(reportDate,startDate,endDate);
+        List<Map<String, String>> getVmmcRegisterList = ReportDao.getVmmcOutreachTheatreRegister(reportDate,startDate,endDate);
 
         int i = 0;
 
