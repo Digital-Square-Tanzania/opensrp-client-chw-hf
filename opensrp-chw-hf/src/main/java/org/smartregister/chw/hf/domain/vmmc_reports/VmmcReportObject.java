@@ -42,7 +42,7 @@
 //            for (String ageGroup : vmmcAgeGroups) {  //columns
 //                for (String vmmcGroup : vmmcGroups) {  //concstenate rows columns and gendergroup
 //                    jsonObject.put("vmmc" + "-" + questionGroup + "-" + ageGroup + "-" + vmmcGroup,
-//                            ReportDao.getReportPerIndicatorCode("vmmc" + "-" + questionGroup + "-" + ageGroup + "-" + vmmcGroup, reportDate));
+//                            ReportDao.getReportPerIndicatorCode("vmmc" + "-" + questionGroup + "-" + ageGroup + "-" + vmmcGroup, reportDate, startDate, endDate));
 //                }
 //            }
 //        }
@@ -50,18 +50,18 @@
 //        funcGetTotal();
 //
 //        //total for qn 2 and 4
-//        jsonObject.put("vmmc-2a-grandtotal", ReportDao.getReportPerIndicatorCode("vmmc-2a-grandtotal", reportDate));
-//        jsonObject.put("vmmc-2b-grandtotal", ReportDao.getReportPerIndicatorCode("vmmc-2b-grandtotal", reportDate));
-//        jsonObject.put("vmmc-2c-grandtotal", ReportDao.getReportPerIndicatorCode("vmmc-2c-grandtotal", reportDate));
-//        jsonObject.put("vmmc-2d-grandtotal", ReportDao.getReportPerIndicatorCode("vmmc-2d-grandtotal", reportDate));
-//        jsonObject.put("vmmc-2e-grandtotal", ReportDao.getReportPerIndicatorCode("vmmc-2e-grandtotal", reportDate));
-//        jsonObject.put("vmmc-2f-grandtotal", ReportDao.getReportPerIndicatorCode("vmmc-2f-grandtotal", reportDate));
-//        jsonObject.put("vmmc-2g-grandtotal", ReportDao.getReportPerIndicatorCode("vmmc-2g-grandtotal", reportDate));
-//        jsonObject.put("vmmc-2h-grandtotal", ReportDao.getReportPerIndicatorCode("vmmc-2h-grandtotal", reportDate));
-//        jsonObject.put("vmmc-4a-grandtotal", ReportDao.getReportPerIndicatorCode("vmmc-4a-grandtotal", reportDate));
-//        jsonObject.put("vmmc-4b-grandtotal", ReportDao.getReportPerIndicatorCode("vmmc-4b-grandtotal", reportDate));
-//        jsonObject.put("vmmc-4c-grandtotal", ReportDao.getReportPerIndicatorCode("vmmc-4c-grandtotal", reportDate));
-//        jsonObject.put("vmmc-4d-grandtotal", ReportDao.getReportPerIndicatorCode("vmmc-4d-grandtotal", reportDate));
+//        jsonObject.put("vmmc-2a-grandtotal", ReportDao.getReportPerIndicatorCode("vmmc-2a-grandtotal", reportDate, startDate, endDate));
+//        jsonObject.put("vmmc-2b-grandtotal", ReportDao.getReportPerIndicatorCode("vmmc-2b-grandtotal", reportDate, startDate, endDate));
+//        jsonObject.put("vmmc-2c-grandtotal", ReportDao.getReportPerIndicatorCode("vmmc-2c-grandtotal", reportDate, startDate, endDate));
+//        jsonObject.put("vmmc-2d-grandtotal", ReportDao.getReportPerIndicatorCode("vmmc-2d-grandtotal", reportDate, startDate, endDate));
+//        jsonObject.put("vmmc-2e-grandtotal", ReportDao.getReportPerIndicatorCode("vmmc-2e-grandtotal", reportDate, startDate, endDate));
+//        jsonObject.put("vmmc-2f-grandtotal", ReportDao.getReportPerIndicatorCode("vmmc-2f-grandtotal", reportDate, startDate, endDate));
+//        jsonObject.put("vmmc-2g-grandtotal", ReportDao.getReportPerIndicatorCode("vmmc-2g-grandtotal", reportDate, startDate, endDate));
+//        jsonObject.put("vmmc-2h-grandtotal", ReportDao.getReportPerIndicatorCode("vmmc-2h-grandtotal", reportDate, startDate, endDate));
+//        jsonObject.put("vmmc-4a-grandtotal", ReportDao.getReportPerIndicatorCode("vmmc-4a-grandtotal", reportDate, startDate, endDate));
+//        jsonObject.put("vmmc-4b-grandtotal", ReportDao.getReportPerIndicatorCode("vmmc-4b-grandtotal", reportDate, startDate, endDate));
+//        jsonObject.put("vmmc-4c-grandtotal", ReportDao.getReportPerIndicatorCode("vmmc-4c-grandtotal", reportDate, startDate, endDate));
+//        jsonObject.put("vmmc-4d-grandtotal", ReportDao.getReportPerIndicatorCode("vmmc-4d-grandtotal", reportDate, startDate, endDate));
 //
 //
 //        return jsonObject;
@@ -74,21 +74,21 @@
 //        int returnedValue = 0;
 //        for (String age : vmmcAgeGroups) {
 //            totalOfAgeGroup += (ReportDao.getReportPerIndicatorCode("vmmc" + "-"
-//                    + question + "-" + age + "-" + "a", reportDate)
+//                    + question + "-" + age + "-" + "a", reportDate, startDate, endDate)
 //                    + ReportDao.getReportPerIndicatorCode("vmmc" + "-"
-//                    + question + "-" + age + "-" + "cm", reportDate)
+//                    + question + "-" + age + "-" + "cm", reportDate, startDate, endDate)
 //                    + ReportDao.getReportPerIndicatorCode("vmmc" + "-"
-//                    + question + "-" + age + "-" + "dm", reportDate)
+//                    + question + "-" + age + "-" + "dm", reportDate, startDate, endDate)
 //            );
 //
 //
 //            //Total of Device
 //            totalOfDeviceGroup += ReportDao.getReportPerIndicatorCode("vmmc" + "-"
-//                    + question + "-" + age + "-" + "cm", reportDate);
+//                    + question + "-" + age + "-" + "cm", reportDate, startDate, endDate);
 //
 //            //Total of Device
 //            totalOfConvectionalGroup += ReportDao.getReportPerIndicatorCode("vmmc" + "-"
-//                    + question + "-" + age + "-" + "dm", reportDate);
+//                    + question + "-" + age + "-" + "dm", reportDate, startDate, endDate);
 //
 //
 //            //vmmc-8-v-TOTAL-dm
@@ -146,6 +146,8 @@ public class VmmcReportObject extends ReportObject {
     };
 
     private final Date reportDate;
+    private Date startDate;
+    private Date endDate;
     private JSONObject jsonObject;
     private Map<String, Integer> cachedData;
 
@@ -154,6 +156,15 @@ public class VmmcReportObject extends ReportObject {
         this.reportDate = reportDate;
         this.cachedData = new HashMap<>();
     }
+
+    public VmmcReportObject(Date reportDate, Date startDate, Date endDate) {
+        super(reportDate, startDate, endDate);
+        this.reportDate = reportDate;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.cachedData = new HashMap<>();
+    }
+
 
     @Override
     public JSONObject getIndicatorData() throws JSONException {
@@ -193,7 +204,7 @@ public class VmmcReportObject extends ReportObject {
             for (String ageGroup : vmmcAgeGroups) {
                 for (String vmmcGroup : vmmcGroups) {
                     String key = "vmmc" + "-" + questionGroup + "-" + ageGroup + "-" + vmmcGroup;
-                    cachedData.put(key, ReportDao.getReportPerIndicatorCode(key, reportDate));
+                    cachedData.put(key, ReportDao.getReportPerIndicatorCode(key, reportDate, startDate, endDate));
                 }
             }
         }
@@ -205,7 +216,7 @@ public class VmmcReportObject extends ReportObject {
                 "vmmc-2g-grandtotal", "vmmc-2h-grandtotal", "vmmc-4a-grandtotal",
                 "vmmc-4b-grandtotal", "vmmc-4c-grandtotal", "vmmc-4d-grandtotal"
         }) {
-            cachedData.put(totalKey, ReportDao.getReportPerIndicatorCode(totalKey, reportDate));
+            cachedData.put(totalKey, ReportDao.getReportPerIndicatorCode(totalKey, reportDate, startDate, endDate));
         }
     }
 

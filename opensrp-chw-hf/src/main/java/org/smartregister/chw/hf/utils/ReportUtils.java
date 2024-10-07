@@ -397,6 +397,17 @@ public class ReportUtils {
             }
             return report;
         }
+
+        public static String computeReport(Date now, Date startDate, Date endDate) {
+            String report = "";
+            VmmcReportObject vmmcReportObject = new VmmcReportObject(now,startDate,endDate);
+            try {
+                report = vmmcReportObject.getIndicatorDataAsGson(vmmcReportObject.getIndicatorData());
+            } catch (Exception e) {
+                Timber.e(e);
+            }
+            return report;
+        }
     }
 
     public static class VmmcStaticReport {
