@@ -152,6 +152,10 @@
         "v_min": {
           "value": "20",
           "err": "client weight must be equal or greater than 20kg"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
         }
       },
       {

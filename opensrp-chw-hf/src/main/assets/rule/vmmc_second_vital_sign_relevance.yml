@@ -1,29 +1,15 @@
 ---
-name: step1_prompt_for_management_of_hypertension
-description: prompt_for_management_of_hypertension
-priority: 1
-condition: "(!step1_first_vital_sign_systolic.equals('') && step1_first_vital_sign_systolic >= 140) || (!step1_first_vital_sign_diastolic.equals('') && step1_first_vital_sign_diastolic >= 90)"
-actions:
-  - "isRelevant = true"
----
-name: step1_prompt_for_management_of_hypotension
-description: prompt_for_management_of_hypotension
-priority: 1
-condition: "(!step1_first_vital_sign_systolic.equals('') && step1_first_vital_sign_systolic < 90) || (!step1_first_vital_sign_diastolic.equals('') && step1_first_vital_sign_diastolic < 60)"
-actions:
-  - "isRelevant = true"
----
 name: step1_prompt_for_management_of_hypertension_second
 description: prompt_for_management_of_hypertension
 priority: 1
-condition: "(!step1_second_vital_sign_systolic.equals('') && step1_second_vital_sign_systolic >= 140) || (!step1_second_vital_sign_diastolic.equals('') && step1_second_vital_sign_diastolic >= 90)"
+condition: "(!step1_second_vital_sign_systolic.equals('') && step1_second_vital_sign_systolic >= 140 && global_age > 15) || (!step1_second_vital_sign_diastolic.equals('') && step1_second_vital_sign_diastolic >= 90 && global_age > 15) || (!step1_second_vital_sign_systolic.equals('') && step1_second_vital_sign_systolic >= 107 && global_age < 4) || (!step1_second_vital_sign_diastolic.equals('') && step1_second_vital_sign_diastolic >= 78 && global_age < 4) || (!step1_second_vital_sign_systolic.equals('') && step1_second_vital_sign_systolic >= 110 && global_age > 3 && global_age < 7) || (!step1_second_vital_sign_diastolic.equals('') && step1_second_vital_sign_diastolic >= 75 && global_age > 3 && global_age < 7) || (!step1_second_vital_sign_systolic.equals('') && step1_second_vital_sign_systolic >= 121 && global_age > 6 && global_age < 13) || (!step1_second_vital_sign_diastolic.equals('') && step1_second_vital_sign_diastolic >= 80 && global_age > 6 && global_age < 13) || (!step1_second_vital_sign_systolic.equals('') && step1_second_vital_sign_systolic >= 124 && global_age > 6 && global_age < 13) || (!step1_second_vital_sign_diastolic.equals('') && step1_second_vital_sign_diastolic >= 80 && global_age >= 13 && global_age < 16)"
 actions:
   - "isRelevant = true"
 ---
 name: step1_prompt_for_management_of_hypotension_second
 description: prompt_for_management_of_hypotension
 priority: 1
-condition: "(!step1_second_vital_sign_systolic.equals('') && step1_second_vital_sign_systolic < 90) || (!step1_second_vital_sign_diastolic.equals('') && step1_second_vital_sign_diastolic < 60)"
+condition: "(!step1_second_vital_sign_systolic.equals('') && step1_second_vital_sign_systolic < 90 && global_age > 15) || (!step1_second_vital_sign_diastolic.equals('') && step1_second_vital_sign_diastolic < 60 && global_age > 15) || (!step1_second_vital_sign_systolic.equals('') && step1_second_vital_sign_systolic < 86 && global_age < 4) || (!step1_second_vital_sign_diastolic.equals('') && step1_second_vital_sign_diastolic < 41 && global_age < 4) || (!step1_second_vital_sign_systolic.equals('') && step1_second_vital_sign_systolic < 90 && global_age > 3 && global_age < 7) || (!step1_second_vital_sign_diastolic.equals('') && step1_second_vital_sign_diastolic < 47 && global_age > 3 && global_age < 7) || (!step1_second_vital_sign_systolic.equals('') && step1_second_vital_sign_systolic < 90 && global_age > 6 && global_age < 13) || (!step1_second_vital_sign_diastolic.equals('') && step1_second_vital_sign_diastolic < 59 && global_age > 6 && global_age < 13) || (!step1_second_vital_sign_systolic.equals('') && step1_second_vital_sign_systolic < 102 && global_age >= 13 && global_age < 16) || (!step1_second_vital_sign_diastolic.equals('') && step1_second_vital_sign_diastolic < 64 && global_age >= 13 && global_age < 16)"
 actions:
   - "isRelevant = true"
 ---
@@ -31,5 +17,33 @@ name: step1_prompt_for_time_first_vital
 description: prompt_for_time_first_vital relevance
 priority: 1
 condition: "step1_more_than_time.equalsIgnoreCase('Incorrect')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_notify_respiration_rate_bradypnoea
+description: notify_respiration_rate_bradypnoea
+priority: 1
+condition: "(!step1_second_vital_sign_respiration_rate.equals('') && step1_second_vital_sign_respiration_rate < 14 && global_age > 15) || (!step1_second_vital_sign_respiration_rate.equals('') && step1_second_vital_sign_respiration_rate < 24 && global_age < 4) || (!step1_second_vital_sign_respiration_rate.equals('') && step1_second_vital_sign_respiration_rate < 22 && global_age > 3 && global_age < 7) || (!step1_second_vital_sign_respiration_rate.equals('') && step1_second_vital_sign_respiration_rate < 18 && global_age > 6 && global_age < 13) || (!step1_second_vital_sign_respiration_rate.equals('') && step1_second_vital_sign_respiration_rate < 12 && global_age >= 13 && global_age < 16)"
+actions:
+  - "isRelevant = true"
+---
+name: step1_notify_respiration_rate_tachypnoea
+description: notify_respiration_rate_tachypnoea
+priority: 1
+condition: "(!step1_second_vital_sign_respiration_rate.equals('') && step1_second_vital_sign_respiration_rate > 20 && global_age > 15) || (!step1_second_vital_sign_respiration_rate.equals('') && step1_second_vital_sign_respiration_rate > 40 && global_age < 4) || (!step1_second_vital_sign_respiration_rate.equals('') && step1_second_vital_sign_respiration_rate > 34 && global_age > 3 && global_age < 7) || (!step1_second_vital_sign_respiration_rate.equals('') && step1_second_vital_sign_respiration_rate > 30 && global_age > 6 && global_age < 13) || (!step1_second_vital_sign_respiration_rate.equals('') && step1_second_vital_sign_respiration_rate > 16 && global_age >= 13 && global_age < 16)"
+actions:
+  - "isRelevant = true"
+---
+name: step1_prompt_for_Bradycardia
+description: prompt_for_Bradycardia
+priority: 1
+condition: "(!step1_second_vital_pulse_rate.equals('') && step1_second_vital_pulse_rate < 60 && global_age >= 10) || (!step1_second_vital_pulse_rate.equals('') && step1_second_vital_pulse_rate < 75 && global_age >= 5 && global_age < 7) || (!step1_second_vital_pulse_rate.equals('') && step1_second_vital_pulse_rate < 70 && global_age >= 7 && global_age < 10)"
+actions:
+  - "isRelevant = true"
+---
+name: step1_prompt_for_Tachycardia
+description: prompt_for_Tachycardia
+priority: 1
+condition: "(!step1_second_vital_pulse_rate.equals('') && step1_second_vital_pulse_rate > 100 && global_age >= 10) || (!step1_second_vital_pulse_rate.equals('') && step1_second_vital_pulse_rate > 115  && global_age >= 5 && global_age < 7) || (!step1_second_vital_pulse_rate.equals('') && step1_second_vital_pulse_rate > 110 && global_age >= 7 && global_age < 10)"
 actions:
   - "isRelevant = true"

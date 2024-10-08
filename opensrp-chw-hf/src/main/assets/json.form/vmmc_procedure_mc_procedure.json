@@ -168,18 +168,11 @@
         }
       },
       {
-        "key": "end_time_limit",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "end_time_limit",
+        "key": "now_time",
         "type": "hidden",
-        "calculation": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "vmmc_mc_procedure_calculation.yml"
-            }
-          }
-        }
+        "openmrs_entity_id": "now_time",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": ""
       },
       {
         "key": "start_time",
@@ -188,6 +181,13 @@
         "openmrs_entity_id": "start_time",
         "type": "time_picker",
         "hint": "Start time",
+        "constraints": [
+          {
+            "type": "time",
+            "ex": "lessThanEqualTo(., step1:now_time)",
+            "err": "End time cannot be future time"
+          }
+        ],
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -203,6 +203,13 @@
         "openmrs_entity_id": "end_time",
         "type": "time_picker",
         "hint": "End time",
+        "constraints": [
+          {
+            "type": "time",
+            "ex": "greaterThan(., step1:start_time)",
+            "err": "End time cannot be less than the start time"
+          }
+        ],
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -756,6 +763,13 @@
           "value": "true",
           "err": "Please specify"
         },
+        "constraints": [
+          {
+            "type": "time",
+            "ex": "greaterThan(., step1:end_time)",
+            "err": "End time cannot be less than the MC time"
+          }
+        ],
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -771,6 +785,13 @@
         "openmrs_entity_id": "end_time_topical_cream_application",
         "type": "time_picker",
         "hint": "End time of topical cream application",
+        "constraints": [
+          {
+            "type": "time",
+            "ex": "greaterThan(., step1:start_time_topical_cream_application)",
+            "err": "End time cannot be less than the start time"
+          }
+        ],
         "v_required": {
           "value": "true",
           "err": "Please specify"

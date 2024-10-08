@@ -104,9 +104,10 @@
         "openmrs_entity_parent": "",
         "toaster_type": "problem",
         "relevance": {
-          "step1:first_vital_sign_pulse_rate": {
-            "type": "numeric",
-            "ex": "lessThan(.,\"60\")"
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_vital_sign_relevance.yml"
+            }
           }
         }
       },
@@ -119,9 +120,10 @@
         "openmrs_entity_parent": "",
         "toaster_type": "problem",
         "relevance": {
-          "step1:first_vital_sign_pulse_rate": {
-            "type": "numeric",
-            "ex": "greaterThan(.,\"100\")"
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_vital_sign_relevance.yml"
+            }
           }
         }
       },
@@ -279,9 +281,10 @@
         "openmrs_entity_parent": "",
         "toaster_type": "problem",
         "relevance": {
-          "step1:first_vital_sign_respiration_rate": {
-            "type": "numeric",
-            "ex": "lessThan(.,\"14.0\")"
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_vital_sign_relevance.yml"
+            }
           }
         }
       },
@@ -294,9 +297,10 @@
         "openmrs_entity_parent": "",
         "toaster_type": "problem",
         "relevance": {
-          "step1:first_vital_sign_respiration_rate": {
-            "type": "numeric",
-            "ex": "greaterThan(.,\"20\")"
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_vital_sign_relevance.yml"
+            }
           }
         }
       },

@@ -6,18 +6,6 @@ condition: "true"
 actions:
   - "calculation = helper.getDateToday()"
 ---
-name: step1_end_time_limit
-description: end_time_limit
-priority: 1
-condition: "true"
-actions:
-  - "def getTime(){
-    import java.util.*;
-    import java.text.SimpleDateFormat;
-    return new SimpleDateFormat('hh:mm').format(Calendar.getInstance().getTime());
-  }"
-  - "calculation = getTime()"
----
 name: step1_type_of_adverse_event
 description: type of adverse event
 priority: 1
