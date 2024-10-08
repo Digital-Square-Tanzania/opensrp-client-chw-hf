@@ -61,7 +61,7 @@ public class VmmcStaticReportsFragment extends Fragment implements View.OnClickL
         vmmc_theatre_register_title = view.findViewById(R.id.vmmc_theatre_register_title);
 
         vmmc_monthly_report_title.setText("Vmmc Static Reports");
-        vmmc_register_title.setText("Vmmc Static Register Repot");
+        vmmc_register_title.setText("Vmmc Static Register Report");
         vmmc_theatre_register_title.setText("Vmmc static Theatre Register Report");
 
         vmmc_monthly_report.setOnClickListener(this);

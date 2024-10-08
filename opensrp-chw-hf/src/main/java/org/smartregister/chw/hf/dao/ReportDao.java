@@ -291,7 +291,7 @@ public class ReportDao extends AbstractDao {
             data.put("client_referred_to", cursor.getString(cursor.getColumnIndex("client_referred_to")));
             data.put("mc_procedure_date", cursor.getString(cursor.getColumnIndex("mc_procedure_date")));
             data.put("male_circumcision_method", cursor.getString(cursor.getColumnIndex("male_circumcision_method")));
-            data.put("intraoperative_adverse_event_occured", cursor.getString(cursor.getColumnIndex("intraoperative_adverse_event_occured")));
+//            data.put("intraoperative_adverse_event_occured", cursor.getString(cursor.getColumnIndex("intraoperative_adverse_event_occured")));
             data.put("post_op_adverse_first_visit", cursor.getString(cursor.getColumnIndex("post_op_adverse_first_visit")));
             data.put("post_op_adverse_sec_visit", cursor.getString(cursor.getColumnIndex("post_op_adverse_sec_visit")));
             data.put("first_visit", cursor.getString(cursor.getColumnIndex("first_visit")));
@@ -415,7 +415,7 @@ public class ReportDao extends AbstractDao {
             data.put("client_referred_to", cursor.getString(cursor.getColumnIndex("client_referred_to")));
             data.put("mc_procedure_date", cursor.getString(cursor.getColumnIndex("mc_procedure_date")));
             data.put("male_circumcision_method", cursor.getString(cursor.getColumnIndex("male_circumcision_method")));
-            data.put("intraoperative_adverse_event_occured", cursor.getString(cursor.getColumnIndex("intraoperative_adverse_event_occured")));
+//            data.put("intraoperative_adverse_event_occured", cursor.getString(cursor.getColumnIndex("intraoperative_adverse_event_occured")));
             data.put("first_visit", cursor.getString(cursor.getColumnIndex("first_visit")));
             data.put("sec_visit", cursor.getString(cursor.getColumnIndex("sec_visit")));
             data.put("post_op_adverse", cursor.getString(cursor.getColumnIndex("post_op_adverse")));
@@ -539,7 +539,7 @@ public class ReportDao extends AbstractDao {
             data.put("client_referred_to", cursor.getString(cursor.getColumnIndex("client_referred_to")));
             data.put("mc_procedure_date", cursor.getString(cursor.getColumnIndex("mc_procedure_date")));
             data.put("male_circumcision_method", cursor.getString(cursor.getColumnIndex("male_circumcision_method")));
-            data.put("intraoperative_adverse_event_occured", cursor.getString(cursor.getColumnIndex("intraoperative_adverse_event_occured")));
+//            data.put("intraoperative_adverse_event_occured", cursor.getString(cursor.getColumnIndex("intraoperative_adverse_event_occured")));
             data.put("first_visit", cursor.getString(cursor.getColumnIndex("first_visit")));
             data.put("sec_visit", cursor.getString(cursor.getColumnIndex("sec_visit")));
             data.put("post_op_adverse", cursor.getString(cursor.getColumnIndex("post_op_adverse")));
