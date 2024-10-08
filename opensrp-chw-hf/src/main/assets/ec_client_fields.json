@@ -8368,6 +8368,14 @@
           }
         },
         {
+          "column_name": "prep_pills_number",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "prep_pills_number"
+          }
+        },
+        {
           "column_name": "prep_status",
           "type": "Event",
           "json_mapping": {
