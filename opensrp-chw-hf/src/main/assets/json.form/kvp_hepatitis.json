@@ -51,31 +51,20 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "hep_b_testing",
         "type": "native_radio",
-        "label": "Client tested for Hepatitis B virus (HBV)",
+        "label": "Has a client been tested for Hepatitis B virus (HBV)",
         "options": [
           {
-            "key": "positive",
-            "text": "Positive",
+            "key": "yes",
+            "text": "Yes",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "positive"
+            "openmrs_entity_id": "yes"
           },
+
           {
-            "key": "positive_and_referred",
-            "text": "Positive and referred",
+            "key": "no",
+            "text": "No",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "positive_and_referred"
-          },
-          {
-            "key": "negative",
-            "text": "Negative",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "negative"
-          },
-          {
-            "key": "not_tested",
-            "text": "Not tested",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "not_tested"
+            "openmrs_entity_id": "no"
           }
         ],
         "v_required": {
@@ -84,12 +73,47 @@
         }
       },
       {
-        "key": "hep_c_testing",
+        "key": "hep_b_result_given",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "hep_c_testing",
+        "openmrs_entity_id": "hep_b_testing_given",
         "type": "native_radio",
-        "label": "Client tested for Hepatitis C virus (HCV)",
+        "label": "HBV result returned?",
+        "options": [
+          {
+            "key": "yes",
+            "text": "Yes",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "yes"
+          },
+
+          {
+            "key": "no",
+            "text": "No,waiting result",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "no"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select an answer"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kvp_hepatitis_relevance.yml"
+            }
+          }
+        }
+
+      },
+      {
+        "key": "hep_b_result",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "hep_b_result",
+        "type": "native_radio",
+        "label": "Client HBV test result",
         "options": [
           {
             "key": "positive",
@@ -97,28 +121,119 @@
             "openmrs_entity": "concept",
             "openmrs_entity_id": "positive"
           },
-          {
-            "key": "positive_and_referred",
-            "text": "Positive and referred",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "positive_and_referred"
-          },
+
           {
             "key": "negative",
             "text": "Negative",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "negative"
-          },
-          {
-            "key": "not_tested",
-            "text": "Not tested",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "not_tested"
           }
         ],
         "v_required": {
           "value": "true",
           "err": "Please select an answer"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kvp_hepatitis_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "hep_c_testing",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "hep_c_testing",
+        "type": "native_radio",
+        "label": "Has a client been tested for Hepatitis C virus (HCV)",
+        "options": [
+          {
+            "key": "yes",
+            "text": "Yes",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "yes"
+          },
+          {
+            "key": "no",
+            "text": "No",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "no"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select an answer"
+        }
+      },
+      {
+        "key": "hep_c_result_given",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "hep_c_testing_given",
+        "type": "native_radio",
+        "label": "HCV result returned?",
+        "options": [
+          {
+            "key": "yes",
+            "text": "Yes",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "yes"
+          },
+
+          {
+            "key": "no",
+            "text": "No,waiting result",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "no"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select an answer"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kvp_hepatitis_relevance.yml"
+            }
+          }
+        }
+
+      },
+      {
+        "key": "hep_c_result",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "hep_c_result",
+        "type": "native_radio",
+        "label": "Client HCV test result",
+        "options": [
+          {
+            "key": "positive",
+            "text": "Positive",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "positive"
+          },
+
+          {
+            "key": "negative",
+            "text": "Negative",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "negative"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select an answer"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kvp_hepatitis_relevance.yml"
+            }
+          }
         }
       }
     ]

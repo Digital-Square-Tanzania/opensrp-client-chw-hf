@@ -1,6 +1,6 @@
 {
   "count": "1",
-  "encounter_type": "KVP PrEP and PEP",
+  "encounter_type": "Pregnancy and Breast Feeding",
   "entity_id": "",
   "metadata": {
     "start": {
@@ -43,49 +43,42 @@
   },
   "global": {},
   "step1": {
-    "title": "PEP assesment",
+    "title": "Pregnancy and Breast Feeding Status",
     "fields": [
       {
-        "key": "enrolled_to_prep",
+        "key": "pregnancy_breastfeeding",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "enrolled_to_prep",
-        "text_color": "#000000",
-        "type": "hidden"
-      },
-      {
-        "key": "pep_provision",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "pep_provision",
-        "label": "PEP provision after the client was at risk of contracting HIV",
+        "openmrs_entity_id": "pregnancy_breastfeeding",
+        "label": "",
         "text_color": "#000000",
         "type": "native_radio",
         "options": [
           {
-            "key": "provided",
-            "text": "Provided",
+            "key": "pregnant",
+            "text": "Pregnancy",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "community"
+            "openmrs_entity_id": "pregnant"
           },
           {
-            "key": "not_provided",
-            "text": "Not provided",
+            "key": "breast_feeding",
+            "text": "Breast Feeding",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "facility"
+            "openmrs_entity_id": "breast_feeding"
+          },
+          {
+            "key": "not_applicable",
+            "text": "Not Applicable",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "not_applicable"
           }
         ],
         "v_required": {
           "value": "true",
-          "err": "Please select one"
-        },
-        "relevance": {
-          "step1:enrolled_to_prep": {
-            "type": "string",
-            "ex": "notEqualTo(., \"true\")"
-          }
+          "err": "Please select an answer"
         }
       }
     ]

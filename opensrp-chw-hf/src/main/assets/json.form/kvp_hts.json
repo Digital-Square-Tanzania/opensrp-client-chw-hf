@@ -46,11 +46,40 @@
     "title": "HTS",
     "fields": [
       {
+        "key": "tested_hiv",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "tested_hiv",
+        "label": "Has the client tested for HIV?",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "yes",
+            "text": "Yes",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "yes"
+          },
+          {
+            "key": "no",
+            "text": "No",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "no"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select one"
+        }
+      },
+      {
         "key": "previous_hiv_testing_method",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "previous_hiv_testing_method",
-        "label": "Previous HIV testing method",
+        "label": "HIV testing method",
         "text_color": "#000000",
         "type": "native_radio",
         "options": [
@@ -81,18 +110,18 @@
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "other_method"
-          },
-          {
-            "key": "not_tested",
-            "text": "Not tested",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "not_tested"
           }
         ],
         "v_required": {
           "value": "true",
           "err": "Please select one"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kvp_hts_relevance.yml"
+            }
+          }
         }
       },
       {
@@ -131,7 +160,7 @@
           },
           {
             "key": "facility",
-            "text": "Facility",
+            "text": " Facility",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "facility"
@@ -150,70 +179,34 @@
         }
       },
       {
-        "key": "tested_hiv",
+        "key": "client_type",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "tested_hiv",
-        "label": "Has the client tested for HIV?",
+        "openmrs_entity_id": "client_type",
+        "label": "Client Type",
         "text_color": "#000000",
         "type": "native_radio",
         "options": [
           {
-            "key": "yes",
-            "text": "Yes",
+            "key": "sns_client",
+            "text": "SNS",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "yes"
+            "openmrs_entity_id": "sns_client"
           },
           {
-            "key": "no",
-            "text": "No",
+            "key": "index_client",
+            "text": " Index",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "no"
+            "openmrs_entity_id": "index_client"
           },
           {
-            "key": "not_applicable",
-            "text": "Not applicable",
+            "key": "normal_client",
+            "text": "Normal Client",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "not_applicable"
-          }
-        ],
-        "v_required": {
-          "value": "true",
-          "err": "Please select one"
-        }
-      },
-      {
-        "key": "testing_approach",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "testing_approach",
-        "label": "Client's testing approach",
-        "text_color": "#000000",
-        "type": "native_radio",
-        "options": [
-          {
-            "key": "citc",
-            "text": "CITC",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "citc"
-          },
-          {
-            "key": "pitc",
-            "text": "PITC",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "pitc"
-          },
-          {
-            "key": "cbhts",
-            "text": "CBHTS",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "CBHTS"
+            "openmrs_entity_id": "normal_client"
           }
         ],
         "v_required": {
@@ -261,6 +254,13 @@
             "type": "string",
             "ex": "equalTo(., \"yes\")"
           }
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kvp_hts_relevance.yml"
+            }
+          }
         }
       },
       {
@@ -287,18 +287,18 @@
             "openmrs_entity_id": "negative"
           },
           {
-            "key": "inconclusive",
-            "text": "Inconclusive",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "inconclusive"
-          },
-          {
             "key": "known_positive",
             "text": "Known Positive",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "known_positive"
+          },
+          {
+            "key": "inconclusive",
+            "text": "Inconclusive",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "inconclusive"
           }
         ],
         "v_required": {
@@ -314,6 +314,36 @@
         }
       },
       {
+        "key": "prompt_for_hiv_negative",
+        "type": "toaster_notes",
+        "text": "Client should be enrolled into PrEP Services",
+        "openmrs_entity_id": "prompt_for_hiv_negative",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "warning",
+        "relevance": {
+          "step1:hiv_status": {
+            "type": "string",
+            "ex": "equalTo(., \"negative\")"
+          }
+        }
+      },
+      {
+        "key": "prompt_for_hiv_status_inconclusive",
+        "type": "toaster_notes",
+        "text": "Repeat Test after 14 Days",
+        "openmrs_entity_id": "prompt_for_hiv_status_inconclusive",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "warning",
+        "relevance": {
+          "step1:hiv_status": {
+            "type": "string",
+            "ex": "equalTo(., \"inconclusive\")"
+          }
+        }
+      },
+      {
         "key": "ctc_services",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -324,14 +354,14 @@
         "options": [
           {
             "key": "enrolled_but_not_on_arv",
-            "text": "Enrolled but not initiated on ARV",
+            "text": "Enrolled but not initiated on ART",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "enrolled_but_not_on_arv"
           },
           {
             "key": "enrolled_and_on_arv",
-            "text": "Enrolled and initiated on ARV",
+            "text": "Enrolled and initiated on ART",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "enrolled_and_on_arv"

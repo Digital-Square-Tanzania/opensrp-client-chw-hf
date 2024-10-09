@@ -154,7 +154,7 @@ public class PrEPVisitInteractor extends BaseKvpVisitInteractor {
             if (StringUtils.isNotBlank(visit_type)) {
                 try {
                     evaluatePrEPScreening(details);
-                    evaluatePrEPInitiation(details, visit_type);
+                   //evaluatePrEPInitiation(details, visit_type);
                 } catch (BaseKvpVisitAction.ValidationException e) {
                     e.printStackTrace();
                 }

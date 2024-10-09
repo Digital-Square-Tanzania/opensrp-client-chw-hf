@@ -70,7 +70,7 @@
           },
           {
             "key": "re_start",
-            "text": "Re-start",
+            "text": "Re-started",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "re_start"
@@ -96,6 +96,50 @@
         }
       },
       {
+        "key": "pregnancy_breast_feeding_status",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "pregnancy_breast_feeding_status",
+        "label": "Pregnancy and Breastfeeding status",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "pregnant",
+            "text": "Pregnant",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "pregnant"
+          },
+          {
+            "key": "breast_feeding",
+            "text": "Breastfeeding",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "breast_feeding"
+          },
+          {
+            "key": "none",
+            "text": "None",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "none"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select an answer"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "prep_initiation_relevance.yml"
+            }
+          }
+        }
+
+      },
+      {
         "key": "prep_drug_offered",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -112,12 +156,20 @@
             "openmrs_entity_id": "tdf_ftc"
           },
           {
+            "key": "injectable",
+            "text": "Injectable",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "injectable"
+          },
+          {
             "key": "other_drugs",
             "text": "Other Drugs",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "other_drugs"
           }
+
         ],
         "v_required": {
           "value": "true",
@@ -173,8 +225,8 @@
           }
         },
         "v_max": {
-          "value": "30",
-          "err": "Number of pills must be equal to or less than  30"
+          "value": "90",
+          "err": "Number of pills must be equal to or less than  90"
         }
       },
       {
@@ -199,13 +251,6 @@
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "poor"
-          },
-          {
-            "key": "not_applicable",
-            "text": "Not applicable",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "not_applicable"
           }
         ],
         "v_required": {
@@ -269,16 +314,16 @@
             "openmrs_entity_id": "not_at_risk"
           },
           {
+            "key": "kvp_mobility",
+            "text": "Mobility",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "kvp_mobility"
+          },
+          {
             "key": "others",
             "text": "Others",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "others"
-          },
-          {
-            "key": "not_applicable",
-            "text": "Not applicable",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "not_applicable"
           }
         ],
         "v_required": {
@@ -305,8 +350,13 @@
         },
         "relevance": {
           "step1:poor_prep_adherence_reason": {
-            "type": "string",
-            "ex": "equalTo(., \"others\")"
+            "ex-checkbox": [
+              {
+                "or": [
+                  "others"
+                ]
+              }
+            ]
           }
         }
       },
@@ -370,12 +420,6 @@
             "text": "No side effects",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "no_side_effects"
-          },
-          {
-            "key": "not_applicable",
-            "text": "Not applicable",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "not_applicable"
           }
         ],
         "v_required": {
@@ -444,12 +488,6 @@
             "openmrs_entity_id": "poor_adherence"
           },
           {
-            "key": "client_decision",
-            "text": "Client's decision",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "client_decision"
-          },
-          {
             "key": "not_at_risk",
             "text": "Client has stopped, not at risk",
             "openmrs_entity": "concept",
@@ -460,12 +498,6 @@
             "text": "Others (Specify)",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "others"
-          },
-          {
-            "key": "not_applicable",
-            "text": "Not applicable",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "not_applicable"
           }
         ],
         "v_required": {

@@ -157,7 +157,7 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "sexual_intercourse",
-        "label": "Has the client ever had sexual intercourse?",
+        "label": "Have you ever engaged in sexual activity, do you think about engaging in sexual activity, or are you at risk of engaging in sexual activity?",
         "text_color": "#000000",
         "type": "native_radio",
         "options": [
@@ -271,6 +271,9 @@
         "label": "Select the partner's criteria of HIV care status",
         "text_color": "#000000",
         "type": "check_box",
+        "exclusive": [
+          "not_started_art"
+        ],
         "options": [
           {
             "key": "not_started_art",
@@ -340,7 +343,7 @@
     ]
   },
   "step5": {
-    "title": "FSW",
+    "title": "WHR",
     "next": "step6",
     "fields": [
       {
@@ -431,7 +434,7 @@
     ]
   },
   "step6": {
-    "title": "AGYW",
+    "title": "vAGYW",
     "next": "step7",
     "fields": [
       {
@@ -570,11 +573,11 @@
             "openmrs_entity_id": "rumandee"
           },
           {
-            "key": "not_applicable",
-            "text": "Not applicable",
+            "key": "none",
+            "text": "None",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "not_applicable"
+            "openmrs_entity_id": "none"
           }
         ],
         "v_required": {
@@ -627,11 +630,11 @@
             "openmrs_entity_id": "road_builders"
           },
           {
-            "key": "not_applicable",
-            "text": "Not applicable",
+            "key": "none",
+            "text": "None",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "not_applicable"
+            "openmrs_entity_id": "none"
           }
         ],
         "v_required": {
@@ -670,11 +673,11 @@
             "openmrs_entity_id": "street_working_children"
           },
           {
-            "key": "not_applicable",
-            "text": "Not applicable",
+            "key": "none",
+            "text": "None",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "not_applicable"
+            "openmrs_entity_id": "none"
           }
         ],
         "v_required": {
@@ -778,6 +781,13 @@
             "type": "string",
             "ex": "equalTo(., \"yes\")"
           }
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kvp_screening_female_relevance.yml"
+            }
+          }
         }
       }
     ]
@@ -804,7 +814,7 @@
       {
         "key": "prompt_for_agyw_kvp",
         "type": "toaster_notes",
-        "text": "The client falls in AGYW KVP group\nThe client should be enrolled to KVP friendly services",
+        "text": "The client falls in vAGYW KVP group\nThe client should be enrolled to KVP friendly services",
         "openmrs_entity_id": "",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
@@ -836,7 +846,7 @@
       {
         "key": "prompt_for_fsw_kvp",
         "type": "toaster_notes",
-        "text": "The client falls in FSW KVP group\nThe client should be enrolled to KVP friendly services",
+        "text": "The client falls in WHR KVP group\nThe client should be enrolled to KVP friendly services",
         "openmrs_entity_id": "",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
@@ -1009,7 +1019,7 @@
         "options": [
           {
             "key": "fsw",
-            "text": "FSW",
+            "text": "WHR",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "fsw"
@@ -1044,7 +1054,7 @@
           },
           {
             "key": "agyw",
-            "text": "AGYW",
+            "text": "vAGYW",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "agyw"

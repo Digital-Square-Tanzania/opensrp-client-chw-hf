@@ -67,7 +67,7 @@
           },
           {
             "key": "screening_not_conducted",
-            "text": "Screening Not Conducted",
+            "text": "Not Screened",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "screening_not_conducted"
           }
@@ -90,12 +90,6 @@
             "text": "Treated",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "treated"
-          },
-          {
-            "key": "referral",
-            "text": "Referral",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "referral"
           },
           {
             "key": "not_treated",

@@ -51,38 +51,72 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "gbv_screening",
         "type": "native_radio",
-        "label": "Gender Based Violence (GBV) screening (physical, psychological, emotional)",
+        "label": "Gender Based Violence (GBV) case reported",
         "options": [
           {
-            "key": "case_not_reported",
-            "text": "The client has not reported any gender-based violence (GBV) cases.",
+            "key": "physical_violence",
+            "text": "Physical violence.",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "case_not_reported"
+            "openmrs_entity_id": "physical_violence"
           },
           {
-            "key": "case_reported",
-            "text": "The client reported a case of gender-based violence (GBV).",
+            "key": "emotional_violence",
+            "text": "Emotional violence.",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "case_reported"
+            "openmrs_entity_id": "emotional_violence"
           },
           {
-            "key": "received_post_gbv_care",
-            "text": "The client received post-GBV care for a reported case of gender-based violence (GBV)",
+            "key": "sexual_violence",
+            "text": "Sexual violence.",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "received_post_gbv_care"
+            "openmrs_entity_id": "sexual_violence"
           },
           {
-            "key": "referred",
-            "text": "The client was referred for further assistance after reporting a case of gender-based violence (GBV)",
+            "key": "none",
+            "text": "None",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "referred"
+            "openmrs_entity_id": "none"
           }
         ],
         "v_required": {
           "value": "true",
           "err": "Please select an answer"
         }
+      },
+      {
+        "key": "post_gbv_care_provision",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "post_gbv_care_provision",
+        "type": "native_radio",
+        "label": "Was Post GBV Care Provided?",
+        "options": [
+          {
+            "key": "yes",
+            "text": "Yes.",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "yes"
+          },
+          {
+            "key": "no",
+            "text": "No.",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "no"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select an answer"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kvp_gbv_analysis_relevance.yml"
+            }
+          }
+        }
       }
+
     ]
   }
 }
