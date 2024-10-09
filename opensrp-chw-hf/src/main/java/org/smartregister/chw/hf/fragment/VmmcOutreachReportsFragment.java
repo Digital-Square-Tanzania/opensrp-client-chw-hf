@@ -61,7 +61,7 @@ public class VmmcOutreachReportsFragment extends Fragment implements View.OnClic
         vmmc_theatre_register_title = view.findViewById(R.id.vmmc_theatre_register_title);
 
         vmmc_monthly_report_title.setText("Vmmc Outreach Reports");
-        vmmc_register_title.setText("Vmmc Outreach Register Repot");
+        vmmc_register_title.setText("Vmmc Outreach Register Report");
         vmmc_theatre_register_title.setText("Vmmc Outreach Theatre Register Report");
 
         vmmc_monthly_report.setOnClickListener(this);

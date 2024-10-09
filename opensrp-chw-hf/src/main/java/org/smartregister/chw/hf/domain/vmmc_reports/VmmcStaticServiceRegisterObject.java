@@ -50,7 +50,7 @@ public class VmmcStaticServiceRegisterObject extends ReportObject {
             reportJsonObject.put("client_referred_to", getCbhsClientDetails(getVmmcRegister, "client_referred_to"));
             reportJsonObject.put("mc_procedure_date", getCbhsClientDetails(getVmmcRegister, "mc_procedure_date"));
             reportJsonObject.put("male_circumcision_method", getCbhsClientDetails(getVmmcRegister, "male_circumcision_method"));
-            reportJsonObject.put("intraoperative_adverse_event_occured", getCbhsClientDetails(getVmmcRegister, "intraoperative_adverse_event_occured"));
+//            reportJsonObject.put("intraoperative_adverse_event_occured", getCbhsClientDetails(getVmmcRegister, "intraoperative_adverse_event_occured"));
 
             reportJsonObject.put("first_visit", getCbhsClientDetails(getVmmcRegister, "first_visit"));
             reportJsonObject.put("sec_visit", getCbhsClientDetails(getVmmcRegister, "sec_visit"));
