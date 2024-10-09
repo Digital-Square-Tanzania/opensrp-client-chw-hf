@@ -61,7 +61,7 @@ android {
 
     defaultConfig {
         applicationId "org.smartregister.chw.hf"
-        minSdkVersion 21
+        minSdkVersion 26
         targetSdkVersion 33
         versionCode 11
         versionName "1.2.13"
@@ -198,7 +198,7 @@ android {
     productFlavors {
         nacp {
             applicationId "org.smartregister.chw.moh.hf"
-            minSdkVersion 21
+            minSdkVersion 26
             targetSdkVersion 31
             versionCode 22
             versionName "1.2.0"

@@ -40,3 +40,10 @@ priority: 1
 condition: "(!step1_first_vital_sign_pulse_rate.equals('') && step1_first_vital_sign_pulse_rate > 100 && global_age >= 10) || (!step1_first_vital_sign_pulse_rate.equals('') && step1_first_vital_sign_pulse_rate > 115  && global_age >= 5 && global_age < 7) || (!step1_first_vital_sign_pulse_rate.equals('') && step1_first_vital_sign_pulse_rate > 110 && global_age >= 7 && global_age < 10)"
 actions:
   - "isRelevant = true"
+---
+name: step1_reason_delay_from_mc
+description: reason_delay_from_mc relevance
+priority: 1
+condition: "global_duration > 15"
+actions:
+  - "isRelevant = true"

@@ -169,7 +169,7 @@
       },
       {
         "key": "now_time",
-        "type": "hidden",
+        "type": "edit_text",
         "openmrs_entity_id": "now_time",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": ""
@@ -185,7 +185,7 @@
           {
             "type": "time",
             "ex": "lessThanEqualTo(., step1:now_time)",
-            "err": "End time cannot be future time"
+            "err": "Start time cannot be future time"
           }
         ],
         "relevance": {
@@ -206,8 +206,13 @@
         "constraints": [
           {
             "type": "time",
+            "ex": "lessThanEqualTo(., step1:now_time)",
+            "err": "End time cannot be future time"
+          },
+          {
+            "type": "time",
             "ex": "greaterThan(., step1:start_time)",
-            "err": "End time cannot be less than the start time"
+            "err": "End time must be after start time"
           }
         ],
         "relevance": {
@@ -766,8 +771,8 @@
         "constraints": [
           {
             "type": "time",
-            "ex": "greaterThan(., step1:end_time)",
-            "err": "End time cannot be less than the MC time"
+            "ex": "lessThan(., step1:start_time)",
+            "err": "Topical time must be before MC start time"
           }
         ],
         "relevance": {
@@ -785,17 +790,22 @@
         "openmrs_entity_id": "end_time_topical_cream_application",
         "type": "time_picker",
         "hint": "End time of topical cream application",
-        "constraints": [
-          {
-            "type": "time",
-            "ex": "greaterThan(., step1:start_time_topical_cream_application)",
-            "err": "End time cannot be less than the start time"
-          }
-        ],
         "v_required": {
           "value": "true",
           "err": "Please specify"
         },
+        "constraints": [
+          {
+            "type": "time",
+            "ex": "greaterThan(., step1:start_time_topical_cream_application)",
+            "err": "Topical time must be after start time"
+          },
+          {
+            "type": "time",
+            "ex": "lessThanEqualTo(., step1:end_time)",
+            "err": "End time cannot be beyond MC end time"
+          }
+        ],
         "relevance": {
           "rules-engine": {
             "ex-rules": {
