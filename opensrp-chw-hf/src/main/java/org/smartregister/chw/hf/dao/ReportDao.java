@@ -533,18 +533,18 @@ public class ReportDao extends AbstractDao {
             String queryStartDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(startDate);
             String queryEndDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(endDate);
             sql += String.format(
-                    "    WHERE date(substr(ec_vmmc_enrollment.enrollment_date, 7, 4) || '-' || " +
+                    "    WHERE ec_vmmc_enrollment.service_delivery_approach = 'outreach_or_mobile'\n" +
+                            "AND date(substr(ec_vmmc_enrollment.enrollment_date, 7, 4) || '-' || " +
                             "substr(ec_vmmc_enrollment.enrollment_date, 4, 2) || '-' || substr(ec_vmmc_enrollment.enrollment_date, 1, 2)) " +
-                            "BETWEEN date('%s') AND date('%s')\n" +
-                            "AND ec_vmmc_enrollment.service_delivery_approach = 'outreach_or_mobile'",
+                            "BETWEEN date('%s') AND date('%s')\n",
                     queryStartDate, queryEndDate
             );
         } else {
             sql += String.format(
-                    "    WHERE date(substr(ec_vmmc_enrollment.enrollment_date, 7, 4) || '-' || " +
+                    "    WHERE ec_vmmc_enrollment.service_delivery_approach = 'outreach_or_mobile'\n" +
+                            "AND date(substr(ec_vmmc_enrollment.enrollment_date, 7, 4) || '-' || " +
                             "substr(ec_vmmc_enrollment.enrollment_date, 4, 2) || '-' || '01') = " +
-                            "date(substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')\n" +
-                            "AND ec_vmmc_enrollment.service_delivery_approach = 'outreach_or_mobile'",
+                            "date(substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')\n",
                     queryReportDate, queryReportDate
             );
         }
@@ -865,7 +865,7 @@ public class ReportDao extends AbstractDao {
             String queryStartDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(startDate);
             String queryEndDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(endDate);
             sql += String.format(
-                    "    WHERE ec_vmmc_enrollment.service_delivery_approach = 'outreach_or_mobile'" +
+                    "    WHERE ec_vmmc_enrollment.service_delivery_approach = 'outreach_or_mobile'\n" +
                             "AND date(substr(ec_vmmc_procedure.mc_procedure_date, 7, 4) || '-' || " +
                             "substr(ec_vmmc_procedure.mc_procedure_date, 4, 2) || '-' || substr(ec_vmmc_procedure.mc_procedure_date, 1, 2)) " +
                             "BETWEEN date('%s') AND date('%s')\n",
@@ -873,7 +873,7 @@ public class ReportDao extends AbstractDao {
             );
         } else {
             sql += String.format(
-                    "    WHERE ec_vmmc_enrollment.service_delivery_approach = 'outreach_or_mobile'" +
+                    "    WHERE ec_vmmc_enrollment.service_delivery_approach = 'outreach_or_mobile'\n" +
                             "AND date(substr(ec_vmmc_procedure.mc_procedure_date, 7, 4) || '-' || " +
                             "substr(ec_vmmc_procedure.mc_procedure_date, 4, 2) || '-' || '01') = " +
                             "date(substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')\n",
