@@ -435,6 +435,7 @@ public class ReportUtils {
     }
 
     public static class VmmcStaticReport {
+
         public static String computeReport(Date now) {
             String report = "";
             VmmcStaticReportObject vmmcReportObject = new VmmcStaticReportObject(now);

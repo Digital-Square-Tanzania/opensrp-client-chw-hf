@@ -470,12 +470,12 @@ public class ReportDao extends AbstractDao {
             data.put("client_referred_to", cursor.getString(cursor.getColumnIndex("client_referred_to")));
             data.put("mc_procedure_date", cursor.getString(cursor.getColumnIndex("mc_procedure_date")));
             data.put("male_circumcision_method", cursor.getString(cursor.getColumnIndex("male_circumcision_method")));
-//            data.put("intraoperative_adverse_event_occured", cursor.getString(cursor.getColumnIndex("intraoperative_adverse_event_occured")));
+            data.put("intraoperative_adverse_event_occured", cursor.getString(cursor.getColumnIndex("intraoperative_adverse_event_occured")));
+            data.put("post_op_adverse_first_visit", cursor.getString(cursor.getColumnIndex("post_op_adverse_first_visit")));
+            data.put("post_op_adverse_sec_visit", cursor.getString(cursor.getColumnIndex("post_op_adverse_sec_visit")));
             data.put("first_visit", cursor.getString(cursor.getColumnIndex("first_visit")));
             data.put("sec_visit", cursor.getString(cursor.getColumnIndex("sec_visit")));
             data.put("post_op_adverse", cursor.getString(cursor.getColumnIndex("post_op_adverse")));
-            data.put("post_op_adverse_first_visit", cursor.getString(cursor.getColumnIndex("post_op_adverse_first_visit")));
-            data.put("post_op_adverse_sec_visit", cursor.getString(cursor.getColumnIndex("post_op_adverse_sec_visit")));
             data.put("NAE", cursor.getString(cursor.getColumnIndex("NAE")));
             data.put("health_care_provider", cursor.getString(cursor.getColumnIndex("health_care_provider")));
             data.put("mc_procedure_comment", cursor.getString(cursor.getColumnIndex("mc_procedure_comment")));
@@ -594,12 +594,12 @@ public class ReportDao extends AbstractDao {
             data.put("client_referred_to", cursor.getString(cursor.getColumnIndex("client_referred_to")));
             data.put("mc_procedure_date", cursor.getString(cursor.getColumnIndex("mc_procedure_date")));
             data.put("male_circumcision_method", cursor.getString(cursor.getColumnIndex("male_circumcision_method")));
-//            data.put("intraoperative_adverse_event_occured", cursor.getString(cursor.getColumnIndex("intraoperative_adverse_event_occured")));
+            data.put("intraoperative_adverse_event_occured", cursor.getString(cursor.getColumnIndex("intraoperative_adverse_event_occured")));
+            data.put("post_op_adverse_first_visit", cursor.getString(cursor.getColumnIndex("post_op_adverse_first_visit")));
+            data.put("post_op_adverse_sec_visit", cursor.getString(cursor.getColumnIndex("post_op_adverse_sec_visit")));
             data.put("first_visit", cursor.getString(cursor.getColumnIndex("first_visit")));
             data.put("sec_visit", cursor.getString(cursor.getColumnIndex("sec_visit")));
             data.put("post_op_adverse", cursor.getString(cursor.getColumnIndex("post_op_adverse")));
-            data.put("post_op_adverse_first_visit", cursor.getString(cursor.getColumnIndex("post_op_adverse_first_visit")));
-            data.put("post_op_adverse_sec_visit", cursor.getString(cursor.getColumnIndex("post_op_adverse_sec_visit")));
             data.put("NAE", cursor.getString(cursor.getColumnIndex("NAE")));
             data.put("health_care_provider", cursor.getString(cursor.getColumnIndex("health_care_provider")));
             data.put("mc_procedure_comment", cursor.getString(cursor.getColumnIndex("mc_procedure_comment")));
@@ -615,7 +615,6 @@ public class ReportDao extends AbstractDao {
             return new ArrayList<>();
         }
     }
-
 
     public static List<Map<String, String>> getVmmcTheatreRegister(Date reportDate, Date startDate, Date endDate) {
         String sql = "WITH VMMC_CTE AS (\n" +
@@ -936,8 +935,6 @@ public class ReportDao extends AbstractDao {
         }
     }
 
-
-
     public static List<Map<String, String>> getVmmcListOfAeRegister(Date reportDate, Date startDate, Date endDate) {
         String sql = "WITH VMMC_LIST_AE_CTE AS (\n" +
                 "    SELECT\n" +
@@ -994,8 +991,8 @@ public class ReportDao extends AbstractDao {
                 "        ELSE\n" +
                 "            MAX(type_of_adverse_event)\n\n" +
                 "    END AS type_of_adverse_event,\n" +
-                "    MAX(date_nae_occured),\n" +
-                "    MAX(mc_procedure_date) AS mc_procedure_date,\n" +
+                "    date_nae_occured AS date_nae_occured,\n" +
+                "    mc_procedure_date AS mc_procedure_date,\n" +
                 "    MAX(male_circumcision_method) AS male_circumcision_method\n" +
 //                "    MAX(intraoperative_adverse_event_occured) AS intraoperative_adverse_event_occured,\n" +
                 "FROM VMMC_LIST_AE_CTE\n" +
@@ -1015,6 +1012,7 @@ public class ReportDao extends AbstractDao {
             data.put("age", cursor.getString(cursor.getColumnIndex("age")));
             data.put("mc_procedure_date", cursor.getString(cursor.getColumnIndex("mc_procedure_date")));
             data.put("male_circumcision_method", cursor.getString(cursor.getColumnIndex("male_circumcision_method")));
+            data.put("date_nae_occured", cursor.getString(cursor.getColumnIndex("date_nae_occured")));
 //            data.put("intraoperative_adverse_event_occured", cursor.getString(cursor.getColumnIndex("intraoperative_adverse_event_occured")));
             data.put("type_of_adverse_event", cursor.getString(cursor.getColumnIndex("type_of_adverse_event")));
 //            String type_of_adverse_event = getTypeOfAdverseEvent(cursor);
@@ -1090,7 +1088,7 @@ public class ReportDao extends AbstractDao {
                 "        ELSE\n" +
                 "            MAX(type_of_adverse_event)\n\n" +
                 "    END AS type_of_adverse_event,\n" +
-                "    MAX(date_nae_occured),\n" +
+                "    MAX(date_nae_occured) AS date_nae_occured,\n" +
                 "    MAX(mc_procedure_date) AS mc_procedure_date,\n" +
                 "    MAX(male_circumcision_method) AS male_circumcision_method\n" +
 //                "    MAX(intraoperative_adverse_event_occured) AS intraoperative_adverse_event_occured,\n" +
@@ -1111,6 +1109,7 @@ public class ReportDao extends AbstractDao {
             data.put("age", cursor.getString(cursor.getColumnIndex("age")));
             data.put("mc_procedure_date", cursor.getString(cursor.getColumnIndex("mc_procedure_date")));
             data.put("male_circumcision_method", cursor.getString(cursor.getColumnIndex("male_circumcision_method")));
+            data.put("date_nae_occured", cursor.getString(cursor.getColumnIndex("date_nae_occured")));
 //            data.put("intraoperative_adverse_event_occured", cursor.getString(cursor.getColumnIndex("intraoperative_adverse_event_occured")));
             data.put("type_of_adverse_event", cursor.getString(cursor.getColumnIndex("type_of_adverse_event")));
 //            String type_of_adverse_event = getTypeOfAdverseEvent(cursor);
@@ -1186,7 +1185,7 @@ public class ReportDao extends AbstractDao {
                 "        ELSE\n" +
                 "            MAX(type_of_adverse_event)\n\n" +
                 "    END AS type_of_adverse_event,\n" +
-                "    MAX(date_nae_occured),\n" +
+                "    MAX(date_nae_occured) AS date_nae_occured,\n" +
                 "    MAX(mc_procedure_date) AS mc_procedure_date,\n" +
                 "    MAX(male_circumcision_method) AS male_circumcision_method\n" +
 //                "    MAX(intraoperative_adverse_event_occured) AS intraoperative_adverse_event_occured,\n" +
@@ -1207,6 +1206,7 @@ public class ReportDao extends AbstractDao {
             data.put("age", cursor.getString(cursor.getColumnIndex("age")));
             data.put("mc_procedure_date", cursor.getString(cursor.getColumnIndex("mc_procedure_date")));
             data.put("male_circumcision_method", cursor.getString(cursor.getColumnIndex("male_circumcision_method")));
+            data.put("date_nae_occured", cursor.getString(cursor.getColumnIndex("date_nae_occured")));
 //            data.put("intraoperative_adverse_event_occured", cursor.getString(cursor.getColumnIndex("intraoperative_adverse_event_occured")));
             data.put("type_of_adverse_event", cursor.getString(cursor.getColumnIndex("type_of_adverse_event")));
 //            String type_of_adverse_event = getTypeOfAdverseEvent(cursor);

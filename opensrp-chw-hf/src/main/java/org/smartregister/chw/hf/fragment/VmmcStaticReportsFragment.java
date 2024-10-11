@@ -92,7 +92,7 @@ public class VmmcStaticReportsFragment extends Fragment implements View.OnClickL
             VmmcReportsViewActivity.startMe(getActivity(),  Constants.ReportConstants.ReportPaths.VMMC_STATIC_THEATRE_REGISTER_PATH,R.string.vmmc_theatre_register_subtitle, reportPeriod, startDate, endDate);
         }
         if (id == R.id.vmmc_list_of_ae_register) {
-            VmmcReportsViewActivity.startMe(getActivity(),  Constants.ReportConstants.ReportPaths.VMMC_STATIC_LIST_OF_AE_PATH,R.string.vmmc_theatre_register_subtitle, reportPeriod, startDate, endDate);
+            VmmcReportsViewActivity.startMe(getActivity(),  Constants.ReportConstants.ReportPaths.VMMC_STATIC_LIST_OF_AE_PATH,R.string.vmmc_list_of_ae_subtitle, reportPeriod, startDate, endDate);
         }
     }
 
