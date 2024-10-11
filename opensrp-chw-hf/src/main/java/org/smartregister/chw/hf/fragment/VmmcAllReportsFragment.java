@@ -65,7 +65,7 @@ public class VmmcAllReportsFragment extends Fragment implements View.OnClickList
         vmmc_list_of_ae_title = view.findViewById(R.id.vmmc_list_of_ae_title);
 
         vmmc_monthly_report_title.setText("Vmmc All Reports");
-        vmmc_register_title.setText("Vmmc All Register Report");
+        vmmc_register_title.setText("Vmmc All Service Register Report");
         vmmc_theatre_register_title.setText("Vmmc All Theatre Register Report");
         vmmc_list_of_ae_title.setText("List of AE Clients");
 
@@ -90,7 +90,7 @@ public class VmmcAllReportsFragment extends Fragment implements View.OnClickList
             VmmcReportsViewActivity.startMe(getActivity(),  Constants.ReportConstants.ReportPaths.VMMC_THEATRE_REGISTER_PATH,R.string.vmmc_theatre_register_subtitle, reportPeriod, startDate, endDate);
         }
         if (id == R.id.vmmc_list_of_ae_register) {
-            VmmcReportsViewActivity.startMe(getActivity(),  Constants.ReportConstants.ReportPaths.VMMC_LIST_OF_AE_PATH,R.string.vmmc_theatre_register_subtitle, reportPeriod, startDate, endDate);
+            VmmcReportsViewActivity.startMe(getActivity(),  Constants.ReportConstants.ReportPaths.VMMC_LIST_OF_AE_PATH,R.string.vmmc_list_of_ae_subtitle, reportPeriod, startDate, endDate);
         }
     }
 

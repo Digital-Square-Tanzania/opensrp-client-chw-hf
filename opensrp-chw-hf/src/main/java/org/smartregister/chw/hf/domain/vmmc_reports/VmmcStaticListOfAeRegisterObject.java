@@ -42,11 +42,9 @@ public class VmmcStaticListOfAeRegisterObject extends ReportObject {
             reportJsonObject.put("vmmc_client_id", getCbhsClientDetails(getVmmcRegister, "vmmc_client_id"));
             reportJsonObject.put("names", getCbhsClientDetails(getVmmcRegister, "names"));
             reportJsonObject.put("age", getCbhsClientDetails(getVmmcRegister, "age"));
-            reportJsonObject.put("NAE", getCbhsClientDetails(getVmmcRegister, "NAE"));
             reportJsonObject.put("type_of_adverse_event", getCbhsClientDetails(getVmmcRegister, "type_of_adverse_event"));
             reportJsonObject.put("mc_procedure_date", getCbhsClientDetails(getVmmcRegister, "mc_procedure_date"));
-            reportJsonObject.put("enrollment_date", getCbhsClientDetails(getVmmcRegister, "enrollment_date"));
-            reportJsonObject.put("enrollment_date1", getCbhsClientDetails(getVmmcRegister, "enrollment_date"));
+            reportJsonObject.put("date_nae_occured", getCbhsClientDetails(getVmmcRegister, "date_nae_occured"));
             reportJsonObject.put("male_circumcision_method", getCbhsClientDetails(getVmmcRegister, "male_circumcision_method"));
 
             dataArray.put(reportJsonObject);
