@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MC Service Register</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+        }
+
+        .show-on-print {
+            display: none;
+        }
+
+        body{
+            font-family: Helvetica;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        .table-wrapper{
+            margin: 10px;
+            margin-right: 10px;
+        }
+
+        .t{
+            border-radius: 5px;
+            font-size: 10px;
+            font-weight: normal;
+            border-collapse: collapse;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .t td, .t th {
+            padding: 5px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .number{
+            background-color: white;
+        }
+
+        /* Add vertical line */
+        .divide {
+            border-right: 1px solid black;
+        }
+
+        @media print {
+       .show-on-print {
+          display: block;
+       }
+
+       .child-table {
+        width: 50%;
+        }
+}
+
+    </style>
+    <script src="../report-script.js"></script>
+
+</head>
+<body onload="loadData('vmmc_static_list_of_ae_register')">
+<div class="show-on-print" style="font-size:12px;">
+    <h1>List of AE clients</h1>
+    <div class="container">
+        <h2 class="h2">Reporting month: <span id="report_period"></span></h2>
+        <h2 class="h2">Facility name: <span id="reporting_facility"></span></h2>
+    </div>
+    <h2><span id="reporting_hfrcode"></span></h2>
+</div>
+<div class="table-wrapper">
+    <table class="t">
+        <thead>
+        <tr>
+            <th rowspan="2">S/N</th>
+            <th rowspan="2">Client ID</th>
+            <th rowspan="2">CLIENT'S NAME First Middle Last</th>
+            <th rowspan="2">Age</th>
+            <th rowspan="2" class="up">AE Classification(Moderate, Severe, NAE)</th>
+            <th rowspan="2" class="up">AE Type</th>
+            <th rowspan="2" class="up">Date of MC</th>
+            <th rowspan="2" class="up">Date of AE Occurred</th>
+            <th rowspan="2" class="up">Date AE Attended</th>
+            <th rowspan="2" class="up">MC Method</th>
+        </tr>
+        </thead>
+        <tbody id="table-body">
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

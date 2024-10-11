@@ -28,6 +28,9 @@ public class VmmcAllReportsFragment extends Fragment implements View.OnClickList
     protected ConstraintLayout vmmc_theatre_register_report;
     private AppCompatTextView vmmc_theatre_register_title;
 
+    protected ConstraintLayout vmmc_list_of_ae_report;
+    private AppCompatTextView vmmc_list_of_ae_title;
+
     private String reportPeriod;
     private String startDate;
     private String endDate;
@@ -58,15 +61,18 @@ public class VmmcAllReportsFragment extends Fragment implements View.OnClickList
         vmmc_register_title = view.findViewById(R.id.vmmc_register_title);
         vmmc_theatre_register_report = view.findViewById(R.id.vmmc_theatre_register);
         vmmc_theatre_register_title = view.findViewById(R.id.vmmc_theatre_register_title);
+        vmmc_list_of_ae_report = view.findViewById(R.id.vmmc_list_of_ae_register);
+        vmmc_list_of_ae_title = view.findViewById(R.id.vmmc_list_of_ae_title);
 
         vmmc_monthly_report_title.setText("Vmmc All Reports");
         vmmc_register_title.setText("Vmmc All Register Report");
         vmmc_theatre_register_title.setText("Vmmc All Theatre Register Report");
+        vmmc_list_of_ae_title.setText("List of AE Clients");
 
-        vmmc_monthly_report.setOnClickListener(this);
         vmmc_monthly_report.setOnClickListener(this);
         vmmc_register_report.setOnClickListener(this);
         vmmc_theatre_register_report.setOnClickListener(this);
+        vmmc_list_of_ae_report.setOnClickListener(this);
 
     }
 
@@ -82,6 +88,9 @@ public class VmmcAllReportsFragment extends Fragment implements View.OnClickList
         }
         if (id == R.id.vmmc_theatre_register) {
             VmmcReportsViewActivity.startMe(getActivity(),  Constants.ReportConstants.ReportPaths.VMMC_THEATRE_REGISTER_PATH,R.string.vmmc_theatre_register_subtitle, reportPeriod, startDate, endDate);
+        }
+        if (id == R.id.vmmc_list_of_ae_register) {
+            VmmcReportsViewActivity.startMe(getActivity(),  Constants.ReportConstants.ReportPaths.VMMC_LIST_OF_AE_PATH,R.string.vmmc_theatre_register_subtitle, reportPeriod, startDate, endDate);
         }
     }
 

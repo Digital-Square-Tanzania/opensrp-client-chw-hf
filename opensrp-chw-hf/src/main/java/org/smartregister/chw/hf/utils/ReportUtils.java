@@ -39,11 +39,14 @@ import org.smartregister.chw.hf.domain.pmtct_reports.Pmtct3MonthsReportObject;
 import org.smartregister.chw.hf.domain.pmtct_reports.PmtctEIDMonthlyReportObject;
 import org.smartregister.chw.hf.domain.pnc_reports.PncMonthlyReportObject;
 import org.smartregister.chw.hf.domain.self_testing_reports.SelfTestingMonthlyReportObject;
+import org.smartregister.chw.hf.domain.vmmc_reports.VmmcListOfAeRegisterObject;
+import org.smartregister.chw.hf.domain.vmmc_reports.VmmcOutreachListOfAeRegisterObject;
 import org.smartregister.chw.hf.domain.vmmc_reports.VmmcOutreachReportObject;
 import org.smartregister.chw.hf.domain.vmmc_reports.VmmcOutreachServiceRegisterObject;
 import org.smartregister.chw.hf.domain.vmmc_reports.VmmcOutreachTheatreRegisterObject;
 import org.smartregister.chw.hf.domain.vmmc_reports.VmmcReportObject;
 import org.smartregister.chw.hf.domain.vmmc_reports.VmmcServiceRegisterObject;
+import org.smartregister.chw.hf.domain.vmmc_reports.VmmcStaticListOfAeRegisterObject;
 import org.smartregister.chw.hf.domain.vmmc_reports.VmmcStaticReportObject;
 import org.smartregister.chw.hf.domain.vmmc_reports.VmmcStaticServiceRegisterObject;
 import org.smartregister.chw.hf.domain.vmmc_reports.VmmcStaticTheatreRegisterObject;
@@ -185,6 +188,11 @@ public class ReportUtils {
 
     private static String getReportPeriodWithStartingMonth(int minusPeriod) {
         try {
+            if (startDate != null && endDate != null){
+                String startTime = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(startDate));
+                String endTime = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(endDate));
+                return startTime+ " to " + endTime;
+            }
             DateTime endTime = new DateTime(new SimpleDateFormat("MM-yyyy", Locale.getDefault()).parse(reportPeriod));
             DateTime startTime = endTime.minusMonths(minusPeriod);
 
@@ -596,6 +604,78 @@ public class ReportUtils {
         }
     }
 
+
+    public static class VmmcListOfAERegister {
+        public static String computeReport(Date now) {
+            String report = "";
+            VmmcListOfAeRegisterObject vmmcListOfAeRegisterObject = new VmmcListOfAeRegisterObject(now);
+            try {
+                report = vmmcListOfAeRegisterObject.getIndicatorDataAsGson(vmmcListOfAeRegisterObject.getIndicatorData());
+            } catch (Exception e) {
+                Timber.e(e);
+            }
+            return report;
+        }
+
+        public static String computeReport(Date now, Date startDate, Date endDate) {
+            String report = "";
+            VmmcListOfAeRegisterObject vmmcListOfAeRegisterObject = new VmmcListOfAeRegisterObject(now, startDate, endDate);
+            try {
+                report = vmmcListOfAeRegisterObject.getIndicatorDataAsGson(vmmcListOfAeRegisterObject.getIndicatorData());
+            } catch (Exception e) {
+                Timber.e(e);
+            }
+            return report;
+        }
+    }
+
+    public static class VmmcStaticListOfAERegister {
+        public static String computeReport(Date now) {
+            String report = "";
+            VmmcStaticListOfAeRegisterObject vmmcStaticListOfAeRegisterObject = new VmmcStaticListOfAeRegisterObject(now);
+            try {
+                report = vmmcStaticListOfAeRegisterObject.getIndicatorDataAsGson(vmmcStaticListOfAeRegisterObject.getIndicatorData());
+            } catch (Exception e) {
+                Timber.e(e);
+            }
+            return report;
+        }
+
+        public static String computeReport(Date now, Date startDate, Date endDate) {
+            String report = "";
+            VmmcStaticListOfAeRegisterObject vmmcOutreachListOfAeRegisterObject = new VmmcStaticListOfAeRegisterObject(now, startDate, endDate);
+            try {
+                report = vmmcOutreachListOfAeRegisterObject.getIndicatorDataAsGson(vmmcOutreachListOfAeRegisterObject.getIndicatorData());
+            } catch (Exception e) {
+                Timber.e(e);
+            }
+            return report;
+        }
+    }
+
+    public static class VmmcOutreachListOfAERegister {
+        public static String computeReport(Date now) {
+            String report = "";
+            VmmcOutreachListOfAeRegisterObject vmmcOutreachListOfAeRegisterObject = new VmmcOutreachListOfAeRegisterObject(now);
+            try {
+                report = vmmcOutreachListOfAeRegisterObject.getIndicatorDataAsGson(vmmcOutreachListOfAeRegisterObject.getIndicatorData());
+            } catch (Exception e) {
+                Timber.e(e);
+            }
+            return report;
+        }
+
+        public static String computeReport(Date now, Date startDate, Date endDate) {
+            String report = "";
+            VmmcOutreachListOfAeRegisterObject vmmcOutreachListOfAeRegisterObject = new VmmcOutreachListOfAeRegisterObject(now, startDate, endDate);
+            try {
+                report = vmmcOutreachListOfAeRegisterObject.getIndicatorDataAsGson(vmmcOutreachListOfAeRegisterObject.getIndicatorData());
+            } catch (Exception e) {
+                Timber.e(e);
+            }
+            return report;
+        }
+    }
     public static class CDPReports {
         public static String computeIssuingAtFacilityReports(Date startDate) {
             CdpIssuingAtFacilityReportObject cdpIssuingAtFacilityReportObject = new CdpIssuingAtFacilityReportObject(startDate);

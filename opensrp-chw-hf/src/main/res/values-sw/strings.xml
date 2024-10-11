@@ -552,6 +552,7 @@
     <string name="vmmc_theatre_register">Rejesta ya mwezi ya theatre </string>
     <string name="vmmc_register_subtitle">Kutazama rejesta ya huduma za tohara</string>
     <string name="vmmc_theatre_register_subtitle">Kutazama rejesta ya theatre</string>
+    <string name="vmmc_list_of_ae_subtitle">Orodha ya wateja wenye AE</string>
     <string name="kvp_vmcc_provided">Huduma za tohara zilizotolewa:</string>
 
     <!--    Vmmc Medical History-->

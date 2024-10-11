@@ -53,13 +53,13 @@ public class VmmcServiceRegisterObject extends ReportObject {
             reportJsonObject.put("client_referred_to", getCbhsClientDetails(getVmmcRegister, "client_referred_to"));
             reportJsonObject.put("mc_procedure_date", getCbhsClientDetails(getVmmcRegister, "mc_procedure_date"));
             reportJsonObject.put("male_circumcision_method", getCbhsClientDetails(getVmmcRegister, "male_circumcision_method"));
-//            reportJsonObject.put("intraoperative_adverse_event_occured", getCbhsClientDetails(getVmmcRegister, "intraoperative_adverse_event_occured"));
+            reportJsonObject.put("intraoperative_adverse_event_occured", getCbhsClientDetails(getVmmcRegister, "intraoperative_adverse_event_occured"));
             reportJsonObject.put("first_visit", getCbhsClientDetails(getVmmcRegister, "first_visit"));
             reportJsonObject.put("sec_visit", getCbhsClientDetails(getVmmcRegister, "sec_visit"));
             reportJsonObject.put("post_op_adverse", getCbhsClientDetails(getVmmcRegister, "post_op_adverse"));
             reportJsonObject.put("post_op_adverse_first_visit", getCbhsClientDetails(getVmmcRegister, "post_op_adverse_first_visit"));
             reportJsonObject.put("post_op_adverse_sec_visit", getCbhsClientDetails(getVmmcRegister, "post_op_adverse_sec_visit"));
-            reportJsonObject.put("NAE", getCbhsClientDetails(getVmmcRegister, "NAE"));
+//            reportJsonObject.put("NAE", getCbhsClientDetails(getVmmcRegister, "NAE"));
             reportJsonObject.put("health_care_provider", getCbhsClientDetails(getVmmcRegister, "health_care_provider"));
             reportJsonObject.put("mc_procedure_comment", getCbhsClientDetails(getVmmcRegister, "mc_procedure_comment"));
 
