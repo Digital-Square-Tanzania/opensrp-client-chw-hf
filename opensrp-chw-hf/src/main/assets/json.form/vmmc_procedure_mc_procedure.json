@@ -482,11 +482,6 @@
             "type": "time",
             "ex": "greaterThan(., step1:start_time_topical_cream_application)",
             "err": "Topical time must be after start time"
-          },
-          {
-            "type": "time",
-            "ex": "lessThanEqualTo(., step1:end_time)",
-            "err": "End time cannot be beyond MC end time"
           }
         ],
         "relevance": {
@@ -516,8 +511,17 @@
             "type": "time",
             "ex": "lessThanEqualTo(., step1:now_time)",
             "err": "Start time cannot be future time"
+          },
+          {
+            "type": "time",
+            "ex": "greaterThan(., step1:end_time_topical_cream_application)",
+            "err": "Topical time must be after topical end time"
           }
         ],
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -545,6 +549,10 @@
             "err": "End time must be after start time"
           }
         ],
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
