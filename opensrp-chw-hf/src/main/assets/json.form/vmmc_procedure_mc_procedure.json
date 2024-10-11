@@ -168,323 +168,6 @@
         }
       },
       {
-        "key": "now_time",
-        "type": "edit_text",
-        "openmrs_entity_id": "now_time",
-        "openmrs_entity": "concept",
-        "openmrs_entity_parent": ""
-      },
-      {
-        "key": "start_time",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "start_time",
-        "type": "time_picker",
-        "hint": "Start time",
-        "constraints": [
-          {
-            "type": "time",
-            "ex": "lessThanEqualTo(., step1:now_time)",
-            "err": "Start time cannot be future time"
-          }
-        ],
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "vmmc_mc_procedure_relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "end_time",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "end_time",
-        "type": "time_picker",
-        "hint": "End time",
-        "constraints": [
-          {
-            "type": "time",
-            "ex": "lessThanEqualTo(., step1:now_time)",
-            "err": "End time cannot be future time"
-          },
-          {
-            "type": "time",
-            "ex": "greaterThan(., step1:start_time)",
-            "err": "End time must be after start time"
-          }
-        ],
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "vmmc_mc_procedure_relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "reason_prolonged_time",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "reason_prolonged_time",
-        "type": "edit_text",
-        "hint": "Give reason why the procedure was prolonged",
-        "v_required": {
-          "value": "true",
-          "err": "Please specify"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "vmmc_mc_procedure_relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "device_name",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "device_name",
-        "type": "edit_text",
-        "hint": "Device name",
-        "v_required": {
-          "value": "true",
-          "err": "Please specify"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "vmmc_mc_procedure_relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "lot_number",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "lot_number",
-        "type": "edit_text",
-        "hint": "LOT number",
-        "v_required": {
-          "value": "true",
-          "err": "Please specify"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "vmmc_mc_procedure_relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "size_place",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "size_place",
-        "label": "Select size place",
-        "text_color": "#000000",
-        "type": "native_radio",
-        "options": [
-          {
-            "key": "a4_40mm",
-            "text": "A4-40mm",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "a4_40mm"
-          },
-          {
-            "key": "a3_39mm",
-            "text": "A3-39mm",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "a3_39mm"
-          },
-          {
-            "key": "a2_38mm",
-            "text": "A2-38mm",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "a2_38mm"
-          },
-          {
-            "key": "a1_37mm",
-            "text": "A1-37mm",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "a1_37mm"
-          },
-          {
-            "key": "a_36mm",
-            "text": "A-36mm",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "a_36mm"
-          },
-          {
-            "key": "b_35mm",
-            "text": "B-35mm",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "b_35mm"
-          },
-          {
-            "key": "c_34mm",
-            "text": "C-34mm",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "c_34mm"
-          },
-          {
-            "key": "d_33mm",
-            "text": "D-33mm",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "d_33mm"
-          },
-          {
-            "key": "e_32mm",
-            "text": "E-32mm",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "e_32mm"
-          },
-          {
-            "key": "f_31mm",
-            "text": "F-31mm",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "f_31mm"
-          },
-          {
-            "key": "g_30mm",
-            "text": "G-30mm",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "g_30mm"
-          },
-          {
-            "key": "h_29mm",
-            "text": "H-29mm",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "h_29mm"
-          },
-          {
-            "key": "i_28mm",
-            "text": "I-28mm",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "i_28mm"
-          },
-          {
-            "key": "k_26mm",
-            "text": "K-26mm",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "k_26mm"
-          },
-          {
-            "key": "m_24mm",
-            "text": "M-24mm",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "m_24mm"
-          },
-          {
-            "key": "o_22mm",
-            "text": "O-22mm",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "o_22mm"
-          },
-          {
-            "key": "q_20mm",
-            "text": "Q-20mm",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "q_20mm"
-          },
-          {
-            "key": "s_18mm",
-            "text": "S-18mm",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "s_18mm"
-          },
-          {
-            "key": "u_16mm",
-            "text": "U-16mm",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "u_16mm"
-          },
-          {
-            "key": "v_15mm",
-            "text": "V-15mm",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "v_15mm"
-          },
-          {
-            "key": "w_14mm",
-            "text": "W-14mm",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "w_14mm"
-          },
-          {
-            "key": "x_13mm",
-            "text": "X-13mm",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "x_13mm"
-          },
-          {
-            "key": "y_12mm",
-            "text": "Y-12mm",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "y_12mm"
-          },
-          {
-            "key": "z_11mm",
-            "text": "Z-11mm",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "z_11mm"
-          },
-          {
-            "key": "z1_10mm",
-            "text": "Z1-10mm",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "z1_10mm"
-          },
-          {
-            "key": "z2_09mm",
-            "text": "Z2-09mm",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "z2_09mm"
-          }
-        ],
-        "v_required": {
-          "value": "true",
-          "err": "Please select at least one"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "vmmc_mc_procedure_relevance.yml"
-            }
-          }
-        }
-      },
-      {
         "key": "aneathesia_administered_conventional",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -806,6 +489,323 @@
             "err": "End time cannot be beyond MC end time"
           }
         ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_mc_procedure_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "now_time",
+        "type": "hidden",
+        "openmrs_entity_id": "now_time",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": ""
+      },
+      {
+        "key": "start_time",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "start_time",
+        "type": "time_picker",
+        "hint": "Surgery Start time",
+        "constraints": [
+          {
+            "type": "time",
+            "ex": "lessThanEqualTo(., step1:now_time)",
+            "err": "Start time cannot be future time"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_mc_procedure_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "end_time",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "end_time",
+        "type": "time_picker",
+        "hint": "Surgery End time",
+        "constraints": [
+          {
+            "type": "time",
+            "ex": "lessThanEqualTo(., step1:now_time)",
+            "err": "End time cannot be future time"
+          },
+          {
+            "type": "time",
+            "ex": "greaterThan(., step1:start_time)",
+            "err": "End time must be after start time"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_mc_procedure_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "reason_prolonged_time",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "reason_prolonged_time",
+        "type": "edit_text",
+        "hint": "Give reason why the procedure was prolonged",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_mc_procedure_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "device_name",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "device_name",
+        "type": "edit_text",
+        "hint": "Device name",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_mc_procedure_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "lot_number",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "lot_number",
+        "type": "edit_text",
+        "hint": "LOT number",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_mc_procedure_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "size_place",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "size_place",
+        "label": "Select size place",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "a4_40mm",
+            "text": "A4-40mm",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "a4_40mm"
+          },
+          {
+            "key": "a3_39mm",
+            "text": "A3-39mm",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "a3_39mm"
+          },
+          {
+            "key": "a2_38mm",
+            "text": "A2-38mm",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "a2_38mm"
+          },
+          {
+            "key": "a1_37mm",
+            "text": "A1-37mm",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "a1_37mm"
+          },
+          {
+            "key": "a_36mm",
+            "text": "A-36mm",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "a_36mm"
+          },
+          {
+            "key": "b_35mm",
+            "text": "B-35mm",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "b_35mm"
+          },
+          {
+            "key": "c_34mm",
+            "text": "C-34mm",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "c_34mm"
+          },
+          {
+            "key": "d_33mm",
+            "text": "D-33mm",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "d_33mm"
+          },
+          {
+            "key": "e_32mm",
+            "text": "E-32mm",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "e_32mm"
+          },
+          {
+            "key": "f_31mm",
+            "text": "F-31mm",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "f_31mm"
+          },
+          {
+            "key": "g_30mm",
+            "text": "G-30mm",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "g_30mm"
+          },
+          {
+            "key": "h_29mm",
+            "text": "H-29mm",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "h_29mm"
+          },
+          {
+            "key": "i_28mm",
+            "text": "I-28mm",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "i_28mm"
+          },
+          {
+            "key": "k_26mm",
+            "text": "K-26mm",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "k_26mm"
+          },
+          {
+            "key": "m_24mm",
+            "text": "M-24mm",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "m_24mm"
+          },
+          {
+            "key": "o_22mm",
+            "text": "O-22mm",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "o_22mm"
+          },
+          {
+            "key": "q_20mm",
+            "text": "Q-20mm",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "q_20mm"
+          },
+          {
+            "key": "s_18mm",
+            "text": "S-18mm",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "s_18mm"
+          },
+          {
+            "key": "u_16mm",
+            "text": "U-16mm",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "u_16mm"
+          },
+          {
+            "key": "v_15mm",
+            "text": "V-15mm",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "v_15mm"
+          },
+          {
+            "key": "w_14mm",
+            "text": "W-14mm",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "w_14mm"
+          },
+          {
+            "key": "x_13mm",
+            "text": "X-13mm",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "x_13mm"
+          },
+          {
+            "key": "y_12mm",
+            "text": "Y-12mm",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "y_12mm"
+          },
+          {
+            "key": "z_11mm",
+            "text": "Z-11mm",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "z_11mm"
+          },
+          {
+            "key": "z1_10mm",
+            "text": "Z1-10mm",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "z1_10mm"
+          },
+          {
+            "key": "z2_09mm",
+            "text": "Z2-09mm",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "z2_09mm"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select at least one"
+        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {

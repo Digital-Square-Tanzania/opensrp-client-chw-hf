@@ -247,46 +247,28 @@ public class VmmcRegisterFragment extends CoreVmmcRegisterFragment implements an
 
     protected String getDue() {
         return "CASE\n" +
-                "    WHEN next_followup_date is not null\n" +
+                "    WHEN next_followup_date is not null AND next_followup_date != 'null'\n" +
                 "        THEN date(substr(next_followup_date, 7, 4) || '-' || substr(next_followup_date, 4, 2) || '-' || substr(next_followup_date, 1, 2)) = date('now')\n" +
                 "    ELSE\n" +
-                "        date(" +
-                "               substr(strftime('%Y-%m-%d', datetime(ec_vmmc_enrollment.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) || " +
-                "               '-' ||  " +
-                "               substr(strftime('%Y-%m-%d', datetime(ec_vmmc_enrollment.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || " +
-                "               '-' ||  " +
-                "               substr(strftime('%Y-%m-%d', datetime(ec_vmmc_enrollment.last_interacted_with / 1000, 'unixepoch', 'localtime')), 9, 2) " +
-                "       )  = date('now')" +
+                "        0 " +
                 "    END";
     }
 
     protected String getTomorrowVisitsDue() {
         return "CASE\n" +
-                "    WHEN next_followup_date is not null\n" +
+                "    WHEN next_followup_date is not null AND next_followup_date != 'null'\n" +
                 "        THEN date(substr(next_followup_date, 7, 4) || '-' || substr(next_followup_date, 4, 2) || '-' || substr(next_followup_date, 1, 2)) = date('now','+1 day') " +
                 "    ELSE\n" +
-                "        date(" +
-                "               substr(strftime('%Y-%m-%d', datetime(ec_vmmc_enrollment.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) || " +
-                "               '-' ||  " +
-                "               substr(strftime('%Y-%m-%d', datetime(ec_vmmc_enrollment.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || " +
-                "               '-' ||  " +
-                "               substr(strftime('%Y-%m-%d', datetime(ec_vmmc_enrollment.last_interacted_with / 1000, 'unixepoch', 'localtime')), 9, 2) " +
-                "       )   = date('now','+1 day') " +
+                "        0 " +
                 "    END";
     }
 
     protected String getOverDue() {
         return "CASE\n" +
-                " WHEN next_followup_date is not null\n" +
+                " WHEN next_followup_date is not null AND next_followup_date != 'null'\n" +
                 "       THEN date(substr(next_followup_date, 7, 4) || '-' || substr(next_followup_date, 4, 2) || '-' || substr(next_followup_date, 1, 2)) < date('now')\n" +
                 "   ELSE\n" +
-                "        date(" +
-                "               substr(strftime('%Y-%m-%d', datetime(ec_vmmc_enrollment.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) || " +
-                "               '-' ||  " +
-                "               substr(strftime('%Y-%m-%d', datetime(ec_vmmc_enrollment.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || " +
-                "               '-' ||  " +
-                "               substr(strftime('%Y-%m-%d', datetime(ec_vmmc_enrollment.last_interacted_with / 1000, 'unixepoch', 'localtime')), 9, 2) " +
-                "       )  < date('now')" +
+                "        0 " +
                 "   END";
     }
 

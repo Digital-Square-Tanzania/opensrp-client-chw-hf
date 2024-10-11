@@ -47,7 +47,7 @@
     "fields": [
       {
         "key": "visit_number",
-        "type": "edit_text",
+        "type": "hidden",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "visit_number",
         "openmrs_entity_parent": "",
@@ -86,14 +86,14 @@
       },
       {
         "key": "male_circumcision_method",
-        "type": "edit_text",
+        "type": "hidden",
         "openmrs_entity_id": "male_circumcision_method",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": ""
       },
       {
         "key": "no_of_days",
-        "type": "edit_text",
+        "type": "hidden",
         "openmrs_entity_id": "no_of_days",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": ""
