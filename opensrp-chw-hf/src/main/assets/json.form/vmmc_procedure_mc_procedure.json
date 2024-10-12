@@ -451,13 +451,6 @@
           "value": "true",
           "err": "Please specify"
         },
-        "constraints": [
-          {
-            "type": "time",
-            "ex": "lessThan(., step1:start_time)",
-            "err": "Topical time must be before MC start time"
-          }
-        ],
         "relevance": {
           "rules-engine": {
             "ex-rules": {
