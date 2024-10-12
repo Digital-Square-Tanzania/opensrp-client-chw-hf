@@ -9202,6 +9202,14 @@
           }
         },
         {
+          "column_name": "condition_note",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "condition_note"
+          }
+        },
+        {
           "column_name": "name_of_hf",
           "type": "Event",
           "json_mapping": {
@@ -9233,11 +9241,11 @@
           }
         },
         {
-          "column_name": "discharging_name",
+          "column_name": "discharging_provider_name",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
-            "concept": "discharging_name"
+            "concept": "discharging_provider_name"
           }
         },
         {
@@ -9281,6 +9289,22 @@
           }
         },
         {
+          "column_name": "first_vital_sign_respiration_rate",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "first_vital_sign_respiration_rate"
+          }
+        },
+        {
+          "column_name": "reason_delay_from_mc",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "reason_delay_from_mc"
+          }
+        },
+        {
           "column_name": "first_vital_sign_time_taken",
           "type": "Event",
           "json_mapping": {
@@ -9321,6 +9345,14 @@
           }
         },
         {
+          "column_name": "second_vital_sign_respiration_rate",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "second_vital_sign_respiration_rate"
+          }
+        },
+        {
           "column_name": "second_vital_sign_time_taken",
           "type": "Event",
           "json_mapping": {
@@ -9334,14 +9366,6 @@
           "json_mapping": {
             "field": "obs.fieldCode",
             "concept": "notify_client_has_fever"
-          }
-        },
-        {
-          "column_name": "respiration_rate",
-          "type": "Event",
-          "json_mapping": {
-            "field": "obs.fieldCode",
-            "concept": "respiration_rate"
           }
         },
         {
@@ -9361,11 +9385,11 @@
           }
         },
         {
-          "column_name": "did_client_experience_nae",
+          "column_name": "notifiable_adverse_event_occured",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
-            "concept": "did_client_experience_nae"
+            "concept": "notifiable_adverse_event_occured"
           }
         },
         {
