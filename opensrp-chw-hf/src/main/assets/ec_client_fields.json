@@ -9483,14 +9483,6 @@
           }
         },
         {
-          "column_name": "type_of_adverse_event_others",
-          "type": "Event",
-          "json_mapping": {
-            "field": "obs.fieldCode",
-            "concept": "type_of_adverse_event_others"
-          }
-        },
-        {
           "column_name": "desc_of_post_op_adverse_event_infection",
           "type": "Event",
           "json_mapping": {
@@ -9603,11 +9595,51 @@
           }
         },
         {
+          "column_name": "reason_condom_not_provided",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "reason_condom_not_provided"
+          }
+        },
+        {
+          "column_name": "other_reason_for_not_providing_condom",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "other_reason_for_not_providing_condom"
+          }
+        },
+        {
           "column_name": "condoms_issued",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
             "concept": "condoms_issued"
+          }
+        },
+        {
+          "column_name": "number_of_bandage_given",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "number_of_bandage_given"
+          }
+        },
+        {
+          "column_name": "reason_bandage_not_provided",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "reason_bandage_not_provided"
+          }
+        },
+        {
+          "column_name": "other_reason_for_not_providing_bandage",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "other_reason_for_not_providing_bandage"
           }
         },
         {
