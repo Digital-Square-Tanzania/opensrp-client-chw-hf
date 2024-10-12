@@ -945,11 +945,13 @@ public class ReportDao extends AbstractDao {
                 "        ec_vmmc_enrollment.vmmc_client_id,\n" +
                 "        ec_vmmc_procedure.mc_procedure_date,\n" +
                 "        ec_vmmc_procedure.male_circumcision_method,\n" +
-//                "        ec_vmmc_procedure.intraoperative_adverse_event_occured,\n" +
-                "        ec_vmmc_procedure.type_of_adverse_event,\n" +
+                "        ec_vmmc_procedure.type_of_adverse_event AS procedure_ae,\n" +
+                "        ec_vmmc_follow_up_visit.type_of_adverse_event AS followup_ae,\n" +
                 "        ec_vmmc_notifiable_ae.did_client_experience_nae AS NAE,\n" +
                 "        ec_vmmc_notifiable_ae.date_nae_occured,\n" +
-                "        ec_family_member.dob\n" +
+                "        ec_family_member.dob,\n" +
+                "        ec_vmmc_follow_up_visit.last_interacted_with,\n" + // Added this line
+                "        ec_vmmc_procedure.last_interacted_with\n" + // Added this line
                 "    FROM\n" +
                 "        ec_vmmc_enrollment\n" +
                 "    LEFT JOIN\n" +
@@ -957,7 +959,9 @@ public class ReportDao extends AbstractDao {
                 "    LEFT JOIN\n" +
                 "        ec_vmmc_procedure ON ec_vmmc_procedure.entity_id = ec_vmmc_enrollment.base_entity_id\n" +
                 "    LEFT JOIN\n" +
-                "        ec_vmmc_notifiable_ae ON ec_vmmc_notifiable_ae.entity_id = ec_vmmc_enrollment.base_entity_id\n";
+                "        ec_vmmc_notifiable_ae ON ec_vmmc_notifiable_ae.entity_id = ec_vmmc_enrollment.base_entity_id\n" +
+                "    LEFT JOIN\n" +
+                "        ec_vmmc_follow_up_visit ON ec_vmmc_follow_up_visit.entity_id = ec_vmmc_enrollment.base_entity_id\n";
 
         String queryReportDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(reportDate);
 
@@ -980,29 +984,28 @@ public class ReportDao extends AbstractDao {
         }
 
         sql += ")\n" +
-                "SELECT\n" +
+                "SELECT DISTINCT\n" +
                 "    enrollment_date,\n" +
                 "    first_name || ' ' || middle_name || ' ' || last_name AS names,\n" +
                 "    vmmc_client_id,\n" +
                 "    CAST((julianday('now') - julianday(substr(dob, 1, 10))) / 365.25 AS INTEGER) AS age,\n" +
                 "    CASE \n" +
                 "        WHEN NAE = 'yes' THEN \n" +
-                "            'NAE: ' || type_of_adverse_event\n" +
+                "            'NAE: ' || COALESCE(followup_ae, procedure_ae, 'Unknown AE')\n" +
                 "        ELSE\n" +
-                "            MAX(type_of_adverse_event)\n\n" +
+                "            COALESCE(followup_ae, procedure_ae, 'Unknown AE')\n" +
                 "    END AS type_of_adverse_event,\n" +
-                "    date_nae_occured AS date_nae_occured,\n" +
+                "    COALESCE(date_nae_occured, \n" +
+                "        CASE WHEN last_interacted_with IS NOT NULL AND last_interacted_with > 0 THEN strftime('%d-%m-%Y', last_interacted_with / 1000, 'unixepoch') ELSE '-' END, \n" +
+                "        CASE WHEN mc_procedure_date IS NOT NULL AND mc_procedure_date > 0 THEN strftime('%d-%m-%Y', mc_procedure_date / 1000, 'unixepoch') ELSE '-' END) AS date_ae_occured,\n" +
                 "    mc_procedure_date AS mc_procedure_date,\n" +
-                "    MAX(male_circumcision_method) AS male_circumcision_method\n" +
-//                "    MAX(intraoperative_adverse_event_occured) AS intraoperative_adverse_event_occured,\n" +
+                "    male_circumcision_method\n" +
                 "FROM VMMC_LIST_AE_CTE\n" +
-                "WHERE type_of_adverse_event IS NOT NULL\n" +
-                "GROUP BY\n" +
-                "    enrollment_date,\n" +
-                "    vmmc_client_id,\n" +
-                "    names,\n" +
-                "    dob\n" +
+                "WHERE procedure_ae IS NOT NULL OR followup_ae IS NOT NULL\n" +
                 "ORDER BY enrollment_date ASC;\n";
+
+
+
 
         DataMap<Map<String, String>> map = cursor -> {
             Map<String, String> data = new HashMap<>();
@@ -1012,11 +1015,9 @@ public class ReportDao extends AbstractDao {
             data.put("age", cursor.getString(cursor.getColumnIndex("age")));
             data.put("mc_procedure_date", cursor.getString(cursor.getColumnIndex("mc_procedure_date")));
             data.put("male_circumcision_method", cursor.getString(cursor.getColumnIndex("male_circumcision_method")));
-            data.put("date_nae_occured", cursor.getString(cursor.getColumnIndex("date_nae_occured")));
-//            data.put("intraoperative_adverse_event_occured", cursor.getString(cursor.getColumnIndex("intraoperative_adverse_event_occured")));
+            data.put("date_nae_occured", cursor.getString(cursor.getColumnIndex("date_ae_occured")));
+            data.put("date_ae_occured", cursor.getString(cursor.getColumnIndex("date_ae_occured")));
             data.put("type_of_adverse_event", cursor.getString(cursor.getColumnIndex("type_of_adverse_event")));
-//            String type_of_adverse_event = getTypeOfAdverseEvent(cursor);
-//            data.put("type_of_adverse_event", type_of_adverse_event);
             return data;
         };
 
@@ -1040,11 +1041,13 @@ public class ReportDao extends AbstractDao {
                 "        ec_vmmc_enrollment.vmmc_client_id,\n" +
                 "        ec_vmmc_procedure.mc_procedure_date,\n" +
                 "        ec_vmmc_procedure.male_circumcision_method,\n" +
-//                "        ec_vmmc_procedure.intraoperative_adverse_event_occured,\n" +
-                "        ec_vmmc_procedure.type_of_adverse_event,\n" +
+                "        ec_vmmc_procedure.type_of_adverse_event AS procedure_ae,\n" +
+                "        ec_vmmc_follow_up_visit.type_of_adverse_event AS followup_ae,\n" +
                 "        ec_vmmc_notifiable_ae.did_client_experience_nae AS NAE,\n" +
                 "        ec_vmmc_notifiable_ae.date_nae_occured,\n" +
-                "        ec_family_member.dob\n" +
+                "        ec_family_member.dob,\n" +
+                "        ec_vmmc_follow_up_visit.last_interacted_with,\n" + // Added this line
+                "        ec_vmmc_procedure.last_interacted_with\n" + // Added this line
                 "    FROM\n" +
                 "        ec_vmmc_enrollment\n" +
                 "    LEFT JOIN\n" +
@@ -1052,7 +1055,9 @@ public class ReportDao extends AbstractDao {
                 "    LEFT JOIN\n" +
                 "        ec_vmmc_procedure ON ec_vmmc_procedure.entity_id = ec_vmmc_enrollment.base_entity_id\n" +
                 "    LEFT JOIN\n" +
-                "        ec_vmmc_notifiable_ae ON ec_vmmc_notifiable_ae.entity_id = ec_vmmc_enrollment.base_entity_id\n";
+                "        ec_vmmc_notifiable_ae ON ec_vmmc_notifiable_ae.entity_id = ec_vmmc_enrollment.base_entity_id\n" +
+                "    LEFT JOIN\n" +
+                "        ec_vmmc_follow_up_visit ON ec_vmmc_follow_up_visit.entity_id = ec_vmmc_enrollment.base_entity_id\n";
 
         String queryReportDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(reportDate);
 
@@ -1077,28 +1082,24 @@ public class ReportDao extends AbstractDao {
         }
 
         sql += ")\n" +
-                "SELECT\n" +
+                "SELECT DISTINCT\n" +
                 "    enrollment_date,\n" +
                 "    first_name || ' ' || middle_name || ' ' || last_name AS names,\n" +
                 "    vmmc_client_id,\n" +
                 "    CAST((julianday('now') - julianday(substr(dob, 1, 10))) / 365.25 AS INTEGER) AS age,\n" +
                 "    CASE \n" +
                 "        WHEN NAE = 'yes' THEN \n" +
-                "            'NAE: ' || type_of_adverse_event\n" +
+                "            'NAE: ' || COALESCE(followup_ae, procedure_ae, 'Unknown AE')\n" +
                 "        ELSE\n" +
-                "            MAX(type_of_adverse_event)\n\n" +
+                "            COALESCE(followup_ae, procedure_ae, 'Unknown AE')\n" +
                 "    END AS type_of_adverse_event,\n" +
-                "    MAX(date_nae_occured) AS date_nae_occured,\n" +
-                "    MAX(mc_procedure_date) AS mc_procedure_date,\n" +
-                "    MAX(male_circumcision_method) AS male_circumcision_method\n" +
-//                "    MAX(intraoperative_adverse_event_occured) AS intraoperative_adverse_event_occured,\n" +
+                "    COALESCE(date_nae_occured, \n" +
+                "        CASE WHEN last_interacted_with IS NOT NULL AND last_interacted_with > 0 THEN strftime('%d-%m-%Y', last_interacted_with / 1000, 'unixepoch') ELSE '-' END, \n" +
+                "        CASE WHEN mc_procedure_date IS NOT NULL AND mc_procedure_date > 0 THEN strftime('%d-%m-%Y', mc_procedure_date / 1000, 'unixepoch') ELSE '-' END) AS date_ae_occured,\n" +
+                "    mc_procedure_date AS mc_procedure_date,\n" +
+                "    male_circumcision_method\n" +
                 "FROM VMMC_LIST_AE_CTE\n" +
-                "WHERE type_of_adverse_event IS NOT NULL\n" +
-                "GROUP BY\n" +
-                "    enrollment_date,\n" +
-                "    vmmc_client_id,\n" +
-                "    names,\n" +
-                "    dob\n" +
+                "WHERE procedure_ae IS NOT NULL OR followup_ae IS NOT NULL\n" +
                 "ORDER BY enrollment_date ASC;\n";
 
         DataMap<Map<String, String>> map = cursor -> {
@@ -1109,11 +1110,9 @@ public class ReportDao extends AbstractDao {
             data.put("age", cursor.getString(cursor.getColumnIndex("age")));
             data.put("mc_procedure_date", cursor.getString(cursor.getColumnIndex("mc_procedure_date")));
             data.put("male_circumcision_method", cursor.getString(cursor.getColumnIndex("male_circumcision_method")));
-            data.put("date_nae_occured", cursor.getString(cursor.getColumnIndex("date_nae_occured")));
-//            data.put("intraoperative_adverse_event_occured", cursor.getString(cursor.getColumnIndex("intraoperative_adverse_event_occured")));
+            data.put("date_nae_occured", cursor.getString(cursor.getColumnIndex("date_ae_occured")));
+            data.put("date_ae_occured", cursor.getString(cursor.getColumnIndex("date_ae_occured")));
             data.put("type_of_adverse_event", cursor.getString(cursor.getColumnIndex("type_of_adverse_event")));
-//            String type_of_adverse_event = getTypeOfAdverseEvent(cursor);
-//            data.put("type_of_adverse_event", type_of_adverse_event);
             return data;
         };
 
@@ -1137,11 +1136,13 @@ public class ReportDao extends AbstractDao {
                 "        ec_vmmc_enrollment.vmmc_client_id,\n" +
                 "        ec_vmmc_procedure.mc_procedure_date,\n" +
                 "        ec_vmmc_procedure.male_circumcision_method,\n" +
-//                "        ec_vmmc_procedure.intraoperative_adverse_event_occured,\n" +
-                "        ec_vmmc_procedure.type_of_adverse_event,\n" +
+                "        ec_vmmc_procedure.type_of_adverse_event AS procedure_ae,\n" +
+                "        ec_vmmc_follow_up_visit.type_of_adverse_event AS followup_ae,\n" +
                 "        ec_vmmc_notifiable_ae.did_client_experience_nae AS NAE,\n" +
                 "        ec_vmmc_notifiable_ae.date_nae_occured,\n" +
-                "        ec_family_member.dob\n" +
+                "        ec_family_member.dob,\n" +
+                "        ec_vmmc_follow_up_visit.last_interacted_with,\n" + // Added this line
+                "        ec_vmmc_procedure.last_interacted_with\n" + // Added this line
                 "    FROM\n" +
                 "        ec_vmmc_enrollment\n" +
                 "    LEFT JOIN\n" +
@@ -1149,7 +1150,9 @@ public class ReportDao extends AbstractDao {
                 "    LEFT JOIN\n" +
                 "        ec_vmmc_procedure ON ec_vmmc_procedure.entity_id = ec_vmmc_enrollment.base_entity_id\n" +
                 "    LEFT JOIN\n" +
-                "        ec_vmmc_notifiable_ae ON ec_vmmc_notifiable_ae.entity_id = ec_vmmc_enrollment.base_entity_id\n";
+                "        ec_vmmc_notifiable_ae ON ec_vmmc_notifiable_ae.entity_id = ec_vmmc_enrollment.base_entity_id\n" +
+                "    LEFT JOIN\n" +
+                "        ec_vmmc_follow_up_visit ON ec_vmmc_follow_up_visit.entity_id = ec_vmmc_enrollment.base_entity_id\n";
 
         String queryReportDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(reportDate);
 
@@ -1174,28 +1177,24 @@ public class ReportDao extends AbstractDao {
         }
 
         sql += ")\n" +
-                "SELECT\n" +
+                "SELECT DISTINCT\n" +
                 "    enrollment_date,\n" +
                 "    first_name || ' ' || middle_name || ' ' || last_name AS names,\n" +
                 "    vmmc_client_id,\n" +
                 "    CAST((julianday('now') - julianday(substr(dob, 1, 10))) / 365.25 AS INTEGER) AS age,\n" +
                 "    CASE \n" +
                 "        WHEN NAE = 'yes' THEN \n" +
-                "            'NAE: ' || type_of_adverse_event\n" +
+                "            'NAE: ' || COALESCE(followup_ae, procedure_ae, 'Unknown AE')\n" +
                 "        ELSE\n" +
-                "            MAX(type_of_adverse_event)\n\n" +
+                "            COALESCE(followup_ae, procedure_ae, 'Unknown AE')\n" +
                 "    END AS type_of_adverse_event,\n" +
-                "    MAX(date_nae_occured) AS date_nae_occured,\n" +
-                "    MAX(mc_procedure_date) AS mc_procedure_date,\n" +
-                "    MAX(male_circumcision_method) AS male_circumcision_method\n" +
-//                "    MAX(intraoperative_adverse_event_occured) AS intraoperative_adverse_event_occured,\n" +
+                "    COALESCE(date_nae_occured, \n" +
+                "        CASE WHEN last_interacted_with IS NOT NULL AND last_interacted_with > 0 THEN strftime('%d-%m-%Y', last_interacted_with / 1000, 'unixepoch') ELSE '-' END, \n" +
+                "        CASE WHEN mc_procedure_date IS NOT NULL AND mc_procedure_date > 0 THEN strftime('%d-%m-%Y', mc_procedure_date / 1000, 'unixepoch') ELSE '-' END) AS date_ae_occured,\n" +
+                "    mc_procedure_date AS mc_procedure_date,\n" +
+                "    male_circumcision_method\n" +
                 "FROM VMMC_LIST_AE_CTE\n" +
-                "WHERE type_of_adverse_event IS NOT NULL\n" +
-                "GROUP BY\n" +
-                "    enrollment_date,\n" +
-                "    vmmc_client_id,\n" +
-                "    names,\n" +
-                "    dob\n" +
+                "WHERE procedure_ae IS NOT NULL OR followup_ae IS NOT NULL\n" +
                 "ORDER BY enrollment_date ASC;\n";
 
         DataMap<Map<String, String>> map = cursor -> {
@@ -1206,11 +1205,9 @@ public class ReportDao extends AbstractDao {
             data.put("age", cursor.getString(cursor.getColumnIndex("age")));
             data.put("mc_procedure_date", cursor.getString(cursor.getColumnIndex("mc_procedure_date")));
             data.put("male_circumcision_method", cursor.getString(cursor.getColumnIndex("male_circumcision_method")));
-            data.put("date_nae_occured", cursor.getString(cursor.getColumnIndex("date_nae_occured")));
-//            data.put("intraoperative_adverse_event_occured", cursor.getString(cursor.getColumnIndex("intraoperative_adverse_event_occured")));
+            data.put("date_nae_occured", cursor.getString(cursor.getColumnIndex("date_ae_occured")));
+            data.put("date_ae_occured", cursor.getString(cursor.getColumnIndex("date_ae_occured")));
             data.put("type_of_adverse_event", cursor.getString(cursor.getColumnIndex("type_of_adverse_event")));
-//            String type_of_adverse_event = getTypeOfAdverseEvent(cursor);
-//            data.put("type_of_adverse_event", type_of_adverse_event);
             return data;
         };
 
