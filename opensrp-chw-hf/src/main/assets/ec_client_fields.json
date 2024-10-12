@@ -8960,6 +8960,14 @@
           }
         },
         {
+          "column_name": "reason_prolonged_time",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "reason_prolonged_time"
+          }
+        },
+        {
           "column_name": "aneathesia_administered",
           "type": "Event",
           "json_mapping": {
@@ -8976,27 +8984,59 @@
           }
         },
         {
-          "column_name": "lignocaine_dosage",
+          "column_name": "lignocaine_dosage_ml",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
-            "concept": "lignocaine_dosage"
+            "concept": "lignocaine_dosage_ml"
           }
         },
         {
-          "column_name": "bupivacaine_dosage",
+          "column_name": "lignocaine_dosage_ml",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
-            "concept": "bupivacaine_dosage"
+            "concept": "lignocaine_dosage_ml"
           }
         },
         {
-          "column_name": "dosage",
+          "column_name": "lignocaine_dosage_percent",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
-            "concept": "dosage"
+            "concept": "lignocaine_dosage_percent"
+          }
+        },
+        {
+          "column_name": "bupivacaine_dosage_ml",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "bupivacaine_dosage_ml"
+          }
+        },
+        {
+          "column_name": "bupivacaine_dosage_percent",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "bupivacaine_dosage_percent"
+          }
+        },
+        {
+          "column_name": "dosage_g",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "dosage_g"
+          }
+        },
+        {
+          "column_name": "dosage_percent",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "dosage_percent"
           }
         },
         {
@@ -9005,6 +9045,30 @@
           "json_mapping": {
             "field": "obs.fieldCode",
             "concept": "male_circumcision_method"
+          }
+        },
+        {
+          "column_name": "reason_method_change",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "reason_method_change"
+          }
+        },
+        {
+          "column_name": "start_time_topical_cream_application",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "start_time_topical_cream_application"
+          }
+        },
+        {
+          "column_name": "end_time_topical_cream_application",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "end_time_topical_cream_application"
           }
         },
         {
@@ -9077,6 +9141,14 @@
           "json_mapping": {
             "field": "obs.fieldCode",
             "concept": "device_name"
+          }
+        },
+        {
+          "column_name": "lot_number",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "lot_number"
           }
         },
         {
@@ -9376,6 +9448,14 @@
           "json_mapping": {
             "field": "obs.fieldCode",
             "concept": "type_of_adverse_event"
+          }
+        },
+        {
+          "column_name": "type_of_adverse_event_others",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "type_of_adverse_event_others"
           }
         },
         {
