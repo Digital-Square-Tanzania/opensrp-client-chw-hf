@@ -8526,6 +8526,14 @@
           }
         },
         {
+          "column_name": "any_complaints_others",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "any_complaints_others"
+          }
+        },
+        {
           "column_name": "is_client_diagnosed_with_any",
           "type": "Event",
           "json_mapping": {
@@ -8534,11 +8542,43 @@
           }
         },
         {
+          "column_name": "is_client_diagnosed_with_any_others",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "is_client_diagnosed_with_any_others"
+          }
+        },
+        {
+          "column_name": "ctc_name",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "ctc_name"
+          }
+        },
+        {
+          "column_name": "ctc_number",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "ctc_number"
+          }
+        },
+        {
           "column_name": "diabetes_treatment",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
             "concept": "diabetes_treatment"
+          }
+        },
+        {
+          "column_name": "hypertension_treatment",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "hypertension_treatment"
           }
         },
         {
@@ -8582,6 +8622,14 @@
           }
         },
         {
+          "column_name": "type_complication_others",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "type_complication_others"
+          }
+        },
+        {
           "column_name": "any_hematological_disease_symptoms",
           "type": "Event",
           "json_mapping": {
@@ -8595,6 +8643,14 @@
           "json_mapping": {
             "field": "obs.fieldCode",
             "concept": "known_allergies"
+          }
+        },
+        {
+          "column_name": "known_allergies_others",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "known_allergies_others"
           }
         },
         {
@@ -8627,6 +8683,22 @@
           "json_mapping": {
             "field": "obs.fieldCode",
             "concept": "client_weight"
+          }
+        },
+        {
+          "column_name": "client_height",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "client_height"
+          }
+        },
+        {
+          "column_name": "bmi",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "bmi"
           }
         },
         {
@@ -8686,11 +8758,59 @@
           }
         },
         {
+          "column_name": "penile_size",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "penile_size"
+          }
+        },
+        {
+          "column_name": "diagnosed_with_hiv_six_month_ago",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "diagnosed_with_hiv_six_month_ago"
+          }
+        },
+        {
+          "column_name": "hiv_viral_load_text",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "hiv_viral_load_text"
+          }
+        },
+        {
           "column_name": "tested_hiv",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
             "concept": "tested_hiv"
+          }
+        },
+        {
+          "column_name": "hiv_not_tested_reasons",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "hiv_not_tested_reasons"
+          }
+        },
+        {
+          "column_name": "hiv_not_tested_reasons_others",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "hiv_not_tested_reasons_others"
+          }
+        },
+        {
+          "column_name": "self_test_kits_offered",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "self_test_kits_offered"
           }
         },
         {
