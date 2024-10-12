@@ -950,7 +950,7 @@ public class ReportDao extends AbstractDao {
                 "        ec_vmmc_notifiable_ae.did_client_experience_nae AS NAE,\n" +
                 "        ec_vmmc_notifiable_ae.date_nae_occured,\n" +
                 "        ec_family_member.dob,\n" +
-                "        ec_vmmc_follow_up_visit.last_interacted_with,\n" + // Added this line
+                "        ec_vmmc_follow_up_visit.last_interacted_with,\n" +
                 "        ec_vmmc_procedure.last_interacted_with\n" + // Added this line
                 "    FROM\n" +
                 "        ec_vmmc_enrollment\n" +
@@ -984,25 +984,41 @@ public class ReportDao extends AbstractDao {
         }
 
         sql += ")\n" +
-                "SELECT DISTINCT\n" +
+                "SELECT \n" +
                 "    enrollment_date,\n" +
                 "    first_name || ' ' || middle_name || ' ' || last_name AS names,\n" +
                 "    vmmc_client_id,\n" +
                 "    CAST((julianday('now') - julianday(substr(dob, 1, 10))) / 365.25 AS INTEGER) AS age,\n" +
                 "    CASE \n" +
-                "        WHEN NAE = 'yes' THEN \n" +
-                "            'NAE: ' || COALESCE(followup_ae, procedure_ae, 'Unknown AE')\n" +
+                "        WHEN NAE IS NOT NULL THEN \n" +
+                "            COALESCE(NAE, followup_ae, procedure_ae, 'Others AE')\n" +
                 "        ELSE\n" +
-                "            COALESCE(followup_ae, procedure_ae, 'Unknown AE')\n" +
+                "            COALESCE(followup_ae, procedure_ae, 'Others AE')\n" +
                 "    END AS type_of_adverse_event,\n" +
-                "    COALESCE(date_nae_occured, \n" +
-                "        CASE WHEN last_interacted_with IS NOT NULL AND last_interacted_with > 0 THEN strftime('%d-%m-%Y', last_interacted_with / 1000, 'unixepoch') ELSE '-' END, \n" +
-                "        CASE WHEN mc_procedure_date IS NOT NULL AND mc_procedure_date > 0 THEN strftime('%d-%m-%Y', mc_procedure_date / 1000, 'unixepoch') ELSE '-' END) AS date_ae_occured,\n" +
-                "    mc_procedure_date AS mc_procedure_date,\n" +
-                "    male_circumcision_method\n" +
-                "FROM VMMC_LIST_AE_CTE\n" +
-                "WHERE procedure_ae IS NOT NULL OR followup_ae IS NOT NULL\n" +
-                "ORDER BY enrollment_date ASC;\n";
+                "    COALESCE(\n" +
+                "        MAX(date_nae_occured), \n" +
+                "        CASE \n" +
+                "            WHEN MAX(last_interacted_with) IS NOT NULL AND MAX(last_interacted_with) > 0 \n" +
+                "            THEN strftime('%d-%m-%Y', MAX(last_interacted_with) / 1000, 'unixepoch') \n" +
+                "            ELSE '-' \n" +
+                "        END, \n" +
+                "        CASE \n" +
+                "            WHEN MAX(mc_procedure_date) IS NOT NULL AND MAX(mc_procedure_date) > 0 \n" +
+                "            THEN MAX(mc_procedure_date) \n" +
+                "            ELSE '-' \n" +
+                "        END\n" +
+                "    ) AS date_ae_occured,\n" +
+                "    MAX(mc_procedure_date) AS mc_procedure_date,\n" +
+                "    MAX(male_circumcision_method) AS male_circumcision_method\n" +
+                "    FROM\n" +
+                "       VMMC_LIST_AE_CTE\n" +
+                "    WHERE\n" +
+                "       procedure_ae IS NOT NULL \n" +
+                "       OR followup_ae IS NOT NULL\n" +
+                "    GROUP BY \n" +
+                "       vmmc_client_id, type_of_adverse_event\n" +
+                "    ORDER BY\n" +
+                "       enrollment_date ASC;";
 
 
 
@@ -1021,7 +1037,7 @@ public class ReportDao extends AbstractDao {
             return data;
         };
 
-        Log.d("hapaa: ",sql);
+        Log.d("hapaa1: ",sql);
 
         List<Map<String, String>> res = readData(sql, map);
 
@@ -1046,7 +1062,7 @@ public class ReportDao extends AbstractDao {
                 "        ec_vmmc_notifiable_ae.did_client_experience_nae AS NAE,\n" +
                 "        ec_vmmc_notifiable_ae.date_nae_occured,\n" +
                 "        ec_family_member.dob,\n" +
-                "        ec_vmmc_follow_up_visit.last_interacted_with,\n" + // Added this line
+                "        ec_vmmc_follow_up_visit.last_interacted_with,\n" +
                 "        ec_vmmc_procedure.last_interacted_with\n" + // Added this line
                 "    FROM\n" +
                 "        ec_vmmc_enrollment\n" +
@@ -1058,6 +1074,7 @@ public class ReportDao extends AbstractDao {
                 "        ec_vmmc_notifiable_ae ON ec_vmmc_notifiable_ae.entity_id = ec_vmmc_enrollment.base_entity_id\n" +
                 "    LEFT JOIN\n" +
                 "        ec_vmmc_follow_up_visit ON ec_vmmc_follow_up_visit.entity_id = ec_vmmc_enrollment.base_entity_id\n";
+
 
         String queryReportDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(reportDate);
 
@@ -1082,25 +1099,41 @@ public class ReportDao extends AbstractDao {
         }
 
         sql += ")\n" +
-                "SELECT DISTINCT\n" +
+                "SELECT \n" +
                 "    enrollment_date,\n" +
                 "    first_name || ' ' || middle_name || ' ' || last_name AS names,\n" +
                 "    vmmc_client_id,\n" +
                 "    CAST((julianday('now') - julianday(substr(dob, 1, 10))) / 365.25 AS INTEGER) AS age,\n" +
                 "    CASE \n" +
-                "        WHEN NAE = 'yes' THEN \n" +
-                "            'NAE: ' || COALESCE(followup_ae, procedure_ae, 'Unknown AE')\n" +
+                "        WHEN NAE IS NOT NULL THEN \n" +
+                "            COALESCE(NAE, followup_ae, procedure_ae, 'Others AE')\n" +
                 "        ELSE\n" +
-                "            COALESCE(followup_ae, procedure_ae, 'Unknown AE')\n" +
+                "            COALESCE(followup_ae, procedure_ae, 'Others AE')\n" +
                 "    END AS type_of_adverse_event,\n" +
-                "    COALESCE(date_nae_occured, \n" +
-                "        CASE WHEN last_interacted_with IS NOT NULL AND last_interacted_with > 0 THEN strftime('%d-%m-%Y', last_interacted_with / 1000, 'unixepoch') ELSE '-' END, \n" +
-                "        CASE WHEN mc_procedure_date IS NOT NULL AND mc_procedure_date > 0 THEN strftime('%d-%m-%Y', mc_procedure_date / 1000, 'unixepoch') ELSE '-' END) AS date_ae_occured,\n" +
-                "    mc_procedure_date AS mc_procedure_date,\n" +
-                "    male_circumcision_method\n" +
-                "FROM VMMC_LIST_AE_CTE\n" +
-                "WHERE procedure_ae IS NOT NULL OR followup_ae IS NOT NULL\n" +
-                "ORDER BY enrollment_date ASC;\n";
+                "    COALESCE(\n" +
+                "        MAX(date_nae_occured), \n" +
+                "        CASE \n" +
+                "            WHEN MAX(last_interacted_with) IS NOT NULL AND MAX(last_interacted_with) > 0 \n" +
+                "            THEN strftime('%d-%m-%Y', MAX(last_interacted_with) / 1000, 'unixepoch') \n" +
+                "            ELSE '-' \n" +
+                "        END, \n" +
+                "        CASE \n" +
+                "            WHEN MAX(mc_procedure_date) IS NOT NULL AND MAX(mc_procedure_date) > 0 \n" +
+                "            THEN MAX(mc_procedure_date) \n" +
+                "            ELSE '-' \n" +
+                "        END\n" +
+                "    ) AS date_ae_occured,\n" +
+                "    MAX(mc_procedure_date) AS mc_procedure_date,\n" +
+                "    MAX(male_circumcision_method) AS male_circumcision_method\n" +
+                "    FROM\n" +
+                "       VMMC_LIST_AE_CTE\n" +
+                "    WHERE\n" +
+                "       procedure_ae IS NOT NULL \n" +
+                "       OR followup_ae IS NOT NULL\n" +
+                "    GROUP BY \n" +
+                "       vmmc_client_id, type_of_adverse_event\n" +
+                "    ORDER BY\n" +
+                "       enrollment_date ASC;";
 
         DataMap<Map<String, String>> map = cursor -> {
             Map<String, String> data = new HashMap<>();
@@ -1141,7 +1174,7 @@ public class ReportDao extends AbstractDao {
                 "        ec_vmmc_notifiable_ae.did_client_experience_nae AS NAE,\n" +
                 "        ec_vmmc_notifiable_ae.date_nae_occured,\n" +
                 "        ec_family_member.dob,\n" +
-                "        ec_vmmc_follow_up_visit.last_interacted_with,\n" + // Added this line
+                "        ec_vmmc_follow_up_visit.last_interacted_with,\n" +
                 "        ec_vmmc_procedure.last_interacted_with\n" + // Added this line
                 "    FROM\n" +
                 "        ec_vmmc_enrollment\n" +
@@ -1177,25 +1210,41 @@ public class ReportDao extends AbstractDao {
         }
 
         sql += ")\n" +
-                "SELECT DISTINCT\n" +
+                "SELECT \n" +
                 "    enrollment_date,\n" +
                 "    first_name || ' ' || middle_name || ' ' || last_name AS names,\n" +
                 "    vmmc_client_id,\n" +
                 "    CAST((julianday('now') - julianday(substr(dob, 1, 10))) / 365.25 AS INTEGER) AS age,\n" +
                 "    CASE \n" +
-                "        WHEN NAE = 'yes' THEN \n" +
-                "            'NAE: ' || COALESCE(followup_ae, procedure_ae, 'Unknown AE')\n" +
+                "        WHEN NAE IS NOT NULL THEN \n" +
+                "            COALESCE(NAE, followup_ae, procedure_ae, 'Others AE')\n" +
                 "        ELSE\n" +
-                "            COALESCE(followup_ae, procedure_ae, 'Unknown AE')\n" +
+                "            COALESCE(followup_ae, procedure_ae, 'Others AE')\n" +
                 "    END AS type_of_adverse_event,\n" +
-                "    COALESCE(date_nae_occured, \n" +
-                "        CASE WHEN last_interacted_with IS NOT NULL AND last_interacted_with > 0 THEN strftime('%d-%m-%Y', last_interacted_with / 1000, 'unixepoch') ELSE '-' END, \n" +
-                "        CASE WHEN mc_procedure_date IS NOT NULL AND mc_procedure_date > 0 THEN strftime('%d-%m-%Y', mc_procedure_date / 1000, 'unixepoch') ELSE '-' END) AS date_ae_occured,\n" +
-                "    mc_procedure_date AS mc_procedure_date,\n" +
-                "    male_circumcision_method\n" +
-                "FROM VMMC_LIST_AE_CTE\n" +
-                "WHERE procedure_ae IS NOT NULL OR followup_ae IS NOT NULL\n" +
-                "ORDER BY enrollment_date ASC;\n";
+                "    COALESCE(\n" +
+                "        MAX(date_nae_occured), \n" +
+                "        CASE \n" +
+                "            WHEN MAX(last_interacted_with) IS NOT NULL AND MAX(last_interacted_with) > 0 \n" +
+                "            THEN strftime('%d-%m-%Y', MAX(last_interacted_with) / 1000, 'unixepoch') \n" +
+                "            ELSE '-' \n" +
+                "        END, \n" +
+                "        CASE \n" +
+                "            WHEN MAX(mc_procedure_date) IS NOT NULL AND MAX(mc_procedure_date) > 0 \n" +
+                "            THEN MAX(mc_procedure_date) \n" +
+                "            ELSE '-' \n" +
+                "        END\n" +
+                "    ) AS date_ae_occured,\n" +
+                "    MAX(mc_procedure_date) AS mc_procedure_date,\n" +
+                "    MAX(male_circumcision_method) AS male_circumcision_method\n" +
+                "    FROM\n" +
+                "       VMMC_LIST_AE_CTE\n" +
+                "    WHERE\n" +
+                "       procedure_ae IS NOT NULL \n" +
+                "       OR followup_ae IS NOT NULL\n" +
+                "    GROUP BY \n" +
+                "       vmmc_client_id, type_of_adverse_event\n" +
+                "    ORDER BY\n" +
+                "       enrollment_date ASC;";
 
         DataMap<Map<String, String>> map = cursor -> {
             Map<String, String> data = new HashMap<>();
