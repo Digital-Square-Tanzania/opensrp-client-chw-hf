@@ -42,6 +42,7 @@
     },
     "encounter_location": ""
   },
+  "global": {},
   "step1": {
     "title": "Male circumcision procedure",
     "fields": [
@@ -109,43 +110,6 @@
         }
       },
       {
-        "key": "start_time",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "start_time",
-        "type": "time_picker",
-        "hint": "Start time",
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "vmmc_mc_procedure_relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "end_time",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "end_time",
-        "type": "time_picker",
-        "hint": "End time",
-        "constraints": [
-          {
-            "type": "time",
-            "ex": "greaterThan(., step1:start_time)",
-            "err": "End time cannot be less than the start time"
-          }
-        ],
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "vmmc_mc_procedure_relevance.yml"
-            }
-          }
-        }
-      },
-      {
         "key": "male_circumcision_method",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -176,6 +140,431 @@
             "openmrs_entity_id": "device"
           }
         ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_mc_procedure_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "reason_method_change",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "reason_method_change",
+        "type": "edit_text",
+        "hint": "Give reason why preferred method was changed",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_mc_procedure_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "aneathesia_administered_conventional",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "aneathesia_administered",
+        "label": "Aneathesia administered",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "injectables",
+            "text": "Injectables",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "injectables"
+          },
+          {
+            "key": "others",
+            "text": "Others",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "others"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_mc_procedure_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "aneathesia_administered_device",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "aneathesia_administered",
+        "label": "Aneathesia administered",
+        "type": "check_box",
+        "text_color": "#000000",
+        "combine_checkbox_option_values": "true",
+        "options": [
+          {
+            "key": "injectables",
+            "text": "Injectables",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "injectables"
+          },
+          {
+            "key": "topical_cream",
+            "text": "Topical Cream",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "topical_cream"
+          },
+          {
+            "key": "others",
+            "text": "Others",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "others"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_mc_procedure_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "other_aneathesia_administered",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "other_aneathesia_administered",
+        "type": "edit_text",
+        "hint": "Other",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_mc_procedure_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "lignocaine_dosage_ml",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "lignocaine_dosage_ml",
+        "entity_id": "",
+        "type": "edit_text",
+        "hint": "Lignocaine dosage (ml)",
+        "edit_type": "number",
+        "v_numeric": {
+          "value": "true",
+          "err": "Please enter a valid value"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_mc_procedure_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "lignocaine_dosage_percent",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "lignocaine_dosage_percent",
+        "entity_id": "",
+        "type": "edit_text",
+        "hint": "Lignocaine dosage (percent)",
+        "edit_type": "number",
+        "v_numeric": {
+          "value": "true",
+          "err": "Please enter a valid value"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
+        "v_max": {
+          "value": "100",
+          "err": "Lignocaine (percent) value must be equal or less than 100"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_mc_procedure_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "bupivacaine_dosage_ml",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "bupivacaine_dosage_ml",
+        "entity_id": "",
+        "type": "edit_text",
+        "hint": "Bupivacaine dosage (ml)",
+        "edit_type": "number",
+        "v_numeric": {
+          "value": "true",
+          "err": "Please enter a valid value"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_mc_procedure_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "bupivacaine_dosage_percent",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "bupivacaine_dosage_percent",
+        "entity_id": "",
+        "type": "edit_text",
+        "hint": "Bupivacaine dosage (percent)",
+        "edit_type": "number",
+        "v_numeric": {
+          "value": "true",
+          "err": "Please enter a valid value"
+        },
+        "v_max": {
+          "value": "100",
+          "err": "Bupivacaine (percent) value must be equal or less than 100"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_mc_procedure_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "reason_max_dosage",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "reason_max_dosage",
+        "entity_id": "",
+        "type": "edit_text",
+        "hint": "Reason for maximun dosage",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_mc_procedure_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "dosage_g",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "dosage_g",
+        "entity_id": "",
+        "type": "edit_text",
+        "hint": "Dosage (g)",
+        "edit_type": "number",
+        "v_numeric": {
+          "value": "true",
+          "err": "Please enter a valid value"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_mc_procedure_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "dosage_percent",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "dosage_percent",
+        "entity_id": "",
+        "type": "edit_text",
+        "hint": "Dosage (percent)",
+        "edit_type": "number",
+        "v_numeric": {
+          "value": "true",
+          "err": "Please enter a valid value"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
+        "v_max": {
+          "value": "100",
+          "err": "Dosage (percent) value must be equal or less than 100"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_mc_procedure_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "start_time_topical_cream_application",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "start_time_topical_cream_application",
+        "type": "time_picker",
+        "hint": "Start time of topical cream application",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_mc_procedure_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "end_time_topical_cream_application",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "end_time_topical_cream_application",
+        "type": "time_picker",
+        "hint": "End time of topical cream application",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
+        "constraints": [
+          {
+            "type": "time",
+            "ex": "greaterThan(., step1:start_time_topical_cream_application)",
+            "err": "Topical time must be after start time"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_mc_procedure_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "now_time",
+        "type": "hidden",
+        "openmrs_entity_id": "now_time",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": ""
+      },
+      {
+        "key": "start_time",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "start_time",
+        "type": "time_picker",
+        "hint": "Surgery Start time",
+        "constraints": [
+          {
+            "type": "time",
+            "ex": "lessThanEqualTo(., step1:now_time)",
+            "err": "Start time cannot be future time"
+          },
+          {
+            "type": "time",
+            "ex": "greaterThan(., step1:end_time_topical_cream_application)",
+            "err": "Topical time must be after topical end time"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_mc_procedure_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "end_time",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "end_time",
+        "type": "time_picker",
+        "hint": "Surgery End time",
+        "constraints": [
+          {
+            "type": "time",
+            "ex": "lessThanEqualTo(., step1:now_time)",
+            "err": "End time cannot be future time"
+          },
+          {
+            "type": "time",
+            "ex": "greaterThan(., step1:start_time)",
+            "err": "End time must be after start time"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_mc_procedure_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "reason_prolonged_time",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "reason_prolonged_time",
+        "type": "edit_text",
+        "hint": "Give reason why the procedure was prolonged",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -417,304 +806,6 @@
         "v_required": {
           "value": "true",
           "err": "Please select at least one"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "vmmc_mc_procedure_relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "aneathesia_administered_conventional",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "aneathesia_administered",
-        "label": "Aneathesia administered",
-        "text_color": "#000000",
-        "type": "native_radio",
-        "options": [
-          {
-            "key": "injectables",
-            "text": "Injectables",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "injectables"
-          },
-          {
-            "key": "others",
-            "text": "Others",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "others"
-          }
-        ],
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "vmmc_mc_procedure_relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "aneathesia_administered_device",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "aneathesia_administered",
-        "label": "Aneathesia administered",
-        "type": "check_box",
-        "text_color": "#000000",
-        "combine_checkbox_option_values": "true",
-        "options": [
-          {
-            "key": "injectables",
-            "text": "Injectables",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "injectables"
-          },
-          {
-            "key": "topical_cream",
-            "text": "Topical Cream",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "topical_cream"
-          },
-          {
-            "key": "others",
-            "text": "Others",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "others"
-          }
-        ],
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "vmmc_mc_procedure_relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "other_aneathesia_administered",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "other_aneathesia_administered",
-        "type": "edit_text",
-        "hint": "Other",
-        "v_required": {
-          "value": "true",
-          "err": "Please specify"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "vmmc_mc_procedure_relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "lignocaine_dosage_ml",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "lignocaine_dosage_ml",
-        "entity_id": "",
-        "type": "edit_text",
-        "hint": "Lignocaine dosage (ml)",
-        "edit_type": "number",
-        "v_numeric": {
-          "value": "true",
-          "err": "Please enter a valid value"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Please specify"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "vmmc_mc_procedure_relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "lignocaine_dosage_percent",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "lignocaine_dosage_percent",
-        "entity_id": "",
-        "type": "edit_text",
-        "hint": "Lignocaine dosage (percent)",
-        "edit_type": "number",
-        "v_numeric": {
-          "value": "true",
-          "err": "Please enter a valid value"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Please specify"
-        },
-        "v_max": {
-          "value": "100",
-          "err": "Lignocaine (percent) value must be equal or less than 100"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "vmmc_mc_procedure_relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "bupivacaine_dosage_ml",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "bupivacaine_dosage_ml",
-        "entity_id": "",
-        "type": "edit_text",
-        "hint": "Bupivacaine dosage (ml)",
-        "edit_type": "number",
-        "v_numeric": {
-          "value": "true",
-          "err": "Please enter a valid value"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Please specify"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "vmmc_mc_procedure_relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "bupivacaine_dosage_percent",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "bupivacaine_dosage_percent",
-        "entity_id": "",
-        "type": "edit_text",
-        "hint": "Bupivacaine dosage (percent)",
-        "edit_type": "number",
-        "v_numeric": {
-          "value": "true",
-          "err": "Please enter a valid value"
-        },
-        "v_max": {
-          "value": "100",
-          "err": "Bupivacaine (percent) value must be equal or less than 100"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Please specify"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "vmmc_mc_procedure_relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "dosage_g",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "dosage_g",
-        "entity_id": "",
-        "type": "edit_text",
-        "hint": "Dosage (g)",
-        "edit_type": "number",
-        "v_numeric": {
-          "value": "true",
-          "err": "Please enter a valid value"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Please specify"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "vmmc_mc_procedure_relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "dosage_percent",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "dosage_percent",
-        "entity_id": "",
-        "type": "edit_text",
-        "hint": "Dosage (percent)",
-        "edit_type": "number",
-        "v_numeric": {
-          "value": "true",
-          "err": "Please enter a valid value"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "Please specify"
-        },
-        "v_max": {
-          "value": "100",
-          "err": "Dosage (percent) value must be equal or less than 100"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "vmmc_mc_procedure_relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "start_time_topical_cream_application",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "start_time_topical_cream_application",
-        "type": "time_picker",
-        "hint": "Start time of topical cream application",
-        "v_required": {
-          "value": "true",
-          "err": "Please specify"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "vmmc_mc_procedure_relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "end_time_topical_cream_application",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "end_time_topical_cream_application",
-        "type": "time_picker",
-        "hint": "End time of topical cream application",
-        "constraints": [
-          {
-            "type": "time",
-            "ex": "greaterThan(., step1:start_time_topical_cream_application)",
-            "err": "End time cannot be less than the start time"
-          }
-        ],
-        "v_required": {
-          "value": "true",
-          "err": "Please specify"
         },
         "relevance": {
           "rules-engine": {

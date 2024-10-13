@@ -121,7 +121,7 @@ public class PrEPProfileActivity extends CoreKvpProfileActivity {
         final CommonPersonObjectClient client = new CommonPersonObjectClient(commonPersonObject.getCaseId(), commonPersonObject.getDetails(), "");
 
         baseKvpFloatingMenu.findViewById(org.smartregister.kvp.R.id.refer_to_facility_layout).setVisibility(View.VISIBLE);
-        ((TextView) baseKvpFloatingMenu.findViewById(org.smartregister.kvp.R.id.refer_to_facility_text)).setText(R.string.lost_to_followup_referral);
+//        ((TextView) baseKvpFloatingMenu.findViewById(org.smartregister.kvp.R.id.refer_to_facility_text)).setText(R.string.lost_to_followup_referral);
 
         OnClickFloatingMenu onClickFloatingMenu = viewId -> {
             if (viewId == org.smartregister.kvp.R.id.kvp_fab) {

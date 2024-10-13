@@ -61,3 +61,17 @@ priority: 1
 condition: "true"
 actions:
   - "calculation = global_method_used.contains('device') ? step1_desc_of_post_op_adverse_pass_urine_with_device : step1_desc_of_post_op_adverse_pass_urine_without_device"
+---
+name: step1_follow_up_visit_type
+description: follow_up_visit_type
+priority: 1
+condition: "true"
+actions:
+  - "calculation = step1_follow_up_visit_type_normal.isEmpty() ? step1_follow_up_visit_type_emergence : step1_follow_up_visit_type_normal"
+---
+name: step1_next_followup_date
+description: vmmc follow-up visit next_followup_date
+priority: 1
+condition: "true"
+actions:
+  - "calculation = (step1_visit_number == 1 && step1_follow_up_visit_type_normal.equalsIgnoreCase('routine') && step1_male_circumcision_method.equalsIgnoreCase('device')) ? null : step1_next_followup_date_filled"

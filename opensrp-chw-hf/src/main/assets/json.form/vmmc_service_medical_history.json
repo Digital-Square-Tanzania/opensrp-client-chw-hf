@@ -618,6 +618,10 @@
             "openmrs_entity_id": "others"
           }
         ],
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
         "relevance": {
           "step1:complications_previous_surgical": {
             "type": "string",

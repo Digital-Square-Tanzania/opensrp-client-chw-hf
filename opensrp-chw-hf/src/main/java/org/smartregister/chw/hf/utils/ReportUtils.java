@@ -28,6 +28,7 @@ import org.smartregister.chw.hf.domain.cbhs_reports.CbhsMonthlyReportObject;
 import org.smartregister.chw.hf.domain.cdp_reports.CdpIssuingAtFacilityReportObject;
 import org.smartregister.chw.hf.domain.cdp_reports.CdpIssuingFromFacilityReportObject;
 import org.smartregister.chw.hf.domain.cdp_reports.CdpReceivingReportObject;
+import org.smartregister.chw.hf.domain.kvp_reports.KvpMissedApReportObject;
 import org.smartregister.chw.hf.domain.kvp_reports.KvpMonthlyReportObject;
 import org.smartregister.chw.hf.domain.ld_reports.LdMonthlyReportObject;
 import org.smartregister.chw.hf.domain.ltfu_summary.LTFUSummaryObject;
@@ -38,8 +39,17 @@ import org.smartregister.chw.hf.domain.pmtct_reports.Pmtct3MonthsReportObject;
 import org.smartregister.chw.hf.domain.pmtct_reports.PmtctEIDMonthlyReportObject;
 import org.smartregister.chw.hf.domain.pnc_reports.PncMonthlyReportObject;
 import org.smartregister.chw.hf.domain.self_testing_reports.SelfTestingMonthlyReportObject;
-import org.smartregister.chw.hf.domain.vmmc_reports.VmmcMonthlyReportObject;
+import org.smartregister.chw.hf.domain.vmmc_reports.VmmcListOfAeRegisterObject;
+import org.smartregister.chw.hf.domain.vmmc_reports.VmmcOutreachListOfAeRegisterObject;
+import org.smartregister.chw.hf.domain.vmmc_reports.VmmcOutreachReportObject;
+import org.smartregister.chw.hf.domain.vmmc_reports.VmmcOutreachServiceRegisterObject;
+import org.smartregister.chw.hf.domain.vmmc_reports.VmmcOutreachTheatreRegisterObject;
+import org.smartregister.chw.hf.domain.vmmc_reports.VmmcReportObject;
 import org.smartregister.chw.hf.domain.vmmc_reports.VmmcServiceRegisterObject;
+import org.smartregister.chw.hf.domain.vmmc_reports.VmmcStaticListOfAeRegisterObject;
+import org.smartregister.chw.hf.domain.vmmc_reports.VmmcStaticReportObject;
+import org.smartregister.chw.hf.domain.vmmc_reports.VmmcStaticServiceRegisterObject;
+import org.smartregister.chw.hf.domain.vmmc_reports.VmmcStaticTheatreRegisterObject;
 import org.smartregister.chw.hf.domain.vmmc_reports.VmmcTheatreRegisterObject;
 
 import java.text.ParseException;
@@ -56,6 +66,8 @@ public class ReportUtils {
     public static String[] monthNames = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"};
     private static String printJobName;
     private static String reportPeriod;
+    private static String startDate;
+    private static String endDate;
 
     public static String getDefaultReportPeriod() {
         String monthString = String.valueOf(month);
@@ -102,12 +114,55 @@ public class ReportUtils {
         return new Date();
     }
 
+    public static Date getStartReportDate() {
+
+
+        if (StringUtils.isNotBlank(startDate)) {
+
+            try {
+                return new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(startDate);
+            } catch (ParseException e) {
+                Timber.e(e);
+            }
+        }
+
+        return new Date();
+    }
+
+    public static Date getEndReportDate() {
+        if (StringUtils.isNotBlank(endDate)) {
+
+            try {
+                return new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(endDate);
+            } catch (ParseException e) {
+                Timber.e(e);
+            }
+        }
+
+        return new Date();
+    }
     public static String getReportPeriod() {
         return reportPeriod;
     }
 
     public static void setReportPeriod(String reportPeriod) {
         ReportUtils.reportPeriod = reportPeriod;
+    }
+
+    public static String getStartDate() {
+        return startDate;
+    }
+
+    public static void setStartDate(String startDate) {
+        ReportUtils.startDate = startDate;
+    }
+
+    public static String getEndDate() {
+        return endDate;
+    }
+
+    public static void setEndDate(String endDate) {
+        ReportUtils.endDate = endDate;
     }
 
     public static String getReportPeriodForCohortReport(String reportKey) {
@@ -133,6 +188,11 @@ public class ReportUtils {
 
     private static String getReportPeriodWithStartingMonth(int minusPeriod) {
         try {
+            if (startDate != null && endDate != null){
+                String startTime = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(startDate));
+                String endTime = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(endDate));
+                return startTime+ " to " + endTime;
+            }
             DateTime endTime = new DateTime(new SimpleDateFormat("MM-yyyy", Locale.getDefault()).parse(reportPeriod));
             DateTime startTime = endTime.minusMonths(minusPeriod);
 
@@ -173,6 +233,9 @@ public class ReportUtils {
             mWebView.loadUrl("https://appassets.androidplatform.net/assets/reports/cdp_reports/" + reportPath + ".html");
         } else if(reportType.equals(Constants.ReportConstants.ReportTypes.VMMC_REPORT)){
             mWebView.loadUrl("https://appassets.androidplatform.net/assets/reports/vmmc_reports/" + reportPath + ".html");
+        }
+        else if(reportType.equals(Constants.ReportConstants.ReportTypes.KVP_REPORT)){
+            mWebView.loadUrl("https://appassets.androidplatform.net/assets/reports/kvp_reports/" + reportPath + ".html");
         }
         else {
             mWebView.loadUrl("https://appassets.androidplatform.net/assets/reports/" + reportPath + ".html");
@@ -321,7 +384,7 @@ public class ReportUtils {
         }
     }
 
-    public static class KvpReport {
+    public static class KvpMonthlyReport {
         public static String computeReport(Date now) {
             String report = "";
             KvpMonthlyReportObject kvpMonthlyReportObject = new KvpMonthlyReportObject(now);
@@ -334,12 +397,63 @@ public class ReportUtils {
         }
     }
 
+    public static class KvpMissedApReport {
+        public static String computeReport(Date now) {
+            String report = "";
+            KvpMissedApReportObject kvpKvpMissedApReportObject = new KvpMissedApReportObject(now);
+            try {
+                report = kvpKvpMissedApReportObject.getIndicatorDataAsGson(kvpKvpMissedApReportObject.getIndicatorData());
+            } catch (Exception e) {
+                Timber.e(e);
+            }
+            return report;
+        }
+    }
+
     public static class VmmcReport {
         public static String computeReport(Date now) {
             String report = "";
-            VmmcMonthlyReportObject vmmcMonthlyReportObject = new VmmcMonthlyReportObject(now);
+            VmmcReportObject vmmcReportObject = new VmmcReportObject(now);
             try {
-                report = vmmcMonthlyReportObject.getIndicatorDataAsGson(vmmcMonthlyReportObject.getIndicatorData());
+                report = vmmcReportObject.getIndicatorDataAsGson(vmmcReportObject.getIndicatorData());
+            } catch (Exception e) {
+                Timber.e(e);
+            }
+            return report;
+        }
+
+        public static String computeReport(Date now, Date startDate, Date endDate) {
+            String report = "";
+            VmmcReportObject vmmcReportObject = new VmmcReportObject(now,startDate,endDate);
+            try {
+                report = vmmcReportObject.getIndicatorDataAsGson(vmmcReportObject.getIndicatorData());
+            } catch (Exception e) {
+                Timber.e(e);
+            }
+            return report;
+        }
+    }
+
+    public static class VmmcStaticReport {
+
+        public static String computeReport(Date now) {
+            String report = "";
+            VmmcStaticReportObject vmmcReportObject = new VmmcStaticReportObject(now);
+            try {
+                report = vmmcReportObject.getIndicatorDataAsGson(vmmcReportObject.getIndicatorData());
+            } catch (Exception e) {
+                Timber.e(e);
+            }
+            return report;
+        }
+    }
+
+    public static class VmmcOutreachReport {
+        public static String computeReport(Date now) {
+            String report = "";
+            VmmcOutreachReportObject vmmcOutreachReportObject = new VmmcOutreachReportObject(now);
+            try {
+                report = vmmcOutreachReportObject.getIndicatorDataAsGson(vmmcOutreachReportObject.getIndicatorData());
             } catch (Exception e) {
                 Timber.e(e);
             }
@@ -358,6 +472,65 @@ public class ReportUtils {
             }
             return report;
         }
+
+        public static String computeReport(Date now, Date startDate, Date endDate) {
+            String report = "";
+            VmmcServiceRegisterObject vmmcServiceRegisterObject = new VmmcServiceRegisterObject(now, startDate, endDate);
+            try {
+                report = vmmcServiceRegisterObject.getIndicatorDataAsGson(vmmcServiceRegisterObject.getIndicatorData());
+            } catch (Exception e) {
+                Timber.e(e);
+            }
+            return report;
+        }
+    }
+
+    public static class VmmcStaticServiceRegister {
+        public static String computeReport(Date now) {
+            String report = "";
+            VmmcStaticServiceRegisterObject vmmcStaticServiceRegisterObject = new VmmcStaticServiceRegisterObject(now);
+            try {
+                report = vmmcStaticServiceRegisterObject.getIndicatorDataAsGson(vmmcStaticServiceRegisterObject.getIndicatorData());
+            } catch (Exception e) {
+                Timber.e(e);
+            }
+            return report;
+        }
+
+        public static String computeReport(Date now, Date startDate, Date endDate) {
+            String report = "";
+            VmmcStaticServiceRegisterObject vmmcStaticServiceRegisterObject = new VmmcStaticServiceRegisterObject(now, startDate, endDate);
+            try {
+                report = vmmcStaticServiceRegisterObject.getIndicatorDataAsGson(vmmcStaticServiceRegisterObject.getIndicatorData());
+            } catch (Exception e) {
+                Timber.e(e);
+            }
+            return report;
+        }
+    }
+
+    public static class VmmcOutreachServiceRegister {
+        public static String computeReport(Date now) {
+            String report = "";
+            VmmcOutreachServiceRegisterObject vmmcOutreachServiceRegisterObject = new VmmcOutreachServiceRegisterObject(now);
+            try {
+                report = vmmcOutreachServiceRegisterObject.getIndicatorDataAsGson(vmmcOutreachServiceRegisterObject.getIndicatorData());
+            } catch (Exception e) {
+                Timber.e(e);
+            }
+            return report;
+        }
+
+        public static String computeReport(Date now, Date startDate, Date endDate) {
+            String report = "";
+            VmmcOutreachServiceRegisterObject vmmcOutreachServiceRegisterObject = new VmmcOutreachServiceRegisterObject(now, startDate, endDate);
+            try {
+                report = vmmcOutreachServiceRegisterObject.getIndicatorDataAsGson(vmmcOutreachServiceRegisterObject.getIndicatorData());
+            } catch (Exception e) {
+                Timber.e(e);
+            }
+            return report;
+        }
     }
 
     public static class VmmcTheatreRegister {
@@ -371,8 +544,139 @@ public class ReportUtils {
             }
             return report;
         }
+
+        public static String computeReport(Date now, Date startDate, Date endDate) {
+            String report = "";
+            VmmcTheatreRegisterObject vmmcTheatreRegisterObject = new VmmcTheatreRegisterObject(now, startDate, endDate);
+            try {
+                report = vmmcTheatreRegisterObject.getIndicatorDataAsGson(vmmcTheatreRegisterObject.getIndicatorData());
+            } catch (Exception e) {
+                Timber.e(e);
+            }
+            return report;
+        }
     }
 
+    public static class VmmcStaticTheatreRegister {
+        public static String computeReport(Date now) {
+            String report = "";
+            VmmcStaticTheatreRegisterObject vmmcStaticTheatreRegisterObject = new VmmcStaticTheatreRegisterObject(now);
+            try {
+                report = vmmcStaticTheatreRegisterObject.getIndicatorDataAsGson(vmmcStaticTheatreRegisterObject.getIndicatorData());
+            } catch (Exception e) {
+                Timber.e(e);
+            }
+            return report;
+        }
+
+        public static String computeReport(Date now, Date startDate, Date endDate) {
+            String report = "";
+            VmmcStaticTheatreRegisterObject vmmcStaticTheatreRegisterObject = new VmmcStaticTheatreRegisterObject(now, startDate, endDate);
+            try {
+                report = vmmcStaticTheatreRegisterObject.getIndicatorDataAsGson(vmmcStaticTheatreRegisterObject.getIndicatorData());
+            } catch (Exception e) {
+                Timber.e(e);
+            }
+            return report;
+        }
+    }
+
+    public static class VmmcOutreachTheatreRegister {
+        public static String computeReport(Date now) {
+            String report = "";
+            VmmcOutreachTheatreRegisterObject vmmcOutreachTheatreRegisterObject = new VmmcOutreachTheatreRegisterObject(now);
+            try {
+                report = vmmcOutreachTheatreRegisterObject.getIndicatorDataAsGson(vmmcOutreachTheatreRegisterObject.getIndicatorData());
+            } catch (Exception e) {
+                Timber.e(e);
+            }
+            return report;
+        }
+
+        public static String computeReport(Date now, Date startDate, Date endDate) {
+            String report = "";
+            VmmcOutreachTheatreRegisterObject vmmcOutreachTheatreRegisterObject = new VmmcOutreachTheatreRegisterObject(now, startDate, endDate);
+            try {
+                report = vmmcOutreachTheatreRegisterObject.getIndicatorDataAsGson(vmmcOutreachTheatreRegisterObject.getIndicatorData());
+            } catch (Exception e) {
+                Timber.e(e);
+            }
+            return report;
+        }
+    }
+
+
+    public static class VmmcListOfAERegister {
+        public static String computeReport(Date now) {
+            String report = "";
+            VmmcListOfAeRegisterObject vmmcListOfAeRegisterObject = new VmmcListOfAeRegisterObject(now);
+            try {
+                report = vmmcListOfAeRegisterObject.getIndicatorDataAsGson(vmmcListOfAeRegisterObject.getIndicatorData());
+            } catch (Exception e) {
+                Timber.e(e);
+            }
+            return report;
+        }
+
+        public static String computeReport(Date now, Date startDate, Date endDate) {
+            String report = "";
+            VmmcListOfAeRegisterObject vmmcListOfAeRegisterObject = new VmmcListOfAeRegisterObject(now, startDate, endDate);
+            try {
+                report = vmmcListOfAeRegisterObject.getIndicatorDataAsGson(vmmcListOfAeRegisterObject.getIndicatorData());
+            } catch (Exception e) {
+                Timber.e(e);
+            }
+            return report;
+        }
+    }
+
+    public static class VmmcStaticListOfAERegister {
+        public static String computeReport(Date now) {
+            String report = "";
+            VmmcStaticListOfAeRegisterObject vmmcStaticListOfAeRegisterObject = new VmmcStaticListOfAeRegisterObject(now);
+            try {
+                report = vmmcStaticListOfAeRegisterObject.getIndicatorDataAsGson(vmmcStaticListOfAeRegisterObject.getIndicatorData());
+            } catch (Exception e) {
+                Timber.e(e);
+            }
+            return report;
+        }
+
+        public static String computeReport(Date now, Date startDate, Date endDate) {
+            String report = "";
+            VmmcStaticListOfAeRegisterObject vmmcOutreachListOfAeRegisterObject = new VmmcStaticListOfAeRegisterObject(now, startDate, endDate);
+            try {
+                report = vmmcOutreachListOfAeRegisterObject.getIndicatorDataAsGson(vmmcOutreachListOfAeRegisterObject.getIndicatorData());
+            } catch (Exception e) {
+                Timber.e(e);
+            }
+            return report;
+        }
+    }
+
+    public static class VmmcOutreachListOfAERegister {
+        public static String computeReport(Date now) {
+            String report = "";
+            VmmcOutreachListOfAeRegisterObject vmmcOutreachListOfAeRegisterObject = new VmmcOutreachListOfAeRegisterObject(now);
+            try {
+                report = vmmcOutreachListOfAeRegisterObject.getIndicatorDataAsGson(vmmcOutreachListOfAeRegisterObject.getIndicatorData());
+            } catch (Exception e) {
+                Timber.e(e);
+            }
+            return report;
+        }
+
+        public static String computeReport(Date now, Date startDate, Date endDate) {
+            String report = "";
+            VmmcOutreachListOfAeRegisterObject vmmcOutreachListOfAeRegisterObject = new VmmcOutreachListOfAeRegisterObject(now, startDate, endDate);
+            try {
+                report = vmmcOutreachListOfAeRegisterObject.getIndicatorDataAsGson(vmmcOutreachListOfAeRegisterObject.getIndicatorData());
+            } catch (Exception e) {
+                Timber.e(e);
+            }
+            return report;
+        }
+    }
     public static class CDPReports {
         public static String computeIssuingAtFacilityReports(Date startDate) {
             CdpIssuingAtFacilityReportObject cdpIssuingAtFacilityReportObject = new CdpIssuingAtFacilityReportObject(startDate);
