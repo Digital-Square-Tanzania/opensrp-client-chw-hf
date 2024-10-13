@@ -742,7 +742,7 @@
     <string name="vmmc_reports_subtitle">View Reports For VMMC</string>
     <string name="vmmc_register_subtitle">View Service Register For VMMC</string>
     <string name="vmmc_theatre_register_subtitle">View Theatre Register For VMMC</string>
-    <string name="vmmc_list_of_ae_subtitle">View of AE Clients For VMMC</string>
+    <string name="vmmc_list_of_ae_subtitle">List of VMMC Clients with AE</string>
 
 
 
