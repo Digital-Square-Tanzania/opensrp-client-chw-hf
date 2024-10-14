@@ -769,6 +769,11 @@ public class Constants extends CoreConstants {
             String OTHER_MONTHLY_REPORTS = "other_monthly_reports";
         }
 
+        public interface KvpKeys {
+            String KVP_MONTHLY_REPORT = "kvp_monthly_reports";
+            String KVP_MISSEDAP_REPORT = "kvp_missedap_reports";
+        }
+
         public interface VmmcKeys {
             String VMMC_REPORT = "vmmc_reports";
 
@@ -838,7 +843,9 @@ public class Constants extends CoreConstants {
 
             String CONDOM_DISTRIBUTION_RECEIVING_REPORT_PATH = "condom-distribution-receiving-report";
 
-            String KVP_REPORT_PATH = "kvp-report";
+            String KVP_REPORT_PATH = "kvp-monthly-report";
+
+            String KVP_MISSEDAP_REPORT_PATH = "kvp-missedap-report";
 
             String VMMC_REPORT_PATH = "vmmc-report";
 

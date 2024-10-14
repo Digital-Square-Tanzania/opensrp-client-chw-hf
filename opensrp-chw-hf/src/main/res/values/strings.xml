@@ -739,6 +739,7 @@
     <string name="cdp_receiving_report">CDP Receiving Report</string>
     <string name="kvp_reports">KVP REPORTS</string>
     <string name="kvp_reports_subtitle">View Reports For KVP</string>
+    <string name="kvp_prep_missap_reports_subtitle">View Missed Appointments Clients List</string>
     <string name="vmmc_reports">VMMC REPORTS</string>
     <string name="vmmc_service_register">VMMC Monthly Service Register</string>
     <string name="vmmc_theatre_register">VMMC Monthly Theatre Register</string>
@@ -1890,11 +1891,7 @@
     <string name="kvp_tomorrow_visits">Tomorrow visits</string>
     <string name="kvp_due_clients">Due</string>
     <string name="kvp_overdue_clients">Over Due</string>
-
-
-
-
-
+    <string name="missap_clients_list">Missed Appointments Clients List</string>
 
 
 </resources>

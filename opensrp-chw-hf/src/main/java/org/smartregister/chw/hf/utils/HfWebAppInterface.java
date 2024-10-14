@@ -3,10 +3,14 @@ package org.smartregister.chw.hf.utils;
 import static org.smartregister.chw.hf.utils.Constants.ReportConstants.CDPReportKeys.ISSUING_AT_THE_FACILITY_REPORTS;
 import static org.smartregister.chw.hf.utils.Constants.ReportConstants.CDPReportKeys.ISSUING_FROM_THE_FACILITY_REPORTS;
 import static org.smartregister.chw.hf.utils.Constants.ReportConstants.CDPReportKeys.RECEIVING_REPORTS;
+import static org.smartregister.chw.hf.utils.Constants.ReportConstants.KvpKeys.KVP_MISSEDAP_REPORT;
+import static org.smartregister.chw.hf.utils.Constants.ReportConstants.KvpKeys.KVP_MONTHLY_REPORT;
 import static org.smartregister.chw.hf.utils.Constants.ReportConstants.PMTCTReportKeys.EID_MONTHLY;
 import static org.smartregister.chw.hf.utils.Constants.ReportConstants.PMTCTReportKeys.THREE_MONTHS;
 import static org.smartregister.chw.hf.utils.Constants.ReportConstants.PMTCTReportKeys.TWELVE_MONTHS;
 import static org.smartregister.chw.hf.utils.Constants.ReportConstants.PMTCTReportKeys.TWENTY_FOUR_MONTHS;
+import static org.smartregister.chw.hf.utils.Constants.ReportConstants.ReportPaths.KVP_MISSEDAP_REPORT_PATH;
+import static org.smartregister.chw.hf.utils.Constants.ReportConstants.ReportPaths.KVP_REPORT_PATH;
 import static org.smartregister.chw.hf.utils.Constants.ReportConstants.VmmcKeys.VMMC_REPORT;
 import static org.smartregister.chw.hf.utils.Constants.ReportConstants.VmmcKeys.VMMC_SERVICE_REGISTER;
 import static org.smartregister.chw.hf.utils.Constants.ReportConstants.VmmcKeys.VMMC_THEATRE_REGISTER;
@@ -73,8 +77,17 @@ public class HfWebAppInterface {
             ReportUtils.setPrintJobName("self_testing_report_ya_mwezi-" + ReportUtils.getReportPeriod() + ".pdf");
             return ReportUtils.SelfTestingReport.computeSelfTestingReportReport(ReportUtils.getReportDate());
         } else if (reportType.equalsIgnoreCase(Constants.ReportConstants.ReportTypes.KVP_REPORT)) {
-            ReportUtils.setPrintJobName("kvp_report_ya_mwezi-" + ReportUtils.getReportPeriod() + ".pdf");
-            return ReportUtils.KvpReport.computeReport(ReportUtils.getReportDate());
+            switch (key) {
+                case KVP_MONTHLY_REPORT:
+                    ReportUtils.setPrintJobName("kvp_report_ya_mwezi-" + ReportUtils.getReportPeriod() + ".pdf");
+                    return ReportUtils.KvpMonthlyReport.computeReport(ReportUtils.getReportDate());
+                case KVP_MISSEDAP_REPORT:
+                    ReportUtils.setPrintJobName("kvp_monthly_missed_appointments_report-" + ReportUtils.getReportPeriod() + ".pdf");
+                    return ReportUtils.KvpMissedApReport.computeReport(ReportUtils.getReportDate());
+                default:
+                    return "";
+
+            }
         } else if (reportType.equalsIgnoreCase(Constants.ReportConstants.ReportTypes.FP_REPORT)) {
             ReportUtils.setPrintJobName("fp_report_ya_mwezi-" + ReportUtils.getReportPeriod() + ".pdf");
             return ReportUtils.FpReport.computeReport(ReportUtils.getReportDate());

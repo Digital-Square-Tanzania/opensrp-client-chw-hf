@@ -373,6 +373,7 @@
     <string name="cdp_receiving_report">Taarifa ya kondomu zilizopokelewa</string>
     <string name="kvp_reports">Ripoti za KVP</string>
     <string name="kvp_reports_subtitle">Tazama Ripoti za KVP</string>
+    <string name="kvp_prep_missap_reports_subtitle">View Missed Appointments Clients List</string>
     <string name="global_search_description"><![CDATA[Jaza jina la mteja kisha Tafuta kwenye kanzi data ya kitaifa ya UCS]]></string>
     <string name="select_issued_condoms">Chagua taarifa ya kondomu zilizotolewa</string>
     <string name="cdp_issuing_report">Taarifa ya kondomu zilizotolewa</string>

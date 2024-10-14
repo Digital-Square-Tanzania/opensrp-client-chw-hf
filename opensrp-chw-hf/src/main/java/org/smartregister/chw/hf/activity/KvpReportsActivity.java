@@ -1,5 +1,6 @@
 package org.smartregister.chw.hf.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -10,12 +11,15 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.google.android.material.appbar.AppBarLayout;
 import com.whiteelephant.monthpicker.MonthPickerDialog;
 
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.utils.Constants;
 import org.smartregister.chw.hf.utils.ReportUtils;
+import org.smartregister.view.activity.SecuredActivity;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -26,31 +30,35 @@ import java.util.Locale;
 import timber.log.Timber;
 
 
-public class KvpReportsActivity extends PncReportsActivity{
+public class KvpReportsActivity extends SecuredActivity implements View.OnClickListener {
+    protected ConstraintLayout kvpMonthlyReport;
+    protected ConstraintLayout kvpMissedappReport;
+    protected AppBarLayout appBarLayout;
+    Menu menu;
+    private String reportPeriod = ReportUtils.getDefaultReportPeriod();
+
     @Override
-    public void onClick(View v) {
-        int id = v.getId();
-        if (id == R.id.pnc_monthly_report) {
-            KvpReportsViewActivity.startMe(this,  Constants.ReportConstants.ReportPaths.KVP_REPORT_PATH, reportPeriod);
-        }
+    protected void onCreation() {
+        setContentView(R.layout.activity_kvp_reports);
+        setUpToolbar();
+        setupViews();
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int itemId = item.getItemId();
-        if (itemId == R.id.action_select_month) {
-            showMonthPicker(this, menu);
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+    protected void onResumption() {
+
     }
 
-    @Override
+    private void setupViews() {
+        kvpMonthlyReport = findViewById(R.id.kvp_monthly_report);
+        kvpMissedappReport = findViewById(R.id.kvp_missedap_report);
+
+
+        kvpMonthlyReport.setOnClickListener(this);
+        kvpMissedappReport.setOnClickListener(this);
+    }
+
     public void setUpToolbar() {
-        super.setUpToolbar();
-        TextView title = findViewById(R.id.toolbar_title);
-        title.setText(R.string.kvp_reports);
-
         Toolbar toolbar = findViewById(org.smartregister.chw.core.R.id.back_to_nav_toolbar);
         setSupportActionBar(toolbar);
 
@@ -66,6 +74,41 @@ public class KvpReportsActivity extends PncReportsActivity{
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             appBarLayout.setOutlineProvider(null);
         }
+    }
+
+
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        switch (id) {
+            case R.id.kvp_monthly_report:
+                KvpReportsViewActivity.startMe(this,  Constants.ReportConstants.ReportPaths.KVP_REPORT_PATH, reportPeriod);
+                break;
+            case R.id.kvp_missedap_report:
+                KvpReportsViewActivity.startMe(this,  Constants.ReportConstants.ReportPaths.KVP_MISSEDAP_REPORT_PATH, reportPeriod);
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.reports_menu, menu);
+        this.menu = menu;
+        this.menu.findItem(R.id.action_select_month).setTitle(ReportUtils.displayMonthAndYear());
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+        if (itemId == R.id.action_select_month) {
+            showMonthPicker(this, menu);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void showMonthPicker(Context context, Menu menu) {

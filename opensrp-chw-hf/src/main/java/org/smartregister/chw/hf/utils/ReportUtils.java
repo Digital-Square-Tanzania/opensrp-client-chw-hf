@@ -30,6 +30,7 @@ import org.smartregister.chw.hf.domain.cdp_reports.CdpIssuingFromFacilityReportO
 import org.smartregister.chw.hf.domain.cdp_reports.CdpReceivingReportObject;
 import org.smartregister.chw.hf.domain.cecap_reports.CecapMonthlyReportObject;
 import org.smartregister.chw.hf.domain.cecap_reports.CecapOtherMonthlyReportObject;
+import org.smartregister.chw.hf.domain.kvp_reports.KvpMissedApReportObject;
 import org.smartregister.chw.hf.domain.kvp_reports.KvpMonthlyReportObject;
 import org.smartregister.chw.hf.domain.ld_reports.LdMonthlyReportObject;
 import org.smartregister.chw.hf.domain.ltfu_summary.LTFUSummaryObject;
@@ -174,6 +175,8 @@ public class ReportUtils {
             mWebView.loadUrl("https://appassets.androidplatform.net/assets/reports/cdp_reports/" + reportPath + ".html");
         } else if (reportType.equals(Constants.ReportConstants.ReportTypes.VMMC_REPORT)) {
             mWebView.loadUrl("https://appassets.androidplatform.net/assets/reports/vmmc_reports/" + reportPath + ".html");
+        } else if (reportType.equals(Constants.ReportConstants.ReportTypes.KVP_REPORT)) {
+            mWebView.loadUrl("https://appassets.androidplatform.net/assets/reports/kvp_reports/" + reportPath + ".html");
         } else {
             mWebView.loadUrl("https://appassets.androidplatform.net/assets/reports/" + reportPath + ".html");
         }
@@ -321,12 +324,25 @@ public class ReportUtils {
         }
     }
 
-    public static class KvpReport {
+    public static class KvpMonthlyReport {
         public static String computeReport(Date now) {
             String report = "";
             KvpMonthlyReportObject kvpMonthlyReportObject = new KvpMonthlyReportObject(now);
             try {
                 report = kvpMonthlyReportObject.getIndicatorDataAsGson(kvpMonthlyReportObject.getIndicatorData());
+            } catch (Exception e) {
+                Timber.e(e);
+            }
+            return report;
+        }
+    }
+
+    public static class KvpMissedApReport {
+        public static String computeReport(Date now) {
+            String report = "";
+            KvpMissedApReportObject kvpMissedApReportObject = new KvpMissedApReportObject(now);
+            try {
+                report = kvpMissedApReportObject.getIndicatorDataAsGson(kvpMissedApReportObject.getIndicatorData());
             } catch (Exception e) {
                 Timber.e(e);
             }
