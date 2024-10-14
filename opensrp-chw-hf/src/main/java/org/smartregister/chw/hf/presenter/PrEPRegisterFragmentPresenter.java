@@ -53,12 +53,17 @@ public class PrEPRegisterFragmentPresenter extends BaseKvpRegisterFragmentPresen
                     prepStatus = "discontinued_quit";
                     break;
                 default:
-                    prepStatus = prepClientStatus;  // fallback to the original value if none matches
+                    prepStatus = null;  // fallback to the original value if none matches
             }
-            customFilter.append(MessageFormat.format(" and {0} = ''{1}'' ", "prep_status", prepStatus));
+            if (StringUtils.isNotBlank(prepStatus))
+                customFilter.append(MessageFormat.format(" and {0} = ''{1}'' ", "prep_status", prepStatus));
         }
 
         return customFilter.toString();
     }
 
+    @Override
+    public String getMainCondition() {
+        return this.getMainTable() + ".is_closed IS 0 AND "+this.getMainTable() + ".agreed_to_use_prep = 'yes'"  ;
+    }
 }

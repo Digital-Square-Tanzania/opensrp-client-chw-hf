@@ -1510,6 +1510,7 @@
     </string-array>
 
     <string-array name="prep_status_filter_options">
+        <item>All</item>
         <item>Initiated</item>
         <item>Not initiated</item>
         <item>Continuing</item>

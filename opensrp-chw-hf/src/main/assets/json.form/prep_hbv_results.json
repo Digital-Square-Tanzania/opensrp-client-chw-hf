@@ -97,7 +97,7 @@
       {
         "key": "prompt_for_further_management",
         "type": "toaster_notes",
-        "text": "Client should stop PrEP Services",
+        "text": "Refer for liver function monitoring and management of Hepatitis B Infection",
         "openmrs_entity_id": "prompt_for_further_management",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",

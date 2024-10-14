@@ -8226,6 +8226,14 @@
           }
         },
         {
+          "column_name": "agreed_to_use_prep",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "agreed_to_use_prep"
+          }
+        },
+        {
           "column_name": "prep_status",
           "type": "Event",
           "json_mapping": {

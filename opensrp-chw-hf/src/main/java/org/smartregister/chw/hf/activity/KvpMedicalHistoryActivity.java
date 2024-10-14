@@ -30,6 +30,8 @@ import org.smartregister.chw.kvp.repository.VisitRepository;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -201,7 +203,8 @@ public class KvpMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
 
                     tvTitle.setText(visits.get(x).getVisitType() + " " + visits.get(x).getDate());
 
-                    if (Objects.equals(visits.get(x).getVisitId(), visitRepository.getLatestVisit(visits.get(x).getBaseEntityId(), visits.get(x).getVisitType()).getVisitId())) {
+                    if (shouldShowEditButton(visits.get(x).getDate()) &&
+                            Objects.equals(visits.get(x).getVisitId(), visitRepository.getLatestVisit(visits.get(x).getBaseEntityId(), visits.get(x).getVisitType()).getVisitId())) {
                         edit.setVisibility(View.VISIBLE);
                         int position = x;
                         edit.setOnClickListener(view1 -> {
@@ -235,6 +238,31 @@ public class KvpMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
                     x++;
                 }
             }
+        }
+
+        //editing option should be active till 5th of the next month
+        private static boolean shouldShowEditButton(Date providedDate) {
+            // Get the current date
+            Calendar currentDate = Calendar.getInstance();
+
+            // Convert provided Date to Calendar
+            Calendar providedCal = Calendar.getInstance();
+            providedCal.setTime(providedDate);
+
+            // Clone the provided date to avoid modifying the original
+            Calendar nextMonth = (Calendar) providedCal.clone();
+            nextMonth.add(Calendar.MONTH, 1); // Add one month
+
+            // Set the date to the 5th of the next month
+            nextMonth.set(Calendar.DAY_OF_MONTH, 5);
+
+            // Check if the 5th of the next month is after the current date
+            if (nextMonth.after(currentDate)) {
+                return true; // Valid if 5th of next month is after the current date
+            }
+
+            // Check if the provided date is after the 5th of the next month and before the current date
+            return providedCal.after(nextMonth) && providedCal.before(currentDate);
         }
 
         private static @NonNull TextView getTextView(Context context) {
