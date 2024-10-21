@@ -935,6 +935,54 @@
         }
       },
       {
+        "key": "prompt_for_prisoners_kvp",
+        "type": "toaster_notes",
+        "text": "The client falls in PRISONERS KVP group\nThe client should be enrolled to KVP friendly services",
+        "openmrs_entity_id": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kvp_screening_female_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "prompt_for_rumandee_kvp",
+        "type": "toaster_notes",
+        "text": "The client falls in RUMANDEE KVP group\nThe client should be enrolled to KVP friendly services",
+        "openmrs_entity_id": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kvp_screening_female_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "prompt_for_mobile_population_kvp",
+        "type": "toaster_notes",
+        "text": "The client falls in MOBILE POPULATION KVP group\nThe client should be enrolled to KVP friendly services",
+        "openmrs_entity_id": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kvp_screening_female_relevance.yml"
+            }
+          }
+        }
+      },
+      {
         "key": "prompt_no_group",
         "type": "toaster_notes",
         "text": "The client does not fall in any of the KVP groups and won't be enrolled to KVP friendly services",
@@ -987,7 +1035,6 @@
           "Songwe",
           "Tabora",
           "Tanga"
-
         ],
         "keys": [
           "Arusha",

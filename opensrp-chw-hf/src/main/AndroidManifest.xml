@@ -123,6 +123,11 @@
             android:launchMode="singleTask"/>
 
         <activity
+            android:name=".activity.KvpScreeningJsonWizardFormActivity"
+            android:theme="@style/HFTheme.NoActionBar"
+            android:launchMode="singleTask"/>
+
+        <activity
             android:name=".activity.AncPartnerTestingHistoryActivity"
             android:screenOrientation="portrait"
             android:theme="@style/HFTheme.NoActionBar" />

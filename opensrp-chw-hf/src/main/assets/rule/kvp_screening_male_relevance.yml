@@ -70,6 +70,29 @@ priority: 1
 condition: "step2_is_pwid.equals('yes')"
 actions:
   - "isRelevant = true"
+
+---
+name: step8_prompt_for_prisoners_kvp
+description: prompt_for_prisoners_kvp relevance
+priority: 1
+condition: "step6_is_prisoner.equals('yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step8_prompt_for_rumandee_kvp
+description: prompt_for_rumandee_kvp relevance
+priority: 1
+condition: "step6_is_rumandee.equals('yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step8_prompt_for_mobile_population_kvp
+description: prompt_for_mobile_population_kvp relevance
+priority: 1
+condition: "step6_is_mobile_population.equals('yes')"
+actions:
+  - "isRelevant = true"
+
 ---
 name: step8_prompt_for_ovp_kvp
 description: prompt_for_ovp_kvp relevance
