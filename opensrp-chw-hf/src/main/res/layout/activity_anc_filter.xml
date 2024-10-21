@@ -148,6 +148,98 @@
                 android:layout_height="1dp"
                 android:background="#ccc" />
 
+            <LinearLayout
+                android:id="@+id/next_appointment_date_range"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:gravity="center_vertical"
+                android:minHeight="?attr/listPreferredItemHeightSmall"
+                android:orientation="vertical"
+                android:paddingStart="?android:attr/listPreferredItemPaddingStart"
+                android:paddingLeft="?android:attr/listPreferredItemPaddingLeft"
+                android:paddingTop="16dp"
+                android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
+                android:paddingRight="?android:attr/listPreferredItemPaddingRight"
+                android:paddingBottom="18dp">
+
+                <TextView
+                    android:id="@+id/title_next_appointment_date_range"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="marquee"
+                    android:text="@string/next_facility_visit_date_range_filter_title"
+                    android:textAppearance="?attr/textAppearanceListItem" />
+
+                <LinearLayout
+                    android:layout_marginTop = "8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:id="@+id/start_date"
+                        android:layout_marginTop = "8dp"
+                        android:orientation="vertical"
+                        android:layout_width="0dp"
+                        android:layout_weight = "1"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:maxLines="100"
+                            android:text="@string/start_date"
+                            android:textAppearance="?android:attr/textAppearanceListItem"
+                            android:textColor="?android:attr/textColorPrimary" />
+
+                        <TextView
+                            android:id="@+id/summary_start_date"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:maxLines="100"
+                            android:text="@string/none"
+                            android:textAppearance="?android:attr/textAppearanceListItemSecondary"
+                            android:textColor="?android:attr/textColorSecondary" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/end_date"
+                        android:layout_marginTop = "8dp"
+                        android:orientation="vertical"
+                        android:layout_width="0dp"
+                        android:layout_weight = "1"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:maxLines="100"
+                            android:text="@string/end_date"
+                            android:textAppearance="?android:attr/textAppearanceListItem"
+                            android:textColor="?android:attr/textColorPrimary" />
+
+                        <TextView
+                            android:id="@+id/summary_end_date"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:maxLines="100"
+                            android:text="@string/none"
+                            android:textAppearance="?android:attr/textAppearanceListItemSecondary"
+                            android:textColor="?android:attr/textColorSecondary" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+
+
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#ccc" />
+
+
             <RelativeLayout
                 android:id="@+id/hiv_status_filter_rl"
                 android:layout_width="match_parent"

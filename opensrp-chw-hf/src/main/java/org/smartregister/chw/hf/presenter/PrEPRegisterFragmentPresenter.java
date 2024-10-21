@@ -20,12 +20,16 @@ public class PrEPRegisterFragmentPresenter extends BaseKvpRegisterFragmentPresen
         return Constants.TABLES.PrEP_REGISTER;
     }
 
-    public String getDueFilterCondition(String appointmentDate, boolean isReferred, String prepClientStatus, Context context) {
+    public String getDueFilterCondition(String nextAppointmentStartDate, String nextAppointmentEndDate, boolean isReferred, String prepClientStatus, Context context) {
         StringBuilder customFilter = new StringBuilder();
 
         // Append appointment date filter
-        if (appointmentDate != null && !appointmentDate.equalsIgnoreCase(context.getString(R.string.none))) {
-            customFilter.append(MessageFormat.format(" and {0} like ''%{1}%'' ", "next_visit_date", appointmentDate));
+        if (nextAppointmentStartDate != null && !nextAppointmentStartDate.equalsIgnoreCase(context.getString(R.string.none))) {
+            customFilter.append(" AND date(substr(next_visit_date, 7, 4) || '-' || substr(next_visit_date, 4, 2) || '-' || substr(next_visit_date, 1, 2)) >= date(substr('" + nextAppointmentStartDate + "', 7, 4) || '-' || substr('" + nextAppointmentStartDate + "', 4, 2) || '-' || substr('"+nextAppointmentStartDate+"', 1, 2))");
+        }
+        // Append appointment date filter
+        if (nextAppointmentEndDate != null && !nextAppointmentEndDate.equalsIgnoreCase(context.getString(R.string.none))) {
+            customFilter.append(" AND date(substr(next_visit_date, 7, 4) || '-' || substr(next_visit_date, 4, 2) || '-' || substr(next_visit_date, 1, 2)) <= date(substr('" + nextAppointmentEndDate + "', 7, 4) || '-' || substr('" + nextAppointmentEndDate + "', 4, 2) || '-' || substr('"+nextAppointmentEndDate+"', 1, 2))");
         }
 
         // Append referral filter if necessary
@@ -64,6 +68,6 @@ public class PrEPRegisterFragmentPresenter extends BaseKvpRegisterFragmentPresen
 
     @Override
     public String getMainCondition() {
-        return this.getMainTable() + ".is_closed IS 0 AND "+this.getMainTable() + ".agreed_to_use_prep = 'yes'"  ;
+        return this.getMainTable() + ".is_closed IS 0 AND " + this.getMainTable() + ".agreed_to_use_prep = 'yes'";
     }
 }

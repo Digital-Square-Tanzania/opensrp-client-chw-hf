@@ -1,9 +1,12 @@
 package org.smartregister.chw.hf.fragment;
 
+import static org.smartregister.chw.hf.utils.Constants.ENABLE_DATE_RANGE_FILTER;
 import static org.smartregister.chw.hf.utils.Constants.ENABLE_HIV_STATUS_FILTER;
 import static org.smartregister.chw.hf.utils.Constants.ENABLE_PREP_STATUS_FILTER;
 import static org.smartregister.chw.hf.utils.Constants.FILTERS_ENABLED;
 import static org.smartregister.chw.hf.utils.Constants.FILTER_APPOINTMENT_DATE;
+import static org.smartregister.chw.hf.utils.Constants.FILTER_APPOINTMENT_DATE_RANGE_END_DATE;
+import static org.smartregister.chw.hf.utils.Constants.FILTER_APPOINTMENT_DATE_RANGE_START_DATE;
 import static org.smartregister.chw.hf.utils.Constants.FILTER_HIV_STATUS;
 import static org.smartregister.chw.hf.utils.Constants.FILTER_IS_REFERRED;
 import static org.smartregister.chw.hf.utils.Constants.FILTER_PREP_STATUS;
@@ -47,6 +50,8 @@ import timber.log.Timber;
 public class PrEPRegisterFragment extends CoreKvpRegisterFragment implements android.view.View.OnClickListener {
     String customGroupFilter;
     private String appointmentDate;
+    private String appointmentStartDate;
+    private String appointmentEndDate;
     private String filterHivStatus;
     private String filterPrepStatus;
     private boolean filterIsReferred = false;
@@ -101,8 +106,11 @@ public class PrEPRegisterFragment extends CoreKvpRegisterFragment implements and
             intent.putExtra(FILTER_PREP_STATUS, filterPrepStatus);
             intent.putExtra(FILTER_IS_REFERRED, filterIsReferred);
             intent.putExtra(FILTER_APPOINTMENT_DATE, appointmentDate);
+            intent.putExtra(FILTER_APPOINTMENT_DATE_RANGE_START_DATE, appointmentStartDate);
+            intent.putExtra(FILTER_APPOINTMENT_DATE_RANGE_END_DATE, appointmentEndDate);
             intent.putExtra(ENABLE_HIV_STATUS_FILTER, false);
             intent.putExtra(ENABLE_PREP_STATUS_FILTER, true);
+            intent.putExtra(ENABLE_DATE_RANGE_FILTER, true);
             ((Activity) getContext()).startActivityForResult(intent, REQUEST_FILTERS);
         }
 
@@ -119,7 +127,9 @@ public class PrEPRegisterFragment extends CoreKvpRegisterFragment implements and
                     filterPrepStatus = data.getStringExtra(FILTER_PREP_STATUS);
                     filterIsReferred = data.getBooleanExtra(FILTER_IS_REFERRED, false);
                     appointmentDate = data.getStringExtra(FILTER_APPOINTMENT_DATE);
-                    filter(searchText(), "", ((PrEPRegisterFragmentPresenter) presenter()).getDueFilterCondition(appointmentDate, filterIsReferred, filterPrepStatus, getContext()), false);
+                    appointmentStartDate = data.getStringExtra(FILTER_APPOINTMENT_DATE_RANGE_START_DATE);
+                    appointmentEndDate = data.getStringExtra(FILTER_APPOINTMENT_DATE_RANGE_END_DATE);
+                    filter(searchText(), "", ((PrEPRegisterFragmentPresenter) presenter()).getDueFilterCondition(appointmentStartDate, appointmentEndDate, filterIsReferred, filterPrepStatus, getContext()), false);
                 } else {
                     setTextViewDrawableColor(filterSortTextView, R.color.grey);
                     filterSortTextView.setText(R.string.filter);
@@ -177,7 +187,7 @@ public class PrEPRegisterFragment extends CoreKvpRegisterFragment implements and
             customFilter.append(MessageFormat.format(" or {0}.{1} like ''%{2}%'' ) ", CoreConstants.TABLE_NAME.FAMILY_MEMBER, DBConstants.KEY.UNIQUE_ID, filters));
         }
         if (filterEnabled) {
-            customFilter.append(((PrEPRegisterFragmentPresenter) presenter()).getDueFilterCondition(appointmentDate, filterIsReferred, filterPrepStatus, getContext()));
+            customFilter.append(((PrEPRegisterFragmentPresenter) presenter()).getDueFilterCondition(appointmentStartDate, appointmentEndDate, filterIsReferred, filterPrepStatus, getContext()));
         }
         if (StringUtils.isNotBlank(customGroupFilter)) {
             customFilter.append(MessageFormat.format((" and ( {0} ) "), customGroupFilter));
