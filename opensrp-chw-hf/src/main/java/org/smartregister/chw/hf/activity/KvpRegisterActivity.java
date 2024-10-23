@@ -72,7 +72,7 @@ public class KvpRegisterActivity extends CoreKvpRegisterActivity {
     @Override
     public void startFormActivity(JSONObject jsonForm) {
 
-        Intent intent = new Intent(this, KvpScreeningJsonWizardFormActivity.class);
+        Intent intent = new Intent(this, KvpJsonWizardFormActivity.class);
         intent.putExtra(org.smartregister.family.util.Constants.JSON_FORM_EXTRA.JSON, jsonForm.toString());
         Form form = new Form();
         form.setActionBarBackground(org.smartregister.chw.core.R.color.family_actionbar);

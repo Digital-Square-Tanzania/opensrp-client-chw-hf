@@ -19,7 +19,7 @@ public class HfKvpDao extends KvpDao {
         DataMap<String> dataMap = cursor -> getCursorValue(cursor, "client_status");
 
         List<String> res = readData(sql, dataMap);
-        if (res != null && res.size() != 0 && res.get(0) != null) {
+        if (res != null && !res.isEmpty() && res.get(0) != null) {
             return res.get(0);
         }
         return "";
@@ -32,7 +32,7 @@ public class HfKvpDao extends KvpDao {
         DataMap<String> dataMap = cursor -> getCursorValue(cursor, "enrollment_date");
 
         List<String> res = readData(sql, dataMap);
-        if (res != null && res.size() != 0 && res.get(0) != null) {
+        if (res != null && !res.isEmpty() && res.get(0) != null) {
             return res.get(0);
         }
         return "";
@@ -59,7 +59,7 @@ public class HfKvpDao extends KvpDao {
         DataMap<String> dataMap = cursor -> getCursorValue(cursor, "visit_type");
 
         List<String> res = readData(sql, dataMap);
-        return res != null && res.size() != 0 && res.get(0) != null;
+        return res != null && !res.isEmpty() && res.get(0) != null;
     }
 
     public static Date getHbvTestDate(String baseEntityId) {
@@ -70,7 +70,7 @@ public class HfKvpDao extends KvpDao {
         DataMap<String> dataMap = cursor -> getCursorValue(cursor, "hbv_test_date");
 
         List<String> res = readData(sql, dataMap);
-        if (res != null && res.size() != 0 && res.get(0) != null) {
+        if (res != null && !res.isEmpty() && res.get(0) != null) {
             try {
                 return simpleDateFormat.parse(res.get(0));
             } catch (ParseException e) {
@@ -89,7 +89,7 @@ public class HfKvpDao extends KvpDao {
         DataMap<String> dataMap = cursor -> getCursorValue(cursor, "hcv_test_date");
 
         List<String> res = readData(sql, dataMap);
-        if (res != null && res.size() != 0 && res.get(0) != null) {
+        if (res != null && !res.isEmpty() && res.get(0) != null) {
             try {
                 return simpleDateFormat.parse(res.get(0));
             } catch (ParseException e) {
@@ -108,7 +108,7 @@ public class HfKvpDao extends KvpDao {
         DataMap<String> dataMap = cursor -> getCursorValue(cursor, "crcl_test_date");
 
         List<String> res = readData(sql, dataMap);
-        if (res != null && res.size() != 0 && res.get(0) != null) {
+        if (res != null && !res.isEmpty() && res.get(0) != null) {
             try {
                 return simpleDateFormat.parse(res.get(0));
             } catch (ParseException e) {
@@ -126,7 +126,20 @@ public class HfKvpDao extends KvpDao {
         DataMap<String> dataMap = cursor -> getCursorValue(cursor, "crcl_results");
 
         List<String> res = readData(sql, dataMap);
-        if (res != null && res.size() != 0 && res.get(0) != null) {
+        if (res != null && !res.isEmpty() && res.get(0) != null) {
+            return res.get(0);
+        }
+        return null;
+    }
+
+    public static String getPrepInitiationDate(String baseEntityId) {
+        String sql = "SELECT prep_initiation_date FROM ec_prep_register p " +
+                " WHERE p.base_entity_id = '" + baseEntityId + "'";
+
+        DataMap<String> dataMap = cursor -> getCursorValue(cursor, "prep_initiation_date");
+
+        List<String> res = readData(sql, dataMap);
+        if (res != null && !res.isEmpty() && res.get(0) != null) {
             return res.get(0);
         }
         return null;
@@ -138,7 +151,7 @@ public class HfKvpDao extends KvpDao {
         DataMap<String> dataMap = cursor -> getCursorValue(cursor, "kits_distributed");
 
         List<String> res = readData(sql, dataMap);
-        if (res != null && res.size() > 0 && res.get(0) != null) {
+        if (res != null && !res.isEmpty() && res.get(0) != null) {
             return res.get(0).equalsIgnoreCase("yes");
         }
         return false;

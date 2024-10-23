@@ -123,7 +123,7 @@
             android:launchMode="singleTask"/>
 
         <activity
-            android:name=".activity.KvpScreeningJsonWizardFormActivity"
+            android:name=".activity.KvpJsonWizardFormActivity"
             android:theme="@style/HFTheme.NoActionBar"
             android:launchMode="singleTask"/>
 

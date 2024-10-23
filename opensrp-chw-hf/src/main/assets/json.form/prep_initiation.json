@@ -1,5 +1,5 @@
 {
-  "count": "1",
+  "count": "2",
   "encounter_type": "PrEP Initiation",
   "entity_id": "",
   "metadata": {
@@ -43,7 +43,8 @@
   },
   "global": {},
   "step1": {
-    "title": "PrEP Initiation",
+    "title": "PrEP Status",
+    "next": "step2",
     "fields": [
       {
         "key": "prep_status",
@@ -96,6 +97,28 @@
         }
       },
       {
+        "key": "original_prep_initiation_date_for_continuing_clients",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "original_prep_initiation_date_for_continuing_clients",
+        "type": "date_picker",
+        "hint": "PrEP Initiation Date",
+        "expanded": false,
+        "min_date": "today-2y",
+        "max_date": "today",
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the next visit date"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "prep_initiation_relevance.yml"
+            }
+          }
+        }
+      },
+      {
         "key": "pregnancy_breast_feeding_status",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -137,8 +160,12 @@
             }
           }
         }
-
-      },
+      }
+    ]
+  },
+  "step2": {
+    "title": "PrEP Initiation",
+    "fields": [
       {
         "key": "prep_drug_offered",
         "openmrs_entity_parent": "",
@@ -169,7 +196,6 @@
             "openmrs_entity": "concept",
             "openmrs_entity_id": "other_drugs"
           }
-
         ],
         "v_required": {
           "value": "true",
@@ -542,14 +568,7 @@
         "hidden": "true",
         "openmrs_entity_id": "prep_initiation_date",
         "openmrs_entity": "concept",
-        "openmrs_entity_parent": "",
-        "calculation": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "prep_initiation_calculation.yml"
-            }
-          }
-        }
+        "openmrs_entity_parent": ""
       },
       {
         "key": "maximum_date_for_next_visit",
@@ -603,12 +622,12 @@
         "constraints": [
           {
             "type": "date",
-            "ex": "greaterThanEqualTo(., step1:minimum_date_for_next_visit)",
+            "ex": "greaterThanEqualTo(., step2:minimum_date_for_next_visit)",
             "err": "Date should be within 3 days of the medication provided"
           },
           {
             "type": "date",
-            "ex": "lessThanEqualTo(., step1:maximum_date_for_next_visit)",
+            "ex": "lessThanEqualTo(., step2:maximum_date_for_next_visit)",
             "err": "Date should be within 3 days of the medication provided"
           }
         ]

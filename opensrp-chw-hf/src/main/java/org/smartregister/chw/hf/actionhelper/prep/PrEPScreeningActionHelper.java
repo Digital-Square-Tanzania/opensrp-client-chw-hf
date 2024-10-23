@@ -1,14 +1,19 @@
 package org.smartregister.chw.hf.actionhelper.prep;
 
+import static com.vijay.jsonwizard.constants.JsonFormConstants.TYPE;
+import static com.vijay.jsonwizard.constants.JsonFormConstants.VALUE;
+
 import android.content.Context;
 
 import org.apache.commons.lang3.StringUtils;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.core.utils.CoreJsonFormUtils;
 import org.smartregister.chw.hf.dao.HfKvpDao;
 import org.smartregister.chw.kvp.domain.VisitDetail;
 import org.smartregister.chw.kvp.model.BaseKvpVisitAction;
+import org.smartregister.family.util.JsonFormUtils;
 
 import java.util.Date;
 import java.util.List;
@@ -68,6 +73,16 @@ public class PrEPScreeningActionHelper implements BaseKvpVisitAction.KvpVisitAct
             if (crclTestDate != null && crclResults != null && crclResults.equalsIgnoreCase("less_than_60")) {
                 Date fourDaysAgo = new Date(System.currentTimeMillis() - TimeUnit.DAYS.toMillis(14));
                 global.put("should_record_crcl_tests", crclTestDate.before(fourDaysAgo));
+            }
+
+
+            String prepInitiationDate = HfKvpDao.getPrepInitiationDate(baseEntityId);
+
+            JSONArray fields = jsonObject.getJSONObject(org.smartregister.chw.hf.utils.Constants.JsonFormConstants.STEP1).getJSONArray(org.smartregister.chw.referral.util.JsonFormConstants.FIELDS);
+            if (StringUtils.isNotBlank(prepInitiationDate) && prepInitiationDate.equalsIgnoreCase("-")) {
+                JSONObject original_prep_initiation_date_for_continuing_clients = JsonFormUtils.getFieldJSONObject(fields, "original_prep_initiation_date_for_continuing_clients");
+                original_prep_initiation_date_for_continuing_clients.put(TYPE, "hidden");
+                original_prep_initiation_date_for_continuing_clients.put(VALUE, prepInitiationDate);
             }
 
 

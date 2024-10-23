@@ -1,5 +1,8 @@
 package org.smartregister.chw.hf.activity;
 
+import static org.smartregister.chw.core.utils.CoreConstants.JSON_FORM.isMultiPartForm;
+import static org.smartregister.chw.fp.util.FamilyPlanningConstants.JSON_FORM_EXTRA.ENCOUNTER_TYPE;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +11,7 @@ import android.os.Build;
 import com.vijay.jsonwizard.constants.JsonFormConstants;
 import com.vijay.jsonwizard.domain.Form;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.core.task.RunnableTask;
 import org.smartregister.chw.hf.R;
@@ -24,6 +28,8 @@ import org.smartregister.util.LangUtils;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import timber.log.Timber;
 
 public class PrEPVisitActivity extends BaseKvpVisitActivity {
 
@@ -46,7 +52,22 @@ public class PrEPVisitActivity extends BaseKvpVisitActivity {
         form.setActionBarBackground(org.smartregister.chw.core.R.color.family_actionbar);
         form.setWizard(false);
 
-        Intent intent = new Intent(this, Utils.metadata().familyMemberFormActivity);
+        Intent intent = new Intent(this, KvpJsonWizardFormActivity.class);
+
+        if (isMultiPartForm(jsonForm)) {
+            form.setWizard(true);
+            form.setNavigationBackground(org.smartregister.chw.core.R.color.family_navigation);
+            try {
+                if (jsonForm.getString(ENCOUNTER_TYPE).equalsIgnoreCase(getString(R.string.prep_initiation))) {
+                    form.setName(getString(R.string.prep_initiation));
+                }
+            } catch (JSONException e) {
+                Timber.e(e);
+            }
+            form.setNextLabel(getResources().getString(org.smartregister.chw.core.R.string.next));
+            form.setPreviousLabel(getResources().getString(org.smartregister.chw.core.R.string.back));
+        }
+
         intent.putExtra(org.smartregister.family.util.Constants.JSON_FORM_EXTRA.JSON, jsonForm.toString());
         intent.putExtra(org.smartregister.family.util.Constants.WizardFormActivity.EnableOnCloseDialog, false);
         intent.putExtra(JsonFormConstants.JSON_FORM_KEY.FORM, form);

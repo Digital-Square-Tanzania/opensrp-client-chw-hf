@@ -1,15 +1,16 @@
 ---
-name: step1_prep_initiation_date
+name: step2_prep_initiation_date
 description: prep_initiation_date calculation
 priority: 1
-condition: "step1_prep_status.equals('initiated')"
+condition: "true"
 actions:
-  - "calculation = helper.getDateToday()"
+  - "calculation = step1_prep_status.equals('initiated') ? helper.getDateToday() : 
+        step1_prep_status.equals('continuing') || step1_prep_status.equals('re_start') ? step1_original_prep_initiation_date_for_continuing_clients :'-' "
 ---
-name: step1_maximum_date_for_next_visit
+name: step2_maximum_date_for_next_visit
 description: Calculate the maximum date for the next follow-up visit
 priority: 1
-condition: "step1_prep_pills_number != '' "
+condition: "step2_prep_pills_number != '' "
 actions:
   - "def getMaxDate(number_of_pills) {
         import java.util.Calendar;
@@ -23,12 +24,12 @@ actions:
         cal.add(Calendar.DATE,  numberOfPills);
         return new SimpleDateFormat('dd-MM-yyyy', Locale.getDefault()).format(cal.getTime());
      }"
-  - "calculation = getMaxDate(step1_prep_pills_number)"
+  - "calculation = getMaxDate(step2_prep_pills_number)"
 ---
-name: step1_minimum_date_for_next_visit
+name: step2_minimum_date_for_next_visit
 description: Calculate the minimum date for the next follow-up visit
 priority: 1
-condition: "step1_prep_pills_number != '' "
+condition: "step2_prep_pills_number != '' "
 actions:
   - "def getMinimumDate(number_of_pills) {
         import java.util.Calendar;
@@ -42,4 +43,4 @@ actions:
         
         return new SimpleDateFormat('dd-MM-yyyy', Locale.getDefault()).format(calendar.getTime());
      }"
-  - "calculation = getMinimumDate(step1_prep_pills_number)"
+  - "calculation = getMinimumDate(step2_prep_pills_number)"
