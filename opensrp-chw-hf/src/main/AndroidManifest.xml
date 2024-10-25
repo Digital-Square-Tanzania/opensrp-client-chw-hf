@@ -612,21 +612,21 @@
         <service android:name=".sync.intent.GenerateMonthlyTalliesIntentService" />
         <service android:name=".sync.intent.CloseVmmcMembershipIntentService" />
 
-        <receiver
-            android:name="org.smartregister.view.receiver.ConnectivityChangeReceiver"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-            </intent-filter>
-        </receiver>
-        <receiver
-            android:name="org.smartregister.view.receiver.TimeChangedBroadcastReceiver"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="android.intent.action.TIME_SET" />
-                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
-            </intent-filter>
-        </receiver>
+<!--        <receiver-->
+<!--            android:name="org.smartregister.view.receiver.ConnectivityChangeReceiver"-->
+<!--            android:exported="false">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />-->
+<!--            </intent-filter>-->
+<!--        </receiver>-->
+<!--        <receiver-->
+<!--            android:name="org.smartregister.view.receiver.TimeChangedBroadcastReceiver"-->
+<!--            android:exported="false">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.TIME_SET" />-->
+<!--                <action android:name="android.intent.action.TIMEZONE_CHANGED" />-->
+<!--            </intent-filter>-->
+<!--        </receiver>-->
 
         <receiver
             android:name="io.ona.kujaku.receivers.KujakuNetworkChangeReceiver"

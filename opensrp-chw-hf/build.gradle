@@ -240,6 +240,7 @@ android {
             enableSplit = false
         }
     }
+    ndkVersion '21.1.6352462'
 
 }
 
@@ -254,7 +255,7 @@ flavors.each { productFlavorName ->
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation('org.smartregister:opensrp-client-chw-core:1.5.40.0-MOH-SNAPSHOT@aar') {
+    implementation('org.smartregister:opensrp-client-chw-core:1.6.0-BETA2-MOH-SNAPSHOT@aar') {
 //    implementation(project(":opensrp-chw-core")) {
         transitive = true
         exclude group: 'com.android.support', module: 'appcompat-v7'
@@ -265,6 +266,13 @@ dependencies {
         exclude group: 'com.mcxiaoke.volley', module: 'library'
         exclude group: 'org.smartregister', module: 'opensrp-client-materialedittext'
         exclude group: 'org.smartregister', module: 'opensrp-client-chw-ld'
+        exclude group: 'com.github.chivorns.androidx', module: 'smartmaterialspinner'
+        exclude group: 'com.github.stephenc.jcip', module: 'jcip-annotations'
+        exclude group: 'io.insert-koin', module: 'koin-android'
+        exclude group: 'io.insert-koin', module: 'koin-androidx-scope'
+        exclude group: 'io.insert-koin', module: 'koin-androidx-viewmodel'
+        exclude group: 'io.insert-koin', module: 'koin-core'
+        exclude group: 'com.ibm.fhir', module: 'fhir-model'
     }
 
     implementation('org.smartregister:opensrp-client-chw-ld:1.0.31-NACP-SNAPSHOT@aar') {
