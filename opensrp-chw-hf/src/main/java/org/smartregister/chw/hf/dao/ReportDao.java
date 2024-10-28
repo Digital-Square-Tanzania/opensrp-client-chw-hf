@@ -1346,12 +1346,7 @@ public class ReportDao extends AbstractDao {
 //                "ORDER BY day DESC LIMIT 1";
 
         if (startDate != null && endDate != null) {
-            String queryStartDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(startDate);
-            String queryEndDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(endDate);
-//            sql = "SELECT indicator_value\n" +
-//                            "FROM indicator_daily_tally\n" +
-//                            "WHERE indicator_code = '" + indicatorCode + "'\n" +
-//                            "AND day BETWEEN date('"+queryStartDate+"') AND date('"+queryEndDate+"')";
+            // implement later
         } else {
             sql = "SELECT indicator_value\n" +
                     "FROM indicator_daily_tally\n" +

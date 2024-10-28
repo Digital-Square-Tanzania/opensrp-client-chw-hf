@@ -35,8 +35,8 @@ import android.widget.Toast;
 
 public class VmmcReportsActivity extends SecuredActivity {
 
-    private Toolbar toolbar;
-    private TabLayout tabLayout;
+    Toolbar toolbar;
+    TabLayout tabLayout;
     private ViewPager viewPager;
     private Menu menu;
     private String reportPeriod = ReportUtils.getDefaultReportPeriod();
@@ -73,10 +73,14 @@ public class VmmcReportsActivity extends SecuredActivity {
             }
 
             @Override
-            public void onTabUnselected(TabLayout.Tab tab) {}
+            public void onTabUnselected(TabLayout.Tab tab) {
+                // implement later
+            }
 
             @Override
-            public void onTabReselected(TabLayout.Tab tab) {}
+            public void onTabReselected(TabLayout.Tab tab) {
+                // implement later
+            }
         });
 
         vmmcViewPagerAdapter = new VmmcViewPagerAdapter(this, getSupportFragmentManager(), tabLayout.getTabCount(), reportPeriod, startDate, endDate);

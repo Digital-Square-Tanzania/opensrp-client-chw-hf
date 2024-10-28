@@ -14,7 +14,7 @@ import org.smartregister.chw.hf.fragment.VmmcStaticReportsFragment;
 
 public class VmmcViewPagerAdapter extends FragmentPagerAdapter {
 
-    private Context context;
+    Context context;
     private String reportPeriod;
     private String startDate;
     private String endDate;

@@ -20,16 +20,16 @@ import timber.log.Timber;
 public class VmmcStaticReportsFragment extends Fragment implements View.OnClickListener{
 
     protected ConstraintLayout vmmc_monthly_report;
-    private AppCompatTextView vmmc_monthly_report_title;
+    AppCompatTextView vmmc_monthly_report_title;
 
     protected ConstraintLayout vmmc_register_report;
-    private AppCompatTextView vmmc_register_title;
+    AppCompatTextView vmmc_register_title;
 
     protected ConstraintLayout vmmc_theatre_register_report;
-    private AppCompatTextView vmmc_theatre_register_title;
+    AppCompatTextView vmmc_theatre_register_title;
 
     protected ConstraintLayout vmmc_list_of_ae_report;
-    private AppCompatTextView vmmc_list_of_ae_title;
+    AppCompatTextView vmmc_list_of_ae_title;
 
     protected String reportPeriod;
     private String startDate;
