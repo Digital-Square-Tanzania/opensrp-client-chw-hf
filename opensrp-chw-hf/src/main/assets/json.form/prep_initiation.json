@@ -47,10 +47,10 @@
     "next": "step2",
     "fields": [
       {
-        "key": "prep_status",
+        "key": "prep_status_not_discontinued",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "prep_status",
+        "openmrs_entity_id": "prep_status_not_discontinued",
         "label": "PrEP status in this visit",
         "text_color": "#000000",
         "type": "native_radio",
@@ -94,6 +94,56 @@
         "v_required": {
           "value": "true",
           "err": "Please select an answer"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "prep_initiation_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "prep_status_was_discontinued",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "prep_status_was_discontinued",
+        "label": "PrEP status in this visit",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "re_start",
+            "text": "Re-started",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "re_start"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select an answer"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "prep_initiation_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "prep_status",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "prep_status",
+        "type": "hidden",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "prep_initiation_calculation.yml"
+            }
+          }
         }
       },
       {

@@ -24,6 +24,7 @@ import org.smartregister.chw.kvp.dao.KvpDao;
 import org.smartregister.chw.kvp.domain.Visit;
 import org.smartregister.chw.kvp.util.Constants;
 import org.smartregister.chw.kvp.util.DBConstants;
+import org.smartregister.chw.vmmc.dao.VmmcDao;
 import org.smartregister.commonregistry.CommonPersonObject;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.commonregistry.CommonRepository;
@@ -33,6 +34,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
 import timber.log.Timber;
 
@@ -93,7 +95,19 @@ public class KvpProfileActivity extends CoreKvpProfileActivity {
                 imageViewCross.setImageResource(org.smartregister.chw.core.R.drawable.activityrow_notvisited);
             }
         }
-    }
+
+        if (HfKvpDao.vmmcProvided(memberObject.getBaseEntityId()) != null && HfKvpDao.vmmcProvided(memberObject.getBaseEntityId()).equalsIgnoreCase("circumcised") ) {
+            if(!VmmcDao.isRegisteredForVmmc(memberObject.getBaseEntityId())){
+                visitDone.setVisibility(View.VISIBLE);
+                textViewVisitDoneEdit.setText(R.string.register_client);
+                textViewVisitDone.setText(getContext().getString(R.string.vmmc_registration));
+                textViewVisitDone.setVisibility(View.VISIBLE);
+                textViewVisitDoneEdit.setOnClickListener(v -> startVmmcRegister());
+                imageViewCross.setImageResource(org.smartregister.chw.core.R.drawable.activityrow_notvisited);
+            }
+        }
+
+        }
 
     private Date truncateTimeFromDate(Date date) {
         Calendar calendar = Calendar.getInstance();

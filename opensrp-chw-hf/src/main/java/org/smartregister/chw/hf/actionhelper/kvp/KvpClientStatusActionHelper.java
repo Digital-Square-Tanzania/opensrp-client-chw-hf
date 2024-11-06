@@ -42,6 +42,7 @@ public class KvpClientStatusActionHelper implements BaseKvpVisitAction.KvpVisitA
     public String getPreProcessed() {
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
+            JSONObject global = jsonObject.getJSONObject("global");
 
             JSONArray fields = jsonObject.getJSONObject(STEP1).getJSONArray(FIELDS);
             JSONObject otherKvpCategory = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "other_kvp_category");
@@ -54,6 +55,12 @@ public class KvpClientStatusActionHelper implements BaseKvpVisitAction.KvpVisitA
                 if (otherScreenedGroups.contains(key)) {
                     options.getJSONObject(i).put(VALUE, true);
                 }
+            }
+
+            if(StringUtils.isNotBlank(HfKvpDao.getClientStatus(memberObject.getBaseEntityId()))){
+                global.put("first_visit_done", "yes");
+            } else {
+                global.put("first_visit_done", "no");
             }
 
             return jsonObject.toString();

@@ -29,6 +29,7 @@ import org.smartregister.chw.kvp.model.BaseKvpVisitAction;
 import org.smartregister.chw.kvp.util.Constants;
 import org.smartregister.chw.kvp.util.KvpJsonFormUtils;
 import org.smartregister.chw.referral.util.JsonFormConstants;
+import org.smartregister.chw.vmmc.util.JsonFormUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -151,7 +152,7 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
 
     private void evaluateHts(Map<String, List<VisitDetail>> details) throws BaseKvpVisitAction.ValidationException {
 
-        KvpHtsActionHelper actionHelper = new KvpHtsActionHelper();
+        KvpHtsActionHelper actionHelper = new KvpHtsActionHelper(memberObject);
         BaseKvpVisitAction action = getBuilder(context.getString(R.string.kvp_hts))
                 .withOptional(true)
                 .withDetails(details)
@@ -322,6 +323,11 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
     }
 
     private class KvpHtsActionHelper extends org.smartregister.chw.hf.actionhelper.kvp.KvpHtsActionHelper {
+
+        public KvpHtsActionHelper(MemberObject memberObject) {
+            super(memberObject);
+        }
+
         @Override
         public String postProcess(String s) {
             if (StringUtils.isBlank(hiv_status) || !(hiv_status.equalsIgnoreCase("positive") || hiv_status.equalsIgnoreCase("known_positive"))) {

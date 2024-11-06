@@ -156,4 +156,40 @@ public class HfKvpDao extends KvpDao {
         }
         return false;
     }
+
+    public static String vmmcProvided(String baseEntityId) {
+        String sql = "SELECT vmcc_provided FROM ec_kvp_bio_medical_services p " +
+                " WHERE p.entity_id = '" + baseEntityId + "' ORDER BY kvp_visit_date DESC LIMIT 1";
+        DataMap<String> dataMap = cursor -> getCursorValue(cursor, "vmcc_provided");
+
+        List<String> res = readData(sql, dataMap);
+        if (res != null && !res.isEmpty() && res.get(0) != null) {
+            return res.get(0);
+        }
+        return null;
+    }
+
+    public static String getHivStatus(String baseEntityId) {
+        String sql = "SELECT hiv_status FROM ec_kvp_bio_medical_services p " +
+                " WHERE p.entity_id = '" + baseEntityId + "' ORDER BY kvp_visit_date DESC LIMIT 1";
+        DataMap<String> dataMap = cursor -> getCursorValue(cursor, "hiv_status");
+
+        List<String> res = readData(sql, dataMap);
+        if (res != null && !res.isEmpty() && res.get(0) != null) {
+            return res.get(0);
+        }
+        return "";
+    }
+
+    public static String getPrepStatus(String baseEntityId) {
+        String sql = "SELECT prep_status FROM ec_prep_followup p " +
+                " WHERE p.entity_id = '" + baseEntityId + "' ORDER BY kvp_visit_date DESC LIMIT 1";
+        DataMap<String> dataMap = cursor -> getCursorValue(cursor, "prep_status");
+
+        List<String> res = readData(sql, dataMap);
+        if (res != null && !res.isEmpty() && res.get(0) != null) {
+            return res.get(0);
+        }
+        return null;
+    }
 }

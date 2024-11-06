@@ -69,3 +69,10 @@ priority: 1
 condition: "step1_hiv_status.equals('negative')"
 actions:
   - "isRelevant = true"
+---
+name: step1_tested_hiv
+description: tested_hiv relevance
+priority: 1
+condition: "global_hiv_status.equalsIgnoreCase('') || global_hiv_status.equalsIgnoreCase('negative') || global_hiv_status.equalsIgnoreCase('inconclusive')"
+actions:
+  - "isRelevant = true"

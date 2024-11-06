@@ -62,3 +62,17 @@ priority: 1
 condition: "step1_prep_status != '' && (step1_prep_status == 'continuing' || step1_prep_status == 're_start')"
 actions:
   - "isRelevant = true "
+---
+name: step1_prep_status_not_discontinued
+description: prep_status_not_discontinued
+priority: 1
+condition: "global_prep_status != 'discontinued_quit' || global_prep_status == '' "
+actions:
+  - "isRelevant = true "
+---
+name: step1_prep_status_was_discontinued
+description: prep_status_was_discontinued
+priority: 1
+condition: "global_prep_status == 'discontinued_quit' "
+actions:
+  - "isRelevant = true "

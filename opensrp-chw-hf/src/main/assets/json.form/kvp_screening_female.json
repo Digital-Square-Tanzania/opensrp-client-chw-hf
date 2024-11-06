@@ -1077,28 +1077,6 @@
         }
       },
       {
-        "key": "enrollment_date",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "enrollment_date",
-        "type": "date_picker",
-        "hint": "Enrollment date",
-        "expanded": false,
-        "min_date": "01-05-2018",
-        "max_date": "today",
-        "v_required": {
-          "value": "true",
-          "err": "Please answer this question"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "kvp_screening_female_relevance.yml"
-            }
-          }
-        }
-      },
-      {
         "key": "client_group",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",

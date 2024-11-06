@@ -7,6 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.core.utils.CoreJsonFormUtils;
+import org.smartregister.chw.hf.dao.HfKvpDao;
 import org.smartregister.chw.kvp.dao.KvpDao;
 import org.smartregister.chw.kvp.domain.VisitDetail;
 import org.smartregister.chw.kvp.model.BaseKvpVisitAction;
@@ -41,6 +42,7 @@ public class PrEPInitiationActionHelper implements BaseKvpVisitAction.KvpVisitAc
     public String getPreProcessed() {
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
+            JSONObject global = jsonObject.getJSONObject("global");
             JSONArray fields = jsonObject.getJSONObject(org.smartregister.chw.hf.utils.Constants.JsonFormConstants.STEP1).getJSONArray(org.smartregister.chw.referral.util.JsonFormConstants.FIELDS);
             JSONObject prepPillsNumber = JsonFormUtils.getFieldJSONObject(fields, "prep_pills_number");
 
@@ -55,6 +57,15 @@ public class PrEPInitiationActionHelper implements BaseKvpVisitAction.KvpVisitAc
                     }
                 }
             }
+
+            String prepStatus = HfKvpDao.getPrepStatus(baseEntityId);
+            if(prepStatus != null){
+                global.put("prep_status", prepStatus);
+            } else {
+                global.put("prep_status", "");
+            }
+
+
             return jsonObject.toString();
         } catch (Exception e) {
             Timber.e(e);
