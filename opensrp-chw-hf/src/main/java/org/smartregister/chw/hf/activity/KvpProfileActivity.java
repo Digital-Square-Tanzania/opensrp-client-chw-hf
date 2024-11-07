@@ -95,18 +95,6 @@ public class KvpProfileActivity extends CoreKvpProfileActivity {
                 imageViewCross.setImageResource(org.smartregister.chw.core.R.drawable.activityrow_notvisited);
             }
         }
-
-        if (HfKvpDao.vmmcProvided(memberObject.getBaseEntityId()) != null && HfKvpDao.vmmcProvided(memberObject.getBaseEntityId()).equalsIgnoreCase("circumcised") ) {
-            if(!VmmcDao.isRegisteredForVmmc(memberObject.getBaseEntityId())){
-                visitDone.setVisibility(View.VISIBLE);
-                textViewVisitDoneEdit.setText(R.string.register_client);
-                textViewVisitDone.setText(getContext().getString(R.string.vmmc_registration));
-                textViewVisitDone.setVisibility(View.VISIBLE);
-                textViewVisitDoneEdit.setOnClickListener(v -> startVmmcRegister());
-                imageViewCross.setImageResource(org.smartregister.chw.core.R.drawable.activityrow_notvisited);
-            }
-        }
-
         }
 
     private Date truncateTimeFromDate(Date date) {
