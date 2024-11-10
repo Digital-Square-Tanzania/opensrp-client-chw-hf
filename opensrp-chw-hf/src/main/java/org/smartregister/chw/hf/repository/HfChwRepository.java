@@ -376,6 +376,10 @@ public class HfChwRepository extends CoreChwRepository {
         }
 
         try {
+            db.execSQL("ALTER TABLE ec_family_member ADD COLUMN data_source TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_prep_register ADD COLUMN agreed_to_use_prep TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_prep_register ADD COLUMN agreed_to_use_prep TEXT NULL;");
+
             db.execSQL("ALTER TABLE ec_pmtct_followup ADD COLUMN requester_clinician_name TEXT NULL;");
             db.execSQL("ALTER TABLE ec_pmtct_followup ADD COLUMN requester_phone_number TEXT NULL;");
             db.execSQL("ALTER TABLE ec_pmtct_followup ADD COLUMN sample_request_date TEXT NULL;");
