@@ -360,6 +360,24 @@ public class HfChwRepository extends CoreChwRepository {
         }
     }
 
+    private static void upgradeToVersion25(SQLiteDatabase db) {
+        try {
+            DatabaseMigrationUtils.createAddedECTables(db,
+                    new HashSet<>(Arrays.asList("ec_lab_requests", "ec_lab_manifests", "ec_lab_settings")),
+                    HealthFacilityApplication.createCommonFtsObject());
+        } catch (Exception e) {
+            Timber.e(e, "upgradeToVersion25");
+        }
+
+        try {
+            db.execSQL("ALTER TABLE ec_family_member ADD COLUMN data_source TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_prep_register ADD COLUMN agreed_to_use_prep TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_prep_register ADD COLUMN agreed_to_use_prep TEXT NULL;");
+        } catch (Exception e) {
+            Timber.e(e);
+        }
+    }
+
     private static void upgradeToVersion10ForBaSouth(SQLiteDatabase db) {
         try {
             db.execSQL("ALTER TABLE ec_family_member ADD COLUMN reasons_for_registration TEXT NULL;");
@@ -494,6 +512,9 @@ public class HfChwRepository extends CoreChwRepository {
                     break;
                 case 24:
                     upgradeToVersion24(db);
+                    break;
+                case 25:
+                    upgradeToVersion25(db);
                     break;
                 default:
                     break;
