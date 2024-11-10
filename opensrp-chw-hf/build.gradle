@@ -68,7 +68,6 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
         buildConfigField "String", 'opensrp_url', '"https://boresha-afya.smartregister.org/opensrp/"'
-//        buildConfigField "String", 'opensrp_url_debug', '"http://50.116.15.4:8082/opensrp/"'
         buildConfigField "String", 'opensrp_url_debug', '"http://170.187.199.69:8082/opensrp/"'
         buildConfigField "boolean", 'SUPPORT_QR', 'true'
         buildConfigField "int", "DATABASE_VERSION", '12'
@@ -256,7 +255,7 @@ flavors.each { productFlavorName ->
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation('org.smartregister:opensrp-client-chw-core:1.5.45-MOH-SNAPSHOT@aar') {
+    implementation('org.smartregister:opensrp-client-chw-core:1.6.0-MOH-SNAPSHOT@aar') {
 //    implementation(project(":opensrp-chw-core")) {
         transitive = true
         exclude group: 'com.android.support', module: 'appcompat-v7'
@@ -272,6 +271,7 @@ dependencies {
         exclude group: 'com.mcxiaoke.volley', module: 'library'
         exclude group: 'org.smartregister', module: 'opensrp-client-materialedittext'
         exclude group: 'org.smartregister', module: 'opensrp-client-chw-ld'
+        exclude group: 'com.github.chivorns', module: 'smartmaterialspinner'
     }
     implementation 'org.mozilla:rhino:1.7.13' // or a newer stable version
 

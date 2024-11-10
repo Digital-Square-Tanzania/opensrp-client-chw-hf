@@ -386,6 +386,16 @@ public class AllClientsMemberProfileActivity extends CoreAllClientsMemberProfile
     }
 
     @Override
+    protected void startCancerPreventiveServicesRegistration() {
+
+    }
+
+    @Override
+    protected void startAsrhRegistration() {
+
+    }
+
+    @Override
     protected void setIndependentClient(boolean isIndependentClient) {
         super.isIndependent = isIndependentClient;
     }
