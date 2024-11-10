@@ -20,7 +20,6 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:usesCleartextTraffic="true"
         android:roundIcon="@drawable/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/HFTheme"
@@ -633,38 +632,58 @@
                 android:resource="@xml/captured_images_path" />
         </provider>
 
-        <service android:name="org.smartregister.immunization.service.intent.VaccineIntentService" />
-        <service android:name="org.smartregister.immunization.service.intent.RecurringIntentService" />
-        <service android:name="org.smartregister.sync.intent.PullUniqueIdsIntentService" />
-        <service android:name="org.smartregister.sync.intent.SyncIntentService" />
-        <service android:name="org.smartregister.sync.intent.ExtendedSyncIntentService" />
-        <service android:name="org.smartregister.sync.intent.ValidateIntentService" />
-        <service android:name="org.smartregister.service.ImageUploadSyncService" />
-        <service android:name="org.smartregister.chw.anc.intent.HomeVisitIntentService" />
-        <service android:name="org.smartregister.sync.intent.LocationIntentService" />
-        <service android:name=".sync.intent.HfSyncTaskIntentService" />
-        <service android:name="org.smartregister.sync.intent.PlanIntentService" />
-        <service android:name=".sync.intent.HfSyncClientEventsPerTaskIntentService" />
-        <service android:name="org.smartregister.chw.core.sync.intent.CloseExpiredReferralsIntentService" />
-        <service android:name="org.smartregister.sync.intent.SyncLocationsByTeamIdsIntentService" />
-        <service android:name="org.smartregister.sync.intent.SyncLocationsByLevelAndTagsIntentService" />
-        <service android:name="org.smartregister.reporting.service.IndicatorGeneratorIntentService" />
-        <service android:name=".sync.intent.MarkPmtctAndHeiLtfIntentService" />
-        <service android:name=".sync.intent.ProcessVisitsIntentService" />
-        <service android:name=".sync.intent.PncCloseDateIntentService" />
-        <service android:name=".sync.intent.GenerateMonthlyTalliesIntentService" />
-        <service android:name=".sync.intent.CloseVmmcMembershipIntentService" />
-
+        <service android:name="org.smartregister.immunization.service.intent.VaccineIntentService"
+            android:foregroundServiceType="dataSync"/>
+        <service android:name="org.smartregister.immunization.service.intent.RecurringIntentService"
+            android:foregroundServiceType="dataSync"/>
+        <service android:name="org.smartregister.sync.intent.PullUniqueIdsIntentService"
+            android:foregroundServiceType="dataSync"/>
+        <service android:name="org.smartregister.sync.intent.SyncIntentService"
+            android:foregroundServiceType="dataSync"/>
+        <service android:name="org.smartregister.sync.intent.ExtendedSyncIntentService"
+            android:foregroundServiceType="dataSync"/>
+        <service android:name="org.smartregister.sync.intent.ValidateIntentService"
+            android:foregroundServiceType="dataSync"/>
+        <service android:name="org.smartregister.service.ImageUploadSyncService"
+            android:foregroundServiceType="dataSync"/>
+        <service android:name="org.smartregister.chw.anc.intent.HomeVisitIntentService"
+            android:foregroundServiceType="dataSync"/>
+        <service android:name="org.smartregister.sync.intent.LocationIntentService"
+            android:foregroundServiceType="dataSync"/>
+        <service android:name=".sync.intent.HfSyncTaskIntentService"
+            android:foregroundServiceType="dataSync"/>
+        <service android:name="org.smartregister.sync.intent.PlanIntentService"
+            android:foregroundServiceType="dataSync"/>
+        <service android:name=".sync.intent.HfSyncClientEventsPerTaskIntentService"
+            android:foregroundServiceType="dataSync"/>
+        <service android:name="org.smartregister.chw.core.sync.intent.CloseExpiredReferralsIntentService"
+            android:foregroundServiceType="dataSync"/>
+        <service android:name="org.smartregister.sync.intent.SyncLocationsByTeamIdsIntentService"
+            android:foregroundServiceType="dataSync"/>
+        <service android:name="org.smartregister.sync.intent.SyncLocationsByLevelAndTagsIntentService"
+            android:foregroundServiceType="dataSync"/>
+        <service android:name="org.smartregister.reporting.service.IndicatorGeneratorIntentService"
+            android:foregroundServiceType="dataSync"/>
+        <service android:name=".sync.intent.MarkPmtctAndHeiLtfIntentService"
+            android:foregroundServiceType="dataSync"/>
+        <service android:name=".sync.intent.ProcessVisitsIntentService"
+            android:foregroundServiceType="dataSync"/>
+        <service android:name=".sync.intent.PncCloseDateIntentService"
+            android:foregroundServiceType="dataSync"/>
+        <service android:name=".sync.intent.GenerateMonthlyTalliesIntentService"
+            android:foregroundServiceType="dataSync"/>
+        <service android:name=".sync.intent.CloseVmmcMembershipIntentService"
+            android:foregroundServiceType="dataSync"/>
         <receiver
             android:name="org.smartregister.view.receiver.ConnectivityChangeReceiver"
-            android:exported="false">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
         </receiver>
         <receiver
             android:name="org.smartregister.view.receiver.TimeChangedBroadcastReceiver"
-            android:exported="false">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.TIME_SET" />
                 <action android:name="android.intent.action.TIMEZONE_CHANGED" />
