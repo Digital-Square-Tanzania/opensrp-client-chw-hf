@@ -15,8 +15,10 @@ public class Constants extends CoreConstants {
     public static String FILTER_APPOINTMENT_DATE = "FILTER_APPOINTMENT_DATE";
     public static String FILTER_IS_REFERRED = "FILTER_IS_REFERRED";
     public static String FILTER_HIV_STATUS = "FILTER_HIV_STATUS";
+    public static String FILTER_PREP_STATUS = "FILTER_PREP_STATUS";
     public static String FILTERS_ENABLED = "FILTERS_ENABLED";
     public static String ENABLE_HIV_STATUS_FILTER = "ENABLE_HIV_STATUS_FILTER";
+    public static String ENABLE_PREP_STATUS_FILTER = "ENABLE_PREP_STATUS_FILTER";
 
     public static int REQUEST_FILTERS = 2004;
 
@@ -762,12 +764,32 @@ public class Constants extends CoreConstants {
             String RECEIVING_REPORTS = "receiving_reports";
         }
 
+        public interface CECAPReportKeys {
+            String MONTHLY_REPORTS = "monthly_reports";
+            String OTHER_MONTHLY_REPORTS = "other_monthly_reports";
+        }
+
+        public interface KvpKeys {
+            String KVP_MONTHLY_REPORT = "kvp_monthly_reports";
+            String KVP_MISSEDAP_REPORT = "kvp_missedap_reports";
+        }
+
         public interface VmmcKeys {
             String VMMC_REPORT = "vmmc_reports";
+            String VMMC_STATIC_REPORT = "vmmc_static_reports";
+            String VMMC_OUTREACH_REPORT = "vmmc_outreach_reports";
 
             String VMMC_SERVICE_REGISTER = "vmmc_service_register";
+            String VMMC_STATIC_SERVICE_REGISTER = "vmmc_static_service_register";
+            String VMMC_OUTREACH_SERVICE_REGISTER = "vmmc_outreach_service_register";
 
             String VMMC_THEATRE_REGISTER = "vmmc_theatre_register";
+            String VMMC_STATIC_THEATRE_REGISTER = "vmmc_static_theatre_register";
+            String VMMC_OUTREACH_THEATRE_REGISTER = "vmmc_outreach_theatre_register";
+
+            String VMMC_LIST_OF_AE_REGISTER = "vmmc_list_of_ae_register";
+            String VMMC_STATIC_LIST_OF_AE_REGISTER = "vmmc_static_list_of_ae_register";
+            String VMMC_OUTREACH_LIST_OF_AE_REGISTER = "vmmc_outreach_list_of_ae_register";
         }
 
         public interface ReportTypes {
@@ -796,6 +818,10 @@ public class Constants extends CoreConstants {
             String FP_REPORT = "fp_report";
 
             String SBC_REPORT = "sbc_report";
+
+            String ASRH_REPORT = "asrh_report";
+
+            String CECAP_REPORT = "cecap_report";
         }
 
         public interface ReportPaths {
@@ -827,17 +853,44 @@ public class Constants extends CoreConstants {
 
             String CONDOM_DISTRIBUTION_RECEIVING_REPORT_PATH = "condom-distribution-receiving-report";
 
-            String KVP_REPORT_PATH = "kvp-report";
+            String KVP_REPORT_PATH = "kvp-monthly-report";
+
+            String KVP_MISSEDAP_REPORT_PATH = "kvp-missedap-report";
 
             String VMMC_REPORT_PATH = "vmmc-report";
 
+            String VMMC_STATIC_REPORT_PATH = "vmmc-static-report";
+
+            String VMMC_OUTREACH_REPORT_PATH = "vmmc-outreach-report";
+
             String VMMC_REGISTER_PATH = "vmmc-service-register";
 
+            String VMMC_STATIC_REGISTER_PATH = "vmmc-static-service-register";
+
+            String VMMC_OUTREACH_REGISTER_PATH = "vmmc-outreach-service-register";
+
             String VMMC_THEATRE_REGISTER_PATH = "vmmc-theatre-register";
+
+            String VMMC_STATIC_THEATRE_REGISTER_PATH = "vmmc-static-theatre-register";
+
+            String VMMC_OUTREACH_THEATRE_REGISTER_PATH = "vmmc-outreach-theatre-register";
+
+            String VMMC_LIST_OF_AE_PATH = "vmmc-list-of-ae-register";
+
+            String VMMC_STATIC_LIST_OF_AE_PATH = "vmmc-static-list-of-ae-register";
+
+            String VMMC_OUTREACH__LIST_OF_AE_PATH = "vmmc-outreach-list-of-ae-register";
 
             String FP_REPORT_PATH = "fp-report";
 
             String SBC_REPORT_PATH = "sbc-report";
+
+            String CECAP_REPORT_PATH = "cecap-report";
+
+            String CECAP_OTHER_REPORT_PATH = "cecap-other-report";
+
+            String ASRH_REPORT_PATH = "asrh-report";
+
         }
     }
 
