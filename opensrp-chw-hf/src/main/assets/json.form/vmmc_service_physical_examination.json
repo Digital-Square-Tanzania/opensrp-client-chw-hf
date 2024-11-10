@@ -152,6 +152,10 @@
         "v_min": {
           "value": "20",
           "err": "client weight must be equal or greater than 20kg"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
         }
       },
       {
@@ -251,9 +255,10 @@
         "openmrs_entity_parent": "",
         "toaster_type": "problem",
         "relevance": {
-          "step1:pulse_rate": {
-            "type": "numeric",
-            "ex": "lessThan(.,\"60\")"
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_physcial_exam_relevance.yml"
+            }
           }
         }
       },
@@ -266,9 +271,10 @@
         "openmrs_entity_parent": "",
         "toaster_type": "problem",
         "relevance": {
-          "step1:pulse_rate": {
-            "type": "numeric",
-            "ex": "greaterThan(.,\"100\")"
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_physcial_exam_relevance.yml"
+            }
           }
         }
       },
@@ -426,9 +432,10 @@
         "openmrs_entity_parent": "",
         "toaster_type": "problem",
         "relevance": {
-          "step1:respiration_rate": {
-            "type": "numeric",
-            "ex": "lessThan(.,\"14.0\")"
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_physcial_exam_relevance.yml"
+            }
           }
         }
       },
@@ -441,9 +448,10 @@
         "openmrs_entity_parent": "",
         "toaster_type": "problem",
         "relevance": {
-          "step1:respiration_rate": {
-            "type": "numeric",
-            "ex": "greaterThan(.,\"20\")"
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_physcial_exam_relevance.yml"
+            }
           }
         }
       },
