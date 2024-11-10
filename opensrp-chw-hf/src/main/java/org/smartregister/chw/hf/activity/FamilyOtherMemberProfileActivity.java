@@ -214,6 +214,16 @@ public class FamilyOtherMemberProfileActivity extends CoreFamilyOtherMemberProfi
     }
 
     @Override
+    protected void startCancerPreventiveServicesRegistration() {
+
+    }
+
+    @Override
+    protected void startAsrhRegistration() {
+
+    }
+
+    @Override
     protected void setIndependentClient(boolean b) {
         this.isIndependent = false;
     }
