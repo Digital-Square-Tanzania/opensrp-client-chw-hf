@@ -26,6 +26,10 @@
         android:theme="@style/HFTheme"
         tools:replace="android:theme, android:icon">
         <activity
+            android:name=".activity.PrivacyPolicyActivity"
+            android:exported="false"
+            android:theme="@style/HFTheme" />
+        <activity
             android:name=".activity.RegisterFilterActivity"
             android:exported="false"
             android:theme="@style/HFTheme.NoActionBar"/>
