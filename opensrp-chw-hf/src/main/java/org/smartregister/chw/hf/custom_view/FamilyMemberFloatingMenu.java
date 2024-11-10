@@ -23,6 +23,7 @@ public class FamilyMemberFloatingMenu extends CoreFamilyMemberFloatingMenu {
         referToFacilityLayout.setVisibility(VISIBLE);
         TextView referToFacilityLabel = (TextView) referToFacilityLayout.getChildAt(0);
         referToFacilityLabel.setText(R.string.lost_to_followup_referral);
+        addoLayout.setVisibility(GONE);
     }
 
     @Override
