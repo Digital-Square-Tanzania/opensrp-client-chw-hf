@@ -2,6 +2,8 @@ package org.smartregister.chw.hf.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ImageView;
 
 import androidx.core.content.ContextCompat;
@@ -13,7 +15,10 @@ import org.smartregister.family.util.Constants;
 import org.smartregister.task.SaveTeamLocationsTask;
 import org.smartregister.util.Utils;
 import org.smartregister.view.activity.BaseLoginActivity;
+import org.smartregister.view.activity.SettingsActivity;
 import org.smartregister.view.contract.BaseLoginContract;
+
+import java.util.Objects;
 
 
 public class LoginActivity extends BaseLoginActivity implements BaseLoginContract.View {
@@ -71,4 +76,19 @@ public class LoginActivity extends BaseLoginActivity implements BaseLoginContrac
         startActivity(intent);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        menu.add("Privacy Policy");
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (Objects.requireNonNull(item.getTitle()).toString().equalsIgnoreCase("Privacy Policy")) {
+            this.startActivity(new Intent(this, PrivacyPolicyActivity.class));
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
