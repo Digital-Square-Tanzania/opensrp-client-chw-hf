@@ -592,6 +592,18 @@ public class HeiDao extends AbstractDao {
         return null;
     }
 
+    public static String getOtherReasonsForRequestingTest(String baseEntityId) {
+        String sql = "SELECT other_reason_for_requesting_test " +
+                "FROM ec_hei_followup " +
+                "WHERE entity_id = '" + baseEntityId + "' ORDER BY last_interacted_with DESC LIMIT 1";
+        DataMap<String> dataMap = cursor -> getCursorValue(cursor, "other_reason_for_requesting_test");
+        List<String> res = readData(sql, dataMap);
+        if (res != null && !res.isEmpty() && res.get(0) != null) {
+            return res.get(0);
+        }
+        return null;
+    }
+
     public static String getInfantFeedingPractice(String baseEntityId) {
         String sql = "SELECT infant_feeding_practice " +
                 "FROM ec_hei_followup " +

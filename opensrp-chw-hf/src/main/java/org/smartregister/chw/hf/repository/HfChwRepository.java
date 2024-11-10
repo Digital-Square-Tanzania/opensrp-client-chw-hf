@@ -313,7 +313,8 @@ public class HfChwRepository extends CoreChwRepository {
 
     private static void upgradeToVersion22(SQLiteDatabase db) {
         try {
-            db.execSQL("ALTER TABLE ec_family_member ADD COLUMN IF NOT EXISTS data_source TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_ltfu_feedback ADD COLUMN IF NOT EXISTS last_appointment_date TEXT NULL;");
+            DatabaseMigrationUtils.createAddedECTables(db, new HashSet<>(Arrays.asList("ec_anc_partner_community_followup", "ec_sbc_register", "ec_sbc_visit","ec_sbc_mobilization_session","ec_kvp_prep_register")), HealthFacilityApplication.createCommonFtsObject());
         } catch (Exception e) {
             Timber.e(e, "upgradeToVersion22");
         }
@@ -338,9 +339,28 @@ public class HfChwRepository extends CoreChwRepository {
 
     private static void upgradeToVersion24(SQLiteDatabase db) {
         try {
-            //Force resync of all events to the server fixing an issue in some events not being synched to the server
+            DatabaseMigrationUtils.createAddedECTables(db,
+                    new HashSet<>(Arrays.asList("ec_fp_counseling")),
+                    HealthFacilityApplication.createCommonFtsObject());
+        } catch (Exception e) {
+            Timber.e(e, "upgradeToVersion24");
+        }
+
+        try {
             db.execSQL("UPDATE event SET syncStatus = 'Unsynced';");
             db.execSQL("UPDATE client SET syncStatus = 'Unsynced';");
+        } catch (Exception e) {
+            Timber.e(e, "upgradeToVersion24");
+        }
+
+        try {
+            db.execSQL("ALTER TABLE ec_ltfu_feedback ADD COLUMN IF NOT EXISTS last_appointment_date TEXT NULL;");
+        } catch (Exception e) {
+            Timber.e(e, "upgradeToVersion24");
+        }
+
+        try {
+            DatabaseMigrationUtils.createAddedECTables(db, new HashSet<>(Arrays.asList("ec_anc_partner_community_followup", "ec_sbc_register", "ec_sbc_visit","ec_sbc_mobilization_session","ec_kvp_prep_register")), HealthFacilityApplication.createCommonFtsObject());
         } catch (Exception e) {
             Timber.e(e, "upgradeToVersion24");
         }
@@ -361,6 +381,7 @@ public class HfChwRepository extends CoreChwRepository {
             db.execSQL("ALTER TABLE ec_pmtct_followup ADD COLUMN sample_request_date TEXT NULL;");
             db.execSQL("ALTER TABLE ec_pmtct_followup ADD COLUMN sample_request_time TEXT NULL;");
             db.execSQL("ALTER TABLE ec_pmtct_followup ADD COLUMN reason_for_requesting_test TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_pmtct_followup ADD COLUMN other_reason_for_requesting_test TEXT NULL;");
             db.execSQL("ALTER TABLE ec_pmtct_followup ADD COLUMN on_tb_treatment TEXT NULL;");
             db.execSQL("ALTER TABLE ec_pmtct_followup ADD COLUMN art_drug TEXT NULL;");
 
@@ -368,6 +389,7 @@ public class HfChwRepository extends CoreChwRepository {
             db.execSQL("ALTER TABLE ec_hei_followup ADD COLUMN sample_request_date TEXT NULL;");
             db.execSQL("ALTER TABLE ec_hei_followup ADD COLUMN sample_request_time TEXT NULL;");
             db.execSQL("ALTER TABLE ec_hei_followup ADD COLUMN reason_for_requesting_test TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_hei_followup ADD COLUMN other_reason_for_requesting_test TEXT NULL;");
             db.execSQL("ALTER TABLE ec_hei_followup ADD COLUMN number_of_ctx_days_dispensed TEXT NULL;");
             db.execSQL("ALTER TABLE ec_hei_followup ADD COLUMN infant_feeding_practice TEXT NULL;");
             db.execSQL("ALTER TABLE ec_hei_followup ADD COLUMN last_interacted_with TEXT NULL;");
