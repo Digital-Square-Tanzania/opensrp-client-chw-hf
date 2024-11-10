@@ -14,6 +14,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,6 +22,8 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.loader.content.CursorLoader;
 import androidx.loader.content.Loader;
+
+import com.google.android.material.tabs.TabLayout;
 
 import org.apache.commons.lang3.StringUtils;
 import org.smartregister.chw.anc.util.DBConstants;
@@ -41,6 +44,7 @@ import java.util.List;
 import timber.log.Timber;
 
 public class VmmcRegisterFragment extends CoreVmmcRegisterFragment implements android.view.View.OnClickListener {
+    String customGroupFilter;
 
     private String appointmentDate;
 
@@ -81,6 +85,8 @@ public class VmmcRegisterFragment extends CoreVmmcRegisterFragment implements an
 
         filterSortLayout.setVisibility(android.view.View.VISIBLE);
         filterSortLayout.setOnClickListener(this);
+
+        setUpTabLayout(view, true);
 
     }
 
@@ -168,6 +174,9 @@ public class VmmcRegisterFragment extends CoreVmmcRegisterFragment implements an
         if (filterEnabled) {
             customFilter.append(((VmmcRegisterFragmentPresenter) presenter()).getDueFilterCondition(appointmentDate, filterIsReferred, getContext()));
         }
+        if (StringUtils.isNotBlank(customGroupFilter)) {
+            customFilter.append(MessageFormat.format((" and ( {0} ) "), customGroupFilter));
+        }
         try {
             if (isValidFilterForFts(commonRepository())) {
 
@@ -188,5 +197,80 @@ public class VmmcRegisterFragment extends CoreVmmcRegisterFragment implements an
 
         return query;
     }
+
+    @Override
+    protected int getLayout() {
+        return R.layout.fragment_vmmc_register;
+    }
+
+    protected void setUpTabLayout(View view, boolean enabled) {
+        TabLayout tabLayout = view.findViewById(R.id.tab_layout);
+        if (enabled) {
+            tabLayout.setVisibility(View.VISIBLE);
+            tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+                @Override
+                public void onTabSelected(TabLayout.Tab tab) {
+                    switch (tab.getPosition()) {
+                        case 0:
+                            customGroupFilter = "";
+                            filterandSortExecute();
+                            break;
+                        case 1:
+                            customGroupFilter = getDue();
+                            filterandSortExecute();
+                            break;
+                        case 2:
+                            customGroupFilter = getTomorrowVisitsDue();
+                            filterandSortExecute();
+                            break;
+                        case 3:
+                            customGroupFilter = getOverDue();
+                            filterandSortExecute();
+                            break;
+                        default:
+                            break;
+                    }
+                }
+
+                @Override
+                public void onTabUnselected(TabLayout.Tab tab) {
+                    //do something
+                }
+
+                @Override
+                public void onTabReselected(TabLayout.Tab tab) {
+                    //do something
+                }
+            });
+        }
+    }
+
+    protected String getDue() {
+        return "CASE\n" +
+                "    WHEN next_followup_date is not null AND next_followup_date != 'null'\n" +
+                "        THEN date(substr(next_followup_date, 7, 4) || '-' || substr(next_followup_date, 4, 2) || '-' || substr(next_followup_date, 1, 2)) = date('now')\n" +
+                "    ELSE\n" +
+                "        0 " +
+                "    END";
+    }
+
+    protected String getTomorrowVisitsDue() {
+        return "CASE\n" +
+                "    WHEN next_followup_date is not null AND next_followup_date != 'null'\n" +
+                "        THEN date(substr(next_followup_date, 7, 4) || '-' || substr(next_followup_date, 4, 2) || '-' || substr(next_followup_date, 1, 2)) = date('now','+1 day') " +
+                "    ELSE\n" +
+                "        0 " +
+                "    END";
+    }
+
+    protected String getOverDue() {
+        return "CASE\n" +
+                " WHEN next_followup_date is not null AND next_followup_date != 'null'\n" +
+                "       THEN date(substr(next_followup_date, 7, 4) || '-' || substr(next_followup_date, 4, 2) || '-' || substr(next_followup_date, 1, 2)) < date('now')\n" +
+                "   ELSE\n" +
+                "        0 " +
+                "   END";
+    }
+
 }
 

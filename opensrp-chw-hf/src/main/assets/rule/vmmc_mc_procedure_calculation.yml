@@ -2,7 +2,7 @@
 name: step1_mc_procedure_date
 description: vmmc mc_procedure_date
 priority: 1
-condition: "true"
+condition: "!step1_start_time.isEmpty()"
 actions:
   - "calculation = helper.getDateToday()"
 ---
@@ -33,3 +33,17 @@ priority: 1
 condition: "true"
 actions:
   - "calculation = step1_assistant_first_name +' '+step1_assistant_middle_name +' '+ step1_assistant_last_name"
+---
+name: step1_now_time
+description: vmmc checks
+priority: 1
+condition: "step1_start_time != ''"
+actions:
+  - "def getTime(){
+    import org.joda.time.LocalTime;
+    
+    LocalTime currentTime = LocalTime.now();
+    
+    return currentTime;
+  }"
+  - "calculation = getTime()"

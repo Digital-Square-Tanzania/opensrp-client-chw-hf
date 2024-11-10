@@ -143,7 +143,9 @@ public class HfChwRepository extends CoreChwRepository {
                 String ldReportingIndicatorConfigFile = "config/ld-reporting-indicator-definitions.yml";
                 String motherChampionReportingIndicatorConfigFile = "config/mother_champion-reporting-indicator-definitions.yml";
                 String selfTestingIndicatorConfigFile = "config/self-testing-monthly-report.yml";
-                String vmmcIndicatorConfigFile = "config/vmmc-monthly-report.yml";
+                String vmmcIndicatorConfigFile = "config/vmmc-report.yml";
+                String vmmcStaticIndicatorConfigFile = "config/vmmc-static-report.yml";
+                String vmmcOutreachIndicatorConfigFile = "config/vmmc-outreach-report.yml";
                 String kvpTestingIndicatorConfigFile = "config/kvp-monthly-report.yml";
                 String ltfuIndicatorConfigFile = "config/community-ltfu-summary.yml";
 
@@ -151,7 +153,7 @@ public class HfChwRepository extends CoreChwRepository {
                         Arrays.asList(indicatorsConfigFile, ancIndicatorConfigFile,
                                 pmtctIndicatorConfigFile, pncIndicatorConfigFile,
                                 cbhsReportingIndicatorConfigFile, ldReportingIndicatorConfigFile,
-                                motherChampionReportingIndicatorConfigFile, vmmcIndicatorConfigFile, selfTestingIndicatorConfigFile, kvpTestingIndicatorConfigFile, ltfuIndicatorConfigFile))) {
+                                motherChampionReportingIndicatorConfigFile, vmmcIndicatorConfigFile, vmmcStaticIndicatorConfigFile, vmmcOutreachIndicatorConfigFile, selfTestingIndicatorConfigFile, kvpTestingIndicatorConfigFile, ltfuIndicatorConfigFile))) {
                     reportingLibraryInstance.readConfigFile(configFile, db);
                 }
 
@@ -396,14 +398,16 @@ public class HfChwRepository extends CoreChwRepository {
                 String kvpTestingIndicatorConfigFile = "config/kvp-monthly-report.yml";
                 String ltfuIndicatorConfigFile = "config/community-ltfu-summary.yml";
                 String fpIndicatorConfigFile = "config/fp-reporting-indicator-definitions.yml";
-                String vmmcIndicatorConfigFile = "config/vmmc-monthly-report.yml";
+                String vmmcIndicatorConfigFile = "config/vmmc-report.yml";
+                String vmmcStaticIndicatorConfigFile = "config/vmmc-static-report.yml";
+                String vmmcOutreachIndicatorConfigFile = "config/vmmc-outreach-report.yml";
 
 
                 for (String configFile : Collections.unmodifiableList(
                         Arrays.asList(indicatorsConfigFile, ancIndicatorConfigFile,
                                 pmtctIndicatorConfigFile, pncIndicatorConfigFile,
                                 cbhsReportingIndicatorConfigFile, ldReportingIndicatorConfigFile,
-                                motherChampionReportingIndicatorConfigFile, selfTestingIndicatorConfigFile, kvpTestingIndicatorConfigFile, ltfuIndicatorConfigFile, vmmcIndicatorConfigFile, fpIndicatorConfigFile))) {
+                                motherChampionReportingIndicatorConfigFile, selfTestingIndicatorConfigFile, kvpTestingIndicatorConfigFile, ltfuIndicatorConfigFile, vmmcIndicatorConfigFile, vmmcStaticIndicatorConfigFile, vmmcOutreachIndicatorConfigFile, fpIndicatorConfigFile))) {
                     reportingLibraryInstance.readConfigFile(configFile, db);
                 }
 

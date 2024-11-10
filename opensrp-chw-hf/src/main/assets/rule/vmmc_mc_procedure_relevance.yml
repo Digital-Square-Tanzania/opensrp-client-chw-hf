@@ -20,6 +20,26 @@ condition: "step1_is_male_procedure_circumcision_conducted.equalsIgnoreCase('yes
 actions:
   - "isRelevant = true"
 ---
+name: step1_reason_prolonged_time
+description: reason_prolonged_time relevance
+priority: 1
+condition: "!step1_start_time.isEmpty() && !step1_end_time.isEmpty() && !step1_male_circumcision_method.isEmpty()"
+actions:
+  - "def getTimeDifference(mc_start_time, mc_end_time) {
+          import org.joda.time.LocalTime;
+          import org.joda.time.Minutes;
+
+          LocalTime start_time = LocalTime.parse(mc_start_time);
+          LocalTime end_time = LocalTime.parse(mc_end_time);
+
+          int minutesDiff = Minutes.minutesBetween(start_time, end_time).getMinutes();
+          
+          return minutesDiff;
+
+       }"
+  - "isRelevant = (getTimeDifference(step1_start_time, step1_end_time) > 30 && (step1_male_circumcision_method.equalsIgnoreCase('dorsal_slit') || step1_male_circumcision_method.equalsIgnoreCase('sleeve_resection'))) || 
+        (getTimeDifference(step1_start_time, step1_end_time) > 10 && step1_male_circumcision_method.equalsIgnoreCase('device'))"
+---
 name: step1_aneathesia_administered_conventional
 description: aneathesia_administered_conventional relevance
 priority: 1
@@ -188,6 +208,13 @@ condition: "step1_aneathesia_administered_device.contains('topical_cream')"
 actions:
   - "isRelevant = true"
 ---
+name: step1_reason_max_dosage
+description: reason_max_dosage relevance
+priority: 1
+condition: "((step1_lignocaine_dosage_ml > 5 || step1_bupivacaine_dosage_ml > 5) && global_client_weight > 50) || ((step1_lignocaine_dosage_ml > 4 || step1_bupivacaine_dosage_ml > 4) && (global_client_weight >= 40 && global_client_weight <= 50)) || ((step1_lignocaine_dosage_ml > 3 || step1_bupivacaine_dosage_ml > 3) && (global_client_weight >= 30 && global_client_weight <= 39)) || ((step1_lignocaine_dosage_ml > 2 || step1_bupivacaine_dosage_ml > 2) && (global_client_weight >= 20 && global_client_weight <= 29))"
+actions:
+  - "isRelevant = true"
+---
 name: step1_start_time_topical_cream_application
 description: start_time_topical_cream_application relevance
 priority: 1
@@ -292,4 +319,10 @@ priority: 1
 condition: "step1_desc_of_adverse_event_device_displacement.equalsIgnoreCase('intentional_movement_of_device_by_client_or_self_removal_that_requires_surgical_intervention_hospitalization_transfer') && step1_intraoperative_adverse_event_occured.equalsIgnoreCase('yes')"
 actions:
   - "isRelevant = true"
-
+---
+name: step1_reason_method_change
+description: reason_method_change relevance
+priority: 1
+condition: "((step1_male_circumcision_method.equalsIgnoreCase('dorsal_slit') || step1_male_circumcision_method.equalsIgnoreCase('sleeve_resection')) && global_preferred_client_mc_method.equalsIgnoreCase('device')) || (step1_male_circumcision_method.equalsIgnoreCase('device') && global_preferred_client_mc_method.contains('convectional_surgical_procedure'))"
+actions:
+  - "isRelevant = true"
