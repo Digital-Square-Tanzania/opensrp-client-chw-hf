@@ -106,10 +106,17 @@
         "options": [
           {
             "key": "fsw",
-            "text": "WHR",
+            "text": "FSW",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "fsw"
+          },
+          {
+            "key": "pwud",
+            "text": "PWUD",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "pwud"
           },
           {
             "key": "pwid",
@@ -119,11 +126,18 @@
             "openmrs_entity_id": "pwid"
           },
           {
-            "key": "prisoners",
+            "key": "prisoner",
             "text": "Prisoners",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "prisoners"
+            "openmrs_entity_id": "prisoner"
+          },
+          {
+            "key": "rumandee",
+            "text": "Rumandee",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "rumandee"
           },
           {
             "key": "agyw",
@@ -133,11 +147,25 @@
             "openmrs_entity_id": "agyw"
           },
           {
-            "key": "others",
+            "key": "serodiscordant_couple",
+            "text": "Serodiscordant couple",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "serodiscordant_couple"
+          },
+          {
+            "key": "mobile_population",
+            "text": "Mobile population",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "mobile_population"
+          },
+          {
+            "key": "other_vulnerable_population",
             "text": "Others",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "others"
+            "openmrs_entity_id": "other_vulnerable_population"
           }
         ],
         "v_required": {
@@ -163,10 +191,17 @@
         "options": [
           {
             "key": "fsw",
-            "text": "WHR",
+            "text": "FSW",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "fsw"
+          },
+          {
+            "key": "pwud",
+            "text": "PWUD",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "pwud"
           },
           {
             "key": "pwid",
@@ -176,18 +211,39 @@
             "openmrs_entity_id": "pwid"
           },
           {
-            "key": "prisoners",
+            "key": "prisoner",
             "text": "Prisoners",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "prisoners"
+            "openmrs_entity_id": "prisoner"
           },
           {
-            "key": "others",
+            "key": "rumandee",
+            "text": "Rumandee",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "rumandee"
+          },
+          {
+            "key": "serodiscordant_couple",
+            "text": "Serodiscordant couple",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "serodiscordant_couple"
+          },
+          {
+            "key": "mobile_population",
+            "text": "Mobile population",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "mobile_population"
+          },
+          {
+            "key": "other_vulnerable_population",
             "text": "Others",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "others"
+            "openmrs_entity_id": "other_vulnerable_population"
           }
         ],
         "v_required": {
@@ -219,6 +275,13 @@
             "openmrs_entity_id": "msm"
           },
           {
+            "key": "pwud",
+            "text": "PWUD",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "pwud"
+          },
+          {
             "key": "pwid",
             "text": "PWID",
             "openmrs_entity_parent": "",
@@ -226,18 +289,39 @@
             "openmrs_entity_id": "pwid"
           },
           {
-            "key": "prisoners",
+            "key": "prisoner",
             "text": "Prisoners",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "prisoners"
+            "openmrs_entity_id": "prisoner"
           },
           {
-            "key": "others",
+            "key": "rumandee",
+            "text": "Rumandee",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "rumandee"
+          },
+          {
+            "key": "serodiscordant_couple",
+            "text": "Serodiscordant couple",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "serodiscordant_couple"
+          },
+          {
+            "key": "mobile_population",
+            "text": "Mobile population",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "mobile_population"
+          },
+          {
+            "key": "other_vulnerable_population",
             "text": "Others",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "others"
+            "openmrs_entity_id": "other_vulnerable_population"
           }
         ],
         "v_required": {
