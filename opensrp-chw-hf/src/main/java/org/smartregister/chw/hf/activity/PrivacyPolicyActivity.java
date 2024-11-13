@@ -33,7 +33,7 @@ public class PrivacyPolicyActivity extends AppCompatActivity {
 
         // Load URL in the WebView
         webView.setWebViewClient(new WebViewClient());  // Ensures links open in WebView
-        webView.loadUrl("https://nacp.go.tz/privacy-policy/");
+        webView.loadUrl("https://ucs.nacp.go.tz/privacy-policy/");
     }
 
     @Override
