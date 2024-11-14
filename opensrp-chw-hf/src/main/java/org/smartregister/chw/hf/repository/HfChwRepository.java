@@ -402,6 +402,67 @@ public class HfChwRepository extends CoreChwRepository {
         }
     }
 
+    private static void upgradeToVersion26(SQLiteDatabase db) {
+        try {
+            db.execSQL("ALTER TABLE ec_prep_followup ADD COLUMN prep_pills_number TEXT NULL;");
+
+            db.execSQL("ALTER TABLE ec_vmmc_enrollment ADD COLUMN reffered_from_others TEXT NULL;");
+
+            db.execSQL("ALTER TABLE ec_vmmc_services ADD COLUMN any_complaints_others TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_services ADD COLUMN is_client_diagnosed_with_any_others TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_services ADD COLUMN ctc_name TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_services ADD COLUMN ctc_number TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_services ADD COLUMN hypertension_treatment TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_services ADD COLUMN type_complication_others TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_services ADD COLUMN known_allergies_others TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_services ADD COLUMN client_height TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_services ADD COLUMN bmi TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_services ADD COLUMN penile_size TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_services ADD COLUMN diagnosed_with_hiv_six_month_ago TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_services ADD COLUMN hiv_not_tested_reasons TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_services ADD COLUMN hiv_not_tested_reasons_others TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_services ADD COLUMN self_test_kits_offered TEXT NULL;");
+
+            db.execSQL("ALTER TABLE ec_vmmc_procedure ADD COLUMN reason_prolonged_time TEXT NULL;");
+
+            db.execSQL("ALTER TABLE ec_vmmc_procedure ADD COLUMN lignocaine_dosage_ml TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_procedure ADD COLUMN lignocaine_dosage_percent TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_procedure ADD COLUMN bupivacaine_dosage_ml TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_procedure ADD COLUMN bupivacaine_dosage_percent TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_procedure ADD COLUMN dosage_g TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_procedure ADD COLUMN dosage_percent TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_procedure ADD COLUMN reason_method_change TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_procedure ADD COLUMN start_time_topical_cream_application TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_procedure ADD COLUMN end_time_topical_cream_application TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_procedure ADD COLUMN lot_number TEXT NULL;");
+
+            db.execSQL("ALTER TABLE ec_vmmc_procedure ADD COLUMN reason_method_change TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_procedure ADD COLUMN start_time_topical_cream_application TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_procedure ADD COLUMN end_time_topical_cream_application TEXT NULL;");
+
+
+            db.execSQL("ALTER TABLE ec_vmmc_post_op_and_discharge ADD COLUMN condition_note TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_post_op_and_discharge ADD COLUMN first_vital_sign_respiration_rate TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_post_op_and_discharge ADD COLUMN reason_delay_from_mc TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_post_op_and_discharge ADD COLUMN condition_note TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_post_op_and_discharge ADD COLUMN discharging_provider_name TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_post_op_and_discharge ADD COLUMN first_vital_sign_respiration_rate TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_post_op_and_discharge ADD COLUMN reason_delay_from_mc TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_post_op_and_discharge ADD COLUMN second_vital_sign_respiration_rate TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_post_op_and_discharge ADD COLUMN second_vital_sign_time_taken TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_post_op_and_discharge ADD COLUMN notify_client_has_fever TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_post_op_and_discharge ADD COLUMN notifiable_adverse_event_occured TEXT NULL;");
+
+            db.execSQL("ALTER TABLE ec_vmmc_follow_up_visit ADD COLUMN reason_condom_not_provided TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_follow_up_visit ADD COLUMN other_reason_for_not_providing_condom TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_follow_up_visit ADD COLUMN number_of_bandage_given TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_follow_up_visit ADD COLUMN reason_bandage_not_provided TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_follow_up_visit ADD COLUMN other_reason_for_not_providing_bandage TEXT NULL;");
+        } catch (Exception e) {
+            Timber.e(e);
+        }
+    }
+
     private static void upgradeToVersion10ForBaSouth(SQLiteDatabase db) {
         try {
             db.execSQL("ALTER TABLE ec_family_member ADD COLUMN reasons_for_registration TEXT NULL;");
@@ -539,6 +600,9 @@ public class HfChwRepository extends CoreChwRepository {
                     break;
                 case 25:
                     upgradeToVersion25(db);
+                    break;
+                case 26:
+                    upgradeToVersion26(db);
                     break;
                 default:
                     break;
