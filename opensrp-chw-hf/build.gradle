@@ -294,7 +294,10 @@ dependencies {
         exclude group: 'com.github.chivorns', module: 'smartmaterialspinner'
         exclude group: 'io.realm', module: 'realm-android-library'
         exclude group: 'io.realm', module: 'realm-annotations'
+        exclude group: 'net.zetetic', module: 'android-database-sqlcipher'
     }
+
+    implementation 'net.zetetic:android-database-sqlcipher:4.5.4'
 
     implementation group: 'io.realm', name: 'realm-android-library', version: '10.19.0'
     implementation group: 'io.realm', name: 'realm-annotations', version: '10.19.0'
