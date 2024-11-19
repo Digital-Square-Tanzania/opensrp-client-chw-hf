@@ -15,7 +15,6 @@ import com.vijay.jsonwizard.utils.FormUtils;
 import org.json.JSONException;
 import org.smartregister.chw.core.activity.CoreKvpProfileActivity;
 import org.smartregister.chw.core.utils.CoreConstants;
-import org.smartregister.chw.hf.HealthFacilityApplication;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.dao.HfKvpDao;
 import org.smartregister.chw.hf.utils.AllClientsUtils;
@@ -147,10 +146,6 @@ public class KvpProfileActivity extends CoreKvpProfileActivity {
         client.setColumnmaps(commonPersonObject.getColumnmaps());
 
         AllClientsUtils.updateOptionsMenu(menu, client);
-
-        if (HealthFacilityApplication.getApplicationFlavor().hasKvpPrEP()) {
-            menu.findItem(R.id.action_prep_registration).setVisible(!KvpDao.isRegisteredForPrEP(memberObject.getBaseEntityId()));
-        }
 
         return true;
     }
