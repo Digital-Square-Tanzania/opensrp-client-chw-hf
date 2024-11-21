@@ -26,6 +26,7 @@ import timber.log.Timber;
 public class PrEPVisitInteractor extends BaseKvpVisitInteractor {
 
     String visitType;
+    String clientVisitType;
     protected BaseKvpVisitContract.InteractorCallBack callBack;
 
     public PrEPVisitInteractor(String visitType) {
@@ -98,22 +99,7 @@ public class PrEPVisitInteractor extends BaseKvpVisitInteractor {
     private void evaluatePrEPInitiation(Map<String, List<VisitDetail>> details, String prepVisitType) throws BaseKvpVisitAction.ValidationException {
         JSONObject prepInitiation = FormUtils.getFormUtils().getFormJson(Constants.PrEP_FOLLOWUP_FORMS.INITIATION);
 
-        try {
-            JSONArray fields = prepInitiation.getJSONObject(STEP1).getJSONArray(FIELDS);
-            JSONObject prepStatus = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "prep_status");
-            if (prepVisitType != null && prepVisitType.equalsIgnoreCase("new_client")) {
-                prepStatus.getJSONArray("options").remove(4);
-                prepStatus.getJSONArray("options").remove(2);
-                prepStatus.getJSONArray("options").remove(1);
-            } else if (HfKvpDao.isPrEPInitiated(memberObject.getBaseEntityId())) {
-                prepStatus.getJSONArray("options").remove(3);
-                prepStatus.getJSONArray("options").remove(0);
-            }
-        } catch (Exception e) {
-            Timber.e(e);
-        }
-
-        PrEPInitiationActionHelper actionHelper = new PrEPInitiationActionHelper(memberObject.getBaseEntityId());
+        PrEPInitiationActionHelper actionHelper = new PrEPInitiationActionHelper(memberObject.getBaseEntityId(), prepVisitType);
         BaseKvpVisitAction action = getBuilder(context.getString(R.string.prep_initiation))
                 .withOptional(true)
                 .withDetails(details)
@@ -152,11 +138,15 @@ public class PrEPVisitInteractor extends BaseKvpVisitInteractor {
         @Override
         public String postProcess(String s) {
             if (StringUtils.isNotBlank(visit_type)) {
+                clientVisitType = visit_type;
+                actionList.remove(context.getString(R.string.prep_screening));
+                actionList.remove(context.getString(R.string.prep_initiation));
+                actionList.remove(context.getString(R.string.other_services));
                 try {
                     evaluatePrEPScreening(details);
                    //evaluatePrEPInitiation(details, visit_type);
                 } catch (BaseKvpVisitAction.ValidationException e) {
-                    e.printStackTrace();
+                   Timber.e(e);
                 }
             } else {
                 actionList.remove(context.getString(R.string.prep_screening));
@@ -179,7 +169,7 @@ public class PrEPVisitInteractor extends BaseKvpVisitInteractor {
             if (should_initiate.equalsIgnoreCase("yes")) {
                 try {
                     if (!actionList.containsKey(context.getString(R.string.prep_initiation)))
-                        evaluatePrEPInitiation(details, null);
+                        evaluatePrEPInitiation(details, clientVisitType);
                     evaluateOtherServices(details);
                 } catch (BaseKvpVisitAction.ValidationException e) {
                     e.printStackTrace();
