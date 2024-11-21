@@ -67,6 +67,8 @@ public class PrEPInitiationActionHelper implements BaseKvpVisitAction.KvpVisitAc
                 global.put("prep_status", "");
             }
 
+            global.put("sex", KvpDao.getPrEPMember(baseEntityId).getGender());
+
             try {
                 JSONObject prepStatusNotDiscontinuedObject = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "prep_status_not_discontinued");
                 if (prepVisitStatus != null && prepVisitStatus.equalsIgnoreCase("new_client")) {
