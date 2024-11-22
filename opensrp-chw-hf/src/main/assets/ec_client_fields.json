@@ -8049,6 +8049,13 @@
             "field": "obs.fieldCode",
             "concept": "kvp_visit_date"
           }
+        },
+        {
+          "column_name": "last_interacted_with",
+          "type": "Event",
+          "json_mapping": {
+            "field": "version"
+          }
         }
       ]
     },

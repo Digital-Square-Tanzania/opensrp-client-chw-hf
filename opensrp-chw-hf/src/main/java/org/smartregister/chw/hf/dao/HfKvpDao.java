@@ -25,6 +25,19 @@ public class HfKvpDao extends KvpDao {
         return "";
     }
 
+    public static String getVmmcServices(String baseEntityId) {
+        String sql = "SELECT vmcc_provided FROM ec_kvp_bio_medical_services p " +
+                " WHERE p.entity_id = '" + baseEntityId + "' AND vmcc_provided IS NOT NULL ORDER BY last_interacted_with DESC LIMIT 1";
+
+        DataMap<String> dataMap = cursor -> getCursorValue(cursor, "vmcc_provided");
+
+        List<String> res = readData(sql, dataMap);
+        if (res != null && !res.isEmpty() && res.get(0) != null) {
+            return res.get(0);
+        }
+        return "";
+    }
+
     public static String getClientEnrollmentDate(String baseEntityId) {
         String sql = "SELECT enrollment_date FROM ec_kvp_register p " +
                 " WHERE p.base_entity_id = '" + baseEntityId + "'";

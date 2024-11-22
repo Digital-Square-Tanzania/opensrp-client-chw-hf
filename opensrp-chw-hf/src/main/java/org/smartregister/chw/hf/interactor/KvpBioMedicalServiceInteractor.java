@@ -29,7 +29,6 @@ import org.smartregister.chw.kvp.model.BaseKvpVisitAction;
 import org.smartregister.chw.kvp.util.Constants;
 import org.smartregister.chw.kvp.util.KvpJsonFormUtils;
 import org.smartregister.chw.referral.util.JsonFormConstants;
-import org.smartregister.chw.vmmc.util.JsonFormUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -278,7 +277,9 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
                 .withFormName(Constants.KVP_BIO_MEDICAL_SERVICE_FORMS.KVP_VMMC_SERVICES)
                 .build();
 
-        actionList.put(context.getString(R.string.kvp_vmmc), action);
+        String vmmcServices = HfKvpDao.getVmmcServices(memberObject.getBaseEntityId());
+        if (StringUtils.isBlank(vmmcServices) || vmmcServices.equalsIgnoreCase("not_provided"))
+            actionList.put(context.getString(R.string.kvp_vmmc), action);
     }
 
     private void evaluateCervicalScreening(Map<String, List<VisitDetail>> details) throws BaseKvpVisitAction.ValidationException {
