@@ -257,12 +257,6 @@
           "err": "Please select one"
         },
         "relevance": {
-          "step1:tested_hiv": {
-            "type": "string",
-            "ex": "equalTo(., \"yes\")"
-          }
-        },
-        "relevance": {
           "rules-engine": {
             "ex-rules": {
               "rules-file": "kvp_hts_relevance.yml"

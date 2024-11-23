@@ -96,7 +96,7 @@
       {
         "key": "prompt_for_further_management",
         "type": "toaster_notes",
-        "text": "Client should stop PrEP Services",
+        "text": "Refer for further management of HCV",
         "openmrs_entity_id": "prompt_for_further_management",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",

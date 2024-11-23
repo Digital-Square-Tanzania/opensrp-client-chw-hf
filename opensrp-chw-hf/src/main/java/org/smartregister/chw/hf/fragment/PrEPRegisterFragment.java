@@ -38,6 +38,7 @@ import org.smartregister.chw.core.utils.QueryBuilder;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.activity.PrEPProfileActivity;
 import org.smartregister.chw.hf.activity.RegisterFilterActivity;
+import org.smartregister.chw.hf.model.PrepRegisterFragmentModel;
 import org.smartregister.chw.hf.presenter.PrEPRegisterFragmentPresenter;
 import org.smartregister.commonregistry.CommonRepository;
 import org.smartregister.cursoradapter.SmartRegisterQueryBuilder;
@@ -63,7 +64,7 @@ public class PrEPRegisterFragment extends CoreKvpRegisterFragment implements and
         if (getActivity() == null) {
             return;
         }
-        presenter = new PrEPRegisterFragmentPresenter(this, new CoreKvpRegisterFragmentModel(), null);
+        presenter = new PrEPRegisterFragmentPresenter(this, new PrepRegisterFragmentModel(), null);
     }
 
     @Override
@@ -273,7 +274,7 @@ public class PrEPRegisterFragment extends CoreKvpRegisterFragment implements and
                 "               substr(strftime('%Y-%m-%d', datetime(ec_prep_register.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || " +
                 "               '-' ||  " +
                 "               substr(strftime('%Y-%m-%d', datetime(ec_prep_register.last_interacted_with / 1000, 'unixepoch', 'localtime')), 9, 2) " +
-                "       )  = date('now')" +
+                "       )  = date('now')  AND visit_entity_id IS NOT NULL" +
                 "    END";
     }
 
@@ -288,7 +289,7 @@ public class PrEPRegisterFragment extends CoreKvpRegisterFragment implements and
                 "               substr(strftime('%Y-%m-%d', datetime(ec_prep_register.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || " +
                 "               '-' ||  " +
                 "               substr(strftime('%Y-%m-%d', datetime(ec_prep_register.last_interacted_with / 1000, 'unixepoch', 'localtime')), 9, 2) " +
-                "       )   = date('now','+1 day') " +
+                "       )   = date('now','+1 day')  AND visit_entity_id IS NOT NULL " +
                 "    END";
     }
 
@@ -303,7 +304,7 @@ public class PrEPRegisterFragment extends CoreKvpRegisterFragment implements and
                 "               substr(strftime('%Y-%m-%d', datetime(ec_prep_register.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || " +
                 "               '-' ||  " +
                 "               substr(strftime('%Y-%m-%d', datetime(ec_prep_register.last_interacted_with / 1000, 'unixepoch', 'localtime')), 9, 2) " +
-                "       )  < date('now')" +
+                "       )  < date('now') AND visit_entity_id IS NOT NULL" +
                 "   END";
     }
 }

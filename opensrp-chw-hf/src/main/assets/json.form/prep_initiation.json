@@ -397,7 +397,7 @@
           },
           {
             "key": "others",
-            "text": "Others",
+            "text": "Other",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "others"
           }
@@ -407,7 +407,7 @@
           "err": "Please select at least one"
         },
         "relevance": {
-          "step1:prep_adherence": {
+          "step2:prep_adherence": {
             "type": "string",
             "ex": "equalTo(., \"poor\")"
           }
@@ -425,7 +425,7 @@
           "err": "Please specify"
         },
         "relevance": {
-          "step1:poor_prep_adherence_reason": {
+          "step2:poor_prep_adherence_reason": {
             "ex-checkbox": [
               {
                 "or": [
@@ -522,7 +522,7 @@
           "err": "Please specify"
         },
         "relevance": {
-          "step1:prep_side_effects": {
+          "step2:prep_side_effects": {
             "ex-checkbox": [
               {
                 "or": [
@@ -601,7 +601,7 @@
           "err": "Please enter the reason"
         },
         "relevance": {
-          "step1:reasons_stopping_prep": {
+          "step2:reasons_stopping_prep": {
             "ex-checkbox": [
               {
                 "or": [
@@ -618,7 +618,14 @@
         "hidden": "true",
         "openmrs_entity_id": "prep_initiation_date",
         "openmrs_entity": "concept",
-        "openmrs_entity_parent": ""
+        "openmrs_entity_parent": "",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "prep_initiation_calculation.yml"
+            }
+          }
+        }
       },
       {
         "key": "maximum_date_for_next_visit",
