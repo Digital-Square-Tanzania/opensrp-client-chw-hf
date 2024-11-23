@@ -10,7 +10,9 @@ actions:
 name: step1_pregnancy_breast_feeding_status
 description: pregnancy_breast_feeding_status
 priority: 1
-condition: "global_sex.equalsIgnoreCase('Female') && step1_prep_status != '' && (!(step1_prep_status == 'initiated' || step1_prep_status == 'not_initiated' ))"
+condition: "global_sex.equalsIgnoreCase('Female') && 
+            (!step1_prep_status_not_discontinued.isEmpty() || !step1_prep_status_was_discontinued.isEmpty()) && 
+            step1_prep_status_not_discontinued != 'initiated' && step1_prep_status_not_discontinued != 'not_initiated' "
 actions:
   - "isRelevant = true "
 ---
