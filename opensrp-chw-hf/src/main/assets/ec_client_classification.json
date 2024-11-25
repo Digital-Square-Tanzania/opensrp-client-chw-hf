@@ -626,7 +626,8 @@
             "field_value": "HEI HIV Test Results",
             "creates_case": [
               "ec_hei_hiv_results",
-              "ec_hei"
+              "ec_hei",
+              "ec_lab_requests"
             ]
           },
           {
@@ -1110,6 +1111,48 @@
             "field_value": "SBC Follow-up Visit",
             "creates_case": [
               "ec_sbc_visit"
+            ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "Lab HVL Sample Collection",
+            "creates_case": [
+              "ec_lab_requests"
+            ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "HEI DNA PCR Sample Collection",
+            "creates_case": [
+              "ec_lab_requests"
+            ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "HVL Processing",
+            "creates_case": [
+              "ec_lab_requests"
+            ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "Lab HVL Results",
+            "creates_case": [
+              "ec_lab_requests"
+            ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "HEID Test Results",
+            "creates_case": [
+              "ec_lab_requests"
+            ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "PMTCT HVL Results",
+            "creates_case": [
+              "ec_lab_requests"
             ]
           }
         ]

@@ -43,6 +43,12 @@ public class HfChwRepository extends CoreChwRepository {
         this.context = context;
     }
 
+    @Override
+    public void onCreate(SQLiteDatabase database) {
+        super.onCreate(database);
+        UniqueLabTestSampleTrackingIdRepository.createTable(database);
+    }
+
     private static void upgradeToVersion2(Context context, SQLiteDatabase db) {
         try {
             db.execSQL(VaccineRepository.UPDATE_TABLE_ADD_EVENT_ID_COL);
@@ -143,7 +149,9 @@ public class HfChwRepository extends CoreChwRepository {
                 String ldReportingIndicatorConfigFile = "config/ld-reporting-indicator-definitions.yml";
                 String motherChampionReportingIndicatorConfigFile = "config/mother_champion-reporting-indicator-definitions.yml";
                 String selfTestingIndicatorConfigFile = "config/self-testing-monthly-report.yml";
-                String vmmcIndicatorConfigFile = "config/vmmc-monthly-report.yml";
+                String vmmcIndicatorConfigFile = "config/vmmc-report.yml";
+                String vmmcStaticIndicatorConfigFile = "config/vmmc-static-report.yml";
+                String vmmcOutreachIndicatorConfigFile = "config/vmmc-outreach-report.yml";
                 String kvpTestingIndicatorConfigFile = "config/kvp-monthly-report.yml";
                 String ltfuIndicatorConfigFile = "config/community-ltfu-summary.yml";
 
@@ -151,7 +159,7 @@ public class HfChwRepository extends CoreChwRepository {
                         Arrays.asList(indicatorsConfigFile, ancIndicatorConfigFile,
                                 pmtctIndicatorConfigFile, pncIndicatorConfigFile,
                                 cbhsReportingIndicatorConfigFile, ldReportingIndicatorConfigFile,
-                                motherChampionReportingIndicatorConfigFile, vmmcIndicatorConfigFile, selfTestingIndicatorConfigFile, kvpTestingIndicatorConfigFile, ltfuIndicatorConfigFile))) {
+                                motherChampionReportingIndicatorConfigFile, vmmcIndicatorConfigFile, vmmcStaticIndicatorConfigFile, vmmcOutreachIndicatorConfigFile, selfTestingIndicatorConfigFile, kvpTestingIndicatorConfigFile, ltfuIndicatorConfigFile))) {
                     reportingLibraryInstance.readConfigFile(configFile, db);
                 }
 
@@ -330,9 +338,102 @@ public class HfChwRepository extends CoreChwRepository {
 
     private static void upgradeToVersion24(SQLiteDatabase db) {
         try {
+            //Force resync of all events to the server fixing an issue in some events not being synched to the server
             db.execSQL("UPDATE event SET syncStatus = 'Unsynced';");
+            db.execSQL("UPDATE client SET syncStatus = 'Unsynced';");
         } catch (Exception e) {
             Timber.e(e, "upgradeToVersion24");
+        }
+    }
+
+    private static void upgradeToVersion25(SQLiteDatabase db) {
+        try {
+            DatabaseMigrationUtils.createAddedECTables(db,
+                    new HashSet<>(Arrays.asList("ec_lab_requests", "ec_lab_manifests", "ec_lab_settings")),
+                    HealthFacilityApplication.createCommonFtsObject());
+        } catch (Exception e) {
+            Timber.e(e, "upgradeToVersion25");
+        }
+
+        try {
+            db.execSQL("ALTER TABLE ec_pmtct_followup ADD COLUMN requester_clinician_name TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_pmtct_followup ADD COLUMN requester_phone_number TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_pmtct_followup ADD COLUMN sample_request_date TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_pmtct_followup ADD COLUMN sample_request_time TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_pmtct_followup ADD COLUMN reason_for_requesting_test TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_pmtct_followup ADD COLUMN on_tb_treatment TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_pmtct_followup ADD COLUMN art_drug TEXT NULL;");
+
+            db.execSQL("ALTER TABLE ec_hei_followup ADD COLUMN requester_phone_number TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_hei_followup ADD COLUMN sample_request_date TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_hei_followup ADD COLUMN sample_request_time TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_hei_followup ADD COLUMN reason_for_requesting_test TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_hei_followup ADD COLUMN number_of_ctx_days_dispensed TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_hei_followup ADD COLUMN infant_feeding_practice TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_hei_followup ADD COLUMN last_interacted_with TEXT NULL;");
+        } catch (Exception e) {
+            Timber.e(e);
+        }
+    }
+
+    private static void upgradeToVersion26(SQLiteDatabase db) {
+        try {
+            db.execSQL("ALTER TABLE ec_prep_followup ADD COLUMN prep_pills_number TEXT NULL;");
+
+            db.execSQL("ALTER TABLE ec_vmmc_enrollment ADD COLUMN reffered_from_others TEXT NULL;");
+
+            db.execSQL("ALTER TABLE ec_vmmc_services ADD COLUMN any_complaints_others TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_services ADD COLUMN is_client_diagnosed_with_any_others TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_services ADD COLUMN ctc_name TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_services ADD COLUMN ctc_number TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_services ADD COLUMN hypertension_treatment TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_services ADD COLUMN type_complication_others TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_services ADD COLUMN known_allergies_others TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_services ADD COLUMN client_height TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_services ADD COLUMN bmi TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_services ADD COLUMN penile_size TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_services ADD COLUMN diagnosed_with_hiv_six_month_ago TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_services ADD COLUMN hiv_not_tested_reasons TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_services ADD COLUMN hiv_not_tested_reasons_others TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_services ADD COLUMN self_test_kits_offered TEXT NULL;");
+
+            db.execSQL("ALTER TABLE ec_vmmc_procedure ADD COLUMN reason_prolonged_time TEXT NULL;");
+
+            db.execSQL("ALTER TABLE ec_vmmc_procedure ADD COLUMN lignocaine_dosage_ml TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_procedure ADD COLUMN lignocaine_dosage_percent TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_procedure ADD COLUMN bupivacaine_dosage_ml TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_procedure ADD COLUMN bupivacaine_dosage_percent TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_procedure ADD COLUMN dosage_g TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_procedure ADD COLUMN dosage_percent TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_procedure ADD COLUMN reason_method_change TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_procedure ADD COLUMN start_time_topical_cream_application TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_procedure ADD COLUMN end_time_topical_cream_application TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_procedure ADD COLUMN lot_number TEXT NULL;");
+
+            db.execSQL("ALTER TABLE ec_vmmc_procedure ADD COLUMN reason_method_change TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_procedure ADD COLUMN start_time_topical_cream_application TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_procedure ADD COLUMN end_time_topical_cream_application TEXT NULL;");
+
+
+            db.execSQL("ALTER TABLE ec_vmmc_post_op_and_discharge ADD COLUMN condition_note TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_post_op_and_discharge ADD COLUMN first_vital_sign_respiration_rate TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_post_op_and_discharge ADD COLUMN reason_delay_from_mc TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_post_op_and_discharge ADD COLUMN condition_note TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_post_op_and_discharge ADD COLUMN discharging_provider_name TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_post_op_and_discharge ADD COLUMN first_vital_sign_respiration_rate TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_post_op_and_discharge ADD COLUMN reason_delay_from_mc TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_post_op_and_discharge ADD COLUMN second_vital_sign_respiration_rate TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_post_op_and_discharge ADD COLUMN second_vital_sign_time_taken TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_post_op_and_discharge ADD COLUMN notify_client_has_fever TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_post_op_and_discharge ADD COLUMN notifiable_adverse_event_occured TEXT NULL;");
+
+            db.execSQL("ALTER TABLE ec_vmmc_follow_up_visit ADD COLUMN reason_condom_not_provided TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_follow_up_visit ADD COLUMN other_reason_for_not_providing_condom TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_follow_up_visit ADD COLUMN number_of_bandage_given TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_follow_up_visit ADD COLUMN reason_bandage_not_provided TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_vmmc_follow_up_visit ADD COLUMN other_reason_for_not_providing_bandage TEXT NULL;");
+        } catch (Exception e) {
+            Timber.e(e);
         }
     }
 
@@ -374,14 +475,16 @@ public class HfChwRepository extends CoreChwRepository {
                 String kvpTestingIndicatorConfigFile = "config/kvp-monthly-report.yml";
                 String ltfuIndicatorConfigFile = "config/community-ltfu-summary.yml";
                 String fpIndicatorConfigFile = "config/fp-reporting-indicator-definitions.yml";
-                String vmmcIndicatorConfigFile = "config/vmmc-monthly-report.yml";
+                String vmmcIndicatorConfigFile = "config/vmmc-report.yml";
+                String vmmcStaticIndicatorConfigFile = "config/vmmc-static-report.yml";
+                String vmmcOutreachIndicatorConfigFile = "config/vmmc-outreach-report.yml";
 
 
                 for (String configFile : Collections.unmodifiableList(
                         Arrays.asList(indicatorsConfigFile, ancIndicatorConfigFile,
                                 pmtctIndicatorConfigFile, pncIndicatorConfigFile,
                                 cbhsReportingIndicatorConfigFile, ldReportingIndicatorConfigFile,
-                                motherChampionReportingIndicatorConfigFile, selfTestingIndicatorConfigFile, kvpTestingIndicatorConfigFile, ltfuIndicatorConfigFile, vmmcIndicatorConfigFile, fpIndicatorConfigFile))) {
+                                motherChampionReportingIndicatorConfigFile, selfTestingIndicatorConfigFile, kvpTestingIndicatorConfigFile, ltfuIndicatorConfigFile, vmmcIndicatorConfigFile, vmmcStaticIndicatorConfigFile, vmmcOutreachIndicatorConfigFile, fpIndicatorConfigFile))) {
                     reportingLibraryInstance.readConfigFile(configFile, db);
                 }
 
@@ -468,6 +571,12 @@ public class HfChwRepository extends CoreChwRepository {
                     break;
                 case 24:
                     upgradeToVersion24(db);
+                    break;
+                case 25:
+                    upgradeToVersion25(db);
+                    break;
+                case 26:
+                    upgradeToVersion26(db);
                     break;
                 default:
                     break;

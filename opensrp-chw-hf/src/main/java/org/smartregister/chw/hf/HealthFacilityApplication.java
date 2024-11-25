@@ -40,6 +40,7 @@ import org.smartregister.chw.hf.activity.HtsRegisterActivity;
 import org.smartregister.chw.hf.activity.KvpRegisterActivity;
 import org.smartregister.chw.hf.activity.LDRegisterActivity;
 import org.smartregister.chw.hf.activity.LTFURegisterActivity;
+import org.smartregister.chw.hf.activity.LabRegisterActivity;
 import org.smartregister.chw.hf.activity.LoginActivity;
 import org.smartregister.chw.hf.activity.MalariaRegisterActivity;
 import org.smartregister.chw.hf.activity.PmtctRegisterActivity;
@@ -62,6 +63,7 @@ import org.smartregister.chw.hf.sync.HfSyncConfiguration;
 import org.smartregister.chw.hiv.HivLibrary;
 import org.smartregister.chw.hivst.HivstLibrary;
 import org.smartregister.chw.kvp.KvpLibrary;
+import org.smartregister.chw.lab.LabLibrary;
 import org.smartregister.chw.ld.LDLibrary;
 import org.smartregister.chw.malaria.MalariaLibrary;
 import org.smartregister.chw.pmtct.PmtctLibrary;
@@ -154,6 +156,7 @@ public class HealthFacilityApplication extends CoreChwApplication implements Cor
             registeredActivities.put(CoreConstants.REGISTERED_ACTIVITIES.CDP_REGISTER_ACTIVITY, CdpRegisterActivity.class);
             registeredActivities.put(CoreConstants.REGISTERED_ACTIVITIES.FP_REGISTER_ACTIVITY, FpRegisterActivity.class);
             registeredActivities.put(CoreConstants.REGISTERED_ACTIVITIES.SBC_REGISTER_ACTIVITY, SbcRegisterActivity.class);
+            registeredActivities.put(CoreConstants.REGISTERED_ACTIVITIES.LAB_REGISTER_ACTIVITY, LabRegisterActivity.class);
         }
 //          TODO uncomment these when NACP is ready to test these modules
         //registeredActivities.put(CoreConstants.REGISTERED_ACTIVITIES.TB_REGISTER_ACTIVITY, TbRegisterActivity.class);
@@ -315,6 +318,10 @@ public class HealthFacilityApplication extends CoreChwApplication implements Cor
             SbcLibrary.init(context, getRepository(), BuildConfig.VERSION_CODE, BuildConfig.DATABASE_VERSION);
         }
 
+        if (flavor.hasLab()) {
+            LabLibrary.init(context, getRepository(), BuildConfig.VERSION_CODE, BuildConfig.DATABASE_VERSION);
+        }
+
         //Needed for all clients register
         OpdLibrary.init(context, getRepository(),
                 new OpdConfiguration.Builder(HfAllClientsRegisterQueryProvider.class)
@@ -417,6 +424,8 @@ public class HealthFacilityApplication extends CoreChwApplication implements Cor
         boolean hasMalaria();
 
         boolean hasVmmc();
+
+        boolean hasLab();
 
         boolean hasFp();
 

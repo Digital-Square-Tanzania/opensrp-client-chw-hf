@@ -22,6 +22,9 @@ import org.smartregister.chw.hf.actionhelper.PmtctTbScreeningAction;
 import org.smartregister.chw.hf.actionhelper.PmtctVisitAction;
 import org.smartregister.chw.hf.dao.HfPmtctDao;
 import org.smartregister.chw.hf.utils.Constants;
+import org.smartregister.chw.hiv.dao.HivDao;
+import org.smartregister.chw.lab.dao.LabDao;
+import org.smartregister.chw.lab.domain.TestSample;
 import org.smartregister.chw.pmtct.PmtctLibrary;
 import org.smartregister.chw.pmtct.contract.BasePmtctHomeVisitContract;
 import org.smartregister.chw.pmtct.domain.MemberObject;
@@ -209,7 +212,7 @@ public class PmtctFollowupVisitInteractorFlv implements PmtctFollowupVisitIntera
 
         BasePmtctHomeVisitAction HvlSampleCollection = null;
         try {
-            HvlSampleCollection = new BasePmtctHomeVisitAction.Builder(context, context.getString(R.string.hvl_sample_collection))
+            HvlSampleCollection = new BasePmtctHomeVisitAction.Builder(context, context.getString(R.string.hvl_sample_request))
                     .withOptional(true)
                     .withDetails(details)
                     .withFormName(Constants.JsonForm.getHvlClinicianDetailsForm())
@@ -219,8 +222,9 @@ public class PmtctFollowupVisitInteractorFlv implements PmtctFollowupVisitIntera
             e.printStackTrace();
         }
 
-        if (HfPmtctDao.isEligibleForHlvTest(memberObject.getBaseEntityId()))
-            actionList.put(context.getString(R.string.hvl_sample_collection), HvlSampleCollection);
+        List<TestSample> testSamples = LabDao.getTestSamplesRequestsWithNoResultsBySampleTypeAndPatientId(org.smartregister.chw.lab.util.Constants.SAMPLE_TYPES.HVL, HivDao.getMember(memberObject.getBaseEntityId()).getCtcNumber());
+        if (HfPmtctDao.isEligibleForHvlTest(memberObject.getBaseEntityId()) && (testSamples == null || testSamples.isEmpty()))
+            actionList.put(context.getString(R.string.hvl_sample_request), HvlSampleCollection);
 
         BasePmtctHomeVisitAction Cd4SampleCollection = null;
         try {
@@ -325,7 +329,7 @@ public class PmtctFollowupVisitInteractorFlv implements PmtctFollowupVisitIntera
         public void onPayloadReceived(String jsonPayload) {
             try {
                 JSONObject jsonObject = new JSONObject(jsonPayload);
-                clinician_name = CoreJsonFormUtils.getValue(jsonObject, "clinician_name");
+                clinician_name = CoreJsonFormUtils.getValue(jsonObject, "requester_clinician_name");
             } catch (JSONException e) {
                 Timber.e(e);
             }
@@ -419,7 +423,7 @@ public class PmtctFollowupVisitInteractorFlv implements PmtctFollowupVisitIntera
             } else {
                 actionList.remove(context.getString(R.string.pmtct_counselling_title));
                 actionList.remove(context.getString(R.string.pmtct_baseline_investigation_title));
-                actionList.remove(context.getString(R.string.hvl_sample_collection));
+                actionList.remove(context.getString(R.string.hvl_sample_request));
                 actionList.remove(context.getString(R.string.cd4_sample_collection));
                 actionList.remove(context.getString(R.string.clinical_staging_of_hiv));
                 actionList.remove(context.getString(R.string.tb_screening_title));

@@ -14,7 +14,6 @@ import static org.smartregister.util.Utils.getName;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Build;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,7 +23,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 
 import com.vijay.jsonwizard.utils.FormUtils;
 
@@ -39,6 +37,7 @@ import org.smartregister.chw.core.interactor.CoreChildProfileInteractor;
 import org.smartregister.chw.core.listener.OnClickFloatingMenu;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.core.utils.CoreJsonFormUtils;
+import org.smartregister.chw.hf.HealthFacilityApplication;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.custom_view.PmtctFloatingMenu;
 import org.smartregister.chw.hf.dao.HeiDao;
@@ -50,6 +49,8 @@ import org.smartregister.chw.hf.utils.HeiVisitUtils;
 import org.smartregister.chw.hf.utils.HfChildUtils;
 import org.smartregister.chw.hiv.dao.HivDao;
 import org.smartregister.chw.hiv.domain.HivMemberObject;
+import org.smartregister.chw.lab.dao.LabDao;
+import org.smartregister.chw.lab.domain.TestSample;
 import org.smartregister.chw.pmtct.PmtctLibrary;
 import org.smartregister.chw.pmtct.activity.BasePmtctProfileActivity;
 import org.smartregister.chw.pmtct.dao.PmtctDao;
@@ -72,6 +73,7 @@ import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -166,7 +168,7 @@ public class HeiProfileActivity extends BasePmtctProfileActivity {
                     HeiVisitUtils.manualProcessVisit(lastFollowupVisit);
                     onResume();
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    Timber.e(e);
                 }
             });
             showVisitInProgress();
@@ -237,9 +239,15 @@ public class HeiProfileActivity extends BasePmtctProfileActivity {
             HeiFollowupVisitActivity.startHeiFollowUpActivity(this, baseEntityId, false);
         }
         if (id == R.id.rlHvlResults) {
-            Intent intent = new Intent(this, HeiHivResultsViewActivity.class);
-            intent.putExtra(Constants.ACTIVITY_PAYLOAD.BASE_ENTITY_ID, baseEntityId);
-            startActivity(intent);
+            if (HealthFacilityApplication.getApplicationFlavor().hasLab()) {
+                Intent intent = new Intent(this, LabHvlResultsViewActivity.class);
+                intent.putExtra(Constants.ACTIVITY_PAYLOAD.BASE_ENTITY_ID, baseEntityId);
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(this, HeiHivResultsViewActivity.class);
+                intent.putExtra(Constants.ACTIVITY_PAYLOAD.BASE_ENTITY_ID, baseEntityId);
+                startActivity(intent);
+            }
         }
         if (id == R.id.textview_record_hei_number) {
             JSONObject jsonForm = org.smartregister.chw.core.utils.FormUtils.getFormUtils().getFormJson(getHeiNumberRegistration());
@@ -257,7 +265,7 @@ public class HeiProfileActivity extends BasePmtctProfileActivity {
                 }
 
             } catch (JSONException e) {
-                e.printStackTrace();
+                Timber.e(e);
             }
 
             startFormActivity(jsonForm);
@@ -284,7 +292,7 @@ public class HeiProfileActivity extends BasePmtctProfileActivity {
                 previousHeiNumberJsonField.put(VALUE, heiNumber);
             }
         } catch (JSONException e) {
-            e.printStackTrace();
+            Timber.e(e);
         }
         startFormActivity(jsonForm);
     }
@@ -294,6 +302,7 @@ public class HeiProfileActivity extends BasePmtctProfileActivity {
         super.onResume();
         refreshMedicalHistory(true);
         setupViews();
+        invalidateOptionsMenu();
     }
 
     public @Nullable
@@ -385,7 +394,6 @@ public class HeiProfileActivity extends BasePmtctProfileActivity {
         ((CorePmtctFloatingMenu) basePmtctFloatingMenu).redraw(hasPhoneNumber);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemId = item.getItemId();
@@ -433,8 +441,15 @@ public class HeiProfileActivity extends BasePmtctProfileActivity {
             return true;
         } else if (itemId == R.id.action_edit_hei_number) {
             editHeiNumber();
+        } else if (itemId == org.smartregister.chw.core.R.id.action_collect_dna_pcr_sample) {
+            startLabSampleCollection();
+            return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void startLabSampleCollection() {
+        LabRegisterActivity.startLabRegisterActivity(this, memberObject.getBaseEntityId(), org.smartregister.chw.lab.util.Constants.FORMS.LAB_HEID_SAMPLE_COLLECTION);
     }
 
     @Override
@@ -447,6 +462,11 @@ public class HeiProfileActivity extends BasePmtctProfileActivity {
         }
 
         menu.findItem(R.id.action_edit_hei_number).setVisible(HeiDao.hasHeiNumber(baseEntityId));
+
+        if (HealthFacilityApplication.getApplicationFlavor().hasLab()) {
+            List<TestSample> testSamples = LabDao.getTestSamplesRequestsWithNoResultsBySampleTypeAndPatientId(org.smartregister.chw.lab.util.Constants.SAMPLE_TYPES.HEID, HeiDao.getHeiNumber(baseEntityId));
+            menu.findItem(R.id.action_collect_dna_pcr_sample).setVisible(HeiDao.hasHeiNumber(baseEntityId) && (testSamples == null || testSamples.isEmpty()));
+        }
 
         menu.findItem(R.id.action_remove_member).setVisible(true);
         return true;
@@ -581,7 +601,7 @@ public class HeiProfileActivity extends BasePmtctProfileActivity {
                     return i;
                 }
             } catch (JSONException e) {
-                e.printStackTrace();
+                Timber.e(e);
             }
         }
         return -1;

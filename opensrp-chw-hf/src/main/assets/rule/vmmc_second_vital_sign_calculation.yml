@@ -1,0 +1,21 @@
+---
+name: step1_more_than_time
+description: Calculate the time difference
+priority: 1
+condition: "step1_second_vital_sign_time_taken != '' "
+actions:
+  - "def checkTime(second_vital_sign_time_take, first_vital_sign_time_taken_previous) {
+        import org.joda.time.LocalTime;
+        import org.joda.time.Minutes;
+        
+        LocalTime second_vital_time = LocalTime.parse(second_vital_sign_time_take);
+        LocalTime first_vital_time = LocalTime.parse(first_vital_sign_time_taken_previous);
+        
+        if(second_vital_time.isAfter(first_vital_time)){
+           return 'Correct';
+        } 
+        else {
+           return 'Incorrect';
+        }
+     }"
+  - "calculation = checkTime(step1_second_vital_sign_time_taken, step1_first_time)"

@@ -3,7 +3,7 @@ package org.smartregister.chw.hf;
 public class DefaultHFApplicationFlv implements HealthFacilityApplication.Flavor {
     @Override
     public boolean hasCdp() {
-        return true;
+        return false;
     }
 
     @Override
@@ -23,6 +23,11 @@ public class DefaultHFApplicationFlv implements HealthFacilityApplication.Flavor
 
     @Override
     public boolean hasVmmc() {
+        return true;
+    }
+
+    @Override
+    public boolean hasLab() {
         return true;
     }
 

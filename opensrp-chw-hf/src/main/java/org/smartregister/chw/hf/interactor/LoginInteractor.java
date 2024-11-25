@@ -12,6 +12,8 @@ import org.smartregister.chw.hf.job.CloseVmmcMemberServiceJob;
 import org.smartregister.chw.hf.job.GenerateMonthlyTalliesJob;
 import org.smartregister.chw.hf.job.PncCloseDateServiceJob;
 import org.smartregister.chw.hf.job.ProcessVisitsServiceJob;
+import org.smartregister.chw.hf.job.PullUniqueLabTestSampleTrackingIdsServiceJob;
+import org.smartregister.chw.hf.repository.UniqueLabTestSampleTrackingIdRepository;
 import org.smartregister.immunization.job.VaccineServiceJob;
 import org.smartregister.job.ImageUploadServiceJob;
 import org.smartregister.job.P2pServiceJob;
@@ -67,6 +69,9 @@ public class LoginInteractor extends BaseLoginInteractor implements BaseLoginCon
                 BuildConfig.DATA_SYNC_DURATION_MINUTES), getFlexValue(BuildConfig.DATA_SYNC_DURATION_MINUTES));
         PncCloseDateServiceJob.scheduleJob(PncCloseDateServiceJob.TAG, TimeUnit.MINUTES.toMinutes(
                 BuildConfig.STOCK_USAGE_REPORT_MINUTES), getFlexValue(BuildConfig.STOCK_USAGE_REPORT_MINUTES));
+
+        PullUniqueLabTestSampleTrackingIdsServiceJob.scheduleJob(PullUniqueLabTestSampleTrackingIdsServiceJob.TAG, TimeUnit.MINUTES.toMinutes(
+                BuildConfig.PULL_UNIQUE_IDS_MINUTES), getFlexValue(BuildConfig.PULL_UNIQUE_IDS_MINUTES));
     }
 
     @Override
@@ -86,11 +91,13 @@ public class LoginInteractor extends BaseLoginInteractor implements BaseLoginCon
         ChwIndicatorGeneratingJob.scheduleJobImmediately(ChwIndicatorGeneratingJob.TAG);
         ProcessVisitsServiceJob.scheduleJobImmediately(ProcessVisitsServiceJob.TAG);
         PncCloseDateServiceJob.scheduleJobImmediately(PncCloseDateServiceJob.TAG);
+        PullUniqueLabTestSampleTrackingIdsServiceJob.scheduleJobImmediately(PullUniqueLabTestSampleTrackingIdsServiceJob.TAG);
 //        GenerateMonthlyTalliesJob.scheduleJobImmediately(GenerateMonthlyTalliesJob.TAG);
         P2POptions p2POptions = CoreLibrary.getInstance().getP2POptions();
         if (p2POptions != null && p2POptions.isEnableP2PLibrary()) {
             // Finish processing any unprocessed sync records here
             P2pServiceJob.scheduleJobImmediately(P2pServiceJob.TAG);
         }
+        new UniqueLabTestSampleTrackingIdRepository().releaseReservedIds();
     }
 }

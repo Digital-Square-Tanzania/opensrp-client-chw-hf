@@ -154,7 +154,7 @@ public class FamilyOtherMemberProfileActivity extends CoreFamilyOtherMemberProfi
 
     @Override
     protected void startPmtctRegisration() {
-        //Do nothing - not required here
+        PncRegisterActivity.startPncRegistrationActivity(FamilyOtherMemberProfileActivity.this, baseEntityId, PhoneNumber, Constants.JsonForm.getPmtctRegistrationForClientsPostPnc(), null, familyBaseEntityId, familyName, null, false);
     }
 
     @Override
@@ -211,6 +211,16 @@ public class FamilyOtherMemberProfileActivity extends CoreFamilyOtherMemberProfi
     @Override
     protected void startGbvRegistration() {
         //TO be implemented
+    }
+
+    @Override
+    protected void startCancerPreventiveServicesRegistration() {
+
+    }
+
+    @Override
+    protected void startAsrhRegistration() {
+
     }
 
     @Override

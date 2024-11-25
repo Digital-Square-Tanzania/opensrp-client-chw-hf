@@ -124,26 +124,26 @@
           "1x-A (Other 1st line)"
         ],
         "keys": [
-          "1_gA",
-          "1_bA",
-          "1_cA",
-          "1_kA",
-          "1_pA",
-          "1_rA",
-          "1_uA",
-          "1_qA",
-          "1_xA"
+          "1g-A",
+          "1b-A",
+          "1c-A",
+          "1k-A",
+          "1p-A",
+          "1r-A",
+          "1u-A",
+          "1q-A",
+          "1x-A"
         ],
         "openmrs_choice_ids": {
-          "1_gA": "1_gA",
-          "1_bA": "1_bA",
-          "1_cA": "1_cA",
-          "1_kA": "1_kA",
-          "1_pA": "1_pA",
-          "1_rA": "1_rA",
-          "1_uA": "1_uA",
-          "1_qA": "1_qA",
-          "1_xA": "1_xA"
+          "1g-A": "1g-A",
+          "1b-A": "1b-A",
+          "1c-A": "1c-A",
+          "1k-A": "1k-A",
+          "1p-A": "1p-A",
+          "1r-A": "1r-A",
+          "1u-A": "1u-A",
+          "1q-A": "1q-A",
+          "1x-A": "1x-A"
         },
         "relevance": {
           "step1:arv_line": {
@@ -173,22 +173,22 @@
           "2x-A (Other 2nd line)"
         ],
         "keys": [
-          "2_fA",
-          "2_hA",
-          "2_sA",
-          "2_gA",
-          "2_kA",
-          "2_nA",
-          "2_xA"
+          "2f-A",
+          "2h-A",
+          "2s-A",
+          "2g-A",
+          "2k-A",
+          "2n-A",
+          "2x-A"
         ],
         "openmrs_choice_ids": {
-          "2_fA": "2_fA",
-          "2_hA": "2_hA",
-          "2_sA": "2_sA",
-          "2_gA": "2_gA",
-          "2_kA": "2_kA",
-          "2_nA": "2_nA",
-          "2_xA": "2_xA"
+          "2f-A": "2f-A",
+          "2h-A": "2h-A",
+          "2s-A": "2s-A",
+          "2g-A": "2g-A",
+          "2k-A": "2k-A",
+          "2n-A": "2n-A",
+          "2x-A": "2x-A"
         },
         "relevance": {
           "step1:arv_line": {
@@ -219,24 +219,24 @@
           "3x-A (Other 3rd line)"
         ],
         "keys": [
-          "3_yA",
-          "3_wA",
-          "3_kA",
-          "3_tA",
-          "3_hA",
-          "3_gA",
-          "3_zA",
-          "3_xA"
+          "3y-A",
+          "3w-A",
+          "3k-A",
+          "3t-A",
+          "3h-A",
+          "3g-A",
+          "3z-A",
+          "3x-A"
         ],
         "openmrs_choice_ids": {
-          "3_wA": "3_wA",
-          "3_kA": "3_kA",
-          "3_tA": "3_tA",
-          "3_hA": "3_hA",
-          "3_gA": "3_gA",
-          "3_zA": "3_zA",
-          "3_xA": "3_xA",
-          "3_yA": "3_yA"
+          "3w-A": "3w-A",
+          "3k-A": "3k-A",
+          "3t-A": "3t-A",
+          "3h-A": "3h-A",
+          "3g-A": "3g-A",
+          "3z-A": "3z-A",
+          "3x-A": "3x-A",
+          "3y-A": "3y-A"
         },
         "relevance": {
           "step1:arv_line": {
@@ -336,6 +336,20 @@
           "step1:prescribed_regimes": {
             "type": "string",
             "ex": "equalTo(., \"yes\")"
+          }
+        }
+      },
+      {
+        "key": "art_drug",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "art_drug",
+        "type": "hidden",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "pmtct_prescription_line_calculation.yml"
+            }
           }
         }
       }

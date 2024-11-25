@@ -1,0 +1,7 @@
+---
+name: step1_type_of_sample
+description: Type of Sample Calculation
+priority: 1
+condition: "true"
+actions:
+  - "calculation = step1_separation_done_at_the_facility.equals('yes') ? step1_type_of_sample_after_separation : 'WholeBlood'"

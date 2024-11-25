@@ -4,6 +4,9 @@ import org.joda.time.LocalDate;
 import org.joda.time.Months;
 import org.smartregister.chw.core.dao.CorePmtctDao;
 import org.smartregister.chw.hf.utils.TimeUtils;
+import org.smartregister.chw.hiv.dao.HivDao;
+import org.smartregister.chw.lab.dao.LabDao;
+import org.smartregister.chw.lab.domain.TestSample;
 import org.smartregister.chw.pmtct.domain.MemberObject;
 
 import java.text.ParseException;
@@ -32,24 +35,24 @@ public class HfPmtctDao extends CorePmtctDao {
         return false;
     }
 
-    public static boolean isEligibleForHlvTest(String baseEntityID) {
-        Boolean eligible = isEligibleForHlvTestForNewlyRegisteredClients(baseEntityID);
+    public static boolean isEligibleForHvlTest(String baseEntityID) {
+        Boolean eligible = isEligibleForHvlTestForNewlyRegisteredClients(baseEntityID);
         if (eligible != null) {
             return eligible;
         }
 
-        eligible = isEligibleForHlvTestForNewlyRegisteredClientsWithVisitsButNotTestedViralLoad(baseEntityID);
+        eligible = isEligibleForHvlTestForNewlyRegisteredClientsWithVisitsButNotTestedViralLoad(baseEntityID);
         if (eligible != null) {
             return eligible;
         }
 
 
-        eligible = isEligibleForHlvTestForClientsWithPreviousLackOfSuppression(baseEntityID);
+        eligible = isEligibleForHvlTestForClientsWithPreviousLackOfSuppression(baseEntityID);
         if (eligible != null) {
             return eligible;
         }
 
-        eligible = isEligibleForHlvTestForClientsWithPreviousHvlTests(baseEntityID);
+        eligible = isEligibleForHvlTestForClientsWithPreviousHvlTests(baseEntityID);
         if (eligible != null) {
             return eligible;
         }
@@ -57,7 +60,7 @@ public class HfPmtctDao extends CorePmtctDao {
         return false;
     }
 
-    public static Boolean isEligibleForHlvTestForNewlyRegisteredClients(String baseEntityID) {
+    public static Boolean isEligibleForHvlTestForNewlyRegisteredClients(String baseEntityID) {
         //Checking eligibility for newly registered PMTCT Clients
         String sql = "SELECT known_on_art FROM ec_pmtct_registration p WHERE p.base_entity_id = '" + baseEntityID + "'  AND p.base_entity_id NOT IN (SELECT entity_id FROM ec_pmtct_followup)";
 
@@ -70,7 +73,7 @@ public class HfPmtctDao extends CorePmtctDao {
         return null;
     }
 
-    public static Boolean isEligibleForHlvTestForNewlyRegisteredClientsWithVisitsButNotTestedViralLoad(String baseEntityID) {
+    public static Boolean isEligibleForHvlTestForNewlyRegisteredClientsWithVisitsButNotTestedViralLoad(String baseEntityID) {
         //Checking eligibility for newly registered PMTCT clients with visits but who have not tested Viral Load
         String sql = "SELECT pmtct_register_date FROM ec_pmtct_registration p WHERE p.base_entity_id = '" + baseEntityID + "' AND known_on_art = 'no' AND p.base_entity_id NOT IN (SELECT entity_id FROM ec_pmtct_followup WHERE hvl_sample_id IS NOT NULL)";
 
@@ -82,7 +85,7 @@ public class HfPmtctDao extends CorePmtctDao {
         return null;
     }
 
-    public static Boolean isEligibleForHlvTestForClientsWithPreviousLackOfSuppression(String baseEntityID) {
+    public static Boolean isEligibleForHvlTestForClientsWithPreviousLackOfSuppression(String baseEntityID) {
         //Checking eligibility for  PMTCT clients with lack of suppression after EAC visits
         String sql = "SELECT hvl_collection_date\n" +
                 "FROM (SELECT *\n" +
@@ -126,7 +129,7 @@ public class HfPmtctDao extends CorePmtctDao {
         return null;
     }
 
-    public static Boolean isEligibleForHlvTestForClientsWithPreviousHvlTests(String baseEntityID) {
+    public static Boolean isEligibleForHvlTestForClientsWithPreviousHvlTests(String baseEntityID) {
         //Checking eligibility for  registered PMTCT clients with previous Viral Load tests
         String sql =
                 "SELECT  hvl_collection_date " +
@@ -234,15 +237,15 @@ public class HfPmtctDao extends CorePmtctDao {
     }
 
     public static boolean hasHvlResults(String baseEntityId) {
-        String sql = "SELECT hvl_sample_id from ec_pmtct_followup\n" +
+        String sql = "SELECT sample_id from ec_lab_requests" +
                 "       WHERE entity_id = '" + baseEntityId + "'" +
-                "       AND hvl_sample_id IS NOT NULL";
+                "       AND results IS NOT NULL";
 
 
-        DataMap<String> dataMap = cursor -> getCursorValue(cursor, "hvl_sample_id");
+        DataMap<String> dataMap = cursor -> getCursorValue(cursor, "sample_id");
         List<String> res = readData(sql, dataMap);
 
-        return res != null && res.size() > 0;
+        return res != null && !res.isEmpty();
     }
 
     public static boolean hasCd4Results(String baseEntityId) {
@@ -658,5 +661,134 @@ public class HfPmtctDao extends CorePmtctDao {
     public static void deleteEntryFromTableByFormSubmissionId(String tableName, String submissionId) {
         String sql = "delete from " + tableName + " where base_entity_id = '" + submissionId + "'";
         updateDB(sql);
+    }
+
+
+    public static boolean hasPendingLabSampleCollection(String baseEntityId) {
+        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+
+        String sql = "SELECT sample_request_date " +
+                "FROM ec_pmtct_followup " +
+                "WHERE entity_id = '" + baseEntityId + "' ORDER BY last_interacted_with DESC LIMIT 1";
+        DataMap<String> dataMap = cursor -> getCursorValue(cursor, "sample_request_date");
+        List<String> res = readData(sql, dataMap);
+        if (res != null && !res.isEmpty() && res.get(0) != null) {
+            List<TestSample> sampleRequests = LabDao.getTestSamplesRequestsBySampleTypeAndPatientId(org.smartregister.chw.lab.util.Constants.SAMPLE_TYPES.HVL, HivDao.getMember(baseEntityId).getCtcNumber());
+
+            if (sampleRequests == null || sampleRequests.isEmpty()) {
+                return true;
+            } else {
+                try {
+                    Date sampleRequestDate = df.parse(res.get(0));
+
+                    TestSample testSample = sampleRequests.get(sampleRequests.size() - 1);
+                    Date sampleCollectionDate = df.parse(testSample.getSampleCollectionDate());
+
+                    if (sampleCollectionDate != null) {
+                        return sampleCollectionDate.before(sampleRequestDate);
+                    } else return true;
+                } catch (Exception e) {
+                    Timber.e(e);
+                }
+            }
+
+        }
+        return false;
+    }
+
+    public static String getSampleRequestDate(String baseEntityId) {
+        String sql = "SELECT sample_request_date " +
+                "FROM ec_pmtct_followup " +
+                "WHERE entity_id = '" + baseEntityId + "' ORDER BY last_interacted_with DESC LIMIT 1";
+        DataMap<String> dataMap = cursor -> getCursorValue(cursor, "sample_request_date");
+        List<String> res = readData(sql, dataMap);
+        if (res != null && !res.isEmpty() && res.get(0) != null) {
+            return res.get(0);
+        }
+        return null;
+    }
+
+    public static String getSampleRequestTime(String baseEntityId) {
+        String sql = "SELECT sample_request_time " +
+                "FROM ec_pmtct_followup " +
+                "WHERE entity_id = '" + baseEntityId + "' ORDER BY last_interacted_with DESC LIMIT 1";
+        DataMap<String> dataMap = cursor -> getCursorValue(cursor, "sample_request_time");
+        List<String> res = readData(sql, dataMap);
+        if (res != null && !res.isEmpty() && res.get(0) != null) {
+            return res.get(0);
+        }
+        return null;
+    }
+
+    public static String getRequesterClinicianName(String baseEntityId) {
+        String sql = "SELECT requester_clinician_name " +
+                "FROM ec_pmtct_followup " +
+                "WHERE entity_id = '" + baseEntityId + "' ORDER BY last_interacted_with DESC LIMIT 1";
+        DataMap<String> dataMap = cursor -> getCursorValue(cursor, "requester_clinician_name");
+        List<String> res = readData(sql, dataMap);
+        if (res != null && !res.isEmpty() && res.get(0) != null) {
+            return res.get(0);
+        }
+        return null;
+    }
+
+    public static String getRequesterPhoneNumber(String baseEntityId) {
+        String sql = "SELECT requester_phone_number " +
+                "FROM ec_pmtct_followup " +
+                "WHERE entity_id = '" + baseEntityId + "' ORDER BY last_interacted_with DESC LIMIT 1";
+        DataMap<String> dataMap = cursor -> getCursorValue(cursor, "requester_phone_number");
+        List<String> res = readData(sql, dataMap);
+        if (res != null && !res.isEmpty() && res.get(0) != null) {
+            return res.get(0);
+        }
+        return null;
+    }
+
+    public static String getReasonsForRequestingTest(String baseEntityId) {
+        String sql = "SELECT reason_for_requesting_test " +
+                "FROM ec_pmtct_followup " +
+                "WHERE entity_id = '" + baseEntityId + "' ORDER BY last_interacted_with DESC LIMIT 1";
+        DataMap<String> dataMap = cursor -> getCursorValue(cursor, "reason_for_requesting_test");
+        List<String> res = readData(sql, dataMap);
+        if (res != null && !res.isEmpty() && res.get(0) != null) {
+            return res.get(0);
+        }
+        return null;
+    }
+
+    public static String getOnTbTreatment(String baseEntityId) {
+        String sql = "SELECT on_tb_treatment " +
+                "FROM ec_pmtct_followup " +
+                "WHERE entity_id = '" + baseEntityId + "' ORDER BY last_interacted_with DESC LIMIT 1";
+        DataMap<String> dataMap = cursor -> getCursorValue(cursor, "on_tb_treatment");
+        List<String> res = readData(sql, dataMap);
+        if (res != null && !res.isEmpty() && res.get(0) != null) {
+            return res.get(0);
+        }
+        return null;
+    }
+
+    public static String getArvLine(String baseEntityId) {
+        String sql = "SELECT arv_line " +
+                "FROM ec_pmtct_followup " +
+                "WHERE entity_id = '" + baseEntityId + "' AND arv_line IS NOT NULL ORDER BY last_interacted_with DESC LIMIT 1";
+        DataMap<String> dataMap = cursor -> getCursorValue(cursor, "arv_line");
+        List<String> res = readData(sql, dataMap);
+        if (res != null && !res.isEmpty() && res.get(0) != null) {
+            return res.get(0);
+        }
+        return null;
+    }
+
+    public static String getArvDrug(String baseEntityId) {
+        String sql = "SELECT art_drug " +
+                "FROM ec_pmtct_followup " +
+                "WHERE entity_id = '" + baseEntityId + "' AND art_drug IS NOT NULL ORDER BY last_interacted_with DESC LIMIT 1";
+        DataMap<String> dataMap = cursor -> getCursorValue(cursor, "art_drug");
+        List<String> res = readData(sql, dataMap);
+        if (res != null && !res.isEmpty() && res.get(0) != null) {
+            return res.get(0);
+        }
+        return null;
     }
 }
