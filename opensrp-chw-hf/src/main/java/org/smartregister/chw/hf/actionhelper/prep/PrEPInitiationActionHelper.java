@@ -1,5 +1,7 @@
 package org.smartregister.chw.hf.actionhelper.prep;
 
+import static org.smartregister.family.util.JsonFormUtils.STEP2;
+
 import android.content.Context;
 
 import org.apache.commons.lang3.StringUtils;
@@ -45,27 +47,19 @@ public class PrEPInitiationActionHelper implements BaseKvpVisitAction.KvpVisitAc
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
             JSONObject global = jsonObject.getJSONObject("global");
-            JSONArray fields = jsonObject.getJSONObject(org.smartregister.chw.hf.utils.Constants.JsonFormConstants.STEP1).getJSONArray(org.smartregister.chw.referral.util.JsonFormConstants.FIELDS);
-            JSONObject prepPillsNumber = JsonFormUtils.getFieldJSONObject(fields, "prep_pills_number");
 
-
-            String enrollmentDateString = KvpDao.getPrepInitiationDate(baseEntityId);
-            if (enrollmentDateString != null) {
-                Date enrollmentDate = df.parse(enrollmentDateString);
-                if (enrollmentDate != null) {
-                    Date threeMonthsAgo = new Date(System.currentTimeMillis() - TimeUnit.DAYS.toMillis(90));
-                    if (enrollmentDate.before(threeMonthsAgo)) {
-                        prepPillsNumber.remove("v_max");
-                    }
+            try {
+                String prepStatus = HfKvpDao.getPrepStatus(baseEntityId);
+                if (prepStatus != null) {
+                    global.put("prep_status", prepStatus);
+                } else {
+                    global.put("prep_status", "");
                 }
-            }
-
-            String prepStatus = HfKvpDao.getPrepStatus(baseEntityId);
-            if (prepStatus != null) {
-                global.put("prep_status", prepStatus);
-            } else {
+            } catch (Exception e) {
                 global.put("prep_status", "");
             }
+
+            JSONArray fields = jsonObject.getJSONObject(org.smartregister.chw.hf.utils.Constants.JsonFormConstants.STEP1).getJSONArray(org.smartregister.chw.referral.util.JsonFormConstants.FIELDS);
 
             global.put("sex", KvpDao.getPrEPMember(baseEntityId).getGender());
 
