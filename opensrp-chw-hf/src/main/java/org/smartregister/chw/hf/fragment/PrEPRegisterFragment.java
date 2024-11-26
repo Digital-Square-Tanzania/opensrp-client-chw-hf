@@ -130,7 +130,7 @@ public class PrEPRegisterFragment extends CoreKvpRegisterFragment implements and
                     appointmentDate = data.getStringExtra(FILTER_APPOINTMENT_DATE);
                     appointmentStartDate = data.getStringExtra(FILTER_APPOINTMENT_DATE_RANGE_START_DATE);
                     appointmentEndDate = data.getStringExtra(FILTER_APPOINTMENT_DATE_RANGE_END_DATE);
-                    filter(searchText(), "", ((PrEPRegisterFragmentPresenter) presenter()).getDueFilterCondition(appointmentStartDate, appointmentEndDate, filterIsReferred, filterPrepStatus, getContext()), false);
+                    filter(prepClientsSearchText(), "", ((PrEPRegisterFragmentPresenter) presenter()).getDueFilterCondition(appointmentStartDate, appointmentEndDate, filterIsReferred, filterPrepStatus, getContext()), false);
                 } else {
                     setTextViewDrawableColor(filterSortTextView, R.color.grey);
                     filterSortTextView.setText(R.string.filter);
@@ -139,7 +139,8 @@ public class PrEPRegisterFragment extends CoreKvpRegisterFragment implements and
         }
     }
 
-    private String searchText() {
+
+    private String prepClientsSearchText() {
         String searchTextInput;
         if (this.getSearchView() == null) {
             searchTextInput = "";

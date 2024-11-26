@@ -67,7 +67,7 @@ description: other KVP Groups Calculation
 priority: 1
 condition: "true"
 actions:
-  - "def getOtherKvpGroups(pwud,pwid,sdc,msm,prisoner,rumandee,mobile_population,ovp) {
+  - "def getOtherKvpGroups(pwud,pwid,sdc,msm,prisoner,rumandee,mobile_population,ovp,serodiscordant_couple) {
         String otherGroups = '';
                
         if(pwud.contains('yes')){
@@ -103,6 +103,10 @@ actions:
           otherGroups+='other_vulnerable_population,';
         }
         
+        if(serodiscordant_couple.equals('yes')){
+          otherGroups+='serodiscordant_couple,';
+        }
+        
         if (otherGroups != null && otherGroups.length() > 0 && otherGroups.charAt(otherGroups.length() - 1) == ',') {
           String modified = otherGroups.substring(0, otherGroups.length() - 1);
           return modified;
@@ -110,6 +114,6 @@ actions:
         return otherGroups;
                
      }"
-  - "calculation = '['+getOtherKvpGroups(step1_is_pwud, step2_is_pwid, step5_is_sdc, step4_is_msm, step6_is_prisoner,step6_is_rumandee, step6_is_mobile_population, step6_is_ovp_kvp)+']'"
+  - "calculation = '['+getOtherKvpGroups(step1_is_pwud, step2_is_pwid, step5_is_sdc, step4_is_msm, step6_is_prisoner,step6_is_rumandee, step6_is_mobile_population, step6_is_ovp_kvp, step5_is_sdc)+']'"
 
 
