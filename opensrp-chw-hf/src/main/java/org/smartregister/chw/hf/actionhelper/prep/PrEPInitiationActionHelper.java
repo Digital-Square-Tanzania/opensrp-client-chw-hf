@@ -1,5 +1,7 @@
 package org.smartregister.chw.hf.actionhelper.prep;
 
+import static com.vijay.jsonwizard.constants.JsonFormConstants.TYPE;
+import static com.vijay.jsonwizard.constants.JsonFormConstants.VALUE;
 import static org.smartregister.family.util.JsonFormUtils.STEP2;
 
 import android.content.Context;
@@ -81,6 +83,13 @@ public class PrEPInitiationActionHelper implements BaseKvpVisitAction.KvpVisitAc
                 Timber.e(e);
             }
 
+            String prepInitiationDate = HfKvpDao.getPrepInitiationDate(baseEntityId);
+
+            if (StringUtils.isNotBlank(prepInitiationDate) && !prepInitiationDate.equalsIgnoreCase("-")) {
+                JSONObject original_prep_initiation_date_for_continuing_clients = JsonFormUtils.getFieldJSONObject(fields, "original_prep_initiation_date_for_continuing_clients");
+                original_prep_initiation_date_for_continuing_clients.put(TYPE, "hidden");
+                original_prep_initiation_date_for_continuing_clients.put(VALUE, prepInitiationDate);
+            }
 
             return jsonObject.toString();
         } catch (Exception e) {

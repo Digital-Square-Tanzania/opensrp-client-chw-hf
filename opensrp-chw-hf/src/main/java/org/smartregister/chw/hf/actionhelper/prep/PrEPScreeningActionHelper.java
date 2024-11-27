@@ -76,16 +76,6 @@ public class PrEPScreeningActionHelper implements BaseKvpVisitAction.KvpVisitAct
             }
 
 
-            String prepInitiationDate = HfKvpDao.getPrepInitiationDate(baseEntityId);
-
-            JSONArray fields = jsonObject.getJSONObject(org.smartregister.chw.hf.utils.Constants.JsonFormConstants.STEP1).getJSONArray(org.smartregister.chw.referral.util.JsonFormConstants.FIELDS);
-            if (StringUtils.isNotBlank(prepInitiationDate) && prepInitiationDate.equalsIgnoreCase("-")) {
-                JSONObject original_prep_initiation_date_for_continuing_clients = JsonFormUtils.getFieldJSONObject(fields, "original_prep_initiation_date_for_continuing_clients");
-                original_prep_initiation_date_for_continuing_clients.put(TYPE, "hidden");
-                original_prep_initiation_date_for_continuing_clients.put(VALUE, prepInitiationDate);
-            }
-
-
             return jsonObject.toString();
         } catch (Exception e) {
             Timber.e(e);
