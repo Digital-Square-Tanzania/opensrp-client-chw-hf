@@ -1913,4 +1913,11 @@
     <string name="vmmc_due_clients">Today Visits</string>
     <string name="vmmc_overdue_clients">Missed Visits</string>
 
+    <!--    LAB Module-->
+    <string name="lab">LAB</string>
+
+    <string name="vmmc_tomorrow_visits">Tomorrow visits</string>
+    <string name="vmmc_due_clients">Today Visits</string>
+    <string name="vmmc_overdue_clients">Missed Visits</string>
+
 </resources>
