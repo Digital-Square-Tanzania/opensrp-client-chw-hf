@@ -64,6 +64,15 @@ allprojects {
 
         maven {
             name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/Digital-Square-Tanzania/CircleProgressbar")
+            credentials {
+                username = githubProperties['gpr.usr'] ?: System.getenv("GITHUB_ACTOR")
+                password = githubProperties['gpr.key'] ?: System.getenv("GITHUB_TOKEN")
+            }
+        }
+
+        maven {
+            name = "GitHubPackages"
             /**
              * Configure path of the package repository on Github using the GITHUB_USER_ID and * Git Repository */
             url = uri("https://maven.pkg.github.com/ellykits/neat-android-stepper")
@@ -295,13 +304,17 @@ dependencies {
         exclude group: 'io.realm', module: 'realm-android-library'
         exclude group: 'io.realm', module: 'realm-annotations'
         exclude group: 'com.facebook.soloader', module: 'soloader'
+        exclude group: 'io.realm', module: 'realm-android-library'
+        exclude group: 'io.realm', module: 'realm-annotations'
+        exclude group: 'net.zetetic', module: 'android-database-sqlcipher'
+        exclude group: 'com.github.chivorns', module: 'smartmaterialspinner'
     }
 
     implementation group: 'io.realm', name: 'realm-android-library', version: '10.19.0'
     implementation group: 'io.realm', name: 'realm-annotations', version: '10.19.0'
     implementation 'org.mozilla:rhino:1.7.13' // or a newer stable version
     implementation 'com.facebook.soloader:soloader:0.12.1'
-
+    implementation 'net.zetetic:android-database-sqlcipher:4.5.4'
     implementation('org.smartregister:opensrp-client-chw-ld:1.0.31-NACP-SNAPSHOT@aar') {
         transitive = true
         exclude group: 'org.smartregister', module: 'opensrp-client-core'
@@ -348,7 +361,7 @@ tasks.withType(Test) {
     jacoco.includeNoLocationClasses = true
 }
 
-task jacocoTestReport(type: JacocoReport, dependsOn: ['testNacpDebugUnitTest', 'createNacpDebugCoverageReport']) {
+task jacocoTestReport(type: JacocoReport, dependsOn: ['testNacpDebugUnitTest']) {
     reports {
         xml.enabled = true
         html.enabled = true

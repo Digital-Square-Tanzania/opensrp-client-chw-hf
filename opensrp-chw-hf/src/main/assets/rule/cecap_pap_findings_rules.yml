@@ -1,0 +1,21 @@
+---
+name: step1_test_results_date
+description: test_results_date calculation
+priority: 1
+condition: "true"
+actions:
+  - "calculation = helper.getDateToday()"
+---
+name: step1_prompt
+description: prompt relevance
+priority: 1
+condition: "step1_pap_findings.equals('normal')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_prompt_for_referral
+description: prompt_for_referral relevance
+priority: 1
+condition: "step1_pap_findings.equals('abnormal')"
+actions:
+  - "isRelevant = true"

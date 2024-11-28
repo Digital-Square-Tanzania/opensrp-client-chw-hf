@@ -16,6 +16,8 @@ import static org.smartregister.chw.hf.utils.Constants.ReportConstants.VmmcKeys.
 import static org.smartregister.chw.hf.utils.Constants.ReportConstants.VmmcKeys.VMMC_OUTREACH_REPORT;
 import static org.smartregister.chw.hf.utils.Constants.ReportConstants.VmmcKeys.VMMC_OUTREACH_SERVICE_REGISTER;
 import static org.smartregister.chw.hf.utils.Constants.ReportConstants.VmmcKeys.VMMC_OUTREACH_THEATRE_REGISTER;
+import static org.smartregister.chw.hf.utils.Constants.ReportConstants.ReportPaths.KVP_MISSEDAP_REPORT_PATH;
+import static org.smartregister.chw.hf.utils.Constants.ReportConstants.ReportPaths.KVP_REPORT_PATH;
 import static org.smartregister.chw.hf.utils.Constants.ReportConstants.VmmcKeys.VMMC_REPORT;
 import static org.smartregister.chw.hf.utils.Constants.ReportConstants.VmmcKeys.VMMC_SERVICE_REGISTER;
 import static org.smartregister.chw.hf.utils.Constants.ReportConstants.VmmcKeys.VMMC_STATIC_LIST_OF_AE_REGISTER;
@@ -99,9 +101,26 @@ public class HfWebAppInterface {
                     return "";
 
            }
-        }else if (reportType.equalsIgnoreCase(Constants.ReportConstants.ReportTypes.FP_REPORT)) {
+        } else if (reportType.equalsIgnoreCase(Constants.ReportConstants.ReportTypes.FP_REPORT)) {
             ReportUtils.setPrintJobName("fp_report_ya_mwezi-" + ReportUtils.getReportPeriod() + ".pdf");
             return ReportUtils.FpReport.computeReport(ReportUtils.getReportDate());
+        } else if (reportType.equalsIgnoreCase(Constants.ReportConstants.ReportTypes.SBC_REPORT)) {
+            ReportUtils.setPrintJobName("sbc_report_ya_mwezi-" + ReportUtils.getReportPeriod() + ".pdf");
+            return ReportUtils.SbcReport.computeReport(ReportUtils.getReportDate());
+        } else if (reportType.equalsIgnoreCase(Constants.ReportConstants.ReportTypes.CECAP_REPORT)) {
+            switch (key) {
+                case Constants.ReportConstants.CECAPReportKeys.MONTHLY_REPORTS:
+                    ReportUtils.setPrintJobName("cecap_report_ya_mwezi-" + ReportUtils.getReportPeriod() + ".pdf");
+                    return ReportUtils.CecapReport.computeReport(ReportUtils.getReportDate());
+                case Constants.ReportConstants.CECAPReportKeys.OTHER_MONTHLY_REPORTS:
+                    ReportUtils.setPrintJobName("cecap_other_report_ya_mwezi-" + ReportUtils.getReportPeriod() + ".pdf");
+                    return ReportUtils.CecapReport.computeOtherReport(ReportUtils.getReportDate());
+                default:
+                    return "";
+            }
+        } else if (reportType.equalsIgnoreCase(Constants.ReportConstants.ReportTypes.ASRH_REPORT)) {
+            ReportUtils.setPrintJobName("asrh_report_ya_mwezi-" + ReportUtils.getReportPeriod() + ".pdf");
+            return ReportUtils.AsrhReport.computeReport(ReportUtils.getReportDate());
         } else if (reportType.equalsIgnoreCase(Constants.ReportConstants.ReportTypes.VMMC_REPORT)) {
             switch (key) {
                 case VMMC_REPORT:

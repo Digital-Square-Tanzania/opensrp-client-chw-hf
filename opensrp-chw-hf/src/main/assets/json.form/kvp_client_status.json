@@ -82,6 +82,35 @@
         }
       },
       {
+        "key": "enrollment_date",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "enrollment_date",
+        "type": "date_picker",
+        "hint": "Enrollment date",
+        "expanded": false,
+        "min_date": "01-05-2018",
+        "max_date": "today",
+        "v_required": {
+          "value": "true",
+          "err": "Please answer this question"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kvp_client_status_relevance.yml"
+            }
+          }
+        },
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kvp_client_status_calculation.yml"
+            }
+          }
+        }
+      },
+      {
         "key": "other_kvp_category",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -111,21 +140,21 @@
           },
           {
             "key": "fsw",
-            "text": "FSW",
+            "text": "WHR",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "fsw"
           },
           {
             "key": "msm",
-            "text": "High Risk Men",
+            "text": "MHR",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "msm"
           },
           {
             "key": "agyw",
-            "text": "AGYW",
+            "text": "vAGYW",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "agyw"

@@ -2,6 +2,30 @@
 name: step1_is_the_client_pregnant
 description: is_the_client_pregnant
 priority: 1
-condition: "global_gender.equalsIgnoreCase('female')"
+condition: "global_gender.equalsIgnoreCase('female') && step1_agreed_to_use_prep == 'yes'"
+actions:
+  - "isRelevant = true "
+
+---
+name: step1_is_the_client_breast_feeding
+description: is_the_client_breast_feeding
+priority: 1
+condition: "global_gender.equalsIgnoreCase('female') && step1_agreed_to_use_prep == 'yes' && step1_is_the_client_pregnant == 'no'"
+actions:
+  - "isRelevant = true "
+
+---
+name: step1_nickname
+description: nickname
+priority: 1
+condition: "step1_agreed_to_use_prep != '' && step1_agreed_to_use_prep == 'yes'"
+actions:
+  - "isRelevant = true "
+
+---
+name: step1_sms_notification_service
+description: sms_notification_service
+priority: 1
+condition: "step1_agreed_to_use_prep != '' && step1_agreed_to_use_prep == 'yes'"
 actions:
   - "isRelevant = true "
