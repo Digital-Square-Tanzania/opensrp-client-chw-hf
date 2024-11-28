@@ -300,8 +300,7 @@ public class KvpScreeningJsonFormFragmentPresenter extends JsonWizardFormFragmen
 
                     }
                 }
-            } else if (currentJsonState.getString(ENCOUNTER_TYPE).equalsIgnoreCase(formFragment.getString(R.string.prep_initiation))) {
-                if (mStepName.equals("step2")) {
+            } else if (currentJsonState.getString(ENCOUNTER_TYPE).equalsIgnoreCase(formFragment.getString(R.string.prep_initiation)) && mStepName.equals("step2")) {
                     JSONObject prepStatusObj = JsonFormUtils.getFieldJSONObject(currentJsonState.getJSONObject("step1").getJSONArray(FIELDS), "prep_status");
                     String prepStatus = "";
                     if (prepStatusObj.has(VALUE)) {
@@ -336,8 +335,6 @@ public class KvpScreeningJsonFormFragmentPresenter extends JsonWizardFormFragmen
                     } catch (Exception e) {
                         Timber.e(e);
                     }
-
-                }
             }
 
         } catch (JSONException e) {

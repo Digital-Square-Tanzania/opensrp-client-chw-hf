@@ -295,8 +295,8 @@ public class AllClientsUtils {
         String baseEntityId = commonPersonObject.entityId();
 
         // Retrieve common repository and person object
-        CommonRepository commonRepository = org.smartregister.family.util.Utils.context()
-                .commonrepository(org.smartregister.family.util.Utils.metadata().familyMemberRegister.tableName);
+        CommonRepository commonRepository = Utils.context()
+                .commonrepository(Utils.metadata().familyMemberRegister.tableName);
         CommonPersonObject personObject = commonRepository.findByBaseEntityId(baseEntityId);
         commonPersonObject = new CommonPersonObjectClient(personObject.getCaseId(), personObject.getDetails(), "");
         commonPersonObject.setColumnmaps(personObject.getColumnmaps());

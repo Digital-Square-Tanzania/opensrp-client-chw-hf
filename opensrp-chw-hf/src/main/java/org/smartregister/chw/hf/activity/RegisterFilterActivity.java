@@ -111,10 +111,8 @@ public class RegisterFilterActivity extends AppCompatActivity {
                 }
             }
 
-            if (filterPrepStatus != null) {
-                if (prepStatusFilterOptions.contains(filterPrepStatus)) {
+            if (filterPrepStatus != null && prepStatusFilterOptions.contains(filterPrepStatus)) {
                     prepStatusFilter.setSelection(prepStatusFilterOptions.indexOf(filterPrepStatus));
-                }
             }
         }
     }
