@@ -1,0 +1,21 @@
+---
+name: step1_ost_provided
+description: mat_services relevance
+priority: 1
+condition: "!step1_mat_provided.isEmpty() && step1_mat_provided.equals('yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_needle_syringe_distributed
+description: mat_services relevance
+priority: 1
+condition: "!step1_mat_provided.isEmpty() && step1_mat_provided.equals('yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_number_needle_syringe_distributed
+description: number_of_needle_syringe_distributed relevance
+priority: 1
+condition: "!step1_needle_syringe_distributed.isEmpty() && step1_needle_syringe_distributed.equals('yes')"
+actions:
+  - "isRelevant = true"

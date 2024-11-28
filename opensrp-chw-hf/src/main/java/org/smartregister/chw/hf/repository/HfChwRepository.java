@@ -308,6 +308,7 @@ public class HfChwRepository extends CoreChwRepository {
     private static void upgradeToVersion22(SQLiteDatabase db) {
         try {
             db.execSQL("ALTER TABLE ec_ltfu_feedback ADD COLUMN IF NOT EXISTS last_appointment_date TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_family_member ADD COLUMN IF NOT EXISTS data_source TEXT NULL;");
             DatabaseMigrationUtils.createAddedECTables(db, new HashSet<>(Arrays.asList("ec_anc_partner_community_followup", "ec_sbc_register", "ec_sbc_visit","ec_sbc_mobilization_session","ec_kvp_prep_register")), HealthFacilityApplication.createCommonFtsObject());
         } catch (Exception e) {
             Timber.e(e, "upgradeToVersion22");
@@ -373,6 +374,31 @@ public class HfChwRepository extends CoreChwRepository {
             db.execSQL("ALTER TABLE ec_family_member ADD COLUMN data_source TEXT NULL;");
             db.execSQL("ALTER TABLE ec_prep_register ADD COLUMN agreed_to_use_prep TEXT NULL;");
             db.execSQL("ALTER TABLE ec_prep_register ADD COLUMN agreed_to_use_prep TEXT NULL;");
+        } catch (Exception e) {
+            Timber.e(e);
+        }
+    }
+
+    private static void upgradeToVersion27(SQLiteDatabase db) {
+        try {
+            DatabaseMigrationUtils.createAddedECTables(db, new HashSet<>(Arrays.asList("ec_cecap_register","ec_cecap_visit", "ec_cecap_test_results")), HealthFacilityApplication.createCommonFtsObject());
+            refreshIndicatorQueries(db);
+        } catch (Exception e) {
+            Timber.e(e, "upgradeToVersion27");
+        }
+
+        try {
+            db.execSQL("ALTER TABLE ec_prep_register ADD COLUMN IF NOT EXISTS agreed_to_use_prep TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_kvp_register ADD COLUMN IF NOT EXISTS other_screened_client_group TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_kvp_bio_medical_services ADD COLUMN IF NOT EXISTS number_needle_syringe_distributed TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_kvp_bio_medical_services ADD COLUMN IF NOT EXISTS ost_provided TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_prep_followup ADD COLUMN IF NOT EXISTS prep_pills_number TEXT NULL;");
+            db.execSQL("ALTER TABLE ec_kvp_bio_medical_services ADD COLUMN IF NOT EXISTS last_interacted_with TEXT NULL;");
+        } catch (Exception e) {
+            Timber.e(e, "upgradeToVersion27");
+        }
+        try {
+            db.execSQL("ALTER TABLE ec_anc_followup ADD COLUMN hivst_kits_distributed TEXT NULL;");
         } catch (Exception e) {
             Timber.e(e);
         }
@@ -480,13 +506,16 @@ public class HfChwRepository extends CoreChwRepository {
                 String vmmcIndicatorConfigFile = "config/vmmc-report.yml";
                 String vmmcStaticIndicatorConfigFile = "config/vmmc-static-report.yml";
                 String vmmcOutreachIndicatorConfigFile = "config/vmmc-outreach-report.yml";
+                String cecapIndicatorConfigFile = "config/cecap-reporting-indicator-definitions.yml";
+                String cecapOtherReportsIndicatorConfigFile = "config/cecap-other-reporting-indicator-definitions.yml";
+                String asrhReportsIndicatorConfigFile = "config/asrh-reporting-indicator-definitions.yml";
 
 
                 for (String configFile : Collections.unmodifiableList(
                         Arrays.asList(indicatorsConfigFile, ancIndicatorConfigFile,
                                 pmtctIndicatorConfigFile, pncIndicatorConfigFile,
                                 cbhsReportingIndicatorConfigFile, ldReportingIndicatorConfigFile,
-                                motherChampionReportingIndicatorConfigFile, selfTestingIndicatorConfigFile, kvpTestingIndicatorConfigFile, ltfuIndicatorConfigFile, vmmcIndicatorConfigFile, vmmcStaticIndicatorConfigFile, vmmcOutreachIndicatorConfigFile, fpIndicatorConfigFile))) {
+                                motherChampionReportingIndicatorConfigFile, selfTestingIndicatorConfigFile, kvpTestingIndicatorConfigFile, ltfuIndicatorConfigFile, vmmcIndicatorConfigFile, vmmcStaticIndicatorConfigFile, vmmcOutreachIndicatorConfigFile, fpIndicatorConfigFile, cecapIndicatorConfigFile, cecapOtherReportsIndicatorConfigFile,asrhReportsIndicatorConfigFile))) {
                     reportingLibraryInstance.readConfigFile(configFile, db);
                 }
 
@@ -579,6 +608,9 @@ public class HfChwRepository extends CoreChwRepository {
                     break;
                 case 26:
                     upgradeToVersion26(db);
+                    break;
+                case 27:
+                    upgradeToVersion27(db);
                     break;
                 default:
                     break;

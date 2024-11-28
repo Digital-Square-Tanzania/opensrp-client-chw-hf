@@ -16,6 +16,7 @@ import org.smartregister.CoreLibrary;
 import org.smartregister.P2POptions;
 import org.smartregister.chw.anc.AncLibrary;
 import org.smartregister.chw.cdp.CdpLibrary;
+import org.smartregister.chw.cecap.CecapLibrary;
 import org.smartregister.chw.core.application.CoreChwApplication;
 import org.smartregister.chw.core.contract.CoreApplication;
 import org.smartregister.chw.core.loggers.CrashlyticsTree;
@@ -28,6 +29,7 @@ import org.smartregister.chw.fp.FpLibrary;
 import org.smartregister.chw.hf.activity.AllClientsRegisterActivity;
 import org.smartregister.chw.hf.activity.AncRegisterActivity;
 import org.smartregister.chw.hf.activity.CdpRegisterActivity;
+import org.smartregister.chw.hf.activity.CecapRegisterActivity;
 import org.smartregister.chw.hf.activity.ChildRegisterActivity;
 import org.smartregister.chw.hf.activity.FamilyProfileActivity;
 import org.smartregister.chw.hf.activity.FamilyRegisterActivity;
@@ -154,6 +156,7 @@ public class HealthFacilityApplication extends CoreChwApplication implements Cor
             registeredActivities.put(CoreConstants.REGISTERED_ACTIVITIES.CDP_REGISTER_ACTIVITY, CdpRegisterActivity.class);
             registeredActivities.put(CoreConstants.REGISTERED_ACTIVITIES.FP_REGISTER_ACTIVITY, FpRegisterActivity.class);
             registeredActivities.put(CoreConstants.REGISTERED_ACTIVITIES.SBC_REGISTER_ACTIVITY, SbcRegisterActivity.class);
+            registeredActivities.put(CoreConstants.REGISTERED_ACTIVITIES.CECAP_REGISTER_ACTIVITY, CecapRegisterActivity.class);
         }
 //          TODO uncomment these when NACP is ready to test these modules
         //registeredActivities.put(CoreConstants.REGISTERED_ACTIVITIES.TB_REGISTER_ACTIVITY, TbRegisterActivity.class);
@@ -265,6 +268,10 @@ public class HealthFacilityApplication extends CoreChwApplication implements Cor
 
         if (flavor.hasCdp()) {
             CdpLibrary.init(context, getRepository(), BuildConfig.VERSION_CODE, BuildConfig.DATABASE_VERSION);
+        }
+
+        if (flavor.hasCecap()) {
+            CecapLibrary.init(context, getRepository(), BuildConfig.VERSION_CODE, BuildConfig.DATABASE_VERSION);
         }
 
         try {
@@ -425,6 +432,8 @@ public class HealthFacilityApplication extends CoreChwApplication implements Cor
         boolean hasChildModule();
 
         boolean hasSbc();
+
+        boolean hasCecap();
 
         boolean hasMap();
     }

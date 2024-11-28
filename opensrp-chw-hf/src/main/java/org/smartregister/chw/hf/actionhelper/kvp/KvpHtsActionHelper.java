@@ -6,6 +6,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.core.utils.CoreJsonFormUtils;
+import org.smartregister.chw.hf.dao.HfKvpDao;
+import org.smartregister.chw.kvp.domain.MemberObject;
 import org.smartregister.chw.kvp.domain.VisitDetail;
 import org.smartregister.chw.kvp.model.BaseKvpVisitAction;
 
@@ -14,9 +16,14 @@ import java.util.Map;
 
 public class KvpHtsActionHelper implements BaseKvpVisitAction.KvpVisitActionHelper {
 
+    protected MemberObject memberObject;
     protected String hiv_status;
-    private String previous_hiv_testing_method;
+    private String testedHiv;
     private String jsonPayload;
+
+    public KvpHtsActionHelper(MemberObject memberObject) {
+        this.memberObject = memberObject;
+    }
 
     @Override
     public void onJsonFormLoaded(String jsonPayload, Context context, Map<String, List<VisitDetail>> map) {
@@ -27,6 +34,11 @@ public class KvpHtsActionHelper implements BaseKvpVisitAction.KvpVisitActionHelp
     public String getPreProcessed() {
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
+            JSONObject global = jsonObject.getJSONObject("global");
+
+            String hivStatus = HfKvpDao.getHivStatus(memberObject.getBaseEntityId());
+            global.put("hiv_status", hivStatus);
+
             return jsonObject.toString();
         } catch (JSONException e) {
             e.printStackTrace();
@@ -39,7 +51,7 @@ public class KvpHtsActionHelper implements BaseKvpVisitAction.KvpVisitActionHelp
     public void onPayloadReceived(String jsonPayload) {
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
-            previous_hiv_testing_method = CoreJsonFormUtils.getValue(jsonObject, "previous_hiv_testing_method");
+            testedHiv = CoreJsonFormUtils.getValue(jsonObject, "tested_hiv");
             hiv_status = CoreJsonFormUtils.getValue(jsonObject, "hiv_status");
         } catch (JSONException e) {
             e.printStackTrace();
@@ -68,7 +80,7 @@ public class KvpHtsActionHelper implements BaseKvpVisitAction.KvpVisitActionHelp
 
     @Override
     public BaseKvpVisitAction.Status evaluateStatusOnPayload() {
-        if (StringUtils.isBlank(previous_hiv_testing_method))
+        if (StringUtils.isBlank(testedHiv))
             return BaseKvpVisitAction.Status.PENDING;
         else {
             return BaseKvpVisitAction.Status.COMPLETED;

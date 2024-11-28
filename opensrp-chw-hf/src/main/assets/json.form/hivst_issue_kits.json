@@ -86,7 +86,7 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "self_test_kit_given",
-        "label": "Was the client provided with HIVST kit?",
+        "label": "Was the client provided with HIVST kit for him/herself?",
         "text_color": "#000000",
         "type": "native_radio",
         "options": [

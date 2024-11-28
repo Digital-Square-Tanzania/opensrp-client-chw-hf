@@ -39,6 +39,7 @@ public class NavigationModel implements org.smartregister.chw.core.model.Navigat
             NavigationOption op20 = new NavigationOption(R.mipmap.sidemenu_hiv, R.mipmap.sidemenu_hiv_active, R.string.menu_prep, CoreConstants.DrawerMenu.PrEP, 0);
             NavigationOption op21 = new NavigationOption(R.mipmap.sidemenu_updates, R.mipmap.sidemenu_updates_active, R.string.sbc, CoreConstants.DrawerMenu.SBC, 0);
             NavigationOption op22 = new NavigationOption(R.mipmap.sidemenu_hiv, R.mipmap.sidemenu_hiv_active, R.string.vmmc, CoreConstants.DrawerMenu.VMMC, 0);
+            NavigationOption op24 = new NavigationOption(R.mipmap.sidemenu_hiv, R.mipmap.sidemenu_hiv_active, R.string.cecap, CoreConstants.DrawerMenu.CECAP, 0);
 
 
             // ANC, PMTCT, LD, PNC, HEI, Child,LTFU, Referrals
@@ -46,23 +47,41 @@ public class NavigationModel implements org.smartregister.chw.core.model.Navigat
                 if (BuildConfig.BUILD_FOR_PMTCT_CASE_BASED_MANAGEMENT) {
                     navigationOptions.addAll(Arrays.asList(op1, op3, op15, op4, op13, op14, op12));
                 } else {
-                    navigationOptions.addAll(Arrays.asList(op1, op3, op4, op13, op14, op9, op8, op10, op16, op12));
-                }
-                if (HealthFacilityApplication.getApplicationFlavor().hasLD()) {
-                    navigationOptions.add(2, op15);
-                }
-                if (HealthFacilityApplication.getApplicationFlavor().hasChildModule()) {
-                    navigationOptions.add(6, op5);
-                }
-                if (HealthFacilityApplication.getApplicationFlavor().hasMalaria()) {
-                    navigationOptions.add(10, op7);
-                }
-                if (HealthFacilityApplication.getApplicationFlavor().hasCdp()) {
-                    navigationOptions.add(10, op18);
-                }
-                if (HealthFacilityApplication.getApplicationFlavor().hasKvpPrEP()) {
-                    navigationOptions.add(10, op20);
-                    navigationOptions.add(10, op19);
+                    navigationOptions.addAll(Arrays.asList(op1, op3, op15, op4, op13, op14,op24, op9, op8, op10));
+                    if (HealthFacilityApplication.getApplicationFlavor().hasChildModule()) {
+                        navigationOptions.add(4, op5);
+                    }
+
+                    if (HealthFacilityApplication.getApplicationFlavor().hasFp()) {
+                        navigationOptions.add(op6);
+                    }
+
+                    if (HealthFacilityApplication.getApplicationFlavor().hasHivst()) {
+                        navigationOptions.add(op17);
+                    }
+
+                    if (HealthFacilityApplication.getApplicationFlavor().hasKvpPrEP()) {
+                        navigationOptions.add(op19);
+                        navigationOptions.add(op20);
+                    }
+
+                    if (HealthFacilityApplication.getApplicationFlavor().hasCdp()) {
+                        navigationOptions.add(op18);
+                    }
+
+                    if (HealthFacilityApplication.getApplicationFlavor().hasMalaria()) {
+                        navigationOptions.add(op7);
+                    }
+
+                    if (HealthFacilityApplication.getApplicationFlavor().hasSbc()) {
+                        navigationOptions.add(op21);
+                    }
+
+                    if (HealthFacilityApplication.getApplicationFlavor().hasCecap()) {
+                        navigationOptions.add(op24);
+                    }
+
+                    navigationOptions.addAll(Arrays.asList(op16, op12));
                 }
                 if (HealthFacilityApplication.getApplicationFlavor().hasHivst()) {
                     navigationOptions.add(10, op17);

@@ -1,4 +1,18 @@
 ---
+name: step8_prep_assessment
+description: is the client eligible for prep
+priority: 1
+condition: "!step4_hiv_status_on_screening.equals('positive')"
+actions:
+  - "isRelevant = true"
+---
+name: step8_prep_qualified
+description: is the client eligible for prep
+priority: 1
+condition: "step8_prep_assessment.equals('yes')  && !step4_hiv_status_on_screening.equals('positive')"
+actions:
+  - "isRelevant = true"
+---
 name: step2_drug_injection
 description: drug_injection relevance
 priority: 1
@@ -69,6 +83,13 @@ condition: "step6_is_agyw.equals('yes')"
 actions:
   - "isRelevant = true"
 ---
+name: step8_prep_assessment
+description: prep_assessment relevance
+priority: 1
+condition: "step4_hiv_status_on_screening.equals('negative') && step4_hiv_status_on_screening.equals('unknown')"
+actions:
+  - "isRelevant = true"
+---
 name: step9_prompt_for_pwud_kvp
 description: prompt_for_pwud_kvp relevance
 priority: 1
@@ -82,31 +103,53 @@ priority: 1
 condition: "step2_is_pwid.equals('yes')"
 actions:
   - "isRelevant = true"
+
+---
+name: step9_prompt_for_prisoners_kvp
+description: prompt_for_prisoners_kvp relevance
+priority: 1
+condition: "step7_is_prisoner.equals('yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step9_prompt_for_rumandee_kvp
+description: prompt_for_rumandee_kvp relevance
+priority: 1
+condition: "step7_is_rumandee.equals('yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step9_prompt_for_mobile_population_kvp
+description: prompt_for_mobile_population_kvp relevance
+priority: 1
+condition: "step7_is_mobile_population.equals('yes')"
+actions:
+  - "isRelevant = true"
 ---
 name: step9_prompt_no_group
 description: prompt_no_group
 priority: 1
-condition: "step8_should_enroll.equals('no')"
+condition: "step9_should_enroll.equals('no')"
 actions:
   - "isRelevant = true"
 ---
 name: step9_birth_region
 description: prompt_no_group
 priority: 1
-condition: "step8_should_enroll.equals('yes')"
+condition: "step9_should_enroll.equals('yes')"
 actions:
   - "isRelevant = true"
 ---
 name: step9_enrollment_date
 description: prompt_no_group
 priority: 1
-condition: "step8_should_enroll.equals('yes')"
+condition: "step9_should_enroll.equals('yes')"
 actions:
   - "isRelevant = true"
 ---
 name: step9_client_group
 description: client_group
 priority: 1
-condition: "step8_should_enroll.equals('yes')"
+condition: "step9_should_enroll.equals('yes')"
 actions:
   - "isRelevant = true"

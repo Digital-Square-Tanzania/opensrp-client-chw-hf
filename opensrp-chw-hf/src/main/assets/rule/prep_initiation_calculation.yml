@@ -1,15 +1,16 @@
 ---
-name: step1_prep_initiation_date
+name: step2_prep_initiation_date
 description: prep_initiation_date calculation
 priority: 1
-condition: "step1_prep_status.equals('initiated')"
+condition: "!step1_prep_status.isEmpty() && (step1_prep_status.equals('initiated') || step1_prep_status.equals('continuing') || step1_prep_status.equals('re_start'))"
 actions:
-  - "calculation = helper.getDateToday()"
+  - "calculation = step1_prep_status.equals('initiated') ? helper.getDateToday() : 
+        step1_prep_status.equals('continuing') || step1_prep_status.equals('re_start') ? step1_original_prep_initiation_date_for_continuing_clients :'-' "
 ---
-name: step1_maximum_date_for_next_visit
+name: step2_maximum_date_for_next_visit
 description: Calculate the maximum date for the next follow-up visit
 priority: 1
-condition: "step1_prep_pills_number != '' "
+condition: "step2_prep_pills_number != '' || step2_prep_drug_offered == 'other_drugs' || step2_prep_drug_offered == 'injectable'"
 actions:
   - "def getMaxDate(number_of_pills) {
         import java.util.Calendar;
@@ -23,12 +24,12 @@ actions:
         cal.add(Calendar.DATE,  numberOfPills);
         return new SimpleDateFormat('dd-MM-yyyy', Locale.getDefault()).format(cal.getTime());
      }"
-  - "calculation = getMaxDate(step1_prep_pills_number)"
+  - "calculation = (step2_prep_drug_offered == 'other_drugs' || step2_prep_drug_offered == 'injectable')? helper.addDuration(helper.getDateToday(), '180d') : getMaxDate(step2_prep_pills_number)"
 ---
-name: step1_minimum_date_for_next_visit
+name: step2_minimum_date_for_next_visit
 description: Calculate the minimum date for the next follow-up visit
 priority: 1
-condition: "step1_prep_pills_number != '' "
+condition: "step2_prep_pills_number != ''  || step2_prep_drug_offered == 'other_drugs' || step2_prep_drug_offered == 'injectable'"
 actions:
   - "def getMinimumDate(number_of_pills) {
         import java.util.Calendar;
@@ -42,4 +43,11 @@ actions:
         
         return new SimpleDateFormat('dd-MM-yyyy', Locale.getDefault()).format(calendar.getTime());
      }"
-  - "calculation = getMinimumDate(step1_prep_pills_number)"
+  - "calculation = (step2_prep_drug_offered == 'other_drugs' || step2_prep_drug_offered == 'injectable')? helper.addDuration(helper.getDateToday(), '30d') : getMinimumDate(step2_prep_pills_number)"
+---
+name: step1_prep_status
+description: prep_status calculation
+priority: 1
+condition: "true"
+actions:
+  - "calculation = step1_prep_status_not_discontinued.isEmpty() ? step1_prep_status_was_discontinued : step1_prep_status_not_discontinued "

@@ -72,6 +72,12 @@
             android:name=".activity.KvpOtherServiceActivity"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
+            android:name=".activity.KvpTestResultsViewActivity"
+            android:theme="@style/HFTheme.NoActionBar" />
+        <activity
+            android:name=".activity.PrepTestResultsViewActivity"
+            android:theme="@style/HFTheme.NoActionBar" />
+        <activity
             android:name=".activity.PrEPRegisterActivity"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
@@ -116,6 +122,11 @@
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.HfJsonWizardFormActivity"
+            android:theme="@style/HFTheme.NoActionBar"
+            android:launchMode="singleTask"/>
+
+        <activity
+            android:name=".activity.KvpJsonWizardFormActivity"
             android:theme="@style/HFTheme.NoActionBar"
             android:launchMode="singleTask"/>
 
@@ -542,7 +553,6 @@
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.SelfTestingReportsViewActivity"
-            android:screenOrientation="landscape"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.CdpReportsViewActivity"
@@ -552,7 +562,6 @@
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.KvpReportsViewActivity"
-            android:screenOrientation="landscape"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.KvpReportsActivity"
@@ -577,6 +586,10 @@
 
         <activity
             android:name=".activity.SbcMedicalHistoryActivity"
+            android:theme="@style/HFTheme.NoActionBar" />
+
+        <activity
+            android:name=".activity.HfCreateManifestActivity"
             android:theme="@style/HFTheme.NoActionBar" />
 
         <meta-data
