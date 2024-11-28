@@ -48,7 +48,7 @@ public class DefaultHFApplicationFlv implements HealthFacilityApplication.Flavor
 
     @Override
     public boolean hasCecap() {
-        return true;
+        return false;
     }
 
     @Override
