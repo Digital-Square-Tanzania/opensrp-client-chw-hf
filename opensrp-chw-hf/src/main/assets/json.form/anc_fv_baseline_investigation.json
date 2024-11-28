@@ -1309,6 +1309,46 @@
         }
       },
       {
+        "key": "hivst_kits_distributed",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "hivst_kits_distributed",
+        "label": "Has the client been provided with HIVST kits",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "yes",
+            "text": "Yes",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "yes"
+          },
+          {
+            "key": "no",
+            "text": "No",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "no"
+          }
+        ]
+      },
+      {
+        "key": "prompt_for_hivst",
+        "type": "toaster_notes",
+        "text": "Please use HIVST Module to record the Information",
+        "openmrs_entity_id": "prompt_for_hivst",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "warning",
+        "relevance": {
+          "step1:hivst_kits_distributed": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
+        }
+      },
+      {
         "key": "baseline_investigation_completion_status",
         "type": "hidden",
         "openmrs_entity": "concept",

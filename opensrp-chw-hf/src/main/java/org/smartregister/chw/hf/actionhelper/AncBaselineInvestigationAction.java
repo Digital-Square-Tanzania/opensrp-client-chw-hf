@@ -78,6 +78,7 @@ public class AncBaselineInvestigationAction implements BaseAncHomeVisitAction.An
             checkObject.put("syphilis", StringUtils.isNotBlank(CoreJsonFormUtils.getValue(jsonObject, "syphilis")));
             checkObject.put("hepatitis", StringUtils.isNotBlank(CoreJsonFormUtils.getValue(jsonObject, "hepatitis")));
             checkObject.put("other_stds", StringUtils.isNotBlank(CoreJsonFormUtils.getValue(jsonObject, "other_stds")));
+            checkObject.put("hivst_kits_distributed", StringUtils.isNotBlank(CoreJsonFormUtils.getValue(jsonObject, "hivst_kits_distributed")));
 
             if (!isKnownPositive) {
                 checkObject.put("hiv_qn", StringUtils.isNotBlank(CoreJsonFormUtils.getValue(jsonObject, "hiv_qn")));
