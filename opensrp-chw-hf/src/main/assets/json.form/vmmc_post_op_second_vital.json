@@ -1,6 +1,6 @@
 {
   "count": "1",
-  "encounter_type": "Post Operation Vital Sign",
+  "encounter_type": "Post Operation Second Vital Sign",
   "validate_on_submit": true,
   "entity_id": "",
   "relational_id": "",
@@ -54,7 +54,7 @@
   },
   "global": {},
   "step1": {
-    "title": "Post Operation Vital Sign",
+    "title": "Post Operation Second Vital Sign",
     "fields": [
       {
         "key": "second_vital_pulse_rate",
@@ -85,9 +85,10 @@
         "openmrs_entity_parent": "",
         "toaster_type": "problem",
         "relevance": {
-          "step1:second_vital_pulse_rate": {
-            "type": "numeric",
-            "ex": "lessThan(.,\"60\")"
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_second_vital_sign_relevance.yml"
+            }
           }
         }
       },
@@ -100,9 +101,10 @@
         "openmrs_entity_parent": "",
         "toaster_type": "problem",
         "relevance": {
-          "step1:second_vital_pulse_rate": {
-            "type": "numeric",
-            "ex": "greaterThan(.,\"100\")"
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_second_vital_sign_relevance.yml"
+            }
           }
         }
       },
@@ -164,7 +166,7 @@
         "relevance": {
           "rules-engine": {
             "ex-rules": {
-              "rules-file": "vmmc_vital_sign_relevance.yml"
+              "rules-file": "vmmc_second_vital_sign_relevance.yml"
             }
           }
         }
@@ -180,7 +182,7 @@
         "relevance": {
           "rules-engine": {
             "ex-rules": {
-              "rules-file": "vmmc_vital_sign_relevance.yml"
+              "rules-file": "vmmc_second_vital_sign_relevance.yml"
             }
           }
         }
@@ -260,9 +262,10 @@
         "openmrs_entity_parent": "",
         "toaster_type": "problem",
         "relevance": {
-          "step1:second_vital_sign_respiration_rate": {
-            "type": "numeric",
-            "ex": "lessThan(.,\"14.0\")"
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_second_vital_sign_relevance.yml"
+            }
           }
         }
       },
@@ -275,25 +278,19 @@
         "openmrs_entity_parent": "",
         "toaster_type": "problem",
         "relevance": {
-          "step1:second_vital_sign_respiration_rate": {
-            "type": "numeric",
-            "ex": "greaterThan(.,\"20\")"
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_second_vital_sign_relevance.yml"
+            }
           }
         }
       },
       {
-        "key": "first_vital_sign_time_taken_previous",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "first_vital_sign_time_taken_previous",
+        "key": "first_time",
         "type": "hidden",
-        "calculation": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "vmmc_post_op_second_vital_calculation.yml"
-            }
-          }
-        }
+        "openmrs_entity_id": "first_time",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": ""
       },
       {
         "key": "second_vital_sign_time_taken",
@@ -308,13 +305,23 @@
         "constraints": [
           {
             "type": "time",
-            "ex": "greaterThan(., step1:first_vital_sign_time_taken_previous)",
-            "err": "time cannot be less than the First vital time"
+            "ex": "greaterThan(., step1:first_time)",
+            "err": "Time must be 15 minutes after the first vital"
           }
-        ],
-        "v_required": {
-          "value": "true",
-          "err": "time taken is required"
+        ]
+      },
+      {
+        "key": "more_than_time",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "more_than_time",
+        "type": "hidden",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "vmmc_second_vital_sign_calculation.yml"
+            }
+          }
         }
       },
       {
@@ -325,7 +332,6 @@
         "openmrs_entity_parent": "",
         "value": "pending"
       }
-
     ]
   }
 }
