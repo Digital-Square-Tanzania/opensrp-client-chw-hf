@@ -26,6 +26,10 @@
         android:theme="@style/HFTheme"
         tools:replace="android:theme, android:icon">
         <activity
+            android:name=".activity.PrivacyPolicyActivity"
+            android:exported="false"
+            android:theme="@style/HFTheme" />
+        <activity
             android:name=".activity.RegisterFilterActivity"
             android:exported="false"
             android:theme="@style/HFTheme.NoActionBar"/>
@@ -586,6 +590,31 @@
             android:theme="@style/HFTheme.NoActionBar" />
 
         <activity
+            android:name=".activity.LabRegisterActivity"
+            android:theme="@style/HFTheme.NoActionBar" />
+
+        <activity
+            android:name=".activity.LabHvlResultsViewActivity"
+            android:theme="@style/HFTheme.NoActionBar" />
+
+        <activity
+            android:name=".activity.LabHeidResultsViewActivity"
+            android:theme="@style/HFTheme.NoActionBar" />
+
+        <activity
+            android:name=".activity.LabTestRequestDetailsActivity"
+            android:theme="@style/HFTheme.NoActionBar" />
+
+
+        <activity
+            android:name=".activity.LabManifestDetailsActivity"
+            android:theme="@style/HFTheme.NoActionBar" />
+
+        <activity
+            android:name=".activity.HfCreateManifestActivity"
+            android:theme="@style/HFTheme.NoActionBar" />
+
+        <activity
             android:name=".activity.CecapRegisterActivity"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
@@ -675,6 +704,10 @@
             android:foregroundServiceType="dataSync"/>
         <service android:name=".sync.intent.CloseVmmcMembershipIntentService"
             android:foregroundServiceType="dataSync"/>
+
+        <service android:name=".sync.intent.PullUniqueLabTestSampleTrackingIdsIntentService"
+            android:foregroundServiceType="dataSync"/>
+
         <receiver
             android:name="org.smartregister.view.receiver.ConnectivityChangeReceiver"
             android:exported="true">

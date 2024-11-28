@@ -289,21 +289,26 @@ public class HeiFollowupVisitInteractorFlv implements PmtctFollowupVisitInteract
                     dnaPcrForm = FormUtils.getFormUtils().getFormJson(Constants.JsonForm.getHeiDnaPcrSampleCollection());
 
                     JSONArray fields = dnaPcrForm.getJSONObject(Constants.JsonFormConstants.STEP1).getJSONArray(JsonFormConstants.FIELDS);
-                    //update fields
-                    JSONObject testAtAge = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "test_at_age");
-                    testAtAge.put(JsonFormUtils.VALUE, HeiDao.getNextHivTestAge(memberObject.getBaseEntityId()));
 
-                    String heiNumber = HeiDao.getHeiNumber(memberObject.getBaseEntityId());
-                    if (!StringUtils.isBlank(heiNumber)) {
-                        JSONObject sampleId = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "sample_id");
-                        sampleId.put(JsonFormUtils.VALUE, heiNumber);
-                        sampleId.put("editable", false);
-                        sampleId.put("read_only", true);
-                    }
+                    try {
+                        //update fields
+                        JSONObject testAtAge = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "test_at_age");
+                        testAtAge.put(JsonFormUtils.VALUE, HeiDao.getNextHivTestAge(memberObject.getBaseEntityId()));
 
-                    //loads details to the form
-                    if (details != null && !details.isEmpty()) {
-                        JsonFormUtils.populateForm(dnaPcrForm, details);
+                        String heiNumber = HeiDao.getHeiNumber(memberObject.getBaseEntityId());
+                        if (!StringUtils.isBlank(heiNumber)) {
+                            JSONObject sampleId = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "sample_id");
+                            sampleId.put(JsonFormUtils.VALUE, heiNumber);
+                            sampleId.put("editable", false);
+                            sampleId.put("read_only", true);
+                        }
+
+                        //loads details to the form
+                        if (details != null && !details.isEmpty()) {
+                            JsonFormUtils.populateForm(dnaPcrForm, details);
+                        }
+                    }catch (Exception e){
+                        Timber.e(e);
                     }
                 } catch (JSONException e) {
                     Timber.e(e);

@@ -46,7 +46,7 @@ public class KvpReportsActivity extends SecuredActivity implements View.OnClickL
 
     @Override
     protected void onResumption() {
-
+        // implement later
     }
 
     private void setupViews() {

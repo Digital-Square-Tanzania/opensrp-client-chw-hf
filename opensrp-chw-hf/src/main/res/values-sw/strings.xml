@@ -131,7 +131,7 @@
     <string name="pmtct_counselling_title">Elimu ya Afya Endelevu</string>
     <string name="pmtct_baseline_investigation_title">Uchunguzi wa Vipimo vya Awali</string>
     <string name="cd4_sample_collection">Kuchukua Sampuli ya CD4</string>
-    <string name="hvl_sample_collection">Kuchukua Sampuli ya HVL</string>
+    <string name="hvl_sample_request">Kuchukua Sampuli ya HVL</string>
     <string name="arv_prescription_title">Kupatiwa Dawa za ARV</string>
     <string name="tb_screening_title">Uchunguzi wa Awali wa Kifua Kikuu</string>
     <string name="issue_pmtct_community_followup_referral">Tuma Rufaa ya PMTCT Kwenda Ngazi ya Jamii</string>
@@ -181,6 +181,7 @@
     <string name="hiv_test_results_title">Majibu ya kipimo cha VVU</string>
     <string name="register">Sajili</string>
     <string name="register_button_text">SAJILI</string>
+    <string name="distribute_button_text">GAWA</string>
     <string name="less_than_twenty_four">chini ya masaa 24</string>
     <string name="clinical_staging_of_hiv">Hatua ya VVU</string>
     <string name="arv_prescription_azt_and_nvp">Maagizo ya dawa za ARV (AZT + 3TC and NVP)</string>
@@ -556,6 +557,7 @@
     <string name="vmmc_theatre_register">Rejesta ya mwezi ya theatre </string>
     <string name="vmmc_register_subtitle">Kutazama rejesta ya huduma za tohara</string>
     <string name="vmmc_theatre_register_subtitle">Kutazama rejesta ya theatre</string>
+    <string name="vmmc_list_of_ae_subtitle">Orodha ya wateja wa Tohara wenye AE</string>
     <string name="kvp_vmcc_provided">Huduma za tohara zilizotolewa:</string>
 
     <!--    Vmmc Medical History-->

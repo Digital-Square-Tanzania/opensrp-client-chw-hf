@@ -62,6 +62,16 @@ allprojects {
             }
         }
 
+
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/Digital-Square-Tanzania/CircleProgressbar")
+            credentials {
+                username = githubProperties['gpr.usr'] ?: System.getenv("GITHUB_ACTOR")
+                password = githubProperties['gpr.key'] ?: System.getenv("GITHUB_TOKEN")
+            }
+        }
+
         maven {
             name = "GitHubPackages"
             /**
@@ -231,7 +241,7 @@ android {
             buildConfigField "String", 'opensrp_url', '"https://ucs.moh.go.tz/opensrp/"'
             buildConfigField "String", 'opensrp_url_debug', '"http://170.187.199.69:8082/opensrp/"'
             buildConfigField "boolean", 'SUPPORT_QR', 'true'
-            buildConfigField "int", "DATABASE_VERSION", '25'
+            buildConfigField "int", "DATABASE_VERSION", '27'
             buildConfigField "int", "DATA_SYNC_DURATION_MINUTES", '15'
             buildConfigField "long", "MAX_SERVER_TIME_DIFFERENCE", "1800000l"
             buildConfigField "boolean", "TIME_CHECK", "false"
@@ -261,6 +271,8 @@ android {
         }
     }
     ndkVersion '21.1.6352462'
+
+    ndkVersion '28.0.12433566 rc1'
 
 }
 
@@ -295,7 +307,9 @@ dependencies {
         exclude group: 'io.realm', module: 'realm-android-library'
         exclude group: 'io.realm', module: 'realm-annotations'
         exclude group: 'net.zetetic', module: 'android-database-sqlcipher'
+        exclude group: 'com.github.chivorns', module: 'smartmaterialspinner'
     }
+    implementation 'org.mozilla:rhino:1.7.13' // or a newer stable version
 
     implementation 'net.zetetic:android-database-sqlcipher:4.5.4'
 

@@ -150,6 +150,54 @@
           }
         },
         {
+          "column_name": "requester_clinician_name",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "requester_clinician_name"
+          }
+        },
+        {
+          "column_name": "requester_phone_number",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "requester_phone_number"
+          }
+        },
+        {
+          "column_name": "sample_request_date",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "sample_request_date"
+          }
+        },
+        {
+          "column_name": "sample_request_time",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "sample_request_time"
+          }
+        },
+        {
+          "column_name": "reason_for_requesting_test",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "reason_for_requesting_test"
+          }
+        },
+        {
+          "column_name": "on_tb_treatment",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "on_tb_treatment"
+          }
+        },
+        {
           "column_name": "cd4_sample_id",
           "type": "Event",
           "json_mapping": {
@@ -179,6 +227,14 @@
           "json_mapping": {
             "field": "obs.fieldCode",
             "concept": "arv_regimen"
+          }
+        },
+        {
+          "column_name": "art_drug",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "art_drug"
           }
         },
         {
@@ -227,6 +283,13 @@
           "json_mapping": {
             "field": "obs.fieldCode",
             "concept": "next_facility_visit_date"
+          }
+        },
+        {
+          "column_name": "last_interacted_with",
+          "type": "Event",
+          "json_mapping": {
+            "field": "version"
           }
         }
       ]
@@ -538,6 +601,46 @@
           }
         },
         {
+          "column_name": "requester_clinician_name",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "requester_clinician_name"
+          }
+        },
+        {
+          "column_name": "requester_phone_number",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "requester_phone_number"
+          }
+        },
+        {
+          "column_name": "sample_request_date",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "sample_request_date"
+          }
+        },
+        {
+          "column_name": "sample_request_time",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "sample_request_time"
+          }
+        },
+        {
+          "column_name": "reason_for_requesting_test",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "reason_for_requesting_test"
+          }
+        },
+        {
           "column_name": "sample_collection_date",
           "type": "Event",
           "json_mapping": {
@@ -586,6 +689,22 @@
           }
         },
         {
+          "column_name": "number_of_ctx_days_dispensed",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "number_of_ctx_days_dispensed"
+          }
+        },
+        {
+          "column_name": "infant_feeding_practice",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "infant_feeding_practice"
+          }
+        },
+        {
           "column_name": "visit_number",
           "type": "Event",
           "json_mapping": {
@@ -599,6 +718,13 @@
           "json_mapping": {
             "field": "obs.fieldCode",
             "concept": "next_facility_visit_date"
+          }
+        },
+        {
+          "column_name": "last_interacted_with",
+          "type": "Event",
+          "json_mapping": {
+            "field": "version"
           }
         }
       ]
@@ -2191,6 +2317,14 @@
           "json_mapping": {
             "field": "obs.fieldCode",
             "concept": "given_counselling"
+          }
+        },
+        {
+          "column_name": "hivst_kits_distributed",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "hivst_kits_distributed"
           }
         },
         {
@@ -8504,6 +8638,14 @@
           }
         },
         {
+          "column_name": "reffered_from_others",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "reffered_from_others"
+          }
+        },
+        {
           "column_name": "next_followup_date",
           "type": "Event",
           "json_mapping": {
@@ -8562,6 +8704,14 @@
           }
         },
         {
+          "column_name": "any_complaints_others",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "any_complaints_others"
+          }
+        },
+        {
           "column_name": "is_client_diagnosed_with_any",
           "type": "Event",
           "json_mapping": {
@@ -8570,11 +8720,43 @@
           }
         },
         {
+          "column_name": "is_client_diagnosed_with_any_others",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "is_client_diagnosed_with_any_others"
+          }
+        },
+        {
+          "column_name": "ctc_name",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "ctc_name"
+          }
+        },
+        {
+          "column_name": "ctc_number",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "ctc_number"
+          }
+        },
+        {
           "column_name": "diabetes_treatment",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
             "concept": "diabetes_treatment"
+          }
+        },
+        {
+          "column_name": "hypertension_treatment",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "hypertension_treatment"
           }
         },
         {
@@ -8618,6 +8800,14 @@
           }
         },
         {
+          "column_name": "type_complication_others",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "type_complication_others"
+          }
+        },
+        {
           "column_name": "any_hematological_disease_symptoms",
           "type": "Event",
           "json_mapping": {
@@ -8631,6 +8821,14 @@
           "json_mapping": {
             "field": "obs.fieldCode",
             "concept": "known_allergies"
+          }
+        },
+        {
+          "column_name": "known_allergies_others",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "known_allergies_others"
           }
         },
         {
@@ -8663,6 +8861,22 @@
           "json_mapping": {
             "field": "obs.fieldCode",
             "concept": "client_weight"
+          }
+        },
+        {
+          "column_name": "client_height",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "client_height"
+          }
+        },
+        {
+          "column_name": "bmi",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "bmi"
           }
         },
         {
@@ -8722,11 +8936,59 @@
           }
         },
         {
+          "column_name": "penile_size",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "penile_size"
+          }
+        },
+        {
+          "column_name": "diagnosed_with_hiv_six_month_ago",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "diagnosed_with_hiv_six_month_ago"
+          }
+        },
+        {
+          "column_name": "hiv_viral_load_text",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "hiv_viral_load_text"
+          }
+        },
+        {
           "column_name": "tested_hiv",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
             "concept": "tested_hiv"
+          }
+        },
+        {
+          "column_name": "hiv_not_tested_reasons",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "hiv_not_tested_reasons"
+          }
+        },
+        {
+          "column_name": "hiv_not_tested_reasons_others",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "hiv_not_tested_reasons_others"
+          }
+        },
+        {
+          "column_name": "self_test_kits_offered",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "self_test_kits_offered"
           }
         },
         {
@@ -8876,6 +9138,14 @@
           }
         },
         {
+          "column_name": "reason_prolonged_time",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "reason_prolonged_time"
+          }
+        },
+        {
           "column_name": "aneathesia_administered",
           "type": "Event",
           "json_mapping": {
@@ -8892,27 +9162,59 @@
           }
         },
         {
-          "column_name": "lignocaine_dosage",
+          "column_name": "lignocaine_dosage_ml",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
-            "concept": "lignocaine_dosage"
+            "concept": "lignocaine_dosage_ml"
           }
         },
         {
-          "column_name": "bupivacaine_dosage",
+          "column_name": "lignocaine_dosage_ml",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
-            "concept": "bupivacaine_dosage"
+            "concept": "lignocaine_dosage_ml"
           }
         },
         {
-          "column_name": "dosage",
+          "column_name": "lignocaine_dosage_percent",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
-            "concept": "dosage"
+            "concept": "lignocaine_dosage_percent"
+          }
+        },
+        {
+          "column_name": "bupivacaine_dosage_ml",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "bupivacaine_dosage_ml"
+          }
+        },
+        {
+          "column_name": "bupivacaine_dosage_percent",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "bupivacaine_dosage_percent"
+          }
+        },
+        {
+          "column_name": "dosage_g",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "dosage_g"
+          }
+        },
+        {
+          "column_name": "dosage_percent",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "dosage_percent"
           }
         },
         {
@@ -8921,6 +9223,30 @@
           "json_mapping": {
             "field": "obs.fieldCode",
             "concept": "male_circumcision_method"
+          }
+        },
+        {
+          "column_name": "reason_method_change",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "reason_method_change"
+          }
+        },
+        {
+          "column_name": "start_time_topical_cream_application",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "start_time_topical_cream_application"
+          }
+        },
+        {
+          "column_name": "end_time_topical_cream_application",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "end_time_topical_cream_application"
           }
         },
         {
@@ -8996,6 +9322,14 @@
           }
         },
         {
+          "column_name": "lot_number",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "lot_number"
+          }
+        },
+        {
           "column_name": "size_place",
           "type": "Event",
           "json_mapping": {
@@ -9046,6 +9380,14 @@
           }
         },
         {
+          "column_name": "condition_note",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "condition_note"
+          }
+        },
+        {
           "column_name": "name_of_hf",
           "type": "Event",
           "json_mapping": {
@@ -9077,11 +9419,11 @@
           }
         },
         {
-          "column_name": "discharging_name",
+          "column_name": "discharging_provider_name",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
-            "concept": "discharging_name"
+            "concept": "discharging_provider_name"
           }
         },
         {
@@ -9125,6 +9467,22 @@
           }
         },
         {
+          "column_name": "first_vital_sign_respiration_rate",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "first_vital_sign_respiration_rate"
+          }
+        },
+        {
+          "column_name": "reason_delay_from_mc",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "reason_delay_from_mc"
+          }
+        },
+        {
           "column_name": "first_vital_sign_time_taken",
           "type": "Event",
           "json_mapping": {
@@ -9165,6 +9523,14 @@
           }
         },
         {
+          "column_name": "second_vital_sign_respiration_rate",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "second_vital_sign_respiration_rate"
+          }
+        },
+        {
           "column_name": "second_vital_sign_time_taken",
           "type": "Event",
           "json_mapping": {
@@ -9178,14 +9544,6 @@
           "json_mapping": {
             "field": "obs.fieldCode",
             "concept": "notify_client_has_fever"
-          }
-        },
-        {
-          "column_name": "respiration_rate",
-          "type": "Event",
-          "json_mapping": {
-            "field": "obs.fieldCode",
-            "concept": "respiration_rate"
           }
         },
         {
@@ -9205,11 +9563,11 @@
           }
         },
         {
-          "column_name": "did_client_experience_nae",
+          "column_name": "notifiable_adverse_event_occured",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
-            "concept": "did_client_experience_nae"
+            "concept": "notifiable_adverse_event_occured"
           }
         },
         {
@@ -9415,11 +9773,51 @@
           }
         },
         {
+          "column_name": "reason_condom_not_provided",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "reason_condom_not_provided"
+          }
+        },
+        {
+          "column_name": "other_reason_for_not_providing_condom",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "other_reason_for_not_providing_condom"
+          }
+        },
+        {
           "column_name": "condoms_issued",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
             "concept": "condoms_issued"
+          }
+        },
+        {
+          "column_name": "number_of_bandage_given",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "number_of_bandage_given"
+          }
+        },
+        {
+          "column_name": "reason_bandage_not_provided",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "reason_bandage_not_provided"
+          }
+        },
+        {
+          "column_name": "other_reason_for_not_providing_bandage",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "other_reason_for_not_providing_bandage"
           }
         },
         {
@@ -10440,6 +10838,336 @@
           "type": "Event",
           "json_mapping": {
             "field": "version"
+          }
+        }
+      ]
+    },
+    {
+      "name": "ec_lab_requests",
+      "columns": [
+        {
+          "column_name": "entity_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "baseEntityId"
+          }
+        },
+        {
+          "column_name": "base_entity_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "sample_id"
+          }
+        },
+        {
+          "column_name": "sample_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "sample_id"
+          }
+        },
+        {
+          "column_name": "patient_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "patient_id"
+          }
+        },
+        {
+          "column_name": "sample_request_date",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "sample_request_date"
+          }
+        },
+        {
+          "column_name": "sample_request_time",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "sample_request_time"
+          }
+        },
+        {
+          "column_name": "sample_collection_date",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "sample_collection_date"
+          }
+        },
+        {
+          "column_name": "sample_collection_time",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "sample_collection_time"
+          }
+        },
+        {
+          "column_name": "sample_type",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "sample_type"
+          }
+        },
+        {
+          "column_name": "sample_processed",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "sample_processed"
+          }
+        },
+        {
+          "column_name": "separation_done_at_the_facility",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "separation_done_at_the_facility"
+          }
+        },
+        {
+          "column_name": "sample_separation_date",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "sample_separation_date"
+          }
+        },
+        {
+          "column_name": "sample_separation_time",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "sample_separation_time"
+          }
+        },
+        {
+          "column_name": "type_of_sample",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "type_of_sample"
+          }
+        },
+        {
+          "column_name": "tested_by",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "tested_by"
+          }
+        },
+        {
+          "column_name": "authorized_by",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "authorized_by"
+          }
+        },
+        {
+          "column_name": "tested_date",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "tested_date"
+          }
+        },
+        {
+          "column_name": "authorized_date",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "authorized_date"
+          }
+        },
+        {
+          "column_name": "results",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "results"
+          }
+        },
+        {
+          "column_name": "results_date",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "results_date"
+          }
+        },
+        {
+          "column_name": "reasons_for_rejection",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "reasons_for_rejection"
+          }
+        },
+        {
+          "column_name": "rejection_date",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "rejection_date"
+          }
+        },
+        {
+          "column_name": "rejected_by",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "rejected_by"
+          }
+        },
+        {
+          "column_name": "time_results_provided_to_client",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "time_results_provided_to_client"
+          }
+        },
+        {
+          "column_name": "date_results_provided_to_client",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "date_results_provided_to_client"
+          }
+        },
+        {
+          "column_name": "rejection_contact_info",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "rejection_contact_info"
+          }
+        },
+        {
+          "column_name": "last_interacted_with",
+          "type": "Event",
+          "json_mapping": {
+            "field": "version"
+          }
+        }
+      ]
+    },
+    {
+      "name": "ec_lab_manifests",
+      "columns": [
+        {
+          "column_name": "base_entity_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "formSubmissionId"
+          }
+        },
+        {
+          "column_name": "batch_number",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "batch_number"
+          }
+        },
+        {
+          "column_name": "manifest_type",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "manifest_type"
+          }
+        },
+        {
+          "column_name": "destination_hub_name",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "destination_hub_name"
+          }
+        },
+        {
+          "column_name": "destination_hub_uuid",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "destination_hub_uuid"
+          }
+        },
+        {
+          "column_name": "dispatch_date",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "dispatch_date"
+          }
+        },
+        {
+          "column_name": "dispatch_time",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "dispatch_time"
+          }
+        },
+        {
+          "column_name": "dispatcher_name",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "dispatcher_name"
+          }
+        },
+        {
+          "column_name": "samples_list",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "samples_list"
+          }
+        },
+        {
+          "column_name": "last_interacted_with",
+          "type": "Event",
+          "json_mapping": {
+            "field": "version"
+          }
+        }
+      ]
+    },
+    {
+      "name": "ec_lab_settings",
+      "columns": [
+        {
+          "column_name": "base_entity_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "base_entity_id"
+          }
+        },
+        {
+          "column_name": "destination_hub_name",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "destination_hub_name"
+          }
+        },
+        {
+          "column_name": "destination_hub_uuid",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "destination_hub_uuid"
           }
         }
       ]

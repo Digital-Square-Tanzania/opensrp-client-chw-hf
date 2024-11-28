@@ -119,8 +119,22 @@
             "openmrs_entity_id": "pwid"
           },
           {
+            "key": "pwud",
+            "text": "Mtumiaji wa dawa za kulevya kwa njia nyingine",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "pwud"
+          },
+          {
+            "key": "rumandee",
+            "text": "Mahabusu",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "rumandee"
+          },
+          {
             "key": "prisoners",
-            "text": "Mfungwa/Mahabusu",
+            "text": "Mfugwa",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "prisoners"
@@ -133,11 +147,25 @@
             "openmrs_entity_id": "agyw"
           },
           {
-            "key": "others",
+            "key": "serodiscordant_couple",
+            "text": "Mwenza /mwenye majibu kinzani",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "serodiscordant_couple"
+          },
+          {
+            "key": "mobile_population",
+            "text": "Makundi ya watu wanaohamahama",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "mobile_population"
+          },
+          {
+            "key": "other_vulnerable_population",
             "text": "Makundi mengine",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "others"
+            "openmrs_entity_id": "other_vulnerable_population"
           }
         ],
         "v_required": {
@@ -176,6 +204,20 @@
             "openmrs_entity_id": "pwid"
           },
           {
+            "key": "pwud",
+            "text": "Mtumiaji wa dawa za kulevya kwa njia nyingine",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "pwud"
+          },
+          {
+            "key": "rumandee",
+            "text": "Mahabusu",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "rumandee"
+          },
+          {
             "key": "prisoners",
             "text": "Mfungwa",
             "openmrs_entity_parent": "",
@@ -183,11 +225,25 @@
             "openmrs_entity_id": "prisoners"
           },
           {
-            "key": "others",
+            "key": "serodiscordant_couple",
+            "text": "Mwenza /mwenye majibu kinzani",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "serodiscordant_couple"
+          },
+          {
+            "key": "mobile_population",
+            "text": "Makundi ya watu wanaohamahama",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "mobile_population"
+          },
+          {
+            "key": "other_vulnerable_population",
             "text": "Makundi mengine",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "others"
+            "openmrs_entity_id": "other_vulnerable_population"
           }
         ],
         "v_required": {
@@ -226,18 +282,46 @@
             "openmrs_entity_id": "pwid"
           },
           {
+            "key": "pwud",
+            "text": "Mtumiaji wa dawa za kulevya kwa njia nyingine",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "pwud"
+          },
+          {
+            "key": "rumandee",
+            "text": "Mahabusu",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "rumandee"
+          },
+          {
             "key": "prisoners",
-            "text": "Mfungwa/Mahabusu",
+            "text": "Mfugwa",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "prisoners"
           },
           {
-            "key": "others",
+            "key": "serodiscordant_couple",
+            "text": "Mwenza /mwenye majibu kinzani",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "serodiscordant_couple"
+          },
+          {
+            "key": "mobile_population",
+            "text": "Makundi ya watu wanaohamahama",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "mobile_population"
+          },
+          {
+            "key": "other_vulnerable_population",
             "text": "Makundi mengine",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "others"
+            "openmrs_entity_id": "other_vulnerable_population"
           }
         ],
         "v_required": {

@@ -1,0 +1,7 @@
+---
+name: step1_time_limit
+description: time_limit
+priority: 1
+condition: "true"
+actions:
+  - "calculation = step1_max_sample_date.equals(step1_dispatch_date) ? step1_max_sample_time : '00:00'"

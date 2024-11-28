@@ -62,6 +62,7 @@
     <string name="action_fp_ecp">ECP</string>
     <string name="pmtct_pending_registration">PMTCT Pending Registration</string>
     <string name="register_button_text">REGISTER</string>
+    <string name="distribute_button_text">DISTRIBUTE</string>
     <string name="anc_pregnacy_status">Pregnancy Status: </string>
     <string name="anc_pregnacy_status_viable">Viable</string>
     <string name="anc_pregnacy_status_fetal_death">Intrauterine Fetal Death (Still Birth)</string>
@@ -159,7 +160,7 @@
     <string name="pmtct_counselling_title">Continuous Health Education</string>
     <string name="pmtct_baseline_investigation_title">Baseline Investigation</string>
     <string name="cd4_sample_collection">CD4 Sample Collection</string>
-    <string name="hvl_sample_collection">HVL Sample Collection</string>
+    <string name="hvl_sample_request">HVL Sample Request</string>
     <string name="arv_prescription_title">ARV prescription</string>
     <string name="tb_screening_title">TB Screening</string>
     <string name="pmtct_followup_status">Followup Status:</string>
@@ -746,6 +747,7 @@
     <string name="vmmc_reports_subtitle">View Reports For VMMC</string>
     <string name="vmmc_register_subtitle">View Service Register For VMMC</string>
     <string name="vmmc_theatre_register_subtitle">View Theatre Register For VMMC</string>
+    <string name="vmmc_list_of_ae_subtitle">VMMC Clients with AE</string>
 
 
 
@@ -954,6 +956,11 @@
     <string name="needs_followup">Needs follow-up</string>
     <string name="not_discharged">Not Discharged</string>
 
+    <string name="vmmc_reffered_from">Reffered From:</string>
+    <string name="vmmc_service_delivery_approach">service delivery approach:</string>
+    <string name="vmmc_outreach_mobile_location">outreach mobile location:</string>
+    <string name="vmmc_vmmc_client_id">client ID:</string>
+
     <!--    Vmmc Medical History-->
     <string name="vmmc_consent_from">Consent from:</string>
     <string name="vmmc_has_client_had_any_sti">STI:</string>
@@ -1035,6 +1042,7 @@
     <string name="vmmc_discharge_time">discharge time:</string>
     <string name="vmmc_discharging_provider_name">discharging provider name:</string>
     <string name="vmmc_provider_cadre">Providers cadre:</string>
+
 
     <string name="vmmc_first_vital_sign_pulse_rate">First Vital Sign Pulse Rate (Beats per minute):</string>
     <string name="vmmc_first_vital_sign_systolic">First Vital Sign Systolic (Blood Pressure):</string>
@@ -1897,5 +1905,12 @@
     <string name="kvp_overdue_clients">Over Due</string>
     <string name="missap_clients_list">Missed Appointments Clients List</string>
 
+
+    <!--    LAB Module-->
+    <string name="lab">LAB</string>
+
+    <string name="vmmc_tomorrow_visits">Tomorrow visits</string>
+    <string name="vmmc_due_clients">Today Visits</string>
+    <string name="vmmc_overdue_clients">Missed Visits</string>
 
 </resources>

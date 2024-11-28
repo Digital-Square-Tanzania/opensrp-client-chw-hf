@@ -1,12 +1,14 @@
-
 package org.smartregister.chw.hf;
+
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Build;
+
 import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.core.CrashlyticsCore;
 import com.evernote.android.job.JobManager;
 import com.mapbox.mapboxsdk.Mapbox;
+
 import org.jetbrains.annotations.NotNull;
 import org.smartregister.AllConstants;
 import org.smartregister.Context;
@@ -40,6 +42,7 @@ import org.smartregister.chw.hf.activity.HtsRegisterActivity;
 import org.smartregister.chw.hf.activity.KvpRegisterActivity;
 import org.smartregister.chw.hf.activity.LDRegisterActivity;
 import org.smartregister.chw.hf.activity.LTFURegisterActivity;
+import org.smartregister.chw.hf.activity.LabRegisterActivity;
 import org.smartregister.chw.hf.activity.LoginActivity;
 import org.smartregister.chw.hf.activity.MalariaRegisterActivity;
 import org.smartregister.chw.hf.activity.PmtctRegisterActivity;
@@ -62,6 +65,7 @@ import org.smartregister.chw.hf.sync.HfSyncConfiguration;
 import org.smartregister.chw.hiv.HivLibrary;
 import org.smartregister.chw.hivst.HivstLibrary;
 import org.smartregister.chw.kvp.KvpLibrary;
+import org.smartregister.chw.lab.LabLibrary;
 import org.smartregister.chw.ld.LDLibrary;
 import org.smartregister.chw.malaria.MalariaLibrary;
 import org.smartregister.chw.pmtct.PmtctLibrary;
@@ -87,11 +91,13 @@ import org.smartregister.repository.Repository;
 import org.smartregister.repository.TaskNotesRepository;
 import org.smartregister.repository.TaskRepository;
 import org.smartregister.util.Utils;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+
 import io.fabric.sdk.android.Fabric;
 import io.ona.kujaku.KujakuLibrary;
 import timber.log.Timber;
@@ -153,6 +159,7 @@ public class HealthFacilityApplication extends CoreChwApplication implements Cor
             registeredActivities.put(CoreConstants.REGISTERED_ACTIVITIES.FP_REGISTER_ACTIVITY, FpRegisterActivity.class);
             registeredActivities.put(CoreConstants.REGISTERED_ACTIVITIES.SBC_REGISTER_ACTIVITY, SbcRegisterActivity.class);
             registeredActivities.put(CoreConstants.REGISTERED_ACTIVITIES.CECAP_REGISTER_ACTIVITY, CecapRegisterActivity.class);
+            registeredActivities.put(CoreConstants.REGISTERED_ACTIVITIES.LAB_REGISTER_ACTIVITY, LabRegisterActivity.class);
         }
 //          TODO uncomment these when NACP is ready to test these modules
         //registeredActivities.put(CoreConstants.REGISTERED_ACTIVITIES.TB_REGISTER_ACTIVITY, TbRegisterActivity.class);
@@ -318,6 +325,10 @@ public class HealthFacilityApplication extends CoreChwApplication implements Cor
             SbcLibrary.init(context, getRepository(), BuildConfig.VERSION_CODE, BuildConfig.DATABASE_VERSION);
         }
 
+        if (flavor.hasLab()) {
+            LabLibrary.init(context, getRepository(), BuildConfig.VERSION_CODE, BuildConfig.DATABASE_VERSION);
+        }
+
         //Needed for all clients register
         OpdLibrary.init(context, getRepository(),
                 new OpdConfiguration.Builder(HfAllClientsRegisterQueryProvider.class)
@@ -420,6 +431,8 @@ public class HealthFacilityApplication extends CoreChwApplication implements Cor
         boolean hasMalaria();
 
         boolean hasVmmc();
+
+        boolean hasLab();
 
         boolean hasFp();
 

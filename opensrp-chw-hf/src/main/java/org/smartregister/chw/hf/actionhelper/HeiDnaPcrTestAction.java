@@ -20,8 +20,6 @@ public class HeiDnaPcrTestAction implements BasePmtctHomeVisitAction.PmtctHomeVi
     protected MemberObject memberObject;
     private String jsonPayload;
 
-    private String sample_id;
-
     private String clinician_name;
 
     private Context context;
@@ -55,8 +53,7 @@ public class HeiDnaPcrTestAction implements BasePmtctHomeVisitAction.PmtctHomeVi
     public void onPayloadReceived(String jsonPayload) {
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
-            sample_id = CoreJsonFormUtils.getValue(jsonObject, "sample_id");
-            clinician_name = CoreJsonFormUtils.getValue(jsonObject, "clinician_name");
+            clinician_name = CoreJsonFormUtils.getValue(jsonObject, "requester_clinician_name");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -79,7 +76,7 @@ public class HeiDnaPcrTestAction implements BasePmtctHomeVisitAction.PmtctHomeVi
 
     @Override
     public String evaluateSubTitle() {
-        if (StringUtils.isBlank(sample_id) || StringUtils.isBlank(clinician_name))
+        if (StringUtils.isBlank(clinician_name))
             return null;
 
         StringBuilder stringBuilder = new StringBuilder();
@@ -90,7 +87,7 @@ public class HeiDnaPcrTestAction implements BasePmtctHomeVisitAction.PmtctHomeVi
 
     @Override
     public BasePmtctHomeVisitAction.Status evaluateStatusOnPayload() {
-        if (StringUtils.isBlank(sample_id) || StringUtils.isBlank(clinician_name) )
+        if (StringUtils.isBlank(clinician_name) )
             return BasePmtctHomeVisitAction.Status.PENDING;
         else {
             return BasePmtctHomeVisitAction.Status.COMPLETED;
