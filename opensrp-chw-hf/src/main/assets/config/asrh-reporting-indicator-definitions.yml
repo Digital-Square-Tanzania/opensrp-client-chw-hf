@@ -1,0 +1,1310 @@
+indicators:
+  - key: "asrh-1-male-10-14"
+    grouping: "ASRH-Facility"
+    description: "Number of clients received family planning services"
+    indicatorQuery: "  SELECT count(DISTINCT efpm.entity_id) as count
+                       FROM ec_fp_provision_of_method efpm
+                       INNER JOIN ec_family_member efm ON efm.base_entity_id = efpm.entity_id
+                       WHERE 10 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 15
+                       AND (efm.gender='Male')
+                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                       date(substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                       '-' || substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+    
+  - key: "asrh-1-female-10-14"
+    grouping: "ASRH-Facility"
+    description: "Number of clients received family planning services"
+    indicatorQuery: "  SELECT count(DISTINCT efpm.entity_id) as count
+                       FROM ec_fp_provision_of_method efpm
+                       INNER JOIN ec_family_member efm ON efm.base_entity_id = efpm.entity_id
+                       WHERE 10 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 15
+                       AND (efm.gender='Female')
+                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                       date(substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                       '-' || substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+    
+  - key: "asrh-1-male-15-19"
+    grouping: "ASRH-Facility"
+    description: "Number of clients received family planning services"
+    indicatorQuery: "  SELECT count(DISTINCT efpm.entity_id) as count
+                       FROM ec_fp_provision_of_method efpm
+                       INNER JOIN ec_family_member efm ON efm.base_entity_id = efpm.entity_id
+                       WHERE 15 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 20
+                       AND (efm.gender='Male')
+                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                       date(substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                       '-' || substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+    
+    
+  - key: "asrh-1-female-15-19"
+    grouping: "ASRH-Facility"
+    description: "Number of clients received family planning services"
+    indicatorQuery: "  SELECT count(DISTINCT efpm.entity_id) as count
+                       FROM ec_fp_provision_of_method efpm
+                       INNER JOIN ec_family_member efm ON efm.base_entity_id = efpm.entity_id
+                       WHERE 15 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 20
+                       AND (efm.gender='Female')
+                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                       date(substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                       '-' || substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+    
+  - key: "asrh-1-male-20-24"
+    grouping: "ASRH-Facility"
+    description: "Number of clients received family planning services"
+    indicatorQuery: "  SELECT count(DISTINCT efpm.entity_id) as count
+                       FROM ec_fp_provision_of_method efpm
+                       INNER JOIN ec_family_member efm ON efm.base_entity_id = efpm.entity_id
+                       WHERE 20 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 25
+                       AND (efm.gender='Male')
+                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                       date(substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                       '-' || substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+    
+    
+  - key: "asrh-1-female-20-24"
+    grouping: "ASRH-Facility"
+    description: "Number of clients received family planning services"
+    indicatorQuery: "  SELECT count(DISTINCT efpm.entity_id) as count
+                       FROM ec_fp_provision_of_method efpm
+                       INNER JOIN ec_family_member efm ON efm.base_entity_id = efpm.entity_id
+                       WHERE 20 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 25
+                       AND (efm.gender='Female')
+                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                       date(substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                       '-' || substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+    
+    
+    
+  - key: "asrh-2a-female-10-14"
+    grouping: "ASRH-Facility"
+    description: "Number of clients received family planing services Pills"
+    indicatorQuery: "  SELECT count(DISTINCT efpm.entity_id) as count
+                       FROM ec_fp_provision_of_method efpm
+                       INNER JOIN ec_family_member efm ON efm.base_entity_id = efpm.entity_id
+                       WHERE 10 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 15
+                       AND (efm.gender='Female')
+                       AND (efpm.coc >= 1 OR efpm.pop >= 1)
+                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                       date(substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                       '-' || substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+    
+    
+    
+  - key: "asrh-2a-female-15-19"
+    grouping: "ASRH-Facility"
+    description: "Number of clients received family planing services Pills"
+    indicatorQuery: "  SELECT count(DISTINCT efpm.entity_id) as count
+                       FROM ec_fp_provision_of_method efpm
+                       INNER JOIN ec_family_member efm ON efm.base_entity_id = efpm.entity_id
+                       WHERE 15 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 20
+                       AND (efm.gender='Female')
+                       AND (efpm.coc >= 1 OR efpm.pop >= 1)
+                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                       date(substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                       '-' || substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+    
+    
+  - key: "asrh-2a-female-20-24"
+    grouping: "ASRH-Facility"
+    description: "Number of clients received family planing services Pills"
+    indicatorQuery: "  SELECT count(DISTINCT efpm.entity_id) as count
+                       FROM ec_fp_provision_of_method efpm
+                       INNER JOIN ec_family_member efm ON efm.base_entity_id = efpm.entity_id
+                       WHERE 20 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 25
+                       AND (efm.gender='Female')
+                       AND (efpm.coc >= 1 OR efpm.pop >= 1)
+                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                       date(substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                       '-' || substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+    
+    
+    
+  - key: "asrh-2b-female-10-14"
+    grouping: "ASRH-Facility"
+    description: "Number of clients received family planing services Pills"
+    indicatorQuery: "  SELECT count(DISTINCT efpm.entity_id) as count
+                       FROM ec_fp_provision_of_method efpm
+                       INNER JOIN ec_family_member efm ON efm.base_entity_id = efpm.entity_id
+                       WHERE 10 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 15
+                       AND (efm.gender='Female')
+                       AND (efpm.injection_administered = 'yes')
+                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                       date(substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                       '-' || substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+    
+    
+    
+  - key: "asrh-2b-female-15-19"
+    grouping: "ASRH-Facility"
+    description: "Number of clients received family planing services Pills"
+    indicatorQuery: "  SELECT count(DISTINCT efpm.entity_id) as count
+                       FROM ec_fp_provision_of_method efpm
+                       INNER JOIN ec_family_member efm ON efm.base_entity_id = efpm.entity_id
+                       WHERE 15 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 20
+                       AND (efm.gender='Female')
+                       AND (efpm.injection_administered = 'yes')
+                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                       date(substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                       '-' || substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+    
+    
+  - key: "asrh-2b-female-20-24"
+    grouping: "ASRH-Facility"
+    description: "Number of clients received family planing services Pills"
+    indicatorQuery: "  SELECT count(DISTINCT efpm.entity_id) as count
+                       FROM ec_fp_provision_of_method efpm
+                       INNER JOIN ec_family_member efm ON efm.base_entity_id = efpm.entity_id
+                       WHERE 20 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 25
+                       AND (efm.gender='Female')
+                       AND (efpm.injection_administered = 'yes')
+                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                       date(substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                       '-' || substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+    
+    
+    
+  - key: "asrh-2c-female-10-14"
+    grouping: "ASRH-Facility"
+    description: "Number of clients received family planing services Pills"
+    indicatorQuery: "  SELECT count(DISTINCT efpm.entity_id) as count
+                       FROM ec_fp_provision_of_method efpm
+                       INNER JOIN ec_family_member efm ON efm.base_entity_id = efpm.entity_id
+                       WHERE 10 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 15
+                       AND (efm.gender='Female')
+                       AND (efpm.number_male_condoms_collected >= 1 OR efpm.number_female_condoms_collected >= 1)
+                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                       date(substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                       '-' || substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+    
+    
+    
+  - key: "asrh-2c-male-10-14"
+    grouping: "ASRH-Facility"
+    description: "Number of clients received family planing services Pills"
+    indicatorQuery: "  SELECT count(DISTINCT efpm.entity_id) as count
+                       FROM ec_fp_provision_of_method efpm
+                       INNER JOIN ec_family_member efm ON efm.base_entity_id = efpm.entity_id
+                       WHERE 10 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 15
+                       AND (efm.gender='Male')
+                       AND (efpm.number_male_condoms_collected >= 1 OR efpm.number_female_condoms_collected >= 1)
+                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                       date(substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                       '-' || substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+    
+    
+    
+  - key: "asrh-2c-female-15-19"
+    grouping: "ASRH-Facility"
+    description: "Number of clients received family planing services Pills"
+    indicatorQuery: "  SELECT count(DISTINCT efpm.entity_id) as count
+                       FROM ec_fp_provision_of_method efpm
+                       INNER JOIN ec_family_member efm ON efm.base_entity_id = efpm.entity_id
+                       WHERE 15 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 20
+                       AND (efm.gender='Female')
+                       AND (efpm.number_male_condoms_collected >= 1 OR efpm.number_female_condoms_collected >= 1)
+                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                       date(substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                       '-' || substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+    
+    
+    
+  - key: "asrh-2c-male-15-19"
+    grouping: "ASRH-Facility"
+    description: "Number of clients received family planing services Pills"
+    indicatorQuery: "  SELECT count(DISTINCT efpm.entity_id) as count
+                       FROM ec_fp_provision_of_method efpm
+                       INNER JOIN ec_family_member efm ON efm.base_entity_id = efpm.entity_id
+                       WHERE 15 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 20
+                       AND (efm.gender='Male')
+                       AND (efpm.number_male_condoms_collected >= 1 OR efpm.number_female_condoms_collected >= 1)
+                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                       date(substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                       '-' || substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+    
+    
+  - key: "asrh-2c-female-20-24"
+    grouping: "ASRH-Facility"
+    description: "Number of clients received family planing services Pills"
+    indicatorQuery: "  SELECT count(DISTINCT efpm.entity_id) as count
+                       FROM ec_fp_provision_of_method efpm
+                       INNER JOIN ec_family_member efm ON efm.base_entity_id = efpm.entity_id
+                       WHERE 20 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 25
+                       AND (efm.gender='Female')
+                       AND (efpm.number_male_condoms_collected >= 1 OR efpm.number_female_condoms_collected >= 1)
+                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                       date(substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                       '-' || substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+    
+    
+  - key: "asrh-2c-male-20-24"
+    grouping: "ASRH-Facility"
+    description: "Number of clients received family planing services Pills"
+    indicatorQuery: "  SELECT count(DISTINCT efpm.entity_id) as count
+                       FROM ec_fp_provision_of_method efpm
+                       INNER JOIN ec_family_member efm ON efm.base_entity_id = efpm.entity_id
+                       WHERE 20 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 25
+                       AND (efm.gender='Male')
+                       AND (efpm.number_male_condoms_collected >= 1 OR efpm.number_female_condoms_collected >= 1)
+                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                       date(substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                       '-' || substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+    
+    
+    
+  - key: "asrh-2d-female-10-14"
+    grouping: "ASRH-Facility"
+    description: "Number of clients received family planing services Pills"
+    indicatorQuery: "  SELECT count(DISTINCT efpm.entity_id) as count
+                       FROM ec_fp_provision_of_method efpm
+                       INNER JOIN ec_family_member efm ON efm.base_entity_id = efpm.entity_id
+                       WHERE 10 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 15
+                       AND (efm.gender='Female')
+                       AND (efpm.implanon_inserted='yes')
+                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                       date(substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                       '-' || substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+    
+    
+    
+  - key: "asrh-2d-female-15-19"
+    grouping: "ASRH-Facility"
+    description: "Number of clients received family planing services Pills"
+    indicatorQuery: "  SELECT count(DISTINCT efpm.entity_id) as count
+                       FROM ec_fp_provision_of_method efpm
+                       INNER JOIN ec_family_member efm ON efm.base_entity_id = efpm.entity_id
+                       WHERE 15 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 20
+                       AND (efm.gender='Female')
+                       AND (efpm.implanon_inserted='yes')
+                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                       date(substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                       '-' || substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+    
+    
+  - key: "asrh-2d-female-20-24"
+    grouping: "ASRH-Facility"
+    description: "Number of clients received family planing services Pills"
+    indicatorQuery: "  SELECT count(DISTINCT efpm.entity_id) as count
+                       FROM ec_fp_provision_of_method efpm
+                       INNER JOIN ec_family_member efm ON efm.base_entity_id = efpm.entity_id
+                       WHERE 20 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 25
+                       AND (efm.gender='Female')
+                       AND (efpm.implanon_inserted='yes')
+                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                       date(substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                       '-' || substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+    
+    
+    
+  - key: "asrh-2e-female-10-14"
+    grouping: "ASRH-Facility"
+    description: "Number of clients received family planing services Pills"
+    indicatorQuery: "  SELECT count(DISTINCT efpm.entity_id) as count
+                       FROM ec_fp_provision_of_method efpm
+                       INNER JOIN ec_family_member efm ON efm.base_entity_id = efpm.entity_id
+                       WHERE 10 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 15
+                       AND (efm.gender='Female')
+                       AND (efpm.jadelle_inserted='yes')
+                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                       date(substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                       '-' || substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+    
+    
+    
+  - key: "asrh-2e-female-15-19"
+    grouping: "ASRH-Facility"
+    description: "Number of clients received family planing services Pills"
+    indicatorQuery: "  SELECT count(DISTINCT efpm.entity_id) as count
+                       FROM ec_fp_provision_of_method efpm
+                       INNER JOIN ec_family_member efm ON efm.base_entity_id = efpm.entity_id
+                       WHERE 15 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 20
+                       AND (efm.gender='Female')
+                       AND (efpm.jadelle_inserted='yes')
+                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                       date(substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                       '-' || substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+    
+    
+  - key: "asrh-2e-female-20-24"
+    grouping: "ASRH-Facility"
+    description: "Number of clients received family planing services Pills"
+    indicatorQuery: "  SELECT count(DISTINCT efpm.entity_id) as count
+                       FROM ec_fp_provision_of_method efpm
+                       INNER JOIN ec_family_member efm ON efm.base_entity_id = efpm.entity_id
+                       WHERE 20 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 25
+                       AND (efm.gender='Female')
+                       AND (efpm.jadelle_inserted='yes')
+                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                       date(substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                       '-' || substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+    
+    
+    
+  - key: "asrh-2f-female-10-14"
+    grouping: "ASRH-Facility"
+    description: "Number of clients received family planing services Pills"
+    indicatorQuery: "  SELECT count(DISTINCT efpm.entity_id) as count
+                       FROM ec_fp_provision_of_method efpm
+                       INNER JOIN ec_family_member efm ON efm.base_entity_id = efpm.entity_id
+                       WHERE 10 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 15
+                       AND (efm.gender='Female')
+                       AND (efpm.iucd_inserted='yes')
+                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                       date(substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                       '-' || substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+    
+    
+    
+  - key: "asrh-2f-female-15-19"
+    grouping: "ASRH-Facility"
+    description: "Number of clients received family planing services Pills"
+    indicatorQuery: "  SELECT count(DISTINCT efpm.entity_id) as count
+                       FROM ec_fp_provision_of_method efpm
+                       INNER JOIN ec_family_member efm ON efm.base_entity_id = efpm.entity_id
+                       WHERE 15 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 20
+                       AND (efm.gender='Female')
+                       AND (efpm.iucd_inserted='yes')
+                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                       date(substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                       '-' || substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+    
+    
+  - key: "asrh-2f-female-20-24"
+    grouping: "ASRH-Facility"
+    description: "Number of clients received family planing services Pills"
+    indicatorQuery: "  SELECT count(DISTINCT efpm.entity_id) as count
+                       FROM ec_fp_provision_of_method efpm
+                       INNER JOIN ec_family_member efm ON efm.base_entity_id = efpm.entity_id
+                       WHERE 20 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 25
+                       AND (efm.gender='Female')
+                       AND (efpm.iucd_inserted='yes')
+                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                       date(substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                       '-' || substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+    
+    
+    
+  - key: "asrh-2g-male-10-14"
+    grouping: "ASRH-Facility"
+    description: "Number of clients received family planing services Pills"
+    indicatorQuery: "  SELECT count(DISTINCT efpm.entity_id) as count
+                       FROM ec_fp_provision_of_method efpm
+                       INNER JOIN ec_family_member efm ON efm.base_entity_id = efpm.entity_id
+                       WHERE 10 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 15
+                       AND (efm.gender='Male')
+                       AND (efpm.vasectomy = 'yes')
+                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                       date(substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                       '-' || substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+    
+    
+    
+  - key: "asrh-2g-male-15-19"
+    grouping: "ASRH-Facility"
+    description: "Number of clients received family planing services Pills"
+    indicatorQuery: "  SELECT count(DISTINCT efpm.entity_id) as count
+                       FROM ec_fp_provision_of_method efpm
+                       INNER JOIN ec_family_member efm ON efm.base_entity_id = efpm.entity_id
+                       WHERE 15 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 20
+                       AND (efm.gender='Male')
+                       AND (efpm.vasectomy = 'yes')
+                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                       date(substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                       '-' || substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+    
+    
+  - key: "asrh-2g-male-20-24"
+    grouping: "ASRH-Facility"
+    description: "Number of clients received family planing services Pills"
+    indicatorQuery: "  SELECT count(DISTINCT efpm.entity_id) as count
+                       FROM ec_fp_provision_of_method efpm
+                       INNER JOIN ec_family_member efm ON efm.base_entity_id = efpm.entity_id
+                       WHERE 20 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 25
+                       AND (efm.gender='Male')
+                       AND (efpm.vasectomy = 'yes')
+                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                       date(substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                       '-' || substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+  
+  
+  
+  - key: "asrh-2h-female-10-14"
+    grouping: "ASRH-Facility"
+    description: "Number of clients received family planing services Pills"
+    indicatorQuery: "  SELECT count(DISTINCT efpm.entity_id) as count
+                       FROM ec_fp_provision_of_method efpm
+                       INNER JOIN ec_family_member efm ON efm.base_entity_id = efpm.entity_id
+                       WHERE 10 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 15
+                       AND (efm.gender='Female')
+                       AND (efpm.btl = 'yes')
+                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                       date(substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                       '-' || substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+  
+  
+  
+  - key: "asrh-2h-female-15-19"
+    grouping: "ASRH-Facility"
+    description: "Number of clients received family planing services Pills"
+    indicatorQuery: "  SELECT count(DISTINCT efpm.entity_id) as count
+                       FROM ec_fp_provision_of_method efpm
+                       INNER JOIN ec_family_member efm ON efm.base_entity_id = efpm.entity_id
+                       WHERE 15 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 20
+                       AND (efm.gender='Female')
+                       AND (efpm.btl = 'yes')
+                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                       date(substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                       '-' || substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+  
+  
+  - key: "asrh-2h-female-20-24"
+    grouping: "ASRH-Facility"
+    description: "Number of clients received family planing services Pills"
+    indicatorQuery: "  SELECT count(DISTINCT efpm.entity_id) as count
+                       FROM ec_fp_provision_of_method efpm
+                       INNER JOIN ec_family_member efm ON efm.base_entity_id = efpm.entity_id
+                       WHERE 20 <= (date('Now') - date(efm.dob))  AND (date('Now')-date(efm.dob)) < 25
+                       AND (efm.gender='Female')
+                       AND (efpm.btl = 'yes')
+                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                       date(substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||
+                       '-' || substr(strftime('%Y-%m-%d', datetime(efpm.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || '-' || '01')"
+  
+  - key: "asrh-3-male-10-14"
+    grouping: "ASRH-Facility"
+    description: "Number of sexual violence survivors who reported within 72 hours"
+    indicatorQuery: " SELECT count(DISTINCT egv.entity_id) as count FROM ec_gbv_visit egv
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = egv.entity_id
+                      WHERE
+                      (date(efm.dob, '+10 years') <= date('now'))
+                      AND (date(efm.dob, '+15 years') > date('now'))
+                      AND (efm.gender='Male')
+                      AND
+                      (
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' || substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 9, 2)) - date((substr(assault_date, 7, 4) || '-' || substr(assault_date, 4, 2) || '-' || substr(assault_date, 1, 2) )) <= 3
+                      )
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                        substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+    
+  
+  - key: "asrh-3-female-10-14"
+    grouping: "ASRH-Facility"
+    description: "Number of sexual violence survivors who reported within 72 hours"
+    indicatorQuery: " SELECT count(DISTINCT egv.entity_id) as count FROM ec_gbv_visit egv
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = egv.entity_id
+                      WHERE
+                      (date(efm.dob, '+10 years') <= date('now'))
+                      AND (date(efm.dob, '+15 years') > date('now'))
+                      AND (efm.gender='Female')
+                      AND
+                      (
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' || substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 9, 2)) - date((substr(assault_date, 7, 4) || '-' || substr(assault_date, 4, 2) || '-' || substr(assault_date, 1, 2) )) <= 3
+                      )
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                        substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+  
+  - key: "asrh-3-male-15-19"
+    grouping: "ASRH-Facility"
+    description: "Number of sexual violence survivors who reported within 72 hours"
+    indicatorQuery: " SELECT count(DISTINCT egv.entity_id) as count FROM ec_gbv_visit egv
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = egv.entity_id
+                      WHERE
+                      (date(efm.dob, '+15 years') <= date('now'))
+                      AND (date(efm.dob, '+20 years') > date('now'))
+                      AND (efm.gender='Male')
+                      AND
+                      (
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' || substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 9, 2)) - date((substr(assault_date, 7, 4) || '-' || substr(assault_date, 4, 2) || '-' || substr(assault_date, 1, 2) )) <= 3
+                      )
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                        substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+    
+  
+  - key: "asrh-3-female-15-19"
+    grouping: "ASRH-Facility"
+    description: "Number of sexual violence survivors who reported within 72 hours"
+    indicatorQuery: " SELECT count(DISTINCT egv.entity_id) as count FROM ec_gbv_visit egv
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = egv.entity_id
+                      WHERE
+                      (date(efm.dob, '+15 years') <= date('now'))
+                      AND (date(efm.dob, '+20 years') > date('now'))
+                      AND (efm.gender='Female')
+                      AND
+                      (
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' || substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 9, 2)) - date((substr(assault_date, 7, 4) || '-' || substr(assault_date, 4, 2) || '-' || substr(assault_date, 1, 2) )) <= 3
+                      )
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                        substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+  
+  - key: "asrh-3-male-20-24"
+    grouping: "ASRH-Facility"
+    description: "Number of sexual violence survivors who reported within 72 hours"
+    indicatorQuery: " SELECT count(DISTINCT egv.entity_id) as count FROM ec_gbv_visit egv
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = egv.entity_id
+                      WHERE
+                      (date(efm.dob, '+20 years') <= date('now'))
+                      AND (date(efm.dob, '+25 years') > date('now'))
+                      AND (efm.gender='Male')
+                      AND
+                      (
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' || substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 9, 2)) - date((substr(assault_date, 7, 4) || '-' || substr(assault_date, 4, 2) || '-' || substr(assault_date, 1, 2) )) <= 3
+                      )
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                        substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+    
+  
+  - key: "asrh-3-female-20-24"
+    grouping: "ASRH-Facility"
+    description: "Number of sexual violence survivors who reported within 72 hours"
+    indicatorQuery: " SELECT count(DISTINCT egv.entity_id) as count FROM ec_gbv_visit egv
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = egv.entity_id
+                      WHERE
+                      (date(efm.dob, '+20 years') <= date('now'))
+                      AND (date(efm.dob, '+25 years') > date('now'))
+                      AND (efm.gender='Female')
+                      AND
+                      (
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' || substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 9, 2)) - date((substr(assault_date, 7, 4) || '-' || substr(assault_date, 4, 2) || '-' || substr(assault_date, 1, 2) )) <= 3
+                      )
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                        substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+  
+  - key: "asrh-4a-male-10-14"
+    grouping: "ASRH-Facility"
+    description: "Number of clients who received post GBV Care HTS"
+    indicatorQuery: " SELECT count(DISTINCT egv.entity_id) as count FROM ec_gbv_visit egv
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = egr.base_entity_id
+                      WHERE
+                      (hiv_test_results = 'positive' OR hiv_test_results = 'negative')
+                      AND (date(efm.dob, '+10 years') <= date('now'))
+                      AND (date(efm.dob, '+15 years') > date('now'))
+                      AND (efm.gender='Male')
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                        substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+  
+  - key: "asrh-4a-female-10-14"
+    grouping: "ASRH-Facility"
+    description: "Number of clients who received post GBV Care HTS"
+    indicatorQuery: " SELECT count(DISTINCT egv.entity_id) as count FROM ec_gbv_visit egv
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = egr.base_entity_id
+                      WHERE
+                      (hiv_test_results = 'positive' OR hiv_test_results = 'negative')
+                      AND (date(efm.dob, '+10 years') <= date('now'))
+                      AND (date(efm.dob, '+15 years') > date('now'))
+                      AND (efm.gender='Female')
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                        substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+  
+  - key: "asrh-4a-male-15-19"
+    grouping: "ASRH-Facility"
+    description: "Number of clients who received post GBV Care HTS"
+    indicatorQuery: " SELECT count(DISTINCT egv.entity_id) as count FROM ec_gbv_visit egv
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = egr.base_entity_id
+                      WHERE
+                      (hiv_test_results = 'positive' OR hiv_test_results = 'negative')
+                      AND (date(efm.dob, '+15 years') <= date('now'))
+                      AND (date(efm.dob, '+20 years') > date('now'))
+                      AND (efm.gender='Male')
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                        substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+  
+  - key: "asrh-4a-female-15-19"
+    grouping: "ASRH-Facility"
+    description: "Number of clients who received post GBV Care HTS"
+    indicatorQuery: " SELECT count(DISTINCT egv.entity_id) as count FROM ec_gbv_visit egv
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = egr.base_entity_id
+                      WHERE
+                      (hiv_test_results = 'positive' OR hiv_test_results = 'negative')
+                      AND (date(efm.dob, '+15 years') <= date('now'))
+                      AND (date(efm.dob, '+20 years') > date('now'))
+                      AND (efm.gender='Female')
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                        substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+  
+  - key: "asrh-4a-male-20-24"
+    grouping: "ASRH-Facility"
+    description: "Number of clients who received post GBV Care HTS"
+    indicatorQuery: " SELECT count(DISTINCT egv.entity_id) as count FROM ec_gbv_visit egv
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = egr.base_entity_id
+                      WHERE
+                      (hiv_test_results = 'positive' OR hiv_test_results = 'negative')
+                      AND (date(efm.dob, '+20 years') <= date('now'))
+                      AND (date(efm.dob, '+25 years') > date('now'))
+                      AND (efm.gender='Male')
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                        substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+  
+  - key: "asrh-4a-female-20-24"
+    grouping: "ASRH-Facility"
+    description: "Number of clients who received post GBV Care HTS"
+    indicatorQuery: " SELECT count(DISTINCT egv.entity_id) as count FROM ec_gbv_visit egv
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = egr.base_entity_id
+                      WHERE
+                      (hiv_test_results = 'positive' OR hiv_test_results = 'negative')
+                      AND (date(efm.dob, '+20 years') <= date('now'))
+                      AND (date(efm.dob, '+25 years') > date('now'))
+                      AND (efm.gender='Female')
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                        substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+  
+  - key: "asrh-4b-male-10-14"
+    grouping: "ASRH-Facility"
+    description: "Number of clients who received post GBV Care STI treatment"
+    indicatorQuery: " SELECT count(DISTINCT egv.entity_id) as count FROM ec_gbv_visit egv
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = egr.base_entity_id
+                      WHERE
+                      was_the_survivor_provided_sti_preventive_treatment = 'yes'
+                      AND (date(efm.dob, '+10 years') <= date('now'))
+                      AND (date(efm.dob, '+15 years') > date('now'))
+                      AND (efm.gender='Male')
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                        substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+  
+  - key: "asrh-4b-female-10-14"
+    grouping: "ASRH-Facility"
+    description: "Number of clients who received post GBV Care STI treatment"
+    indicatorQuery: " SELECT count(DISTINCT egv.entity_id) as count FROM ec_gbv_visit egv
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = egr.base_entity_id
+                      WHERE
+                      was_the_survivor_provided_sti_preventive_treatment = 'yes'
+                      AND (date(efm.dob, '+10 years') <= date('now'))
+                      AND (date(efm.dob, '+15 years') > date('now'))
+                      AND (efm.gender='Female')
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                        substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+  
+  - key: "asrh-4b-male-15-19"
+    grouping: "ASRH-Facility"
+    description: "Number of clients who received post GBV Care STI treatment"
+    indicatorQuery: " SELECT count(DISTINCT egv.entity_id) as count FROM ec_gbv_visit egv
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = egr.base_entity_id
+                      WHERE
+                      was_the_survivor_provided_sti_preventive_treatment = 'yes'
+                      AND (date(efm.dob, '+15 years') <= date('now'))
+                      AND (date(efm.dob, '+20 years') > date('now'))
+                      AND (efm.gender='Male')
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                        substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+  
+  - key: "asrh-4b-female-15-19"
+    grouping: "ASRH-Facility"
+    description: "Number of clients who received post GBV Care STI treatment"
+    indicatorQuery: " SELECT count(DISTINCT egv.entity_id) as count FROM ec_gbv_visit egv
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = egr.base_entity_id
+                      WHERE
+                      was_the_survivor_provided_sti_preventive_treatment = 'yes'
+                      AND (date(efm.dob, '+15 years') <= date('now'))
+                      AND (date(efm.dob, '+20 years') > date('now'))
+                      AND (efm.gender='Female')
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                        substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+  
+  - key: "asrh-4b-male-20-24"
+    grouping: "ASRH-Facility"
+    description: "Number of clients who received post GBV Care STI treatment"
+    indicatorQuery: " SELECT count(DISTINCT egv.entity_id) as count FROM ec_gbv_visit egv
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = egr.base_entity_id
+                      WHERE
+                      was_the_survivor_provided_sti_preventive_treatment = 'yes'
+                      AND (date(efm.dob, '+20 years') <= date('now'))
+                      AND (date(efm.dob, '+25 years') > date('now'))
+                      AND (efm.gender='Male')
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                        substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+  
+  - key: "asrh-4b-female-20-24"
+    grouping: "ASRH-Facility"
+    description: "Number of clients who received post GBV Care STI treatment"
+    indicatorQuery: " SELECT count(DISTINCT egv.entity_id) as count FROM ec_gbv_visit egv
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = egr.base_entity_id
+                      WHERE
+                      was_the_survivor_provided_sti_preventive_treatment = 'yes'
+                      AND (date(efm.dob, '+20 years') <= date('now'))
+                      AND (date(efm.dob, '+25 years') > date('now'))
+                      AND (efm.gender='Female')
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                        substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+  
+  - key: "asrh-4c-male-10-14"
+    grouping: "ASRH-Facility"
+    description: "Idadi ya manusura waliopimwa Virusi vya UKIMWI  baada ya kufanyiwa ukatili "
+    indicatorQuery: " SELECT count(DISTINCT egv.entity_id) as count FROM ec_gbv_visit egv
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = egr.base_entity_id
+                      WHERE
+                      was_the_survivor_provided_pep = 'yes'
+                      AND (date(efm.dob, '+10 years') <= date('now'))
+                      AND (date(efm.dob, '+15 years') > date('now'))
+                      AND (efm.gender='Male')
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                        substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+  
+  - key: "asrh-4c-female-10-14"
+    grouping: "ASRH-Facility"
+    description: "Idadi ya manusura waliopimwa Virusi vya UKIMWI  baada ya kufanyiwa ukatili "
+    indicatorQuery: " SELECT count(DISTINCT egv.entity_id) as count FROM ec_gbv_visit egv
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = egr.base_entity_id
+                      WHERE
+                      was_the_survivor_provided_pep = 'yes'
+                      AND (date(efm.dob, '+10 years') <= date('now'))
+                      AND (date(efm.dob, '+15 years') > date('now'))
+                      AND (efm.gender='Female')
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                        substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+  
+  - key: "asrh-4c-male-15-19"
+    grouping: "ASRH-Facility"
+    description: "Idadi ya manusura waliopimwa Virusi vya UKIMWI  baada ya kufanyiwa ukatili "
+    indicatorQuery: " SELECT count(DISTINCT egv.entity_id) as count FROM ec_gbv_visit egv
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = egr.base_entity_id
+                      WHERE
+                      was_the_survivor_provided_pep = 'yes'
+                      AND (date(efm.dob, '+15 years') <= date('now'))
+                      AND (date(efm.dob, '+20 years') > date('now'))
+                      AND (efm.gender='Male')
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                        substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+  
+  - key: "asrh-4c-female-15-19"
+    grouping: "ASRH-Facility"
+    description: "Idadi ya manusura waliopimwa Virusi vya UKIMWI  baada ya kufanyiwa ukatili "
+    indicatorQuery: " SELECT count(DISTINCT egv.entity_id) as count FROM ec_gbv_visit egv
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = egr.base_entity_id
+                      WHERE
+                      was_the_survivor_provided_pep = 'yes'
+                      AND (date(efm.dob, '+15 years') <= date('now'))
+                      AND (date(efm.dob, '+20 years') > date('now'))
+                      AND (efm.gender='Female')
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                        substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+  
+  - key: "asrh-4c-male-20-24"
+    grouping: "ASRH-Facility"
+    description: "Idadi ya manusura waliopimwa Virusi vya UKIMWI  baada ya kufanyiwa ukatili "
+    indicatorQuery: " SELECT count(DISTINCT egv.entity_id) as count FROM ec_gbv_visit egv
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = egr.base_entity_id
+                      WHERE
+                      was_the_survivor_provided_pep = 'yes'
+                      AND (date(efm.dob, '+20 years') <= date('now'))
+                      AND (date(efm.dob, '+25 years') > date('now'))
+                      AND (efm.gender='Male')
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                        substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+  
+  - key: "asrh-4c-female-20-24"
+    grouping: "ASRH-Facility"
+    description: "Idadi ya manusura waliopimwa Virusi vya UKIMWI  baada ya kufanyiwa ukatili "
+    indicatorQuery: " SELECT count(DISTINCT egv.entity_id) as count FROM ec_gbv_visit egv
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = egr.base_entity_id
+                      WHERE
+                      was_the_survivor_provided_pep = 'yes'
+                      AND (date(efm.dob, '+20 years') <= date('now'))
+                      AND (date(efm.dob, '+25 years') > date('now'))
+                      AND (efm.gender='Female')
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                        substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+  
+  - key: "asrh-4d-female-10-14"
+    grouping: "ASRH-Facility"
+    description: "Idadi ya manusura waliopimwa Virusi vya UKIMWI  baada ya kufanyiwa ukatili "
+    indicatorQuery: " SELECT count(DISTINCT egv.entity_id) as count FROM ec_gbv_visit egv
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = egr.base_entity_id
+                      WHERE
+                      was_the_survivor_provided_ec = 'yes'
+                      AND (date(efm.dob, '+10 years') <= date('now'))
+                      AND (date(efm.dob, '+15 years') > date('now'))
+                      AND (efm.gender='Female')
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                        substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+    
+  
+  - key: "asrh-4d-female-15-19"
+    grouping: "ASRH-Facility"
+    description: "Idadi ya manusura waliopimwa Virusi vya UKIMWI  baada ya kufanyiwa ukatili "
+    indicatorQuery: " SELECT count(DISTINCT egv.entity_id) as count FROM ec_gbv_visit egv
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = egr.base_entity_id
+                      WHERE
+                      was_the_survivor_provided_ec = 'yes'
+                      AND (date(efm.dob, '+15 years') <= date('now'))
+                      AND (date(efm.dob, '+20 years') > date('now'))
+                      AND (efm.gender='Female')
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                        substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+    
+  
+  - key: "asrh-4d-female-20-24"
+    grouping: "ASRH-Facility"
+    description: "Idadi ya manusura waliopimwa Virusi vya UKIMWI  baada ya kufanyiwa ukatili "
+    indicatorQuery: " SELECT count(DISTINCT egv.entity_id) as count FROM ec_gbv_visit egv
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = egr.base_entity_id
+                      WHERE
+                      was_the_survivor_provided_ec = 'yes'
+                      AND (date(efm.dob, '+20 years') <= date('now'))
+                      AND (date(efm.dob, '+25 years') > date('now'))
+                      AND (efm.gender='Female')
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                        substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+  
+  - key: "asrh-4e-male-10-14"
+    grouping: "ASRH-Facility"
+    description: "Idadi ya manusura waliopimwa Virusi vya UKIMWI  baada ya kufanyiwa ukatili "
+    indicatorQuery: " SELECT count(DISTINCT egv.entity_id) as count FROM ec_gbv_visit egv
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = egr.base_entity_id
+                      WHERE
+                      services_the_client_has_been_linked_to LIKE '%legal_services%'
+                      AND (date(efm.dob, '+10 years') <= date('now'))
+                      AND (date(efm.dob, '+15 years') > date('now'))
+                      AND (efm.gender='Male')
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                        substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+  
+  - key: "asrh-4e-female-10-14"
+    grouping: "ASRH-Facility"
+    description: "Idadi ya manusura waliopimwa Virusi vya UKIMWI  baada ya kufanyiwa ukatili "
+    indicatorQuery: " SELECT count(DISTINCT egv.entity_id) as count FROM ec_gbv_visit egv
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = egr.base_entity_id
+                      WHERE
+                      services_the_client_has_been_linked_to LIKE '%legal_services%'
+                      AND (date(efm.dob, '+10 years') <= date('now'))
+                      AND (date(efm.dob, '+15 years') > date('now'))
+                      AND (efm.gender='Female')
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                        substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+  
+  - key: "asrh-4e-male-15-19"
+    grouping: "ASRH-Facility"
+    description: "Idadi ya manusura waliopimwa Virusi vya UKIMWI  baada ya kufanyiwa ukatili "
+    indicatorQuery: " SELECT count(DISTINCT egv.entity_id) as count FROM ec_gbv_visit egv
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = egr.base_entity_id
+                      WHERE
+                      services_the_client_has_been_linked_to LIKE '%legal_services%'
+                      AND (date(efm.dob, '+15 years') <= date('now'))
+                      AND (date(efm.dob, '+20 years') > date('now'))
+                      AND (efm.gender='Male')
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                        substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+  
+  - key: "asrh-4e-female-15-19"
+    grouping: "ASRH-Facility"
+    description: "Idadi ya manusura waliopimwa Virusi vya UKIMWI  baada ya kufanyiwa ukatili "
+    indicatorQuery: " SELECT count(DISTINCT egv.entity_id) as count FROM ec_gbv_visit egv
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = egr.base_entity_id
+                      WHERE
+                      services_the_client_has_been_linked_to LIKE '%legal_services%'
+                      AND (date(efm.dob, '+15 years') <= date('now'))
+                      AND (date(efm.dob, '+20 years') > date('now'))
+                      AND (efm.gender='Female')
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                        substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+  
+  - key: "asrh-4e-male-20-24"
+    grouping: "ASRH-Facility"
+    description: "Idadi ya manusura waliopimwa Virusi vya UKIMWI  baada ya kufanyiwa ukatili "
+    indicatorQuery: " SELECT count(DISTINCT egv.entity_id) as count FROM ec_gbv_visit egv
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = egr.base_entity_id
+                      WHERE
+                      services_the_client_has_been_linked_to LIKE '%legal_services%'
+                      AND (date(efm.dob, '+20 years') <= date('now'))
+                      AND (date(efm.dob, '+25 years') > date('now'))
+                      AND (efm.gender='Male')
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                        substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+  
+  - key: "asrh-4e-female-20-24"
+    grouping: "ASRH-Facility"
+    description: "Idadi ya manusura waliopimwa Virusi vya UKIMWI  baada ya kufanyiwa ukatili "
+    indicatorQuery: " SELECT count(DISTINCT egv.entity_id) as count FROM ec_gbv_visit egv
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = egr.base_entity_id
+                      WHERE
+                      services_the_client_has_been_linked_to LIKE '%legal_services%'
+                      AND (date(efm.dob, '+20 years') <= date('now'))
+                      AND (date(efm.dob, '+25 years') > date('now'))
+                      AND (efm.gender='Female')
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                        substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+  
+  - key: "asrh-4f-male-10-14"
+    grouping: "ASRH-Facility"
+    description: "Idadi ya manusura waliopimwa Virusi vya UKIMWI  baada ya kufanyiwa ukatili "
+    indicatorQuery: " SELECT count(DISTINCT egv.entity_id) as count FROM ec_gbv_visit egv
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = egr.base_entity_id
+                      WHERE
+                      services_the_client_has_been_linked_to LIKE '%mhpss%'
+                      AND (date(efm.dob, '+10 years') <= date('now'))
+                      AND (date(efm.dob, '+15 years') > date('now'))
+                      AND (efm.gender='Male')
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                        substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+  
+  - key: "asrh-4f-female-10-14"
+    grouping: "ASRH-Facility"
+    description: "Idadi ya manusura waliopimwa Virusi vya UKIMWI  baada ya kufanyiwa ukatili "
+    indicatorQuery: " SELECT count(DISTINCT egv.entity_id) as count FROM ec_gbv_visit egv
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = egr.base_entity_id
+                      WHERE
+                      services_the_client_has_been_linked_to LIKE '%mhpss%'
+                      AND (date(efm.dob, '+10 years') <= date('now'))
+                      AND (date(efm.dob, '+15 years') > date('now'))
+                      AND (efm.gender='Female')
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                        substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+  
+  - key: "asrh-4f-male-15-19"
+    grouping: "ASRH-Facility"
+    description: "Idadi ya manusura waliopimwa Virusi vya UKIMWI  baada ya kufanyiwa ukatili "
+    indicatorQuery: " SELECT count(DISTINCT egv.entity_id) as count FROM ec_gbv_visit egv
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = egr.base_entity_id
+                      WHERE
+                      services_the_client_has_been_linked_to LIKE '%mhpss%'
+                      AND (date(efm.dob, '+15 years') <= date('now'))
+                      AND (date(efm.dob, '+20 years') > date('now'))
+                      AND (efm.gender='Male')
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                        substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+  
+  - key: "asrh-4f-female-15-19"
+    grouping: "ASRH-Facility"
+    description: "Idadi ya manusura waliopimwa Virusi vya UKIMWI  baada ya kufanyiwa ukatili "
+    indicatorQuery: " SELECT count(DISTINCT egv.entity_id) as count FROM ec_gbv_visit egv
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = egr.base_entity_id
+                      WHERE
+                      services_the_client_has_been_linked_to LIKE '%mhpss%'
+                      AND (date(efm.dob, '+15 years') <= date('now'))
+                      AND (date(efm.dob, '+20 years') > date('now'))
+                      AND (efm.gender='Female')
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                        substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+  
+  - key: "asrh-4f-male-20-24"
+    grouping: "ASRH-Facility"
+    description: "Idadi ya manusura waliopimwa Virusi vya UKIMWI  baada ya kufanyiwa ukatili "
+    indicatorQuery: " SELECT count(DISTINCT egv.entity_id) as count FROM ec_gbv_visit egv
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = egr.base_entity_id
+                      WHERE
+                      services_the_client_has_been_linked_to LIKE '%mhpss%'
+                      AND (date(efm.dob, '+20 years') <= date('now'))
+                      AND (date(efm.dob, '+25 years') > date('now'))
+                      AND (efm.gender='Male')
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                        substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+  
+  - key: "asrh-4f-female-20-24"
+    grouping: "ASRH-Facility"
+    description: "Idadi ya manusura waliopimwa Virusi vya UKIMWI  baada ya kufanyiwa ukatili "
+    indicatorQuery: " SELECT count(DISTINCT egv.entity_id) as count FROM ec_gbv_visit egv
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = egr.base_entity_id
+                      WHERE
+                      services_the_client_has_been_linked_to LIKE '%mhpss%'
+                      AND (date(efm.dob, '+20 years') <= date('now'))
+                      AND (date(efm.dob, '+25 years') > date('now'))
+                      AND (efm.gender='Female')
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                        substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+  
+  - key: "asrh-4g-male-10-14"
+    grouping: "ASRH-Facility"
+    description: "Idadi ya manusura waliopimwa Virusi vya UKIMWI  baada ya kufanyiwa ukatili "
+    indicatorQuery: " SELECT count(DISTINCT egv.entity_id) as count FROM ec_gbv_visit egv
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = egr.base_entity_id
+                      WHERE
+                      forensic_examination_done = 'yes'
+                      AND (date(efm.dob, '+10 years') <= date('now'))
+                      AND (date(efm.dob, '+15 years') > date('now'))
+                      AND (efm.gender='Male')
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                        substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+  
+  - key: "asrh-4g-female-10-14"
+    grouping: "ASRH-Facility"
+    description: "Idadi ya manusura waliopimwa Virusi vya UKIMWI  baada ya kufanyiwa ukatili "
+    indicatorQuery: " SELECT count(DISTINCT egv.entity_id) as count FROM ec_gbv_visit egv
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = egr.base_entity_id
+                      WHERE
+                      forensic_examination_done = 'yes'
+                      AND (date(efm.dob, '+10 years') <= date('now'))
+                      AND (date(efm.dob, '+15 years') > date('now'))
+                      AND (efm.gender='Female')
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                        substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+  
+  - key: "asrh-4g-male-15-19"
+    grouping: "ASRH-Facility"
+    description: "Idadi ya manusura waliopimwa Virusi vya UKIMWI  baada ya kufanyiwa ukatili "
+    indicatorQuery: " SELECT count(DISTINCT egv.entity_id) as count FROM ec_gbv_visit egv
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = egr.base_entity_id
+                      WHERE
+                      forensic_examination_done = 'yes'
+                      AND (date(efm.dob, '+15 years') <= date('now'))
+                      AND (date(efm.dob, '+20 years') > date('now'))
+                      AND (efm.gender='Male')
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                        substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+  
+  - key: "asrh-4g-female-15-19"
+    grouping: "ASRH-Facility"
+    description: "Idadi ya manusura waliopimwa Virusi vya UKIMWI  baada ya kufanyiwa ukatili "
+    indicatorQuery: " SELECT count(DISTINCT egv.entity_id) as count FROM ec_gbv_visit egv
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = egr.base_entity_id
+                      WHERE
+                      forensic_examination_done = 'yes'
+                      AND (date(efm.dob, '+15 years') <= date('now'))
+                      AND (date(efm.dob, '+20 years') > date('now'))
+                      AND (efm.gender='Female')
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                        substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+  
+  - key: "asrh-4g-male-20-24"
+    grouping: "ASRH-Facility"
+    description: "Idadi ya manusura waliopimwa Virusi vya UKIMWI  baada ya kufanyiwa ukatili "
+    indicatorQuery: " SELECT count(DISTINCT egv.entity_id) as count FROM ec_gbv_visit egv
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = egr.base_entity_id
+                      WHERE
+                      forensic_examination_done = 'yes'
+                      AND (date(efm.dob, '+20 years') <= date('now'))
+                      AND (date(efm.dob, '+25 years') > date('now'))
+                      AND (efm.gender='Male')
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                        substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+  
+  - key: "asrh-4g-female-20-24"
+    grouping: "ASRH-Facility"
+    description: "Idadi ya manusura waliopimwa Virusi vya UKIMWI  baada ya kufanyiwa ukatili "
+    indicatorQuery: " SELECT count(DISTINCT egv.entity_id) as count FROM ec_gbv_visit egv
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = egr.base_entity_id
+                      WHERE
+                      forensic_examination_done = 'yes'
+                      AND (date(efm.dob, '+20 years') <= date('now'))
+                      AND (date(efm.dob, '+25 years') > date('now'))
+                      AND (efm.gender='Female')
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                        date(substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) ||'-' ||
+                        substr(strftime('%Y-%m-%d', datetime(egv.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01')"
+    
+  - key: "asrh-5a-female-10-14"
+    grouping: "ASRH-Facility"
+    description: "Provided PPFP within 48 hours"
+    indicatorQuery: " SELECT count(DISTINCT elpc.base_entity_id) as count
+                      FROM ec_ld_postpartum_care elpc
+                               INNER JOIN ec_family_member efm ON efm.base_entity_id = elpc.base_entity_id
+                      WHERE elpc.family_planning_methods_selected NOT LIKE '%none%'
+                        AND (date(efm.dob, '+10 years') <= date('now'))
+                        AND (date(efm.dob, '+15 years') > date('now'))
+                        AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                            date(substr(elpc.delivery_date, 7, 4) || '-' || substr(elpc.delivery_date, 4, 2) || '-' || '01')"
+    
+  - key: "asrh-5a-female-15-19"
+    grouping: "ASRH-Facility"
+    description: "Provided PPFP within 48 hours"
+    indicatorQuery: " SELECT count(DISTINCT elpc.base_entity_id) as count
+                      FROM ec_ld_postpartum_care elpc
+                               INNER JOIN ec_family_member efm ON efm.base_entity_id = elpc.base_entity_id
+                      WHERE elpc.family_planning_methods_selected NOT LIKE '%none%'
+                        AND (date(efm.dob, '+15 years') <= date('now'))
+                        AND (date(efm.dob, '+20 years') > date('now'))
+                        AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                            date(substr(elpc.delivery_date, 7, 4) || '-' || substr(elpc.delivery_date, 4, 2) || '-' || '01')"
+    
+  - key: "asrh-5a-female-20-24"
+    grouping: "ASRH-Facility"
+    description: "Provided PPFP within 48 hours"
+    indicatorQuery: " SELECT count(DISTINCT elpc.base_entity_id) as count
+                      FROM ec_ld_postpartum_care elpc
+                               INNER JOIN ec_family_member efm ON efm.base_entity_id = elpc.base_entity_id
+                      WHERE elpc.family_planning_methods_selected NOT LIKE '%none%'
+                        AND (date(efm.dob, '+20 years') <= date('now'))
+                        AND (date(efm.dob, '+25 years') > date('now'))
+                        AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                            date(substr(elpc.delivery_date, 7, 4) || '-' || substr(elpc.delivery_date, 4, 2) || '-' || '01')"
+    
+  - key: "asrh-6a-female-10-14"
+    grouping: "ASRH-Facility"
+    description: "Gestation age less than 12 weeks for 10 - 14 year olds"
+    indicatorQuery: " SELECT count(DISTINCT ear.base_entity_id) as count
+                      FROM ec_anc_register ear
+                               INNER JOIN ec_family_member fm on fm.base_entity_id = ear.base_entity_id
+                               INNER JOIN ec_anc_followup eaf on fm.base_entity_id = eaf.entity_id
+                      WHERE CAST(eaf.gest_age as INT) < 12 AND eaf.visit_number = 1
+                        AND is_transfer_in IS NULL
+                        AND (date(fm.dob, '+10 years') <= date('now'))
+                        AND (date(fm.dob, '+15 years') > date('now'))
+                        AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                            date(substr(ear.confirmation_date, 7, 4) || '-' || substr(ear.confirmation_date, 4, 2) || '-' || '01')"
+    
+  - key: "asrh-6a-female-15-19"
+    grouping: "ASRH-Facility"
+    description: "Gestation age less than 12 weeks for 15 - 19 year olds"
+    indicatorQuery: " SELECT count(DISTINCT ear.base_entity_id) as count
+                      FROM ec_anc_register ear
+                               INNER JOIN ec_family_member fm on fm.base_entity_id = ear.base_entity_id
+                               INNER JOIN ec_anc_followup eaf on fm.base_entity_id = eaf.entity_id
+                      WHERE CAST(eaf.gest_age as INT) < 12 AND eaf.visit_number = 1
+                        AND is_transfer_in IS NULL
+                        AND (date(fm.dob, '+15 years') <= date('now'))
+                        AND (date(fm.dob, '+20 years') > date('now'))
+                        AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                            date(substr(ear.confirmation_date, 7, 4) || '-' || substr(ear.confirmation_date, 4, 2) || '-' || '01')"
+    
+  - key: "asrh-6a-female-20-24"
+    grouping: "ASRH-Facility"
+    description: "Gestation age less than 12 weeks for 20 - 24 year olds"
+    indicatorQuery: " SELECT count(DISTINCT ear.base_entity_id) as count
+                      FROM ec_anc_register ear
+                               INNER JOIN ec_family_member fm on fm.base_entity_id = ear.base_entity_id
+                               INNER JOIN ec_anc_followup eaf on fm.base_entity_id = eaf.entity_id
+                      WHERE CAST(eaf.gest_age as INT) < 12 AND eaf.visit_number = 1
+                        AND is_transfer_in IS NULL
+                        AND (date(fm.dob, '+20 years') <= date('now'))
+                        AND (date(fm.dob, '+25 years') > date('now'))
+                        AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                            date(substr(ear.confirmation_date, 7, 4) || '-' || substr(ear.confirmation_date, 4, 2) || '-' || '01')"
+  
+  - key: "asrh-6b-female-10-14"
+    grouping: "ASRH-Facility"
+    description: "Gestation age greater than or equals to 12 weeks for 10 - 14 year olds"
+    indicatorQuery: " SELECT count(DISTINCT ear.base_entity_id) as count
+                      FROM ec_anc_register ear
+                               INNER JOIN ec_family_member fm on fm.base_entity_id = ear.base_entity_id
+                               INNER JOIN ec_anc_followup eaf on fm.base_entity_id = eaf.entity_id
+                      WHERE CAST(eaf.gest_age as INT) >= 12 AND eaf.visit_number = 1
+                        AND is_transfer_in IS NULL
+                        AND (date(fm.dob, '+10 years') <= date('now'))
+                        AND (date(fm.dob, '+15 years') > date('now'))
+                        AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                            date(substr(ear.confirmation_date, 7, 4) || '-' || substr(ear.confirmation_date, 4, 2) || '-' || '01')"
+  
+  - key: "asrh-6b-female-15-19"
+    grouping: "ASRH-Facility"
+    description: "Gestation age greater than or equals to 12 weeks for 15 - 19 year olds"
+    indicatorQuery: " SELECT count(DISTINCT ear.base_entity_id) as count
+                      FROM ec_anc_register ear
+                               INNER JOIN ec_family_member fm on fm.base_entity_id = ear.base_entity_id
+                               INNER JOIN ec_anc_followup eaf on fm.base_entity_id = eaf.entity_id
+                      WHERE CAST(eaf.gest_age as INT) >= 12 AND eaf.visit_number = 1
+                        AND is_transfer_in IS NULL
+                        AND (date(fm.dob, '+15 years') <= date('now'))
+                        AND (date(fm.dob, '+20 years') > date('now'))
+                        AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                            date(substr(ear.confirmation_date, 7, 4) || '-' || substr(ear.confirmation_date, 4, 2) || '-' || '01')"
+  
+  - key: "asrh-6b-female-20-24"
+    grouping: "ASRH-Facility"
+    description: "Gestation age greater than or equals to 12 weeks for 20 - 24 year olds"
+    indicatorQuery: " SELECT count(DISTINCT ear.base_entity_id) as count
+                      FROM ec_anc_register ear
+                               INNER JOIN ec_family_member fm on fm.base_entity_id = ear.base_entity_id
+                               INNER JOIN ec_anc_followup eaf on fm.base_entity_id = eaf.entity_id
+                      WHERE CAST(eaf.gest_age as INT) >= 12 AND eaf.visit_number = 1
+                        AND is_transfer_in IS NULL
+                        AND (date(fm.dob, '+20 years') <= date('now'))
+                        AND (date(fm.dob, '+25 years') > date('now'))
+                        AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                            date(substr(ear.confirmation_date, 7, 4) || '-' || substr(ear.confirmation_date, 4, 2) || '-' || '01')"
+  - key: "asrh-7a-female-10-14"
+    grouping: "ASRH-Facility"
+    description: "Waliojifungua katika kituo cha kutolea huduma za afya"
+    indicatorQuery: " SELECT count(DISTINCT elpc.base_entity_id) as count
+                      FROM ec_ld_postpartum_care elpc
+                               INNER JOIN ec_family_member efm ON efm.base_entity_id = elpc.base_entity_id
+                      WHERE elpc.delivery_place = 'at_a_health_facility'
+                        AND (date(efm.dob, '+10 years') <= date('now'))
+                        AND (date(efm.dob, '+15 years') > date('now'))
+                        AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                            date(substr(elpc.delivery_date, 7, 4) || '-' || substr(elpc.delivery_date, 4, 2) || '-' || '01')"
+  - key: "asrh-7a-female-15-19"
+    grouping: "ASRH-Facility"
+    description: "Waliojifungua katika kituo cha kutolea huduma za afya"
+    indicatorQuery: " SELECT count(DISTINCT elpc.base_entity_id) as count
+                      FROM ec_ld_postpartum_care elpc
+                               INNER JOIN ec_family_member efm ON efm.base_entity_id = elpc.base_entity_id
+                      WHERE elpc.delivery_place = 'at_a_health_facility'
+                        AND (date(efm.dob, '+15 years') <= date('now'))
+                        AND (date(efm.dob, '+20 years') > date('now'))
+                        AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                            date(substr(elpc.delivery_date, 7, 4) || '-' || substr(elpc.delivery_date, 4, 2) || '-' || '01')"
+  - key: "asrh-7a-female-20-24"
+    grouping: "ASRH-Facility"
+    description: "Waliojifungua katika kituo cha kutolea huduma za afya"
+    indicatorQuery: " SELECT count(DISTINCT elpc.base_entity_id) as count
+                      FROM ec_ld_postpartum_care elpc
+                               INNER JOIN ec_family_member efm ON efm.base_entity_id = elpc.base_entity_id
+                      WHERE elpc.delivery_place = 'at_a_health_facility'
+                        AND (date(efm.dob, '+20 years') <= date('now'))
+                        AND (date(efm.dob, '+25 years') > date('now'))
+                        AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                            date(substr(elpc.delivery_date, 7, 4) || '-' || substr(elpc.delivery_date, 4, 2) || '-' || '01')"
+  - key: "asrh-7b-female-10-14"
+    grouping: "ASRH-Facility"
+    description: "Waliojifungua nyumbani (H) bila msaada wa TBA"
+    indicatorQuery: " SELECT count(DISTINCT elpc.base_entity_id) as count
+                      FROM ec_ld_postpartum_care elpc
+                               INNER JOIN ec_family_member efm ON efm.base_entity_id = elpc.base_entity_id
+                      WHERE elpc.delivery_place = 'at_home'
+                        AND (date(efm.dob, '+10 years') <= date('now'))
+                        AND (date(efm.dob, '+15 years') > date('now'))
+                        AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                            date(substr(elpc.delivery_date, 7, 4) || '-' || substr(elpc.delivery_date, 4, 2) || '-' || '01')"
+  - key: "asrh-7b-female-15-19"
+    grouping: "ASRH-Facility"
+    description: "Waliojifungua nyumbani (H) bila msaada wa TBA"
+    indicatorQuery: " SELECT count(DISTINCT elpc.base_entity_id) as count
+                      FROM ec_ld_postpartum_care elpc
+                               INNER JOIN ec_family_member efm ON efm.base_entity_id = elpc.base_entity_id
+                      WHERE elpc.delivery_place = 'at_home'
+                        AND (date(efm.dob, '+15 years') <= date('now'))
+                        AND (date(efm.dob, '+20 years') > date('now'))
+                        AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                            date(substr(elpc.delivery_date, 7, 4) || '-' || substr(elpc.delivery_date, 4, 2) || '-' || '01')"
+  - key: "asrh-7b-female-20-24"
+    grouping: "ASRH-Facility"
+    description: "Waliojifungua nyumbani (H) bila msaada wa TBA"
+    indicatorQuery: " SELECT count(DISTINCT elpc.base_entity_id) as count
+                      FROM ec_ld_postpartum_care elpc
+                               INNER JOIN ec_family_member efm ON efm.base_entity_id = elpc.base_entity_id
+                      WHERE elpc.delivery_place = 'at_home'
+                        AND (date(efm.dob, '+20 years') <= date('now'))
+                        AND (date(efm.dob, '+25 years') > date('now'))
+                        AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) =
+                            date(substr(elpc.delivery_date, 7, 4) || '-' || substr(elpc.delivery_date, 4, 2) || '-' || '01')"
+  

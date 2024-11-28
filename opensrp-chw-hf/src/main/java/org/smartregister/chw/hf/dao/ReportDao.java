@@ -117,7 +117,7 @@ public class ReportDao extends AbstractDao {
             return data1;
         };
 
-        DataMap<Map<String, String>> map2= cursor2 -> {
+        DataMap<Map<String, String>> map2 = cursor2 -> {
             Map<String, String> data2 = new HashMap<>();
             data2.put("requester", cursor2.getString(cursor2.getColumnIndex("requester")));
             data2.put("quantity_response", cursor2.getString(cursor2.getColumnIndex("quantity_response")));
@@ -137,8 +137,7 @@ public class ReportDao extends AbstractDao {
             return new ArrayList<>();
     }
 
-    public static List<Map<String, String>> getHfCdpStockLog(Date reportDate)
-    {
+    public static List<Map<String, String>> getHfCdpStockLog(Date reportDate) {
         String sql = " SELECT female_condoms_offset,male_condoms_offset,issuing_organization,female_condom_brand,male_condom_brand   \n" +
                 "                   FROM ec_cdp_stock_log   \n" +
                 "                   WHERE (issuing_organization='MSD' OR issuing_organization='PSI' OR issuing_organization='T-MARC' OR  issuing_organization='other')   \n" +
@@ -191,8 +190,7 @@ public class ReportDao extends AbstractDao {
             return new ArrayList<>();
     }
 
-    public static List<Map<String, String>> getKvpMissedAp(Date reportDate)
-    {
+    public static List<Map<String, String>> getKvpMissedAp(Date reportDate) {
         String sql = "SELECT DISTINCT\n" +
                 "    efm.base_entity_id as base_entity_id, \n" +
                 "    uic_id, \n" +
@@ -1335,7 +1333,8 @@ public class ReportDao extends AbstractDao {
     }
 
     //    for vmmc reports
-    public static int getReportPerIndicatorCode(String indicatorCode, Date reportDate, Date startDate, Date endDate) {
+    public static int getReportPerIndicatorCode(String indicatorCode, Date reportDate, Date
+            startDate, Date endDate) {
         String reportDateString = simpleDateFormat.format(reportDate);
         String sql = "";
 
@@ -1355,7 +1354,7 @@ public class ReportDao extends AbstractDao {
                     "ORDER BY day DESC LIMIT 1";
         }
 
-        Timber.e("tbwa: "+sql);
+        Timber.e("tbwa: " + sql);
         DataMap<Integer> map = cursor -> getCursorIntValue(cursor, "indicator_value");
 
         List<Integer> res = readData(sql, map);
@@ -1368,7 +1367,7 @@ public class ReportDao extends AbstractDao {
     }
 
 
-    public static String getLastMonthWithTallies(){
+    public static String getLastMonthWithTallies() {
         String sql = " SELECT month FROM monthly_tallies ORDER by month DESC LIMIT 1";
         DataMap<String> map = cursor -> getCursorValue(cursor, "month");
         List<String> res = readData(sql, map);

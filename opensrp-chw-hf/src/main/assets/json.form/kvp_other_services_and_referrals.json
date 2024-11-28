@@ -46,12 +46,12 @@
     "title": "Other Services and Referral",
     "fields": [
       {
-        "key": "other_services_referrals_provided",
+        "key": "other_services_provided",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "other_services_referrals_provided",
+        "openmrs_entity_id": "other_services_provided",
         "type": "check_box",
-        "label": "Other services/referrals provided to the client",
+        "label": "Other services provided to the Client",
         "combine_checkbox_option_values": "true",
         "label_text_style": "normal",
         "text_color": "#C0C0C0",
@@ -75,7 +75,7 @@
           },
           {
             "key": "covid_vaccine",
-            "text": "Covid-19 vaccine",
+            "text": "Vaccination(Specify)",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "covid_vaccine"
@@ -115,18 +115,41 @@
         }
       },
       {
-        "key": "other_other_services_referrals_provided",
+        "key": "covid_vaccine",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "other_other_services_referrals_provided",
+        "openmrs_entity_id": "covid_vaccine",
         "type": "edit_text",
-        "hint": "Other(Specify)",
+        "hint": "Specify Vaccination",
         "v_required": {
           "value": "true",
           "err": "Please specify"
         },
         "relevance": {
-          "step1:other_services_referrals_provided": {
+          "step1:other_services_provided": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "covid_vaccine"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "others_services_provided",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "others_services_provided",
+        "type": "edit_text",
+        "hint": "Specify other services",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
+        "relevance": {
+          "step1:other_services_provided": {
             "ex-checkbox": [
               {
                 "or": [
@@ -136,7 +159,141 @@
             ]
           }
         }
+      },
+      {
+        "key": "other_services_referrals_provided",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "other_services_referrals_provided",
+        "type": "check_box",
+        "label": "Referrals provided to the client",
+        "combine_checkbox_option_values": "true",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "exclusive": [
+          "none"
+        ],
+        "options": [
+          {
+            "key": "rch",
+            "text": "RCH",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "rch"
+          },
+          {
+            "key": "psychosocial",
+            "text": "Psychosocial",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "psychosocial"
+          },
+          {
+            "key": "vaccine_type",
+            "text": "Vaccination (Specify)",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "vaccine_type"
+          },
+          {
+            "key": "legal_service",
+            "text": "Legal services",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "legal_service"
+          },
+          {
+           "key": "iga1",
+             "text": "IGA",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "iga1"
+          },
+          {
+            "key": "pep",
+            "text": "PEP",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "pep"
+          },
+          {
+            "key": "vmmc",
+            "text": "VMMC",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "vmmc"
+          },
+          {
+            "key": "fp",
+            "text": "Family Planning",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "fp"
+          },
+          {
+            "key": "hvbc",
+            "text": "Hepatitis B & C",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "hvbc"
+          },
+          {
+           "key": "sti",
+            "text": "STI",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "sti"
+          },
+          {
+            "key": "cecap",
+            "text": "CECAP",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "cecap"
+          },
+          {
+            "key": "mat",
+            "text": "MAT",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "mat"
+          },
+          {
+            "key": "none",
+            "text": "None",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "none"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please pick at least one"
+        }
+      },
+      {
+        "key": "vaccine",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "vaccine",
+        "type": "edit_text",
+        "hint": "Specify Vaccination",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify"
+        },
+        "relevance": {
+          "step1:other_services_referrals_provided": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "vaccine_type"
+                ]
+              }
+            ]
+          }
+        }
       }
     ]
-  }
-}
+  }}
+
