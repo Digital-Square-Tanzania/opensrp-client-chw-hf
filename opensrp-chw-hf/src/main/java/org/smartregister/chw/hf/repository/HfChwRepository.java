@@ -586,6 +586,9 @@ public class HfChwRepository extends CoreChwRepository {
                 case 26:
                     upgradeToVersion26(db);
                     break;
+                case 27:
+                    upgradeToVersion27(db);
+                    break;
                 default:
                     break;
             }
