@@ -363,7 +363,7 @@ tasks.withType(Test) {
     jacoco.includeNoLocationClasses = true
 }
 
-task jacocoTestReport(type: JacocoReport, dependsOn: ['testNacpDebugUnitTest', 'createNacpDebugCoverageReport']) {
+task jacocoTestReport(type: JacocoReport, dependsOn: ['testNacpDebugUnitTest']) {
     reports {
         xml.enabled = true
         html.enabled = true
