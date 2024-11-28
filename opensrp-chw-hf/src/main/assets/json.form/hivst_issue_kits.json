@@ -55,6 +55,13 @@
         "type": "native_radio",
         "options": [
           {
+            "key": "citc",
+            "text": "CITC",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "citc"
+          },
+          {
             "key": "opd",
             "text": "OPD",
             "openmrs_entity_parent": "",
@@ -83,16 +90,93 @@
             "openmrs_entity_id": "ctc"
           },
           {
+            "key": "tb_clinic",
+            "text": "TB Clinic",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "tb_clinic"
+          },
+          {
+            "key": "sti_clinic",
+            "text": "STI Clinic",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "sti_clinic"
+          },
+          {
+            "key": "blood_donation",
+            "text": "Blood Donation",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "blood_donation"
+          },
+          {
+            "key": "family_planning",
+            "text": "Family Planning",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "family_planning"
+          },
+          {
+            "key": "vmmc",
+            "text": "VMMC",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "vmmc"
+          },
+          {
+            "key": "lab",
+            "text": "Laboratory",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "lab"
+          },
+          {
+            "key": "cecap",
+            "text": "Cervical Cancer screening",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "cecap"
+          },
+          {
             "key": "outreach",
             "text": "Outreach",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "outreach"
+          },
+          {
+            "key": "cbhts",
+            "text": "Community HIV testing services",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "cbhts"
+          },
+          {
+            "key": "other",
+            "text": "Other",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "other"
           }
         ],
         "v_required": {
           "value": "true",
           "err": "Please select an answer"
+        }
+      },
+      {
+        "key": "testing_approach",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "testing_approach",
+        "type": "hidden",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "hivst_issue_kits_relevance.yml"
+            }
+          }
         }
       },
       {
@@ -213,6 +297,42 @@
         "v_required": {
           "value": true,
           "err": "Please select the Expiry date"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "hivst_issue_kits_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "client_kit_type",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "service_delivery_point",
+        "label": "Select the Client's Kit Type",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "sto",
+            "text": "Oral Based Self-Test (STO)",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "sto"
+          },
+          {
+            "key": "stb",
+            "text": "Blood Based Self Test (STB)",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "stb"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select an answer"
         },
         "relevance": {
           "rules-engine": {
@@ -406,6 +526,46 @@
         }
       },
       {
+        "key": "peer_friend_kit_type",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "peer_friend_kit_type",
+        "label": "Peer Friend's Kit Type",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "sto",
+            "text": "Oral Based Self-Test (STO)",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "sto"
+          },
+          {
+            "key": "stb",
+            "text": "Blood Based Self Test (STB)",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "stb"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select an answer"
+        },
+        "relevance": {
+          "step1:extra_kits_issued_for": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "peer_friend"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
         "key": "sexual_partner_kit_code",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -459,6 +619,46 @@
         "v_required": {
           "value": true,
           "err": "Please select the Expiry date"
+        },
+        "relevance": {
+          "step1:extra_kits_issued_for": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "sexual_partner"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "sexual_partner_kit_type",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "sexual_partner_kit_type",
+        "label": "Sexual Partner's Kit Type",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "sto",
+            "text": "Oral Based Self-Test (STO)",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "sto"
+          },
+          {
+            "key": "stb",
+            "text": "Blood Based Self Test (STB)",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "stb"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select an answer"
         },
         "relevance": {
           "step1:extra_kits_issued_for": {
