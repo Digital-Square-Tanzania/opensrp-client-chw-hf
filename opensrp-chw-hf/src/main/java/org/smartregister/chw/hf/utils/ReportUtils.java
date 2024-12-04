@@ -28,6 +28,9 @@ import org.smartregister.chw.hf.domain.cbhs_reports.CbhsMonthlyReportObject;
 import org.smartregister.chw.hf.domain.cdp_reports.CdpIssuingAtFacilityReportObject;
 import org.smartregister.chw.hf.domain.cdp_reports.CdpIssuingFromFacilityReportObject;
 import org.smartregister.chw.hf.domain.cdp_reports.CdpReceivingReportObject;
+import org.smartregister.chw.hf.domain.hts_reports.HtsMonthlyReportObject;
+import org.smartregister.chw.hf.domain.hts_reports.HtsRegisterReportObject;
+import org.smartregister.chw.hf.domain.hts_reports.HtsScreeningReportObject;
 import org.smartregister.chw.hf.domain.kvp_reports.KvpMissedApReportObject;
 import org.smartregister.chw.hf.domain.kvp_reports.KvpMonthlyReportObject;
 import org.smartregister.chw.hf.domain.ld_reports.LdMonthlyReportObject;
@@ -236,6 +239,8 @@ public class ReportUtils {
         }
         else if(reportType.equals(Constants.ReportConstants.ReportTypes.KVP_REPORT)){
             mWebView.loadUrl("https://appassets.androidplatform.net/assets/reports/kvp_reports/" + reportPath + ".html");
+        }else if(reportType.equals(Constants.ReportConstants.ReportTypes.HTS_REPORT)){
+            mWebView.loadUrl("https://appassets.androidplatform.net/assets/reports/hts_reports/" + reportPath + ".html");
         }
         else {
             mWebView.loadUrl("https://appassets.androidplatform.net/assets/reports/" + reportPath + ".html");
@@ -718,6 +723,45 @@ public class ReportUtils {
             FpMonthlyReportObject fpMonthlyReportObject = new FpMonthlyReportObject(now);
             try {
                 report = fpMonthlyReportObject.getIndicatorDataAsGson(fpMonthlyReportObject.getIndicatorData());
+            } catch (Exception e) {
+                Timber.e(e);
+            }
+            return report;
+        }
+    }
+
+    public static class HtsMonthlyReport {
+        public static String computeReport(Date now) {
+            String report = "";
+            HtsMonthlyReportObject htsMonthlyReportObject = new HtsMonthlyReportObject(now);
+            try {
+                report = htsMonthlyReportObject.getIndicatorDataAsGson(htsMonthlyReportObject.getIndicatorData());
+            } catch (Exception e) {
+                Timber.e(e);
+            }
+            return report;
+        }
+    }
+
+    public static class HtsScreeningReport {
+        public static String computeReport(Date now) {
+            String report = "";
+            HtsScreeningReportObject htsScreeningReportObject = new HtsScreeningReportObject(now);
+            try {
+                report = htsScreeningReportObject.getIndicatorDataAsGson(htsScreeningReportObject.getIndicatorData());
+            } catch (Exception e) {
+                Timber.e(e);
+            }
+            return report;
+        }
+    }
+
+    public static class HtsRegisterReport {
+        public static String computeReport(Date now) {
+            String report = "";
+            HtsRegisterReportObject htsRegisterReportObject = new HtsRegisterReportObject(now);
+            try {
+                report = htsRegisterReportObject.getIndicatorDataAsGson(htsRegisterReportObject.getIndicatorData());
             } catch (Exception e) {
                 Timber.e(e);
             }
