@@ -1,10 +1,15 @@
 package org.smartregister.chw.hf.fragment;
 
+import static org.smartregister.chw.hf.utils.Constants.ENABLE_DATE_RANGE_FILTER;
 import static org.smartregister.chw.hf.utils.Constants.ENABLE_HIV_STATUS_FILTER;
+import static org.smartregister.chw.hf.utils.Constants.ENABLE_PREP_STATUS_FILTER;
 import static org.smartregister.chw.hf.utils.Constants.FILTERS_ENABLED;
 import static org.smartregister.chw.hf.utils.Constants.FILTER_APPOINTMENT_DATE;
+import static org.smartregister.chw.hf.utils.Constants.FILTER_APPOINTMENT_DATE_RANGE_END_DATE;
+import static org.smartregister.chw.hf.utils.Constants.FILTER_APPOINTMENT_DATE_RANGE_START_DATE;
 import static org.smartregister.chw.hf.utils.Constants.FILTER_HIV_STATUS;
 import static org.smartregister.chw.hf.utils.Constants.FILTER_IS_REFERRED;
+import static org.smartregister.chw.hf.utils.Constants.FILTER_PREP_STATUS;
 import static org.smartregister.chw.hf.utils.Constants.REQUEST_FILTERS;
 
 import android.app.Activity;
@@ -14,12 +19,15 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.loader.content.CursorLoader;
 import androidx.loader.content.Loader;
+
+import com.google.android.material.tabs.TabLayout;
 
 import org.apache.commons.lang3.StringUtils;
 import org.smartregister.chw.anc.util.DBConstants;
@@ -28,8 +36,9 @@ import org.smartregister.chw.core.model.CoreKvpRegisterFragmentModel;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.core.utils.QueryBuilder;
 import org.smartregister.chw.hf.R;
-import org.smartregister.chw.hf.activity.RegisterFilterActivity;
 import org.smartregister.chw.hf.activity.PrEPProfileActivity;
+import org.smartregister.chw.hf.activity.RegisterFilterActivity;
+import org.smartregister.chw.hf.model.PrepRegisterFragmentModel;
 import org.smartregister.chw.hf.presenter.PrEPRegisterFragmentPresenter;
 import org.smartregister.commonregistry.CommonRepository;
 import org.smartregister.cursoradapter.SmartRegisterQueryBuilder;
@@ -40,8 +49,12 @@ import java.util.List;
 import timber.log.Timber;
 
 public class PrEPRegisterFragment extends CoreKvpRegisterFragment implements android.view.View.OnClickListener {
+    String customGroupFilter;
     private String appointmentDate;
+    private String appointmentStartDate;
+    private String appointmentEndDate;
     private String filterHivStatus;
+    private String filterPrepStatus;
     private boolean filterIsReferred = false;
     private boolean filterEnabled = false;
     private TextView filterSortTextView;
@@ -51,7 +64,7 @@ public class PrEPRegisterFragment extends CoreKvpRegisterFragment implements and
         if (getActivity() == null) {
             return;
         }
-        presenter = new PrEPRegisterFragmentPresenter(this, new CoreKvpRegisterFragmentModel(), null);
+        presenter = new PrEPRegisterFragmentPresenter(this, new PrepRegisterFragmentModel(), null);
     }
 
     @Override
@@ -81,6 +94,8 @@ public class PrEPRegisterFragment extends CoreKvpRegisterFragment implements and
         filterSortLayout.setVisibility(android.view.View.VISIBLE);
         filterSortLayout.setOnClickListener(this);
 
+        setUpTabLayout(view, true);
+
     }
 
     @Override
@@ -89,9 +104,14 @@ public class PrEPRegisterFragment extends CoreKvpRegisterFragment implements and
             Intent intent = new Intent(getContext(), RegisterFilterActivity.class);
             intent.putExtra(FILTERS_ENABLED, filterEnabled);
             intent.putExtra(FILTER_HIV_STATUS, filterHivStatus);
-            intent.putExtra(ENABLE_HIV_STATUS_FILTER, false);
+            intent.putExtra(FILTER_PREP_STATUS, filterPrepStatus);
             intent.putExtra(FILTER_IS_REFERRED, filterIsReferred);
             intent.putExtra(FILTER_APPOINTMENT_DATE, appointmentDate);
+            intent.putExtra(FILTER_APPOINTMENT_DATE_RANGE_START_DATE, appointmentStartDate);
+            intent.putExtra(FILTER_APPOINTMENT_DATE_RANGE_END_DATE, appointmentEndDate);
+            intent.putExtra(ENABLE_HIV_STATUS_FILTER, false);
+            intent.putExtra(ENABLE_PREP_STATUS_FILTER, true);
+            intent.putExtra(ENABLE_DATE_RANGE_FILTER, true);
             ((Activity) getContext()).startActivityForResult(intent, REQUEST_FILTERS);
         }
 
@@ -105,9 +125,12 @@ public class PrEPRegisterFragment extends CoreKvpRegisterFragment implements and
                     setTextViewDrawableColor(filterSortTextView, R.color.hf_accent_yellow);
                     filterSortTextView.setText(R.string.filter_applied);
                     filterHivStatus = data.getStringExtra(FILTER_HIV_STATUS);
+                    filterPrepStatus = data.getStringExtra(FILTER_PREP_STATUS);
                     filterIsReferred = data.getBooleanExtra(FILTER_IS_REFERRED, false);
                     appointmentDate = data.getStringExtra(FILTER_APPOINTMENT_DATE);
-                    filter(searchText(), "", ((PrEPRegisterFragmentPresenter) presenter()).getDueFilterCondition(appointmentDate, filterIsReferred, getContext()), false);
+                    appointmentStartDate = data.getStringExtra(FILTER_APPOINTMENT_DATE_RANGE_START_DATE);
+                    appointmentEndDate = data.getStringExtra(FILTER_APPOINTMENT_DATE_RANGE_END_DATE);
+                    filter(prepClientsSearchText(), "", ((PrEPRegisterFragmentPresenter) presenter()).getDueFilterCondition(appointmentStartDate, appointmentEndDate, filterIsReferred, filterPrepStatus, getContext()), false);
                 } else {
                     setTextViewDrawableColor(filterSortTextView, R.color.grey);
                     filterSortTextView.setText(R.string.filter);
@@ -116,7 +139,8 @@ public class PrEPRegisterFragment extends CoreKvpRegisterFragment implements and
         }
     }
 
-    private String searchText() {
+
+    private String prepClientsSearchText() {
         String searchTextInput;
         if (this.getSearchView() == null) {
             searchTextInput = "";
@@ -163,10 +187,12 @@ public class PrEPRegisterFragment extends CoreKvpRegisterFragment implements and
             customFilter.append(MessageFormat.format(" or {0}.{1} like ''%{2}%'' ", CoreConstants.TABLE_NAME.FAMILY_MEMBER, DBConstants.KEY.LAST_NAME, filters));
             customFilter.append(MessageFormat.format(" or {0}.{1} like ''%{2}%'' ", CoreConstants.TABLE_NAME.FAMILY_MEMBER, DBConstants.KEY.MIDDLE_NAME, filters));
             customFilter.append(MessageFormat.format(" or {0}.{1} like ''%{2}%'' ) ", CoreConstants.TABLE_NAME.FAMILY_MEMBER, DBConstants.KEY.UNIQUE_ID, filters));
-
         }
         if (filterEnabled) {
-            customFilter.append(((PrEPRegisterFragmentPresenter) presenter()).getDueFilterCondition(appointmentDate, filterIsReferred, getContext()));
+            customFilter.append(((PrEPRegisterFragmentPresenter) presenter()).getDueFilterCondition(appointmentStartDate, appointmentEndDate, filterIsReferred, filterPrepStatus, getContext()));
+        }
+        if (StringUtils.isNotBlank(customGroupFilter)) {
+            customFilter.append(MessageFormat.format((" and ( {0} ) "), customGroupFilter));
         }
         try {
             if (isValidFilterForFts(commonRepository())) {
@@ -187,5 +213,99 @@ public class PrEPRegisterFragment extends CoreKvpRegisterFragment implements and
         }
 
         return query;
+    }
+
+
+    @Override
+    protected int getLayout() {
+        return R.layout.fragment_prep_register;
+    }
+
+
+    protected void setUpTabLayout(View view, boolean enabled) {
+        TabLayout tabLayout = view.findViewById(R.id.tab_layout);
+        if (enabled) {
+            tabLayout.setVisibility(View.VISIBLE);
+            tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+                @Override
+                public void onTabSelected(TabLayout.Tab tab) {
+                    switch (tab.getPosition()) {
+                        case 0:
+                            customGroupFilter = "";
+                            filterandSortExecute();
+                            break;
+                        case 1:
+                            customGroupFilter = getDue();
+                            filterandSortExecute();
+                            break;
+                        case 2:
+                            customGroupFilter = getTomorrowVisitsDue();
+                            filterandSortExecute();
+                            break;
+                        case 3:
+                            customGroupFilter = getOverDue();
+                            filterandSortExecute();
+                            break;
+                        default:
+                            break;
+                    }
+                }
+
+                @Override
+                public void onTabUnselected(TabLayout.Tab tab) {
+                    //do something
+                }
+
+                @Override
+                public void onTabReselected(TabLayout.Tab tab) {
+                    //do something
+                }
+            });
+        }
+    }
+
+    protected String getDue() {
+        return "CASE\n" +
+                "    WHEN next_visit_date is not null\n" +
+                "        THEN date(substr(next_visit_date, 7, 4) || '-' || substr(next_visit_date, 4, 2) || '-' || substr(next_visit_date, 1, 2)) = date('now')\n" +
+                "    ELSE\n" +
+                "        date(" +
+                "               substr(strftime('%Y-%m-%d', datetime(ec_prep_register.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) || " +
+                "               '-' ||  " +
+                "               substr(strftime('%Y-%m-%d', datetime(ec_prep_register.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || " +
+                "               '-' ||  " +
+                "               substr(strftime('%Y-%m-%d', datetime(ec_prep_register.last_interacted_with / 1000, 'unixepoch', 'localtime')), 9, 2) " +
+                "       )  = date('now')  AND visit_entity_id IS NOT NULL" +
+                "    END";
+    }
+
+    protected String getTomorrowVisitsDue() {
+        return "CASE\n" +
+                "    WHEN next_visit_date is not null\n" +
+                "        THEN date(substr(next_visit_date, 7, 4) || '-' || substr(next_visit_date, 4, 2) || '-' || substr(next_visit_date, 1, 2)) = date('now','+1 day') " +
+                "    ELSE\n" +
+                "        date(" +
+                "               substr(strftime('%Y-%m-%d', datetime(ec_prep_register.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) || " +
+                "               '-' ||  " +
+                "               substr(strftime('%Y-%m-%d', datetime(ec_prep_register.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || " +
+                "               '-' ||  " +
+                "               substr(strftime('%Y-%m-%d', datetime(ec_prep_register.last_interacted_with / 1000, 'unixepoch', 'localtime')), 9, 2) " +
+                "       )   = date('now','+1 day')  AND visit_entity_id IS NOT NULL " +
+                "    END";
+    }
+
+    protected String getOverDue() {
+        return "CASE\n" +
+                " WHEN next_visit_date is not null\n" +
+                "       THEN date(substr(next_visit_date, 7, 4) || '-' || substr(next_visit_date, 4, 2) || '-' || substr(next_visit_date, 1, 2)) < date('now')\n" +
+                "   ELSE\n" +
+                "        date(" +
+                "               substr(strftime('%Y-%m-%d', datetime(ec_prep_register.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) || " +
+                "               '-' ||  " +
+                "               substr(strftime('%Y-%m-%d', datetime(ec_prep_register.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) || " +
+                "               '-' ||  " +
+                "               substr(strftime('%Y-%m-%d', datetime(ec_prep_register.last_interacted_with / 1000, 'unixepoch', 'localtime')), 9, 2) " +
+                "       )  < date('now') AND visit_entity_id IS NOT NULL" +
+                "   END";
     }
 }

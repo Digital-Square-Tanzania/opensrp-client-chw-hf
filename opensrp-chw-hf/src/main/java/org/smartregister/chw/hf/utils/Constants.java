@@ -13,12 +13,15 @@ public class Constants extends CoreConstants {
     public static String REFERRAL_TASK_FOCUS = "referral_task_focus";
 
     public static String FILTER_APPOINTMENT_DATE = "FILTER_APPOINTMENT_DATE";
+    public static String FILTER_APPOINTMENT_DATE_RANGE_START_DATE = "FILTER_APPOINTMENT_DATE_RANGE_START_DATE";
+    public static String FILTER_APPOINTMENT_DATE_RANGE_END_DATE = "FILTER_APPOINTMENT_DATE_RANGE_END_DATE";
     public static String FILTER_IS_REFERRED = "FILTER_IS_REFERRED";
     public static String FILTER_HIV_STATUS = "FILTER_HIV_STATUS";
     public static String FILTER_PREP_STATUS = "FILTER_PREP_STATUS";
     public static String FILTERS_ENABLED = "FILTERS_ENABLED";
     public static String ENABLE_HIV_STATUS_FILTER = "ENABLE_HIV_STATUS_FILTER";
     public static String ENABLE_PREP_STATUS_FILTER = "ENABLE_PREP_STATUS_FILTER";
+    public static String ENABLE_DATE_RANGE_FILTER = "ENABLE_DATE_RANGE_FILTER";
 
     public static int REQUEST_FILTERS = 2004;
 

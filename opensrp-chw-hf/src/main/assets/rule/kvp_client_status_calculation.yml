@@ -1,0 +1,7 @@
+---
+name: step1_enrollment_date
+description: kvp enrollment_date
+priority: 1
+condition: "step1_client_status.equalsIgnoreCase('new_client')"
+actions:
+  - "calculation = helper.getDateToday()"

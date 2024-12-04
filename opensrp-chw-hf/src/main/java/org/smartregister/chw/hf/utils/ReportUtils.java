@@ -7,7 +7,6 @@ import static org.smartregister.chw.hf.utils.Constants.ReportConstants.PMTCTRepo
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.Build;
 import android.print.PrintAttributes;
 import android.print.PrintDocumentAdapter;
 import android.print.PrintManager;
@@ -22,12 +21,17 @@ import androidx.webkit.WebViewAssetLoader;
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 import org.json.JSONException;
+import org.smartregister.chw.hf.domain.AsrhMonthlyReportObject;
 import org.smartregister.chw.hf.domain.FpMonthlyReportObject;
+import org.smartregister.chw.hf.domain.SbcReportObject;
 import org.smartregister.chw.hf.domain.anc_reports.AncMonthlyReportObject;
 import org.smartregister.chw.hf.domain.cbhs_reports.CbhsMonthlyReportObject;
 import org.smartregister.chw.hf.domain.cdp_reports.CdpIssuingAtFacilityReportObject;
 import org.smartregister.chw.hf.domain.cdp_reports.CdpIssuingFromFacilityReportObject;
 import org.smartregister.chw.hf.domain.cdp_reports.CdpReceivingReportObject;
+import org.smartregister.chw.hf.domain.cecap_reports.CecapMonthlyReportObject;
+import org.smartregister.chw.hf.domain.cecap_reports.CecapOtherMonthlyReportObject;
+import org.smartregister.chw.hf.domain.kvp_reports.KvpMissedApReportObject;
 import org.smartregister.chw.hf.domain.hts_reports.HtsMonthlyReportObject;
 import org.smartregister.chw.hf.domain.hts_reports.HtsRegisterReportObject;
 import org.smartregister.chw.hf.domain.hts_reports.HtsScreeningReportObject;
@@ -207,7 +211,6 @@ public class ReportUtils {
         return reportPeriod;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public static void printTheWebPage(WebView webView, Context context) {
 
         // Creating  PrintManager instance
@@ -229,15 +232,14 @@ public class ReportUtils {
         final WebViewAssetLoader assetLoader = new WebViewAssetLoader.Builder()
                 .addPathHandler("/assets/", new WebViewAssetLoader.AssetsPathHandler(context))
                 .build();
-        mWebView.setWebViewClient(new LocalContentWebViewClient(assetLoader,mWebView,progressBar));
+        mWebView.setWebViewClient(new LocalContentWebViewClient(assetLoader, mWebView, progressBar));
         mWebView.addJavascriptInterface(new HfWebAppInterface(context, reportType), "Android");
 
-        if (reportType.equals(Constants.ReportConstants.ReportTypes.CONDOM_DISTRIBUTION_REPORT)){
+        if (reportType.equals(Constants.ReportConstants.ReportTypes.CONDOM_DISTRIBUTION_REPORT)) {
             mWebView.loadUrl("https://appassets.androidplatform.net/assets/reports/cdp_reports/" + reportPath + ".html");
-        } else if(reportType.equals(Constants.ReportConstants.ReportTypes.VMMC_REPORT)){
+        } else if (reportType.equals(Constants.ReportConstants.ReportTypes.VMMC_REPORT)) {
             mWebView.loadUrl("https://appassets.androidplatform.net/assets/reports/vmmc_reports/" + reportPath + ".html");
-        }
-        else if(reportType.equals(Constants.ReportConstants.ReportTypes.KVP_REPORT)){
+        } else if(reportType.equals(Constants.ReportConstants.ReportTypes.KVP_REPORT)){
             mWebView.loadUrl("https://appassets.androidplatform.net/assets/reports/kvp_reports/" + reportPath + ".html");
         }else if(reportType.equals(Constants.ReportConstants.ReportTypes.HTS_REPORT)){
             mWebView.loadUrl("https://appassets.androidplatform.net/assets/reports/hts_reports/" + reportPath + ".html");
@@ -405,9 +407,9 @@ public class ReportUtils {
     public static class KvpMissedApReport {
         public static String computeReport(Date now) {
             String report = "";
-            KvpMissedApReportObject kvpKvpMissedApReportObject = new KvpMissedApReportObject(now);
+            KvpMissedApReportObject kvpMissedApReportObject = new KvpMissedApReportObject(now);
             try {
-                report = kvpKvpMissedApReportObject.getIndicatorDataAsGson(kvpKvpMissedApReportObject.getIndicatorData());
+                report = kvpMissedApReportObject.getIndicatorDataAsGson(kvpMissedApReportObject.getIndicatorData());
             } catch (Exception e) {
                 Timber.e(e);
             }
@@ -717,12 +719,61 @@ public class ReportUtils {
         }
     }
 
+    public static class SbcReport {
+        public static String computeReport(Date startDate) {
+            SbcReportObject sbcReportObject = new SbcReportObject(startDate);
+            try {
+                return sbcReportObject.getIndicatorDataAsGson(sbcReportObject.getIndicatorData());
+            } catch (JSONException e) {
+                Timber.e(e);
+            }
+            return "";
+        }
+    }
+
     public static class FpReport {
         public static String computeReport(Date now) {
             String report = "";
             FpMonthlyReportObject fpMonthlyReportObject = new FpMonthlyReportObject(now);
             try {
                 report = fpMonthlyReportObject.getIndicatorDataAsGson(fpMonthlyReportObject.getIndicatorData());
+            } catch (Exception e) {
+                Timber.e(e);
+            }
+            return report;
+        }
+    }
+
+    public static class CecapReport {
+        public static String computeReport(Date now) {
+            String report = "";
+            CecapMonthlyReportObject cecapMonthlyReportObject = new CecapMonthlyReportObject(now);
+            try {
+                report = cecapMonthlyReportObject.getIndicatorDataAsGson(cecapMonthlyReportObject.getIndicatorData());
+            } catch (Exception e) {
+                Timber.e(e);
+            }
+            return report;
+        }
+
+        public static String computeOtherReport(Date now) {
+            String report = "";
+            CecapOtherMonthlyReportObject cecapOtherMonthlyReportObject = new CecapOtherMonthlyReportObject(now);
+            try {
+                report = cecapOtherMonthlyReportObject.getIndicatorDataAsGson(cecapOtherMonthlyReportObject.getIndicatorData());
+            } catch (Exception e) {
+                Timber.e(e);
+            }
+            return report;
+        }
+    }
+
+    public static class AsrhReport {
+        public static String computeReport(Date now) {
+            String report = "";
+            AsrhMonthlyReportObject asrhMonthlyReportObject = new AsrhMonthlyReportObject(now);
+            try {
+                report = asrhMonthlyReportObject.getIndicatorDataAsGson(asrhMonthlyReportObject.getIndicatorData());
             } catch (Exception e) {
                 Timber.e(e);
             }

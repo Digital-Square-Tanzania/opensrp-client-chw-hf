@@ -40,6 +40,7 @@ public class NavigationModel implements org.smartregister.chw.core.model.Navigat
             NavigationOption op21 = new NavigationOption(R.mipmap.sidemenu_updates, R.mipmap.sidemenu_updates_active, R.string.sbc, CoreConstants.DrawerMenu.SBC, 0);
             NavigationOption op22 = new NavigationOption(R.mipmap.sidemenu_hiv, R.mipmap.sidemenu_hiv_active, R.string.vmmc, CoreConstants.DrawerMenu.VMMC, 0);
             NavigationOption op23 = new NavigationOption(R.mipmap.sidemenu_hiv, R.mipmap.sidemenu_hiv_active, R.string.lab, CoreConstants.DrawerMenu.LAB, 0);
+            NavigationOption op24 = new NavigationOption(R.mipmap.sidemenu_hiv, R.mipmap.sidemenu_hiv_active, R.string.cecap, CoreConstants.DrawerMenu.CECAP, 0);
 
 
             // ANC, PMTCT, LD, PNC, HEI, Child,LTFU, Referrals
@@ -77,14 +78,18 @@ public class NavigationModel implements org.smartregister.chw.core.model.Navigat
                         navigationOptions.add(op21);
                     }
 
+                    if (HealthFacilityApplication.getApplicationFlavor().hasCecap()) {
+                        navigationOptions.add(op24);
+                    }
+
                     navigationOptions.addAll(Arrays.asList(op16, op12));
                 }
                 if (HealthFacilityApplication.getApplicationFlavor().hasVmmc()) {
                     navigationOptions.add(14, op22);
                 }
-//                if (HealthFacilityApplication.getApplicationFlavor().hasLab()) {
-//                    navigationOptions.add(14, op23);
-//                }
+                if (HealthFacilityApplication.getApplicationFlavor().hasLab()) {
+                    navigationOptions.add(14, op23);
+                }
             } else {
                 navigationOptions.addAll(Arrays.asList(op1, op2, op3, op4, op5, op6, op7, op12));
             }

@@ -1,5 +1,5 @@
 {
-  "count": "1",
+  "count": "2",
   "encounter_type": "PrEP Initiation",
   "entity_id": "",
   "metadata": {
@@ -43,13 +43,14 @@
   },
   "global": {},
   "step1": {
-    "title": "PrEP Initiation",
+    "title": "PrEP Status",
+    "next": "step2",
     "fields": [
       {
-        "key": "prep_status",
+        "key": "prep_status_not_discontinued",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "prep_status",
+        "openmrs_entity_id": "prep_status_not_discontinued",
         "label": "PrEP status in this visit",
         "text_color": "#000000",
         "type": "native_radio",
@@ -70,7 +71,7 @@
           },
           {
             "key": "re_start",
-            "text": "Re-start",
+            "text": "Re-started",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "re_start"
@@ -93,8 +94,128 @@
         "v_required": {
           "value": "true",
           "err": "Please select an answer"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "prep_initiation_relevance.yml"
+            }
+          }
         }
       },
+      {
+        "key": "prep_status_was_discontinued",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "prep_status_was_discontinued",
+        "label": "PrEP status in this visit",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "re_start",
+            "text": "Re-started",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "re_start"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select an answer"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "prep_initiation_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "prep_status",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "prep_status",
+        "type": "hidden",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "prep_initiation_calculation.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "original_prep_initiation_date_for_continuing_clients",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "original_prep_initiation_date_for_continuing_clients",
+        "type": "date_picker",
+        "hint": "PrEP Initiation Date",
+        "expanded": false,
+        "min_date": "today-2y",
+        "max_date": "today",
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the next visit date"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "prep_initiation_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "pregnancy_breast_feeding_status",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "pregnancy_breast_feeding_status",
+        "label": "Pregnancy and Breastfeeding status",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "pregnant",
+            "text": "Pregnant",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "pregnant"
+          },
+          {
+            "key": "breast_feeding",
+            "text": "Breastfeeding",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "breast_feeding"
+          },
+          {
+            "key": "none",
+            "text": "None",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "none"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select an answer"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "prep_initiation_relevance.yml"
+            }
+          }
+        }
+      }
+    ]
+  },
+  "step2": {
+    "title": "PrEP Initiation",
+    "fields": [
       {
         "key": "prep_drug_offered",
         "openmrs_entity_parent": "",
@@ -110,6 +231,13 @@
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "tdf_ftc"
+          },
+          {
+            "key": "injectable",
+            "text": "Injectable",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "injectable"
           },
           {
             "key": "other_drugs",
@@ -173,8 +301,8 @@
           }
         },
         "v_max": {
-          "value": "30",
-          "err": "Number of pills must be equal to or less than  30"
+          "value": "90",
+          "err": "Number of pills must be equal to or less than  90"
         }
       },
       {
@@ -199,13 +327,6 @@
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "poor"
-          },
-          {
-            "key": "not_applicable",
-            "text": "Not applicable",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "not_applicable"
           }
         ],
         "v_required": {
@@ -269,16 +390,16 @@
             "openmrs_entity_id": "not_at_risk"
           },
           {
-            "key": "others",
-            "text": "Others",
+            "key": "kvp_mobility",
+            "text": "Mobility",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "others"
+            "openmrs_entity_id": "kvp_mobility"
           },
           {
-            "key": "not_applicable",
-            "text": "Not applicable",
+            "key": "others",
+            "text": "Other",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "not_applicable"
+            "openmrs_entity_id": "others"
           }
         ],
         "v_required": {
@@ -286,7 +407,7 @@
           "err": "Please select at least one"
         },
         "relevance": {
-          "step1:prep_adherence": {
+          "step2:prep_adherence": {
             "type": "string",
             "ex": "equalTo(., \"poor\")"
           }
@@ -304,9 +425,14 @@
           "err": "Please specify"
         },
         "relevance": {
-          "step1:poor_prep_adherence_reason": {
-            "type": "string",
-            "ex": "equalTo(., \"others\")"
+          "step2:poor_prep_adherence_reason": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "others"
+                ]
+              }
+            ]
           }
         }
       },
@@ -370,12 +496,6 @@
             "text": "No side effects",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "no_side_effects"
-          },
-          {
-            "key": "not_applicable",
-            "text": "Not applicable",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "not_applicable"
           }
         ],
         "v_required": {
@@ -402,7 +522,7 @@
           "err": "Please specify"
         },
         "relevance": {
-          "step1:prep_side_effects": {
+          "step2:prep_side_effects": {
             "ex-checkbox": [
               {
                 "or": [
@@ -422,7 +542,8 @@
         "openmrs_entity_id": "reasons_stopping_prep",
         "openmrs_entity_parent": "",
         "exclusive": [
-          "not_applicable"
+          "not_applicable",
+          "hiv_positive"
         ],
         "options": [
           {
@@ -444,12 +565,6 @@
             "openmrs_entity_id": "poor_adherence"
           },
           {
-            "key": "client_decision",
-            "text": "Client's decision",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "client_decision"
-          },
-          {
             "key": "not_at_risk",
             "text": "Client has stopped, not at risk",
             "openmrs_entity": "concept",
@@ -460,12 +575,6 @@
             "text": "Others (Specify)",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "others"
-          },
-          {
-            "key": "not_applicable",
-            "text": "Not applicable",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "not_applicable"
           }
         ],
         "v_required": {
@@ -492,7 +601,7 @@
           "err": "Please enter the reason"
         },
         "relevance": {
-          "step1:reasons_stopping_prep": {
+          "step2:reasons_stopping_prep": {
             "ex-checkbox": [
               {
                 "or": [
@@ -570,12 +679,12 @@
         "constraints": [
           {
             "type": "date",
-            "ex": "greaterThanEqualTo(., step1:minimum_date_for_next_visit)",
+            "ex": "greaterThanEqualTo(., step2:minimum_date_for_next_visit)",
             "err": "Date should be within 3 days of the medication provided"
           },
           {
             "type": "date",
-            "ex": "lessThanEqualTo(., step1:maximum_date_for_next_visit)",
+            "ex": "lessThanEqualTo(., step2:maximum_date_for_next_visit)",
             "err": "Date should be within 3 days of the medication provided"
           }
         ]
