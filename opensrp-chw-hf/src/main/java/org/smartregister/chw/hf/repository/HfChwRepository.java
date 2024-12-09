@@ -403,14 +403,6 @@ public class HfChwRepository extends CoreChwRepository {
             Timber.e(e);
         }
     }
-
-    private static void upgradeToVersion27(SQLiteDatabase db) {
-        try {
-            db.execSQL("ALTER TABLE ec_anc_followup ADD COLUMN hivst_kits_distributed TEXT NULL;");
-        } catch (Exception e) {
-            Timber.e(e);
-        }
-    }
   
     private static void upgradeToVersion26(SQLiteDatabase db) {
         try {
