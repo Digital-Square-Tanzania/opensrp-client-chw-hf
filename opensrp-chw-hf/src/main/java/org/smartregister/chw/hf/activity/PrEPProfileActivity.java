@@ -54,7 +54,7 @@ public class PrEPProfileActivity extends CoreKvpProfileActivity {
     private boolean evaluateProvisionOfPrepService() {
         Visit lastVisit = getVisit(Constants.EVENT_TYPE.PrEP_FOLLOWUP_VISIT);
         if (lastVisit != null && lastVisit.getProcessed()) {
-            DateTime time = new DateTime(lastVisit.getUpdatedAt());
+            DateTime time = new DateTime(lastVisit.getDate());
             DateTime now = new DateTime();
             int diffDays = Days.daysBetween(time, now).getDays();
             return diffDays < 1;
