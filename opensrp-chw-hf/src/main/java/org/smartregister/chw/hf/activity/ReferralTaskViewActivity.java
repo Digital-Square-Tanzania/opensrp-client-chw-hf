@@ -178,7 +178,7 @@ public class ReferralTaskViewActivity extends BaseReferralTaskViewActivity imple
         Task currentTask = getTask();
         currentTask.setForEntity(getBaseEntityId());
         currentTask.setStatus((checkReferralType()) ? Task.TaskStatus.COMPLETED: Task.TaskStatus.IN_PROGRESS);
-//        CoreReferralUtils.completeTask(currentTask, false);
+        CoreReferralUtils.completeTask(currentTask, false);
     }
 
     private boolean checkReferralType(){
