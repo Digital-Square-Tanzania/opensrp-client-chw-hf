@@ -1,17 +1,18 @@
 apply plugin: 'com.android.application'
 apply plugin: 'jacoco'
 apply plugin: 'com.github.kt3k.coveralls'
-apply plugin: 'io.fabric'
+apply plugin: 'com.google.firebase.crashlytics'
+apply plugin: 'com.google.gms.google-services'
 
 buildscript {
     repositories {
         google()
-        jcenter()
-        maven { url 'https://maven.fabric.io/public' }
+        mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.0.1'
-        classpath 'io.fabric.tools:gradle:1.31.2'
+        classpath 'com.android.tools.build:gradle:7.4.2'
+        classpath 'com.google.gms:google-services:4.3.3'
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.3.0'
     }
 }
 
@@ -21,6 +22,21 @@ if (rootProject.file("github.properties").exists()) {
 }
 allprojects {
     repositories {
+        // Mapbox Maven repository
+        maven {
+            url 'https://api.mapbox.com/downloads/v2/releases/maven'
+            authentication {
+                basic(BasicAuthentication)
+            }
+            credentials {
+                // Do not change the username below.
+                // This should always be `mapbox` (not your username).
+                username = 'mapbox'
+                // Use the secret token you stored in gradle.properties as the password
+                password = project.properties['MAPBOX_DOWNLOADS_TOKEN']
+            }
+        }
+
         maven { url 'https://maven.google.com' }
 
         maven {
@@ -46,12 +62,35 @@ allprojects {
             }
         }
 
+
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/Digital-Square-Tanzania/CircleProgressbar")
+            credentials {
+                username = githubProperties['gpr.usr'] ?: System.getenv("GITHUB_ACTOR")
+                password = githubProperties['gpr.key'] ?: System.getenv("GITHUB_TOKEN")
+            }
+        }
+
+        maven {
+            name = "GitHubPackages"
+            /**
+             * Configure path of the package repository on Github using the GITHUB_USER_ID and * Git Repository */
+            url = uri("https://maven.pkg.github.com/ellykits/neat-android-stepper")
+            credentials {
+                /** get credentials from local.properties in root project folder file with
+                 ** gpr.usr=GITHUB_USER_ID & gpr.key=PERSONAL_ACCESS_TOKEN otherwise ** Set env variable GPR_USER & GPR_API_KEY**/
+                username = githubProperties['gpr.usr'] ?: System.getenv("GPR_USER")
+                password = githubProperties['gpr.key'] ?: System.getenv("GPR_API_KEY")
+            }
+        }
+
     }
 }
 
 android {
     useLibrary 'org.apache.http.legacy'
-    compileSdkVersion 33
+    compileSdkVersion 34
     buildToolsVersion androidBuildToolsVersion
 
     compileOptions {
@@ -62,7 +101,7 @@ android {
     defaultConfig {
         applicationId "org.smartregister.chw.hf"
         minSdkVersion 26
-        targetSdkVersion 33
+        targetSdkVersion 34
         versionCode 11
         versionName "1.2.13"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -78,11 +117,7 @@ android {
         buildConfigField "int", "MAX_SYNC_RETRIES", '3'
         buildConfigField "long", "BUILD_TIMESTAMP", System.currentTimeMillis() + "L"
         buildConfigField "boolean", "IS_SYNC_SETTINGS", "false"
-        javaCompileOptions {
-            annotationProcessorOptions {
-                includeCompileClasspath = true
-            }
-        }
+
 
         if (project.rootProject.file("local.properties").exists()) {
             Properties properties = new Properties()
@@ -101,7 +136,6 @@ android {
         }
     }
 
-    android.defaultConfig.javaCompileOptions.annotationProcessorOptions.includeCompileClasspath = true
 
     buildTypes {
         release {
@@ -125,9 +159,10 @@ android {
             buildConfigField "String[]", "LOCATION_HIERACHY", '{"Country","Zone","Region","District","Council","Ward", "Facility","Village"}'
             buildConfigField "String", 'DEFAULT_LOCATION', '"Facility"'
             buildConfigField "boolean", "BUILD_FOR_BORESHA_AFYA_SOUTH", "true"
-            buildConfigField "boolean", "BUILD_FOR_PMTCT_CASE_BASED_MANAGEMENT", "true"
+            buildConfigField "boolean", "BUILD_FOR_PMTCT_CASE_BASED_MANAGEMENT", "false"
             buildConfigField "boolean", "ENABLED_MALARIA_MODULE", "false"
             buildConfigField "String[]", 'FACILITY_LEVEL', '{"MOH Jhpiego Facility Name", "Health Facility", "Facility"}'
+            testCoverageEnabled false
         }
 
         debug {
@@ -150,7 +185,7 @@ android {
             buildConfigField "boolean", "BUILD_FOR_PMTCT_CASE_BASED_MANAGEMENT", "false"
             buildConfigField "boolean", "ENABLED_MALARIA_MODULE", "true"
             buildConfigField "String[]", 'FACILITY_LEVEL', '{"MOH Jhpiego Facility Name", "Health Facility", "Facility"}'
-            testCoverageEnabled true
+            testCoverageEnabled false
         }
     }
 
@@ -198,15 +233,15 @@ android {
         nacp {
             applicationId "org.smartregister.chw.moh.hf"
             minSdkVersion 26
-            targetSdkVersion 31
-            versionCode 22
-            versionName "1.2.0"
+            targetSdkVersion 34
+            versionCode 37
+            versionName "1.2.10"
             testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
             multiDexEnabled true
             buildConfigField "String", 'opensrp_url', '"https://ucs.moh.go.tz/opensrp/"'
             buildConfigField "String", 'opensrp_url_debug', '"http://170.187.199.69:8082/opensrp/"'
             buildConfigField "boolean", 'SUPPORT_QR', 'true'
-            buildConfigField "int", "DATABASE_VERSION", '26'
+            buildConfigField "int", "DATABASE_VERSION", '27'
             buildConfigField "int", "DATA_SYNC_DURATION_MINUTES", '15'
             buildConfigField "long", "MAX_SERVER_TIME_DIFFERENCE", "1800000l"
             buildConfigField "boolean", "TIME_CHECK", "false"
@@ -214,11 +249,6 @@ android {
             buildConfigField "int", "MAX_SYNC_RETRIES", '3'
             buildConfigField "long", "BUILD_TIMESTAMP", System.currentTimeMillis() + "L"
             buildConfigField "boolean", "IS_SYNC_SETTINGS", "false"
-            javaCompileOptions {
-                annotationProcessorOptions {
-                    includeCompileClasspath = true
-                }
-            }
         }
     }
 
@@ -242,6 +272,8 @@ android {
     }
     ndkVersion '21.1.6352462'
 
+    ndkVersion '28.0.12433566 rc1'
+
 }
 
 def flavors = android.productFlavors.collect { flavor -> flavor.name }
@@ -255,7 +287,7 @@ flavors.each { productFlavorName ->
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation('org.smartregister:opensrp-client-chw-core:1.6.0-MOH-SNAPSHOT@aar') {
+    implementation('org.smartregister:opensrp-client-chw-core:1.6.2-MOH-SNAPSHOT@aar') {
 //    implementation(project(":opensrp-chw-core")) {
         transitive = true
         exclude group: 'com.android.support', module: 'appcompat-v7'
@@ -272,7 +304,17 @@ dependencies {
         exclude group: 'org.smartregister', module: 'opensrp-client-materialedittext'
         exclude group: 'org.smartregister', module: 'opensrp-client-chw-ld'
         exclude group: 'com.github.chivorns', module: 'smartmaterialspinner'
+        exclude group: 'io.realm', module: 'realm-android-library'
+        exclude group: 'io.realm', module: 'realm-annotations'
+        exclude group: 'net.zetetic', module: 'android-database-sqlcipher'
+        exclude group: 'com.github.chivorns', module: 'smartmaterialspinner'
     }
+    implementation 'org.mozilla:rhino:1.7.13' // or a newer stable version
+
+    implementation 'net.zetetic:android-database-sqlcipher:4.5.4'
+
+    implementation group: 'io.realm', name: 'realm-android-library', version: '10.19.0'
+    implementation group: 'io.realm', name: 'realm-annotations', version: '10.19.0'
     implementation 'org.mozilla:rhino:1.7.13' // or a newer stable version
 
     implementation('org.smartregister:opensrp-client-chw-ld:1.0.31-NACP-SNAPSHOT@aar') {
@@ -321,7 +363,7 @@ tasks.withType(Test) {
     jacoco.includeNoLocationClasses = true
 }
 
-task jacocoTestReport(type: JacocoReport, dependsOn: ['testNacpDebugUnitTest', 'createNacpDebugCoverageReport']) {
+task jacocoTestReport(type: JacocoReport, dependsOn: ['testNacpDebugUnitTest']) {
     reports {
         xml.enabled = true
         html.enabled = true

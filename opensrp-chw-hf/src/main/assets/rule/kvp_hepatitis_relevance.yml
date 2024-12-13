@@ -1,0 +1,29 @@
+---
+name: step1_hep_b_result_given
+description: hepatitis_relevance
+priority: 1
+condition: "!step1_hep_b_testing.isEmpty() && step1_hep_b_testing.equals('yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_hep_b_result
+description: test_result relevance
+priority: 1
+condition: "!step1_hep_b_result_given.isEmpty() && step1_hep_b_result_given.equals('yes')"
+actions:
+  - "isRelevant = true"
+
+---
+name: step1_hep_c_result_given
+description: hepatitis_relevance
+priority: 1
+condition: "!step1_hep_c_testing.isEmpty() && step1_hep_c_testing.equals('yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_hep_c_result
+description: test_result relevance
+priority: 1
+condition: "!step1_hep_c_result_given.isEmpty() && step1_hep_c_result_given.equals('yes')"
+actions:
+  - "isRelevant = true"

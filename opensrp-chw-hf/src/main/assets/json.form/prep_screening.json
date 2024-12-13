@@ -208,7 +208,7 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "tested_hbv",
-        "label": "Tested for HBV",
+        "label": "Has a client been tested for Hepatitis B virus(HBV)?",
         "text_color": "#000000",
         "type": "native_radio",
         "options": [
@@ -225,13 +225,6 @@
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "no"
-          },
-          {
-            "key": "not_applicable",
-            "text": "Not applicable",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "not_applicable"
           }
         ],
         "v_required": {
@@ -247,11 +240,43 @@
         }
       },
       {
+        "key": "hbv_result_given",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "hbv_result_given",
+        "type": "native_radio",
+        "label": "HBV result returned?",
+        "options": [
+          {
+            "key": "yes",
+            "text": "Yes",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "yes"
+          },
+          {
+            "key": "no",
+            "text": "No,waiting result",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "no"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select an answer"
+        },
+        "relevance": {
+          "step1:tested_hbv": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
+        }
+      },
+      {
         "key": "hbv_results",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "hbv_results",
-        "label": "HBV results",
+        "label": "Client HBV test result",
         "text_color": "#000000",
         "type": "native_radio",
         "options": [
@@ -268,13 +293,6 @@
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "negative"
-          },
-          {
-            "key": "not_applicable",
-            "text": "Not applicable",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "not_applicable"
           }
         ],
         "v_required": {
@@ -282,9 +300,25 @@
           "err": "Please select an answer"
         },
         "relevance": {
-          "step1:tested_hbv": {
+          "step1:hbv_result_given": {
             "type": "string",
             "ex": "equalTo(., \"yes\")"
+          }
+        }
+      },
+      {
+        "key": "should_test_for_hbv",
+        "type": "toaster_notes",
+        "text": "Client should be tested for Hepatitis B Virus (HBV)",
+        "openmrs_entity_id": "",
+        "openmrs_entity": "",
+        "openmrs_entity_parent": "",
+        "toaster_type": "warning",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "prep_screening_relevance.yml"
+            }
           }
         }
       },
@@ -308,7 +342,7 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "tested_hcv",
-        "label": "Tested for HCV",
+        "label": "Has a client been tested for Hepatitis C Virus(HCV)?",
         "text_color": "#000000",
         "type": "native_radio",
         "options": [
@@ -325,13 +359,6 @@
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "no"
-          },
-          {
-            "key": "not_applicable",
-            "text": "Not applicable",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "not_applicable"
           }
         ],
         "v_required": {
@@ -347,11 +374,43 @@
         }
       },
       {
+        "key": "hcv_result_given",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "hcv_result_given",
+        "type": "native_radio",
+        "label": "HCV result returned?",
+        "options": [
+          {
+            "key": "yes",
+            "text": "Yes",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "yes"
+          },
+          {
+            "key": "no",
+            "text": "No,waiting result",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "no"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select an answer"
+        },
+        "relevance": {
+          "step1:tested_hcv": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
+        }
+      },
+      {
         "key": "hcv_results",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "hcv_results",
-        "label": "HCV results",
+        "label": "Client HCV test results",
         "text_color": "#000000",
         "type": "native_radio",
         "options": [
@@ -368,19 +427,27 @@
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "negative"
-          },
-          {
-            "key": "not_applicable",
-            "text": "Not applicable",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "not_applicable"
           }
         ],
         "v_required": {
           "value": "true",
           "err": "Please select an answer"
         },
+        "relevance": {
+          "step1:hcv_result_given": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
+        }
+      },
+      {
+        "key": "should_test_for_hcv",
+        "type": "toaster_notes",
+        "text": "Client should be tested for Hepatitis C Virus (HCV)",
+        "openmrs_entity_id": "",
+        "openmrs_entity": "",
+        "openmrs_entity_parent": "",
+        "toaster_type": "warning",
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -441,6 +508,38 @@
         }
       },
       {
+        "key": "crcl_result_given",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "crcl_result_given",
+        "type": "native_radio",
+        "label": "Serum Creatinine (CrCL) result returned?",
+        "options": [
+          {
+            "key": "yes",
+            "text": "Yes",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "yes"
+          },
+          {
+            "key": "no",
+            "text": "No,waiting result",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "no"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select an answer"
+        },
+        "relevance": {
+          "step1:tested_crcl": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
+        }
+      },
+      {
         "key": "should_test_for_crcl",
         "type": "toaster_notes",
         "text": "Client should be tested for Serum Createnine",
@@ -478,13 +577,6 @@
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "less_than_60"
-          },
-          {
-            "key": "no_results",
-            "text": "No results",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "no_results"
           }
         ],
         "v_required": {
@@ -492,7 +584,7 @@
           "err": "Please select an answer"
         },
         "relevance": {
-          "step1:tested_crcl": {
+          "step1:crcl_result_given": {
             "type": "string",
             "ex": "equalTo(., \"yes\")"
           }

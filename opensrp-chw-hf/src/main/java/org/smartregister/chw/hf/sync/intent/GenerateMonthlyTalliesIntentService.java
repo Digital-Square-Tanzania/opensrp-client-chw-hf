@@ -18,7 +18,7 @@ import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.core.utils.ReportUtils;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.dao.ReportDao;
-import org.smartregister.chw.hf.repository.HfMonthlyTalliesRepository;;
+import org.smartregister.chw.hf.repository.HfMonthlyTalliesRepository;
 import org.smartregister.domain.Response;
 import org.smartregister.repository.BaseRepository;
 import org.smartregister.repository.Hia2ReportRepository;

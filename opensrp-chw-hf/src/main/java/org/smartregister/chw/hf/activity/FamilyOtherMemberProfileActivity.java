@@ -2,6 +2,7 @@ package org.smartregister.chw.hf.activity;
 
 import static org.smartregister.chw.core.utils.Utils.updateToolbarTitle;
 import static org.smartregister.chw.hf.utils.Constants.JsonForm.HIV_REGISTRATION;
+import static org.smartregister.util.Utils.getName;
 
 import android.content.Context;
 import android.content.Intent;
@@ -19,6 +20,7 @@ import com.vijay.jsonwizard.utils.FormUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.smartregister.chw.cecap.dao.CecapDao;
 import org.smartregister.chw.core.activity.CoreFamilyOtherMemberProfileActivity;
 import org.smartregister.chw.core.activity.CoreFamilyProfileActivity;
 import org.smartregister.chw.core.custom_views.CoreFamilyMemberFloatingMenu;
@@ -159,8 +161,15 @@ public class FamilyOtherMemberProfileActivity extends CoreFamilyOtherMemberProfi
 
     @Override
     protected void startLDRegistration() {
+        String firstName = org.smartregister.family.util.Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.FIRST_NAME, true);
+        String middleName = org.smartregister.family.util.Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.MIDDLE_NAME, true);
+        String lastName = org.smartregister.family.util.Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.LAST_NAME, true);
+
+        String dob = org.smartregister.family.util.Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.DOB, true);
+        int age = StringUtils.isNotBlank(dob) ? org.smartregister.family.util.Utils.getAgeFromDate(dob) : 0;
+
         try {
-            LDRegisterActivity.startLDRegistrationActivity(FamilyOtherMemberProfileActivity.this, baseEntityId);
+            LDRegistrationFormActivity.startMe(this, baseEntityId, false, getName(getName(firstName, middleName), lastName), String.valueOf(age));
         } catch (Exception e) {
             Timber.e(e);
         }
@@ -210,17 +219,17 @@ public class FamilyOtherMemberProfileActivity extends CoreFamilyOtherMemberProfi
 
     @Override
     protected void startGbvRegistration() {
-        //TO be implemented
+        //Implement
     }
 
     @Override
     protected void startCancerPreventiveServicesRegistration() {
-
+        CecapRegisterActivity.startRegistration(FamilyOtherMemberProfileActivity.this, baseEntityId);
     }
 
     @Override
     protected void startAsrhRegistration() {
-
+        //Not Required
     }
 
     @Override
@@ -383,6 +392,12 @@ public class FamilyOtherMemberProfileActivity extends CoreFamilyOtherMemberProfi
             String dob = Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.DOB, false);
             int age = Utils.getAgeFromDate(dob);
             menu.findItem(R.id.action_sbc_registration).setVisible(!SbcDao.isRegisteredForSbc(baseEntityId) && age >= 10);
+        }
+
+        if (HealthFacilityApplication.getApplicationFlavor().hasCecap()) {
+            String dob = Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.DOB, false);
+            int age = Utils.getAgeFromDate(dob);
+            menu.findItem(R.id.action_cancer_preventive_services_registration).setVisible(!CecapDao.isRegisteredForCecap(baseEntityId) && age >= 14);
         }
     }
 

@@ -1,0 +1,7 @@
+---
+name: step1_enrollment_date
+description: enrollment_date relevance
+priority: 1
+condition: "global_first_visit_done.equalsIgnoreCase('no') && (step1_client_status.equals('transfer_in') || step1_client_status.equals('return'))"
+actions:
+  - "isRelevant = true"
