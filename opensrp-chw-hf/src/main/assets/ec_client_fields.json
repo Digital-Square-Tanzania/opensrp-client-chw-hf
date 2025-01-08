@@ -4430,6 +4430,14 @@
             "field": "obs.formSubmissionField",
             "concept": "hiv_registration_date"
           }
+        },
+        {
+          "column_name": "does_the_client_still_want_to_test",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "does_the_client_still_want_to_test"
+          }
         }
       ]
     },
@@ -11480,6 +11488,40 @@
           "json_mapping": {
             "field": "obs.fieldCode",
             "concept": "test_results_date"
+          }
+        }
+      ]
+    },
+    {
+      "name": "ec_hts_services",
+      "columns": [
+        {
+          "column_name": "entity_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "baseEntityId"
+          }
+        },
+        {
+          "column_name": "base_entity_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "formSubmissionId"
+          }
+        },
+        {
+          "column_name": "relational_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "relational_id"
+          }
+        },
+        {
+          "column_name": "last_interacted_with",
+          "type": "Event",
+          "json_mapping": {
+            "field": "version"
           }
         }
       ]
