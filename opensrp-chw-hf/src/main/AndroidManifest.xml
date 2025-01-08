@@ -125,6 +125,17 @@
             android:name=".activity.HfJsonWizardFormActivity"
             android:theme="@style/HFTheme.NoActionBar"
             android:launchMode="singleTask"/>
+        <activity
+            android:name=".activity.HtsReportsActivity"
+            android:theme="@style/HFTheme.NoActionBar" />
+        <activity
+            android:name=".activity.HtsReportsViewActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/HFTheme.NoActionBar" />
+        <activity
+            android:name=".activity.HtsScreeningReportsViewActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/HFTheme.NoActionBar" />
 
         <activity
             android:name=".activity.KvpJsonWizardFormActivity"

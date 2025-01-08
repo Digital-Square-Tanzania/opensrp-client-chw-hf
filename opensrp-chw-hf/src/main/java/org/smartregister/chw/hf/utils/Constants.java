@@ -795,6 +795,12 @@ public class Constants extends CoreConstants {
             String VMMC_OUTREACH_LIST_OF_AE_REGISTER = "vmmc_outreach_list_of_ae_register";
         }
 
+        public interface HtsKeys {
+            String HTS_MONTHLY_REPORT = "hts_monthly_reports";
+            String HTS_REGISTER_REPORT = "hts_register_reports";
+            String HTS_SCREENING_REPORT = "hts_screening_reports";
+        }
+
         public interface ReportTypes {
             String PMTCT_REPORT = "pmtct_report";
 
@@ -825,6 +831,8 @@ public class Constants extends CoreConstants {
             String ASRH_REPORT = "asrh_report";
 
             String CECAP_REPORT = "cecap_report";
+
+            String HTS_REPORT = "hts_report";
         }
 
         public interface ReportPaths {
@@ -893,6 +901,13 @@ public class Constants extends CoreConstants {
             String CECAP_OTHER_REPORT_PATH = "cecap-other-report";
 
             String ASRH_REPORT_PATH = "asrh-report";
+
+            String HTS_REPORT_PATH = "hts-monthly-report";
+
+            String HTS_REGISTER_REPORT_PATH = "hts-register-report";
+
+            String HTS_SCREENING_REPORT_PATH = "hts-screening-report";
+
         }
     }
 
