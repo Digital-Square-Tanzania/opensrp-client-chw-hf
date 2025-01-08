@@ -57,6 +57,11 @@ public class DefaultHFApplicationFlv implements HealthFacilityApplication.Flavor
     }
 
     @Override
+    public boolean hasHts() {
+        return true;
+    }
+
+    @Override
     public boolean hasMap() {
         return false;
     }

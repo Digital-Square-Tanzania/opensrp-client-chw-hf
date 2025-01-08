@@ -37,6 +37,7 @@ import org.smartregister.chw.hf.activity.FpRegisterActivity;
 import org.smartregister.chw.hf.activity.HeiRegisterActivity;
 import org.smartregister.chw.hf.activity.HivIndexContactsContactsRegisterActivity;
 import org.smartregister.chw.hf.activity.HivRegisterActivity;
+import org.smartregister.chw.hf.activity.HivTestingServicesRegisterActivity;
 import org.smartregister.chw.hf.activity.HivstRegisterActivity;
 import org.smartregister.chw.hf.activity.HtsRegisterActivity;
 import org.smartregister.chw.hf.activity.KvpRegisterActivity;
@@ -64,6 +65,7 @@ import org.smartregister.chw.hf.sync.HfClientProcessor;
 import org.smartregister.chw.hf.sync.HfSyncConfiguration;
 import org.smartregister.chw.hiv.HivLibrary;
 import org.smartregister.chw.hivst.HivstLibrary;
+import org.smartregister.chw.hts.HtsLibrary;
 import org.smartregister.chw.kvp.KvpLibrary;
 import org.smartregister.chw.lab.LabLibrary;
 import org.smartregister.chw.ld.LDLibrary;
@@ -160,6 +162,7 @@ public class HealthFacilityApplication extends CoreChwApplication implements Cor
             registeredActivities.put(CoreConstants.REGISTERED_ACTIVITIES.SBC_REGISTER_ACTIVITY, SbcRegisterActivity.class);
             registeredActivities.put(CoreConstants.REGISTERED_ACTIVITIES.CECAP_REGISTER_ACTIVITY, CecapRegisterActivity.class);
             registeredActivities.put(CoreConstants.REGISTERED_ACTIVITIES.LAB_REGISTER_ACTIVITY, LabRegisterActivity.class);
+            registeredActivities.put(CoreConstants.REGISTERED_ACTIVITIES.HIV_TESTING_SERVICES_REGISTER_ACTIVITY, HivTestingServicesRegisterActivity.class);
         }
 //          TODO uncomment these when NACP is ready to test these modules
         //registeredActivities.put(CoreConstants.REGISTERED_ACTIVITIES.TB_REGISTER_ACTIVITY, TbRegisterActivity.class);
@@ -329,6 +332,10 @@ public class HealthFacilityApplication extends CoreChwApplication implements Cor
             LabLibrary.init(context, getRepository(), BuildConfig.VERSION_CODE, BuildConfig.DATABASE_VERSION);
         }
 
+        if (flavor.hasHts()) {
+            HtsLibrary.init(context, getRepository(), BuildConfig.VERSION_CODE, BuildConfig.DATABASE_VERSION);
+        }
+
         //Needed for all clients register
         OpdLibrary.init(context, getRepository(),
                 new OpdConfiguration.Builder(HfAllClientsRegisterQueryProvider.class)
@@ -443,6 +450,8 @@ public class HealthFacilityApplication extends CoreChwApplication implements Cor
         boolean hasSbc();
 
         boolean hasCecap();
+
+        boolean hasHts();
 
         boolean hasMap();
     }
