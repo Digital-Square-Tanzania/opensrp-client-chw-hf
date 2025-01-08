@@ -133,6 +133,11 @@ public class AllClientsMemberProfileActivity extends CoreAllClientsMemberProfile
             int age = Utils.getAgeFromDate(dob);
             menu.findItem(R.id.action_cancer_preventive_services_registration).setVisible(!CecapDao.isRegisteredForCecap(baseEntityId) && age >= 14);
         }
+        if (HealthFacilityApplication.getApplicationFlavor().hasHts()) {
+            String dob = Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.DOB, false);
+            int age = Utils.getAgeFromDate(dob);
+            menu.findItem(R.id.action_hts_screening).setVisible(!SbcDao.isRegisteredForSbc(baseEntityId) && age >= 2);
+        }
         return true;
     }
 
@@ -399,6 +404,11 @@ public class AllClientsMemberProfileActivity extends CoreAllClientsMemberProfile
     @Override
     protected void startAsrhRegistration() {
         //Not Required
+    }
+
+    @Override
+    protected void startHtsScreening() {
+        HivTestingServicesRegisterActivity.startRegistration(AllClientsMemberProfileActivity.this, baseEntityId);
     }
 
     @Override

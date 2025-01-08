@@ -233,6 +233,11 @@ public class FamilyOtherMemberProfileActivity extends CoreFamilyOtherMemberProfi
     }
 
     @Override
+    protected void startHtsScreening() {
+        HivTestingServicesRegisterActivity.startRegistration(FamilyOtherMemberProfileActivity.this, baseEntityId);
+    }
+
+    @Override
     protected void setIndependentClient(boolean b) {
         this.isIndependent = false;
     }
@@ -398,6 +403,12 @@ public class FamilyOtherMemberProfileActivity extends CoreFamilyOtherMemberProfi
             String dob = Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.DOB, false);
             int age = Utils.getAgeFromDate(dob);
             menu.findItem(R.id.action_cancer_preventive_services_registration).setVisible(!CecapDao.isRegisteredForCecap(baseEntityId) && age >= 14);
+        }
+
+        if (HealthFacilityApplication.getApplicationFlavor().hasHts()) {
+            String dob = Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.DOB, false);
+            int age = Utils.getAgeFromDate(dob);
+            menu.findItem(R.id.action_hts_screening).setVisible(!SbcDao.isRegisteredForSbc(baseEntityId) && age >= 2);
         }
     }
 
