@@ -1913,4 +1913,9 @@
     <string name="vmmc_due_clients">Today Visits</string>
     <string name="vmmc_overdue_clients">Missed Visits</string>
 
+
+    <!--    HTS Module-->
+    <string name="hts">HIV Testing Services</string>
+    <string name="hts_screening">HTS Screening</string>
+
 </resources>
