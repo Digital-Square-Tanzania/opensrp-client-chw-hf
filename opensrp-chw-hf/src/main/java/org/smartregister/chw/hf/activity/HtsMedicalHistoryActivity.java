@@ -113,14 +113,13 @@ public class HtsMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
                         days = Days.daysBetween(new DateTime(visits.get(visits.size() - 1).getDate()), new DateTime()).getDays();
                     }
 
-                    String[] visitTypeParams = {"client_pregnancy_status", "heavy_bleeding", "virginity_status", "last_delivery_or_miscarriage_date", "total_hysterectomy",
-                            "abnormal_breast_concern", "family_history_breast_cancer", "family_history_prostate_cancer", "difficulty_micturition",
-                            "clinical_breast_examination", "other_clinical_breast_examination_findings",
-                            "vaginal_speculum_examination", "can_the_facility_perform_hpv_dna_test", "squamo_columnar_junction", "screening_test_performed",
-                            "via_findings", "lesion_location",
-                            "cryotherapy_thermocoagulation", "treatment_option", "postpone_reason", "leep_treatment", "leep_performed",
-                            "was_dna_specimen_collected", "reasons_for_not_collecting_dna_specimen", "other_reasons_for_not_collecting_dna_specimen", "dna_specimen_collection_clinician_name", "dna_specimen_collection_clinician_position", "dna_specimen_collection_clinician_phone_number", "hpv_dna_specimen_collection_date", "hpv_dna_specimen_collection_time", "hpv_dna_specimen_sample_id",
-                            "can_the_facility_perform_pap_smear", "pap_smear_sample_collection_clinician_name", "pap_smear_sample_collection_clinician_position", "pap_smear_sample_collection_clinician_phone_number", "pap_smear_sample_collection_date", "pap_smear_sample_collection_time", "pap_smear_sample_id", "next_appointment_date"
+                    String[] visitTypeParams = {
+                            "hts_visit_type", "hts_has_the_client_recently_tested_with_hivst", "hts_previous_hivst_client_type", "hts_previous_hivst_test_type", "hts_client_type",
+                            "hts_testing_approach","hts_pitc_testing_point","hts_other_testing_point","hts_has_pre_test_counselling_been_provided","hts_type_of_counselling_provided","hts_clients_tb_screening_outcome",
+                            "hts_does_client_need_hiv_self_test_kits","hts_type_of_test_used","hts_kit_batch_number","hts_kit_expire_date","hts_first_hiv_test_result","hts_syphilis_test_results","hts_second_kit_batch_number",
+                            "hts_second_kit_expire_date","hts_second_hiv_test_result","hts_unigold_kit_batch_number","hts_unigold_kit_expire_date","hts_unigold_hiv_test_result","hts_final_hiv_status","hts_repeat_first_test_kit_batch_number","hts_repeat_first_test_kit_expire_date",
+                            "hts_repeat_first_hiv_test_result","hts_post_test_services","hts_hiv_results_disclosure","hts_preventive_services","hts_were_condoms_distributed","hts_condom_distribution","hts_number_of_male_condoms_provided","hts_number_of_female_condoms_provided",
+                            "hts_sample_collection_for_dna_pcr_test","hts_type_of_sample_collected","hts_dbs_kit_batch_number","hts_dbs_expire_date"
                     };
                     extractVisitDetails(visits, visitTypeParams, visitDetails, x, context);
 
