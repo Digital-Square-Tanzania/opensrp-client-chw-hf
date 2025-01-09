@@ -88,7 +88,7 @@ public class LoginInteractor extends BaseLoginInteractor implements BaseLoginCon
         StockUsageReportJob.scheduleJobImmediately(StockUsageReportJob.TAG);
         SyncLocationsByTeamIdsJob.scheduleJobImmediately(SyncLocationsByTeamIdsJob.TAG);
         SyncLocationsByLevelAndTagsServiceJob.scheduleJobImmediately(SyncLocationsByLevelAndTagsServiceJob.TAG);
-        ChwIndicatorGeneratingJob.scheduleJobImmediately(ChwIndicatorGeneratingJob.TAG);
+//        ChwIndicatorGeneratingJob.scheduleJobImmediately(ChwIndicatorGeneratingJob.TAG);
         ProcessVisitsServiceJob.scheduleJobImmediately(ProcessVisitsServiceJob.TAG);
         PncCloseDateServiceJob.scheduleJobImmediately(PncCloseDateServiceJob.TAG);
         PullUniqueLabTestSampleTrackingIdsServiceJob.scheduleJobImmediately(PullUniqueLabTestSampleTrackingIdsServiceJob.TAG);
