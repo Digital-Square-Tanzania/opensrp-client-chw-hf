@@ -877,7 +877,7 @@
             ]
           },
           {
-            "field":"eventType",
+            "field": "eventType",
             "field_value": "ANC Partner Community Followup Referral",
             "creates_case": [
               "ec_anc_partner_community_followup"
@@ -921,14 +921,14 @@
           {
             "field": "eventType",
             "field_value": "HIVST Mobilization Session",
-            "creates_case":[
+            "creates_case": [
               "ec_hivst_mobilization"
             ]
           },
           {
             "field": "eventType",
             "field_value": "HTS Registration",
-            "creates_case":[
+            "creates_case": [
               "ec_hts_register"
             ]
           },
@@ -1166,6 +1166,20 @@
             "field_value": "PAP Findings",
             "creates_case": [
               "ec_cecap_test_results"
+            ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "GBV Registration",
+            "creates_case": [
+              "ec_gbv_register"
+            ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "GBV Follow-up Visit",
+            "creates_case": [
+              "ec_gbv_visit"
             ]
           }
         ]
