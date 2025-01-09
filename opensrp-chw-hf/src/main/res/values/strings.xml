@@ -1987,7 +1987,6 @@
     <string name="hts_unigold_hiv_test_result">Unigold HIV Test result</string>
     <string name="hts_negative">Negative</string>
     <string name="hts_positive">Positive</string>
-    <string name="hts_non_reactive">Inconclusive</string>
     <string name="hts_final_hiv_status">Final HIV Test result</string>
     <string name="hts_known_positive">Known Positive</string>
     <string name="hts_inconclusive">Inconclusive</string>
