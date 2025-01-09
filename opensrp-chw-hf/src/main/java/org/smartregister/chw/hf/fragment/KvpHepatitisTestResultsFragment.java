@@ -128,8 +128,8 @@ public class KvpHepatitisTestResultsFragment extends BaseTestResultsFragment {
 
             try {
                 JSONObject testResultDateObject = org.smartregister.util.JsonFormUtils.getFieldJSONObject(jsonObject.getJSONObject(STEP1).getJSONArray(FIELDS), "test_results_date");
-                assert testResultDateObject != null;
-                testResultDateObject.remove(CALCULATION);
+                if (testResultDateObject != null)
+                    testResultDateObject.remove(CALCULATION);
             } catch (Exception e) {
                 Timber.e(e);
             }
