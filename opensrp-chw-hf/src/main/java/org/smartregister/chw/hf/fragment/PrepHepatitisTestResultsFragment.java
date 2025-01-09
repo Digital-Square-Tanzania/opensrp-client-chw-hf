@@ -17,7 +17,6 @@ import org.json.JSONObject;
 import org.smartregister.chw.core.utils.CoreJsonFormUtils;
 import org.smartregister.chw.hf.activity.KvpTestResultsViewActivity;
 import org.smartregister.chw.hf.model.KvpHepatitisTestResultsFragmentModel;
-import org.smartregister.chw.hf.presenter.KvpHepatitisTestResultsFragmentPresenter;
 import org.smartregister.chw.hf.presenter.PrepHepatitisAndCrclTestResultsFragmentPresenter;
 import org.smartregister.chw.kvp.fragment.BaseTestResultsFragment;
 import org.smartregister.chw.kvp.util.Constants;
@@ -142,8 +141,8 @@ public class PrepHepatitisTestResultsFragment extends BaseTestResultsFragment {
 
             try {
                 JSONObject testResultDateObject = org.smartregister.util.JsonFormUtils.getFieldJSONObject(jsonObject.getJSONObject(STEP1).getJSONArray(FIELDS), "test_results_date");
-                assert testResultDateObject != null;
-                testResultDateObject.remove(CALCULATION);
+                if (testResultDateObject != null)
+                    testResultDateObject.remove(CALCULATION);
             } catch (Exception e) {
                 Timber.e(e);
             }
