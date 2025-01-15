@@ -27,7 +27,7 @@ condition: "global_sex == 'Female'"
 actions:
   - "isRelevant = true"
 ---
-name: step6_does_client_want_to_test
+name: step6_does_the_client_still_want_to_test
 description: Show question for based on illegibility to test
 priority: 1
 condition: "!((step1_hts_is_client_pregnant != null && step1_hts_is_client_pregnant.equals('yes')) ||

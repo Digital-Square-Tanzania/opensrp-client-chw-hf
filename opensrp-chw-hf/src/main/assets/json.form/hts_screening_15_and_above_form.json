@@ -539,7 +539,7 @@
         }
       },
       {
-        "key": "does_client_want_to_test",
+        "key": "does_the_client_still_want_to_test",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "does_client_want_to_test",
