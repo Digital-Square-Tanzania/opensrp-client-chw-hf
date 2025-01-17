@@ -11525,6 +11525,80 @@
           }
         }
       ]
+    },
+    {
+      "name": "ec_hts_tests",
+      "columns": [
+        {
+          "column_name": "entity_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "baseEntityId"
+          }
+        },
+        {
+          "column_name": "base_entity_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "formSubmissionId"
+          }
+        },
+        {
+          "column_name": "test_type",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "test_type"
+          }
+        },
+        {
+          "column_name": "type_of_test_kit_used",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "type_of_test_kit_used"
+          }
+        },
+        {
+          "column_name": "syphilis_test_results",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "syphilis_test_results"
+          }
+        },
+        {
+          "column_name": "test_kit_batch_number",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "test_kit_batch_number"
+          }
+        },
+        {
+          "column_name": "test_kit_expire_date",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "test_kit_expire_date"
+          }
+        },
+        {
+          "column_name": "test_result",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "test_result"
+          }
+        },
+        {
+          "column_name": "last_interacted_with",
+          "type": "Event",
+          "json_mapping": {
+            "field": "version"
+          }
+        }
+      ]
     }
   ]
 }

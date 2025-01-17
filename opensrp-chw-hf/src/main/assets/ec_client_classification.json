@@ -1224,6 +1224,27 @@
             "creates_case": [
               "ec_hts_services"
             ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "HTS First HIV Test",
+            "creates_case": [
+              "ec_hts_tests"
+            ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "HTS Second HIV Test",
+            "creates_case": [
+              "ec_hts_tests"
+            ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "Uni-Gold HIV Test",
+            "creates_case": [
+              "ec_hts_tests"
+            ]
           }
         ]
       }
