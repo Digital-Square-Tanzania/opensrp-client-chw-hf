@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.LinearLayout;
 
 import com.vijay.jsonwizard.constants.JsonFormConstants;
@@ -69,7 +70,7 @@ public class HivTestingServicesMemberProfileActivity extends CoreHtsProfileActiv
 
     @Override
     public void openMedicalHistory() {
-        //TODO implement Medical History Activity
+        HtsMedicalHistoryActivity.startMe(this, memberObject);
     }
 
     @Override
@@ -343,5 +344,11 @@ public class HivTestingServicesMemberProfileActivity extends CoreHtsProfileActiv
     @Override
     public void continueDischarge() {
 
+    }
+
+    @Override
+    public void refreshMedicalHistory(boolean hasHistory) {
+        rlLastVisit.setVisibility(getServiceVisit() != null ? View.VISIBLE : View.GONE);
+        findViewById(R.id.view_notification_and_referral_row).setVisibility(getServiceVisit() != null ? View.VISIBLE : View.GONE);
     }
 }

@@ -71,55 +71,96 @@ public class HfClientProcessor extends CoreClientProcessor {
     protected void processEvents(ClientClassification clientClassification, Table vaccineTable, Table serviceTable, EventClient eventClient, Event event, String eventType) throws Exception {
         super.processEvents(clientClassification, vaccineTable, serviceTable, eventClient, event, eventType);
 
-        switch (eventType) {
-            case ANC_PREGNANCY_CONFIRMATION:
-            case ANC_FOLLOWUP_CLIENT_REGISTRATION:
-            case ANC_FIRST_FACILITY_VISIT:
-            case ANC_RECURRING_FACILITY_VISIT:
-            case PNC_VISIT:
-            case PNC_CHILD_FOLLOWUP:
-            case LD_PARTOGRAPHY:
-            case LD_REGISTRATION:
-            case LD_ACTIVE_MANAGEMENT_OF_3RD_STAGE_OF_LABOUR:
-            case LD_GENERAL_EXAMINATION:
-            case LD_POST_DELIVERY_MOTHER_MANAGEMENT:
-            case ANC_PARTNER_TESTING:
-            case org.smartregister.chw.kvp.util.Constants.EVENT_TYPE.KVP_BEHAVIORAL_SERVICE_VISIT:
-            case org.smartregister.chw.kvp.util.Constants.EVENT_TYPE.KVP_BIO_MEDICAL_SERVICE_VISIT:
-            case org.smartregister.chw.kvp.util.Constants.EVENT_TYPE.KVP_STRUCTURAL_SERVICE_VISIT:
-            case org.smartregister.chw.kvp.util.Constants.EVENT_TYPE.KVP_OTHER_SERVICE_VISIT:
-            case org.smartregister.chw.kvp.util.Constants.EVENT_TYPE.PrEP_FOLLOWUP_VISIT:
-            case org.smartregister.chw.vmmc.util.Constants.EVENT_TYPE.VMMC_SERVICES:
-            case org.smartregister.chw.vmmc.util.Constants.EVENT_TYPE.VMMC_PROCEDURE:
-            case org.smartregister.chw.vmmc.util.Constants.EVENT_TYPE.VMMC_DISCHARGE:
-            case org.smartregister.chw.vmmc.util.Constants.EVENT_TYPE.VMMC_FOLLOW_UP_VISIT:
-            case org.smartregister.chw.vmmc.util.Constants.EVENT_TYPE.VMMC_NOTIFIABLE_EVENTS:
-            case org.smartregister.chw.cecap.util.Constants.EVENT_TYPE.CECAP_FOLLOW_UP_VISIT:
-            case Constants.EVENT_TYPE.PMTCT_FOLLOWUP:
-            case FamilyPlanningConstants.EVENT_TYPE.FP_POINT_OF_SERVICE_DELIVERY:
-            case FamilyPlanningConstants.EVENT_TYPE.FP_COUNSELING:
-            case FamilyPlanningConstants.EVENT_TYPE.FP_PROVIDE_METHOD:
-            case FamilyPlanningConstants.EVENT_TYPE.FP_OTHER_SERVICES:
-            case org.smartregister.chw.sbc.util.Constants.EVENT_TYPE.SBC_FOLLOW_UP_VISIT:
-                if (eventClient.getEvent() == null) {
-                    return;
-                }
-                processVisitEvent(eventClient);
-                processEvent(eventClient.getEvent(), eventClient.getClient(), clientClassification);
-                break;
-            case HEI_FOLLOWUP:
-            case HEI_POSITIVE_INFANT:
-            case HEI_NEGATIVE_INFANT:
-                processVisitEvent(eventClient);
-                processEvent(eventClient.getEvent(), eventClient.getClient(), clientClassification);
-                processHeiFollowupCEvent(eventClient.getEvent());
-                break;
+        if (eventType.contains(org.smartregister.chw.hts.util.Constants.EVENT_TYPE.HTS_FIRST_HIV_TEST)) {
+            if (eventClient.getEvent() == null) {
+                return;
+            }
+            processVisitEvent(eventClient);
 
-            case org.smartregister.chw.ld.util.Constants.EVENT_TYPE.VOID_EVENT:
-            case DELETE_EVENT:
-                processDeleteEvent(eventClient.getEvent());
-            default:
-                break;
+            Event contactsEvents = eventClient.getEvent();
+            contactsEvents.setEventType(org.smartregister.chw.hts.util.Constants.EVENT_TYPE.HTS_FIRST_HIV_TEST);
+
+            processEvent(eventClient.getEvent(), eventClient.getClient(), clientClassification);
+        } else if (eventType.contains(org.smartregister.chw.hts.util.Constants.EVENT_TYPE.HTS_SECOND_HIV_TEST)) {
+            if (eventClient.getEvent() == null) {
+                return;
+            }
+            processVisitEvent(eventClient);
+            Event contactsEvents = eventClient.getEvent();
+            contactsEvents.setEventType(org.smartregister.chw.hts.util.Constants.EVENT_TYPE.HTS_SECOND_HIV_TEST);
+
+            processEvent(eventClient.getEvent(), eventClient.getClient(), clientClassification);
+
+        } else if (eventType.contains(org.smartregister.chw.hts.util.Constants.EVENT_TYPE.HTS_UNIGOLD_HIV_TEST)) {
+            if (eventClient.getEvent() == null) {
+                return;
+            }
+            processVisitEvent(eventClient);
+            Event contactsEvents = eventClient.getEvent();
+            contactsEvents.setEventType(org.smartregister.chw.hts.util.Constants.EVENT_TYPE.HTS_UNIGOLD_HIV_TEST);
+
+            processEvent(eventClient.getEvent(), eventClient.getClient(), clientClassification);
+        }  else if (eventType.contains(org.smartregister.chw.hts.util.Constants.EVENT_TYPE.REPEAT_FIRST_HIV_TEST)) {
+            if (eventClient.getEvent() == null) {
+                return;
+            }
+            processVisitEvent(eventClient);
+            Event contactsEvents = eventClient.getEvent();
+            contactsEvents.setEventType(org.smartregister.chw.hts.util.Constants.EVENT_TYPE.REPEAT_FIRST_HIV_TEST);
+
+            processEvent(eventClient.getEvent(), eventClient.getClient(), clientClassification);
+        } else {
+
+            switch (eventType) {
+                case ANC_PREGNANCY_CONFIRMATION:
+                case ANC_FOLLOWUP_CLIENT_REGISTRATION:
+                case ANC_FIRST_FACILITY_VISIT:
+                case ANC_RECURRING_FACILITY_VISIT:
+                case PNC_VISIT:
+                case PNC_CHILD_FOLLOWUP:
+                case LD_PARTOGRAPHY:
+                case LD_REGISTRATION:
+                case LD_ACTIVE_MANAGEMENT_OF_3RD_STAGE_OF_LABOUR:
+                case LD_GENERAL_EXAMINATION:
+                case LD_POST_DELIVERY_MOTHER_MANAGEMENT:
+                case ANC_PARTNER_TESTING:
+                case org.smartregister.chw.kvp.util.Constants.EVENT_TYPE.KVP_BEHAVIORAL_SERVICE_VISIT:
+                case org.smartregister.chw.kvp.util.Constants.EVENT_TYPE.KVP_BIO_MEDICAL_SERVICE_VISIT:
+                case org.smartregister.chw.kvp.util.Constants.EVENT_TYPE.KVP_STRUCTURAL_SERVICE_VISIT:
+                case org.smartregister.chw.kvp.util.Constants.EVENT_TYPE.KVP_OTHER_SERVICE_VISIT:
+                case org.smartregister.chw.kvp.util.Constants.EVENT_TYPE.PrEP_FOLLOWUP_VISIT:
+                case org.smartregister.chw.vmmc.util.Constants.EVENT_TYPE.VMMC_SERVICES:
+                case org.smartregister.chw.vmmc.util.Constants.EVENT_TYPE.VMMC_PROCEDURE:
+                case org.smartregister.chw.vmmc.util.Constants.EVENT_TYPE.VMMC_DISCHARGE:
+                case org.smartregister.chw.vmmc.util.Constants.EVENT_TYPE.VMMC_FOLLOW_UP_VISIT:
+                case org.smartregister.chw.vmmc.util.Constants.EVENT_TYPE.VMMC_NOTIFIABLE_EVENTS:
+                case org.smartregister.chw.cecap.util.Constants.EVENT_TYPE.CECAP_FOLLOW_UP_VISIT:
+                case Constants.EVENT_TYPE.PMTCT_FOLLOWUP:
+                case FamilyPlanningConstants.EVENT_TYPE.FP_POINT_OF_SERVICE_DELIVERY:
+                case FamilyPlanningConstants.EVENT_TYPE.FP_COUNSELING:
+                case FamilyPlanningConstants.EVENT_TYPE.FP_PROVIDE_METHOD:
+                case FamilyPlanningConstants.EVENT_TYPE.FP_OTHER_SERVICES:
+                case org.smartregister.chw.sbc.util.Constants.EVENT_TYPE.SBC_FOLLOW_UP_VISIT:
+                    if (eventClient.getEvent() == null) {
+                        return;
+                    }
+                    processVisitEvent(eventClient);
+                    processEvent(eventClient.getEvent(), eventClient.getClient(), clientClassification);
+                    break;
+                case HEI_FOLLOWUP:
+                case HEI_POSITIVE_INFANT:
+                case HEI_NEGATIVE_INFANT:
+                    processVisitEvent(eventClient);
+                    processEvent(eventClient.getEvent(), eventClient.getClient(), clientClassification);
+                    processHeiFollowupCEvent(eventClient.getEvent());
+                    break;
+
+                case org.smartregister.chw.ld.util.Constants.EVENT_TYPE.VOID_EVENT:
+                case DELETE_EVENT:
+                    processDeleteEvent(eventClient.getEvent());
+                default:
+                    break;
+            }
         }
 
     }
@@ -186,7 +227,7 @@ public class HfClientProcessor extends CoreClientProcessor {
     @Override
     public void processDeleteEvent(Event event) {
         try {
-            List<String> pmtctFollowupTables = Arrays.asList("ec_ld_partograph", "ec_pmtct_followup", "ec_pmtct_hvl_results", "ec_pmtct_cd4_results", "ec_hei_followup", "ec_hei_hiv_results", "ec_anc_followup", "ec_pnc_followup", "ec_prep_followup","ec_cecap_test_results","ec_kvp_hepatitis_test_results");
+            List<String> pmtctFollowupTables = Arrays.asList("ec_ld_partograph", "ec_pmtct_followup", "ec_pmtct_hvl_results", "ec_pmtct_cd4_results", "ec_hei_followup", "ec_hei_hiv_results", "ec_anc_followup", "ec_pnc_followup", "ec_prep_followup", "ec_cecap_test_results", "ec_kvp_hepatitis_test_results");
             if (event.getDetails().containsKey(org.smartregister.chw.anc.util.Constants.JSON_FORM_EXTRA.DELETE_FORM_SUBMISSION_ID)) {
                 // delete from vaccine table
                 EventDao.deleteVaccineByFormSubmissionId(event.getDetails().get(org.smartregister.chw.anc.util.Constants.JSON_FORM_EXTRA.DELETE_FORM_SUBMISSION_ID));
