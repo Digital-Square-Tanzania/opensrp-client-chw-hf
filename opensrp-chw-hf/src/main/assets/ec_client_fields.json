@@ -4440,7 +4440,7 @@
           }
         },
         {
-          "column_name": "hts_is_client_pregnant",
+          "column_name": "is_client_pregnant",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
@@ -4448,7 +4448,7 @@
           }
         },
         {
-          "column_name": "hts_is_client_breastfeeding",
+          "column_name": "is_client_breastfeeding",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
@@ -4456,7 +4456,7 @@
           }
         },
         {
-          "column_name": "hts_has_the_client_ever_tested_for_hiv",
+          "column_name": "has_the_client_ever_tested_for_hiv",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
@@ -4464,7 +4464,7 @@
           }
         },
         {
-          "column_name": "hts_has_testing_been_done_more_than_12_months_ago",
+          "column_name": "has_testing_been_done_more_than_12_months_ago",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
@@ -4472,7 +4472,7 @@
           }
         },
         {
-          "column_name": "hts_last_hiv_test_results_are_unknown_or_were_indeterminate_inconclusive",
+          "column_name": "last_hiv_test_results_are_unknown_or_were_indeterminate_inconclusive",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
@@ -4480,7 +4480,7 @@
           }
         },
         {
-          "column_name": "hts_does_the_client_have_any_of_the_following_general_health_assessment",
+          "column_name": "does_the_client_have_any_of_the_following_general_health_assessment",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
@@ -4488,7 +4488,7 @@
           }
         },
         {
-          "column_name": "hts_does_the_client_have_any_of_the_following_tuberculosis_symptoms_assessment",
+          "column_name": "does_the_client_have_any_of_the_following_tuberculosis_symptoms_assessment",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
@@ -4496,7 +4496,7 @@
           }
         },
         {
-          "column_name": "hts_does_the_client_have_any_of_the_following_sti_symptoms_assessment",
+          "column_name": "does_the_client_have_any_of_the_following_sti_symptoms_assessment",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
@@ -4504,7 +4504,7 @@
           }
         },
         {
-          "column_name": "hts_has_the_client_had_sexual_intercourse_with_a_person_with_hiv_or_with_a_person_whose_hiv_status_is_unknown",
+          "column_name": "the_client_had_sexual_intercourse_with_a_person_with_hiv_or_with_a_person_whose_hiv_status_is_unknown",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
@@ -4512,7 +4512,7 @@
           }
         },
         {
-          "column_name": "hts_has_the_client_had_sex_under_the_influence_of_drugs_or_alcohol",
+          "column_name": "the_client_had_sex_under_the_influence_of_drugs_or_alcohol",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
@@ -4520,7 +4520,7 @@
           }
         },
         {
-          "column_name": "hts_has_the_client_had_more_than_one_sexual_partner_in_the_last_12_months",
+          "column_name": "has_the_client_had_more_than_one_sexual_partner_in_the_last_12_months",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
@@ -4536,7 +4536,7 @@
           }
         },
         {
-          "column_name": "hts_does_the_child_have_abnormal_discharge_from_the_vagina_or_penis",
+          "column_name": "does_the_child_have_abnormal_discharge_from_the_vagina_or_penis",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
@@ -4544,7 +4544,7 @@
           }
         },
         {
-          "column_name": "hts_does_the_child_have_burning_itching_or_pain_when_urinating_or_peeing",
+          "column_name": "does_the_child_have_burning_itching_or_pain_when_urinating_or_peeing",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
@@ -4552,7 +4552,7 @@
           }
         },
         {
-          "column_name": "hts_does_the_child_have_any_ulcer_sore_warts_in_his_or_her_genital_areas",
+          "column_name": "does_the_child_have_any_ulcer_sore_warts_in_his_or_her_genital_areas",
           "type": "Event",
           "json_mapping": {
             "field": "obs.fieldCode",
