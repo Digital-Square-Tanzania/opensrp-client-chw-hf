@@ -1,0 +1,74 @@
+indicators:
+  #Wanaume
+  - key: hts-1-2-9-ME
+    grouping: HTS
+    description: Idadi ya wateja wapya waliosajiliwa katika kipindi cha ripoti Umri 2-9
+    indicatorQuery: " SELECT count(DISTINCT ekbms.id) as count FROM ec_hts_register ekbms 
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.id 
+                      WHERE efm.gender='Male' 
+                      AND (date(efm.dob, ''+2 years'') <= date(''now'')) AND (date(efm.dob, ''+10 years'') > date(''now'')) 
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
+                      date(substr(strftime('%Y-%m-%d', datetime(ekbms.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
+                      ||'-' || substr(strftime('%Y-%m-%d', datetime(ekbms.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01') "
+  - key: hts-1-10-14-ME
+    grouping: HTS
+    description: Idadi ya wateja wapya waliosajiliwa katika kipindi cha ripoti Umri 10-15
+    indicatorQuery: " SELECT count(DISTINCT ekbms.id) as count FROM ec_hts_register ekbms 
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.id 
+                     WHERE efm.gender='Male' 
+                     AND (date(efm.dob, ''+10 years'') <= date(''now'')) AND (date(efm.dob, ''+14 years'') > date(''now'')) 
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
+                     date(substr(strftime('%Y-%m-%d', datetime(ekbms.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
+                     ||'-' || substr(strftime('%Y-%m-%d', datetime(ekbms.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01') "
+  - key: hts-1->=15-ME
+    grouping: HTS
+    description: Idadi ya wateja wapya waliosajiliwa katika kipindi cha ripoti Umri >=15
+    indicatorQuery: " SELECT count(DISTINCT ekbms.id) as count FROM ec_hts_register ekbms 
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.id 
+                      WHERE efm.gender='Male' 
+                      AND (date('now')- date(efm.dob))>=15 
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
+                      date(substr(strftime('%Y-%m-%d', datetime(ekbms.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
+                      ||'-' || substr(strftime('%Y-%m-%d', datetime(ekbms.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01') "
+  - key: hts-2-2-9-ME
+    grouping: HTS
+    description: Idadi ya wateja wapya waliosajiliwa katika kipindi cha ripoti Umri 2-9
+    indicatorQuery: " SELECT count(DISTINCT ekbms.id) as count FROM ec_hts_register ekbms 
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.id 
+                      WHERE efm.gender='Male' 
+                      AND (date(efm.dob, ''+2 years'') <= date(''now'')) AND (date(efm.dob, ''+10 years'') > date(''now'')) 
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
+                      date(substr(strftime('%Y-%m-%d', datetime(ekbms.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
+                      ||'-' || substr(strftime('%Y-%m-%d', datetime(ekbms.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01') "
+
+   #Wanawake
+  - key: hts-1-2-9-KE
+    grouping: HTS
+    description: Idadi ya wateja wapya waliosajiliwa katika kipindi cha ripoti Umri 2-9
+    indicatorQuery: " SELECT count(DISTINCT ekbms.id) as count FROM ec_hts_register ekbms 
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.id 
+                      WHERE efm.gender='Female' 
+                      AND (date(efm.dob, ''+2 years'') <= date(''now'')) AND (date(efm.dob, ''+10 years'') > date(''now'')) 
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
+                      date(substr(strftime('%Y-%m-%d', datetime(ekbms.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
+                      ||'-' || substr(strftime('%Y-%m-%d', datetime(ekbms.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01') "
+  - key: hts-1-10-14-KE
+    grouping: HTS
+    description: Idadi ya wateja wapya waliosajiliwa katika kipindi cha ripoti Umri 10-15
+    indicatorQuery: " SELECT count(DISTINCT ekbms.id) as count FROM ec_hts_register ekbms 
+                     INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.id 
+                     WHERE efm.gender='Female' 
+                     AND (date(efm.dob, ''+10 years'') <= date(''now'')) AND (date(efm.dob, ''+14 years'') > date(''now'')) 
+                     AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
+                     date(substr(strftime('%Y-%m-%d', datetime(ekbms.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
+                     ||'-' || substr(strftime('%Y-%m-%d', datetime(ekbms.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01') "
+  - key: hts-1->=15-KE
+    grouping: HTS
+    description: Idadi ya wateja wapya waliosajiliwa katika kipindi cha ripoti Umri >=15
+    indicatorQuery: " SELECT count(DISTINCT ekbms.id) as count FROM ec_hts_register ekbms 
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.id 
+                      WHERE efm.gender='Female' 
+                      AND (date('now')- date(efm.dob))>=15 
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
+                      date(substr(strftime('%Y-%m-%d', datetime(ekbms.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
+                      ||'-' || substr(strftime('%Y-%m-%d', datetime(ekbms.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01') "

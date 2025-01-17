@@ -154,12 +154,17 @@ public class HfChwRepository extends CoreChwRepository {
                 String vmmcOutreachIndicatorConfigFile = "config/vmmc-outreach-report.yml";
                 String kvpTestingIndicatorConfigFile = "config/kvp-monthly-report.yml";
                 String ltfuIndicatorConfigFile = "config/community-ltfu-summary.yml";
+                String htsMonthlyIndicatorConfigFile = "config/hts-monthly-report.yml";
+                String htsScreeningIndicatorConfigFile = "config/hts-screening-report.yml";
+                String tbMonthlyIndicatorConfigFile = "config/tb-monthly-report.yml";
+                String tbScreeningIndicatorConfigFile = "config/tb-screening-report.yml";
 
                 for (String configFile : Collections.unmodifiableList(
                         Arrays.asList(indicatorsConfigFile, ancIndicatorConfigFile,
                                 pmtctIndicatorConfigFile, pncIndicatorConfigFile,
                                 cbhsReportingIndicatorConfigFile, ldReportingIndicatorConfigFile,
-                                motherChampionReportingIndicatorConfigFile, vmmcIndicatorConfigFile, vmmcStaticIndicatorConfigFile, vmmcOutreachIndicatorConfigFile, selfTestingIndicatorConfigFile, kvpTestingIndicatorConfigFile, ltfuIndicatorConfigFile))) {
+                                motherChampionReportingIndicatorConfigFile, vmmcIndicatorConfigFile, vmmcStaticIndicatorConfigFile, vmmcOutreachIndicatorConfigFile, selfTestingIndicatorConfigFile,
+                                kvpTestingIndicatorConfigFile, ltfuIndicatorConfigFile, htsMonthlyIndicatorConfigFile, htsScreeningIndicatorConfigFile, tbMonthlyIndicatorConfigFile, tbScreeningIndicatorConfigFile))) {
                     reportingLibraryInstance.readConfigFile(configFile, db);
                 }
 
@@ -506,13 +511,19 @@ public class HfChwRepository extends CoreChwRepository {
                 String cecapIndicatorConfigFile = "config/cecap-reporting-indicator-definitions.yml";
                 String cecapOtherReportsIndicatorConfigFile = "config/cecap-other-reporting-indicator-definitions.yml";
                 String asrhReportsIndicatorConfigFile = "config/asrh-reporting-indicator-definitions.yml";
-
+                String htsMonthlyIndicatorConfigFile = "config/hts-monthly-report.yml";
+                String htsScreeningIndicatorConfigFile = "config/hts-screening-report.yml";
+                String tbMonthlyIndicatorConfigFile = "config/tb-monthly-report.yml";
+                String tbScreeningIndicatorConfigFile = "config/tb-screening-report.yml";
 
                 for (String configFile : Collections.unmodifiableList(
                         Arrays.asList(indicatorsConfigFile, ancIndicatorConfigFile,
                                 pmtctIndicatorConfigFile, pncIndicatorConfigFile,
                                 cbhsReportingIndicatorConfigFile, ldReportingIndicatorConfigFile,
-                                motherChampionReportingIndicatorConfigFile, selfTestingIndicatorConfigFile, kvpTestingIndicatorConfigFile, ltfuIndicatorConfigFile, vmmcIndicatorConfigFile, vmmcStaticIndicatorConfigFile, vmmcOutreachIndicatorConfigFile, fpIndicatorConfigFile, cecapIndicatorConfigFile, cecapOtherReportsIndicatorConfigFile,asrhReportsIndicatorConfigFile))) {
+                                motherChampionReportingIndicatorConfigFile, selfTestingIndicatorConfigFile, kvpTestingIndicatorConfigFile,
+                                ltfuIndicatorConfigFile, vmmcIndicatorConfigFile, vmmcStaticIndicatorConfigFile, vmmcOutreachIndicatorConfigFile,
+                                fpIndicatorConfigFile, cecapIndicatorConfigFile, cecapOtherReportsIndicatorConfigFile,asrhReportsIndicatorConfigFile,
+                                htsMonthlyIndicatorConfigFile, htsScreeningIndicatorConfigFile, tbMonthlyIndicatorConfigFile, tbScreeningIndicatorConfigFile))) {
                     reportingLibraryInstance.readConfigFile(configFile, db);
                 }
 
