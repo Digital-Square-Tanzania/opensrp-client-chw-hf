@@ -11518,6 +11518,149 @@
           }
         },
         {
+          "column_name": "visit_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "details.hts_visit_group"
+          }
+        },
+        {
+          "column_name": "visit_type",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "hts_visit_type"
+          }
+        },
+        {
+          "column_name": "has_the_client_recently_tested_with_hivst",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "hts_has_the_client_recently_tested_with_hivst"
+          }
+        },
+        {
+          "column_name": "previous_hivst_client_type",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "hts_previous_hivst_client_type"
+          }
+        },
+        {
+          "column_name": "previous_hivst_test_type",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "hts_previous_hivst_test_type"
+          }
+        },
+        {
+          "column_name": "client_type",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "hts_client_type"
+          }
+        },
+        {
+          "column_name": "testing_point",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "hts_testing_point"
+          }
+        },
+        {
+          "column_name": "has_pre_test_counselling_been_provided",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "hts_has_pre_test_counselling_been_provided"
+          }
+        },
+        {
+          "column_name": "type_of_counselling_provided",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "hts_type_of_counselling_provided"
+          }
+        },
+        {
+          "column_name": "clients_tb_screening_outcome",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "hts_clients_tb_screening_outcome"
+          }
+        },
+        {
+          "column_name": "does_client_need_hiv_self_test_kits",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "hts_does_client_need_hiv_self_test_kits"
+          }
+        },
+        {
+          "column_name": "hts_has_post_test_counselling_been_provided",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "hts_has_post_test_counselling_been_provided"
+          }
+        },
+        {
+          "column_name": "hiv_results_disclosure",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "hts_hiv_results_disclosure"
+          }
+        },
+        {
+          "column_name": "preventive_services",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "hts_preventive_services"
+          }
+        },
+        {
+          "column_name": "were_condoms_distributed",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "hts_were_condoms_distributed"
+          }
+        },
+        {
+          "column_name": "condom_distribution",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "hts_condom_distribution"
+          }
+        },
+        {
+          "column_name": "number_of_male_condoms_provided",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "hts_number_of_male_condoms_provided"
+          }
+        },
+        {
+          "column_name": "number_of_female_condoms_provided",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "hts_number_of_female_condoms_provided"
+          }
+        },
+        {
           "column_name": "last_interacted_with",
           "type": "Event",
           "json_mapping": {
@@ -11541,6 +11684,13 @@
           "type": "Event",
           "json_mapping": {
             "field": "formSubmissionId"
+          }
+        },
+        {
+          "column_name": "visit_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "details.hts_visit_group"
           }
         },
         {
@@ -11589,6 +11739,14 @@
           "json_mapping": {
             "field": "obs.fieldCode",
             "concept": "test_result"
+          }
+        },
+        {
+          "column_name": "final_hiv_status",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "hts_final_hiv_status"
           }
         },
         {

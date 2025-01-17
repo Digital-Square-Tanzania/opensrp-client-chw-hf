@@ -58,10 +58,10 @@
     "title": "Post-Test Services",
     "fields": [
       {
-        "key": "hts_post_test_services",
+        "key": "hts_has_post_test_counselling_been_provided",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "hts_post_test_services",
+        "openmrs_entity_id": "hts_has_post_test_counselling_been_provided",
         "type": "native_radio",
         "label": "Was client provided with post-test counselling?",
         "options": [
@@ -69,13 +69,13 @@
             "key": "yes",
             "text": "Yes",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "new_client"
+            "openmrs_entity_id": "yes"
           },
           {
             "key": "no",
             "text": "No",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "returning"
+            "openmrs_entity_id": "no"
           }
         ],
         "v_required": {
