@@ -4534,6 +4534,30 @@
             "field": "obs.fieldCode",
             "concept": "eligibility_for_testing"
           }
+        },
+        {
+          "column_name": "hts_does_the_child_have_abnormal_discharge_from_the_vagina_or_penis",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "hts_does_the_child_have_abnormal_discharge_from_the_vagina_or_penis"
+          }
+        },
+        {
+          "column_name": "hts_does_the_child_have_burning_itching_or_pain_when_urinating_or_peeing",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "hts_does_the_child_have_burning_itching_or_pain_when_urinating_or_peeing"
+          }
+        },
+        {
+          "column_name": "hts_does_the_child_have_any_ulcer_sore_warts_in_his_or_her_genital_areas",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "hts_does_the_child_have_any_ulcer_sore_warts_in_his_or_her_genital_areas"
+          }
         }
       ]
     },
