@@ -100,6 +100,15 @@ public class HfClientProcessor extends CoreClientProcessor {
             contactsEvents.setEventType(org.smartregister.chw.hts.util.Constants.EVENT_TYPE.HTS_UNIGOLD_HIV_TEST);
 
             processEvent(eventClient.getEvent(), eventClient.getClient(), clientClassification);
+        }  else if (eventType.contains(org.smartregister.chw.hts.util.Constants.EVENT_TYPE.REPEAT_FIRST_HIV_TEST)) {
+            if (eventClient.getEvent() == null) {
+                return;
+            }
+            processVisitEvent(eventClient);
+            Event contactsEvents = eventClient.getEvent();
+            contactsEvents.setEventType(org.smartregister.chw.hts.util.Constants.EVENT_TYPE.REPEAT_FIRST_HIV_TEST);
+
+            processEvent(eventClient.getEvent(), eventClient.getClient(), clientClassification);
         } else {
 
             switch (eventType) {
