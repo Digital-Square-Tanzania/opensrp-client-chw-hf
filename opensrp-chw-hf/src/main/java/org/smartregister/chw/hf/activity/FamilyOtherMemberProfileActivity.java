@@ -234,7 +234,11 @@ public class FamilyOtherMemberProfileActivity extends CoreFamilyOtherMemberProfi
 
     @Override
     protected void startHtsScreening() {
-        HivTestingServicesRegisterActivity.startRegistration(FamilyOtherMemberProfileActivity.this, baseEntityId);
+        String gender = Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.GENDER, false);
+        String dob = Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.DOB, false);
+        int clientAge = Utils.getAgeFromDate(dob);
+
+        HivTestingServicesRegisterActivity.startRegistration(FamilyOtherMemberProfileActivity.this, baseEntityId, clientAge, gender);
     }
 
     @Override
