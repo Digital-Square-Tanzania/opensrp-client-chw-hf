@@ -11,15 +11,11 @@ public class HtsMonthlyReportObject extends ReportObject {
 
 
     private final String[] kvpQuestionsGroups = new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14-a",
-            "14-b-i", "14-b-ii", "14-b-iii", "14-b-iv", "14-b-v", "14-b-vi",
-            "15", "16", "18", "19", "20", "21", "22",
-            "17-a", "17-b", "17-c", "17-d"
+            "14-b", "14-c", "14-d", "14-e", "14-f", "14-g", "14-h",
+            "15-a", "15-b", "16", "17", "18", "19"
     };
     private final String[] kvpAgeGroups = new String[]{
-            "<10", "10-14", "15-19", "20-24", "25-29", "30-34", "35-39", "40-44", "45-49", ">50"
-    };
-    private final String[] kvpGroups = new String[]{
-            "pwid", "pwud", "fsw", "msm", "agyw", "mobile_population", "serodiscordant_couple", "other_vulnerable_population"
+            "<1", "1-4", "5-9", "10-14", "15-19", "20-24", "25-29", "30-34", "35-39", "40-44", "45-49", ">=50"
     };
     private final String[] kvpGenderGroups = new String[]{
             "ME", "KE"
@@ -38,11 +34,9 @@ public class HtsMonthlyReportObject extends ReportObject {
         jsonObject = new JSONObject();
         for (String questionGroup : kvpQuestionsGroups) {   //rows
             for (String ageGroup : kvpAgeGroups) {  //columns
-                for (String kvpGroup : kvpGroups) {
-                    for (String genderGroup : kvpGenderGroups) {  //concstenate rows columns and gendergroup
-                        jsonObject.put("kvp" + "-" + questionGroup + "-" + ageGroup + "-" + kvpGroup + "-" + genderGroup,
-                                ReportDao.getReportPerIndicatorCode("kvp" + "-" + questionGroup + "-" + ageGroup + "-" + kvpGroup + "-" + genderGroup, reportDate));
-                    }
+                for (String genderGroup : kvpGenderGroups) {  //concstenate rows columns and gendergroup
+                    jsonObject.put("kvp" + "-" + questionGroup + "-" + ageGroup + "-" + genderGroup,
+                            ReportDao.getReportPerIndicatorCode("kvp" + "-" + questionGroup + "-" + ageGroup + "-" + genderGroup, reportDate));
                 }
             }
         }
@@ -53,15 +47,15 @@ public class HtsMonthlyReportObject extends ReportObject {
         return jsonObject;
     }
 
-    private int getTotalPerEachIndicator(String question, String kvpgroup) throws JSONException {
+    private int getTotalPerEachIndicator(String question) throws JSONException {
         int totalOfGenderGiven = 0;
         int returnedValue = 0;
         for (String age : kvpAgeGroups) {
             totalOfGenderGiven += (ReportDao.getReportPerIndicatorCode("kvp" + "-"
-                    + question + "-" + age + "-" + kvpgroup + "-" + "ME", reportDate)
+                    + question + "-" + age  + "-" + "ME", reportDate)
                     + ReportDao.getReportPerIndicatorCode("kvp" + "-"
-                    + question + "-" + age + "-" + kvpgroup + "-" + "KE", reportDate));
-            jsonObject.put("kvp" + "-" + question + "-" + kvpgroup + "-jumla-both-ME-KE", totalOfGenderGiven);  //display the total for both gender
+                    + question + "-" + age + "-" + "KE", reportDate));
+            jsonObject.put("kvp"  + "-jumla-both-ME-KE", totalOfGenderGiven);  //display the total for both gender
             returnedValue = totalOfGenderGiven;
         }
         return returnedValue;
@@ -71,10 +65,8 @@ public class HtsMonthlyReportObject extends ReportObject {
     private void funcGetTotal() throws JSONException {
         int totalofthewholekvpgroup = 0;
         for (String question : kvpQuestionsGroups) {
-            for (String kvpGroup : kvpGroups) {
-                totalofthewholekvpgroup += getTotalPerEachIndicator(question, kvpGroup);
-                jsonObject.put("kvp" + "-" + question + "-jumla-kuu", totalofthewholekvpgroup); //total for all kvp groups
-            }
+            totalofthewholekvpgroup += getTotalPerEachIndicator(question);
+            jsonObject.put("kvp" + "-" + question + "-jumla-kuu", totalofthewholekvpgroup); //total for all kvp
             totalofthewholekvpgroup = 0;
         }
     }
