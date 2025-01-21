@@ -10,14 +10,17 @@ import java.util.Date;
 public class HtsMonthlyReportObject extends ReportObject {
 
 
-    private final String[] kvpQuestionsGroups = new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14-a",
+    private final String[] htsQuestionsGroups = new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "14-a",
             "14-b", "14-c", "14-d", "14-e", "14-f", "14-g", "14-h",
             "15-a", "15-b", "16", "17", "18", "19"
     };
-    private final String[] kvpAgeGroups = new String[]{
-            "<1", "1-4", "5-9", "10-14", "15-19", "20-24", "25-29", "30-34", "35-39", "40-44", "45-49", ">=50"
+    private final String[] htsGroups = new String[]{
+            "KP1-i", "KP1-ii", "KP2", "KP3"
     };
-    private final String[] kvpGenderGroups = new String[]{
+    private final String[] htsAgeGroups = new String[]{
+            "<1", "1-4", "5-9", "10-14", "15-19", "20-24", "25-29", "30-34", "35-39", "40-44", "45-49", ">50"
+    };
+    private final String[] htsGenderGroups = new String[]{
             "ME", "KE"
     };
 
@@ -32,14 +35,26 @@ public class HtsMonthlyReportObject extends ReportObject {
     @Override
     public JSONObject getIndicatorData() throws JSONException {
         jsonObject = new JSONObject();
-        for (String questionGroup : kvpQuestionsGroups) {   //rows
-            for (String ageGroup : kvpAgeGroups) {  //columns
-                for (String genderGroup : kvpGenderGroups) {  //concstenate rows columns and gendergroup
-                    jsonObject.put("kvp" + "-" + questionGroup + "-" + ageGroup + "-" + genderGroup,
-                            ReportDao.getReportPerIndicatorCode("kvp" + "-" + questionGroup + "-" + ageGroup + "-" + genderGroup, reportDate));
+        for (String questionGroup : htsQuestionsGroups) {   //rows
+            for (String ageGroup : htsAgeGroups) {  //columns
+                for (String genderGroup : htsGenderGroups) {  //concatenate rows columns and gendergroup
+                    jsonObject.put("hts-monthly" + "-" + questionGroup + "-" + ageGroup + "-" + genderGroup,
+                            ReportDao.getReportPerIndicatorCode("hts-monthly" + "-" + questionGroup + "-" + ageGroup + "-" + genderGroup, reportDate));
                 }
+//                for (String htsGroup : htsGroups) {
+//                    for (String genderGroup : htsGenderGroups) {  //concstenate rows columns and gendergroup
+//                        jsonObject.put("hts-monthly" + "-" + questionGroup + "-" + ageGroup + "-" + htsGroup + "-" + genderGroup,
+//                                ReportDao.getReportPerIndicatorCode("hts-monthly" + "-" + questionGroup + "-" + ageGroup + "-" + htsGroup + "-" + genderGroup, reportDate));
+//                    }
+//                }
             }
         }
+        // Question 11-13
+        jsonObject.put("hts-monthly-11", ReportDao.getReportPerIndicatorCode("hts-monthly-11", reportDate));
+        jsonObject.put("hts-monthly-12", ReportDao.getReportPerIndicatorCode("hts-monthly-12", reportDate));
+        jsonObject.put("hts-monthly-13", ReportDao.getReportPerIndicatorCode("hts-monthly-13", reportDate));
+
+
         // get total of all Male & Female in Qn 2 & 7
         //and the whole total for both of them
         funcGetTotal();
@@ -47,15 +62,15 @@ public class HtsMonthlyReportObject extends ReportObject {
         return jsonObject;
     }
 
-    private int getTotalPerEachIndicator(String question) throws JSONException {
+    private int getTotalPerEachIndicator(String question, String htsgroup) throws JSONException {
         int totalOfGenderGiven = 0;
         int returnedValue = 0;
-        for (String age : kvpAgeGroups) {
-            totalOfGenderGiven += (ReportDao.getReportPerIndicatorCode("kvp" + "-"
-                    + question + "-" + age  + "-" + "ME", reportDate)
-                    + ReportDao.getReportPerIndicatorCode("kvp" + "-"
-                    + question + "-" + age + "-" + "KE", reportDate));
-            jsonObject.put("kvp"  + "-jumla-both-ME-KE", totalOfGenderGiven);  //display the total for both gender
+        for (String age : htsAgeGroups) {
+            totalOfGenderGiven += (ReportDao.getReportPerIndicatorCode("hts-monthly" + "-"
+                    + question + "-" + age + "-" + htsgroup + "-" + "ME", reportDate)
+                    + ReportDao.getReportPerIndicatorCode("hts-monthly" + "-"
+                    + question + "-" + age + "-" + htsgroup + "-" + "KE", reportDate));
+            jsonObject.put("hts-monthly" + "-" + question + "-" + htsgroup + "-jumla-both-ME-KE", totalOfGenderGiven);  //display the total for both gender
             returnedValue = totalOfGenderGiven;
         }
         return returnedValue;
@@ -63,11 +78,13 @@ public class HtsMonthlyReportObject extends ReportObject {
 
 
     private void funcGetTotal() throws JSONException {
-        int totalofthewholekvpgroup = 0;
-        for (String question : kvpQuestionsGroups) {
-            totalofthewholekvpgroup += getTotalPerEachIndicator(question);
-            jsonObject.put("kvp" + "-" + question + "-jumla-kuu", totalofthewholekvpgroup); //total for all kvp
-            totalofthewholekvpgroup = 0;
+        int totalofthewholehtsgroup = 0;
+        for (String question : htsQuestionsGroups) {
+            for (String htsGroup : htsGroups) {
+                totalofthewholehtsgroup += getTotalPerEachIndicator(question, htsGroup);
+                jsonObject.put("hts-monthly" + "-" + question + "-jumla-both-ME-KE", totalofthewholehtsgroup); //total for all hts groups
+            }
+            totalofthewholehtsgroup = 0;
         }
     }
 
