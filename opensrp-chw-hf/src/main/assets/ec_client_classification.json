@@ -1213,6 +1213,20 @@
           },
           {
             "field": "eventType",
+            "field_value": "GBV Registration",
+            "creates_case": [
+              "ec_gbv_register"
+            ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "GBV Follow-up Visit",
+            "creates_case": [
+              "ec_gbv_visit"
+            ]
+          },
+          {
+            "field": "eventType",
             "field_value": "HTS Screening",
             "creates_case": [
               "ec_hts_register"
