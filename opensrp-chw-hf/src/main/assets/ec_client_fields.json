@@ -11181,6 +11181,14 @@
           }
         },
         {
+          "column_name": "hts_visit_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "hts_visit_id"
+          }
+        },
+        {
           "column_name": "last_interacted_with",
           "type": "Event",
           "json_mapping": {
@@ -11778,6 +11786,14 @@
           "json_mapping": {
             "field": "obs.fieldCode",
             "concept": "hts_number_of_female_condoms_provided"
+          }
+        },
+        {
+          "column_name": "sample_collection_for_dna_pcr_test",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "hts_sample_collection_for_dna_pcr_test"
           }
         },
         {
