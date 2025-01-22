@@ -6,8 +6,14 @@ import static org.smartregister.chw.lab.util.LabUtil.getHfrCode;
 import static org.smartregister.client.utils.constants.JsonFormConstants.ENCOUNTER_TYPE;
 import static org.smartregister.client.utils.constants.JsonFormConstants.GLOBAL;
 import static org.smartregister.client.utils.constants.JsonFormConstants.MIN_DATE;
+import static org.smartregister.client.utils.constants.JsonFormConstants.OPENMRS_ENTITY;
 import static org.smartregister.client.utils.constants.JsonFormConstants.READ_ONLY;
+import static org.smartregister.client.utils.constants.JsonFormConstants.TYPE;
 import static org.smartregister.client.utils.constants.JsonFormConstants.VALUE;
+import static org.smartregister.util.JsonFormUtils.CONCEPT;
+import static org.smartregister.util.JsonFormUtils.KEY;
+import static org.smartregister.util.JsonFormUtils.OPENMRS_ENTITY_ID;
+import static org.smartregister.util.JsonFormUtils.OPENMRS_ENTITY_PARENT;
 
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
@@ -22,6 +28,7 @@ import org.smartregister.chw.hf.repository.HfLocationRepository;
 import org.smartregister.chw.hf.repository.UniqueLabTestSampleTrackingIdRepository;
 import org.smartregister.chw.hiv.dao.HivDao;
 import org.smartregister.chw.hiv.domain.HivMemberObject;
+import org.smartregister.chw.hts.dao.HtsDao;
 import org.smartregister.chw.lab.dao.LabDao;
 import org.smartregister.chw.lab.model.BaseLabRegisterModel;
 import org.smartregister.chw.lab.util.LabJsonFormUtils;
@@ -62,18 +69,40 @@ public class LabRegisterModel extends BaseLabRegisterModel {
         JSONObject form = LabJsonFormUtils.getFormAsJson(formName);
         LabJsonFormUtils.getRegistrationForm(form, entityId, currentLocationId);
 
-        String patientId;
+        String patientId = null;
         if (PmtctDao.isRegisteredForPmtct(entityId)) {
             HivMemberObject hivMemberObject = HivDao.getMember(entityId);
             if (hivMemberObject != null && hivMemberObject.getCtcNumber() != null) {
                 patientId = hivMemberObject.getCtcNumber();
                 refreshHvlRequesterDetails(form, entityId);
             } else return null;
-        } else {
+        } else if (StringUtils.isNotBlank(HeiDao.getHeiNumber(entityId))) {
             patientId = HeiDao.getHeiNumber(entityId);
             refreshHeidRequesterDetails(form, entityId);
+        } else if (!form.getString(ENCOUNTER_TYPE).equals(LAB_SET_MANIFEST_SETTINGS)) {
+            try {
+                patientId = HtsDao.getClientUniqueId(entityId);
+                JSONArray fields = form.getJSONObject(org.smartregister.chw.hf.utils.Constants.JsonFormConstants.STEP1)
+                        .getJSONArray(JsonFormConstants.FIELDS);
+
+                handleSampleRequest(fields);
+
+                JSONObject htsVisitId = new JSONObject();
+                htsVisitId.put(OPENMRS_ENTITY_PARENT, "");
+                htsVisitId.put(OPENMRS_ENTITY, CONCEPT);
+                htsVisitId.put(OPENMRS_ENTITY_ID, "hts_visit_id");
+                htsVisitId.put(KEY, "hts_visit_id");
+                htsVisitId.put(TYPE, "hidden");
+                htsVisitId.put(VALUE, HtsDao.getClientLastVisitId(entityId));
+                fields.put(htsVisitId);
+            } catch (Exception e) {
+                Timber.e(e);
+                return null;
+            }
         }
 
+        if (patientId == null && !form.getString(ENCOUNTER_TYPE).equals(LAB_SET_MANIFEST_SETTINGS))
+            return null;
         form.getJSONObject(GLOBAL).put("PatientId", patientId);
         form.getJSONObject(GLOBAL).put("HfrCode", getHfrCode());
 

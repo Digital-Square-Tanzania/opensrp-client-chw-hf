@@ -59,6 +59,11 @@ public class HivTestingServicesMemberProfileActivity extends CoreHtsProfileActiv
     }
 
     @Override
+    public void startDnaPcrSampleCollection() {
+        LabRegisterActivity.startLabRegisterActivity(this, memberObject.getBaseEntityId(), "lab_hts_sample_collection");
+    }
+
+    @Override
     protected void setupViews() {
         super.setupViews();
         try {
