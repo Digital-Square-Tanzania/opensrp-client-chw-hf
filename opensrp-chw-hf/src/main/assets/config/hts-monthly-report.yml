@@ -296,7 +296,7 @@ indicators:
 					  INNER JOIN ec_hts_tests eht ON eht.entity_id = ehs.entity_id
                       WHERE efm.gender='Male' 
 					  AND ehs.hts_has_post_test_counselling_been_provided = 'yes'
-					  AND ehs.visit_type = 'repeat'
+					  AND ehs.visit_type = 'returning'
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
                       date(substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
                       ||'-' || substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01') "
@@ -307,7 +307,7 @@ indicators:
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                       WHERE efm.gender='Male' 
 					  AND ehs.hts_has_post_test_counselling_been_provided = 'yes'
-					  AND ehs.visit_type = 'repeat'
+					  AND ehs.visit_type = 'returning'
                       AND (date(efm.dob, '+1 years') <= date('now')) AND (date(efm.dob, '+5 years') > date('now'))
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
                       date(substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
@@ -319,7 +319,7 @@ indicators:
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                       WHERE efm.gender='Male' 
 					  AND ehs.hts_has_post_test_counselling_been_provided = 'yes'
-					  AND ehs.visit_type = 'repeat'
+					  AND ehs.visit_type = 'returning'
                       AND (date(efm.dob, '+5 years') <= date('now')) AND (date(efm.dob, '+10 years') > date('now'))
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
                       date(substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
@@ -331,7 +331,7 @@ indicators:
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                       WHERE efm.gender='Male' 
 					  AND ehs.hts_has_post_test_counselling_been_provided = 'yes'
-					  AND ehs.visit_type = 'repeat'
+					  AND ehs.visit_type = 'returning'
                       AND (date(efm.dob, '+10 years') <= date('now')) AND (date(efm.dob, '+15 years') > date('now'))
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
                       date(substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
@@ -343,7 +343,7 @@ indicators:
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                       WHERE efm.gender='Male' 
 					  AND ehs.hts_has_post_test_counselling_been_provided = 'yes'
-					  AND ehs.visit_type = 'repeat'
+					  AND ehs.visit_type = 'returning'
                       AND (date(efm.dob, '+15 years') <= date('now')) AND (date(efm.dob, '+20 years') > date('now'))
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
                       date(substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
@@ -355,7 +355,7 @@ indicators:
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                      WHERE efm.gender='Male' 
  			         AND ehs.hts_has_post_test_counselling_been_provided = 'yes'
-					 AND ehs.visit_type = 'repeat'
+					 AND ehs.visit_type = 'returning'
                      AND (date(efm.dob, '+20 years') <= date('now')) AND (date(efm.dob, '+25 years') > date('now'))
                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
                      date(substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
@@ -367,7 +367,7 @@ indicators:
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                       WHERE efm.gender='Male' 
 					  AND ehs.hts_has_post_test_counselling_been_provided = 'yes'
-					  AND ehs.visit_type = 'repeat'
+					  AND ehs.visit_type = 'returning'
                       AND (date(efm.dob, '+25 years') <= date('now')) AND (date(efm.dob, '+30 years') > date('now'))
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
                       date(substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
@@ -379,7 +379,7 @@ indicators:
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                       WHERE efm.gender='Male' 
 					  AND ehs.hts_has_post_test_counselling_been_provided = 'yes'
-					  AND ehs.visit_type = 'repeat'
+					  AND ehs.visit_type = 'returning'
                       AND (date(efm.dob, '+30 years') <= date('now')) AND (date(efm.dob, '+35 years') > date('now'))
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
                       date(substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
@@ -391,7 +391,7 @@ indicators:
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                       WHERE efm.gender='Male' 
 					  AND ehs.hts_has_post_test_counselling_been_provided = 'yes'
-					  AND ehs.visit_type = 'repeat'
+					  AND ehs.visit_type = 'returning'
                       AND (date(efm.dob, '+35 years') <= date('now')) AND (date(efm.dob, '+40 years') > date('now'))
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
                       date(substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
@@ -403,7 +403,7 @@ indicators:
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                       WHERE efm.gender='Male' 
 					  AND ehs.hts_has_post_test_counselling_been_provided = 'yes'
-					  AND ehs.visit_type = 'repeat'
+					  AND ehs.visit_type = 'returning'
                       AND (date(efm.dob, '+40 years') <= date('now')) AND (date(efm.dob, '+45 years') > date('now'))
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
                       date(substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
@@ -415,7 +415,7 @@ indicators:
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                       WHERE efm.gender='Male' 
 					  AND ehs.hts_has_post_test_counselling_been_provided = 'yes'
-					  AND ehs.visit_type = 'repeat'
+					  AND ehs.visit_type = 'returning'
                       AND (date(efm.dob, '+45 years') <= date('now')) AND (date(efm.dob, '+50 years') > date('now'))
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
                       date(substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
@@ -427,7 +427,7 @@ indicators:
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                       WHERE efm.gender='Male' 
 					  AND ehs.hts_has_post_test_counselling_been_provided = 'yes'
-					  AND ehs.visit_type = 'repeat'
+					  AND ehs.visit_type = 'returning'
                       AND (date('now')- date(efm.dob))>=50
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
                       date(substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
@@ -439,7 +439,7 @@ indicators:
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
 					  INNER JOIN ec_hts_tests eht ON eht.entity_id = ehs.entity_id
                       WHERE efm.gender='Male' 
-					  AND ehs.visit_type = 'repeat'
+					  AND ehs.visit_type = 'returning'
 					  AND eht.final_hiv_status = 'positive'
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
                       date(substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
@@ -450,7 +450,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT ehs.entity_id) as count FROM ec_hts_services ehs 
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                       WHERE efm.gender='Male' 
-					  AND ehs.visit_type = 'repeat'
+					  AND ehs.visit_type = 'returning'
 					  AND eht.final_hiv_status = 'positive'
                       AND (date(efm.dob, '+1 years') <= date('now')) AND (date(efm.dob, '+5 years') > date('now'))
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
@@ -462,7 +462,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT ehs.entity_id) as count FROM ec_hts_services ehs 
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                       WHERE efm.gender='Male' 
-					  AND ehs.visit_type = 'repeat'
+					  AND ehs.visit_type = 'returning'
 					  AND eht.final_hiv_status = 'positive'
                       AND (date(efm.dob, '+5 years') <= date('now')) AND (date(efm.dob, '+10 years') > date('now'))
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
@@ -474,7 +474,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT ehs.entity_id) as count FROM ec_hts_services ehs 
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                       WHERE efm.gender='Male' 
-					  AND ehs.visit_type = 'repeat'
+					  AND ehs.visit_type = 'returning'
 					  AND eht.final_hiv_status = 'positive'
                       AND (date(efm.dob, '+10 years') <= date('now')) AND (date(efm.dob, '+15 years') > date('now'))
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
@@ -486,7 +486,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT ehs.entity_id) as count FROM ec_hts_services ehs 
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                       WHERE efm.gender='Male' 
-					  AND ehs.visit_type = 'repeat'
+					  AND ehs.visit_type = 'returning'
 					  AND eht.final_hiv_status = 'positive'
                       AND (date(efm.dob, '+15 years') <= date('now')) AND (date(efm.dob, '+20 years') > date('now'))
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
@@ -498,7 +498,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT ehs.entity_id) as count FROM ec_hts_services ehs 
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                      WHERE efm.gender='Male' 
-					 AND ehs.visit_type = 'repeat'
+					 AND ehs.visit_type = 'returning'
 					 AND eht.final_hiv_status = 'positive'
                      AND (date(efm.dob, '+20 years') <= date('now')) AND (date(efm.dob, '+25 years') > date('now'))
                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
@@ -510,7 +510,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT ehs.entity_id) as count FROM ec_hts_services ehs 
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                       WHERE efm.gender='Male' 
-					  AND ehs.visit_type = 'repeat'
+					  AND ehs.visit_type = 'returning'
 					  AND eht.final_hiv_status = 'positive'
                       AND (date(efm.dob, '+25 years') <= date('now')) AND (date(efm.dob, '+30 years') > date('now'))
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
@@ -522,7 +522,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT ehs.entity_id) as count FROM ec_hts_services ehs 
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                       WHERE efm.gender='Male' 
-					  AND ehs.visit_type = 'repeat'
+					  AND ehs.visit_type = 'returning'
 					  AND eht.final_hiv_status = 'positive'
                       AND (date(efm.dob, '+30 years') <= date('now')) AND (date(efm.dob, '+35 years') > date('now'))
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
@@ -534,7 +534,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT ehs.entity_id) as count FROM ec_hts_services ehs 
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                       WHERE efm.gender='Male' 
-					  AND ehs.visit_type = 'repeat'
+					  AND ehs.visit_type = 'returning'
 					  AND eht.final_hiv_status = 'positive'
                       AND (date(efm.dob, '+35 years') <= date('now')) AND (date(efm.dob, '+40 years') > date('now'))
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
@@ -546,7 +546,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT ehs.entity_id) as count FROM ec_hts_services ehs 
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                       WHERE efm.gender='Male' 
-					  AND ehs.visit_type = 'repeat'
+					  AND ehs.visit_type = 'returning'
 					  AND eht.final_hiv_status = 'positive'
                       AND (date(efm.dob, '+40 years') <= date('now')) AND (date(efm.dob, '+45 years') > date('now'))
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
@@ -558,7 +558,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT ehs.entity_id) as count FROM ec_hts_services ehs 
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                       WHERE efm.gender='Male' 
-					  AND ehs.visit_type = 'repeat'
+					  AND ehs.visit_type = 'returning'
 					  AND eht.final_hiv_status = 'positive'
                       AND (date(efm.dob, '+45 years') <= date('now')) AND (date(efm.dob, '+50 years') > date('now'))
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
@@ -570,7 +570,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT ehs.entity_id) as count FROM ec_hts_services ehs 
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                       WHERE efm.gender='Male' 
-					  AND ehs.visit_type = 'repeat'
+					  AND ehs.visit_type = 'returning'
 					  AND eht.final_hiv_status = 'positive'
                       AND (date('now')- date(efm.dob))>=50
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
@@ -647,7 +647,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT ehs.entity_id) as count FROM ec_hts_services ehs 
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                      WHERE efm.gender='Male' 
-					 AND ehs.visit_type = 'repeat'
+					 AND ehs.visit_type = 'returning'
 					 AND eht.final_hiv_status = 'positive'
                      AND (date(efm.dob, '+20 years') <= date('now')) AND (date(efm.dob, '+25 years') > date('now'))
                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
@@ -797,7 +797,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT ehs.entity_id) as count FROM ec_hts_services ehs 
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                      WHERE efm.gender='Male' 
-					 AND ehs.visit_type = 'repeat'
+					 AND ehs.visit_type = 'returning'
 					 AND eht.final_hiv_status = 'positive'
                      AND (date(efm.dob, '+20 years') <= date('now')) AND (date(efm.dob, '+25 years') > date('now'))
                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
@@ -946,7 +946,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT ehs.entity_id) as count FROM ec_hts_services ehs 
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                      WHERE efm.gender='Male' 
-					 AND ehs.visit_type = 'repeat'
+					 AND ehs.visit_type = 'returning'
 					 AND eht.final_hiv_status = 'positive'
                      AND (date(efm.dob, '+20 years') <= date('now')) AND (date(efm.dob, '+25 years') > date('now'))
                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
@@ -1096,7 +1096,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT ehs.entity_id) as count FROM ec_hts_services ehs 
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                      WHERE efm.gender='Male' 
-					 AND ehs.visit_type = 'repeat'
+					 AND ehs.visit_type = 'returning'
 					 AND eht.final_hiv_status = 'positive'
                      AND (date(efm.dob, '+20 years') <= date('now')) AND (date(efm.dob, '+25 years') > date('now'))
                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
@@ -1245,7 +1245,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT ehs.entity_id) as count FROM ec_hts_services ehs 
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                      WHERE efm.gender='Male' 
-					 AND ehs.visit_type = 'repeat'
+					 AND ehs.visit_type = 'returning'
 					 AND eht.final_hiv_status = 'positive'
                      AND (date(efm.dob, '+20 years') <= date('now')) AND (date(efm.dob, '+25 years') > date('now'))
                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
@@ -1395,7 +1395,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT ehs.entity_id) as count FROM ec_hts_services ehs 
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                      WHERE efm.gender='Male' 
-					 AND ehs.visit_type = 'repeat'
+					 AND ehs.visit_type = 'returning'
 					 AND eht.final_hiv_status = 'positive'
                      AND (date(efm.dob, '+20 years') <= date('now')) AND (date(efm.dob, '+25 years') > date('now'))
                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
@@ -1773,7 +1773,7 @@ indicators:
 					  INNER JOIN ec_hts_tests eht ON eht.entity_id = ehs.entity_id
                       WHERE efm.gender='Female' 
 					  AND ehs.hts_has_post_test_counselling_been_provided = 'yes'
-					  AND ehs.visit_type = 'repeat'
+					  AND ehs.visit_type = 'returning'
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
                       date(substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
                       ||'-' || substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01') "
@@ -1784,7 +1784,7 @@ indicators:
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                       WHERE efm.gender='Female' 
 					  AND ehs.hts_has_post_test_counselling_been_provided = 'yes'
-					  AND ehs.visit_type = 'repeat'
+					  AND ehs.visit_type = 'returning'
                       AND (date(efm.dob, '+1 years') <= date('now')) AND (date(efm.dob, '+5 years') > date('now'))
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
                       date(substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
@@ -1796,7 +1796,7 @@ indicators:
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                       WHERE efm.gender='Female' 
 					  AND ehs.hts_has_post_test_counselling_been_provided = 'yes'
-					  AND ehs.visit_type = 'repeat'
+					  AND ehs.visit_type = 'returning'
                       AND (date(efm.dob, '+5 years') <= date('now')) AND (date(efm.dob, '+10 years') > date('now'))
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
                       date(substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
@@ -1808,7 +1808,7 @@ indicators:
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                       WHERE efm.gender='Female' 
 					  AND ehs.hts_has_post_test_counselling_been_provided = 'yes'
-					  AND ehs.visit_type = 'repeat'
+					  AND ehs.visit_type = 'returning'
                       AND (date(efm.dob, '+10 years') <= date('now')) AND (date(efm.dob, '+15 years') > date('now'))
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
                       date(substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
@@ -1820,7 +1820,7 @@ indicators:
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                       WHERE efm.gender='Female' 
 					  AND ehs.hts_has_post_test_counselling_been_provided = 'yes'
-					  AND ehs.visit_type = 'repeat'
+					  AND ehs.visit_type = 'returning'
                       AND (date(efm.dob, '+15 years') <= date('now')) AND (date(efm.dob, '+20 years') > date('now'))
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
                       date(substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
@@ -1832,7 +1832,7 @@ indicators:
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                      WHERE efm.gender='Female' 
  			         AND ehs.hts_has_post_test_counselling_been_provided = 'yes'
-					 AND ehs.visit_type = 'repeat'
+					 AND ehs.visit_type = 'returning'
                      AND (date(efm.dob, '+20 years') <= date('now')) AND (date(efm.dob, '+25 years') > date('now'))
                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
                      date(substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
@@ -1844,7 +1844,7 @@ indicators:
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                       WHERE efm.gender='Female' 
 					  AND ehs.hts_has_post_test_counselling_been_provided = 'yes'
-					  AND ehs.visit_type = 'repeat'
+					  AND ehs.visit_type = 'returning'
                       AND (date(efm.dob, '+25 years') <= date('now')) AND (date(efm.dob, '+30 years') > date('now'))
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
                       date(substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
@@ -1856,7 +1856,7 @@ indicators:
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                       WHERE efm.gender='Female' 
 					  AND ehs.hts_has_post_test_counselling_been_provided = 'yes'
-					  AND ehs.visit_type = 'repeat'
+					  AND ehs.visit_type = 'returning'
                       AND (date(efm.dob, '+30 years') <= date('now')) AND (date(efm.dob, '+35 years') > date('now'))
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
                       date(substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
@@ -1868,7 +1868,7 @@ indicators:
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                       WHERE efm.gender='Female' 
 					  AND ehs.hts_has_post_test_counselling_been_provided = 'yes'
-					  AND ehs.visit_type = 'repeat'
+					  AND ehs.visit_type = 'returning'
                       AND (date(efm.dob, '+35 years') <= date('now')) AND (date(efm.dob, '+40 years') > date('now'))
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
                       date(substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
@@ -1880,7 +1880,7 @@ indicators:
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                       WHERE efm.gender='Female' 
 					  AND ehs.hts_has_post_test_counselling_been_provided = 'yes'
-					  AND ehs.visit_type = 'repeat'
+					  AND ehs.visit_type = 'returning'
                       AND (date(efm.dob, '+40 years') <= date('now')) AND (date(efm.dob, '+45 years') > date('now'))
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
                       date(substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
@@ -1892,7 +1892,7 @@ indicators:
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                       WHERE efm.gender='Female' 
 					  AND ehs.hts_has_post_test_counselling_been_provided = 'yes'
-					  AND ehs.visit_type = 'repeat'
+					  AND ehs.visit_type = 'returning'
                       AND (date(efm.dob, '+45 years') <= date('now')) AND (date(efm.dob, '+50 years') > date('now'))
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
                       date(substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
@@ -1904,7 +1904,7 @@ indicators:
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                       WHERE efm.gender='Female' 
 					  AND ehs.hts_has_post_test_counselling_been_provided = 'yes'
-					  AND ehs.visit_type = 'repeat'
+					  AND ehs.visit_type = 'returning'
                       AND (date('now')- date(efm.dob))>=50
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
                       date(substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
@@ -1916,7 +1916,7 @@ indicators:
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
 					  INNER JOIN ec_hts_tests eht ON eht.entity_id = ehs.entity_id
                       WHERE efm.gender='Female' 
-					  AND ehs.visit_type = 'repeat'
+					  AND ehs.visit_type = 'returning'
 					  AND eht.final_hiv_status = 'positive'
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
                       date(substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
@@ -1927,7 +1927,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT ehs.entity_id) as count FROM ec_hts_services ehs 
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                       WHERE efm.gender='Female' 
-					  AND ehs.visit_type = 'repeat'
+					  AND ehs.visit_type = 'returning'
 					  AND eht.final_hiv_status = 'positive'
                       AND (date(efm.dob, '+1 years') <= date('now')) AND (date(efm.dob, '+5 years') > date('now'))
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
@@ -1939,7 +1939,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT ehs.entity_id) as count FROM ec_hts_services ehs 
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                       WHERE efm.gender='Female' 
-					  AND ehs.visit_type = 'repeat'
+					  AND ehs.visit_type = 'returning'
 					  AND eht.final_hiv_status = 'positive'
                       AND (date(efm.dob, '+5 years') <= date('now')) AND (date(efm.dob, '+10 years') > date('now'))
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
@@ -1951,7 +1951,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT ehs.entity_id) as count FROM ec_hts_services ehs 
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                       WHERE efm.gender='Female' 
-					  AND ehs.visit_type = 'repeat'
+					  AND ehs.visit_type = 'returning'
 					  AND eht.final_hiv_status = 'positive'
                       AND (date(efm.dob, '+10 years') <= date('now')) AND (date(efm.dob, '+15 years') > date('now'))
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
@@ -1963,7 +1963,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT ehs.entity_id) as count FROM ec_hts_services ehs 
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                       WHERE efm.gender='Female' 
-					  AND ehs.visit_type = 'repeat'
+					  AND ehs.visit_type = 'returning'
 					  AND eht.final_hiv_status = 'positive'
                       AND (date(efm.dob, '+15 years') <= date('now')) AND (date(efm.dob, '+20 years') > date('now'))
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
@@ -1975,7 +1975,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT ehs.entity_id) as count FROM ec_hts_services ehs 
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                      WHERE efm.gender='Female' 
-					 AND ehs.visit_type = 'repeat'
+					 AND ehs.visit_type = 'returning'
 					 AND eht.final_hiv_status = 'positive'
                      AND (date(efm.dob, '+20 years') <= date('now')) AND (date(efm.dob, '+25 years') > date('now'))
                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
@@ -1987,7 +1987,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT ehs.entity_id) as count FROM ec_hts_services ehs 
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                       WHERE efm.gender='Female' 
-					  AND ehs.visit_type = 'repeat'
+					  AND ehs.visit_type = 'returning'
 					  AND eht.final_hiv_status = 'positive'
                       AND (date(efm.dob, '+25 years') <= date('now')) AND (date(efm.dob, '+30 years') > date('now'))
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
@@ -1999,7 +1999,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT ehs.entity_id) as count FROM ec_hts_services ehs 
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                       WHERE efm.gender='Female' 
-					  AND ehs.visit_type = 'repeat'
+					  AND ehs.visit_type = 'returning'
 					  AND eht.final_hiv_status = 'positive'
                       AND (date(efm.dob, '+30 years') <= date('now')) AND (date(efm.dob, '+35 years') > date('now'))
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
@@ -2011,7 +2011,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT ehs.entity_id) as count FROM ec_hts_services ehs 
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                       WHERE efm.gender='Female' 
-					  AND ehs.visit_type = 'repeat'
+					  AND ehs.visit_type = 'returning'
 					  AND eht.final_hiv_status = 'positive'
                       AND (date(efm.dob, '+35 years') <= date('now')) AND (date(efm.dob, '+40 years') > date('now'))
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
@@ -2023,7 +2023,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT ehs.entity_id) as count FROM ec_hts_services ehs 
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                       WHERE efm.gender='Female' 
-					  AND ehs.visit_type = 'repeat'
+					  AND ehs.visit_type = 'returning'
 					  AND eht.final_hiv_status = 'positive'
                       AND (date(efm.dob, '+40 years') <= date('now')) AND (date(efm.dob, '+45 years') > date('now'))
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
@@ -2035,7 +2035,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT ehs.entity_id) as count FROM ec_hts_services ehs 
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                       WHERE efm.gender='Female' 
-					  AND ehs.visit_type = 'repeat'
+					  AND ehs.visit_type = 'returning'
 					  AND eht.final_hiv_status = 'positive'
                       AND (date(efm.dob, '+45 years') <= date('now')) AND (date(efm.dob, '+50 years') > date('now'))
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
@@ -2047,7 +2047,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT ehs.entity_id) as count FROM ec_hts_services ehs 
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                       WHERE efm.gender='Female' 
-					  AND ehs.visit_type = 'repeat'
+					  AND ehs.visit_type = 'returning'
 					  AND eht.final_hiv_status = 'positive'
                       AND (date('now')- date(efm.dob))>=50
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
@@ -2124,7 +2124,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT ehs.entity_id) as count FROM ec_hts_services ehs 
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                      WHERE efm.gender='Female' 
-					 AND ehs.visit_type = 'repeat'
+					 AND ehs.visit_type = 'returning'
 					 AND eht.final_hiv_status = 'positive'
                      AND (date(efm.dob, '+20 years') <= date('now')) AND (date(efm.dob, '+25 years') > date('now'))
                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
@@ -2274,7 +2274,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT ehs.entity_id) as count FROM ec_hts_services ehs 
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                      WHERE efm.gender='Female' 
-					 AND ehs.visit_type = 'repeat'
+					 AND ehs.visit_type = 'returning'
 					 AND eht.final_hiv_status = 'positive'
                      AND (date(efm.dob, '+20 years') <= date('now')) AND (date(efm.dob, '+25 years') > date('now'))
                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
@@ -2423,7 +2423,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT ehs.entity_id) as count FROM ec_hts_services ehs 
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                      WHERE efm.gender='Female' 
-					 AND ehs.visit_type = 'repeat'
+					 AND ehs.visit_type = 'returning'
 					 AND eht.final_hiv_status = 'positive'
                      AND (date(efm.dob, '+20 years') <= date('now')) AND (date(efm.dob, '+25 years') > date('now'))
                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
@@ -2573,7 +2573,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT ehs.entity_id) as count FROM ec_hts_services ehs 
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                      WHERE efm.gender='Female' 
-					 AND ehs.visit_type = 'repeat'
+					 AND ehs.visit_type = 'returning'
 					 AND eht.final_hiv_status = 'positive'
                      AND (date(efm.dob, '+20 years') <= date('now')) AND (date(efm.dob, '+25 years') > date('now'))
                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
@@ -2722,7 +2722,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT ehs.entity_id) as count FROM ec_hts_services ehs 
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                      WHERE efm.gender='Female' 
-					 AND ehs.visit_type = 'repeat'
+					 AND ehs.visit_type = 'returning'
 					 AND eht.final_hiv_status = 'positive'
                      AND (date(efm.dob, '+20 years') <= date('now')) AND (date(efm.dob, '+25 years') > date('now'))
                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
@@ -2872,7 +2872,7 @@ indicators:
     indicatorQuery: " SELECT count(DISTINCT ehs.entity_id) as count FROM ec_hts_services ehs 
                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
                      WHERE efm.gender='Female' 
-					 AND ehs.visit_type = 'repeat'
+					 AND ehs.visit_type = 'returning'
 					 AND eht.final_hiv_status = 'positive'
                      AND (date(efm.dob, '+20 years') <= date('now')) AND (date(efm.dob, '+25 years') > date('now'))
                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
@@ -2969,9 +2969,7 @@ indicators:
     description: Idadi ya wateja wapya waliosajiliwa katika kipindi cha ripoti Umri >-50
     indicatorQuery: " SELECT count(DISTINCT ehs.entity_id) as count FROM ec_hts_services ehs 
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
-                      WHERE efm.gender='Female' 
-					  AND ehs.client_type = 'social_network_contact'
-					  AND eht.final_hiv_status = 'positive'
+					  AND ehs.client_type = 'verification'
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
                       date(substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
                       ||'-' || substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01') "
@@ -2980,9 +2978,194 @@ indicators:
     description: Idadi ya wateja wapya waliosajiliwa katika kipindi cha ripoti Umri >-50
     indicatorQuery: " SELECT count(DISTINCT ehs.entity_id) as count FROM ec_hts_services ehs 
                       INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
-                      WHERE efm.gender='Female' 
-					  AND ehs.client_type = 'social_network_contact'
-					  AND eht.final_hiv_status = 'positive'
+					  AND ehs.testing_point = 'ctc'
                       AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
                       date(substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
                       ||'-' || substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01') "
+  - key: hts-monthly-14-f-KP1-i
+    grouping: HTS
+    description: Idadi ya wateja wapya waliosajiliwa katika kipindi cha ripoti Umri >-50
+    indicatorQuery: " SELECT count(*) as count FROM ec_hts_tests eht 
+					  WHERE test_type = 'First HIV Test'
+					  AND type_of_test_kit_used = 'bioline'
+					  AND eht.test_result = 'wastage'
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
+                      date(substr(strftime('%Y-%m-%d', datetime(eht.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
+                      ||'-' || substr(strftime('%Y-%m-%d', datetime(eht.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01') "
+  - key: hts-monthly-14-f-KP1-ii
+    grouping: HTS
+    description: Idadi ya wateja wapya waliosajiliwa katika kipindi cha ripoti Umri >-50
+    indicatorQuery: " SELECT count(*) as count FROM ec_hts_tests eht 
+					  WHERE test_type = 'First HIV Test'
+					  AND type_of_test_kit_used = 'hiv_syphilis_dual'
+					  AND eht.test_result = 'wastage'
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
+                      date(substr(strftime('%Y-%m-%d', datetime(eht.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
+                      ||'-' || substr(strftime('%Y-%m-%d', datetime(eht.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01') "
+  - key: hts-monthly-14-f-KP2
+    grouping: HTS
+    description: Idadi ya wateja wapya waliosajiliwa katika kipindi cha ripoti Umri >-50
+    indicatorQuery: " SELECT count(*) as count FROM ec_hts_tests eht 
+					  WHERE test_type = 'Second HIV Test'
+					  AND type_of_test_kit_used = 'bioline'
+					  AND eht.test_result = 'wastage'
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
+                      date(substr(strftime('%Y-%m-%d', datetime(eht.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
+                      ||'-' || substr(strftime('%Y-%m-%d', datetime(eht.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01') "
+  - key: hts-monthly-14-f-KP3
+    grouping: HTS
+    description: Idadi ya wateja wapya waliosajiliwa katika kipindi cha ripoti Umri >-50
+    indicatorQuery: " SELECT count(*) as count FROM ec_hts_tests eht 
+					  WHERE test_type = 'First HIV Test'
+					  AND type_of_test_kit_used = 'bioline'
+					  AND eht.test_result = 'wastage'
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
+                      date(substr(strftime('%Y-%m-%d', datetime(eht.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
+                      ||'-' || substr(strftime('%Y-%m-%d', datetime(eht.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01') "
+  - key: hts-monthly-15-a
+    grouping: HTS
+    description: Idadi ya wateja wapya waliosajiliwa katika kipindi cha ripoti Qn 15 a
+    indicatorQuery: " SELECT count(*) as count FROM ec_hts_services ehs 
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
+					  AND ehs.testing_point = 'ctc'
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
+                      date(substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
+                      ||'-' || substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01') "
+  - key: hts-monthly-15-b
+    grouping: HTS
+    description: Idadi ya wateja wapya waliosajiliwa katika kipindi cha ripoti Qn 15 b
+    indicatorQuery: " SELECT count(*) as count FROM ec_hts_services ehs 
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
+					  AND (ehs.preventive_services != NULL OR ehs.preventive_services != '' )
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
+                      date(substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
+                      ||'-' || substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01') "
+  - key: hts-monthly-16-a
+    grouping: HTS
+    description: Idadi ya wateja wapya waliosajiliwa katika kipindi cha ripoti Qn 16 a
+    indicatorQuery: " SELECT count(eht.id) as count FROM ec_hts_services ehs 
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
+					  INNER JOIN ec_hts_tests eht ON eht.entity_id = ehs.entity_id
+					  AND (ehs.previous_hivst_client_type = 'self' OR does_client_need_hiv_self_test_kits = 'yes')
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
+                      date(substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
+                      ||'-' || substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01') "
+  - key: hts-monthly-16-b
+    grouping: HTS
+    description: Idadi ya wateja wapya waliosajiliwa katika kipindi cha ripoti Qn 16 a
+    indicatorQuery: " SELECT count(eht.id) as count FROM ec_hts_services ehs 
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
+					  INNER JOIN ec_hts_tests eht ON eht.entity_id = ehs.entity_id
+					  AND (ehs.previous_hivst_client_type = 'peer_friend' OR does_client_need_hiv_self_test_kits = 'yes')
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
+                      date(substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
+                      ||'-' || substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01') "
+  - key: hts-monthly-16-c
+    grouping: HTS
+    description: Idadi ya wateja wapya waliosajiliwa katika kipindi cha ripoti Qn 16 c
+    indicatorQuery: " SELECT count(eht.id) as count FROM ec_hts_services ehs 
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
+					  INNER JOIN ec_hts_tests eht ON eht.entity_id = ehs.entity_id
+					  AND (ehs.previous_hivst_client_type = 'sexual_partner' OR does_client_need_hiv_self_test_kits = 'yes')
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
+                      date(substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
+                      ||'-' || substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01') "
+  - key: hts-monthly-17-a
+    grouping: HTS
+    description: Idadi ya wateja wapya waliosajiliwa katika kipindi cha ripoti Qn 17 a
+    indicatorQuery: " SELECT count(DISTINCT ehs.entity_id) as count FROM ec_hts_services ehs 
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
+					  INNER JOIN ec_hts_tests eht ON eht.entity_id = ehs.entity_id
+					  AND (ehs.previous_hivst_client_type = 'self' OR does_client_need_hiv_self_test_kits = 'yes')
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
+                      date(substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
+                      ||'-' || substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01') "
+  - key: hts-monthly-17-b
+    grouping: HTS
+    description: Idadi ya wateja wapya waliosajiliwa katika kipindi cha ripoti Qn 17 a
+    indicatorQuery: " SELECT count(DISTINCT ehs.entity_id) as count FROM ec_hts_services ehs 
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
+					  INNER JOIN ec_hts_tests eht ON eht.entity_id = ehs.entity_id
+					  AND (ehs.previous_hivst_client_type = 'peer_friend' OR does_client_need_hiv_self_test_kits = 'yes')
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
+                      date(substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
+                      ||'-' || substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01') "
+  - key: hts-monthly-17-c
+    grouping: HTS
+    description: Idadi ya wateja wapya waliosajiliwa katika kipindi cha ripoti Qn 17 c
+    indicatorQuery: " SELECT count(DISTINCT ehs.entity_id) as count FROM ec_hts_services ehs 
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
+					  INNER JOIN ec_hts_tests eht ON eht.entity_id = ehs.entity_id
+					  AND (ehs.previous_hivst_client_type = 'sexual_partner' OR does_client_need_hiv_self_test_kits = 'yes')
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
+                      date(substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
+                      ||'-' || substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01') "
+  - key: hts-monthly-18-a
+    grouping: HTS
+    description: Idadi ya wateja wapya waliosajiliwa katika kipindi cha ripoti Qn 18 a
+    indicatorQuery: " SELECT count(DISTINCT ehs.entity_id) as count FROM ec_hts_services ehs 
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
+					  INNER JOIN ec_hts_tests eht ON eht.entity_id = ehs.entity_id
+					  AND (ehs.previous_hivst_client_type = 'self' OR does_client_need_hiv_self_test_kits = 'yes')
+					  AND eht.final_hiv_status != 'negative' 
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
+                      date(substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
+                      ||'-' || substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01') "
+  - key: hts-monthly-18-b
+    grouping: HTS
+    description: Idadi ya wateja wapya waliosajiliwa katika kipindi cha ripoti Qn 18 a
+    indicatorQuery: " SELECT count(DISTINCT ehs.entity_id) as count FROM ec_hts_services ehs 
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
+					  INNER JOIN ec_hts_tests eht ON eht.entity_id = ehs.entity_id
+					  AND (ehs.previous_hivst_client_type = 'peer_friend' OR does_client_need_hiv_self_test_kits = 'yes')
+					  AND eht.final_hiv_status != 'negative' 
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
+                      date(substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
+                      ||'-' || substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01') "
+  - key: hts-monthly-18-c
+    grouping: HTS
+    description: Idadi ya wateja wapya waliosajiliwa katika kipindi cha ripoti Qn 18 c
+    indicatorQuery: " SELECT count(DISTINCT ehs.entity_id) as count FROM ec_hts_services ehs 
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
+					  INNER JOIN ec_hts_tests eht ON eht.entity_id = ehs.entity_id
+					  AND (ehs.previous_hivst_client_type = 'sexual_partner' OR does_client_need_hiv_self_test_kits = 'yes')
+					  AND eht.final_hiv_status != 'negative' 
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
+                      date(substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
+                      ||'-' || substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01') "
+  - key: hts-monthly-19-a
+    grouping: HTS
+    description: Idadi ya wateja wapya waliosajiliwa katika kipindi cha ripoti Qn 19 a
+    indicatorQuery: " SELECT count(DISTINCT ehs.entity_id) as count FROM ec_hts_services ehs 
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
+					  INNER JOIN ec_hts_tests eht ON eht.entity_id = ehs.entity_id
+					  AND (ehs.previous_hivst_client_type = 'self' OR does_client_need_hiv_self_test_kits = 'yes')
+					  AND eht.final_hiv_status != 'negative' 
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
+                      date(substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
+                      ||'-' || substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01') "
+  - key: hts-monthly-19-b
+    grouping: HTS
+    description: Idadi ya wateja wapya waliosajiliwa katika kipindi cha ripoti Qn 19 a
+    indicatorQuery: " SELECT count(DISTINCT ehs.entity_id) as count FROM ec_hts_services ehs 
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
+					  INNER JOIN ec_hts_tests eht ON eht.entity_id = ehs.entity_id
+					  AND (ehs.previous_hivst_client_type = 'peer_friend' OR does_client_need_hiv_self_test_kits = 'yes')
+					  AND eht.final_hiv_status != 'negative' 
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
+                      date(substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
+                      ||'-' || substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01') "
+  - key: hts-monthly-19-c
+    grouping: HTS
+    description: Idadi ya wateja wapya waliosajiliwa katika kipindi cha ripoti Qn 19 c
+    indicatorQuery: " SELECT count(DISTINCT ehs.entity_id) as count FROM ec_hts_services ehs 
+                      INNER JOIN ec_family_member efm ON efm.base_entity_id = ehs.entity_id
+					  INNER JOIN ec_hts_tests eht ON eht.entity_id = ehs.entity_id
+					  AND (ehs.previous_hivst_client_type = 'sexual_partner' OR does_client_need_hiv_self_test_kits = 'yes')
+					  AND eht.final_hiv_status != 'negative' 
+                      AND date((substr('%s', 1, 4) || '-' || substr('%s', 6, 2) || '-' || '01')) = 
+                      date(substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 1, 4) 
+                      ||'-' || substr(strftime('%Y-%m-%d', datetime(ehs.last_interacted_with / 1000, 'unixepoch', 'localtime')), 6, 2) ||'-' || '01') "
+
+
+
