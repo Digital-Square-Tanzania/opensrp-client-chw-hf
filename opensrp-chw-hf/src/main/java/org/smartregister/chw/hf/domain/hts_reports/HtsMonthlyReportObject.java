@@ -1,5 +1,7 @@
 package org.smartregister.chw.hf.domain.hts_reports;
 
+import android.util.Log;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.hf.dao.ReportDao;
@@ -7,12 +9,12 @@ import org.smartregister.chw.hf.domain.ReportObject;
 
 import java.util.Date;
 
+import timber.log.Timber;
+
 public class HtsMonthlyReportObject extends ReportObject {
 
 
-    private final String[] htsQuestionsGroups = new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
-            "15-a", "15-b", "16", "17", "18", "19"
-    };
+    private final String[] htsQuestionsGroups = new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
     private final String[] htsQuestions14Groups = new String[]{"14-a", "14-b", "14-c", "14-d", "14-e", "14-f", "14-g", "14-h"};
     private final String[] htsQuestions1619Groups = new String[]{
             "16-a","16-b","16-c",
@@ -72,19 +74,18 @@ public class HtsMonthlyReportObject extends ReportObject {
         //and the whole total for both of them
         funcGetTotalQnOneTen();
         funcGetTotalQn1619();
-
         return jsonObject;
     }
 
-    private int getTotalQnOneTenPerEachIndicator(String question, String htsgroup) throws JSONException {
+    private int getTotalQnOneTenPerEachIndicator(String question) throws JSONException {
         int totalOfGenderGiven = 0;
         int jumlaMe = 0;
         int jumlaKe = 0;
         for (String age : htsAgeGroups) {
             jumlaMe += ReportDao.getReportPerIndicatorCode("hts-monthly" + "-"
-                    + question + "-" + age + "-" + htsgroup + "-" + "ME", reportDate);
+                    + question + "-" + age + "-" + "ME", reportDate);
             jumlaKe += ReportDao.getReportPerIndicatorCode("hts-monthly" + "-"
-                    + question + "-" + age + "-" + htsgroup + "-" + "KE", reportDate);
+                    + question + "-" + age + "-" + "KE", reportDate);
             totalOfGenderGiven = jumlaKe + jumlaMe;
             jsonObject.put("hts-monthly" + "-" + question + "-jumla-ME", jumlaMe);
             jsonObject.put("hts-monthly" + "-" + question + "-jumla-KE", jumlaKe);
@@ -96,11 +97,9 @@ public class HtsMonthlyReportObject extends ReportObject {
     private void funcGetTotalQnOneTen() throws JSONException {
         int totalofthewholehtsgroup = 0;
         for (String question : htsQuestionsGroups) {
-            for (String htsGroup : htsGroups) {
-                totalofthewholehtsgroup += getTotalQnOneTenPerEachIndicator(question, htsGroup);
+                totalofthewholehtsgroup += getTotalQnOneTenPerEachIndicator(question);
                 jsonObject.put("hts-monthly" + "-" + question + "-jumla-both-ME-KE", totalofthewholehtsgroup); //total for all hts groups
-            }
-            totalofthewholehtsgroup = 0;
+                totalofthewholehtsgroup = 0;
         }
     }
 
@@ -109,7 +108,8 @@ public class HtsMonthlyReportObject extends ReportObject {
         for (String questionGroup : htsQuestions1619Groups) {
             totalofthewholehtsgroup += ReportDao.getReportPerIndicatorCode("hts-monthly" + "-"
                     + questionGroup, reportDate);
-            jsonObject.put("hts-monthly" + "-" + questionGroup + "-jumla", totalofthewholehtsgroup); //total for all hts groups
+            jsonObject.put("hts-monthly" + "-" + questionGroup.substring(0,
+                    questionGroup.indexOf("-")) + "-jumla", totalofthewholehtsgroup); //total for all hts groups
             totalofthewholehtsgroup = 0;
         }
     }
