@@ -7427,6 +7427,14 @@
             "field": "obs.fieldCode",
             "concept": "condoms_given"
           }
+        },
+        {
+          "column_name": "client_kit_type",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.formSubmissionField",
+            "concept": "client_kit_type"
+          }
         }
       ]
     },

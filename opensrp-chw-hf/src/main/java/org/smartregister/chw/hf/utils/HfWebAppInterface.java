@@ -32,6 +32,7 @@ import static org.smartregister.chw.hf.utils.Constants.ReportConstants.VmmcKeys.
 import static org.smartregister.util.Utils.getAllSharedPreferences;
 
 import android.content.Context;
+import android.util.Log;
 import android.webkit.JavascriptInterface;
 
 import timber.log.Timber;
@@ -260,7 +261,7 @@ public class HfWebAppInterface {
                     return ReportUtils.HtsRegisterReport.computeReport(ReportUtils.getReportDate());
                 case HTS_SCREENING_REPORT:
                     ReportUtils.setPrintJobName("hts_screening_report-" + ReportUtils.getReportPeriod() + ".pdf");
-                    return ReportUtils.HtsRegisterReport.computeReport(ReportUtils.getReportDate());
+                    return ReportUtils.HtsScreeningReport.computeReport(ReportUtils.getReportDate());
                 default:
                     return "";
 

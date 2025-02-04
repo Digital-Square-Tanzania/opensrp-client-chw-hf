@@ -23,7 +23,7 @@ actions:
 name: step1_hts_other_testing_point
 description:
 priority: 1
-condition: "step1_hts_citc_testing_point.contains('other')"
+condition: "step1_hts_pitc_testing_point.contains('other')"
 actions:
   - "isRelevant = true"
 ---
