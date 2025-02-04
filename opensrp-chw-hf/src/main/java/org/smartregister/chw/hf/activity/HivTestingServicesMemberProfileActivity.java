@@ -55,7 +55,7 @@ public class HivTestingServicesMemberProfileActivity extends CoreHtsProfileActiv
 
     @Override
     public void openFollowupVisit() {
-        HtsVisitActivity.startMe(this, memberObject.getBaseEntityId(), false);
+        HtsVisitActivity.startMe(this, memberObject.getBaseEntityId(), null, false);
     }
 
     @Override
@@ -343,7 +343,7 @@ public class HivTestingServicesMemberProfileActivity extends CoreHtsProfileActiv
 
     @Override
     public void continueService() {
-        HtsVisitActivity.startMe(this, memberObject.getBaseEntityId(), true);
+        HtsVisitActivity.startMe(this, memberObject.getBaseEntityId(), null, true);
     }
 
     @Override

@@ -33,6 +33,7 @@ import org.smartregister.chw.hf.activity.ChildProfileActivity;
 import org.smartregister.chw.hf.activity.FamilyOtherMemberProfileActivity;
 import org.smartregister.chw.hf.activity.FpMemberProfileActivity;
 import org.smartregister.chw.hf.activity.HivProfileActivity;
+import org.smartregister.chw.hf.activity.HivTestingServicesMemberProfileActivity;
 import org.smartregister.chw.hf.activity.KvpProfileActivity;
 import org.smartregister.chw.hf.activity.LDProfileActivity;
 import org.smartregister.chw.hf.activity.MalariaProfileActivity;
@@ -271,7 +272,7 @@ public class AllClientsUtils {
     }
 
     public static void goToHTsProfile(FragmentActivity activity, CommonPersonObjectClient hivClient) {
-        HivProfileActivity.startHivProfileActivity(activity, HfHtsDao.getMember(hivClient.getCaseId()));
+        HivTestingServicesMemberProfileActivity.startMe(activity, hivClient.getCaseId());
     }
 
     public static void goToTbProfile(FragmentActivity activity, CommonPersonObjectClient tbClient) {

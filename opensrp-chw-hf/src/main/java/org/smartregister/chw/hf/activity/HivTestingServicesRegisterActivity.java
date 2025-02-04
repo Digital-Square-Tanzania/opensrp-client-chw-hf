@@ -13,13 +13,15 @@ import com.vijay.jsonwizard.domain.Form;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.smartregister.chw.core.utils.FormUtils;
-import org.smartregister.chw.hts.util.Constants;
 import org.smartregister.chw.core.activity.CoreHtsRegisterActivity;
+import org.smartregister.chw.core.utils.FormUtils;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.fragment.HivTestingServicesRegisterFragment;
+import org.smartregister.chw.hts.util.Constants;
 import org.smartregister.family.util.JsonFormUtils;
 import org.smartregister.view.fragment.BaseRegisterFragment;
+
+import java.util.UUID;
 
 import timber.log.Timber;
 
@@ -29,21 +31,29 @@ public class HivTestingServicesRegisterActivity extends CoreHtsRegisterActivity 
         Intent intent = new Intent(activity, HivTestingServicesRegisterActivity.class);
         intent.putExtra(Constants.ACTIVITY_PAYLOAD.BASE_ENTITY_ID, baseEntityId);
 
-        if(clientAge >=15){
+        if (clientAge >= 15) {
             //Open 15 and above form
             intent.putExtra(Constants.ACTIVITY_PAYLOAD.HTS_FORM_NAME, Constants.FORMS.HTS_SCREENING_15_AND_ABOVE);
             intent.putExtra(Constants.ACTIVITY_PAYLOAD.SEX, sex);
         }
 
-        if(clientAge >=10 && clientAge <=14){
+        if (clientAge >= 10 && clientAge <= 14) {
             //Open form for clients aged >=10 and less than or equal to 14
             intent.putExtra(Constants.ACTIVITY_PAYLOAD.HTS_FORM_NAME, Constants.FORMS.HTS_SCREENING_10_TO_14);
         }
 
-        if(clientAge >= 2 && clientAge <=9){
+        if (clientAge >= 2 && clientAge <= 9) {
             //Open form for clients aged >=2 and less than or equal to 9
             intent.putExtra(Constants.ACTIVITY_PAYLOAD.HTS_FORM_NAME, Constants.FORMS.HTS_SCREENING_2_TO_9);
         }
+
+        activity.startActivity(intent);
+    }
+
+    public static void startSampleRegistration(Activity activity) {
+        Intent intent = new Intent(activity, HivTestingServicesRegisterActivity.class);
+        intent.putExtra(Constants.ACTIVITY_PAYLOAD.HTS_FORM_NAME, Constants.FORMS.HTS_SAMPLE_REGISTRATION);
+        intent.putExtra(Constants.ACTIVITY_PAYLOAD.BASE_ENTITY_ID, UUID.randomUUID().toString());
 
         activity.startActivity(intent);
     }
@@ -53,7 +63,11 @@ public class HivTestingServicesRegisterActivity extends CoreHtsRegisterActivity 
         Form form = new Form();
         form.setActionBarBackground(org.smartregister.chw.core.R.color.family_actionbar);
         form.setWizard(true);
-        form.setName(getString(R.string.hts_screening));
+        if (FORM_NAME.equals(Constants.FORMS.HTS_SAMPLE_REGISTRATION)) {
+            form.setName(getString(R.string.hts_sample_registration));
+        } else {
+            form.setName(getString(R.string.hts_screening));
+        }
         form.setNavigationBackground(org.smartregister.chw.core.R.color.family_navigation);
         form.setNextLabel(this.getResources().getString(org.smartregister.chw.core.R.string.next));
         form.setPreviousLabel(this.getResources().getString(org.smartregister.chw.core.R.string.back));
@@ -78,9 +92,9 @@ public class HivTestingServicesRegisterActivity extends CoreHtsRegisterActivity 
 
     @Override
     public void startFormActivity(JSONObject jsonForm) {
-        if(FORM_NAME.equals(Constants.FORMS.HTS_SCREENING_15_AND_ABOVE)){
+        if (FORM_NAME.equals(Constants.FORMS.HTS_SCREENING_15_AND_ABOVE)) {
             try {
-                jsonForm.getJSONObject(GLOBAL).put("sex",sex);
+                jsonForm.getJSONObject(GLOBAL).put("sex", sex);
             } catch (JSONException e) {
                 Timber.e(e);
             }

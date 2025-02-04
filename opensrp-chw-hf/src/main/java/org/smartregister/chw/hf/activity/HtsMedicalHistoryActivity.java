@@ -115,11 +115,11 @@ public class HtsMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
 
                     String[] visitTypeParams = {
                             "hts_visit_type", "hts_has_the_client_recently_tested_with_hivst", "hts_previous_hivst_client_type", "hts_previous_hivst_test_type", "hts_client_type",
-                            "hts_testing_approach","hts_pitc_testing_point","hts_other_testing_point","hts_has_pre_test_counselling_been_provided","hts_type_of_counselling_provided","hts_clients_tb_screening_outcome",
-                            "hts_does_client_need_hiv_self_test_kits","hts_type_of_test_used","hts_kit_batch_number","hts_kit_expire_date","hts_first_hiv_test_result","hts_syphilis_test_results","hts_second_kit_batch_number",
-                            "hts_second_kit_expire_date","hts_second_hiv_test_result","hts_unigold_kit_batch_number","hts_unigold_kit_expire_date","hts_unigold_hiv_test_result","hts_final_hiv_status","hts_repeat_first_test_kit_batch_number","hts_repeat_first_test_kit_expire_date",
-                            "hts_repeat_first_hiv_test_result","hts_post_test_services","hts_hiv_results_disclosure","hts_preventive_services","hts_were_condoms_distributed","hts_condom_distribution","hts_number_of_male_condoms_provided","hts_number_of_female_condoms_provided",
-                            "hts_sample_collection_for_dna_pcr_test","hts_type_of_sample_collected","hts_dbs_kit_batch_number","hts_dbs_expire_date"
+                            "hts_testing_approach", "hts_pitc_testing_point", "hts_other_testing_point", "hts_has_pre_test_counselling_been_provided", "hts_type_of_counselling_provided", "hts_clients_tb_screening_outcome",
+                            "hts_does_client_need_hiv_self_test_kits", "hts_type_of_test_used", "hts_kit_batch_number", "hts_kit_expire_date", "hts_first_hiv_test_result", "hts_syphilis_test_results", "hts_second_kit_batch_number",
+                            "hts_second_kit_expire_date", "hts_second_hiv_test_result", "hts_unigold_kit_batch_number", "hts_unigold_kit_expire_date", "hts_unigold_hiv_test_result", "hts_final_hiv_status", "hts_repeat_first_test_kit_batch_number", "hts_repeat_first_test_kit_expire_date",
+                            "hts_repeat_first_hiv_test_result", "hts_post_test_services", "hts_hiv_results_disclosure", "hts_preventive_services", "hts_were_condoms_distributed", "hts_condom_distribution", "hts_number_of_male_condoms_provided", "hts_number_of_female_condoms_provided",
+                            "hts_sample_collection_for_dna_pcr_test", "hts_type_of_sample_collected", "hts_dbs_kit_batch_number", "hts_dbs_expire_date"
                     };
                     extractVisitDetails(visits, visitTypeParams, visitDetails, x, context);
 
@@ -182,7 +182,7 @@ public class HtsMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
 
                         if (visit.getBaseEntityId() != null) {
                             ((Activity) context).finish();
-                            HtsVisitActivity.startMe((Activity) context, visit.getBaseEntityId(), true);
+                            HtsVisitActivity.startMe((Activity) context, visit.getBaseEntityId(), null, true);
                         }
                     });
 

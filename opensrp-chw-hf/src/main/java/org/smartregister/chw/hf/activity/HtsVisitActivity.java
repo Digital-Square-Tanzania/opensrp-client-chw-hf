@@ -13,10 +13,11 @@ import org.smartregister.chw.hts.util.Constants;
 import org.smartregister.family.util.Utils;
 
 public class HtsVisitActivity extends BaseHtsVisitActivity {
-    public static void startMe(Activity activity, String baseEntityID, Boolean isEditMode) {
+    public static void startMe(Activity activity, String baseEntityID, String profileType, Boolean isEditMode) {
         Intent intent = new Intent(activity, HtsVisitActivity.class);
         intent.putExtra(Constants.ACTIVITY_PAYLOAD.BASE_ENTITY_ID, baseEntityID);
         intent.putExtra(Constants.ACTIVITY_PAYLOAD.EDIT_MODE, isEditMode);
+        intent.putExtra(Constants.ACTIVITY_PAYLOAD.PROFILE_TYPE, profileType);
         activity.startActivityForResult(intent, Constants.REQUEST_CODE_GET_JSON);
     }
 

@@ -1920,6 +1920,7 @@
     <!--    HTS Module-->
     <string name="hts">HIV Testing Services</string>
     <string name="hts_screening">HTS Screening</string>
+    <string name="hts_sample_registration">HTS Sample Registration</string>
     <string name="hts_hts_visit_type">Client Visit Type:</string>
     <string name="hts_new_client">New Client</string>
     <string name="hts_repeat">Repeat</string>
