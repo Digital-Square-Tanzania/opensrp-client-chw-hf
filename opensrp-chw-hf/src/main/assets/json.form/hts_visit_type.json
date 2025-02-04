@@ -157,12 +157,18 @@
         "label": "Previous HIVST test type",
         "options": [
           {
-            "key": "oral_based_self_test",
-            "text": "Oral Based Self Test (STO)"
+            "key": "sto",
+            "text": "Oral Based Self-Test (STO)",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "sto"
           },
           {
-            "key": "blood_based_self_test",
-            "text": "Blood Based Self Test (STB)"
+            "key": "stb",
+            "text": "Blood Based Self Test (STB)",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "stb"
           }
         ],
         "v_required": {

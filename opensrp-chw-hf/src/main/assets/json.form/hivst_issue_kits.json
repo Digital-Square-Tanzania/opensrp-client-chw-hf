@@ -310,7 +310,7 @@
         "key": "client_kit_type",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "service_delivery_point",
+        "openmrs_entity_id": "client_kit_type",
         "label": "Select the Client's Kit Type",
         "text_color": "#000000",
         "type": "native_radio",
