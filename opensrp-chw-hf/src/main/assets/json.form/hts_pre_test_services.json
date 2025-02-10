@@ -107,6 +107,18 @@
             "text": "With parent/guardian",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "with_parent_or_guardian"
+          },
+          {
+            "key": "couple",
+            "text": "Couple",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "couple"
+          },
+          {
+            "key": "group",
+            "text": "Group",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "group"
           }
         ],
         "v_required": {
