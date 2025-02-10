@@ -123,6 +123,9 @@
         "label": "Does the client have any of the following?",
         "label_text_style": "bold",
         "text_color": "#000000",
+        "exclusive": [
+          "none"
+        ],
         "options": [
           {
             "key": "swollen_glands_lymph_nodes",
@@ -141,6 +144,12 @@
             "text": "Recurrent Skin Diseases",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "recurrent_skin_diseases"
+          },
+          {
+            "key": "none",
+            "text": "None",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "none"
           }
         ],
         "v_required": {
@@ -154,6 +163,7 @@
         "openmrs_entity": "",
         "openmrs_entity_id": "",
         "type": "check_box",
+        "combine_checkbox_option_values": "true",
         "label": "Does the client have any of the following?",
         "label_text_style": "bold",
         "text_color": "#000000",
@@ -216,6 +226,7 @@
         "openmrs_entity_id": "hts_does_the_client_have_any_of_the_following_sti_symptoms_assessment",
         "type": "check_box",
         "label": "Does the client have any of the following?",
+        "combine_checkbox_option_values": "true",
         "label_text_style": "bold",
         "text_color": "#000000",
         "exclusive": [
@@ -259,6 +270,7 @@
         "openmrs_entity_id": "",
         "type": "check_box",
         "label": "Does the client have any of the following?",
+        "combine_checkbox_option_values": "true",
         "label_text_style": "bold",
         "text_color": "#000000",
         "exclusive": [

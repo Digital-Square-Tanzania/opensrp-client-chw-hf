@@ -93,6 +93,7 @@
         "label": "HIV results disclosure",
         "label_text_style": "bold",
         "text_color": "#000000",
+        "exclusive": ["not_ready_to_share"],
         "options": [
           {
             "key": "husband",
@@ -124,8 +125,7 @@
           },
           {
             "key": "not_ready_to_share",
-            "text": "Not ready to share",
-            "exclusive": true
+            "text": "Not ready to share"
           }
         ],
         "v_required": {
