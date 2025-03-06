@@ -2045,4 +2045,6 @@
     <string name="hts_dbs_expire_date">DBS expire date</string>
     <string name="hts_dbs_expire_date_hint">Select DBS expire date</string>
 
+    <string name="action_hts_samples">HTS Samples</string>
+
 </resources>

@@ -27,6 +27,13 @@ condition: "step1_hts_pitc_testing_point.contains('other')"
 actions:
   - "isRelevant = true"
 ---
+name: step1_hts_testing_approach
+description:
+priority: 1
+condition: "!step1_hts_client_type.equals('verification')"
+actions:
+  - "isRelevant = true"
+---
 name: step1_hts_testing_point
 description:
 priority: 1

@@ -158,6 +158,22 @@
             }
           }
         }
+      },
+      {
+        "key": "prompt_for_hiv_positive",
+        "type": "toaster_notes",
+        "text": "The client is HIV Positive",
+        "openmrs_entity_id": "prompt_for_hiv_positive",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "hts_unigold_test_rules.yml"
+            }
+          }
+        }
       }
     ]
   }

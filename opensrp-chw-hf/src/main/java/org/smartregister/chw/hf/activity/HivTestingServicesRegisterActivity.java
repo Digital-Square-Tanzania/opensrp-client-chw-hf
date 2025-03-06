@@ -17,6 +17,7 @@ import org.smartregister.chw.core.activity.CoreHtsRegisterActivity;
 import org.smartregister.chw.core.utils.FormUtils;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.fragment.HivTestingServicesRegisterFragment;
+import org.smartregister.chw.hf.fragment.HivTestingServicesSamplesRegisterFragment;
 import org.smartregister.chw.hts.util.Constants;
 import org.smartregister.family.util.JsonFormUtils;
 import org.smartregister.view.fragment.BaseRegisterFragment;
@@ -82,12 +83,12 @@ public class HivTestingServicesRegisterActivity extends CoreHtsRegisterActivity 
 
     @Override
     protected Fragment[] getOtherFragments() {
-        return new Fragment[]{};
+        return new Fragment[]{new HivTestingServicesSamplesRegisterFragment()};
     }
 
     @MenuRes
     public int getMenuResource() {
-        return R.menu.bottom_nav_cecap_menu;
+        return R.menu.bottom_nav_hts_menu;
     }
 
     @Override

@@ -418,7 +418,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "hts_has_the_client_had_sexual_intercourse_with_a_person_with_hiv_or_with_a_person_whose_hiv_status_is_unknown",
         "type": "native_radio",
-        "label": "Has the client had unprotected sexual intercourse with a person with HIV or with a person whose HIV Status you did not know?",
+        "label": "Has the client had unprotected sexual intercourse with a person with HIV or an unknown HIV status?",
         "options": [
           {
             "key": "yes",
