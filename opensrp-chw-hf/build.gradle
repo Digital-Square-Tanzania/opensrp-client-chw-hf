@@ -233,8 +233,8 @@ android {
             applicationId "org.smartregister.chw.moh.hf"
             minSdkVersion 26
             targetSdkVersion 34
-            versionCode 56
-            versionName "1.2.29"
+            versionCode 58
+            versionName "1.2.31"
             testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
             multiDexEnabled true
             buildConfigField "String", 'opensrp_url', '"https://ucs.moh.go.tz/opensrp/"'
@@ -306,6 +306,7 @@ dependencies {
         exclude group: 'net.zetetic', module: 'android-database-sqlcipher'
         exclude group: 'com.github.chivorns', module: 'smartmaterialspinner'
         exclude group: 'com.nerdstone', module: 'neat-form-core'
+        exclude group: 'com.google.guava', module: 'listenablefuture'
     }
 
     api("com.nerdstone:neat-form-core:1.1.9-NACP-SNAPSHOT") {
