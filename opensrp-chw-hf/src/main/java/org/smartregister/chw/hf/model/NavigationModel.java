@@ -56,10 +56,6 @@ public class NavigationModel implements org.smartregister.chw.core.model.Navigat
                         navigationOptions.add(op6);
                     }
 
-                    if (HealthFacilityApplication.getApplicationFlavor().hasHivst()) {
-                        navigationOptions.add(op17);
-                    }
-
                     if (HealthFacilityApplication.getApplicationFlavor().hasKvpPrEP()) {
                         navigationOptions.add(op19);
                         navigationOptions.add(op20);
