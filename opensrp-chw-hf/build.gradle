@@ -309,6 +309,7 @@ dependencies {
         exclude group: 'net.zetetic', module: 'android-database-sqlcipher'
         exclude group: 'com.github.chivorns', module: 'smartmaterialspinner'
         exclude group: 'com.nerdstone', module: 'neat-form-core'
+        exclude group: "com.google.guava", module: 'listenablefuture'
     }
 
     api("com.nerdstone:neat-form-core:1.1.9-NACP-SNAPSHOT") {
