@@ -51,6 +51,33 @@
     "title": "Vaginal examination",
     "fields": [
       {
+        "key": "was_vaginal_examination_performed",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "cervix",
+        "type": "native_radio",
+        "label": "Was a vaginal examination conducted?",
+        "text_color": "#000000",
+        "options": [
+          {
+            "key": "yes",
+            "text": "Yes",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "yes"
+          },
+          {
+            "key": "no",
+            "text": "No",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "no"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Required"
+        }
+      },
+      {
         "key": "speculum_exam_label",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -59,7 +86,14 @@
         "text": "Speculum Exam",
         "hint_on_text": false,
         "text_color": "#2980b9",
-        "text_size": "7sp"
+        "text_size": "7sp",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "fp_method_screening_vaginal_examination_relevance.yml"
+            }
+          }
+        }
       },
       {
         "key": "cervix",
@@ -86,6 +120,13 @@
         "v_required": {
           "value": "true",
           "err": "Required"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "fp_method_screening_vaginal_examination_relevance.yml"
+            }
+          }
         }
       },
       {
@@ -94,7 +135,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "discharge",
         "type": "native_radio",
-        "label": "Discharge",
+        "label": "Abnormal Discharge",
         "text_color": "#000000",
         "options": [
           {
@@ -113,6 +154,13 @@
         "v_required": {
           "value": "true",
           "err": "Required"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "fp_method_screening_vaginal_examination_relevance.yml"
+            }
+          }
         }
       },
       {
@@ -140,6 +188,13 @@
         "v_required": {
           "value": "true",
           "err": "Required"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "fp_method_screening_vaginal_examination_relevance.yml"
+            }
+          }
         }
       },
       {
@@ -169,7 +224,14 @@
         "text": "Digital exam",
         "hint_on_text": false,
         "text_color": "#2980b9",
-        "text_size": "7sp"
+        "text_size": "7sp",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "fp_method_screening_vaginal_examination_relevance.yml"
+            }
+          }
+        }
       },
       {
         "key": "uterine_size",
@@ -196,6 +258,13 @@
         "v_required": {
           "value": "true",
           "err": "Required"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "fp_method_screening_vaginal_examination_relevance.yml"
+            }
+          }
         }
       },
       {
@@ -229,6 +298,13 @@
         "v_required": {
           "value": "true",
           "err": "Required"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "fp_method_screening_vaginal_examination_relevance.yml"
+            }
+          }
         }
       },
       {
@@ -256,6 +332,13 @@
         "v_required": {
           "value": "true",
           "err": "Required"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "fp_method_screening_vaginal_examination_relevance.yml"
+            }
+          }
         }
       },
       {
