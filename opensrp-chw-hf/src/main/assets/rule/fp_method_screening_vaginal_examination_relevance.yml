@@ -1,8 +1,64 @@
 ---
+name: step1_speculum_exam_label
+description: speculum_exam_label relevance
+priority: 1
+condition: "step1_was_vaginal_examination_performed.equals('yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_cervix
+description: cervix relevance
+priority: 1
+condition: "step1_was_vaginal_examination_performed.equals('yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_discharge
+description: discharge relevance
+priority: 1
+condition: "step1_cervix.equals('normal')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_growth
+description: growth relevance
+priority: 1
+condition: "step1_cervix.equals('normal')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_digital_exam
+description: digital_exam relevance
+priority: 1
+condition: "step1_discharge.equals('no')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_uterine_size
+description: uterine_size relevance
+priority: 1
+condition: "step1_discharge.equals('no')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_uterine_position
+description: uterine_position relevance
+priority: 1
+condition: "step1_discharge.equals('no')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_adnexa
+description: adnexa relevance
+priority: 1
+condition: "step1_discharge.equals('no')"
+actions:
+  - "isRelevant = true"
+---
 name: step1_digital_exam_prompt
 description: digital_exam_prompt relevance
 priority: 1
-condition: "step1_adnexa.equals('painful') || step1_uterine_size.equals('abnormal') || step1_uterine_position.equals('retroverted') || step1_uterine_position.equals('anteverted')"
+condition: "step1_adnexa.equals('painful') || step1_uterine_size.equals('abnormal')"
 actions:
   - "isRelevant = true"
 ---
