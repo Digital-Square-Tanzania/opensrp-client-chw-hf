@@ -160,7 +160,13 @@ priority: 1
 condition: "!step1_reasons_for_not_providing_method.isEmpty() && step1_reasons_for_not_providing_method.contains('other')"
 actions:
   - "isRelevant = true"
-
+---
+name: step1_post_instruction_fp_method_provided
+description: Post instruction
+priority: 1
+condition: "step1_pop > 0 || step1_coc > 0 || step1_epc > 0 || step1_client_provided_condom.equals('yes') || step1_injection_administered.equals('yes') || step1_jadelle_inserted.equals('yes') || step1_implanon_inserted.equals('yes') || step1_iucd_inserted.equals('yes') || step1_cycle_beads_provided.equals('yes') || step1_client_counseled_on_lam.equals('yes') || step1_vasectomy.equals('yes') || step1_btl.equals('yes')"
+actions:
+  - "isRelevant = true"
 ---
 name: step1_post_instruction_fp_method_provided_prompt
 description: Post instruction
