@@ -271,6 +271,7 @@ public class FpMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
                                 } else if (visits.get(position).getVisitType().equalsIgnoreCase(FamilyPlanningConstants.EVENT_TYPE.FP_COUNSELING)) {
                                     JSONObject jsonObject = (new FormUtils()).getFormJsonFromRepositoryOrAssets(context, FamilyPlanningConstants.FORMS.FP_COUNSELING);
                                     jsonObject.put(FORM_SUBMISSION_ID, visits.get(position).getFormSubmissionId());
+                                    jsonObject.getJSONObject("global").put("sex", fpMemberObject.getGender());
                                     HfAncJsonFormUtils.populateForm(jsonObject, visits.get(position).getVisitDetails());
                                     startFormActivity(jsonObject, context);
                                 } else if (visits.get(position).getVisitType().equalsIgnoreCase(FamilyPlanningConstants.EVENT_TYPE.FP_SCREENING)) {

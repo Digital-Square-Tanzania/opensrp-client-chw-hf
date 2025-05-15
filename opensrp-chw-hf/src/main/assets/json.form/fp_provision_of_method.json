@@ -63,9 +63,18 @@
           "value": "true",
           "err": "Required"
         },
+        "v_numeric": {
+          "value": "true",
+          "err": "Please enter the number of cycles"
+        },
         "v_max": {
-          "value": "3",
-          "err": "POP value must be equal or less than 3"
+          "value": "12",
+          "err": "POP value must be equal or less than 12"
+        },
+        "v_max_length": {
+          "value": "2",
+          "is_fixed_size": "true",
+          "err": "Please enter a valid input"
         },
         "relevance": {
           "rules-engine": {
@@ -396,6 +405,13 @@
         "v_required": {
           "value": "true",
           "err": "Required"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "fp_provide_method_relevance.yml"
+            }
+          }
         }
       },
       {
