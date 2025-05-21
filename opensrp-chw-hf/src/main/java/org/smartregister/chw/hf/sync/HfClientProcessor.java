@@ -28,6 +28,7 @@ import org.smartregister.chw.anc.util.NCUtils;
 import org.smartregister.chw.core.dao.EventDao;
 import org.smartregister.chw.core.sync.CoreClientProcessor;
 import org.smartregister.chw.fp.util.FamilyPlanningConstants;
+import org.smartregister.chw.hf.dao.FamilyDao;
 import org.smartregister.chw.hf.dao.HeiDao;
 import org.smartregister.chw.hf.dao.HfPmtctDao;
 import org.smartregister.chw.pmtct.util.Constants;
@@ -122,6 +123,8 @@ public class HfClientProcessor extends CoreClientProcessor {
                 break;
         }
 
+        //Used to fix instances where clients were registered without a DOB on past app version leading to app crushes
+        FamilyDao.fixClientsWithNullDob();
     }
 
     private void processVisitEvent(EventClient eventClient) {
