@@ -64,6 +64,10 @@
           "value": "20",
           "err": "client weight must be equal or greater than 20kg"
         },
+        "v_max": {
+          "value": "300",
+          "err": "The weight must be equal or less than 300 (KG)"
+        },
         "v_numeric": {
           "value": "true",
           "err": "Please enter the weight"
