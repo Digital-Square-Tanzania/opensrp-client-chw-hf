@@ -146,6 +146,12 @@
         "v_required": {
           "value": "true",
           "err": "Tafadhali taja"
+        },
+        "relevance": {
+          "step1:has_experienced_last_normal_menstrual_period": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
         }
       },
       {
@@ -173,6 +179,12 @@
         "v_required": {
           "value": "true",
           "err": "Tafadhali taja"
+        },
+        "relevance": {
+          "step1:has_experienced_last_normal_menstrual_period": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
         }
       },
       {
@@ -198,6 +210,12 @@
         "v_required": {
           "value": "true",
           "err": "Tafadhali taja"
+        },
+        "relevance": {
+          "step1:has_experienced_last_normal_menstrual_period": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
         }
       },
       {
