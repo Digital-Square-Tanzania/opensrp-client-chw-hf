@@ -332,17 +332,19 @@ public class HealthFacilityApplication extends CoreChwApplication implements Cor
         );
         setOpenSRPUrl();
 
-        Configuration configuration = getApplicationContext().getResources().getConfiguration();
-        String language;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            language = configuration.getLocales().get(0).getLanguage();
-        } else {
-            language = configuration.locale.getLanguage();
-        }
-
-        if (language.equals(Locale.FRENCH.getLanguage())) {
-            saveLanguage(Locale.FRENCH.getLanguage());
-        }
+//        Disabled changing language on HF application
+//        Configuration configuration = getApplicationContext().getResources().getConfiguration();
+//        String language;
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//            language = configuration.getLocales().get(0).getLanguage();
+//        } else {
+//            language = configuration.locale.getLanguage();
+//        }
+//
+//        if (language.equals(Locale.FRENCH.getLanguage())) {
+//            saveLanguage(Locale.FRENCH.getLanguage());
+//        }
+        saveLanguage(Locale.ENGLISH.getLanguage());
         // set up processor
         FamilyLibrary.getInstance().setClientProcessorForJava(HfClientProcessor.getInstance(getApplicationContext()));
 
