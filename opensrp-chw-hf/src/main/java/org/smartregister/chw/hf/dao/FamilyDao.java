@@ -122,4 +122,11 @@ public class FamilyDao extends AbstractDao {
     private static Boolean getRemovedStatus(String is_closed) {
         return "1".equalsIgnoreCase(is_closed);
     }
+
+    public static void fixClientsWithNullDob() {
+        SQLiteDatabase db = HealthFacilityApplication.getInstance().getRepository().getWritableDatabase();
+        String sqlString = "UPDATE ec_family_member SET dob = '2000-01-01T00:00:00.000+03:00' WHERE dob IS NULL";
+        db.execSQL(sqlString);
+    }
+
 }
