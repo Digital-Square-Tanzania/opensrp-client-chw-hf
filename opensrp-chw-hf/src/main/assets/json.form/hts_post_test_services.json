@@ -155,6 +155,13 @@
         "v_required": {
           "value": "true",
           "err": "Please select an option"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "hts_post_test_services_rules.yml"
+            }
+          }
         }
       },
       {
@@ -169,20 +176,17 @@
           "err": "Please specify"
         },
         "relevance": {
-          "step1:hts_hiv_results_disclosure": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "others"
-                ]
-              }
-            ]
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "hts_post_test_services_rules.yml"
+            }
           }
         }
       },
       {
         "key": "reasons_for_not_disclosing_results",
         "type": "check_box",
+        "label_text_style": "bold",
         "label": "Reasons for not being ready to share results",
         "combine_checkbox_option_values": "true",
         "openmrs_entity_id": "reasons_for_not_disclosing_results",
@@ -261,14 +265,10 @@
           "err": "Please fill this question"
         },
         "relevance": {
-          "step1:hts_hiv_results_disclosure": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "not_ready_to_share"
-                ]
-              }
-            ]
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "hts_post_test_services_rules.yml"
+            }
           }
         }
       }
