@@ -182,14 +182,83 @@
       },
       {
         "key": "reasons_for_not_disclosing_results",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
+        "type": "check_box",
+        "label": "Reasons for not being ready to share results",
+        "combine_checkbox_option_values": "true",
         "openmrs_entity_id": "reasons_for_not_disclosing_results",
-        "type": "edit_text",
-        "hint": "Specify the reasons for not being ready to share results",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "options": [
+          {
+            "key": "fear_of_stigma",
+            "text": "Fear of Stigma and Discrimination",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "fear_of_stigma"
+          },
+          {
+            "key": "fear_of_negative_consequences",
+            "text": "Fear of Negative Consequences like loss of relationship, violence and abuse",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "fear_of_negative_consequences"
+          },
+          {
+            "key": "lack_of_support_systems",
+            "text": "Lack of Support Systems like not supported by friends, family or community",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "lack_of_support_systems"
+          },
+          {
+            "key": "psychological_and_emotional_factors",
+            "text": "Psychological and Emotional Factors",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "psychological_and_emotional_factors"
+          },
+          {
+            "key": "uncertainty_about_legal_and_ethical_implications",
+            "text": "Uncertainty about the Legal and Ethical Implications",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "uncertainty_about_legal_and_ethical_implications"
+          },
+          {
+            "key": "cultural_and_societal_norms",
+            "text": "Cultural and Societal Norms",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "cultural_and_societal_norms"
+          },
+          {
+            "key": "misinformation",
+            "text": "Misinformation or Lack of Education",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "misinformation"
+          },
+          {
+            "key": "self_perception_and_identity",
+            "text": "Self-Perception and Identity",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "self_perception_and_identity"
+          },
+          {
+            "key": "concerns_about_medical_and_health_care_disclosure",
+            "text": "Concerns about Medical and Health Care Disclosure",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "concerns_about_medical_and_health_care_disclosure"
+          },
+          {
+            "key": "fear_of_impact_on_partner_relationships",
+            "text": "Fear of Impact on Partner Relationships",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "fear_of_impact_on_partner_relationships"
+          },
+          {
+            "key": "economic_and_social_vulnerability",
+            "text": "Economic and Social Vulnerability",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "economic_and_social_vulnerability"
+          }
+        ],
         "v_required": {
-          "value": "true",
-          "err": "Please specify"
+          "value": true,
+          "err": "Please fill this question"
         },
         "relevance": {
           "step1:hts_hiv_results_disclosure": {

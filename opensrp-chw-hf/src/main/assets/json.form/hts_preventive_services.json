@@ -231,7 +231,7 @@
           "err": "Please enter the number of condoms"
         },
         "v_max_length": {
-          "value": "3",
+          "value": "2",
           "is_fixed_size": "true",
           "err": "Please enter a valid number of condoms"
         },
@@ -272,7 +272,7 @@
           "err": "The % of the condoms provided must be equal or less than 100"
         },
         "v_max_length": {
-          "value": "3",
+          "value": "2",
           "is_fixed_size": "true",
           "err": "Please enter a valid number of condoms"
         },
