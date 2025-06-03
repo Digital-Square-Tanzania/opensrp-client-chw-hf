@@ -1,4 +1,11 @@
 ---
+name: step1_has_experienced_last_normal_menstrual_period
+description: has_experienced_last_normal_menstrual_period relevance
+priority: 1
+condition: "global_sex.equalsIgnoreCase('female')"
+actions:
+  - "isRelevant = true"
+---
 name: step1_specify_other_complain
 description: specify_other_complain relevance
 priority: 1

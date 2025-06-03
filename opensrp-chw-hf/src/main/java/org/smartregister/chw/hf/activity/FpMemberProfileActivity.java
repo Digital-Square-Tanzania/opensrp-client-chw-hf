@@ -1,6 +1,7 @@
 package org.smartregister.chw.hf.activity;
 
 import static org.smartregister.chw.core.utils.Utils.passToolbarTitle;
+import static org.smartregister.chw.hf.utils.Constants.GENDER.FEMALE;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -65,7 +66,10 @@ public class FpMemberProfileActivity extends CoreFamilyPlanningMemberProfileActi
         menu.findItem(R.id.action_malaria_followup_visit).setVisible(false);
         menu.findItem(R.id.action_malaria_diagnosis).setVisible(false);
         menu.findItem(R.id.action_fp_change).setVisible(false);
-        menu.findItem(R.id.action_fp_ecp_provision).setVisible(true);
+
+        if (fpMemberObject.getGender().equalsIgnoreCase(FEMALE)) {
+            menu.findItem(R.id.action_fp_ecp_provision).setVisible(true);
+        }
         return true;
     }
 
