@@ -168,10 +168,40 @@
         "hint": "What are the side effects?",
         "options": [
           {
-            "key": "heavy_bleeding",
-            "text": "Heavy bleeding",
+            "key": "soreness",
+            "text": "Soreness",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "heavy_bleeding"
+            "openmrs_entity_id": "soreness"
+          },
+          {
+            "key": "swelling",
+            "text": "Swelling",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "swelling"
+          },
+          {
+            "key": "bruising",
+            "text": "Bruising",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "bruising"
+          },
+          {
+            "key": "pain",
+            "text": "Pain",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "pain"
+          },
+          {
+            "key": "bleeding",
+            "text": "Bleeding",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "bleeding"
+          },
+          {
+            "key": "simple_haemotoma",
+            "text": "Simple Haemotoma",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "simple_haemotoma"
           },
           {
             "key": "severe_headache",
@@ -229,22 +259,22 @@
         "hint": "What are the complications?",
         "options": [
           {
-            "key": "severe_lower",
-            "text": "Severe Lower Abdominal pain",
+            "key": "haematoma",
+            "text": "Haematoma",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "severe_lower"
+            "openmrs_entity_id": "haematoma"
           },
           {
-            "key": "severe_chest",
-            "text": "Severe Chest pain",
+            "key": "vasovagal_reaction",
+            "text": "Vasovagal Reaction",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "severe_chest"
+            "openmrs_entity_id": "vasovagal_reaction"
           },
           {
-            "key": "pregnancy",
-            "text": "Pregnancy",
+            "key": "severe_bleeding",
+            "text": "Severe Bleeding",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "pregnancy"
+            "openmrs_entity_id": "severe_bleeding"
           },
           {
             "key": "other",

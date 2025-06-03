@@ -116,7 +116,7 @@ name: step1_client_want_to_switch_stop_continue
 description: client_want_to_switch_stop_continue relevance
 priority: 1
 condition: "(step1_reason_for_dissatisfaction.contains('side_effects') || step1_reason_for_dissatisfaction.contains('other'))
-            && !step1_reason_for_dissatisfaction.contains('complication')"
+            && !step1_reason_for_dissatisfaction.contains('complication') && !global_fp_method.equals('vasectomy')"
 actions:
   - "isRelevant = true"
 
