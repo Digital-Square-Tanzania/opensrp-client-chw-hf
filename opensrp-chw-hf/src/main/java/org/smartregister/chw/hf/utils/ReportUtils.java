@@ -782,7 +782,6 @@ public class ReportUtils {
     public static class HpsReports {
         public static String computeClientsReports(Date startDate) {
             HpsMonthlyReportObject hpsMonthlyReportObject = new HpsMonthlyReportObject(startDate);
-            HpsReportsViewActivity.hpsMonthlyReportObject = hpsMonthlyReportObject;
             try {
                 return hpsMonthlyReportObject.getIndicatorDataAsGson(hpsMonthlyReportObject.getIndicatorData());
             } catch (JSONException e) {

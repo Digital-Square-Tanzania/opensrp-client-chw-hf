@@ -18,7 +18,8 @@ public class HpsMonthlyReportObject extends ReportObject {
             "11","12","13","14","15","16","17","18","19","110","111",
             "1G1","1G2","1G3","1G4","1G5","1G6",
             "1H1","1H2","1H3","1H4","1H5","1H6","1H7","1H8","1H9","1H10","1H11","1H12","1H13","1H14","1H15","1H16","1H17","1H18","1H19","1H20","1H21",
-            "4J1","4J2","4J3","4J4","4J5"
+//            "4J1","4J2","4J3","4J4" these values have been deleted from the report
+            "4J5"
     };
 
     private final String[] hpsQuestionsGroupsWithOnlyTotal = new String[]{

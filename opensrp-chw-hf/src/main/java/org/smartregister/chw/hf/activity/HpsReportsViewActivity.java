@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,6 +32,7 @@ import org.smartregister.chw.hf.domain.dhis2_reports.DhisDataValues;
 import org.smartregister.chw.hf.domain.hps_reports.HpsMonthlyReportObject;
 import org.smartregister.chw.hf.utils.Constants;
 import org.smartregister.chw.hf.utils.JsonFormUtils;
+import org.smartregister.chw.hf.utils.ReportUtils;
 import org.smartregister.clientandeventmodel.Event;
 import org.smartregister.clientandeventmodel.Obs;
 import org.smartregister.family.util.Utils;
@@ -43,11 +45,51 @@ import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.ExecutionException;
+
 import timber.log.Timber;
 
 
 public class HpsReportsViewActivity extends HfReportsViewActivity {
-    public static HpsMonthlyReportObject hpsMonthlyReportObject;
+    public  HpsMonthlyReportObject hpsMonthlyReportObject;
+
+    private final ExecutorService executor = Executors.newSingleThreadExecutor();
+    private Future<Dhis2Report> reportFuture;
+
+    /**
+     * Builds a Dhis2Report from the current HpsMonthlyReportObject.
+     */
+    private Dhis2Report buildDhis2Report() throws Exception {
+        hpsMonthlyReportObject = new HpsMonthlyReportObject(ReportUtils.getReportDate());
+        JSONObject jsonObject = hpsMonthlyReportObject.getIndicatorData();
+        List<DhisDataValues> dhisDataValues = ReportDao.getDhisDataValues(jsonObject);
+
+        Dhis2Report dhis2Report = new Dhis2Report();
+        dhis2Report.setDataValues(dhisDataValues);
+        dhis2Report.setCompleteDate(new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date()));
+        dhis2Report.setPeriod(new SimpleDateFormat("yyyyMM", Locale.getDefault()).format(new Date()));
+        dhis2Report.setOrgUnit(getAllSharedPreferences().getPreference(HFR_CODE).replace("HFR Code: ", ""));
+        dhis2Report.setDataSet("AV47sHdUAav");
+        return dhis2Report;
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        reportFuture = executor.submit(() -> {
+            try {
+                Thread.sleep(5000); // wait for 5 seconds
+            } catch (InterruptedException ie) {
+                Thread.currentThread().interrupt();
+                Timber.e(ie);
+            }
+            return buildDhis2Report();
+        });
+    }
 
     public static void startMe(Activity activity, String reportPath, int reportTitle, String reportDate) {
         Intent intent = new Intent(activity, HpsReportsViewActivity.class);
@@ -59,7 +101,17 @@ public class HpsReportsViewActivity extends HfReportsViewActivity {
     }
 
     public void generateSendToDhis2Event(String baseEntityId, Context context) throws JSONException {
-        Dhis2Report dhis2Report = getReport();
+        Dhis2Report dhis2Report;
+        if (reportFuture != null) {
+            try {
+                dhis2Report = reportFuture.get();
+            } catch (InterruptedException | ExecutionException e) {
+                Timber.e(e);
+                dhis2Report = getReport();
+            }
+        } else {
+            dhis2Report = getReport();
+        }
         AllSharedPreferences sharedPreferences = getAllSharedPreferences();
         Event baseEvent = (Event) new Event()
                 .withBaseEntityId(baseEntityId)
@@ -95,31 +147,15 @@ public class HpsReportsViewActivity extends HfReportsViewActivity {
         } catch (Exception e) {
             Timber.e(e);
         }
-
-//        Intent intent = new Intent(context, PncRegisterActivity.class);
-//        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//        context.startActivity(intent);
-//        ((HpsReportsViewActivity) context).finish();
     }
 
     public Dhis2Report getReport() {
-        JSONObject jsonObject;
         try {
-            jsonObject = hpsMonthlyReportObject.getIndicatorData();
-            List<DhisDataValues> dhisDataValues = ReportDao.getDhisDataValues(jsonObject);
-
-            Dhis2Report dhis2Report = new Dhis2Report();
-            dhis2Report.setDataValues(dhisDataValues);
-            dhis2Report.setCompleteDate(new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date()));
-            dhis2Report.setPeriod(new SimpleDateFormat("yyyyMM", Locale.getDefault()).format(new Date()));
-            dhis2Report.setOrgUnit(getAllSharedPreferences().getPreference(HFR_CODE).replace("HFR Code: ", ""));
-            dhis2Report.setDataSet("AV47sHdUAav");
-            return dhis2Report;
-        } catch (JSONException e) {
+            return buildDhis2Report();
+        } catch (Exception e) {
             Timber.e(e);
+            return null;
         }
-        return null;
-
     }
 
     @Override
@@ -127,6 +163,7 @@ public class HpsReportsViewActivity extends HfReportsViewActivity {
         getMenuInflater().inflate(R.menu.reports_view_menu, menu);
         menu.findItem(R.id.action_view_chw_sync_status).setVisible(true);
         menu.findItem(R.id.action_upload_to_dhis2).setVisible(true);
+
         return true;
     }
 
@@ -176,27 +213,30 @@ public class HpsReportsViewActivity extends HfReportsViewActivity {
         builder.setView(listView);
         builder.setPositiveButton("Proceed", (dialog, which) -> {
             AlertDialog progressDialog = new AlertDialog.Builder(context)
-                .setTitle("Uploading")
-                .setMessage("Please wait while data to be sent to DHIS2 is being generated...")
-                .setCancelable(false)
-                .create();
+                    .setTitle("Uploading")
+                    .setMessage("Please wait while data to be sent to DHIS2 is being generated...")
+                    .setCancelable(false)
+                    .create();
             progressDialog.show();
 
-            new Thread(() -> {
+            executor.execute(() -> {
                 try {
+                    // Will block here if not yet complete
+                    Dhis2Report dhis2ReportReady = reportFuture != null ? reportFuture.get() : buildDhis2Report();
+                    // Use the ready report
                     generateSendToDhis2Event(UUID.randomUUID().toString(), context);
                     ((Activity) context).runOnUiThread(() -> {
                         progressDialog.dismiss();
                         Toast.makeText(context, "Data successfully generated", Toast.LENGTH_LONG).show();
                     });
-                } catch (JSONException e) {
+                } catch (Exception e) {
                     Timber.e(e);
                     ((Activity) context).runOnUiThread(() -> {
                         progressDialog.dismiss();
                         Toast.makeText(context, "Failed to generate data to be sent to DHIS2", Toast.LENGTH_LONG).show();
                     });
                 }
-            }).start();
+            });
         });
 
         builder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
