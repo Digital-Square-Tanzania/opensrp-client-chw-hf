@@ -825,6 +825,13 @@ public class Constants extends CoreConstants {
             String ASRH_REPORT = "asrh_report";
 
             String CECAP_REPORT = "cecap_report";
+
+            String HPS_REPORT = "hps_report";
+        }
+
+        public interface HpsReportKeys {
+            String HPS_MONTHLY_REPORT = "hps-monthly-report";
+            String HPS_ANNUAL_REPORT = "hps-annual-report";
         }
 
         public interface ReportPaths {
@@ -893,6 +900,11 @@ public class Constants extends CoreConstants {
             String CECAP_OTHER_REPORT_PATH = "cecap-other-report";
 
             String ASRH_REPORT_PATH = "asrh-report";
+
+            String HPS_MONTHLY_REPORT_PATH = "hps_reports/hps-monthly-report";
+
+            String HPS_ANNUAL_REPORT_PATH = "hps_reports/hps-annual-report";
+
         }
     }
 

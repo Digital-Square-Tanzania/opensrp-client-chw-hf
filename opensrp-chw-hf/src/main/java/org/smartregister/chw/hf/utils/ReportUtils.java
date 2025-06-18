@@ -30,6 +30,8 @@ import org.smartregister.chw.hf.domain.cdp_reports.CdpIssuingFromFacilityReportO
 import org.smartregister.chw.hf.domain.cdp_reports.CdpReceivingReportObject;
 import org.smartregister.chw.hf.domain.cecap_reports.CecapMonthlyReportObject;
 import org.smartregister.chw.hf.domain.cecap_reports.CecapOtherMonthlyReportObject;
+import org.smartregister.chw.hf.domain.hps_reports.HpsAnnualReportObject;
+import org.smartregister.chw.hf.domain.hps_reports.HpsMonthlyReportObject;
 import org.smartregister.chw.hf.domain.kvp_reports.KvpMissedApReportObject;
 import org.smartregister.chw.hf.domain.kvp_reports.KvpMissedApReportObject;
 import org.smartregister.chw.hf.domain.kvp_reports.KvpMonthlyReportObject;
@@ -773,6 +775,27 @@ public class ReportUtils {
                 Timber.e(e);
             }
             return report;
+        }
+    }
+
+    public static class HpsReports {
+        public static String computeClientsReports(Date startDate) {
+            HpsMonthlyReportObject hpsMonthlyReportObject = new HpsMonthlyReportObject(startDate);
+            try {
+                return hpsMonthlyReportObject.getIndicatorDataAsGson(hpsMonthlyReportObject.getIndicatorData());
+            } catch (JSONException e) {
+                Timber.e(e);
+            }
+            return "";
+        }
+        public static String computeClientsAnnualReports(Date startDate) {
+            HpsAnnualReportObject hpsAnnualReportObject = new HpsAnnualReportObject(startDate);
+            try {
+                return hpsAnnualReportObject.getIndicatorDataAsGson(hpsAnnualReportObject.getIndicatorData());
+            } catch (JSONException e) {
+                Timber.e(e);
+            }
+            return "";
         }
     }
 }

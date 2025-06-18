@@ -246,6 +246,17 @@ public class HfWebAppInterface {
                 default:
                     return "";
             }
+        }else if (reportType.equalsIgnoreCase(Constants.ReportConstants.ReportTypes.HPS_REPORT)) {
+            switch (key) {
+                case Constants.ReportConstants.HpsReportKeys.HPS_MONTHLY_REPORT:
+                    ReportUtils.setPrintJobName("HPS_report_ya_mwezi-" + ReportUtils.getReportPeriod() + ".pdf");
+                    return ReportUtils.HpsReports.computeClientsReports(ReportUtils.getReportDate());
+                case Constants.ReportConstants.HpsReportKeys.HPS_ANNUAL_REPORT:
+                    ReportUtils.setPrintJobName("HPS_report_ya_mwaka-" + ReportUtils.getReportPeriod() + ".pdf");
+                    return ReportUtils.HpsReports.computeClientsAnnualReports(ReportUtils.getReportDate());
+                default:
+                    return "";
+            }
         }
         return "";
     }
