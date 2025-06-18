@@ -1919,4 +1919,7 @@
     <string name="hps_annual_reports_title">iCCHW ANNUAL REPORTS</string>
     <string name="hps_reports_title">iCCHW Report</string>
 
+    <string name="reports_view_sync_status">CHW Sync Status</string>
+    <string name="reports_upload_to_dhis2">Upload to DHIS2</string>
+
 </resources>

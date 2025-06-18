@@ -14314,7 +14314,7 @@
           }
         },
         {
-          "column_name": "last_interacted_with",
+          "column_name": "last_sync_date",
           "type": "Event",
           "json_mapping": {
             "field": "version"

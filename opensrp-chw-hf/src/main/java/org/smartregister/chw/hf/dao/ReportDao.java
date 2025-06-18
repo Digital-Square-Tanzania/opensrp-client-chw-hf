@@ -6,7 +6,9 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import org.smartregister.chw.hf.domain.CHW;
 import org.smartregister.dao.AbstractDao;
+import org.smartregister.family.util.Utils;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -71,7 +73,7 @@ public class ReportDao extends AbstractDao {
         List<Map<String, String>> res = readData(sql, map);
 
 
-        if (res != null && res.size() > 0) {
+        if (res != null && !res.isEmpty()) {
             return res;
         } else
             return new ArrayList<>();
@@ -131,7 +133,7 @@ public class ReportDao extends AbstractDao {
         res.addAll(res1);
         res.addAll(res2);
 
-        if (res.size() > 0) {
+        if (!res.isEmpty()) {
             return res;
         } else
             return new ArrayList<>();
@@ -184,7 +186,7 @@ public class ReportDao extends AbstractDao {
         List<Map<String, String>> res = readData(sql, map);
 
 
-        if (res != null && res.size() > 0) {
+        if (res != null && !res.isEmpty()) {
             return res;
         } else
             return new ArrayList<>();
@@ -234,7 +236,7 @@ public class ReportDao extends AbstractDao {
         List<Map<String, String>> res = readData(sql, map);
 
 
-        if (res != null && res.size() > 0) {
+        if (res != null && !res.isEmpty()) {
             return res;
         } else
             return new ArrayList<>();
@@ -318,7 +320,7 @@ public class ReportDao extends AbstractDao {
                 "    END) AS post_op_adverse_first_visit,\n" +
                 "    MAX(CASE WHEN visit_number = 2 THEN \n" +
                 "        CASE WHEN post_op_adverse = 'yes' THEN 'Yes' ELSE 'No' END \n" +
-                "    END) AS post_op_adverse_sec_visit,"+
+                "    END) AS post_op_adverse_sec_visit," +
                 "    MAX(post_op_adverse) AS post_op_adverse,\n" +
                 "    MAX(NAE) AS NAE,\n" +
                 "    MAX(health_care_provider) AS health_care_provider\n" +
@@ -356,15 +358,15 @@ public class ReportDao extends AbstractDao {
         };
 
 
-
         List<Map<String, String>> res = readData(sql, map);
 
-        if (res != null && res.size() > 0) {
+        if (res != null && !res.isEmpty()) {
             return res;
         } else {
             return new ArrayList<>();
         }
     }
+
     public static List<Map<String, String>> getVmmcStaticServiceRegister(Date reportDate, Date startDate, Date endDate) {
         String sql = "WITH VMMC_CTE AS (\n" +
                 "    SELECT\n" +
@@ -444,7 +446,7 @@ public class ReportDao extends AbstractDao {
                 "    END) AS post_op_adverse_first_visit,\n" +
                 "    MAX(CASE WHEN visit_number = 2 THEN \n" +
                 "        CASE WHEN post_op_adverse = 'yes' THEN 'Yes' ELSE 'No' END \n" +
-                "    END) AS post_op_adverse_sec_visit,"+
+                "    END) AS post_op_adverse_sec_visit," +
                 "    MAX(post_op_adverse) AS post_op_adverse,\n" +
                 "    MAX(NAE) AS NAE,\n" +
                 "    MAX(health_care_provider) AS health_care_provider\n" +
@@ -483,12 +485,13 @@ public class ReportDao extends AbstractDao {
 
         List<Map<String, String>> res = readData(sql, map);
 
-        if (res != null && res.size() > 0) {
+        if (res != null && !res.isEmpty()) {
             return res;
         } else {
             return new ArrayList<>();
         }
     }
+
     public static List<Map<String, String>> getVmmcOutreachServiceRegister(Date reportDate, Date startDate, Date endDate) {
         String sql = "WITH VMMC_CTE AS (\n" +
                 "    SELECT\n" +
@@ -568,7 +571,7 @@ public class ReportDao extends AbstractDao {
                 "    END) AS post_op_adverse_first_visit,\n" +
                 "    MAX(CASE WHEN visit_number = 2 THEN \n" +
                 "        CASE WHEN post_op_adverse = 'yes' THEN 'Yes' ELSE 'No' END \n" +
-                "    END) AS post_op_adverse_sec_visit,"+
+                "    END) AS post_op_adverse_sec_visit," +
                 "    MAX(post_op_adverse) AS post_op_adverse,\n" +
                 "    MAX(NAE) AS NAE,\n" +
                 "    MAX(health_care_provider) AS health_care_provider\n" +
@@ -607,7 +610,7 @@ public class ReportDao extends AbstractDao {
 
         List<Map<String, String>> res = readData(sql, map);
 
-        if (res != null && res.size() > 0) {
+        if (res != null && !res.isEmpty()) {
             return res;
         } else {
             return new ArrayList<>();
@@ -712,12 +715,13 @@ public class ReportDao extends AbstractDao {
 
         List<Map<String, String>> res = readData(sql, map);
 
-        if (res != null && res.size() > 0) {
+        if (res != null && !res.isEmpty()) {
             return res;
         } else {
             return new ArrayList<>();
         }
     }
+
     public static List<Map<String, String>> getVmmcStaticTheatreRegister(Date reportDate, Date startDate, Date endDate) {
         String sql = "WITH VMMC_CTE AS (\n" +
                 "    SELECT\n" +
@@ -819,12 +823,13 @@ public class ReportDao extends AbstractDao {
 
         List<Map<String, String>> res = readData(sql, map);
 
-        if (res != null && res.size() > 0) {
+        if (res != null && !res.isEmpty()) {
             return res;
         } else {
             return new ArrayList<>();
         }
     }
+
     public static List<Map<String, String>> getVmmcOutreachTheatreRegister(Date reportDate, Date startDate, Date endDate) {
         String sql = "WITH VMMC_CTE AS (\n" +
                 "    SELECT\n" +
@@ -926,7 +931,7 @@ public class ReportDao extends AbstractDao {
 
         List<Map<String, String>> res = readData(sql, map);
 
-        if (res != null && res.size() > 0) {
+        if (res != null && !res.isEmpty()) {
             return res;
         } else {
             return new ArrayList<>();
@@ -1019,8 +1024,6 @@ public class ReportDao extends AbstractDao {
                 "       enrollment_date ASC;";
 
 
-
-
         DataMap<Map<String, String>> map = cursor -> {
             Map<String, String> data = new HashMap<>();
             data.put("enrollment_date", cursor.getString(cursor.getColumnIndex("enrollment_date")));
@@ -1035,16 +1038,17 @@ public class ReportDao extends AbstractDao {
             return data;
         };
 
-        Log.d("hapaa1: ",sql);
+        Log.d("hapaa1: ", sql);
 
         List<Map<String, String>> res = readData(sql, map);
 
-        if (res != null && res.size() > 0) {
+        if (res != null && !res.isEmpty()) {
             return res;
         } else {
             return new ArrayList<>();
         }
     }
+
     public static List<Map<String, String>> getVmmcStaticListOfAeRegister(Date reportDate, Date startDate, Date endDate) {
         String sql = "WITH VMMC_LIST_AE_CTE AS (\n" +
                 "    SELECT\n" +
@@ -1147,16 +1151,17 @@ public class ReportDao extends AbstractDao {
             return data;
         };
 
-        Log.d("hapaa: ",sql);
+        Log.d("hapaa: ", sql);
 
         List<Map<String, String>> res = readData(sql, map);
 
-        if (res != null && res.size() > 0) {
+        if (res != null && !res.isEmpty()) {
             return res;
         } else {
             return new ArrayList<>();
         }
     }
+
     public static List<Map<String, String>> getVmmcOutreachListOfAeRegister(Date reportDate, Date startDate, Date endDate) {
         String sql = "WITH VMMC_LIST_AE_CTE AS (\n" +
                 "    SELECT\n" +
@@ -1258,11 +1263,11 @@ public class ReportDao extends AbstractDao {
             return data;
         };
 
-        Log.d("hapaa: ",sql);
+        Log.d("hapaa: ", sql);
 
         List<Map<String, String>> res = readData(sql, map);
 
-        if (res != null && res.size() > 0) {
+        if (res != null && !res.isEmpty()) {
             return res;
         } else {
             return new ArrayList<>();
@@ -1275,32 +1280,30 @@ public class ReportDao extends AbstractDao {
 
         List<String> type_of_adverse_event = new ArrayList<>();
 
-        if(cursor.getString(cursor.getColumnIndex("type_of_adverse_event")) != null) {
-            if(cursor.getString(cursor.getColumnIndex("type_of_adverse_event")).contains("excessive_skin_removed")){
+        if (cursor.getString(cursor.getColumnIndex("type_of_adverse_event")) != null) {
+            if (cursor.getString(cursor.getColumnIndex("type_of_adverse_event")).contains("excessive_skin_removed")) {
                 type_of_adverse_event.add("Excessive skin removed");
             }
 
-            if(cursor.getString(cursor.getColumnIndex("type_of_adverse_event")).contains("excessive_bleeding")){
+            if (cursor.getString(cursor.getColumnIndex("type_of_adverse_event")).contains("excessive_bleeding")) {
                 type_of_adverse_event.add("Excessive bleeding");
             }
 
-            if(cursor.getString(cursor.getColumnIndex("type_of_adverse_event")).contains("damage_to_penis")){
+            if (cursor.getString(cursor.getColumnIndex("type_of_adverse_event")).contains("damage_to_penis")) {
                 type_of_adverse_event.add("Injury to the penis");
             }
 
-            if(cursor.getString(cursor.getColumnIndex("type_of_adverse_event")).contains("anesthetic_related_events")){
+            if (cursor.getString(cursor.getColumnIndex("type_of_adverse_event")).contains("anesthetic_related_events")) {
                 type_of_adverse_event.add("Anesthetic related events");
             }
 
-            if(cursor.getString(cursor.getColumnIndex("type_of_adverse_event")).contains("device_displacement")){
+            if (cursor.getString(cursor.getColumnIndex("type_of_adverse_event")).contains("device_displacement")) {
                 type_of_adverse_event.add("Device displacement");
             }
 
-            if(cursor.getString(cursor.getColumnIndex("type_of_adverse_event")).contains("others")){
+            if (cursor.getString(cursor.getColumnIndex("type_of_adverse_event")).contains("others")) {
                 type_of_adverse_event.add(cursor.getString(cursor.getColumnIndex("type_of_adverse_event_others")));
-            }
-
-            else {
+            } else {
                 type_of_adverse_event.add(" ");
             }
 
@@ -1326,7 +1329,7 @@ public class ReportDao extends AbstractDao {
         List<Integer> res = readData(sql, map);
 
 
-        if (res != null && res.size() > 0 && res.get(0) != null) {
+        if (res != null && !res.isEmpty() && res.get(0) != null) {
             return res.get(0);
         } else
             return 0;
@@ -1337,13 +1340,6 @@ public class ReportDao extends AbstractDao {
             startDate, Date endDate) {
         String reportDateString = simpleDateFormat.format(reportDate);
         String sql = "";
-
-//        sql = "SELECT indicator_value\n" +
-//                "FROM indicator_daily_tally\n" +
-//                "WHERE indicator_code = '" + indicatorCode + "'\n" +
-//                "  AND date((substr('" + reportDateString + "', 7, 4) || '-' || substr('" + reportDateString + "', 4, 2) || '-' || '01')) = date((substr(day, 1, 4) || '-' || substr(day, 6, 2) || '-' || '01'))\n" +
-//                "ORDER BY day DESC LIMIT 1";
-
         if (startDate != null && endDate != null) {
             // implement later
         } else {
@@ -1360,7 +1356,7 @@ public class ReportDao extends AbstractDao {
         List<Integer> res = readData(sql, map);
 
 
-        if (res != null && res.size() > 0 && res.get(0) != null) {
+        if (res != null && !res.isEmpty() && res.get(0) != null) {
             return res.get(0);
         } else
             return 0;
@@ -1371,10 +1367,24 @@ public class ReportDao extends AbstractDao {
         String sql = " SELECT month FROM monthly_tallies ORDER by month DESC LIMIT 1";
         DataMap<String> map = cursor -> getCursorValue(cursor, "month");
         List<String> res = readData(sql, map);
-        if (res != null && res.size() > 0 && res.get(0) != null) {
+        if (res != null && !res.isEmpty() && res.get(0) != null) {
             return res.get(0);
         } else
             return null;
+    }
+
+    public static List<CHW> getChwsLastSyncDate() {
+        String sql = " SELECT * FROM ec_providers_last_sync_date WHERE base_entity_id != '" + Utils.getAllSharedPreferences().fetchRegisteredANM() + "'";
+
+        DataMap<CHW> map = cursor -> {
+            String chwUserName = cursor.getString(cursor.getColumnIndex("base_entity_id"));
+            long lastSyncTimestamp = cursor.getLong(cursor.getColumnIndex("last_sync_date"));
+            Date date = new Date(lastSyncTimestamp);
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+            return new CHW(chwUserName, sdf.format(date));
+        };
+
+        return readData(sql, map);
     }
 
 }
