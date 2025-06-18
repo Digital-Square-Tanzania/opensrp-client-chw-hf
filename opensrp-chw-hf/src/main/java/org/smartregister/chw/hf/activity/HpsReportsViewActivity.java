@@ -70,7 +70,7 @@ public class HpsReportsViewActivity extends HfReportsViewActivity {
         Dhis2Report dhis2Report = new Dhis2Report();
         dhis2Report.setDataValues(dhisDataValues);
         dhis2Report.setCompleteDate(new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date()));
-        dhis2Report.setPeriod(new SimpleDateFormat("yyyyMM", Locale.getDefault()).format(new Date()));
+        dhis2Report.setPeriod(new SimpleDateFormat("yyyyMM", Locale.getDefault()).format(ReportUtils.getReportDate()));
         dhis2Report.setOrgUnit(getAllSharedPreferences().getPreference(HFR_CODE).replace("HFR Code: ", ""));
         dhis2Report.setDataSet("AV47sHdUAav");
         return dhis2Report;
