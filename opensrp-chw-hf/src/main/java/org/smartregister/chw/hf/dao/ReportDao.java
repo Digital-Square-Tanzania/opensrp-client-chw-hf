@@ -6,7 +6,11 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.smartregister.chw.hf.domain.CHW;
+import org.smartregister.chw.hf.domain.dhis2_reports.DhisDataValues;
 import org.smartregister.dao.AbstractDao;
 import org.smartregister.family.util.Utils;
 
@@ -14,6 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -1385,6 +1390,54 @@ public class ReportDao extends AbstractDao {
         };
 
         return readData(sql, map);
+    }
+
+    public static List<DhisDataValues> getDhisDataValues(JSONObject reportObject) {
+        List<DhisDataValues> dhisDataValues = new ArrayList<>();
+        Iterator<String> keys = reportObject.keys();
+        while (keys.hasNext()) {
+            String key = keys.next();
+            int value = 0;
+            try {
+                value = reportObject.getInt(key);
+            } catch (JSONException e) {
+                Timber.e(e);
+            }
+            String sql = "SELECT expected_indicators\n" +
+                    "FROM indicator_queries\n" +
+                    "WHERE indicator_code = '" + key + "'";
+
+            DataMap<JSONArray> map = cursor -> {
+                String categoryOptionComboUidDataElementUidArrayString = cursor.getString(cursor.getColumnIndex("expected_indicators"));
+
+                JSONArray categoryOptionComboUidDataElementUidArray = null;
+                try {
+                    categoryOptionComboUidDataElementUidArray = new JSONArray(categoryOptionComboUidDataElementUidArrayString);
+                } catch (JSONException e) {
+                    Timber.e(e);
+                    return null;
+                }
+                return categoryOptionComboUidDataElementUidArray;
+            };
+            List<JSONArray> res = readData(sql, map);
+            if (res != null && !res.isEmpty()) {
+                DhisDataValues dhisDataValue = new DhisDataValues();
+                try {
+                    dhisDataValue.setCategoryOptionCombo(res.get(0).getString(0));
+                    dhisDataValue.setDataElement(res.get(0).getString(1));
+                } catch (JSONException e) {
+                    Timber.e(e);
+                }
+
+                dhisDataValue.setValue(value);
+                dhisDataValues.add(dhisDataValue);
+            } else {
+                Timber.d("%s has no expected_indicators", key);
+            }
+        }
+
+        return dhisDataValues;
+
     }
 
 }

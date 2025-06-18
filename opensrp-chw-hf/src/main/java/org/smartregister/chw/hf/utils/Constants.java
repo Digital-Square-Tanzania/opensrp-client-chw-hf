@@ -114,6 +114,8 @@ public class Constants extends CoreConstants {
         public static final String PMTCT_POST_PNC_REGISTRATION = "PMTCT Post PNC Registration";
 
         public static final String FP_ECP_SCREENING = "FP ECP Screening";
+
+        public static final String SEND_MONTHLY_MTUHA_BOOK_3_TO_DHIS2 = "Send MTUHA BOOK3 Report To DHIS2";
     }
 
     public static final class TableName {
@@ -734,6 +736,10 @@ public class Constants extends CoreConstants {
             String HIV_TEST_RESULT = "hiv_test_result";
             String HIV_TEST_RESULT_DATE = "hiv_test_result_date";
             String CTC_NUMBER = "ctc_number";
+
+            String REPORT_DATA = "report_data";
+
+            String REPORT_DHIS_PAYLOAD = "dhis2_payload";
         }
 
         public interface ClinicFindings{

@@ -20,6 +20,7 @@ import androidx.webkit.WebViewAssetLoader;
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 import org.json.JSONException;
+import org.smartregister.chw.hf.activity.HpsReportsViewActivity;
 import org.smartregister.chw.hf.domain.AsrhMonthlyReportObject;
 import org.smartregister.chw.hf.domain.FpMonthlyReportObject;
 import org.smartregister.chw.hf.domain.SbcReportObject;
@@ -781,6 +782,7 @@ public class ReportUtils {
     public static class HpsReports {
         public static String computeClientsReports(Date startDate) {
             HpsMonthlyReportObject hpsMonthlyReportObject = new HpsMonthlyReportObject(startDate);
+            HpsReportsViewActivity.hpsMonthlyReportObject = hpsMonthlyReportObject;
             try {
                 return hpsMonthlyReportObject.getIndicatorDataAsGson(hpsMonthlyReportObject.getIndicatorData());
             } catch (JSONException e) {

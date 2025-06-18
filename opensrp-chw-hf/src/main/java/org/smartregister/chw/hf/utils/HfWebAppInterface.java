@@ -37,7 +37,7 @@ public class HfWebAppInterface {
 
     private static final String DEFAULT_LOCALITY_NAME = "dfltLocName";
 
-    private static final String HFR_CODE = "userLocAttribute";
+    public static final String HFR_CODE = "userLocAttribute";
 
     Context mContext;
 

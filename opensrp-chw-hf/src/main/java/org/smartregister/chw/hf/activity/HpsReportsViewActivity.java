@@ -1,5 +1,8 @@
 package org.smartregister.chw.hf.activity;
 
+import static org.smartregister.chw.hf.utils.HfWebAppInterface.HFR_CODE;
+import static org.smartregister.util.Utils.getAllSharedPreferences;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -9,17 +12,42 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.smartregister.chw.anc.util.NCUtils;
+import org.smartregister.chw.core.dao.ChwNotificationDao;
+import org.smartregister.chw.core.utils.CoreConstants;
+import org.smartregister.chw.hf.BuildConfig;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.adapter.CHWAdapter;
 import org.smartregister.chw.hf.dao.ReportDao;
 import org.smartregister.chw.hf.domain.CHW;
+import org.smartregister.chw.hf.domain.dhis2_reports.Dhis2Report;
+import org.smartregister.chw.hf.domain.dhis2_reports.DhisDataValues;
+import org.smartregister.chw.hf.domain.hps_reports.HpsMonthlyReportObject;
 import org.smartregister.chw.hf.utils.Constants;
+import org.smartregister.chw.hf.utils.JsonFormUtils;
+import org.smartregister.clientandeventmodel.Event;
+import org.smartregister.clientandeventmodel.Obs;
+import org.smartregister.family.util.Utils;
+import org.smartregister.repository.AllSharedPreferences;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.UUID;
+
+import timber.log.Timber;
 
 
 public class HpsReportsViewActivity extends HfReportsViewActivity {
+    public static HpsMonthlyReportObject hpsMonthlyReportObject;
 
     public static void startMe(Activity activity, String reportPath, int reportTitle, String reportDate) {
         Intent intent = new Intent(activity, HpsReportsViewActivity.class);
@@ -28,6 +56,69 @@ public class HpsReportsViewActivity extends HfReportsViewActivity {
         intent.putExtra(ARG_REPORT_TITLE, reportTitle);
         intent.putExtra(ARG_REPORT_TYPE, Constants.ReportConstants.ReportTypes.HPS_REPORT);
         activity.startActivity(intent);
+    }
+
+    public void generateSendToDhis2Event(String baseEntityId, Context context) throws JSONException {
+        Dhis2Report dhis2Report = getReport();
+        AllSharedPreferences sharedPreferences = getAllSharedPreferences();
+        Event baseEvent = (Event) new Event()
+                .withBaseEntityId(baseEntityId)
+                .withEventDate(new Date())
+                .withEventType(Constants.Events.SEND_MONTHLY_MTUHA_BOOK_3_TO_DHIS2)
+                .withFormSubmissionId(org.smartregister.util.JsonFormUtils.generateRandomUUIDString())
+                .withProviderId(sharedPreferences.fetchRegisteredANM())
+                .withLocationId(ChwNotificationDao.getSyncLocationId(baseEntityId))
+                .withTeamId(sharedPreferences.fetchDefaultTeamId(sharedPreferences.fetchRegisteredANM()))
+                .withTeam(sharedPreferences.fetchDefaultTeam(sharedPreferences.fetchRegisteredANM()))
+                .withClientDatabaseVersion(BuildConfig.DATABASE_VERSION)
+                .withClientApplicationVersion(BuildConfig.VERSION_CODE)
+                .withDateCreated(new Date());
+
+        baseEvent.addObs((new Obs())
+                .withFormSubmissionField(Constants.FormConstants.FormSubmissionFields.REPORT_DATA)
+                .withValue(hpsMonthlyReportObject.getIndicatorData())
+                .withFieldCode(Constants.FormConstants.FormSubmissionFields.REPORT_DATA)
+                .withFieldType(CoreConstants.FORMSUBMISSION_FIELD).withFieldDataType(CoreConstants.TEXT).withParentCode("")
+                .withHumanReadableValues(new ArrayList<>()));
+
+        baseEvent.addObs((new Obs())
+                .withFormSubmissionField(Constants.FormConstants.FormSubmissionFields.REPORT_DHIS_PAYLOAD)
+                .withValue(new Gson().toJson(dhis2Report))
+                .withFieldCode(Constants.FormConstants.FormSubmissionFields.REPORT_DHIS_PAYLOAD)
+                .withFieldType(CoreConstants.FORMSUBMISSION_FIELD).withFieldDataType(CoreConstants.TEXT).withParentCode("")
+                .withHumanReadableValues(new ArrayList<>()));
+
+
+        JsonFormUtils.tagSyncMetadata(Utils.context().allSharedPreferences(), baseEvent);
+        try {
+            NCUtils.processEvent(baseEvent.getBaseEntityId(), new JSONObject(org.smartregister.chw.anc.util.JsonFormUtils.gson.toJson(baseEvent)));
+        } catch (Exception e) {
+            Timber.e(e);
+        }
+        Intent intent = new Intent(context, PncRegisterActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        context.startActivity(intent);
+        ((HpsReportsViewActivity) context).finish();
+    }
+
+    public Dhis2Report getReport() {
+        JSONObject jsonObject;
+        try {
+            jsonObject = hpsMonthlyReportObject.getIndicatorData();
+            List<DhisDataValues> dhisDataValues = ReportDao.getDhisDataValues(jsonObject);
+
+            Dhis2Report dhis2Report = new Dhis2Report();
+            dhis2Report.setDataValues(dhisDataValues);
+            dhis2Report.setCompleteDate(new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date()));
+            dhis2Report.setPeriod(new SimpleDateFormat("yyyyMM", Locale.getDefault()).format(new Date()));
+            dhis2Report.setOrgUnit(getAllSharedPreferences().getPreference(HFR_CODE).replace("HFR Code: ", ""));
+            dhis2Report.setDataSet("AV47sHdUAav");
+            return dhis2Report;
+        } catch (JSONException e) {
+            Timber.e(e);
+        }
+        return null;
+
     }
 
     @Override
@@ -46,6 +137,12 @@ public class HpsReportsViewActivity extends HfReportsViewActivity {
             showCHWPopup(this, ReportDao.getChwsLastSyncDate());
             return true;
         } else if (itemId == R.id.action_upload_to_dhis2) {
+            try {
+                generateSendToDhis2Event(UUID.randomUUID().toString(), this);
+            } catch (JSONException e) {
+                Timber.e(e);
+                Toast.makeText(this, "Failed to upload data to DHIS2", Toast.LENGTH_LONG).show();
+            }
             return true;
         }
         return true;
