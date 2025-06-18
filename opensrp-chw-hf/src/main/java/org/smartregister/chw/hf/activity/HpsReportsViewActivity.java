@@ -76,7 +76,7 @@ public class HpsReportsViewActivity extends HfReportsViewActivity {
 
         baseEvent.addObs((new Obs())
                 .withFormSubmissionField(Constants.FormConstants.FormSubmissionFields.REPORT_DATA)
-                .withValue(hpsMonthlyReportObject.getIndicatorData())
+                .withValue(hpsMonthlyReportObject.getIndicatorData().toString())
                 .withFieldCode(Constants.FormConstants.FormSubmissionFields.REPORT_DATA)
                 .withFieldType(CoreConstants.FORMSUBMISSION_FIELD).withFieldDataType(CoreConstants.TEXT).withParentCode("")
                 .withHumanReadableValues(new ArrayList<>()));
@@ -95,10 +95,11 @@ public class HpsReportsViewActivity extends HfReportsViewActivity {
         } catch (Exception e) {
             Timber.e(e);
         }
-        Intent intent = new Intent(context, PncRegisterActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        context.startActivity(intent);
-        ((HpsReportsViewActivity) context).finish();
+
+//        Intent intent = new Intent(context, PncRegisterActivity.class);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//        context.startActivity(intent);
+//        ((HpsReportsViewActivity) context).finish();
     }
 
     public Dhis2Report getReport() {
@@ -137,12 +138,7 @@ public class HpsReportsViewActivity extends HfReportsViewActivity {
             showCHWPopup(this, ReportDao.getChwsLastSyncDate());
             return true;
         } else if (itemId == R.id.action_upload_to_dhis2) {
-            try {
-                generateSendToDhis2Event(UUID.randomUUID().toString(), this);
-            } catch (JSONException e) {
-                Timber.e(e);
-                Toast.makeText(this, "Failed to upload data to DHIS2", Toast.LENGTH_LONG).show();
-            }
+            showConfirmationPopupWithProgress(this, ReportDao.getChwsLastSyncDate());
             return true;
         }
         return true;
@@ -162,6 +158,48 @@ public class HpsReportsViewActivity extends HfReportsViewActivity {
         builder.setView(listView);
         builder.setPositiveButton("Close", (dialog, which) -> dialog.dismiss());
 
+        builder.create().show();
+    }
+
+    private void showConfirmationPopupWithProgress(Context context, List<CHW> chwList) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("CHWs Sync Status");
+        builder.setMessage("Please confirm that all data is complete and up-to-date based on the CHWs' last sync dates before proceeding.");
+
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View view = inflater.inflate(android.R.layout.list_content, null);
+
+        ListView listView = new ListView(context);
+        CHWAdapter adapter = new CHWAdapter(context, chwList);
+        listView.setAdapter(adapter);
+
+        builder.setView(listView);
+        builder.setPositiveButton("Proceed", (dialog, which) -> {
+            AlertDialog progressDialog = new AlertDialog.Builder(context)
+                .setTitle("Uploading")
+                .setMessage("Please wait while data to be sent to DHIS2 is being generated...")
+                .setCancelable(false)
+                .create();
+            progressDialog.show();
+
+            new Thread(() -> {
+                try {
+                    generateSendToDhis2Event(UUID.randomUUID().toString(), context);
+                    ((Activity) context).runOnUiThread(() -> {
+                        progressDialog.dismiss();
+                        Toast.makeText(context, "Data successfully generated", Toast.LENGTH_LONG).show();
+                    });
+                } catch (JSONException e) {
+                    Timber.e(e);
+                    ((Activity) context).runOnUiThread(() -> {
+                        progressDialog.dismiss();
+                        Toast.makeText(context, "Failed to generate data to be sent to DHIS2", Toast.LENGTH_LONG).show();
+                    });
+                }
+            }).start();
+        });
+
+        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
         builder.create().show();
     }
 }
