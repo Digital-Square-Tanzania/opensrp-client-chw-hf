@@ -3,8 +3,11 @@ package org.smartregister.chw.hf.dao;
 import android.annotation.SuppressLint;
 import android.database.Cursor;
 import android.util.Log;
+import android.util.Pair;
 
 import androidx.annotation.NonNull;
+
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -16,6 +19,8 @@ import org.smartregister.family.util.Utils;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -1394,45 +1399,76 @@ public class ReportDao extends AbstractDao {
 
     public static List<DhisDataValues> getDhisDataValues(JSONObject reportObject) {
         List<DhisDataValues> dhisDataValues = new ArrayList<>();
-        Iterator<String> keys = reportObject.keys();
-        while (keys.hasNext()) {
-            String key = keys.next();
+
+        // 1) Gather all keys from the JSON
+        List<String> codes = new ArrayList<>();
+        Iterator<String> keyIter = reportObject.keys();
+        while (keyIter.hasNext()) {
+            codes.add(keyIter.next());
+        }
+        if (codes.isEmpty()) {
+            return dhisDataValues;
+        }
+
+        // 2) Build a quoted, comma-separated list for SQL IN (...)
+        StringBuilder inClause = new StringBuilder();
+        for (int i = 0; i < codes.size(); i++) {
+            inClause.append("'").append(codes.get(i)).append("'");
+            if (i < codes.size() - 1) inClause.append(",");
+        }
+
+        // 3) Single query for all expected_indicators
+        String sql = "SELECT indicator_code, expected_indicators " +
+                "FROM indicator_queries " +
+                "WHERE indicator_code IN (" + inClause + ") AND expected_indicators IS NOT NULL";
+
+        // 4) Map each row into a Pair<code, JSONArray>
+        DataMap<Pair<String, List<String>>> mapper = cursor -> {
+            String code = cursor.getString(cursor.getColumnIndex("indicator_code"));
+            String jsonStr = cursor.getString(cursor.getColumnIndex("expected_indicators"));
+            Gson gson = new Gson();
+            List<String> indicators;
+            try {
+                // Parse JSON array text into a String[]
+                indicators = Arrays.asList(gson.fromJson(jsonStr, String[].class));
+            } catch (Exception e) {
+                Timber.e(e);
+                indicators = Collections.emptyList();
+            }
+            return new Pair<>(code, indicators);
+        };
+
+        List<Pair<String, List<String>>> results = readData(sql, mapper);
+
+        // 5) Build a lookup map
+        Map<String,List<String>> expectedMap = new HashMap<>();
+        for (Pair<String,List<String>> pair : results) {
+            if (pair.first != null && pair.second != null) {
+                expectedMap.put(pair.first, pair.second);
+            }
+        }
+
+        // 6) Loop keys again, assemble DhisDataValues
+        for (String code : codes) {
             int value = 0;
             try {
-                value = reportObject.getInt(key);
+                value = reportObject.getInt(code);
             } catch (JSONException e) {
                 Timber.e(e);
             }
-            String sql = "SELECT expected_indicators\n" +
-                    "FROM indicator_queries\n" +
-                    "WHERE indicator_code = '" + key + "'";
-
-            DataMap<JSONArray> map = cursor -> {
-                String categoryOptionComboUidDataElementUidArrayString = cursor.getString(cursor.getColumnIndex("expected_indicators"));
-
-                JSONArray categoryOptionComboUidDataElementUidArray = null;
+            List<String> arr = expectedMap.get(code);
+            if (arr != null && arr.size() >= 2) {
+                DhisDataValues ddv = new DhisDataValues();
                 try {
-                    categoryOptionComboUidDataElementUidArray = new JSONArray(categoryOptionComboUidDataElementUidArrayString);
-                } catch (JSONException e) {
-                    Timber.e(e);
-                    return null;
+                    ddv.setCategoryOptionCombo(arr.get(0));
+                    ddv.setDataElement(arr.get(1));
+                } catch (Exception ex) {
+                    Timber.e(ex);
                 }
-                return categoryOptionComboUidDataElementUidArray;
-            };
-            List<JSONArray> res = readData(sql, map);
-            if (res != null && !res.isEmpty()) {
-                DhisDataValues dhisDataValue = new DhisDataValues();
-                try {
-                    dhisDataValue.setCategoryOptionCombo(res.get(0).getString(0));
-                    dhisDataValue.setDataElement(res.get(0).getString(1));
-                } catch (JSONException e) {
-                    Timber.e(e);
-                }
-
-                dhisDataValue.setValue(value);
-                dhisDataValues.add(dhisDataValue);
+                ddv.setValue(value);
+                dhisDataValues.add(ddv);
             } else {
-                Timber.d("%s has no expected_indicators", key);
+                Timber.d("%s has no expected_indicators", code);
             }
         }
 
