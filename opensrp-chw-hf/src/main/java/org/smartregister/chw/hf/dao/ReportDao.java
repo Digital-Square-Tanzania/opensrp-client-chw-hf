@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 
 import com.google.gson.Gson;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.hf.domain.CHW;
@@ -1384,10 +1383,12 @@ public class ReportDao extends AbstractDao {
     }
 
     public static List<CHW> getChwsLastSyncDate() {
-        String sql = " SELECT * FROM ec_providers_last_sync_date WHERE base_entity_id != '" + Utils.getAllSharedPreferences().fetchRegisteredANM() + "'";
+        String sql = " SELECT * FROM ec_providers_last_sync_date " +
+                "INNER JOIN provider ON provider.username = ec_providers_last_sync_date.base_entity_id " +
+                "WHERE base_entity_id != '" + Utils.getAllSharedPreferences().fetchRegisteredANM() + "'";
 
         DataMap<CHW> map = cursor -> {
-            String chwUserName = cursor.getString(cursor.getColumnIndex("base_entity_id"));
+            String chwUserName = cursor.getString(cursor.getColumnIndex("first_name")) + " " + cursor.getString(cursor.getColumnIndex("middle_name")) + " " + cursor.getString(cursor.getColumnIndex("last_name"));
             long lastSyncTimestamp = cursor.getLong(cursor.getColumnIndex("last_sync_date"));
             Date date = new Date(lastSyncTimestamp);
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
@@ -1441,8 +1442,8 @@ public class ReportDao extends AbstractDao {
         List<Pair<String, List<String>>> results = readData(sql, mapper);
 
         // 5) Build a lookup map
-        Map<String,List<String>> expectedMap = new HashMap<>();
-        for (Pair<String,List<String>> pair : results) {
+        Map<String, List<String>> expectedMap = new HashMap<>();
+        for (Pair<String, List<String>> pair : results) {
             if (pair.first != null && pair.second != null) {
                 expectedMap.put(pair.first, pair.second);
             }

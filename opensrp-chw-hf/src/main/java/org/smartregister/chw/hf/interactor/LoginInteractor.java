@@ -15,6 +15,7 @@ import org.smartregister.chw.hf.job.ProcessVisitsServiceJob;
 import org.smartregister.chw.hf.job.PullUniqueLabTestSampleTrackingIdsServiceJob;
 import org.smartregister.chw.hf.repository.UniqueLabTestSampleTrackingIdRepository;
 import org.smartregister.immunization.job.VaccineServiceJob;
+import org.smartregister.job.BaseWorker;
 import org.smartregister.job.ImageUploadServiceJob;
 import org.smartregister.job.P2pServiceJob;
 import org.smartregister.job.PlanIntentServiceJob;
@@ -25,6 +26,8 @@ import org.smartregister.job.SyncServiceJob;
 import org.smartregister.job.SyncTaskServiceJob;
 import org.smartregister.login.interactor.BaseLoginInteractor;
 import org.smartregister.view.contract.BaseLoginContract;
+import org.smartregister.worker.ProvidersSyncServiceWorker;
+import org.smartregister.worker.SyncServiceWorker;
 
 import java.util.concurrent.TimeUnit;
 
@@ -99,5 +102,11 @@ public class LoginInteractor extends BaseLoginInteractor implements BaseLoginCon
             P2pServiceJob.scheduleJobImmediately(P2pServiceJob.TAG);
         }
         new UniqueLabTestSampleTrackingIdRepository().releaseReservedIds();
+
+        BaseWorker.scheduleJobImmediately(
+                getApplicationContext(),
+                ProvidersSyncServiceWorker.TAG,
+                ProvidersSyncServiceWorker.class
+        );
     }
 }

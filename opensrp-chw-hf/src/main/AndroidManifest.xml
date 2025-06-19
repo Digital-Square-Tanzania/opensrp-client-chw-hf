@@ -669,6 +669,8 @@
             android:foregroundServiceType="dataSync"/>
         <service android:name=".sync.intent.CloseVmmcMembershipIntentService"
             android:foregroundServiceType="dataSync"/>
+        <service android:name="org.smartregister.sync.intent.ProvidersSyncIntentService"
+            android:foregroundServiceType="dataSync"/>
 
         <service android:name=".sync.intent.PullUniqueLabTestSampleTrackingIdsIntentService"
             android:foregroundServiceType="dataSync"/>
