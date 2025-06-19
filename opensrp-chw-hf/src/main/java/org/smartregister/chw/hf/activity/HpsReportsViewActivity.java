@@ -50,6 +50,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.ExecutionException;
 
+import java.util.Calendar;
+
 import timber.log.Timber;
 
 
@@ -82,7 +84,7 @@ public class HpsReportsViewActivity extends HfReportsViewActivity {
 
         reportFuture = executor.submit(() -> {
             try {
-                Thread.sleep(5000); // wait for 5 seconds
+                Thread.sleep(2000); // wait for 5 seconds
             } catch (InterruptedException ie) {
                 Thread.currentThread().interrupt();
                 Timber.e(ie);
@@ -162,7 +164,20 @@ public class HpsReportsViewActivity extends HfReportsViewActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.reports_view_menu, menu);
         menu.findItem(R.id.action_view_chw_sync_status).setVisible(true);
-        menu.findItem(R.id.action_upload_to_dhis2).setVisible(true);
+
+
+        // menu.findItem(R.id.action_upload_to_dhis2).setVisible(true);
+        Calendar current = Calendar.getInstance();
+        Calendar report = Calendar.getInstance();
+        report.setTime(ReportUtils.getReportDate());
+
+        boolean isPastMonth = report.get(Calendar.YEAR) < current.get(Calendar.YEAR) ||
+                (report.get(Calendar.YEAR) == current.get(Calendar.YEAR) &&
+                report.get(Calendar.MONTH) < current.get(Calendar.MONTH));
+
+        if (isPastMonth) {
+            menu.findItem(R.id.action_upload_to_dhis2).setVisible(true);
+        }
 
         return true;
     }
