@@ -26,6 +26,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 
 import timber.log.Timber;
 
@@ -1342,6 +1343,46 @@ public class ReportDao extends AbstractDao {
             return res.get(0);
         } else
             return 0;
+    }
+
+    /**
+     * Bulk fetches indicator values for the given codes and dates.
+     */
+    public static Map<String, Integer> getReportPerIndicatorCodesBulk(Map<String, Date> indicatorsWithDates) {
+        Map<String, Integer> result = new HashMap<>();
+        if (indicatorsWithDates.isEmpty()) return result;
+
+        StringBuilder inClause = new StringBuilder();
+        Set<String> keys = indicatorsWithDates.keySet();
+        for (String key : keys) {
+            inClause.append("'").append(key).append("',");
+        }
+        inClause.setLength(inClause.length() - 1); // remove trailing comma
+
+        String sql = "SELECT indicator_code, indicator_value, day FROM indicator_daily_tally " +
+                "WHERE indicator_code IN (" + inClause.toString() + ")";
+
+        DataMap<Pair<String, Pair<String, Integer>>> map = cursor -> {
+            String code = cursor.getString(cursor.getColumnIndex("indicator_code"));
+            String day = cursor.getString(cursor.getColumnIndex("day"));
+            int value = getCursorIntValue(cursor, "indicator_value");
+            return new Pair<>(code, new Pair<>(day, value));
+        };
+
+        List<Pair<String, Pair<String, Integer>>> rawResults = readData(sql, map);
+
+        for (Pair<String, Pair<String, Integer>> pair : rawResults) {
+            String code = pair.first;
+            String day = pair.second.first;
+            Integer value = pair.second.second;
+            Date expected = indicatorsWithDates.get(code);
+            if (day != null && expected != null &&
+                    day.substring(0, 7).equals(new java.text.SimpleDateFormat("yyyy-MM").format(expected))) {
+                result.put(code, value);
+            }
+        }
+
+        return result;
     }
 
     //    for vmmc reports
