@@ -157,69 +157,689 @@
         }
       },
       {
-        "key": "side_effects",
+        "key": "side_effects_iucd",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "side_effects",
+        "openmrs_entity_id": "side_effects_iucd",
         "openmrs_data_type": "select one",
         "type": "check_box",
         "combine_checkbox_option_values": "true",
-        "label": "What are the side effects?",
-        "hint": "What are the side effects?",
+        "label": "IUCD - Common Side Effects",
+        "hint": "Select IUCD side effects",
+        "options": [
+          {
+            "key": "prolonged_bleeding",
+            "text": "Prolonged and heavy monthly bleeding",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "iucd_prolonged_bleeding"
+          },
+          {
+            "key": "irregular_bleeding",
+            "text": "Irregular bleeding",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "iucd_irregular_bleeding"
+          },
+          {
+            "key": "cramps",
+            "text": "More cramps and pain during monthly bleeding",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "iucd_cramps"
+          },
+          {
+            "key": "other",
+            "text": "Other specify",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "iucd_other"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "fp_method_satisfaction_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "side_effects_implants",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "side_effects_implants",
+        "openmrs_data_type": "select one",
+        "type": "check_box",
+        "combine_checkbox_option_values": "true",
+        "label": "Implants - Common Side Effects",
+        "hint": "Select Implant side effects",
+        "options": [
+          {
+            "key": "irregular_bleeding",
+            "text": "Irregular bleeding",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "implants_irregular_bleeding"
+          },
+          {
+            "key": "lighter_bleeding",
+            "text": "Lighter bleeding",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "implants_lighter_bleeding"
+          },
+          {
+            "key": "no_bleeding",
+            "text": "No monthly bleeding",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "implants_no_bleeding"
+          },
+          {
+            "key": "headaches",
+            "text": "Headaches",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "implants_headaches"
+          },
+          {
+            "key": "abdominal_pain",
+            "text": "Abdominal pain",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "implants_abdominal_pain"
+          },
+          {
+            "key": "weight_change",
+            "text": "Weight change",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "implants_weight_change"
+          },
+          {
+            "key": "dizziness",
+            "text": "Dizziness",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "implants_dizziness"
+          },
+          {
+            "key": "nausea",
+            "text": "Nausea",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "implants_nausea"
+          },
+          {
+            "key": "breast_tenderness",
+            "text": "Breast tenderness",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "implants_breast_tenderness"
+          },
+          {
+            "key": "mood_change",
+            "text": "Mood change",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "implants_mood_change"
+          },
+          {
+            "key": "acne",
+            "text": "Acne (can worsen or improve)",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "implants_acne"
+          },
+          {
+            "key": "other",
+            "text": "Other specify",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "implants_other"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "fp_method_satisfaction_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "side_effects_coc",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "side_effects_coc",
+        "openmrs_data_type": "select one",
+        "type": "check_box",
+        "combine_checkbox_option_values": "true",
+        "label": "COC - Common Side Effects",
+        "hint": "Select COC side effects",
+        "options": [
+          {
+            "key": "lighter_bleeding",
+            "text": "Lighter bleeding",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "coc_lighter_bleeding"
+          },
+          {
+            "key": "irregular_bleeding",
+            "text": "Irregular bleeding",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "coc_irregular_bleeding"
+          },
+          {
+            "key": "nausea",
+            "text": "Nausea",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "coc_nausea"
+          },
+          {
+            "key": "breast_tenderness",
+            "text": "Breast tenderness",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "coc_breast_tenderness"
+          },
+          {
+            "key": "weight_change",
+            "text": "Weight change",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "coc_weight_change"
+          },
+          {
+            "key": "mood_change",
+            "text": "Mood change",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "coc_mood_change"
+          },
+          {
+            "key": "headaches",
+            "text": "Headaches",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "coc_headaches"
+          },
+          {
+            "key": "other",
+            "text": "Other specify",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "coc_other"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "fp_method_satisfaction_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "side_effects_iud",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "side_effects_iud",
+        "type": "check_box",
+        "combine_checkbox_option_values": "true",
+        "label": "IUD - Common Side Effects",
+        "hint": "Select IUD side effects",
+        "options": [
+          {
+            "key": "prolonged_bleeding",
+            "text": "Prolonged and heavy monthly bleeding",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "iud_prolonged_bleeding"
+          },
+          {
+            "key": "irregular_bleeding",
+            "text": "Irregular bleeding",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "iud_irregular_bleeding"
+          },
+          {
+            "key": "more_cramps",
+            "text": "More cramps and pain during monthly bleeding",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "iud_more_cramps"
+          },
+          {
+            "key": "other",
+            "text": "Other specify",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "iud_other"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "fp_method_satisfaction_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "side_effects_lam",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "side_effects_lam",
+        "type": "check_box",
+        "combine_checkbox_option_values": "true",
+        "label": "Specify side effects",
+        "options": [
+          {
+            "key": "other",
+            "text": "Other specify",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "female_condom_other_complication"
+          }
+        ],
+        "hint": "Specify side effects"
+      },
+      {
+        "key": "side_effects_sdm",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "side_effects_sdm",
+        "type": "check_box",
+        "combine_checkbox_option_values": "true",
+        "label": "Specify side effects",
+        "options": [
+          {
+            "key": "other",
+            "text": "Other specify",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "female_condom_other_complication"
+          }
+        ],
+        "hint": "Specify SDM side effects"
+      },
+      {
+        "key": "side_effects_pop",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "side_effects_pop",
+        "type": "check_box",
+        "combine_checkbox_option_values": "true",
+        "label": "POP - Common Side Effects",
+        "hint": "Select POP side effects",
+        "options": [
+          {
+            "key": "lighter_bleeding",
+            "text": "Lighter bleeding",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "pop_lighter_bleeding"
+          },
+          {
+            "key": "irregular_bleeding",
+            "text": "Irregular bleeding",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "pop_irregular_bleeding"
+          },
+          {
+            "key": "infrequent_bleeding",
+            "text": "Infrequent bleeding",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "pop_infrequent_bleeding"
+          },
+          {
+            "key": "no_monthly_bleeding",
+            "text": "No monthly bleeding",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "pop_no_bleeding"
+          },
+          {
+            "key": "headaches_dizziness",
+            "text": "Headaches, dizziness",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "pop_headache_dizzy"
+          },
+          {
+            "key": "mood_changes",
+            "text": "Mood changes",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "pop_mood_changes"
+          },
+          {
+            "key": "breast_tenderness",
+            "text": "Breast tenderness",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "pop_breast_tenderness"
+          },
+          {
+            "key": "abdominal_pain",
+            "text": "Abdominal pain",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "pop_abdominal_pain"
+          },
+          {
+            "key": "nausea",
+            "text": "Nausea",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "pop_nausea"
+          },
+          {
+            "key": "other",
+            "text": "Other specify",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "pop_other"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "fp_method_satisfaction_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "side_effects_ecp",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "side_effects_ecp",
+        "type": "check_box",
+        "combine_checkbox_option_values": "true",
+        "label": "ECP - Common Side Effects",
+        "hint": "Select ECP side effects",
+        "options": [
+          {
+            "key": "nausea",
+            "text": "Nausea",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "ecp_nausea"
+          },
+          {
+            "key": "abdominal_pain",
+            "text": "Abdominal pain",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "ecp_abdominal_pain"
+          },
+          {
+            "key": "fatigue",
+            "text": "Fatigue",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "ecp_fatigue"
+          },
+          {
+            "key": "headaches",
+            "text": "Headaches",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "ecp_headaches"
+          },
+          {
+            "key": "breast_tenderness",
+            "text": "Breast tenderness",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "ecp_breast_tenderness"
+          },
+          {
+            "key": "dizziness",
+            "text": "Dizziness",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "ecp_dizziness"
+          },
+          {
+            "key": "vomiting",
+            "text": "Vomiting",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "ecp_vomiting"
+          },
+          {
+            "key": "bleeding_pattern",
+            "text": "Changes in bleeding patterns",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "ecp_bleeding_pattern"
+          },
+          {
+            "key": "other",
+            "text": "Other specify",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "ecp_other"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "fp_method_satisfaction_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "side_effects_depo",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "side_effects_depo",
+        "type": "check_box",
+        "combine_checkbox_option_values": "true",
+        "label": "DEPO - Common Side Effects",
+        "hint": "Select DEPO side effects",
+        "options": [
+          {
+            "key": "irregular_bleeding",
+            "text": "Irregular and/or prolonged bleeding",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "depo_irregular_bleeding"
+          },
+          {
+            "key": "no_bleeding",
+            "text": "Infrequent bleeding or complete absence of bleeding",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "depo_no_bleeding"
+          },
+          {
+            "key": "weight_gain",
+            "text": "Weight gain",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "depo_weight_gain"
+          },
+          {
+            "key": "headaches_dizziness",
+            "text": "Headaches, dizziness",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "depo_headaches_dizziness"
+          },
+          {
+            "key": "mood_changes",
+            "text": "Mood changes",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "depo_mood_changes"
+          },
+          {
+            "key": "less_sex_drive",
+            "text": "Less sex drive",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "depo_low_libido"
+          },
+          {
+            "key": "other",
+            "text": "Other specify",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "depo_other"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "fp_method_satisfaction_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "side_effects_male_condom",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "side_effects_male_condom",
+        "type": "check_box",
+        "combine_checkbox_option_values": "true",
+        "label": "Male Condom - Common Side Effects",
+        "hint": "Select Male Condom side effects",
+        "options": [
+          {
+            "key": "allergic_reactions",
+            "text": "Allergic reactions",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "male_condom_allergic_reactions"
+          },
+          {
+            "key": "discomfort",
+            "text": "Discomfort",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "male_condom_discomfort"
+          },
+          {
+            "key": "reduced_sensitivity",
+            "text": "Reduced sensitivity",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "male_condom_reduced_sensitivity"
+          },
+          {
+            "key": "other",
+            "text": "Other specify",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "male_condom_other"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "fp_method_satisfaction_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "side_effects_female_condom",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "side_effects_female_condom",
+        "type": "check_box",
+        "combine_checkbox_option_values": "true",
+        "label": "Female Condom - Common Side Effects",
+        "hint": "Select Female Condom side effects",
+        "options": [
+          {
+            "key": "discomfort_irritation",
+            "text": "Discomfort or irritation",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "female_condom_discomfort"
+          },
+          {
+            "key": "noise",
+            "text": "Noise during use",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "female_condom_noise"
+          },
+          {
+            "key": "allergic_reactions",
+            "text": "Allergic reactions",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "female_condom_allergic_reactions"
+          },
+          {
+            "key": "difficulty_insertion",
+            "text": "Difficulty with insertion",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "female_condom_difficulty_insertion"
+          },
+          {
+            "key": "movement_during_sex",
+            "text": "Movement during sex",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "female_condom_movement"
+          },
+          {
+            "key": "other",
+            "text": "Other specify",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "female_condom_other"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "fp_method_satisfaction_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "side_effects_btl",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "side_effects_btl",
+        "type": "check_box",
+        "combine_checkbox_option_values": "true",
+        "label": "BTL - Common Side Effects",
+        "hint": "Select BTL side effects",
+        "options": [
+          {
+            "key": "slight_pain",
+            "text": "Slightly pain",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "btl_slight_pain"
+          },
+          {
+            "key": "fatigue",
+            "text": "Fatigue",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "btl_fatigue"
+          },
+          {
+            "key": "other",
+            "text": "Other specify",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "btl_other"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "fp_method_satisfaction_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "side_effects_vasectomy",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "side_effects_vasectomy",
+        "type": "check_box",
+        "combine_checkbox_option_values": "true",
+        "label": "Vasectomy - Common Side Effects",
+        "hint": "Select Vasectomy side effects",
         "options": [
           {
             "key": "soreness",
             "text": "Soreness",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "soreness"
+            "openmrs_entity_id": "vasectomy_soreness"
           },
           {
             "key": "swelling",
             "text": "Swelling",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "swelling"
+            "openmrs_entity_id": "vasectomy_swelling"
           },
           {
             "key": "bruising",
             "text": "Bruising",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "bruising"
+            "openmrs_entity_id": "vasectomy_bruising"
           },
           {
             "key": "pain",
             "text": "Pain",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "pain"
+            "openmrs_entity_id": "vasectomy_pain"
           },
           {
             "key": "bleeding",
             "text": "Bleeding",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "bleeding"
+            "openmrs_entity_id": "vasectomy_bleeding"
           },
           {
-            "key": "simple_haemotoma",
-            "text": "Simple Haemotoma",
+            "key": "hematoma",
+            "text": "Simple hematoma",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "simple_haemotoma"
-          },
-          {
-            "key": "severe_headache",
-            "text": "Severe Headache",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "severe_headache"
+            "openmrs_entity_id": "vasectomy_hematoma"
           },
           {
             "key": "other",
-            "text": "Others (Specify)",
+            "text": "Other specify",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "other"
+            "openmrs_entity_id": "vasectomy_other"
           }
         ],
-        "v_required": {
-          "value": "true",
-          "err": "Please choose side effects"
-        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -248,45 +868,381 @@
         }
       },
       {
-        "key": "complication",
-        "openmrs_entity_parent": "",
+        "key": "complications_iucd",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "complication",
-        "openmrs_data_type": "select one",
+        "openmrs_entity_id": "complications_iucd",
         "type": "check_box",
         "combine_checkbox_option_values": "true",
-        "label": "What are the complications?",
-        "hint": "What are the complications?",
+        "label": "IUCD - Complications",
+        "hint": "Select IUCD complications",
         "options": [
           {
-            "key": "haematoma",
-            "text": "Haematoma",
+            "key": "uterine_perforation",
+            "text": "Uterine perforation",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "haematoma"
+            "openmrs_entity_id": "iucd_uterine_perforation"
           },
           {
-            "key": "vasovagal_reaction",
-            "text": "Vasovagal Reaction",
+            "key": "expulsion",
+            "text": "Expulsion",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "vasovagal_reaction"
+            "openmrs_entity_id": "iucd_expulsion"
           },
           {
-            "key": "severe_bleeding",
-            "text": "Severe Bleeding",
+            "key": "pelvic_infection",
+            "text": "Pelvic Infection",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "severe_bleeding"
+            "openmrs_entity_id": "iucd_pelvic_infection"
           },
           {
             "key": "other",
-            "text": "Others (Specify)",
+            "text": "Other specify",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "other"
+            "openmrs_entity_id": "iucd_other_complication"
           }
         ],
-        "v_required": {
-          "value": "true",
-          "err": "Please choose the complication"
-        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "fp_method_satisfaction_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "complications_implants",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "complications_implants",
+        "type": "check_box",
+        "combine_checkbox_option_values": "true",
+        "label": "Implants - Complications",
+        "hint": "Select Implant complications",
+        "options": [
+          {
+            "key": "site_infection",
+            "text": "Site Infection",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "implants_site_infection"
+          },
+          {
+            "key": "other",
+            "text": "Other specify",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "implants_other_complication"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "fp_method_satisfaction_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "complications_coc",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "complications_coc",
+        "type": "check_box",
+        "combine_checkbox_option_values": "true",
+        "label": "COC - Complications",
+        "hint": "Select COC complications",
+        "options": [
+          {
+            "key": "blood_clot",
+            "text": "Increased risk of Blood Clot",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "coc_blood_clot"
+          },
+          {
+            "key": "stroke",
+            "text": "Stroke",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "coc_stroke"
+          },
+          {
+            "key": "high_bp",
+            "text": "High Blood Pressure",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "coc_high_bp"
+          },
+          {
+            "key": "migraine",
+            "text": "Migraine Headache",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "coc_migraine"
+          },
+          {
+            "key": "other",
+            "text": "Other specify",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "coc_other_complication"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "fp_method_satisfaction_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "complications_pop",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "complications_pop",
+        "type": "check_box",
+        "combine_checkbox_option_values": "true",
+        "label": "POP - Complications",
+        "hint": "Select POP complications",
+        "options": [
+          {
+            "key": "ovarian_cysts",
+            "text": "Increase Ovarian Cysts",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "pop_ovarian_cysts"
+          },
+          {
+            "key": "pregnancy",
+            "text": "Pregnancy",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "pop_pregnancy"
+          },
+          {
+            "key": "other",
+            "text": "Other specify",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "pop_other_complication"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "fp_method_satisfaction_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "complications_depo",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "complications_depo",
+        "type": "check_box",
+        "combine_checkbox_option_values": "true",
+        "label": "DEPO - Complications",
+        "hint": "Select DEPO complications",
+        "options": [
+          {
+            "key": "bone_density_loss",
+            "text": "Bone density loss",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "depo_bone_loss"
+          },
+          {
+            "key": "heavy_bleeding",
+            "text": "Prolonged heavy bleeding",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "depo_heavy_bleeding"
+          },
+          {
+            "key": "severe_allergy",
+            "text": "Severe allergic reaction",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "depo_allergy"
+          },
+          {
+            "key": "other",
+            "text": "Other specify",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "depo_other_complication"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "fp_method_satisfaction_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "complications_male_condom",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "complications_male_condom",
+        "type": "check_box",
+        "combine_checkbox_option_values": "true",
+        "label": "Male Condom - Complications",
+        "hint": "Select Male Condom complications",
+        "options": [
+          {
+            "key": "breakage",
+            "text": "Breakage or slippage",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "male_condom_breakage"
+          },
+          {
+            "key": "other",
+            "text": "Other specify",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "male_condom_other_complication"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "fp_method_satisfaction_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "complications_female_condom",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "complications_female_condom",
+        "type": "check_box",
+        "combine_checkbox_option_values": "true",
+        "label": "Female Condom - Complications",
+        "hint": "Select Female Condom complications",
+        "options": [
+          {
+            "key": "other",
+            "text": "Other specify",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "female_condom_other_complication"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "fp_method_satisfaction_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "complications_btl",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "complications_btl",
+        "type": "check_box",
+        "combine_checkbox_option_values": "true",
+        "label": "BTL - Complications",
+        "hint": "Select BTL complications",
+        "options": [
+          {
+            "key": "internal_bleeding",
+            "text": "Internal bleeding",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "btl_internal_bleeding"
+          },
+          {
+            "key": "organ_injury",
+            "text": "Damage/Injury to internal organs",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "btl_organ_injury"
+          },
+          {
+            "key": "other",
+            "text": "Other specify",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "btl_other_complication"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "fp_method_satisfaction_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "complications_vasectomy",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "complications_vasectomy",
+        "type": "check_box",
+        "combine_checkbox_option_values": "true",
+        "label": "Vasectomy - Complications",
+        "hint": "Select Vasectomy complications",
+        "options": [
+          {
+            "key": "hematoma",
+            "text": "Haematoma",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "vasectomy_hematoma_comp"
+          },
+          {
+            "key": "severe_bleeding",
+            "text": "Severe bleeding",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "vasectomy_severe_bleeding"
+          },
+          {
+            "key": "other",
+            "text": "Other specify",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "vasectomy_other_complication"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "fp_method_satisfaction_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "complications_lam",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "complications_lam",
+        "type": "check_box",
+        "combine_checkbox_option_values": "true",
+        "label": "LAM - Complications",
+        "hint": "Select LAM complications",
+        "options": [
+          {
+            "key": "pregnancy",
+            "text": "Pregnancy",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "lam_pregnancy"
+          },
+          {
+            "key": "other",
+            "text": "Other specify",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "lam_other_complication"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "fp_method_satisfaction_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "complications_sdm",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "complications_sdm",
+        "type": "check_box",
+        "combine_checkbox_option_values": "true",
+        "label": "SDM - Complications",
+        "hint": "Select SDM complications",
+        "options": [
+          {
+            "key": "pregnancy",
+            "text": "Pregnancy",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "sdm_pregnancy"
+          },
+          {
+            "key": "other",
+            "text": "Other specify",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "sdm_other_complication"
+          }
+        ],
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -314,6 +1270,41 @@
           }
         }
       },
+
+      {
+        "key": "side_effects",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "side_effects",
+        "type": "edit_text",
+        "label": "What are the side effects?",
+        "hint": "What are the side effects?",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "fp_method_satisfaction_relevance.yml"
+            }
+          }
+        }
+      },
+
+      {
+        "key": "complication",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "complication",
+        "type": "edit_text",
+        "label": "What are the complications?",
+        "hint": "What are the complications?",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "fp_method_satisfaction_relevance.yml"
+            }
+          }
+        }
+      },
+
       {
         "key": "specify_other_reasons_for_dissatisfaction",
         "openmrs_entity_parent": "",

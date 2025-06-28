@@ -45,19 +45,180 @@ condition: "step1_client_satisfied_with_fp_method.equals('no') && global_fp_meth
 actions:
   - "isRelevant = true"
 
+# --- Complication relevance rules for each FP method ---
 ---
-name: step1_side_effects
-description: side_effects relevance
+name: step1_complication_pop
+description: pop complication relevance
 priority: 1
-condition: "step1_reason_for_dissatisfaction.contains('side_effects')"
+condition: "step1_reason_for_dissatisfaction.contains('complication') && global_fp_method_selected.equalsIgnoreCase('pop')"
 actions:
   - "isRelevant = true"
 
 ---
-name: step1_complication
-description: complication relevance
+name: step1_complication_coc
+description: coc complication relevance
 priority: 1
-condition: "step1_reason_for_dissatisfaction.contains('complication')"
+condition: "step1_reason_for_dissatisfaction.contains('complication') && global_fp_method_selected.equalsIgnoreCase('coc')"
+actions:
+  - "isRelevant = true"
+
+---
+name: step1_complication_depo
+description: injectable complication relevance
+priority: 1
+condition: "step1_reason_for_dissatisfaction.contains('complication') && global_fp_method_selected.equalsIgnoreCase('injectable')"
+actions:
+  - "isRelevant = true"
+
+---
+name: step1_complication_male_condom
+description: male condom complication relevance
+priority: 1
+condition: "step1_reason_for_dissatisfaction.contains('complication') && global_fp_method_selected.equalsIgnoreCase('condom')"
+actions:
+  - "isRelevant = true"
+
+---
+name: step1_complication_female_condom
+description: female condom complication relevance
+priority: 1
+condition: "step1_reason_for_dissatisfaction.contains('complication') && global_fp_method_selected.equalsIgnoreCase('condom')"
+actions:
+  - "isRelevant = true"
+
+---
+name: step1_complication_implants
+description: implants complication relevance
+priority: 1
+condition: "step1_reason_for_dissatisfaction.contains('complication') && (global_fp_method_selected.equalsIgnoreCase('jadelle') || global_fp_method_selected.equalsIgnoreCase('implanon'))"
+actions:
+  - "isRelevant = true"
+
+---
+name: step1_complication_iucd
+description: iucd complication relevance
+priority: 1
+condition: "step1_reason_for_dissatisfaction.contains('complication') && global_fp_method_selected.equalsIgnoreCase('iucd')"
+actions:
+  - "isRelevant = true"
+
+---
+name: step1_complication_sdm
+description: sdm complication relevance
+priority: 1
+condition: "step1_reason_for_dissatisfaction.contains('complication') && global_fp_method_selected.equalsIgnoreCase('sdm')"
+actions:
+  - "isRelevant = true"
+
+---
+name: step1_complication_lam
+description: lam complication relevance
+priority: 1
+condition: "step1_reason_for_dissatisfaction.contains('complication') && global_fp_method_selected.equalsIgnoreCase('lam')"
+actions:
+  - "isRelevant = true"
+
+---
+name: step1_complication_btl
+description: btl complication relevance
+priority: 1
+condition: "step1_reason_for_dissatisfaction.contains('complication') && global_fp_method_selected.equalsIgnoreCase('btl')"
+actions:
+  - "isRelevant = true"
+
+---
+name: step1_complication_vasectomy
+description: vasectomy complication relevance
+priority: 1
+condition: "step1_reason_for_dissatisfaction.contains('complication') && global_fp_method_selected.equalsIgnoreCase('vasectomy')"
+actions:
+  - "isRelevant = true"
+# --- Side effects rules for each FP method ---
+---
+name: step1_side_effects_pop
+description: side_effects of pop relevance
+priority: 1
+condition: "step1_reason_for_dissatisfaction.contains('side_effects')  && global_fp_method_selected.equalsIgnoreCase('pop')"
+actions:
+  - "isRelevant = true"
+
+---
+name: step1_side_effects_coc
+description: side_effects of coc relevance
+priority: 1
+condition: "step1_reason_for_dissatisfaction.contains('side_effects')  && global_fp_method_selected.equalsIgnoreCase('coc')"
+actions:
+  - "isRelevant = true"
+
+---
+name: step1_side_effects_depo
+description: side_effects of injectable relevance
+priority: 1
+condition: "step1_reason_for_dissatisfaction.contains('side_effects')  && global_fp_method_selected.equalsIgnoreCase('injectable')"
+actions:
+  - "isRelevant = true"
+
+---
+name: step1_side_effects_male_condom
+description: side_effects of male condom relevance
+priority: 1
+condition: "step1_reason_for_dissatisfaction.contains('side_effects')  && global_fp_method_selected.equalsIgnoreCase('condom')"
+actions:
+  - "isRelevant = true"
+
+---
+name: step1_side_effects_female_condom
+description: side_effects of female condom relevance
+priority: 1
+condition: "step1_reason_for_dissatisfaction.contains('side_effects')  && global_fp_method_selected.equalsIgnoreCase('condom')"
+actions:
+  - "isRelevant = true"
+
+---
+name: step1_side_effects_implants
+description: side_effects of implants (jadelle, implanon) relevance
+priority: 1
+condition: "step1_reason_for_dissatisfaction.contains('side_effects')  && (global_fp_method_selected.equalsIgnoreCase('jadelle') || global_fp_method_selected.equalsIgnoreCase('implanon'))"
+actions:
+  - "isRelevant = true"
+
+---
+name: step1_side_effects_iucd
+description: side_effects of iucd relevance
+priority: 1
+condition: "step1_reason_for_dissatisfaction.contains('side_effects')  && global_fp_method_selected.equalsIgnoreCase('iucd')"
+actions:
+  - "isRelevant = true"
+
+---
+name: step1_side_effects_sdm
+description: side_effects of sdm relevance
+priority: 1
+condition: "step1_reason_for_dissatisfaction.contains('side_effects')  && global_fp_method_selected.equalsIgnoreCase('sdm')"
+actions:
+  - "isRelevant = true"
+
+---
+name: step1_side_effects_lam
+description: side_effects of lam relevance
+priority: 1
+condition: "step1_reason_for_dissatisfaction.contains('side_effects')  && global_fp_method_selected.equalsIgnoreCase('lam')"
+actions:
+  - "isRelevant = true"
+
+---
+name: step1_side_effects_btl
+description: side_effects of btl relevance
+priority: 1
+condition: "step1_reason_for_dissatisfaction.contains('side_effects')  && global_fp_method_selected.equalsIgnoreCase('btl')"
+actions:
+  - "isRelevant = true"
+
+---
+name: step1_side_effects_vasectomy
+description: side_effects of vasectomy relevance
+priority: 1
+condition: "step1_reason_for_dissatisfaction.contains('side_effects')  && global_fp_method_selected.equalsIgnoreCase('vasectomy')"
 actions:
   - "isRelevant = true"
 
@@ -128,3 +289,17 @@ condition: "step1_reason_for_dissatisfaction.contains('complication')
             || (step1_reason_for_dissatisfaction.contains('side_effects') && step1_reason_for_dissatisfaction.contains('complication')) && step1_reason_for_dissatisfaction.contains('other'))"
 actions:
   - "isRelevant = true"
+---
+name: step1_side_effects
+description: side_effects calculation
+priority: 1
+condition: "true"
+actions:
+  - "calculation = helper.getDateToday()"
+---
+name: step1_complication
+description: complication calculation
+priority: 1
+condition: "true"
+actions:
+  - "calculation = helper.getDateToday()"
