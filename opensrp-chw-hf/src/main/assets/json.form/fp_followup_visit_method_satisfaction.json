@@ -157,50 +157,6 @@
         }
       },
       {
-        "key": "side_effects_iucd",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "side_effects_iucd",
-        "openmrs_data_type": "select one",
-        "type": "check_box",
-        "combine_checkbox_option_values": "true",
-        "label": "IUCD - Common Side Effects",
-        "hint": "Select IUCD side effects",
-        "options": [
-          {
-            "key": "prolonged_bleeding",
-            "text": "Prolonged and heavy monthly bleeding",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "iucd_prolonged_bleeding"
-          },
-          {
-            "key": "irregular_bleeding",
-            "text": "Irregular bleeding",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "iucd_irregular_bleeding"
-          },
-          {
-            "key": "cramps",
-            "text": "More cramps and pain during monthly bleeding",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "iucd_cramps"
-          },
-          {
-            "key": "other",
-            "text": "Other specify",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "iucd_other"
-          }
-        ],
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "fp_method_satisfaction_relevance.yml"
-            }
-          }
-        }
-      },
-      {
         "key": "side_effects_implants",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -361,10 +317,10 @@
         }
       },
       {
-        "key": "side_effects_iud",
+        "key": "side_effects_iucd",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "side_effects_iud",
+        "openmrs_entity_id": "side_effects_iucd",
         "type": "check_box",
         "combine_checkbox_option_values": "true",
         "label": "IUD - Common Side Effects",
@@ -419,7 +375,14 @@
             "openmrs_entity_id": "female_condom_other_complication"
           }
         ],
-        "hint": "Specify side effects"
+        "hint": "Specify side effects",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "fp_method_satisfaction_relevance.yml"
+            }
+          }
+        }
       },
       {
         "key": "side_effects_sdm",
@@ -437,7 +400,14 @@
             "openmrs_entity_id": "female_condom_other_complication"
           }
         ],
-        "hint": "Specify SDM side effects"
+        "hint": "Specify SDM side effects",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "fp_method_satisfaction_relevance.yml"
+            }
+          }
+        }
       },
       {
         "key": "side_effects_pop",
@@ -868,9 +838,10 @@
         }
       },
       {
-        "key": "complications_iucd",
+        "key": "complication_iucd",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "complications_iucd",
+        "openmrs_entity_parent": "",
+        "openmrs_entity_id": "complication_iucd",
         "type": "check_box",
         "combine_checkbox_option_values": "true",
         "label": "IUCD - Complications",
@@ -910,9 +881,10 @@
         }
       },
       {
-        "key": "complications_implants",
+        "key": "complication_implants",
+        "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "complications_implants",
+        "openmrs_entity_id": "complication_implants",
         "type": "check_box",
         "combine_checkbox_option_values": "true",
         "label": "Implants - Complications",
@@ -940,9 +912,10 @@
         }
       },
       {
-        "key": "complications_coc",
+        "key": "complication_coc",
+        "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "complications_coc",
+        "openmrs_entity_id": "complication_coc",
         "type": "check_box",
         "combine_checkbox_option_values": "true",
         "label": "COC - Complications",
@@ -988,9 +961,10 @@
         }
       },
       {
-        "key": "complications_pop",
+        "key": "complication_pop",
+        "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "complications_pop",
+        "openmrs_entity_id": "complication_pop",
         "type": "check_box",
         "combine_checkbox_option_values": "true",
         "label": "POP - Complications",
@@ -1024,9 +998,10 @@
         }
       },
       {
-        "key": "complications_depo",
+        "key": "complication_depo",
+        "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "complications_depo",
+        "openmrs_entity_id": "complication_depo",
         "type": "check_box",
         "combine_checkbox_option_values": "true",
         "label": "DEPO - Complications",
@@ -1066,9 +1041,10 @@
         }
       },
       {
-        "key": "complications_male_condom",
+        "key": "complication_male_condom",
+        "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "complications_male_condom",
+        "openmrs_entity_id": "complication_male_condom",
         "type": "check_box",
         "combine_checkbox_option_values": "true",
         "label": "Male Condom - Complications",
@@ -1096,9 +1072,10 @@
         }
       },
       {
-        "key": "complications_female_condom",
+        "key": "complication_female_condom",
+        "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "complications_female_condom",
+        "openmrs_entity_id": "complication_female_condom",
         "type": "check_box",
         "combine_checkbox_option_values": "true",
         "label": "Female Condom - Complications",
@@ -1120,9 +1097,10 @@
         }
       },
       {
-        "key": "complications_btl",
+        "key": "complication_btl",
+        "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "complications_btl",
+        "openmrs_entity_id": "complication_btl",
         "type": "check_box",
         "combine_checkbox_option_values": "true",
         "label": "BTL - Complications",
@@ -1156,9 +1134,10 @@
         }
       },
       {
-        "key": "complications_vasectomy",
+        "key": "complication_vasectomy",
+        "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "complications_vasectomy",
+        "openmrs_entity_id": "complication_vasectomy",
         "type": "check_box",
         "combine_checkbox_option_values": "true",
         "label": "Vasectomy - Complications",
@@ -1192,9 +1171,10 @@
         }
       },
       {
-        "key": "complications_lam",
+        "key": "complication_lam",
+        "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "complications_lam",
+        "openmrs_entity_id": "complication_lam",
         "type": "check_box",
         "combine_checkbox_option_values": "true",
         "label": "LAM - Complications",
@@ -1222,9 +1202,10 @@
         }
       },
       {
-        "key": "complications_sdm",
+        "key": "complication_sdm",
+        "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "complications_sdm",
+        "openmrs_entity_id": "complication_sdm",
         "type": "check_box",
         "combine_checkbox_option_values": "true",
         "label": "SDM - Complications",
@@ -1270,7 +1251,6 @@
           }
         }
       },
-
       {
         "key": "side_effects",
         "openmrs_entity_parent": "",
@@ -1287,7 +1267,6 @@
           }
         }
       },
-
       {
         "key": "complication",
         "openmrs_entity_parent": "",
@@ -1304,7 +1283,6 @@
           }
         }
       },
-
       {
         "key": "specify_other_reasons_for_dissatisfaction",
         "openmrs_entity_parent": "",
