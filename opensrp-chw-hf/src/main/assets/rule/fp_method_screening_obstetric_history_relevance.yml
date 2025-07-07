@@ -41,12 +41,20 @@ condition: "step1_number_of_pregnancies > 0 && ((step1_number_of_pregnancies - s
 actions:
   - "isRelevant = true"
 ---
-name: step1_place_of_delivery
+name: step1_place_of_delivery_non_cs
 description: place_of_delivery relevance
+priority: 1
+condition: "step1_number_of_pregnancies > 0 && ((step1_number_of_pregnancies - step1_number_of_miscarriages) > 0) && step1_mode_of_delivery.equals('svd')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_place_of_delivery
+description: place_of_delivery calculation
 priority: 1
 condition: "step1_number_of_pregnancies > 0 && ((step1_number_of_pregnancies - step1_number_of_miscarriages) > 0)"
 actions:
-  - "isRelevant = true"
+  - "calculation = if (step1_number_of_pregnancies > 0 && ((step1_number_of_pregnancies - step1_number_of_miscarriages) > 0) && step1_mode_of_delivery.equals('cs')) { return 'facility' }
+     else if (step1_number_of_pregnancies > 0 && ((step1_number_of_pregnancies - step1_number_of_miscarriages) > 0) && step1_mode_of_delivery.equals('svd')) { return step1_place_of_delivery_non_cs }"
 ---
 name: step1_outcome
 description: outcome relevance

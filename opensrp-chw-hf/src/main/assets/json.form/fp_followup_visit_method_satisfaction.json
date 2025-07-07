@@ -1256,7 +1256,7 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "side_effects",
-        "type": "edit_text",
+        "type": "hidden",
         "label": "What are the side effects?",
         "hint": "What are the side effects?",
         "calculation": {
@@ -1272,7 +1272,7 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "complication",
-        "type": "edit_text",
+        "type": "hidden",
         "label": "What are the complications?",
         "hint": "What are the complications?",
         "calculation": {
