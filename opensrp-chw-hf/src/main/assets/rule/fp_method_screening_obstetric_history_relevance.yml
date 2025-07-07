@@ -66,7 +66,7 @@ actions:
 name: step1_is_client_breastfeeding
 description: is_client_breastfeeding relevance
 priority: 1
-condition: "step1_number_of_pregnancies > 0 && ((step1_number_of_pregnancies - step1_number_of_miscarriages) > 0)"
+condition: "step1_number_of_pregnancies > 0 && ((step1_number_of_pregnancies - step1_number_of_miscarriages) > 0) && helper.getMothersAge(step1_date_last_delivery) <= 2"
 actions:
   - "isRelevant = true"
 ---
