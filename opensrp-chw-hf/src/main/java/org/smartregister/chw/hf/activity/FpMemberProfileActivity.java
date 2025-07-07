@@ -218,4 +218,9 @@ public class FpMemberProfileActivity extends CoreFamilyPlanningMemberProfileActi
         showFollowUpVisitButton();
         textViewRecordFp.setBackground(getResources().getDrawable(org.smartregister.chw.fp.R.drawable.record_btn_selector));
     }
+
+    @Override
+    public void viewRegistrationDetails() {
+        FpRegistrationDetailsActivity.startMe(FpMemberProfileActivity.this, fpMemberObject);
+    }
 }

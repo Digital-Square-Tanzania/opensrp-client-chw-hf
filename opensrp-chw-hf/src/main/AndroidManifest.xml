@@ -289,6 +289,9 @@
             android:name=".activity.AncRegistrationDetailsActivity"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
+            android:name=".activity.FpRegistrationDetailsActivity"
+            android:theme="@style/HFTheme.NoActionBar" />
+        <activity
             android:name=".activity.ChildHomeVisitActivity"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity

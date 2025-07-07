@@ -4,6 +4,7 @@ import static org.smartregister.chw.anc.util.Constants.EVENT_TYPE.DELETE_EVENT;
 import static org.smartregister.chw.core.utils.CoreConstants.EventType.ANC_FOLLOWUP_CLIENT_REGISTRATION;
 import static org.smartregister.chw.core.utils.CoreConstants.EventType.ANC_PARTNER_TESTING;
 import static org.smartregister.chw.core.utils.CoreConstants.EventType.ANC_PREGNANCY_CONFIRMATION;
+import static org.smartregister.chw.hf.interactor.FpRegistrationDetailsInteractor.FP_REGISTRATION_EVENT;
 import static org.smartregister.chw.hf.utils.Constants.Events.ANC_FIRST_FACILITY_VISIT;
 import static org.smartregister.chw.hf.utils.Constants.Events.ANC_RECURRING_FACILITY_VISIT;
 import static org.smartregister.chw.hf.utils.Constants.Events.HEI_FOLLOWUP;
@@ -102,6 +103,7 @@ public class HfClientProcessor extends CoreClientProcessor {
             case FamilyPlanningConstants.EVENT_TYPE.FP_PROVIDE_METHOD:
             case FamilyPlanningConstants.EVENT_TYPE.FP_OTHER_SERVICES:
             case org.smartregister.chw.sbc.util.Constants.EVENT_TYPE.SBC_FOLLOW_UP_VISIT:
+            case FP_REGISTRATION_EVENT:
                 if (eventClient.getEvent() == null) {
                     return;
                 }
