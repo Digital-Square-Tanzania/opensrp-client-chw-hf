@@ -150,7 +150,7 @@ public class FpMemberProfileActivity extends CoreFamilyPlanningMemberProfileActi
 
     @Override
     public boolean isFirstVisit() {
-        return FpDao.getLatestVisit(fpMemberObject.getBaseEntityId(), FamilyPlanningConstants.EVENT_TYPE.FP_OTHER_SERVICES) == null;
+        return FpDao.getLatestVisit(fpMemberObject.getBaseEntityId(), FamilyPlanningConstants.EVENT_TYPE.FP_PROVIDE_METHOD) == null;
     }
 
     @Override
