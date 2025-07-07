@@ -90,7 +90,7 @@ actions:
 name: step1_vasectomy
 description: Check if the client selected vasectomy method relevance
 priority: 1
-condition: "global_fp_method_selected.equalsIgnoreCase('vasectomy')"
+condition: "global_fp_method_selected.equalsIgnoreCase('vasectomy') && global_isFirstVisit"
 actions:
   - "isRelevant = true"
 
@@ -98,7 +98,7 @@ actions:
 name: step1_btl
 description: Check if the client selected btl method relevance
 priority: 1
-condition: "global_fp_method_selected.equalsIgnoreCase('btl')"
+condition: "global_fp_method_selected.equalsIgnoreCase('btl')  && global_isFirstVisit"
 actions:
   - "isRelevant = true"
 

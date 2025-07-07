@@ -192,7 +192,13 @@ public class FpMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
                             "jadelle_removed",
                             "implanon_removed",
                             "iud_removed",
-                            "client_have_any_complain"
+                            "client_have_any_complain",
+                            "ecp_counseling_provided",
+                            "type_of_incident",
+                            "specify_other_incident",
+                            "when_did_incidence_occur",
+                            "was_ecp_provided",
+                            "type_of_ecp_provided"
                     };
                     extractVisitDetails(visits, params, visitDetails, x, context);
 
