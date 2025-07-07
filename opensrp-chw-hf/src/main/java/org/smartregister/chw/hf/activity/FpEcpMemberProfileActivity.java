@@ -109,8 +109,10 @@ public class FpEcpMemberProfileActivity extends CoreFamilyPlanningMemberProfileA
     @Override
     public void onClick(View view) {
         super.onClick(view);
-        if (((TextView) view).getText().equals(this.getString(R.string.ecp_provision))) {
-            startFpEcpProvisionForm();
+        if (view.getId() == org.smartregister.chw.fp.R.id.textview_record_fp) {
+            if (((TextView) view).getText().equals(this.getString(R.string.ecp_provision))) {
+                startFpEcpProvisionForm();
+            }
         }
     }
 
