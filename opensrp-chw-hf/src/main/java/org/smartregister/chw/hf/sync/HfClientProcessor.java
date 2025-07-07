@@ -104,6 +104,8 @@ public class HfClientProcessor extends CoreClientProcessor {
             case FamilyPlanningConstants.EVENT_TYPE.FP_OTHER_SERVICES:
             case org.smartregister.chw.sbc.util.Constants.EVENT_TYPE.SBC_FOLLOW_UP_VISIT:
             case FP_REGISTRATION_EVENT:
+            case FamilyPlanningConstants.EVENT_TYPE.FP_ECP_PROVISION:
+            case FamilyPlanningConstants.EVENT_TYPE.FP_ECP_SCREENING:
                 if (eventClient.getEvent() == null) {
                     return;
                 }
@@ -191,7 +193,7 @@ public class HfClientProcessor extends CoreClientProcessor {
     @Override
     public void processDeleteEvent(Event event) {
         try {
-            List<String> pmtctFollowupTables = Arrays.asList("ec_ld_partograph", "ec_pmtct_followup", "ec_pmtct_hvl_results", "ec_pmtct_cd4_results", "ec_hei_followup", "ec_hei_hiv_results", "ec_anc_followup", "ec_pnc_followup", "ec_prep_followup","ec_cecap_test_results","ec_kvp_hepatitis_test_results");
+            List<String> pmtctFollowupTables = Arrays.asList("ec_ld_partograph", "ec_pmtct_followup", "ec_pmtct_hvl_results", "ec_pmtct_cd4_results", "ec_hei_followup", "ec_hei_hiv_results", "ec_anc_followup", "ec_pnc_followup", "ec_prep_followup", "ec_cecap_test_results", "ec_kvp_hepatitis_test_results");
             if (event.getDetails().containsKey(org.smartregister.chw.anc.util.Constants.JSON_FORM_EXTRA.DELETE_FORM_SUBMISSION_ID)) {
                 // delete from vaccine table
                 EventDao.deleteVaccineByFormSubmissionId(event.getDetails().get(org.smartregister.chw.anc.util.Constants.JSON_FORM_EXTRA.DELETE_FORM_SUBMISSION_ID));
