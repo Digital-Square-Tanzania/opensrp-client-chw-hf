@@ -471,6 +471,15 @@ public class HfChwRepository extends CoreChwRepository {
         }
     }
 
+    private static void upgradeToVersion29(SQLiteDatabase db) {
+        try {
+            db.execSQL("ALTER TABLE ec_family_planning ADD COLUMN ctc_number TEXT NULL;");
+        } catch (Exception e) {
+            Timber.e(e);
+        }
+    }
+
+
     private static void upgradeToVersion10ForBaSouth(SQLiteDatabase db) {
         try {
             db.execSQL("ALTER TABLE ec_family_member ADD COLUMN reasons_for_registration TEXT NULL;");
@@ -620,6 +629,9 @@ public class HfChwRepository extends CoreChwRepository {
                     break;
                 case 28:
                     upgradeToVersion28(db);
+                    break;
+                case 29:
+                    upgradeToVersion29(db);
                     break;
                 default:
                     break;
