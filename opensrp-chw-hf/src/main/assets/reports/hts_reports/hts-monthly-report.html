@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <script src="../report-script.js"></script>
+
+    <style>
+    *{
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.show-on-print {
+  display: none;
+}
+
+body{
+    font-family: Helvetica;
+    -webkit-font-smoothing: antialiased;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+
+/* Table Styles */
+
+.table-wrapper{
+    margin: 10px;
+    margin-right: 10px;
+}
+
+.fl-table {
+    border-radius: 5px;
+    font-size: 10px;
+    font-weight: normal;
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 100%;
+    background-color: white;
+}
+
+.fl-table td, .fl-table th {
+    padding: 5px;
+}
+
+
+ul {
+    width: 100%;
+}
+ul li {
+    width: 49%;
+    display: inline-block;
+}
+
+ul li > * {
+    width: 30%;
+    margin-bottom: 5px;
+}
+
+.no-data {
+  background: #595959;
+}
+
+.total-both {
+  background: #f2f5f3;
+}
+
+.color-male{
+  background: #FCD5B4;
+}
+
+.color-female{
+  background: #D8E4BC;
+}
+
+@media print {
+  .show-on-print {
+    display: block;
+  }
+
+  .child-table {
+    width: 50%;
+  }
+}
+</style>
+</head>
+
+<body onload="loadData('hts_monthly_reports')">
+
+<div class="show-on-print" style="font-size:12px;">
+    <h1>RIPOTI YA HUDUMA ZA UPIMAJI WA VVU</h1>
+    <h2>TAARIFA YA [MWEZI/MWAKA]: <span id="report_period"></span></h2>
+    <h2>KITUO: <span id="reporting_facility"></span></h2>
+</div>
+
+<div class="table-wrapper">
+    <table class="fl-table">
+        <thead>
+        <tr>
+            <th rowspan="3" class="total-both">B</th>
+            <th rowspan="3" class="total-both">VIASHIRIA VYA RIPOTI</th>
+            <th colspan="28" class="total-both">ENEO LA TAKWIMU</th>
+        </tr>
+        </thead>
+        <thead>
+        <tr>
+            <th rowspan="3">B1</th>
+            <th rowspan="3">VIASHIRIA VYA UPIMAJI VVU</th>
+            <th colspan="14" class="color-male">WANAUME (ME)</th>
+            <th colspan="14" class="color-female">WANAWAKE (KE)</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th></th>
+            <th></th>
+            <th>JUMLA (ME+KE)</th>
+            <th>&#60;1</th>
+            <th>1-4</th>
+            <th>5-9</th>
+            <th>10-14</th>
+            <th>15-19</th>
+            <th>20-24</th>
+            <th>25-29</th>
+            <th>30-34</th>
+            <th>35-39</th>
+            <th>40-44</th>
+            <th>45-49</th>
+            <th>&#62;=50</th>
+            <th>JUMLA (ME)</th>
+            <th>&#60;1</th>
+            <th>1-4</th>
+            <th>5-9</th>
+            <th>10-14</th>
+            <th>15-19</th>
+            <th>20-24</th>
+            <th>25-29</th>
+            <th>30-34</th>
+            <th>35-39</th>
+            <th>40-44</th>
+            <th>45-49</th>
+            <th>&#62;=50</th>
+            <th>JUMLA (KE)</th>
+        </tr>
+        <tr>
+            <th>1.</th>
+            <td>Idadi ya wateja wapya waliopata nasaha baada ya kipimo na kupewa majibu ya VVU</td>
+            <td align="center" class="total-both" id="kvp-1-pwid-jumla-both-ME-KE"></td>
+            <td align="center" id="kvp-1-<1-pwid-ME"></td>
+            <td align="center" id="kvp-1-1-4-pwid-ME"></td>
+            <td align="center" id="kvp-1-5-9-pwid-ME"></td>
+            <td align="center" id="kvp-1-10-14-pwid-ME"></td>
+            <td align="center" id="kvp-1-15-19-pwid-ME"></td>
+            <td align="center" id="kvp-1-20-24-pwid-ME"></td>
+            <td align="center" id="kvp-1-25-29-pwid-ME"></td>
+            <td align="center" id="kvp-1-30-34-pwid-ME"></td>
+            <td align="center" id="kvp-1-35-39-pwid-ME"></td>
+            <td align="center" id="kvp-1-40-44-pwid-ME"></td>
+            <td align="center" id="kvp-1-45-49-pwid-ME"></td>
+            <td align="center" id="kvp-1->50-pwid-ME"></td>
+            <td align="center" id="kvp-1-pwid-jumla-ME"></td>
+            <td align="center" id="kvp-1-<1-pwid-KE"></td>
+            <td align="center" id="kvp-1-1-4-pwid-KE"></td>
+            <td align="center" id="kvp-1-5-9-pwid-KE"></td>
+            <td align="center" id="kvp-1-10-14-pwid-KE"></td>
+            <td align="center" id="kvp-1-15-19-pwid-KE"></td>
+            <td align="center" id="kvp-1-20-24-pwid-KE"></td>
+            <td align="center" id="kvp-1-25-29-pwid-KE"></td>
+            <td align="center" id="kvp-1-30-34-pwid-KE"></td>
+            <td align="center" id="kvp-1-35-39-pwid-KE"></td>
+            <td align="center" id="kvp-1-40-44-pwid-KE"></td>
+            <td align="center" id="kvp-1-45-49-pwid-KE"></td>
+            <td align="center" id="kvp-1->50-pwid-KE"></td>
+            <td align="center" id="kvp-1-pwid-jumla-KE"></td>
+        </tr>
+        <tr>
+            <th>2.</th>
+            <td>Idadi ya wateja wapya waliopimwa na wakapatikana na VVU</td>
+            <td align="center" class="total-both" id="kvp-2-pwid-jumla-both-ME-KE"></td>
+            <td align="center" id="kvp-2-<1-pwid-ME"></td>
+            <td align="center" id="kvp-2-1-4-pwid-ME"></td>
+            <td align="center" id="kvp-2-5-9-pwid-ME"></td>
+            <td align="center" id="kvp-2-10-14-pwid-ME"></td>
+            <td align="center" id="kvp-2-15-19-pwid-ME"></td>
+            <td align="center" id="kvp-2-20-24-pwid-ME"></td>
+            <td align="center" id="kvp-2-25-29-pwid-ME"></td>
+            <td align="center" id="kvp-2-30-34-pwid-ME"></td>
+            <td align="center" id="kvp-2-35-39-pwid-ME"></td>
+            <td align="center" id="kvp-2-40-44-pwid-ME"></td>
+            <td align="center" id="kvp-2-45-49-pwid-ME"></td>
+            <td align="center" id="kvp-2->50-pwid-ME"></td>
+            <td align="center" id="kvp-2-pwid-jumla-ME"></td>
+            <td align="center" id="kvp-2-<1-pwid-KE"></td>
+            <td align="center" id="kvp-2-1-4-pwid-KE"></td>
+            <td align="center" id="kvp-2-5-9-pwid-KE"></td>
+            <td align="center" id="kvp-2-10-14-pwid-KE"></td>
+            <td align="center" id="kvp-2-15-19-pwid-KE"></td>
+            <td align="center" id="kvp-2-20-24-pwid-KE"></td>
+            <td align="center" id="kvp-2-25-29-pwid-KE"></td>
+            <td align="center" id="kvp-2-30-34-pwid-KE"></td>
+            <td align="center" id="kvp-2-35-39-pwid-KE"></td>
+            <td align="center" id="kvp-2-40-44-pwid-KE"></td>
+            <td align="center" id="kvp-2-45-49-pwid-KE"></td>
+            <td align="center" id="kvp-2->50-pwid-KE"></td>
+            <td align="center" id="kvp-2-pwid-jumla-KE"></td>
+            <!-- <td align="center" id="kvp-2-pwid-jumla-both-ME-KE"></td> -->
+        </tr>
+        <tr>
+            <th>3.</th>
+            <td>Idadi ya wateja waliorudi na kupata nasaha baada ya kipimo na kupewa majibu ya VVU</td>
+            <td align="center" class="total-both" id="kvp-3-pwid-jumla-both-ME-KE"></td>
+            <td align="center" id="kvp-3-<1-pwid-ME"></td>
+            <td align="center" id="kvp-3-1-4-pwid-ME"></td>
+            <td align="center" id="kvp-3-5-9-pwid-ME"></td>
+            <td align="center" id="kvp-3-10-14-pwid-ME"></td>
+            <td align="center" id="kvp-3-15-19-pwid-ME"></td>
+            <td align="center" id="kvp-3-20-24-pwid-ME"></td>
+            <td align="center" id="kvp-3-25-29-pwid-ME"></td>
+            <td align="center" id="kvp-3-30-34-pwid-ME"></td>
+            <td align="center" id="kvp-3-35-39-pwid-ME"></td>
+            <td align="center" id="kvp-3-40-44-pwid-ME"></td>
+            <td align="center" id="kvp-3-45-49-pwid-ME"></td>
+            <td align="center" id="kvp-3->50-pwid-ME"></td>
+            <td align="center" id="kvp-3-pwid-jumla-ME"></td>
+            <td align="center" id="kvp-3-<1-pwid-KE"></td>
+            <td align="center" id="kvp-3-1-4-pwid-KE"></td>
+            <td align="center" id="kvp-3-5-9-pwid-KE"></td>
+            <td align="center" id="kvp-3-10-14-pwid-KE"></td>
+            <td align="center" id="kvp-3-15-19-pwid-KE"></td>
+            <td align="center" id="kvp-3-20-24-pwid-KE"></td>
+            <td align="center" id="kvp-3-25-29-pwid-KE"></td>
+            <td align="center" id="kvp-3-30-34-pwid-KE"></td>
+            <td align="center" id="kvp-3-35-39-pwid-KE"></td>
+            <td align="center" id="kvp-3-40-44-pwid-KE"></td>
+            <td align="center" id="kvp-3-45-49-pwid-KE"></td>
+            <td align="center" id="kvp-3->50-pwid-KE"></td>
+            <td align="center" id="kvp-3-pwid-jumla-KE"></td>
+        </tr>
+        <tr>
+            <th>4.</th>
+            <td>Idadi ya wateja waliorudi na kupimwa na wakapatikana na VVU</td>
+            <td align="center" class="total-both" id="kvp-4-pwid-jumla-both-ME-KE"></td>
+            <td align="center" id="kvp-4-<1-pwid-ME"></td>
+            <td align="center" id="kvp-4-1-4-pwid-ME"></td>
+            <td align="center" id="kvp-4-5-9-pwid-ME"></td>
+            <td align="center" id="kvp-4-10-14-pwid-ME"></td>
+            <td align="center" id="kvp-4-15-19-pwid-ME"></td>
+            <td align="center" id="kvp-4-20-24-pwid-ME"></td>
+            <td align="center" id="kvp-4-25-29-pwid-ME"></td>
+            <td align="center" id="kvp-4-30-34-pwid-ME"></td>
+            <td align="center" id="kvp-4-35-39-pwid-ME"></td>
+            <td align="center" id="kvp-4-40-44-pwid-ME"></td>
+            <td align="center" id="kvp-4-45-49-pwid-ME"></td>
+            <td align="center" id="kvp-4->50-pwid-ME"></td>
+            <td align="center" id="kvp-4-pwid-jumla-ME"></td>
+            <td align="center" id="kvp-4-<1-pwid-KE"></td>
+            <td align="center" id="kvp-4-1-4-pwid-KE"></td>
+            <td align="center" id="kvp-4-5-9-pwid-KE"></td>
+            <td align="center" id="kvp-4-10-14-pwid-KE"></td>
+            <td align="center" id="kvp-4-15-19-pwid-KE"></td>
+            <td align="center" id="kvp-4-20-24-pwid-KE"></td>
+            <td align="center" id="kvp-4-25-29-pwid-KE"></td>
+            <td align="center" id="kvp-4-30-34-pwid-KE"></td>
+            <td align="center" id="kvp-4-35-39-pwid-KE"></td>
+            <td align="center" id="kvp-4-40-44-pwid-KE"></td>
+            <td align="center" id="kvp-4-45-49-pwid-KE"></td>
+            <td align="center" id="kvp-4->50-pwid-KE"></td>
+            <td align="center" id="kvp-4-pwid-jumla-KE"></td>
+        </tr>
+        <tr>
+            <th>5.</th>
+            <td> Idadi ya washirika (wa ngono) waliopata nasaha, kupimwa na kupewa majibu ya VVU.</td>
+            <td align="center" class="total-both" id="kvp-5-pwid-jumla-both-ME-KE"></td>
+            <td align="center" id="kvp-5-<1-pwid-ME"></td>
+            <td align="center" id="kvp-5-1-4-pwid-ME"></td>
+            <td align="center" id="kvp-5-5-9-pwid-ME"></td>
+            <td align="center" id="kvp-5-10-14-pwid-ME"></td>
+            <td align="center" id="kvp-5-15-19-pwid-ME"></td>
+            <td align="center" id="kvp-5-20-24-pwid-ME"></td>
+            <td align="center" id="kvp-5-25-29-pwid-ME"></td>
+            <td align="center" id="kvp-5-30-34-pwid-ME"></td>
+            <td align="center" id="kvp-5-35-39-pwid-ME"></td>
+            <td align="center" id="kvp-5-40-44-pwid-ME"></td>
+            <td align="center" id="kvp-5-45-49-pwid-ME"></td>
+            <td align="center" id="kvp-5->50-pwid-ME"></td>
+            <td align="center" id="kvp-5-pwid-jumla-ME"></td>
+            <td align="center" id="kvp-5-<1-pwid-KE"></td>
+            <td align="center" id="kvp-5-1-4-pwid-KE"></td>
+            <td align="center" id="kvp-5-5-9-pwid-KE"></td>
+            <td align="center" id="kvp-5-10-14-pwid-KE"></td>
+            <td align="center" id="kvp-5-15-19-pwid-KE"></td>
+            <td align="center" id="kvp-5-20-24-pwid-KE"></td>
+            <td align="center" id="kvp-5-25-29-pwid-KE"></td>
+            <td align="center" id="kvp-5-30-34-pwid-KE"></td>
+            <td align="center" id="kvp-5-35-39-pwid-KE"></td>
+            <td align="center" id="kvp-5-40-44-pwid-KE"></td>
+            <td align="center" id="kvp-5-45-49-pwid-KE"></td>
+            <td align="center" id="kvp-5->50-pwid-KE"></td>
+            <td align="center" id="kvp-5-pwid-jumla-KE"></td>
+        </tr>
+        <tr>
+            <th>6.</th>
+            <td>  Idadi ya washirika (wa ngono) waliopimwa na kupatikana na VVU.</td>
+            <td align="center" class="total-both" id="kvp-6-pwid-jumla-both-ME-KE"></td>
+            <td align="center" id="kvp-6-<1-pwid-ME"></td>
+            <td align="center" id="kvp-6-1-4-pwid-ME"></td>
+            <td align="center" id="kvp-6-5-9-pwid-ME"></td>
+            <td align="center" id="kvp-6-10-14-pwid-ME"></td>
+            <td align="center" id="kvp-6-15-19-pwid-ME"></td>
+            <td align="center" id="kvp-6-20-24-pwid-ME"></td>
+            <td align="center" id="kvp-6-25-29-pwid-ME"></td>
+            <td align="center" id="kvp-6-30-34-pwid-ME"></td>
+            <td align="center" id="kvp-6-35-39-pwid-ME"></td>
+            <td align="center" id="kvp-6-40-44-pwid-ME"></td>
+            <td align="center" id="kvp-6-45-49-pwid-ME"></td>
+            <td align="center" id="kvp-6->50-pwid-ME"></td>
+            <td align="center" id="kvp-6-pwid-jumla-ME"></td>
+            <td align="center" id="kvp-6-<1-pwid-KE"></td>
+            <td align="center" id="kvp-6-1-4-pwid-KE"></td>
+            <td align="center" id="kvp-6-5-9-pwid-KE"></td>
+            <td align="center" id="kvp-6-10-14-pwid-KE"></td>
+            <td align="center" id="kvp-6-15-19-pwid-KE"></td>
+            <td align="center" id="kvp-6-20-24-pwid-KE"></td>
+            <td align="center" id="kvp-6-25-29-pwid-KE"></td>
+            <td align="center" id="kvp-6-30-34-pwid-KE"></td>
+            <td align="center" id="kvp-6-35-39-pwid-KE"></td>
+            <td align="center" id="kvp-6-40-44-pwid-KE"></td>
+            <td align="center" id="kvp-6-45-49-pwid-KE"></td>
+            <td align="center" id="kvp-6->50-pwid-KE"></td>
+            <td align="center" id="kvp-6-pwid-jumla-KE"></td>
+        </tr>
+        <tr>
+            <th>7.</th>
+            <td>   Idadi ya washirika (watoto wa kuzaa/ ndugu wa kuzaliwa) waliopata nasaha, kupimwa na kupewa majibu ya VVU.</td>
+            <td align="center" class="total-both" id="kvp-7-pwid-jumla-both-ME-KE"></td>
+            <td align="center" id="kvp-7-<1-pwid-ME"></td>
+            <td align="center" id="kvp-7-1-4-pwid-ME"></td>
+            <td align="center" id="kvp-7-5-9-pwid-ME"></td>
+            <td align="center" id="kvp-7-10-14-pwid-ME"></td>
+            <td align="center" id="kvp-7-15-19-pwid-ME"></td>
+            <td align="center" id="kvp-7-20-24-pwid-ME"></td>
+            <td align="center" id="kvp-7-25-29-pwid-ME"></td>
+            <td align="center" id="kvp-7-30-34-pwid-ME"></td>
+            <td align="center" id="kvp-7-35-39-pwid-ME"></td>
+            <td align="center" id="kvp-7-40-44-pwid-ME"></td>
+            <td align="center" id="kvp-7-45-49-pwid-ME"></td>
+            <td align="center" id="kvp-7->50-pwid-ME"></td>
+            <td align="center" id="kvp-7-pwid-jumla-ME"></td>
+            <td align="center" id="kvp-7-<1-pwid-KE"></td>
+            <td align="center" id="kvp-7-1-4-pwid-KE"></td>
+            <td align="center" id="kvp-7-5-9-pwid-K"></td>
+            <td align="center" id="kvp-7-10-14-pwid-KE"></td>
+            <td align="center" id="kvp-7-15-19-pwid-KE"></td>
+            <td align="center" id="kvp-7-20-24-pwid-KE"></td>
+            <td align="center" id="kvp-7-25-29-pwid-KE"></td>
+            <td align="center" id="kvp-7-30-34-pwid-KE"></td>
+            <td align="center" id="kvp-7-35-39-pwid-KE"></td>
+            <td align="center" id="kvp-7-40-44-pwid-KE"></td>
+            <td align="center" id="kvp-7-45-49-pwid-KE"></td>
+            <td align="center" id="kvp-7->50-pwid-KE"></td>
+            <td align="center" id="kvp-7-pwid-jumla-KE"></td>
+        </tr>
+        <tr>
+            <th>8.</th>
+            <td>  Idadi ya washirika (watoto wa kuzaa/ ndugu wa kuzaliwa) waliopimwa na kupatikana na VVU.</td>
+            <td align="center" class="total-both" id="kvp-8-pwid-jumla-both-ME-KE"></td>
+            <td align="center" id="kvp-8-<1-pwid-ME"></td>
+            <td align="center" id="kvp-8-1-4-pwid-ME"></td>
+            <td align="center" id="kvp-8-5-9-pwid-ME"></td>
+            <td align="center" id="kvp-8-10-14-pwid-ME"></td>
+            <td align="center" colspan="8" class="no-data"></td>
+            <td align="center" id="kvp-8-pwid-jumla-ME"></td>
+            <td align="center" id="kvp-8-<1-pwid-KE"></td>
+            <td align="center" id="kvp-8-1-4-pwid-KE"></td>
+            <td align="center" id="kvp-8-5-9-pwid-K"></td>
+            <td align="center" id="kvp-8-10-14-pwid-KE"></td>
+            <td align="center" colspan="8" class="no-data"></td>
+            <td align="center" id="kvp-8-pwid-jumla-KE"></td>
+        </tr>
+        <tr>
+            <th>9.</th>
+            <td>  Idadi ya marafiki (SNS) waliopata nasaha, kupimwa na kupewa majibu ya VVU.</td>
+            <td align="center" class="total-both" id="kvp-9-pwid-jumla-both-ME-KE"></td>
+            <td align="center" id="kvp-9-<1-pwid-ME"></td>
+            <td align="center" id="kvp-9-1-4-pwid-ME"></td>
+            <td align="center" id="kvp-9-5-9-pwid-ME"></td>
+            <td align="center" id="kvp-9-10-14-pwid-ME"></td>
+            <td align="center" colspan="8" class="no-data"></td>
+            <td align="center" id="kvp-9-pwid-jumla-ME"></td>
+            <td align="center" id="kvp-9-<1-pwid-KE"></td>
+            <td align="center" id="kvp-9-1-4-pwid-KE"></td>
+            <td align="center" id="kvp-9-5-9-pwid-K"></td>
+            <td align="center" id="kvp-9-10-14-pwid-KE"></td>
+            <td align="center" colspan="8" class="no-data"></td>
+            <td align="center" id="kvp-9-pwid-jumla-KE"></td>
+        </tr>
+        <tr>
+            <th>10.</th>
+            <td>  Idadi ya marafiki (SNS) waliopimwa na kupatikana na VVU.</td>
+            <td align="center" class="total-both" id="kvp-10-pwid-jumla-both-ME-KE"></td>
+            <td align="center" id="kvp-10-<1-pwid-ME"></td>
+            <td align="center" id="kvp-10-1-4-pwid-ME"></td>
+            <td align="center" id="kvp-10-5-10-pwid-ME"></td>
+            <td align="center" id="kvp-10-10-14-pwid-ME"></td>
+            <td align="center" id="kvp-10-15-19-pwid-ME"></td>
+            <td align="center" id="kvp-10-20-24-pwid-ME"></td>
+            <td align="center" id="kvp-10-25-29-pwid-ME"></td>
+            <td align="center" id="kvp-10-30-34-pwid-ME"></td>
+            <td align="center" id="kvp-10-35-39-pwid-ME"></td>
+            <td align="center" id="kvp-10-40-44-pwid-ME"></td>
+            <td align="center" id="kvp-10-45-49-pwid-ME"></td>
+            <td align="center" id="kvp-10->50-pwid-ME"></td>
+            <td align="center" id="kvp-10-pwid-jumla-ME"></td>
+            <td align="center" id="kvp-10-<1-pwid-KE"></td>
+            <td align="center" id="kvp-10-1-4-pwid-KE"></td>
+            <td align="center" id="kvp-10-5-10-pwid-K"></td>
+            <td align="center" id="kvp-10-10-14-pwid-KE"></td>
+            <td align="center" id="kvp-10-15-19-pwid-KE"></td>
+            <td align="center" id="kvp-10-20-24-pwid-KE"></td>
+            <td align="center" id="kvp-10-25-29-pwid-KE"></td>
+            <td align="center" id="kvp-10-30-34-pwid-KE"></td>
+            <td align="center" id="kvp-10-35-39-pwid-KE"></td>
+            <td align="center" id="kvp-10-40-44-pwid-KE"></td>
+            <td align="center" id="kvp-10-45-49-pwid-KE"></td>
+            <td align="center" id="kvp-10->50-pwid-KE"></td>
+            <td align="center" id="kvp-10-pwid-jumla-KE"></td>
+        </tr>
+        <tr>
+            <th>11.</th>
+            <td>  Idadi ya wateja waliopatikana na VVU na kuainisha kifua kikuu.</td>
+            <td align="center" class="total-both" id="kvp-11-pwid-jumla-both-ME-KE"></td>
+        </tr>
+        <tr>
+            <th>12.</th>
+            <td>  Idadi ya wateja waliofanyiwa vipimo vya uhakiki wa maambukizo ya VVU.</td>
+            <td align="center" class="total-both" id="kvp-12-pwid-jumla-both-ME-KE"></td>
+        </tr>
+        <tr>
+            <th>13.</th>
+            <td>  Idadi ya wateja waliounganishwa katika huduma ya Tiba na Matunzo.</td>
+            <td align="center"  class="total-both" id="kvp-13-pwid-jumla-both-ME-KE"></td>
+        </tr>
+        <tr>
+            <th>14.</th>
+            <td> Idadi ya vitendanishi vilivyotumika kwa ajili ya:</td>
+            <td align="center" colspan="2" class="total-both" ><strong>KP1</strong></td>
+            <td colspan="3" class="total-both"></td>
+            <td colspan="24" class="no-data"></td>
+        </tr>
+        <tr>
+            <th></th>
+            <td colspan="1"></td>
+            <td colspan="1" class="total-both">Bioline</td>
+            <td colspan="1" class="total-both">Dual</td>
+            <td colspan="1" class="total-both"><strong>KP2</strong></td>
+            <td colspan="2" class="total-both"><strong>KP3</strong></td>
+            <td colspan="23" class="no-data"></td>
+        </tr>
+        <tr>
+            <th>a).</th>
+            <td colspan="1" align="end" >Uhakiki ubora wa vitendanishi, ndani (IQC)</td>
+            <td colspan="1" align="center" class="total-both" id="kvp-14-a-KP1-i"></td>
+            <td colspan="1" align="center" class="total-both" id="kvp-14-a-KP1-ii"></td>
+            <td colspan="1" align="center" class="total-both" id="kvp-14-a-KP2"></td>
+            <td colspan="2" align="center" class="total-both" id="kvp-14-a-KP3"></td>
+            <td colspan="23" class="no-data"></td>
+        </tr>
+        <tr>
+            <th>b).</th>
+            <td colspan="1" align="end">Vipimo vya awali vya utambuzi maambukizo ya VVU</td>
+            <td colspan="1" align="center" class="total-both" id="kvp-14-b-KP1-i"></td>
+            <td colspan="1" align="center" class="total-both" id="kvp-14-b-KP1-ii"></td>
+            <td colspan="1" align="center" class="total-both" id="kvp-14-b-KP2"></td>
+            <td colspan="2" align="center" class="total-both" id="kvp-14-b-KP3"></td>
+            <td colspan="23" class="no-data"></td>
+        </tr>
+        <tr>
+            <th>c).</th>
+            <td colspan="1" align="end"> Uhakiki ubora wa vitendanishi, nje (EQA)</td>
+            <td colspan="1" align="center" class="total-both" id="kvp-14-c-KP1-i"></td>
+            <td colspan="1" align="center" class="total-both" id="kvp-14-c-KP1-ii"></td>
+            <td colspan="1" align="center" class="total-both" id="kvp-14-c-KP2"></td>
+            <td colspan="2" align="center" class="total-both" id="kvp-14-c-KP3"></td>
+            <td colspan="23" class="no-data"></td>
+        </tr>
+        <tr>
+            <th>d).</th>
+            <td colspan="1" align="end">Upimaji wa Uhakiki Maambukizo </td>
+            <td colspan="1" align="center" class="total-both" id="kvp-14-d-KP1-i"></td>
+            <td colspan="1" align="center" class="total-both" id="kvp-14-d-KP1-ii"></td>
+            <td colspan="1" align="center" class="total-both" id="kvp-14-d-KP2"></td>
+            <td colspan="2" align="center" class="total-both" id="kvp-14-d-KP3"></td>
+            <td colspan="23" class="no-data"></td>
+        </tr>
+        <tr>
+            <th>e).</th>
+            <td colspan="1" align="end">Mafunzo</td>
+            <td colspan="1" align="center" class="total-both" id="kvp-14-e-KP1-i"></td>
+            <td colspan="1" align="center" class="total-both" id="kvp-14-e-KP1-ii"></td>
+            <td colspan="1" align="center" class="total-both" id="kvp-14-e-KP2"></td>
+            <td colspan="2" align="center" class="total-both" id="kvp-14-e-KP3"></td>
+            <td colspan="23" class="no-data"></td>
+        </tr>
+        <tr>
+            <th>f).</th>
+            <td colspan="1" align="end">Majibu Tata (MT)</td>
+            <td colspan="1" align="center" class="total-both" id="kvp-14-f-KP1-i"></td>
+            <td colspan="1" align="center" class="total-both" id="kvp-14-f-KP1-ii"></td>
+            <td colspan="1" align="center" class="total-both" id="kvp-14-f-KP2"></td>
+            <td colspan="2" align="center" class="total-both" id="kvp-14-f-KP3"></td>
+            <td colspan="23" class="no-data"></td>
+        </tr>
+        <tr>
+            <th>g).</th>
+            <td colspan="1" align="end">Majibu batili (Invalid)</td>
+            <td colspan="1" align="center" class="total-both" id="kvp-14-g-KP1-i"></td>
+            <td colspan="1" align="center" class="total-both" id="kvp-14-g-KP1-ii"></td>
+            <td colspan="1" align="center" class="total-both" id="kvp-14-g-KP2"></td>
+            <td colspan="2" align="center" class="total-both" id="kvp-14-g-KP3"></td>
+            <td colspan="23" class="no-data"></td>
+        </tr>
+        <tr>
+            <th>h).</th>
+            <td colspan="1" align="end">Upotevu(kimeharibika)</td>
+            <td colspan="1" align="center" class="total-both" id="kvp-14-h-KP1-i"></td>
+            <td colspan="1" align="center" class="total-both" id="kvp-14-h-KP1-ii"></td>
+            <td colspan="1" align="center" class="total-both" id="kvp-14-h-KP2"></td>
+            <td colspan="2" align="center" class="total-both" id="kvp-14-h-KP3"></td>
+            <td colspan="23" class="no-data"></td>
+        </tr>
+        <tr>
+            <th></th>
+            <td colspan="1" align="end"><strong>JUMLA</strong></td>
+            <td colspan="1" align="center" class="total-both" id="kvp-14-jumla-KP1-i"></td>
+            <td colspan="1" align="center" class="total-both" id="kvp-14-a-jumla-KP1-ii"></td>
+            <td colspan="1" align="center" class="total-both" id="kvp-14-a-jumla-KP2"></td>
+            <td colspan="2" align="center" class="total-both" id="kvp-14-a-jumla-KP3"></td>
+            <td colspan="23" class="no-data"></td>
+        </tr>
+        <tr>
+            <th>15</th>
+            <td colspan="1" ><strong>Rufaa Kwenda:</strong></td>
+            <td colspan="28" class="no-data"></td>
+        </tr>
+        <tr>
+            <th>a).</th>
+            <td colspan="1" >Kituo cha Tiba na matunzo ya UKIMWI (CTC)</td>
+            <td colspan="2" align="center" class="total-both" id="kvp-15-a"></td>
+            <td colspan="27" class="no-data"></td>
+        </tr>
+        <tr>
+            <th>b).</th>
+            <td colspan="1" >Huduma za kuzuia maambukizi ya VVU (Preventive Services)</td>
+            <td colspan="2" align="center" class="total-both" id="kvp-15-b"></td>
+            <td colspan="27" class="no-data"></td>
+        </tr>
+        <tbody>
+    </table>
+    <table class="fl-table" style="margin-top:15px">
+        <thead>
+        <tr>
+            <th rowspan="3" class="total-both">B2</th>
+            <th rowspan="3" class="total-both">VIASHIRIA VYA KUJIPIMA VVU (ST)</th>
+            <th colspan="11">Jumla</th>
+            <th colspan="11">Binafsi</th>
+            <th colspan="11">Mwenza</th>
+            <th colspan="11">Rafiki</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th>16.</th>
+            <td colspan="1" >Idadi ya vitendanishi vya JIPIME vilivyosambazwa.</td>
+            <td colspan="11" align="center" id="kvp-16-a"></td>
+            <td colspan="11" align="center" id="kvp-16-b"></td>
+            <td colspan="11" align="center" id="kvp-16-c"></td>
+            <td colspan="11" align="center" id="kvp-16-d"></td>
+        </tr>
+        <tr>
+            <th>17.</th>
+            <td colspan="1" >Idadi ya wateja waliotumia vitendanishi vya JIPIME na kurudisha majibu.</td>
+            <td colspan="11" align="center" id="kvp-17-a"></td>
+            <td colspan="11" align="center" id="kvp-17-b"></td>
+            <td colspan="11" align="center" id="kvp-17-c"></td>
+            <td colspan="11" align="center" id="kvp-17-d"></td>
+        </tr>
+        <tr>
+            <th>18.</th>
+            <td colspan="1" >Idadi ya wateja waliopata majibu CHANYA baada ya kutumia vipimo vya JIPIME.</td>
+            <td colspan="11" align="center" id="kvp-18-a"></td>
+            <td colspan="11" align="center" id="kvp-18-b"></td>
+            <td colspan="11" align="center" id="kvp-18-c"></td>
+            <td colspan="11" align="center" id="kvp-18-d"></td>
+        </tr>
+        <tr>
+            <th>19.</th>
+            <td colspan="1" >Idadi ya wateja waliopatikana na majibu CHANYA kupitia vipimo vya JIPIME na Upimaji wa awali (Conventional).</td>
+            <td colspan="11" align="center" id="kvp-19-a"></td>
+            <td colspan="11" align="center" id="kvp-19-b"></td>
+            <td colspan="11" align="center" id="kvp-19-c"></td>
+            <td colspan="11" align="center" id="kvp-19-d"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+<script>
+    function loadData(reportKey, reportType) {
+  const data = JSON.parse(Android.getData(reportKey));
+  const keys = Object.keys(data.nameValuePairs);
+  const reportPeriod = document.getElementById("report_period");
+  const reportingFacility = document.getElementById("reporting_facility");
+  keys.forEach((key) => {
+    let element;
+    if(reportType!== null && reportType === "pnc"){
+      element = document.getElementById(key.replace("pnc-",""));
+    }else{
+      element = document.getElementById(key);
+    }
+    if (element !== null && typeof element !== "undefined") {
+      element.innerHTML = data.nameValuePairs[key];
+    }
+  });
+  reportPeriod.innerHTML = Android.getDataPeriod();
+  reportingFacility.innerHTML = Android.getReportingFacility();
+}
+</script>
+</html>

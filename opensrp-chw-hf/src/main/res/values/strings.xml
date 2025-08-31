@@ -748,6 +748,8 @@
     <string name="vmmc_register_subtitle">View Service Register For VMMC</string>
     <string name="vmmc_theatre_register_subtitle">View Theatre Register For VMMC</string>
     <string name="vmmc_list_of_ae_subtitle">VMMC Clients with AE</string>
+    <string name="hts_reports">HTS REPORTS</string>
+    <string name="hts_reports_subtitle">View Reports For HTS</string>
 
 
     <string name="view_visits_history">View Visits History</string>
@@ -1912,5 +1914,6 @@
     <string name="vmmc_tomorrow_visits">Tomorrow visits</string>
     <string name="vmmc_due_clients">Today Visits</string>
     <string name="vmmc_overdue_clients">Missed Visits</string>
+    <string name="hts_screening_report">HTS Screening</string>
 
 </resources>

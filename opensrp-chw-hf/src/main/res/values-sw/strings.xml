@@ -385,6 +385,8 @@
 
     <string name="vmmc_reports">Ripoti za VMMC</string>
     <string name="vmmc_reports_subtitle">Tazama Ripoti za VMMC</string>
+    <string name="hts_reports">Ripoti za HTS</string>
+    <string name="hts_reports_subtitle">Tazama Ripoti za HTS</string>
 
     <!--    CDP-->
     <string name="add_outlet">Ongeza kituo</string>
@@ -897,4 +899,5 @@
     <string name="sbc_print_materials">Machapisho</string>
     <string name="sbc_other_hiv_interventions">Afua nyinginezo za VVU</string>
     <string name="sbc_income_generating_activity">Elimu ya uwezeshaji kiuchumi</string>
+    <string name="hts_screening_report">HTS Screening</string>
 </resources>

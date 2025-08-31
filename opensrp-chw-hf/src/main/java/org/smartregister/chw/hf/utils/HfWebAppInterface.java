@@ -3,12 +3,16 @@ package org.smartregister.chw.hf.utils;
 import static org.smartregister.chw.hf.utils.Constants.ReportConstants.CDPReportKeys.ISSUING_AT_THE_FACILITY_REPORTS;
 import static org.smartregister.chw.hf.utils.Constants.ReportConstants.CDPReportKeys.ISSUING_FROM_THE_FACILITY_REPORTS;
 import static org.smartregister.chw.hf.utils.Constants.ReportConstants.CDPReportKeys.RECEIVING_REPORTS;
+import static org.smartregister.chw.hf.utils.Constants.ReportConstants.HtsKeys.HTS_MONTHLY_REPORT;
+import static org.smartregister.chw.hf.utils.Constants.ReportConstants.HtsKeys.HTS_REGISTER_REPORT;
+import static org.smartregister.chw.hf.utils.Constants.ReportConstants.HtsKeys.HTS_SCREENING_REPORT;
 import static org.smartregister.chw.hf.utils.Constants.ReportConstants.KvpKeys.KVP_MISSEDAP_REPORT;
 import static org.smartregister.chw.hf.utils.Constants.ReportConstants.KvpKeys.KVP_MONTHLY_REPORT;
 import static org.smartregister.chw.hf.utils.Constants.ReportConstants.PMTCTReportKeys.EID_MONTHLY;
 import static org.smartregister.chw.hf.utils.Constants.ReportConstants.PMTCTReportKeys.THREE_MONTHS;
 import static org.smartregister.chw.hf.utils.Constants.ReportConstants.PMTCTReportKeys.TWELVE_MONTHS;
 import static org.smartregister.chw.hf.utils.Constants.ReportConstants.PMTCTReportKeys.TWENTY_FOUR_MONTHS;
+import static org.smartregister.chw.hf.utils.Constants.ReportConstants.ReportPaths.HTS_SCREENING_REPORT_PATH;
 import static org.smartregister.chw.hf.utils.Constants.ReportConstants.ReportPaths.KVP_MISSEDAP_REPORT_PATH;
 import static org.smartregister.chw.hf.utils.Constants.ReportConstants.ReportPaths.KVP_REPORT_PATH;
 import static org.smartregister.chw.hf.utils.Constants.ReportConstants.VmmcKeys.VMMC_LIST_OF_AE_REGISTER;
@@ -246,6 +250,21 @@ public class HfWebAppInterface {
                 default:
                     return "";
             }
+        } else if (reportType.equalsIgnoreCase(Constants.ReportConstants.ReportTypes.HTS_REPORT)) {
+            switch (key) {
+                case HTS_MONTHLY_REPORT:
+                    ReportUtils.setPrintJobName("hts_report_ya_mwezi-" + ReportUtils.getReportPeriod() + ".pdf");
+                    return ReportUtils.HtsMonthlyReport.computeReport(ReportUtils.getReportDate());
+                case HTS_REGISTER_REPORT:
+                    ReportUtils.setPrintJobName("hts_register_report-" + ReportUtils.getReportPeriod() + ".pdf");
+                    return ReportUtils.HtsRegisterReport.computeReport(ReportUtils.getReportDate());
+                case HTS_SCREENING_REPORT:
+                    ReportUtils.setPrintJobName("hts_screening_report-" + ReportUtils.getReportPeriod() + ".pdf");
+                    return ReportUtils.HtsRegisterReport.computeReport(ReportUtils.getReportDate());
+                default:
+                    return "";
+
+            }
         }
         return "";
     }
@@ -269,6 +288,10 @@ public class HfWebAppInterface {
         }
 
         if (reportType.equalsIgnoreCase(Constants.ReportConstants.ReportTypes.KVP_REPORT)) {
+            return ReportUtils.getReportPeriodForCohortReport(reportKey);
+        }
+
+        if (reportType.equalsIgnoreCase(Constants.ReportConstants.ReportTypes.HTS_REPORT)) {
             return ReportUtils.getReportPeriodForCohortReport(reportKey);
         }
 
