@@ -31,6 +31,8 @@ import org.smartregister.chw.fp.util.FamilyPlanningConstants;
 import org.smartregister.chw.hf.dao.FamilyDao;
 import org.smartregister.chw.hf.dao.HeiDao;
 import org.smartregister.chw.hf.dao.HfPmtctDao;
+import org.smartregister.chw.hf.domain.hps_reports.HpsAnnualCensusRegister;
+import org.smartregister.chw.hf.repository.HpsAnnualCensorReportsRepository;
 import org.smartregister.chw.pmtct.util.Constants;
 import org.smartregister.domain.Event;
 import org.smartregister.domain.Obs;
@@ -119,12 +121,108 @@ public class HfClientProcessor extends CoreClientProcessor {
             case org.smartregister.chw.ld.util.Constants.EVENT_TYPE.VOID_EVENT:
             case DELETE_EVENT:
                 processDeleteEvent(eventClient.getEvent());
+
+             case org.smartregister.chw.hps.util.Constants.EVENT_TYPE.HPS_ANNUAL_CENSUS:
+                processHpsAnnualCensusRegisterEvent(eventClient.getEvent());
+                break;
             default:
                 break;
         }
 
         //Used to fix instances where clients were registered without a DOB on past app version leading to app crushes
         FamilyDao.fixClientsWithNullDob();
+    }
+    private void processHpsAnnualCensusRegisterEvent(Event event) {
+        try {
+            List<Obs> censusObs = event.getObs();
+
+            HpsAnnualCensusRegister dto = new HpsAnnualCensusRegister();
+            dto.setBaseEntityId(event.getBaseEntityId());
+            dto.setProviderId(event.getProviderId());
+            dto.setLastInteractedWith(event.getVersion());
+
+            // Identify special typed columns
+            java.util.Set<String> realColumns = new java.util.HashSet<>(java.util.Arrays.asList(
+                    "amount_of_solid_waste_generated_annually_tons",
+                    "amount_of_solid_waste_disposed_at_a_designated_site_annually_tons"
+            ));
+            java.util.Set<String> textColumns = new java.util.HashSet<>(java.util.Arrays.asList(
+                    "select_age_group",
+                    "select_centers_category",
+                    "types_of_pesticides_used_ponds",
+                    "types_of_pesticides_used_cans",
+                    "types_of_pesticides_used_drums",
+                    "types_of_pesticides_used_barrels",
+                    "types_of_pesticides_used_coconut_shells",
+                    "amount_of_pesticide_used_ponds",
+                    "amount_of_pesticide_used_cans",
+                    "amount_of_pesticide_used_drums",
+                    "amount_of_pesticide_used_barrels",
+                    "amount_of_pesticide_used_coconut_shells"
+            ));
+
+            if (censusObs != null && !censusObs.isEmpty()) {
+                for (Obs obs : censusObs) {
+                    String field = obs.getFormSubmissionField();
+                    Object rawVal = obs.getValue();
+                    String stringVal = rawVal != null ? String.valueOf(rawVal) : null;
+
+                    if ("year".equals(field)) {
+                        try {
+                            if (stringVal != null && stringVal.trim().length() > 0) {
+                                dto.setYear(Integer.valueOf(stringVal.trim()));
+                            }
+                        } catch (Exception ignore) { /* leave null if not parsable */ }
+                        continue;
+                    }
+
+                    if ("select_age_group".equals(field)) {
+                        // Multi-select may be in values list
+                        String val = (obs.getValues() != null && !obs.getValues().isEmpty()) ? obs.getValues().toString() : stringVal;
+                        dto.setSelectAgeGroup(val);
+                        dto.putString(field, val);
+                        continue;
+                    }
+
+                    if (textColumns.contains(field)) {
+                        String val = (obs.getValues() != null && !obs.getValues().isEmpty()) ? obs.getValues().toString() : stringVal;
+                        dto.putString(field, val);
+                        continue;
+                    }
+
+                    if (realColumns.contains(field)) {
+                        try {
+                            if (stringVal != null && stringVal.trim().length() > 0) {
+                                dto.putReal(field, Double.valueOf(stringVal.trim()));
+                            }
+                        } catch (NumberFormatException e) {
+                            // If value is not a valid double, skip it
+                        }
+                        continue;
+                    }
+
+                    // Default: attempt to store as integer
+                    try {
+                        if (stringVal != null && stringVal.trim().length() > 0) {
+                            dto.putInteger(field, Integer.valueOf(stringVal.trim()));
+                        }
+                    } catch (NumberFormatException e) {
+                        // if not an integer, fallback to string to avoid data loss
+                        dto.putString(field, stringVal);
+                    }
+                }
+            }
+
+            // Save or update (upsert) using (year, provider_id) composite key
+            if (dto.getYear() == null || dto.getProviderId() == null || dto.getProviderId().trim().isEmpty()) {
+                Timber.w("Skipping HPS annual census save: missing year/provider_id (year=%s, provider_id=%s)",
+                        String.valueOf(dto.getYear()), dto.getProviderId());
+                return;
+            }
+            new HpsAnnualCensorReportsRepository().save(dto);
+        } catch (Exception e) {
+            Timber.e(e, "Error processing HPS Annual Census register event");
+        }
     }
 
     private void processVisitEvent(EventClient eventClient) {
