@@ -20,7 +20,6 @@ import androidx.webkit.WebViewAssetLoader;
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 import org.json.JSONException;
-import org.smartregister.chw.hf.activity.HpsReportsViewActivity;
 import org.smartregister.chw.hf.domain.AsrhMonthlyReportObject;
 import org.smartregister.chw.hf.domain.FpMonthlyReportObject;
 import org.smartregister.chw.hf.domain.SbcReportObject;
@@ -33,7 +32,6 @@ import org.smartregister.chw.hf.domain.cecap_reports.CecapMonthlyReportObject;
 import org.smartregister.chw.hf.domain.cecap_reports.CecapOtherMonthlyReportObject;
 import org.smartregister.chw.hf.domain.hps_reports.HpsAnnualReportObject;
 import org.smartregister.chw.hf.domain.hps_reports.HpsMonthlyReportObject;
-import org.smartregister.chw.hf.domain.kvp_reports.KvpMissedApReportObject;
 import org.smartregister.chw.hf.domain.kvp_reports.KvpMissedApReportObject;
 import org.smartregister.chw.hf.domain.kvp_reports.KvpMonthlyReportObject;
 import org.smartregister.chw.hf.domain.ld_reports.LdMonthlyReportObject;
@@ -147,6 +145,7 @@ public class ReportUtils {
 
         return new Date();
     }
+
     public static String getReportPeriod() {
         return reportPeriod;
     }
@@ -194,10 +193,10 @@ public class ReportUtils {
 
     private static String getReportPeriodWithStartingMonth(int minusPeriod) {
         try {
-            if (startDate != null && endDate != null){
+            if (startDate != null && endDate != null) {
                 String startTime = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(startDate));
                 String endTime = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(endDate));
-                return startTime+ " to " + endTime;
+                return startTime + " to " + endTime;
             }
             DateTime endTime = new DateTime(new SimpleDateFormat("MM-yyyy", Locale.getDefault()).parse(reportPeriod));
             DateTime startTime = endTime.minusMonths(minusPeriod);
@@ -238,9 +237,9 @@ public class ReportUtils {
             mWebView.loadUrl("https://appassets.androidplatform.net/assets/reports/cdp_reports/" + reportPath + ".html");
         } else if (reportType.equals(Constants.ReportConstants.ReportTypes.VMMC_REPORT)) {
             mWebView.loadUrl("https://appassets.androidplatform.net/assets/reports/vmmc_reports/" + reportPath + ".html");
-        } else if(reportType.equals(Constants.ReportConstants.ReportTypes.KVP_REPORT)){
+        } else if (reportType.equals(Constants.ReportConstants.ReportTypes.KVP_REPORT)) {
             mWebView.loadUrl("https://appassets.androidplatform.net/assets/reports/kvp_reports/" + reportPath + ".html");
-        }else if (reportType.equals(Constants.ReportConstants.ReportTypes.KVP_REPORT)) {
+        } else if (reportType.equals(Constants.ReportConstants.ReportTypes.KVP_REPORT)) {
             mWebView.loadUrl("https://appassets.androidplatform.net/assets/reports/kvp_reports/" + reportPath + ".html");
         } else {
             mWebView.loadUrl("https://appassets.androidplatform.net/assets/reports/" + reportPath + ".html");
@@ -429,7 +428,7 @@ public class ReportUtils {
 
         public static String computeReport(Date now, Date startDate, Date endDate) {
             String report = "";
-            VmmcReportObject vmmcReportObject = new VmmcReportObject(now,startDate,endDate);
+            VmmcReportObject vmmcReportObject = new VmmcReportObject(now, startDate, endDate);
             try {
                 report = vmmcReportObject.getIndicatorDataAsGson(vmmcReportObject.getIndicatorData());
             } catch (Exception e) {
@@ -682,6 +681,7 @@ public class ReportUtils {
             return report;
         }
     }
+
     public static class CDPReports {
         public static String computeIssuingAtFacilityReports(Date startDate) {
             CdpIssuingAtFacilityReportObject cdpIssuingAtFacilityReportObject = new CdpIssuingAtFacilityReportObject(startDate);
@@ -789,6 +789,7 @@ public class ReportUtils {
             }
             return "";
         }
+
         public static String computeClientsAnnualReports(Date startDate) {
             HpsAnnualReportObject hpsAnnualReportObject = new HpsAnnualReportObject(startDate);
             try {

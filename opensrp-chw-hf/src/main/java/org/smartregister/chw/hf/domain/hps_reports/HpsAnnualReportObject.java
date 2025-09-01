@@ -1,18 +1,12 @@
 package org.smartregister.chw.hf.domain.hps_reports;
 
-import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.smartregister.chw.hf.dao.ReportDao;
 import org.smartregister.chw.hf.domain.ReportObject;
+import org.smartregister.chw.hf.repository.HpsAnnualCensorReportsRepository;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import timber.log.Timber;
 
@@ -113,10 +107,10 @@ public class HpsAnnualReportObject extends ReportObject {
             "number_of_pharmacy_faith_based_organisation",
             "number_of_pharmacy_public",
             "number_of_pharmacy_private",
-            "number_of_ADDO_government",
-            "number_of_ADDO_faith_based_organisation",
-            "number_of_ADDO_public",
-            "number_of_ADDO_private",
+            "number_of_addo_government",
+            "number_of_addo_faith_based_organisation",
+            "number_of_addo_public",
+            "number_of_addo_private",
             "number_of_maternity_home_government",
             "number_of_maternity_home_faith_based_organisation",
             "number_of_maternity_home_public",
@@ -151,36 +145,10 @@ public class HpsAnnualReportObject extends ReportObject {
             "hps-c", "hps-d", "hps-e", "hps-f", "hps-g", "hps-h", "hps-i", "hps-j", "hps-k", "hps-l", "hps-m", "hps-n", "hps-o", "hps-p", "hps-q", "hps-r", "hps-s", "hps-t",
     };
     private final String[] hpsQuestionsGroups = new String[]{"1", "2", "3", "4"};
-    private final String[] whereClauses = new String[]{"government", "faith_based_organisation", "public", "private"};
 
     private final Date reportDate;
     JSONObject jsonObject = new JSONObject();
     JSONArray dataArray = new JSONArray();
-    private int totalOfMale = 0;
-    private int totalOfFemale = 0;
-    private int totalOfBothMaleAndFemale = 0;
-
-    private int totalOfhpsc = 0;
-    private int totalOfhpsd = 0;
-    private int totalOfhpse = 0;
-    private int totalOfhpsf = 0;
-    private int totalOfhpsg = 0;
-    private int totalOfhpsh = 0;
-    private int totalOfhpsi = 0;
-    private int totalOfhpsj = 0;
-    private int totalOfhpsk = 0;
-    private int totalOfhpsl = 0;
-    private int totalOfhpsm = 0;
-    private int totalOfhpsn = 0;
-    private int totalOfhpso = 0;
-    private int totalOfhpsp = 0;
-    private int totalOfhpsq = 0;
-    private int totalOfhpsr = 0;
-    private int totalOfhpss = 0;
-    private int totalOfhpst = 0;
-    private int totalOfhpsv = 0;
-    private int totalOfhpsvv = 0;
-
 
 
     public HpsAnnualReportObject(Date reportDate) {
@@ -191,153 +159,91 @@ public class HpsAnnualReportObject extends ReportObject {
 
     @Override
     public JSONObject getIndicatorData() throws JSONException {
-//        // Request values from the Dyanamic Tables
-//        List<Map<String, String>> getHpsDynamicTablesList = ReportDao.getHpsAnnualDynamicTablesreports(reportDate, simpleKeys, selectorsForSimpleKeys);
-//        List<Map<String, String>> getHpsDynamicTablesListWithClause = ReportDao.getHpsAnnualDynamicTablesreports(reportDate, generateCombinedArrayKeys(), selectorsForComplexKeys);  // ****** BOX kuu ******
-//        // get values from the Dyanamic Tables
-//        excuteDynamicTables(getHpsDynamicTablesList);
-//        excuteDynamicTables(getHpsDynamicTablesListWithClause);
-        return jsonObject;
-    }
+        jsonObject = new JSONObject();
+        try {
+            // 1) Derive reporting year from provided date
+            java.util.Calendar cal = java.util.Calendar.getInstance();
+            cal.setTime(reportDate);
+            int year = cal.get(java.util.Calendar.YEAR);
 
-    private void excuteDynamicTables(List<Map<String, String>> getHpsDynamicTablesList) {
-        // To keep track of already printed tables
-        Set<Map<String, String>> printedTables = new HashSet<>();
-        for (Map<String, String> getHpsDynamicTables : getHpsDynamicTablesList) {
-            // Skip empty maps
-            if (getHpsDynamicTables.isEmpty()) {
-                continue;
+            HpsAnnualCensorReportsRepository repo = new HpsAnnualCensorReportsRepository();
+
+            // 2) Aggregate required columns once per section
+            java.util.Map<String, Integer> simpleAgg = repo.getAggregatesForYear(year, selectorsForSimpleKeys);
+            java.util.Map<String, Integer> complexAgg = repo.getAggregatesForYear(year, selectorsForComplexKeys);
+
+            // 3) Map simple selectors to their corresponding HTML ids
+            for (int i = 0; i < simpleKeys.length && i < selectorsForSimpleKeys.length; i++) {
+                String htmlId = simpleKeys[i];
+                String column = selectorsForSimpleKeys[i];
+                int value = simpleAgg.containsKey(column) ? simpleAgg.get(column) : 0;
+                jsonObject.put(htmlId, value);
             }
-            // Print and process only unprinted tables
-            if (!printedTables.contains(getHpsDynamicTables)) {
-                for (String tableKey : getHpsDynamicTables.keySet()) {
-                    try {
-                        jsonObject.put(tableKey, getHpsDynamicTable(getHpsDynamicTables, tableKey));
-                        getTotalForAgeAndOtherBandsQuestions(tableKey, getHpsDynamicTables);
-                    } catch (JSONException e) {
-                        Timber.tag("Hps Annual report error").d(e);
+
+            // 4) Complex table: map each category (1..4) per complex group (c..t)
+            int groups = hpsQuestionsGroups.length; // 4
+            for (int i = 0; i < complexKeys.length; i++) {
+                String base = complexKeys[i];
+                for (int j = 0; j < groups; j++) {
+                    int idx = (i * groups) + j;
+                    if (idx >= selectorsForComplexKeys.length) break;
+                    String column = selectorsForComplexKeys[idx];
+                    int value = complexAgg.containsKey(column) ? complexAgg.get(column) : 0;
+                    jsonObject.put(base + "-" + hpsQuestionsGroups[j], value);
+                }
+            }
+
+            // 5) Compute totals for age/gender and MF grand total
+            int maleTotal = 0;
+            int femaleTotal = 0;
+            // male age groups
+            maleTotal += simpleAgg.getOrDefault("number_of_male_by_age_group_under1", 0);
+            maleTotal += simpleAgg.getOrDefault("number_of_male_by_age_group_1_4", 0);
+            maleTotal += simpleAgg.getOrDefault("number_of_male_by_age_group_5_14", 0);
+            maleTotal += simpleAgg.getOrDefault("number_of_male_by_age_group_15_49", 0);
+            maleTotal += simpleAgg.getOrDefault("number_of_male_by_age_group_50_59", 0);
+            maleTotal += simpleAgg.getOrDefault("number_of_male_by_age_group_60_plus", 0);
+            // female age groups
+            femaleTotal += simpleAgg.getOrDefault("number_of_female_by_age_group_under1", 0);
+            femaleTotal += simpleAgg.getOrDefault("number_of_female_by_age_group_1_4", 0);
+            femaleTotal += simpleAgg.getOrDefault("number_of_female_by_age_group_5_14", 0);
+            femaleTotal += simpleAgg.getOrDefault("number_of_female_by_age_group_15_49", 0);
+            femaleTotal += simpleAgg.getOrDefault("number_of_female_by_age_group_50_59", 0);
+            femaleTotal += simpleAgg.getOrDefault("number_of_female_by_age_group_60_plus", 0);
+            jsonObject.put("hps-M-total", maleTotal);
+            jsonObject.put("hps-F-total", femaleTotal);
+            jsonObject.put("hps-MF-grand-total", maleTotal + femaleTotal);
+
+            // 6) Totals per complex group (c..t): sum four categories
+            for (int i = 0; i < complexKeys.length; i++) {
+                String base = complexKeys[i];
+                int total = 0;
+                for (int j = 0; j < groups; j++) {
+                    Object v = jsonObject.opt(base + "-" + hpsQuestionsGroups[j]);
+                    if (v instanceof Number) total += ((Number) v).intValue();
+                    else {
+                        try {
+                            total += Integer.parseInt(String.valueOf(v));
+                        } catch (Exception ignore) {
+                        }
                     }
                 }
-                // Mark this table as printed
-                printedTables.add(getHpsDynamicTables);
+                jsonObject.put(base + "-total", total);
             }
-        }
-    }
 
-    private void getTotalForAgeAndOtherBandsQuestions(String tableKey, Map<String, String> getHpsDynamicTables) throws JSONException {
-        if (tableKey.contains("hps-M")) {
-            totalOfMale += Integer.parseInt(getHpsDynamicTable(getHpsDynamicTables, tableKey));
-            totalOfBothMaleAndFemale += Integer.parseInt(getHpsDynamicTable(getHpsDynamicTables, tableKey));
-            jsonObject.put("hps-M-total", totalOfMale);
-        }
-        if (tableKey.contains("hps-F")) {
-            totalOfFemale += Integer.parseInt(getHpsDynamicTable(getHpsDynamicTables, tableKey));
-            totalOfBothMaleAndFemale += Integer.parseInt(getHpsDynamicTable(getHpsDynamicTables, tableKey));
-            jsonObject.put("hps-F-total", totalOfFemale);
-        }
-        jsonObject.put("hps-MF-grand-total", totalOfBothMaleAndFemale);
+            // 7) Totals for economic activities (v/vv)
+            int vTotal = simpleAgg.getOrDefault("number_of_male_capable_of_engaging_in_economic_activities", 0)
+                    + simpleAgg.getOrDefault("number_of_female_capable_of_engaging_in_economic_activities", 0);
+            int vvTotal = simpleAgg.getOrDefault("number_of_male_engaged_in_economic_activities", 0)
+                    + simpleAgg.getOrDefault("number_of_female_engaged_in_economic_activities", 0);
+            jsonObject.put("hps-v-total", vTotal);
+            jsonObject.put("hps-vv-total", vvTotal);
 
-        if (tableKey.contains("hps-c")) {
-            totalOfhpsc += Integer.parseInt(getHpsDynamicTable(getHpsDynamicTables, tableKey));
-            jsonObject.put("hps-c-total", totalOfhpsc);
+            // Ensure reportData key exists to appease the viewer script
+            jsonObject.put("reportData", dataArray);
+        } catch (Exception e) {
+            Timber.e(e, "Error computing HPS annual report indicators");
         }
-        if (tableKey.contains("hps-d")) {
-            totalOfhpsd += Integer.parseInt(getHpsDynamicTable(getHpsDynamicTables, tableKey));
-            jsonObject.put("hps-d-total", totalOfhpsd);
-        }
-        if (tableKey.contains("hps-e")) {
-            totalOfhpse += Integer.parseInt(getHpsDynamicTable(getHpsDynamicTables, tableKey));
-            jsonObject.put("hps-e-total", totalOfhpse);
-        }
-        if (tableKey.contains("hps-f")) {
-            totalOfhpsf += Integer.parseInt(getHpsDynamicTable(getHpsDynamicTables, tableKey));
-            jsonObject.put("hps-f-total", totalOfhpsf);
-        }
-        if (tableKey.contains("hps-g")) {
-            totalOfhpsg += Integer.parseInt(getHpsDynamicTable(getHpsDynamicTables, tableKey));
-            jsonObject.put("hps-g-total", totalOfhpsg);
-        }
-        if (tableKey.contains("hps-h")) {
-            totalOfhpsh += Integer.parseInt(getHpsDynamicTable(getHpsDynamicTables, tableKey));
-            jsonObject.put("hps-h-total", totalOfhpsh);
-        }
-        if (tableKey.contains("hps-i")) {
-            totalOfhpsi += Integer.parseInt(getHpsDynamicTable(getHpsDynamicTables, tableKey));
-            jsonObject.put("hps-i-total", totalOfhpsi);
-        }
-        if (tableKey.contains("hps-j")) {
-            totalOfhpsj += Integer.parseInt(getHpsDynamicTable(getHpsDynamicTables, tableKey));
-            jsonObject.put("hps-j-total", totalOfhpsj);
-        }
-        if (tableKey.contains("hps-k")) {
-            totalOfhpsk += Integer.parseInt(getHpsDynamicTable(getHpsDynamicTables, tableKey));
-            jsonObject.put("hps-k-total", totalOfhpsk);
-        }
-        if (tableKey.contains("hps-l")) {
-            totalOfhpsl += Integer.parseInt(getHpsDynamicTable(getHpsDynamicTables, tableKey));
-            jsonObject.put("hps-l-total", totalOfhpsl);
-        }
-        if (tableKey.contains("hps-m")) {
-            totalOfhpsm += Integer.parseInt(getHpsDynamicTable(getHpsDynamicTables, tableKey));
-            jsonObject.put("hps-m-total", totalOfhpsm);
-        }
-        if (tableKey.contains("hps-n")) {
-            totalOfhpsn += Integer.parseInt(getHpsDynamicTable(getHpsDynamicTables, tableKey));
-            jsonObject.put("hps-n-total", totalOfhpsn);
-        }
-        if (tableKey.contains("hps-o")) {
-            totalOfhpso += Integer.parseInt(getHpsDynamicTable(getHpsDynamicTables, tableKey));
-            jsonObject.put("hps-o-total", totalOfhpso);
-        }
-        if (tableKey.contains("hps-p")) {
-            totalOfhpsp += Integer.parseInt(getHpsDynamicTable(getHpsDynamicTables, tableKey));
-            jsonObject.put("hps-p-total", totalOfhpsp);
-        }
-        if (tableKey.contains("hps-q")) {
-            totalOfhpsq += Integer.parseInt(getHpsDynamicTable(getHpsDynamicTables, tableKey));
-            jsonObject.put("hps-q-total", totalOfhpsq);
-        }
-        if (tableKey.contains("hps-r")) {
-            totalOfhpsr += Integer.parseInt(getHpsDynamicTable(getHpsDynamicTables, tableKey));
-            jsonObject.put("hps-r-total", totalOfhpsr);
-        }
-        if (tableKey.contains("hps-s")) {
-            totalOfhpss += Integer.parseInt(getHpsDynamicTable(getHpsDynamicTables, tableKey));
-            jsonObject.put("hps-s-total", totalOfhpss);
-        }
-        if (tableKey.contains("hps-t")) {
-            totalOfhpst += Integer.parseInt(getHpsDynamicTable(getHpsDynamicTables, tableKey));
-            jsonObject.put("hps-t-total", totalOfhpst);
-        }
-        if (tableKey.contains("hps-v")) {
-            totalOfhpsv += Integer.parseInt(getHpsDynamicTable(getHpsDynamicTables, tableKey));
-            jsonObject.put("hps-v-total", totalOfhpsv);
-        }
-        if (tableKey.contains("hps-vv")) {
-            totalOfhpsvv += Integer.parseInt(getHpsDynamicTable(getHpsDynamicTables, tableKey));
-            jsonObject.put("hps-vv-total", totalOfhpsvv);
-        }
-
-    }
-
-    private String getHpsDynamicTable(Map<String, String> chwRegistrationFollowupClient, String key) {
-        String details = chwRegistrationFollowupClient.get(key);
-        if (details.equals("null")) {
-            return "0";
-        }
-        if (StringUtils.isNotBlank(details)) {
-            return details;
-        }
-        return "0";
-    }
-
-    public String[] generateCombinedArrayKeys() {
-        List<String> combinedList = new ArrayList<>();
-        for (String indicatorTableCode : complexKeys) {
-            for (String questionGroup : hpsQuestionsGroups) {
-                combinedList.add(indicatorTableCode + "-" + questionGroup);
-            }
-        }
-        return combinedList.toArray(new String[0]); // Convert to array
+        return jsonObject;
     }
 }

@@ -9,6 +9,8 @@ import org.smartregister.chw.hf.domain.hps_reports.HpsAnnualCensusRegister;
 import org.smartregister.repository.BaseRepository;
 
 import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import timber.log.Timber;
 
@@ -398,5 +400,46 @@ public class HpsAnnualCensorReportsRepository extends BaseRepository {
             if (e.getValue() != null) cv.put(e.getKey(), e.getValue());
         }
         return cv;
+    }
+
+    /**
+     * Aggregates the given integer columns for a specific year across all providers.
+     * Returns a map of column -> SUM(column) (COALESCE to 0 when null or no rows).
+     */
+    public Map<String, Integer> getAggregatesForYear(int year, String[] integerColumns) {
+        Map<String, Integer> result = new HashMap<>();
+        if (integerColumns == null || integerColumns.length == 0) return result;
+
+        ensureTableExists();
+        StringBuilder sb = new StringBuilder();
+        sb.append("SELECT ");
+        for (int i = 0; i < integerColumns.length; i++) {
+            String col = integerColumns[i];
+            // Use double-quotes around aliases to preserve exact column names in cursor
+            sb.append("COALESCE(SUM(").append(col).append("), 0) AS \"").append(col).append("\"");
+            if (i < integerColumns.length - 1) sb.append(", ");
+        }
+        sb.append(" FROM ").append(TABLE_NAME).append(" WHERE ").append(COL_YEAR).append(" = ?");
+
+        Cursor cursor = null;
+        try {
+            cursor = getReadableDatabase().rawQuery(sb.toString(), new String[]{String.valueOf(year)});
+            if (cursor != null && cursor.moveToFirst()) {
+                for (String col : integerColumns) {
+                    int idx = cursor.getColumnIndex(col);
+                    int val = (idx >= 0) ? cursor.getInt(idx) : 0;
+                    result.put(col, val);
+                }
+            } else {
+                for (String col : integerColumns) result.put(col, 0);
+            }
+        } catch (Exception e) {
+            Timber.e(e, "Error aggregating HPS annual indicators for year %s", year);
+            // Fallback to zeros to avoid crashing the report rendering
+            for (String col : integerColumns) result.put(col, 0);
+        } finally {
+            if (cursor != null) cursor.close();
+        }
+        return result;
     }
 }

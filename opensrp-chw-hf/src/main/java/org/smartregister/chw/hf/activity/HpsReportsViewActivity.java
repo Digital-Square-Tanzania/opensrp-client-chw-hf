@@ -29,6 +29,7 @@ import org.smartregister.chw.hf.dao.ReportDao;
 import org.smartregister.chw.hf.domain.CHW;
 import org.smartregister.chw.hf.domain.dhis2_reports.Dhis2Report;
 import org.smartregister.chw.hf.domain.dhis2_reports.DhisDataValues;
+import org.smartregister.chw.hf.domain.hps_reports.HpsAnnualReportObject;
 import org.smartregister.chw.hf.domain.hps_reports.HpsMonthlyReportObject;
 import org.smartregister.chw.hf.utils.Constants;
 import org.smartregister.chw.hf.utils.JsonFormUtils;
@@ -40,33 +41,47 @@ import org.smartregister.repository.AllSharedPreferences;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
-
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-import java.util.concurrent.ExecutionException;
-
-import java.util.Calendar;
 
 import timber.log.Timber;
 
 
 public class HpsReportsViewActivity extends HfReportsViewActivity {
-    public  HpsMonthlyReportObject hpsMonthlyReportObject;
-
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
+    public HpsMonthlyReportObject hpsMonthlyReportObject;
+    public HpsAnnualReportObject hpsAnnualReportObject;
+    private int reportTittle;
     private Future<Dhis2Report> reportFuture;
+
+    public static void startMe(Activity activity, String reportPath, int reportTitle, String reportDate) {
+        Intent intent = new Intent(activity, HpsReportsViewActivity.class);
+        intent.putExtra(ARG_REPORT_PATH, reportPath);
+        intent.putExtra(ARG_REPORT_DATE, reportDate);
+        intent.putExtra(ARG_REPORT_TITLE, reportTitle);
+        intent.putExtra(ARG_REPORT_TYPE, Constants.ReportConstants.ReportTypes.HPS_REPORT);
+        activity.startActivity(intent);
+    }
 
     /**
      * Builds a Dhis2Report from the current HpsMonthlyReportObject.
      */
     private Dhis2Report buildDhis2Report() throws Exception {
-        hpsMonthlyReportObject = new HpsMonthlyReportObject(ReportUtils.getReportDate());
-        JSONObject jsonObject = hpsMonthlyReportObject.getIndicatorData();
+        JSONObject jsonObject;
+        if (reportTittle == R.string.hps_monthly_reports_title) {
+            hpsMonthlyReportObject = new HpsMonthlyReportObject(ReportUtils.getReportDate());
+            jsonObject = hpsMonthlyReportObject.getIndicatorData();
+        } else {
+            hpsAnnualReportObject = new HpsAnnualReportObject(ReportUtils.getReportDate());
+            jsonObject = hpsAnnualReportObject.getIndicatorData();
+        }
         List<DhisDataValues> dhisDataValues = ReportDao.getDhisDataValues(jsonObject);
 
         Dhis2Report dhis2Report = new Dhis2Report();
@@ -82,6 +97,7 @@ public class HpsReportsViewActivity extends HfReportsViewActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        reportTittle = getIntent().getIntExtra(ARG_REPORT_TITLE, 0);
         reportFuture = executor.submit(() -> {
             try {
                 Thread.sleep(2000); // wait for 5 seconds
@@ -89,17 +105,9 @@ public class HpsReportsViewActivity extends HfReportsViewActivity {
                 Thread.currentThread().interrupt();
                 Timber.e(ie);
             }
-            return buildDhis2Report();
+//            return buildDhis2Report();
+            return null;
         });
-    }
-
-    public static void startMe(Activity activity, String reportPath, int reportTitle, String reportDate) {
-        Intent intent = new Intent(activity, HpsReportsViewActivity.class);
-        intent.putExtra(ARG_REPORT_PATH, reportPath);
-        intent.putExtra(ARG_REPORT_DATE, reportDate);
-        intent.putExtra(ARG_REPORT_TITLE, reportTitle);
-        intent.putExtra(ARG_REPORT_TYPE, Constants.ReportConstants.ReportTypes.HPS_REPORT);
-        activity.startActivity(intent);
     }
 
     public void generateSendToDhis2Event(String baseEntityId, Context context) throws JSONException {
@@ -173,7 +181,7 @@ public class HpsReportsViewActivity extends HfReportsViewActivity {
 
         boolean isPastMonth = report.get(Calendar.YEAR) < current.get(Calendar.YEAR) ||
                 (report.get(Calendar.YEAR) == current.get(Calendar.YEAR) &&
-                report.get(Calendar.MONTH) < current.get(Calendar.MONTH));
+                        report.get(Calendar.MONTH) < current.get(Calendar.MONTH));
 
         if (isPastMonth) {
             menu.findItem(R.id.action_upload_to_dhis2).setVisible(true);
