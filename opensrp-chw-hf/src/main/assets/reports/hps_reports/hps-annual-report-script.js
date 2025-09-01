@@ -5,7 +5,6 @@ function loadData(reportKey, reportType) {
   const reportPeriod = document.getElementById("report_period");
   const reportingFacility = document.getElementById("reporting_facility");
   reportPeriod.innerHTML = Android.getDataPeriod().split("-")[1];
-  reportingFacility.innerHTML = Android.getReportingChw();
   keys.forEach((key) => {
     let element;
     if (reportType !== null && reportType === "pnc") {
@@ -34,6 +33,8 @@ function loadData(reportKey, reportType) {
       tableBody.appendChild(row);
     });
     }
+
+  reportingFacility.innerHTML = Android.getReportingChw();
 
 
 }
