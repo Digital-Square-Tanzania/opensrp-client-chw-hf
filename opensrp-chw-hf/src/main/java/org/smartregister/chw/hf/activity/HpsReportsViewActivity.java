@@ -105,8 +105,7 @@ public class HpsReportsViewActivity extends HfReportsViewActivity {
                 Thread.currentThread().interrupt();
                 Timber.e(ie);
             }
-//            return buildDhis2Report();
-            return null;
+            return buildDhis2Report();
         });
     }
 
