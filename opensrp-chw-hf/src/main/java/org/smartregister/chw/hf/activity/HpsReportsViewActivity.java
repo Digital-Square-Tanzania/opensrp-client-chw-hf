@@ -87,12 +87,17 @@ public class HpsReportsViewActivity extends HfReportsViewActivity {
         Dhis2Report dhis2Report = new Dhis2Report();
         dhis2Report.setDataValues(dhisDataValues);
         dhis2Report.setCompleteDate(new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date()));
-        dhis2Report.setPeriod(new SimpleDateFormat("yyyyMM", Locale.getDefault()).format(ReportUtils.getReportDate()));
+        if (reportTittle == R.string.hps_annual_reports_title) {
+            dhis2Report.setPeriod(new SimpleDateFormat("yyyy", Locale.getDefault()).format(ReportUtils.getReportDate()));
+        } else {
+            dhis2Report.setPeriod(new SimpleDateFormat("yyyyMM", Locale.getDefault()).format(ReportUtils.getReportDate()));
+        }
+
         dhis2Report.setOrgUnit(getAllSharedPreferences().getPreference(HFR_CODE).replace("HFR Code: ", ""));
 
         if (reportTittle == R.string.hps_monthly_reports_title) {
             dhis2Report.setDataSet("AV47sHdUAav");
-        } else {
+        } else  if (reportTittle == R.string.hps_annual_reports_title) {
             dhis2Report.setDataSet("toHRvJB6PyG");
         }
         return dhis2Report;
