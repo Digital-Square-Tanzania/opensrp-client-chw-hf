@@ -319,8 +319,8 @@ public class AncMemberProfileActivity extends CoreAncMemberProfileActivity {
         CustomFontTextView tvPartnerProfileView = findViewById(R.id.text_view_partner_profile);
         CustomFontTextView tvPartnerDetails = findViewById(R.id.partner_details);
         ImageView goToProfileBtn = findViewById(R.id.partner_arrow_image);
-        Button registerBtn = findViewById(R.id.register_partner_btn);
-        Button testingBtn = findViewById(R.id.test_partner_btn);
+        View registerBtn = findViewById(R.id.register_partner_btn);
+        View testingBtn = findViewById(R.id.test_partner_btn);
         View partnerTestingBottomView = findViewById(R.id.partner_testing_row);
         View partnerBottomView = findViewById(R.id.view_partner_row);
 
