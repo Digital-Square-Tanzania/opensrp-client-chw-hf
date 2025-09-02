@@ -109,7 +109,7 @@ public class HpsReportsViewActivity extends HfReportsViewActivity {
         });
     }
 
-    public void generateSendToDhis2Event(String baseEntityId, Context context) throws JSONException {
+    public void generateSendToDhis2Event(String baseEntityId, Context context, int reportTittle) throws JSONException {
         Dhis2Report dhis2Report;
         if (reportFuture != null) {
             try {
@@ -122,10 +122,11 @@ public class HpsReportsViewActivity extends HfReportsViewActivity {
             dhis2Report = getReport();
         }
         AllSharedPreferences sharedPreferences = getAllSharedPreferences();
+        String eventType = reportTittle == R.string.hps_monthly_reports_title ? Constants.Events.SEND_MONTHLY_MTUHA_BOOK_3_TO_DHIS2 : Constants.Events.SEND_ANNUAL_REPORTS_TO_DHIS2;
         Event baseEvent = (Event) new Event()
                 .withBaseEntityId(baseEntityId)
                 .withEventDate(new Date())
-                .withEventType(Constants.Events.SEND_MONTHLY_MTUHA_BOOK_3_TO_DHIS2)
+                .withEventType(eventType)
                 .withFormSubmissionId(org.smartregister.util.JsonFormUtils.generateRandomUUIDString())
                 .withProviderId(sharedPreferences.fetchRegisteredANM())
                 .withLocationId(ChwNotificationDao.getSyncLocationId(baseEntityId))
@@ -135,9 +136,10 @@ public class HpsReportsViewActivity extends HfReportsViewActivity {
                 .withClientApplicationVersion(BuildConfig.VERSION_CODE)
                 .withDateCreated(new Date());
 
+        String indicatorData = reportTittle == R.string.hps_monthly_reports_title ? hpsMonthlyReportObject.getIndicatorData().toString() : hpsAnnualReportObject.getIndicatorData().toString();
         baseEvent.addObs((new Obs())
                 .withFormSubmissionField(Constants.FormConstants.FormSubmissionFields.REPORT_DATA)
-                .withValue(hpsMonthlyReportObject.getIndicatorData().toString())
+                .withValue(indicatorData)
                 .withFieldCode(Constants.FormConstants.FormSubmissionFields.REPORT_DATA)
                 .withFieldType(CoreConstants.FORMSUBMISSION_FIELD).withFieldDataType(CoreConstants.TEXT).withParentCode("")
                 .withHumanReadableValues(new ArrayList<>()));
@@ -246,7 +248,7 @@ public class HpsReportsViewActivity extends HfReportsViewActivity {
                     // Will block here if not yet complete
                     Dhis2Report dhis2ReportReady = reportFuture != null ? reportFuture.get() : buildDhis2Report();
                     // Use the ready report
-                    generateSendToDhis2Event(UUID.randomUUID().toString(), context);
+                    generateSendToDhis2Event(UUID.randomUUID().toString(), context, reportTittle);
                     ((Activity) context).runOnUiThread(() -> {
                         progressDialog.dismiss();
                         Toast.makeText(context, "Data successfully generated", Toast.LENGTH_LONG).show();

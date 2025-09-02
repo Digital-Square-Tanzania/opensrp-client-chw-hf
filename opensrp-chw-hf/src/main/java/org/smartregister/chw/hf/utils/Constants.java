@@ -116,6 +116,8 @@ public class Constants extends CoreConstants {
         public static final String FP_ECP_SCREENING = "FP ECP Screening";
 
         public static final String SEND_MONTHLY_MTUHA_BOOK_3_TO_DHIS2 = "Send MTUHA BOOK3 Report To DHIS2";
+
+        public static final String SEND_ANNUAL_REPORTS_TO_DHIS2 = "Send MTUHA Annual Report To DHIS2";
     }
 
     public static final class TableName {
