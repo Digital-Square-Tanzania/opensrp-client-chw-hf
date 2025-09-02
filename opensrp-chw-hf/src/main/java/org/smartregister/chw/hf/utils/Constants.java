@@ -742,6 +742,10 @@ public class Constants extends CoreConstants {
             String REPORT_DATA = "report_data";
 
             String REPORT_DHIS_PAYLOAD = "dhis2_payload";
+
+            // Additional metadata to support history and re-visualization
+            String REPORT_PERIOD = "report_period"; // e.g., yyyyMM or yyyy
+            String REPORT_CATEGORY = "report_category"; // e.g., hps_monthly | hps_annual
         }
 
         public interface ClinicFindings{

@@ -109,7 +109,7 @@ public class HpsReportsViewActivity extends HfReportsViewActivity {
         });
     }
 
-    public void generateSendToDhis2Event(String baseEntityId, Context context, int reportTittle) throws JSONException {
+    public String generateSendToDhis2Event(String baseEntityId, Context context, int reportTittle) throws JSONException {
         Dhis2Report dhis2Report;
         if (reportFuture != null) {
             try {
@@ -144,6 +144,23 @@ public class HpsReportsViewActivity extends HfReportsViewActivity {
                 .withFieldType(CoreConstants.FORMSUBMISSION_FIELD).withFieldDataType(CoreConstants.TEXT).withParentCode("")
                 .withHumanReadableValues(new ArrayList<>()));
 
+        // Attach helpful metadata for easier history reconstruction
+        String periodStr = new SimpleDateFormat("yyyyMM", Locale.getDefault()).format(ReportUtils.getReportDate());
+        baseEvent.addObs((new Obs())
+                .withFormSubmissionField(Constants.FormConstants.FormSubmissionFields.REPORT_PERIOD)
+                .withValue(periodStr)
+                .withFieldCode(Constants.FormConstants.FormSubmissionFields.REPORT_PERIOD)
+                .withFieldType(CoreConstants.FORMSUBMISSION_FIELD).withFieldDataType(CoreConstants.TEXT).withParentCode("")
+                .withHumanReadableValues(new ArrayList<>()));
+
+        String reportCategory = reportTittle == R.string.hps_monthly_reports_title ? "hps_monthly" : "hps_annual";
+        baseEvent.addObs((new Obs())
+                .withFormSubmissionField(Constants.FormConstants.FormSubmissionFields.REPORT_CATEGORY)
+                .withValue(reportCategory)
+                .withFieldCode(Constants.FormConstants.FormSubmissionFields.REPORT_CATEGORY)
+                .withFieldType(CoreConstants.FORMSUBMISSION_FIELD).withFieldDataType(CoreConstants.TEXT).withParentCode("")
+                .withHumanReadableValues(new ArrayList<>()));
+
         baseEvent.addObs((new Obs())
                 .withFormSubmissionField(Constants.FormConstants.FormSubmissionFields.REPORT_DHIS_PAYLOAD)
                 .withValue(new Gson().toJson(dhis2Report))
@@ -154,10 +171,41 @@ public class HpsReportsViewActivity extends HfReportsViewActivity {
 
         JsonFormUtils.tagSyncMetadata(Utils.context().allSharedPreferences(), baseEvent);
         try {
-            NCUtils.processEvent(baseEvent.getBaseEntityId(), new JSONObject(org.smartregister.chw.anc.util.JsonFormUtils.gson.toJson(baseEvent)));
+            // Persist locally via the processing pipeline
+            JSONObject eventJson = new JSONObject(org.smartregister.chw.anc.util.JsonFormUtils.gson.toJson(baseEvent));
+            NCUtils.processEvent(baseEvent.getBaseEntityId(), eventJson);
         } catch (Exception e) {
             Timber.e(e);
         }
+
+        // Also persist history immediately for quick re-visualization
+        try {
+            org.smartregister.chw.hf.repository.Dhis2ReportHistoryRepository repo = new org.smartregister.chw.hf.repository.Dhis2ReportHistoryRepository();
+            org.smartregister.domain.Event srvEvent = new org.smartregister.domain.Event();
+            // Minimal mapping: event id, event type, baseEntity, eventDate and obs list
+            srvEvent.setBaseEntityId(baseEvent.getBaseEntityId());
+            srvEvent.setEventDate(new org.joda.time.DateTime(baseEvent.getEventDate()));
+            srvEvent.setEventType(baseEvent.getEventType());
+            srvEvent.setLocationId(baseEvent.getLocationId());
+            srvEvent.setProviderId(baseEvent.getProviderId());
+            srvEvent.setFormSubmissionId(baseEvent.getFormSubmissionId());
+            // Convert clientandeventmodel.Obs to domain.Obs
+            List<org.smartregister.domain.Obs> srvObs = new ArrayList<>();
+            for (org.smartregister.clientandeventmodel.Obs o : baseEvent.getObs()) {
+                org.smartregister.domain.Obs no = new org.smartregister.domain.Obs();
+                no.setFieldCode(o.getFieldCode());
+                no.setFieldDataType(o.getFieldDataType());
+                no.setFieldType(o.getFieldType());
+                no.setFormSubmissionField(o.getFormSubmissionField());
+                no.setValue(o.getValue());
+                srvObs.add(no);
+            }
+            srvEvent.setObs(srvObs);
+            repo.saveFromEvent(srvEvent);
+        } catch (Exception ex) {
+            Timber.e(ex);
+        }
+        return baseEvent.getFormSubmissionId();
     }
 
     public Dhis2Report getReport() {
@@ -173,7 +221,7 @@ public class HpsReportsViewActivity extends HfReportsViewActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.reports_view_menu, menu);
         menu.findItem(R.id.action_view_chw_sync_status).setVisible(true);
-
+        menu.findItem(R.id.action_view_dhis2_history).setVisible(true);
 
         // menu.findItem(R.id.action_upload_to_dhis2).setVisible(true);
         Calendar current = Calendar.getInstance();
@@ -200,6 +248,12 @@ public class HpsReportsViewActivity extends HfReportsViewActivity {
             return true;
         } else if (itemId == R.id.action_upload_to_dhis2) {
             showConfirmationPopupWithProgress(this, ReportDao.getChwsLastSyncDate());
+            return true;
+        } else if (itemId == R.id.action_view_dhis2_history) {
+            Intent intent = new Intent(this, Dhis2ReportHistoryActivity.class);
+            String reportCategory = reportTittle == R.string.hps_monthly_reports_title ? "hps_monthly" : "hps_annual";
+            intent.putExtra(Dhis2ReportHistoryActivity.EXTRA_REPORT_TYPE, reportCategory);
+            startActivity(intent);
             return true;
         }
         return true;
@@ -247,11 +301,19 @@ public class HpsReportsViewActivity extends HfReportsViewActivity {
                 try {
                     // Will block here if not yet complete
                     Dhis2Report dhis2ReportReady = reportFuture != null ? reportFuture.get() : buildDhis2Report();
-                    // Use the ready report
-                    generateSendToDhis2Event(UUID.randomUUID().toString(), context, reportTittle);
+                    // Use the ready report and persist an event
+                    String eventId = generateSendToDhis2Event(UUID.randomUUID().toString(), context, reportTittle);
                     ((Activity) context).runOnUiThread(() -> {
                         progressDialog.dismiss();
                         Toast.makeText(context, "Data successfully generated", Toast.LENGTH_LONG).show();
+                        // Navigate to summary preview
+                        try {
+                            Intent intent = new Intent(context, Dhis2SummaryViewActivity.class);
+                            intent.putExtra(Dhis2SummaryViewActivity.EXTRA_EVENT_ID, eventId);
+                            context.startActivity(intent);
+                        } catch (Exception navEx) {
+                            Timber.e(navEx);
+                        }
                     });
                 } catch (Exception e) {
                     Timber.e(e);

@@ -19,6 +19,13 @@
         app:showAsAction="always"
         android:visible="false" />
     <item
+        android:id="@+id/action_view_dhis2_history"
+        android:enabled="true"
+        android:orderInCategory="95"
+        android:title="@string/menu_view_dhis2_history"
+        app:showAsAction="never"
+        android:visible="false" />
+    <item
         android:id="@+id/action_refresh"
         android:enabled="true"
         android:orderInCategory="100"

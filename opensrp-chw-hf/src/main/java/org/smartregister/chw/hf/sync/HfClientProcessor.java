@@ -75,6 +75,14 @@ public class HfClientProcessor extends CoreClientProcessor {
         super.processEvents(clientClassification, vaccineTable, serviceTable, eventClient, event, eventType);
 
         switch (eventType) {
+            case org.smartregister.chw.hf.utils.Constants.Events.SEND_MONTHLY_MTUHA_BOOK_3_TO_DHIS2:
+            case org.smartregister.chw.hf.utils.Constants.Events.SEND_ANNUAL_REPORTS_TO_DHIS2:
+                try {
+                    new org.smartregister.chw.hf.repository.Dhis2ReportHistoryRepository().saveFromEvent(event);
+                } catch (Exception e) {
+                    Timber.e(e, "Failed to persist DHIS2 history from event");
+                }
+                break;
             case ANC_PREGNANCY_CONFIRMATION:
             case ANC_FOLLOWUP_CLIENT_REGISTRATION:
             case ANC_FIRST_FACILITY_VISIT:

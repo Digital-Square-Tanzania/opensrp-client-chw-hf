@@ -387,6 +387,14 @@ tasks.withType(Test) {
     jacoco.includeNoLocationClasses = true
 }
 
+// Workaround for D8 NullPointerException during dexing by stripping debug info from class files
+// This should only be used as a last resort in debug builds and can be removed once AGP/D8 is upgraded
+tasks.withType(JavaCompile).configureEach {
+    if (name.contains("Debug")) {
+        options.debug = false
+    }
+}
+
 task jacocoTestReport(type: JacocoReport, dependsOn: ['testNacpDebugUnitTest']) {
     reports {
         xml.enabled = true

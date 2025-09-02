@@ -1922,4 +1922,14 @@
     <string name="reports_view_sync_status">CHW Sync Status</string>
     <string name="reports_upload_to_dhis2">Upload to DHIS2</string>
 
+    <!-- DHIS2 Summary/History -->
+    <string name="dhis2_summary_title">DHIS2 Summary</string>
+    <string name="dhis2_history_title">DHIS2 Sent History</string>
+    <string name="dhis2_no_items">No items to display</string>
+    <string name="dhis2_items_count">Items: %1$d</string>
+    <string name="dhis2_history_title_line">Dataset %1$s — Period %2$s</string>
+    <string name="dhis2_history_sub_line">Org Unit %1$s • %2$s</string>
+    <string name="menu_view_dhis2_history">View DHIS2 Sent History</string>
+    <string name="na">N/A</string>
+
 </resources>

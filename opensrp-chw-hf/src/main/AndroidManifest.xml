@@ -616,6 +616,18 @@
             android:name=".activity.HpsReportsActivity"
             android:exported="false"
             android:theme="@style/HFTheme.NoActionBar" />
+        <activity
+            android:name=".activity.Dhis2ReportHistoryActivity"
+            android:exported="false"
+            android:theme="@style/HFTheme.NoActionBar" />
+        <activity
+            android:name=".activity.Dhis2SummaryActivity"
+            android:exported="false"
+            android:theme="@style/HFTheme.NoActionBar" />
+        <activity
+            android:name=".activity.Dhis2SummaryViewActivity"
+            android:exported="false"
+            android:theme="@style/HFTheme.NoActionBar" />
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="3f94f9c3caeff331b3a2bd8c2182b663ad6a955a" />
