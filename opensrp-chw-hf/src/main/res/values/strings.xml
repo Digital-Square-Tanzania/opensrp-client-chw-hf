@@ -1942,6 +1942,8 @@
     <string name="type_annual">Annual</string>
     <string name="select_period">Select Period</string>
     <string name="period_not_set">Period: Not set</string>
+    <string name="apply">Apply</string>
+    <string name="cancel">Cancel</string>
     <string name="na">N/A</string>
 
 </resources>

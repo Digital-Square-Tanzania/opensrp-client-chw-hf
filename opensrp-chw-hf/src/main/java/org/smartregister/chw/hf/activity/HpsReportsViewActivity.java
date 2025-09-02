@@ -89,7 +89,12 @@ public class HpsReportsViewActivity extends HfReportsViewActivity {
         dhis2Report.setCompleteDate(new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date()));
         dhis2Report.setPeriod(new SimpleDateFormat("yyyyMM", Locale.getDefault()).format(ReportUtils.getReportDate()));
         dhis2Report.setOrgUnit(getAllSharedPreferences().getPreference(HFR_CODE).replace("HFR Code: ", ""));
-        dhis2Report.setDataSet("AV47sHdUAav");
+
+        if (reportTittle == R.string.hps_monthly_reports_title) {
+            dhis2Report.setDataSet("AV47sHdUAav");
+        } else {
+            dhis2Report.setDataSet("toHRvJB6PyG");
+        }
         return dhis2Report;
     }
 

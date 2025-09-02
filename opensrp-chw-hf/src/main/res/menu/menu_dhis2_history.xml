@@ -4,11 +4,10 @@
     <item
         android:id="@+id/action_filter"
         android:title="@string/menu_filter"
-        android:icon="@drawable/ic_filter_list_white_24dp"
+        android:icon="@drawable/filter_list_24dp"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_clear_filters"
         android:title="@string/menu_clear_filters"
         app:showAsAction="never" />
 </menu>
-

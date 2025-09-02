@@ -92,8 +92,10 @@ public class Dhis2ReportHistoryActivity extends AppCompatActivity {
     }
 
     private void showFilterSheet() {
-        final BottomSheetDialog dialog = new BottomSheetDialog(this);
-        View v = getLayoutInflater().inflate(R.layout.bottomsheet_dhis2_history_filters, null);
+        // Ensure MaterialComponents theming is applied to avoid inflating errors for MaterialButton
+        android.view.ContextThemeWrapper themed = new android.view.ContextThemeWrapper(this, R.style.Theme_MaterialComponents_Light);
+        final BottomSheetDialog dialog = new BottomSheetDialog(themed);
+        View v = android.view.LayoutInflater.from(themed).inflate(R.layout.bottomsheet_dhis2_history_filters, null);
         dialog.setContentView(v);
 
         RadioGroup rg = v.findViewById(R.id.rg_report_type);
