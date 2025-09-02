@@ -1930,6 +1930,9 @@
     <string name="dhis2_history_title_line">Dataset %1$s — Period %2$s</string>
     <string name="dhis2_history_sub_line">Org Unit %1$s • %2$s</string>
     <string name="menu_view_dhis2_history">View DHIS2 Sent History</string>
+    <string name="dhis2_history_sub_line_with_type">%1$s • %2$s</string>
+    <string name="dhis2_submissions_title">DHIS2 Submissions</string>
+    <string name="dhis2_submissions_subtitle">View sent DHIS2 reports</string>
     <string name="na">N/A</string>
 
 </resources>

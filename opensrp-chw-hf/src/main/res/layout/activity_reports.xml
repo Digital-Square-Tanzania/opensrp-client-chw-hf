@@ -64,7 +64,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                app:constraint_referenced_ids="anc_reports,ld_reports,pnc_reports,pmtct_reports,cbhs_reports, fp_reports,ltfu_summary, mother_champion_reports, self_testing_reports, cdp_reports, kvp_reports, vmmc_reports,asrh_reports,cecap_reports, hps_reports"
+                app:constraint_referenced_ids="anc_reports,ld_reports,pnc_reports,pmtct_reports,cbhs_reports, fp_reports,ltfu_summary, mother_champion_reports, self_testing_reports, cdp_reports, kvp_reports, vmmc_reports,asrh_reports,cecap_reports, hps_reports, dhis2_history"
                 app:flow_horizontalAlign="center"
                 app:flow_horizontalGap="20dp"
                 app:flow_horizontalStyle="packed"
@@ -129,6 +129,58 @@
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/iv_anc_report"
                     app:layout_constraintTop_toBottomOf="@+id/textViewTitle_anc" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/dhis2_history"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/reports_bg_blue"
+                android:minHeight="150dp"
+                android:paddingVertical="22dp">
+
+                <ImageView
+                    android:id="@+id/iv_dhis2_history"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="DHIS2 Submissions Icon"
+                    android:padding="20dp"
+                    android:src="@drawable/reports_upload"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textViewTitle_dhis2_history"
+                    android:layout_width="220dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:text="@string/dhis2_submissions_title"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="22sp"
+                    app:layout_constraintBottom_toTopOf="@+id/textViewSubtitle_dhis2_history"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/iv_dhis2_history"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textViewSubtitle_dhis2_history"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="20dp"
+                    android:text="@string/dhis2_submissions_subtitle"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/iv_dhis2_history"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewTitle_dhis2_history" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

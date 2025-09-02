@@ -48,6 +48,7 @@ public class ReportsActivity extends SecuredActivity implements View.OnClickList
     protected ConstraintLayout vmcReports;
 
     protected ConstraintLayout hpsReports;
+    protected ConstraintLayout dhis2HistoryLayout;
 
     protected TextView textViewLogs;
 
@@ -77,6 +78,7 @@ public class ReportsActivity extends SecuredActivity implements View.OnClickList
         cecapReportsLayout = findViewById(R.id.cecap_reports);
         textViewLogs = findViewById(R.id.textView_logs);
         hpsReports = findViewById(R.id.hps_reports);
+        dhis2HistoryLayout = findViewById(R.id.dhis2_history);
 
         if (HealthFacilityApplication.getApplicationFlavor().hasLD())
             ldReportsLayout.setVisibility(View.VISIBLE);
@@ -110,6 +112,7 @@ public class ReportsActivity extends SecuredActivity implements View.OnClickList
         asrhReportsLayout.setOnClickListener(this);
         cecapReportsLayout.setOnClickListener(this);
         hpsReports.setOnClickListener(this);
+        dhis2HistoryLayout.setOnClickListener(this);
     }
 
     public void setUpToolbar() {
@@ -183,6 +186,9 @@ public class ReportsActivity extends SecuredActivity implements View.OnClickList
             startActivity(intent);
         } else if (id == R.id.hps_reports) {
             Intent intent = new Intent(this, HpsReportsActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.dhis2_history) {
+            Intent intent = new Intent(this, Dhis2ReportHistoryActivity.class);
             startActivity(intent);
         }
     }

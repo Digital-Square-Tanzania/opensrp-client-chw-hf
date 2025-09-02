@@ -39,10 +39,14 @@ public class Dhis2ReportHistoryActivity extends AppCompatActivity {
 
         String reportType = getIntent().getStringExtra(EXTRA_REPORT_TYPE);
         String period = getIntent().getStringExtra(EXTRA_PERIOD);
-        if (TextUtils.isEmpty(reportType)) reportType = "hps_monthly";
 
         Dhis2ReportHistoryRepository repo = new Dhis2ReportHistoryRepository();
-        List<Dhis2ReportHistory> list = repo.list(reportType, period, 200, 0);
+        List<Dhis2ReportHistory> list;
+        if (TextUtils.isEmpty(reportType) && TextUtils.isEmpty(period)) {
+            list = repo.listAll(200, 0);
+        } else {
+            list = repo.list(reportType, period, 200, 0);
+        }
         adapter.setItems(list);
     }
 

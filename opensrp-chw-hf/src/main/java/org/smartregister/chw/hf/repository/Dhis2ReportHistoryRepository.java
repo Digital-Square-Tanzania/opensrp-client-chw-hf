@@ -168,16 +168,37 @@ public class Dhis2ReportHistoryRepository extends BaseRepository {
         try {
             String sel;
             List<String> args = new ArrayList<>();
-            if (period != null) {
+            if (reportType == null && period == null) {
+                sel = null; // no where clause
+            } else if (period != null && reportType != null) {
                 sel = COL_REPORT_TYPE + "=? AND " + COL_PERIOD + "=?";
                 args.add(reportType);
                 args.add(period);
-            } else {
+            } else if (reportType != null) {
                 sel = COL_REPORT_TYPE + "=?";
                 args.add(reportType);
+            } else {
+                sel = COL_PERIOD + "=?";
+                args.add(period);
             }
             String lim = offset + "," + limit;
             c = getReadableDatabase().query(TABLE, null, sel, args.toArray(new String[0]), null, null, COL_EVENT_DATE + " DESC", lim);
+            while (c != null && c.moveToNext()) out.add(mapRow(c));
+        } catch (Exception e) {
+            Timber.e(e);
+        } finally {
+            if (c != null) c.close();
+        }
+        return out;
+    }
+
+    public List<Dhis2ReportHistory> listAll(int limit, int offset) {
+        ensureTable();
+        List<Dhis2ReportHistory> out = new ArrayList<>();
+        Cursor c = null;
+        try {
+            String lim = offset + "," + limit;
+            c = getReadableDatabase().query(TABLE, null, null, null, null, null, COL_EVENT_DATE + " DESC", lim);
             while (c != null && c.moveToNext()) out.add(mapRow(c));
         } catch (Exception e) {
             Timber.e(e);
@@ -207,4 +228,3 @@ public class Dhis2ReportHistoryRepository extends BaseRepository {
         return h;
     }
 }
-
