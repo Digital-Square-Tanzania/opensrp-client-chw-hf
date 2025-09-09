@@ -154,6 +154,7 @@ public class HpsAnnualCensorReportsRepository extends BaseRepository {
             "number_of_offices_that_met_the_standards INTEGER," +
             "number_of_universities_college_that_met_the_standards INTEGER," +
             "number_of_inspected_agriculture_areas INTEGER," +
+            "number_of_special_needs_number_of_inspected_agriculture_areas INTEGER," +
             "number_of_inspected_livestock_keeping_areas INTEGER," +
             "number_of_inspected_fishing_areas INTEGER," +
             "number_of_inspected_industries_areas INTEGER," +
@@ -224,17 +225,24 @@ public class HpsAnnualCensorReportsRepository extends BaseRepository {
             "number_of_households_most_commonly_use_small_dam_as_sources_of_water INTEGER," +
             "number_of_households_most_commonly_use_lake_as_sources_of_water INTEGER," +
             "number_of_households_most_commonly_use_spring_as_sources_of_water INTEGER," +
+            "number_of_households_most_commonly_use_rain_water_as_sources_of_water INTEGER," +
+            "number_of_households_most_commonly_use_other_as_sources_of_water INTEGER," +
             "number_of_households_using_electricity_as_source_of_energy_for_lighting INTEGER," +
             "number_of_households_using_solar_as_source_of_energy_for_lighting INTEGER," +
             "number_of_households_using_kerosine_as_source_of_energy_for_lighting INTEGER," +
             "number_of_households_using_koroboi_as_source_of_energy_for_lighting INTEGER," +
             "number_of_households_using_other_source_of_energy_for_lighting INTEGER," +
+            "number_of_households_using_other_as_source_of_energy_for_lighting INTEGER," +
+            "number_of_households_using_generator_as_source_of_energy_for_lighting INTEGER," +
+            "number_of_households_using_wood_and_firewood_as_source_of_energy_for_lighting INTEGER," +
             "number_of_households_using_electricity_as_source_of_cooking_energy INTEGER," +
             "number_of_households_using_solar_as_source_of_cooking_energy INTEGER," +
             "number_of_households_using_kerosine_as_source_of_cooking_energy INTEGER," +
             "number_of_households_using_gas_as_source_of_cooking_energy INTEGER," +
+            "number_of_households_using_biogas_as_source_of_cooking_energy INTEGER," +
             "number_of_households_using_charcoal_as_source_of_cooking_energy INTEGER," +
             "number_of_households_using_firewood_as_source_of_cooking_energy INTEGER," +
+            "number_of_households_using_other_as_source_of_cooking_energy INTEGER," +
             "number_of_health_committee_members_for_effective_committee_meetings INTEGER," +
             "number_of_committee_members_attended_fisrt_quarter INTEGER," +
             "number_of_registered_alternative_medicine_service_providers INTEGER," +
@@ -268,6 +276,8 @@ public class HpsAnnualCensorReportsRepository extends BaseRepository {
             // Optional metadata timestamps from events
             "start TEXT," +
             "end TEXT," +
+            "hps_visit_date TEXT," +
+            "household_max INTEGER," +
             "number_of_households_without_good_latrine INTEGER," +
             "last_interacted_with INTEGER," +
             "PRIMARY KEY (year, provider_id)" +
@@ -279,6 +289,10 @@ public class HpsAnnualCensorReportsRepository extends BaseRepository {
 
     public static void dropTable(SQLiteDatabase database) {
         database.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+    }
+
+    public HpsAnnualCensorReportsRepository() {
+        ensureTableExists();
     }
 
     // Ensure table exists before any write
@@ -309,7 +323,18 @@ public class HpsAnnualCensorReportsRepository extends BaseRepository {
                     {"number_of_committee_members_attended_third_quarter", "INTEGER"},
                     {"number_of_committee_members_attended_fourth_quarter", "INTEGER"},
                     {"start", "TEXT"},
-                    {"end", "TEXT"}
+                    {"end", "TEXT"},
+                    // Newly added to support extended insert columns
+                    {"number_of_households_most_commonly_use_rain_water_as_sources_of_water", "INTEGER"},
+                    {"number_of_households_most_commonly_use_other_as_sources_of_water", "INTEGER"},
+                    {"number_of_households_using_other_as_source_of_energy_for_lighting", "INTEGER"},
+                    {"number_of_households_using_generator_as_source_of_energy_for_lighting", "INTEGER"},
+                    {"number_of_households_using_wood_and_firewood_as_source_of_energy_for_lighting", "INTEGER"},
+                    {"number_of_households_using_biogas_as_source_of_cooking_energy", "INTEGER"},
+                    {"number_of_households_using_other_as_source_of_cooking_energy", "INTEGER"},
+                    {"number_of_special_needs_number_of_inspected_agriculture_areas", "INTEGER"},
+                    {"hps_visit_date", "TEXT"},
+                    {"household_max", "INTEGER"}
             };
             for (String[] c : newCols) {
                 ensureColumnExists(c[0], c[1]);
