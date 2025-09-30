@@ -243,6 +243,16 @@ public class FamilyOtherMemberProfileActivity extends CoreFamilyOtherMemberProfi
     }
 
     @Override
+    protected void startAypInSchoolEnrollment() {
+        // Not implemented for HF flavor
+    }
+
+    @Override
+    protected void startAypParentalEnrollment() {
+        // Not implemented for HF flavor
+    }
+
+    @Override
     protected void setIndependentClient(boolean b) {
         this.isIndependent = false;
     }
