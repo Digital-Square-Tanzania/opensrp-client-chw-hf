@@ -63,8 +63,10 @@ FpMedicalHistoryInteractor extends CoreBaseAncMedicalHistoryInteractor {
                     FamilyPlanningConstants.EVENT_TYPE.FP_PROVIDE_METHOD,
                     FamilyPlanningConstants.EVENT_TYPE.FP_OTHER_SERVICES,
                     FamilyPlanningConstants.EVENT_TYPE.FP_FOLLOW_UP_VISIT,
+                    /**
                     FamilyPlanningConstants.EVENT_TYPE.FP_ECP_PROVISION,
                     FamilyPlanningConstants.EVENT_TYPE.FP_ECP_SCREENING,
+                    **/
             };
             List<SortableVisit> visits = getVisits(memberID, eventTypes);
             final List<Visit> all_visits = new ArrayList<>(visits);
