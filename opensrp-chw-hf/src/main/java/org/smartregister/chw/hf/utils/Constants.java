@@ -12,6 +12,8 @@ public class Constants extends CoreConstants {
     public static String LOST_TO_FOLLOWUP = "lost_to_followup";
     public static String REFERRAL_TASK_FOCUS = "referral_task_focus";
 
+    public static String DIABETES_AND_HYPERTENSION_REFERRAL_FOCUS = "Diabetes And Hypertension Testing";
+
     public static String FILTER_APPOINTMENT_DATE = "FILTER_APPOINTMENT_DATE";
     public static String FILTER_APPOINTMENT_DATE_RANGE_START_DATE = "FILTER_APPOINTMENT_DATE_RANGE_START_DATE";
     public static String FILTER_APPOINTMENT_DATE_RANGE_END_DATE = "FILTER_APPOINTMENT_DATE_RANGE_END_DATE";
@@ -114,6 +116,9 @@ public class Constants extends CoreConstants {
         public static final String PMTCT_POST_PNC_REGISTRATION = "PMTCT Post PNC Registration";
 
         public static final String FP_ECP_SCREENING = "FP ECP Screening";
+
+        public static final String DIABETES_AND_HYPERTENSION_SCREENING_CONFIRMATION = "Diabetes and Hypertension Screening Confirmation";
+
     }
 
     public static final class TableName {

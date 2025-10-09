@@ -1,6 +1,7 @@
 package org.smartregister.chw.hf.activity;
 
 import static org.smartregister.chw.core.utils.Utils.passToolbarTitle;
+import static org.smartregister.chw.hf.utils.Constants.DIABETES_AND_HYPERTENSION_REFERRAL_FOCUS;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -17,7 +18,9 @@ import org.smartregister.chw.core.utils.CoreReferralUtils;
 import org.smartregister.chw.hf.BuildConfig;
 import org.smartregister.chw.hf.HealthFacilityApplication;
 import org.smartregister.chw.hf.R;
+import org.smartregister.chw.hf.utils.CloseReferralDialog;
 import org.smartregister.chw.hf.utils.AllClientsUtils;
+import org.smartregister.chw.hf.utils.Constants;
 import org.smartregister.clientandeventmodel.Event;
 import org.smartregister.clientandeventmodel.Obs;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
@@ -106,7 +109,19 @@ public class ReferralTaskViewActivity extends BaseReferralTaskViewActivity imple
         closeReferralDialog();
     }
 
+    private String hypertensionResult = "";
+    private String diabetesResult = "";
+
     private void closeReferralDialog() {
+        boolean isDiabetesOrHypertensionReferral = getTask().getFocus().equals(DIABETES_AND_HYPERTENSION_REFERRAL_FOCUS);
+        if (isDiabetesOrHypertensionReferral){
+            closeWithTestResults();
+        } else {
+            closeReferralOnly();
+        }
+    }
+
+    private void closeReferralOnly(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(getString(R.string.mark_as_done_title));
         builder.setMessage(getString(R.string.mark_as_done_message));
@@ -125,6 +140,30 @@ public class ReferralTaskViewActivity extends BaseReferralTaskViewActivity imple
 
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+    }
+
+    private void closeWithTestResults(){
+        CloseReferralDialog dialog = new CloseReferralDialog();
+        dialog.setListener(new CloseReferralDialog.CloseReferralListener() {
+            @Override
+            public void onSubmit(String hypertension, String diabetes) {
+                hypertensionResult = hypertension;
+                diabetesResult = diabetes;
+                try {
+                    completeTask();
+                    saveCloseReferralWithResultsEvent();
+                    finish();
+                } catch (Exception e) {
+                    Timber.e(e, "ReferralTaskViewActivity --> closeReferralDialog");
+                }
+            }
+
+            @Override
+            public void onCancel() {
+                // No action needed, dialog will dismiss
+            }
+        });
+        dialog.show(getSupportFragmentManager(), "CloseReferralDialog");
     }
 
     private void saveCloseReferralEvent() {
@@ -151,6 +190,53 @@ public class ReferralTaskViewActivity extends BaseReferralTaskViewActivity imple
                     .withFieldCode(CoreConstants.FORM_CONSTANTS.FORM_SUBMISSION_FIELD.REFERRAL_TASK_PREVIOUS_STATUS).withFieldType("formsubmissionField").withFieldDataType("text").withParentCode("").withHumanReadableValues(new ArrayList<>()));
             baseEvent.addObs((new Obs()).withFormSubmissionField(CoreConstants.FORM_CONSTANTS.FORM_SUBMISSION_FIELD.REFERRAL_TASK_PREVIOUS_BUSINESS_STATUS).withValue(getTask().getBusinessStatus())
                     .withFieldCode(CoreConstants.FORM_CONSTANTS.FORM_SUBMISSION_FIELD.REFERRAL_TASK_PREVIOUS_BUSINESS_STATUS).withFieldType("formsubmissionField").withFieldDataType("text").withParentCode("").withHumanReadableValues(new ArrayList<>()));
+
+            org.smartregister.chw.hf.utils.JsonFormUtils.tagSyncMetadata(Utils.context().allSharedPreferences(), baseEvent);// tag docs
+
+            //setting the location uuid of the referral initiator so that to allow the event to sync back to the chw app since it sync data by location.
+            baseEvent.setLocationId(getTask().getLocation());
+
+            JSONObject eventJson = new JSONObject(JsonFormUtils.gson.toJson(baseEvent));
+            syncHelper.addEvent(getBaseEntityId(), eventJson);
+            long lastSyncTimeStamp = HealthFacilityApplication.getInstance().getContext().allSharedPreferences().fetchLastUpdatedAtDate(0);
+            Date lastSyncDate = new Date(lastSyncTimeStamp);
+            HealthFacilityApplication.getClientProcessor(HealthFacilityApplication.getInstance().getContext().applicationContext()).processClient(syncHelper.getEvents(lastSyncDate, BaseRepository.TYPE_Unprocessed));
+            HealthFacilityApplication.getInstance().getContext().allSharedPreferences().saveLastUpdatedAtDate(lastSyncDate.getTime());
+        } catch (Exception e) {
+            Timber.e(e, "ReferralTaskViewActivity --> saveCloseReferralEvent");
+        }
+
+    }
+    private void saveCloseReferralWithResultsEvent() {
+        try {
+            AllSharedPreferences sharedPreferences = Utils.getAllSharedPreferences();
+            ECSyncHelper syncHelper = FamilyLibrary.getInstance().getEcSyncHelper();
+            Event baseEvent = (Event) new Event()
+                    .withBaseEntityId(getBaseEntityId())
+                    .withEventDate(new Date())
+                    .withEventType(Constants.Events.DIABETES_AND_HYPERTENSION_SCREENING_CONFIRMATION)
+                    .withFormSubmissionId(JsonFormUtils.generateRandomUUIDString())
+                    .withEntityType(CoreConstants.TABLE_NAME.CLOSE_REFERRAL)
+                    .withProviderId(sharedPreferences.fetchRegisteredANM())
+                    .withLocationId(getTask().getLocation())
+                    .withTeamId(sharedPreferences.fetchDefaultTeamId(sharedPreferences.fetchRegisteredANM()))
+                    .withTeam(sharedPreferences.fetchDefaultTeam(sharedPreferences.fetchRegisteredANM()))
+                    .withClientDatabaseVersion(BuildConfig.DATABASE_VERSION)
+                    .withClientApplicationVersion(BuildConfig.VERSION_CODE)
+                    .withDateCreated(new Date());
+
+            baseEvent.addObs((new Obs()).withFormSubmissionField(CoreConstants.FORM_CONSTANTS.FORM_SUBMISSION_FIELD.REFERRAL_TASK).withValue(getTask().getIdentifier())
+                    .withFieldCode(CoreConstants.FORM_CONSTANTS.FORM_SUBMISSION_FIELD.REFERRAL_TASK).withFieldType("formsubmissionField").withFieldDataType("text").withParentCode("").withHumanReadableValues(new ArrayList<>()));
+            baseEvent.addObs((new Obs()).withFormSubmissionField(CoreConstants.FORM_CONSTANTS.FORM_SUBMISSION_FIELD.REFERRAL_TASK_PREVIOUS_STATUS).withValue(getTask().getStatus())
+                    .withFieldCode(CoreConstants.FORM_CONSTANTS.FORM_SUBMISSION_FIELD.REFERRAL_TASK_PREVIOUS_STATUS).withFieldType("formsubmissionField").withFieldDataType("text").withParentCode("").withHumanReadableValues(new ArrayList<>()));
+            baseEvent.addObs((new Obs()).withFormSubmissionField(CoreConstants.FORM_CONSTANTS.FORM_SUBMISSION_FIELD.REFERRAL_TASK_PREVIOUS_BUSINESS_STATUS).withValue(getTask().getBusinessStatus())
+                    .withFieldCode(CoreConstants.FORM_CONSTANTS.FORM_SUBMISSION_FIELD.REFERRAL_TASK_PREVIOUS_BUSINESS_STATUS).withFieldType("formsubmissionField").withFieldDataType("text").withParentCode("").withHumanReadableValues(new ArrayList<>()));
+
+            // Add hypertension and diabetes results to event obs
+            baseEvent.addObs((new Obs()).withFormSubmissionField("hypertension_result").withValue(hypertensionResult)
+                    .withFieldCode("hypertension_result").withFieldType("formsubmissionField").withFieldDataType("text").withParentCode("").withHumanReadableValues(new ArrayList<>()));
+            baseEvent.addObs((new Obs()).withFormSubmissionField("diabetes_result").withValue(diabetesResult)
+                    .withFieldCode("diabetes_result").withFieldType("formsubmissionField").withFieldDataType("text").withParentCode("").withHumanReadableValues(new ArrayList<>()));
 
             org.smartregister.chw.hf.utils.JsonFormUtils.tagSyncMetadata(Utils.context().allSharedPreferences(), baseEvent);// tag docs
 
