@@ -415,6 +415,16 @@ public class HfChwRepository extends CoreChwRepository {
         }
     }
 
+    private static void upgradeToVersion29(SQLiteDatabase db) {
+        try {
+            DatabaseMigrationUtils.createAddedECTables(db,
+                    new HashSet<>(Collections.singletonList("ec_ayp_facility_screening")),
+                    HealthFacilityApplication.createCommonFtsObject());
+        } catch (Exception e) {
+            Timber.e(e, "upgradeToVersion29");
+        }
+    }
+
     private static void upgradeToVersion26(SQLiteDatabase db) {
         try {
             db.execSQL("ALTER TABLE ec_prep_followup ADD COLUMN prep_pills_number TEXT NULL;");
@@ -631,6 +641,9 @@ public class HfChwRepository extends CoreChwRepository {
                     break;
                 case 28:
                     upgradeToVersion28(db);
+                    break;
+                case 29:
+                    upgradeToVersion29(db);
                     break;
                 default:
                     break;

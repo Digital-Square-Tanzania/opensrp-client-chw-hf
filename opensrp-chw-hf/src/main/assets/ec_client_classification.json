@@ -1266,6 +1266,13 @@
             "creates_case": [
               "ec_hts_tests"
             ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "AYP Screening Tool + Enrollment",
+            "creates_case": [
+              "ec_ayp_facility_screening"
+            ]
           }
         ]
       }

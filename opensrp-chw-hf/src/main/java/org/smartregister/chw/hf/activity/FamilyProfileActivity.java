@@ -144,6 +144,11 @@ public class FamilyProfileActivity extends CoreFamilyProfileActivity {
     protected void goToTbProfile(String baseEntityId, Activity activity) {
        TbProfileActivity.startTbProfileActivity(activity, TbDao.getMember(baseEntityId));
     }
+
+    @Override
+    protected void startHpsHouseholdEnrollment(String baseEntityId) {
+        // HF build does not currently support launching HPS household enrollment
+    }
     @Override
     public void goToAncProfileActivity(CommonPersonObjectClient patient, Bundle bundle) {
         AncMemberProfileActivity.startMe(this,patient.getCaseId());

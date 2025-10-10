@@ -20,6 +20,7 @@ import com.vijay.jsonwizard.utils.FormUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.smartregister.chw.ayp.dao.AypDao;
 import org.smartregister.chw.cecap.dao.CecapDao;
 import org.smartregister.chw.core.activity.CoreFamilyOtherMemberProfileActivity;
 import org.smartregister.chw.core.activity.CoreFamilyProfileActivity;
@@ -200,6 +201,11 @@ public class FamilyOtherMemberProfileActivity extends CoreFamilyOtherMemberProfi
     }
 
     @Override
+    protected void startTbLeprosyScreening() {
+        // Not implemented in HF build
+    }
+
+    @Override
     protected void startPrEPRegistration() {
         String gender = AllClientsUtils.getClientGender(baseEntityId);
         String dob = Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.DOB, false);
@@ -210,6 +216,26 @@ public class FamilyOtherMemberProfileActivity extends CoreFamilyOtherMemberProfi
     @Override
     protected void startAgywScreening() {
         //do nothing
+    }
+
+    @Override
+    protected void startHpsEnrollment() {
+        // Not implemented in HF build
+    }
+
+    @Override
+    protected void startAypFacilityScreening() {
+        AypFacilityServicesRegisterActivity.startRegistration(FamilyOtherMemberProfileActivity.this, baseEntityId);
+    }
+
+    @Override
+    protected void startAypInSchoolEnrollment() {
+        // Not implemented in HF build
+    }
+
+    @Override
+    protected void startAypParentalEnrollment() {
+        // Not implemented in HF build
     }
 
     @Override
@@ -407,6 +433,15 @@ public class FamilyOtherMemberProfileActivity extends CoreFamilyOtherMemberProfi
             String dob = Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.DOB, false);
             int age = Utils.getAgeFromDate(dob);
             menu.findItem(R.id.action_cancer_preventive_services_registration).setVisible(!CecapDao.isRegisteredForCecap(baseEntityId) && age >= 14);
+        }
+
+        if (HealthFacilityApplication.getApplicationFlavor().hasAypFacilityServices()) {
+            String dob = Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.DOB, false);
+            int age = Utils.getAgeFromDate(dob);
+            boolean eligibleForAyp = age >= 10 && age < 25;
+            menu.findItem(org.smartregister.chw.core.R.id.action_ayp_facility_screening).setVisible(eligibleForAyp && !AypDao.isRegisteredForAypFacilityServices(baseEntityId));
+        } else {
+            menu.findItem(org.smartregister.chw.core.R.id.action_ayp_facility_screening).setVisible(false);
         }
 
         if (HealthFacilityApplication.getApplicationFlavor().hasHts()) {

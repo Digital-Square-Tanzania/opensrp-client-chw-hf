@@ -12205,6 +12205,105 @@
           }
         }
       ]
+    },
+    {
+      "name": "ec_ayp_facility_screening",
+      "columns": [
+        {
+          "column_name": "base_entity_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "baseEntityId"
+          }
+        },
+        {
+          "column_name": "relational_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "relational_id"
+          }
+        },
+        {
+          "column_name": "ayp_eligibility",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "ayp_eligibility"
+          }
+        },
+        {
+          "column_name": "enrollment_date",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "date_of_enrollment"
+          }
+        },
+        {
+          "column_name": "enrollment_status",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "enrollment_status"
+          }
+        },
+        {
+          "column_name": "uic_number",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "uic_number"
+          }
+        },
+        {
+          "column_name": "enrollment_education_level",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "enrollment_education_level"
+          }
+        },
+        {
+          "column_name": "ayp_beneficiary",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "ayp_beneficiary"
+          }
+        },
+        {
+          "column_name": "program_name",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "program_name"
+          }
+        },
+        {
+          "column_name": "program_name_other_specify",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "program_name_other_specify"
+          }
+        },
+        {
+          "column_name": "linkage_economic_strengthening",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "concept": "linkage_economic_strengthening"
+          }
+        },
+        {
+          "column_name": "last_interacted_with",
+          "type": "Event",
+          "json_mapping": {
+            "field": "version"
+          }
+        }
+      ]
     }
   ]
 }

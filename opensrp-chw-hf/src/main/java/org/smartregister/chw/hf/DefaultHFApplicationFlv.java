@@ -65,4 +65,9 @@ public class DefaultHFApplicationFlv implements HealthFacilityApplication.Flavor
     public boolean hasMap() {
         return false;
     }
+
+    @Override
+    public boolean hasAypFacilityServices() {
+        return true;
+    }
 }

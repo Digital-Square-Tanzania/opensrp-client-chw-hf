@@ -42,14 +42,15 @@ public class NavigationModel implements org.smartregister.chw.core.model.Navigat
             NavigationOption op23 = new NavigationOption(R.mipmap.sidemenu_hiv, R.mipmap.sidemenu_hiv_active, R.string.lab, CoreConstants.DrawerMenu.LAB, 0);
             NavigationOption op24 = new NavigationOption(R.mipmap.sidemenu_hiv, R.mipmap.sidemenu_hiv_active, R.string.cecap, CoreConstants.DrawerMenu.CECAP, 0);
             NavigationOption op25 = new NavigationOption(R.mipmap.sidemenu_hiv, R.mipmap.sidemenu_hiv_active, R.string.menu_hts, CoreConstants.DrawerMenu.HTS, 0);
+            NavigationOption op26 = new NavigationOption(R.mipmap.sidemenu_hiv, R.mipmap.sidemenu_hiv_active, R.string.menu_ayp_facility_services, CoreConstants.DrawerMenu.AYP_FACILITY, 0);
 
 
             // ANC, PMTCT, LD, PNC, HEI, Child,LTFU, Referrals
             if (BuildConfig.BUILD_FOR_BORESHA_AFYA_SOUTH) {
                 if (BuildConfig.BUILD_FOR_PMTCT_CASE_BASED_MANAGEMENT) {
-                    navigationOptions.addAll(Arrays.asList(op1, op3, op15, op4, op13, op14, op12));
+                    navigationOptions.addAll(Arrays.asList(op1, op3, op15, op4, op13, op14, op26, op12));
                 } else {
-                    navigationOptions.addAll(Arrays.asList(op1, op3, op15, op4, op13, op14,op23, op25, op8, op10));
+                    navigationOptions.addAll(Arrays.asList(op1, op3, op15, op4, op13, op14, op23, op25, op26, op8, op10));
                     if (HealthFacilityApplication.getApplicationFlavor().hasChildModule()) {
                         navigationOptions.add(4, op5);
                     }
@@ -92,7 +93,7 @@ public class NavigationModel implements org.smartregister.chw.core.model.Navigat
                     navigationOptions.add(14, op23);
                 }
             } else {
-                navigationOptions.addAll(Arrays.asList(op1, op2, op3, op4, op5, op6, op7, op12));
+                navigationOptions.addAll(Arrays.asList(op1, op2, op3, op4, op5, op6, op7, op26, op12));
             }
         }
 

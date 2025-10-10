@@ -15,6 +15,7 @@ import org.smartregister.Context;
 import org.smartregister.CoreLibrary;
 import org.smartregister.P2POptions;
 import org.smartregister.chw.anc.AncLibrary;
+import org.smartregister.chw.ayp.AypLibrary;
 import org.smartregister.chw.cdp.CdpLibrary;
 import org.smartregister.chw.cecap.CecapLibrary;
 import org.smartregister.chw.core.application.CoreChwApplication;
@@ -31,6 +32,7 @@ import org.smartregister.chw.hf.activity.AncRegisterActivity;
 import org.smartregister.chw.hf.activity.CdpRegisterActivity;
 import org.smartregister.chw.hf.activity.CecapRegisterActivity;
 import org.smartregister.chw.hf.activity.ChildRegisterActivity;
+import org.smartregister.chw.hf.activity.AypFacilityServicesRegisterActivity;
 import org.smartregister.chw.hf.activity.FamilyProfileActivity;
 import org.smartregister.chw.hf.activity.FamilyRegisterActivity;
 import org.smartregister.chw.hf.activity.FpRegisterActivity;
@@ -163,9 +165,8 @@ public class HealthFacilityApplication extends CoreChwApplication implements Cor
             registeredActivities.put(CoreConstants.REGISTERED_ACTIVITIES.CECAP_REGISTER_ACTIVITY, CecapRegisterActivity.class);
             registeredActivities.put(CoreConstants.REGISTERED_ACTIVITIES.LAB_REGISTER_ACTIVITY, LabRegisterActivity.class);
             registeredActivities.put(CoreConstants.REGISTERED_ACTIVITIES.HIV_TESTING_SERVICES_REGISTER_ACTIVITY, HivTestingServicesRegisterActivity.class);
+            registeredActivities.put(CoreConstants.REGISTERED_ACTIVITIES.AYP_FACILITY_REGISTER_ACTIVITY, AypFacilityServicesRegisterActivity.class);
         }
-//          TODO uncomment these when NACP is ready to test these modules
-        //registeredActivities.put(CoreConstants.REGISTERED_ACTIVITIES.TB_REGISTER_ACTIVITY, TbRegisterActivity.class);
         return registeredActivities;
     }
 
@@ -335,6 +336,7 @@ public class HealthFacilityApplication extends CoreChwApplication implements Cor
         if (flavor.hasHts()) {
             HtsLibrary.init(context, getRepository(), BuildConfig.VERSION_CODE, BuildConfig.DATABASE_VERSION);
         }
+        AypLibrary.init(context, getRepository(), BuildConfig.VERSION_CODE, BuildConfig.DATABASE_VERSION);
 
         //Needed for all clients register
         OpdLibrary.init(context, getRepository(),
@@ -454,6 +456,7 @@ public class HealthFacilityApplication extends CoreChwApplication implements Cor
         boolean hasHts();
 
         boolean hasMap();
+
+        boolean hasAypFacilityServices();
     }
 }
-
