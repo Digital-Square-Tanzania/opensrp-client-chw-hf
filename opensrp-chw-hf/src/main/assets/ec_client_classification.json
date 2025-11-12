@@ -1269,7 +1269,7 @@
           },
           {
             "field": "eventType",
-            "field_value": "AYP Screening Tool + Enrollment",
+            "field_value": "AYP Facility Screening",
             "creates_case": [
               "ec_ayp_facility_screening"
             ]
