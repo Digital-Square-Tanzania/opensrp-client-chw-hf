@@ -48,7 +48,6 @@ public class Dhis2ReportHistoryAdapter extends RecyclerView.Adapter<Dhis2ReportH
     public void onBindViewHolder(@NonNull VH h, int position) {
         Dhis2ReportHistory it = items.get(position);
         h.title.setText(h.itemView.getContext().getString(R.string.dhis2_history_title_line,
-                it.dataSet != null ? it.dataSet : h.itemView.getContext().getString(R.string.na),
                 it.period != null ? it.period : h.itemView.getContext().getString(R.string.na)));
         String typeLbl = "hps_annual".equalsIgnoreCase(it.reportType) ? h.itemView.getContext().getString(R.string.hps_annual_reports_title) : h.itemView.getContext().getString(R.string.hps_monthly_reports_title);
         String sub = h.itemView.getContext().getString(R.string.dhis2_history_sub_line_with_type,

@@ -56,8 +56,10 @@
         android:text="@string/select_period"
         android:layout_marginTop="8dp"
         app:strokeWidth="1dp"
-        app:strokeColor="@color/grey"
-        app:cornerRadius="1dp"/>
+        app:cornerRadius="8dp"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/customAppThemeBlue"
+        app:strokeColor="@color/grey"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -66,6 +68,7 @@
         android:orientation="horizontal"
         android:layout_marginTop="16dp">
 
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_cancel"
             android:layout_width="wrap_content"
@@ -73,8 +76,8 @@
             android:text="@string/cancel"
             android:layout_marginStart="8dp"
             app:cornerRadius="8dp"
-            android:textColor="@color/customAppThemeBlue"
-            android:backgroundTint="@color/transparent_gray"/>
+            android:textColor="@color/white"
+            android:backgroundTint="@color/grey"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_apply"
