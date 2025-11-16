@@ -164,6 +164,12 @@ public class AncMemberProfileActivity extends CoreAncMemberProfileActivity {
             menu.findItem(R.id.action_hivst_registration).setVisible(!HivstDao.isRegisteredForHivst(baseEntityID) && age >= 15);
         }
 
+        if (HealthFacilityApplication.getApplicationFlavor().hasKvpPrEP()) {
+            int age = memberObject.getAge();
+            menu.findItem(R.id.action_kvp_registration)
+                    .setVisible(!org.smartregister.chw.kvp.dao.KvpDao.isRegisteredForKvp(memberObject.getBaseEntityId()) && age >= 15);
+        }
+
         if (HealthFacilityApplication.getApplicationFlavor().hasLD()) {
             menu.findItem(R.id.action_ld_registration).setVisible(memberObject.getGestationAge() >= 28 && !LDDao.isRegisteredForLD(baseEntityID));
         }
