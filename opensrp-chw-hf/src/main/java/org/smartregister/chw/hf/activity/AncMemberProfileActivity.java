@@ -58,6 +58,7 @@ import org.smartregister.chw.hf.presenter.AncMemberProfilePresenter;
 import org.smartregister.chw.hf.utils.VisitUtils;
 import org.smartregister.chw.hiv.dao.HivDao;
 import org.smartregister.chw.hivst.dao.HivstDao;
+import org.smartregister.chw.kvp.dao.KvpDao;
 import org.smartregister.chw.ld.dao.LDDao;
 import org.smartregister.chw.pmtct.dao.PmtctDao;
 import org.smartregister.clientandeventmodel.Event;
@@ -167,7 +168,7 @@ public class AncMemberProfileActivity extends CoreAncMemberProfileActivity {
         if (HealthFacilityApplication.getApplicationFlavor().hasKvpPrEP()) {
             int age = memberObject.getAge();
             menu.findItem(R.id.action_kvp_registration)
-                    .setVisible(!org.smartregister.chw.kvp.dao.KvpDao.isRegisteredForKvp(memberObject.getBaseEntityId()) && age >= 15);
+                    .setVisible(!KvpDao.isRegisteredForKvp(memberObject.getBaseEntityId()) && age >= 15);
         }
 
         if (HealthFacilityApplication.getApplicationFlavor().hasLD()) {
