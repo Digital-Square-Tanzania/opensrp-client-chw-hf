@@ -3,6 +3,7 @@ package org.smartregister.chw.hf.interactor;
 import static org.smartregister.chw.anc.util.VisitUtils.getVisitDetailsOnly;
 import static org.smartregister.chw.anc.util.VisitUtils.getVisitGroups;
 import static org.smartregister.chw.anc.util.VisitUtils.getVisitsOnly;
+import static org.smartregister.chw.hf.utils.Constants.Events.FP_ECP_SCREENING;
 
 import android.content.Context;
 
@@ -25,7 +26,7 @@ FpMedicalHistoryInteractor extends CoreBaseAncMedicalHistoryInteractor {
     public static List<SortableVisit> getVisits(String memberID, String... eventTypes) {
 
         List<Visit> visits = new ArrayList<>();
-        if (eventTypes != null && eventTypes.length > 0) {
+        if (eventTypes != null) {
             for (String eventType : eventTypes) {
                 List<Visit> visit = getVisitsOnly(memberID, eventType);
                 visits.addAll(visit);
@@ -62,6 +63,8 @@ FpMedicalHistoryInteractor extends CoreBaseAncMedicalHistoryInteractor {
                     FamilyPlanningConstants.EVENT_TYPE.FP_PROVIDE_METHOD,
                     FamilyPlanningConstants.EVENT_TYPE.FP_OTHER_SERVICES,
                     FamilyPlanningConstants.EVENT_TYPE.FP_FOLLOW_UP_VISIT,
+                    FamilyPlanningConstants.EVENT_TYPE.FP_ECP_PROVISION,
+                    FamilyPlanningConstants.EVENT_TYPE.FP_ECP_SCREENING,
             };
             List<SortableVisit> visits = getVisits(memberID, eventTypes);
             final List<Visit> all_visits = new ArrayList<>(visits);

@@ -82,7 +82,7 @@
         "key": "fp_registration_number",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "client_registration_number",
+        "openmrs_entity_id": "fp_registration_number",
         "type": "mask_edit_text",
         "mask": "####/###",
         "mask_hint": "1234567",

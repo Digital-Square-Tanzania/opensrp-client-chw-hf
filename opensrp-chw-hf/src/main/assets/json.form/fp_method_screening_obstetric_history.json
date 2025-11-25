@@ -288,7 +288,7 @@
         }
       },
       {
-        "key": "place_of_delivery",
+        "key": "place_of_delivery_non_cs",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "place_of_delivery",
@@ -326,6 +326,21 @@
           "err": "Required"
         },
         "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "fp_method_screening_obstetric_history_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "place_of_delivery",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "place_of_delivery",
+        "type": "hidden",
+        "label": "Place of delivery",
+        "calculation": {
           "rules-engine": {
             "ex-rules": {
               "rules-file": "fp_method_screening_obstetric_history_relevance.yml"
