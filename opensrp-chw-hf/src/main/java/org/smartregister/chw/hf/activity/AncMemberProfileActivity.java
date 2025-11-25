@@ -26,7 +26,6 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.rey.material.widget.Button;
 
 import org.apache.commons.lang3.StringUtils;
 import org.jeasy.rules.api.Rules;
@@ -168,7 +167,7 @@ public class AncMemberProfileActivity extends CoreAncMemberProfileActivity {
         if (HealthFacilityApplication.getApplicationFlavor().hasKvpPrEP()) {
             int age = memberObject.getAge();
             menu.findItem(R.id.action_kvp_registration)
-                    .setVisible(!KvpDao.isRegisteredForKvp(memberObject.getBaseEntityId()) && age >= 15);
+                    .setVisible(!KvpDao.isRegisteredForKvp(memberObject.getBaseEntityId()) && age >= 15 && !(hivPositive || HivDao.isRegisteredForHiv(baseEntityID) || HfAncDao.getHivStatus(baseEntityID).equalsIgnoreCase("positive")));
         }
 
         if (HealthFacilityApplication.getApplicationFlavor().hasLD()) {
@@ -760,6 +759,9 @@ public class AncMemberProfileActivity extends CoreAncMemberProfileActivity {
         } else if (itemId == R.id.action_hivst_registration) {
             startHivstRegistration();
             return true;
+        } else if (itemId == R.id.action_kvp_registration) {
+            startKvpRegistration();
+            return true;
         } else if (itemId == org.smartregister.chw.core.R.id.action_remove_member) {
             removeMember();
             return true;
@@ -792,6 +794,11 @@ public class AncMemberProfileActivity extends CoreAncMemberProfileActivity {
         client.setColumnmaps(commonPersonObject.getColumnmaps());
         String gender = Utils.getValue(commonPersonObject.getColumnmaps(), org.smartregister.family.util.DBConstants.KEY.GENDER, false);
         HivstRegisterActivity.startHivstRegistrationActivity(this, baseEntityID, gender);
+    }
+
+    private void startKvpRegistration() {
+        int age = memberObject.getAge();
+        KvpRegisterActivity.startKvpScreeningFemale(AncMemberProfileActivity.this, memberObject.getBaseEntityId(), "Female", age);
     }
 
     protected void removeMember() {
