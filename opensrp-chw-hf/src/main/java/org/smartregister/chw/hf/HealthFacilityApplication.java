@@ -446,6 +446,8 @@ public class HealthFacilityApplication extends CoreChwApplication implements Cor
 
         boolean hasCecap();
 
+        boolean hasHps();
+
         boolean hasMap();
     }
 }

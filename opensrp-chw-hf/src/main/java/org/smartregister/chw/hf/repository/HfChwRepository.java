@@ -43,12 +43,6 @@ public class HfChwRepository extends CoreChwRepository {
         this.context = context;
     }
 
-    @Override
-    public void onCreate(SQLiteDatabase database) {
-        super.onCreate(database);
-        UniqueLabTestSampleTrackingIdRepository.createTable(database);
-    }
-
     private static void upgradeToVersion2(Context context, SQLiteDatabase db) {
         try {
             db.execSQL(VaccineRepository.UPDATE_TABLE_ADD_EVENT_ID_COL);
@@ -305,7 +299,7 @@ public class HfChwRepository extends CoreChwRepository {
 
             refreshIndicatorQueries(db);
             db.execSQL("ALTER TABLE ec_ltfu_feedback ADD COLUMN IF NOT EXISTS last_appointment_date TEXT NULL;");
-            DatabaseMigrationUtils.createAddedECTables(db, new HashSet<>(Arrays.asList("ec_anc_partner_community_followup", "ec_sbc_register", "ec_sbc_visit","ec_sbc_mobilization_session","ec_kvp_prep_register")), HealthFacilityApplication.createCommonFtsObject());
+            DatabaseMigrationUtils.createAddedECTables(db, new HashSet<>(Arrays.asList("ec_anc_partner_community_followup", "ec_sbc_register", "ec_sbc_visit", "ec_sbc_mobilization_session", "ec_kvp_prep_register")), HealthFacilityApplication.createCommonFtsObject());
         } catch (Exception e) {
             Timber.e(e, "upgradeToVersion21");
         }
@@ -330,7 +324,7 @@ public class HfChwRepository extends CoreChwRepository {
         }
 
         try {
-            DatabaseMigrationUtils.createAddedECTables(db, new HashSet<>(Arrays.asList("ec_family_planning","ec_fp_point_of_service_delivery", "ec_fp_screening", "ec_fp_provision_of_method","ec_fp_other_services","ec_fp_follow_up_visit","ec_fp_ecp_register","ec_fp_ecp_provision")), HealthFacilityApplication.createCommonFtsObject());
+            DatabaseMigrationUtils.createAddedECTables(db, new HashSet<>(Arrays.asList("ec_family_planning", "ec_fp_point_of_service_delivery", "ec_fp_screening", "ec_fp_provision_of_method", "ec_fp_other_services", "ec_fp_follow_up_visit", "ec_fp_ecp_register", "ec_fp_ecp_provision")), HealthFacilityApplication.createCommonFtsObject());
             refreshIndicatorQueries(db);
         } catch (Exception e) {
             Timber.e(e, "upgradeToVersion23");
@@ -404,7 +398,7 @@ public class HfChwRepository extends CoreChwRepository {
 
     private static void upgradeToVersion27(SQLiteDatabase db) {
         try {
-            DatabaseMigrationUtils.createAddedECTables(db, new HashSet<>(Arrays.asList("ec_cecap_register","ec_cecap_visit", "ec_cecap_test_results")), HealthFacilityApplication.createCommonFtsObject());
+            DatabaseMigrationUtils.createAddedECTables(db, new HashSet<>(Arrays.asList("ec_cecap_register", "ec_cecap_visit", "ec_cecap_test_results")), HealthFacilityApplication.createCommonFtsObject());
             refreshIndicatorQueries(db);
         } catch (Exception e) {
             Timber.e(e, "upgradeToVersion27");
@@ -429,7 +423,7 @@ public class HfChwRepository extends CoreChwRepository {
 
     private static void upgradeToVersion28(SQLiteDatabase db) {
         try {
-            DatabaseMigrationUtils.createAddedECTables(db, new HashSet<>(Arrays.asList("ec_gbv_register","ec_gbv_visit")), HealthFacilityApplication.createCommonFtsObject());
+            DatabaseMigrationUtils.createAddedECTables(db, new HashSet<>(Arrays.asList("ec_gbv_register", "ec_gbv_visit")), HealthFacilityApplication.createCommonFtsObject());
             refreshIndicatorQueries(db);
         } catch (Exception e) {
             Timber.e(e, "upgradeToVersion27");
@@ -550,13 +544,15 @@ public class HfChwRepository extends CoreChwRepository {
                 String cecapIndicatorConfigFile = "config/cecap-reporting-indicator-definitions.yml";
                 String cecapOtherReportsIndicatorConfigFile = "config/cecap-other-reporting-indicator-definitions.yml";
                 String asrhReportsIndicatorConfigFile = "config/asrh-reporting-indicator-definitions.yml";
+                String hpsMonthlyReportsIndicatorConfigFile = "config/hps-monthly-report.yml";
+                String hpsAnnualReportsIndicatorConfigFile = "config/hps-annual-report.yml";
 
 
                 for (String configFile : Collections.unmodifiableList(
                         Arrays.asList(indicatorsConfigFile, ancIndicatorConfigFile,
                                 pmtctIndicatorConfigFile, pncIndicatorConfigFile,
                                 cbhsReportingIndicatorConfigFile, ldReportingIndicatorConfigFile,
-                                motherChampionReportingIndicatorConfigFile, selfTestingIndicatorConfigFile, kvpTestingIndicatorConfigFile, ltfuIndicatorConfigFile, vmmcIndicatorConfigFile, vmmcStaticIndicatorConfigFile, vmmcOutreachIndicatorConfigFile, fpIndicatorConfigFile, cecapIndicatorConfigFile, cecapOtherReportsIndicatorConfigFile,asrhReportsIndicatorConfigFile))) {
+                                motherChampionReportingIndicatorConfigFile, selfTestingIndicatorConfigFile, kvpTestingIndicatorConfigFile, ltfuIndicatorConfigFile, vmmcIndicatorConfigFile, vmmcStaticIndicatorConfigFile, vmmcOutreachIndicatorConfigFile, fpIndicatorConfigFile, cecapIndicatorConfigFile, cecapOtherReportsIndicatorConfigFile, asrhReportsIndicatorConfigFile, hpsMonthlyReportsIndicatorConfigFile, hpsAnnualReportsIndicatorConfigFile))) {
                     reportingLibraryInstance.readConfigFile(configFile, db);
                 }
 

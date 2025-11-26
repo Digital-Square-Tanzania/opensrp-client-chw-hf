@@ -3,18 +3,30 @@ package org.smartregister.chw.hf.dao;
 import android.annotation.SuppressLint;
 import android.database.Cursor;
 import android.util.Log;
+import android.util.Pair;
 
 import androidx.annotation.NonNull;
 
+import com.google.gson.Gson;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.smartregister.chw.hf.domain.CHW;
+import org.smartregister.chw.hf.domain.dhis2_reports.DhisDataValues;
 import org.smartregister.dao.AbstractDao;
+import org.smartregister.family.util.Utils;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 
 import timber.log.Timber;
 
@@ -71,7 +83,7 @@ public class ReportDao extends AbstractDao {
         List<Map<String, String>> res = readData(sql, map);
 
 
-        if (res != null && res.size() > 0) {
+        if (res != null && !res.isEmpty()) {
             return res;
         } else
             return new ArrayList<>();
@@ -131,7 +143,7 @@ public class ReportDao extends AbstractDao {
         res.addAll(res1);
         res.addAll(res2);
 
-        if (res.size() > 0) {
+        if (!res.isEmpty()) {
             return res;
         } else
             return new ArrayList<>();
@@ -184,7 +196,7 @@ public class ReportDao extends AbstractDao {
         List<Map<String, String>> res = readData(sql, map);
 
 
-        if (res != null && res.size() > 0) {
+        if (res != null && !res.isEmpty()) {
             return res;
         } else
             return new ArrayList<>();
@@ -234,7 +246,7 @@ public class ReportDao extends AbstractDao {
         List<Map<String, String>> res = readData(sql, map);
 
 
-        if (res != null && res.size() > 0) {
+        if (res != null && !res.isEmpty()) {
             return res;
         } else
             return new ArrayList<>();
@@ -318,7 +330,7 @@ public class ReportDao extends AbstractDao {
                 "    END) AS post_op_adverse_first_visit,\n" +
                 "    MAX(CASE WHEN visit_number = 2 THEN \n" +
                 "        CASE WHEN post_op_adverse = 'yes' THEN 'Yes' ELSE 'No' END \n" +
-                "    END) AS post_op_adverse_sec_visit,"+
+                "    END) AS post_op_adverse_sec_visit," +
                 "    MAX(post_op_adverse) AS post_op_adverse,\n" +
                 "    MAX(NAE) AS NAE,\n" +
                 "    MAX(health_care_provider) AS health_care_provider\n" +
@@ -356,15 +368,15 @@ public class ReportDao extends AbstractDao {
         };
 
 
-
         List<Map<String, String>> res = readData(sql, map);
 
-        if (res != null && res.size() > 0) {
+        if (res != null && !res.isEmpty()) {
             return res;
         } else {
             return new ArrayList<>();
         }
     }
+
     public static List<Map<String, String>> getVmmcStaticServiceRegister(Date reportDate, Date startDate, Date endDate) {
         String sql = "WITH VMMC_CTE AS (\n" +
                 "    SELECT\n" +
@@ -444,7 +456,7 @@ public class ReportDao extends AbstractDao {
                 "    END) AS post_op_adverse_first_visit,\n" +
                 "    MAX(CASE WHEN visit_number = 2 THEN \n" +
                 "        CASE WHEN post_op_adverse = 'yes' THEN 'Yes' ELSE 'No' END \n" +
-                "    END) AS post_op_adverse_sec_visit,"+
+                "    END) AS post_op_adverse_sec_visit," +
                 "    MAX(post_op_adverse) AS post_op_adverse,\n" +
                 "    MAX(NAE) AS NAE,\n" +
                 "    MAX(health_care_provider) AS health_care_provider\n" +
@@ -483,12 +495,13 @@ public class ReportDao extends AbstractDao {
 
         List<Map<String, String>> res = readData(sql, map);
 
-        if (res != null && res.size() > 0) {
+        if (res != null && !res.isEmpty()) {
             return res;
         } else {
             return new ArrayList<>();
         }
     }
+
     public static List<Map<String, String>> getVmmcOutreachServiceRegister(Date reportDate, Date startDate, Date endDate) {
         String sql = "WITH VMMC_CTE AS (\n" +
                 "    SELECT\n" +
@@ -568,7 +581,7 @@ public class ReportDao extends AbstractDao {
                 "    END) AS post_op_adverse_first_visit,\n" +
                 "    MAX(CASE WHEN visit_number = 2 THEN \n" +
                 "        CASE WHEN post_op_adverse = 'yes' THEN 'Yes' ELSE 'No' END \n" +
-                "    END) AS post_op_adverse_sec_visit,"+
+                "    END) AS post_op_adverse_sec_visit," +
                 "    MAX(post_op_adverse) AS post_op_adverse,\n" +
                 "    MAX(NAE) AS NAE,\n" +
                 "    MAX(health_care_provider) AS health_care_provider\n" +
@@ -607,7 +620,7 @@ public class ReportDao extends AbstractDao {
 
         List<Map<String, String>> res = readData(sql, map);
 
-        if (res != null && res.size() > 0) {
+        if (res != null && !res.isEmpty()) {
             return res;
         } else {
             return new ArrayList<>();
@@ -712,12 +725,13 @@ public class ReportDao extends AbstractDao {
 
         List<Map<String, String>> res = readData(sql, map);
 
-        if (res != null && res.size() > 0) {
+        if (res != null && !res.isEmpty()) {
             return res;
         } else {
             return new ArrayList<>();
         }
     }
+
     public static List<Map<String, String>> getVmmcStaticTheatreRegister(Date reportDate, Date startDate, Date endDate) {
         String sql = "WITH VMMC_CTE AS (\n" +
                 "    SELECT\n" +
@@ -819,12 +833,13 @@ public class ReportDao extends AbstractDao {
 
         List<Map<String, String>> res = readData(sql, map);
 
-        if (res != null && res.size() > 0) {
+        if (res != null && !res.isEmpty()) {
             return res;
         } else {
             return new ArrayList<>();
         }
     }
+
     public static List<Map<String, String>> getVmmcOutreachTheatreRegister(Date reportDate, Date startDate, Date endDate) {
         String sql = "WITH VMMC_CTE AS (\n" +
                 "    SELECT\n" +
@@ -926,7 +941,7 @@ public class ReportDao extends AbstractDao {
 
         List<Map<String, String>> res = readData(sql, map);
 
-        if (res != null && res.size() > 0) {
+        if (res != null && !res.isEmpty()) {
             return res;
         } else {
             return new ArrayList<>();
@@ -1019,8 +1034,6 @@ public class ReportDao extends AbstractDao {
                 "       enrollment_date ASC;";
 
 
-
-
         DataMap<Map<String, String>> map = cursor -> {
             Map<String, String> data = new HashMap<>();
             data.put("enrollment_date", cursor.getString(cursor.getColumnIndex("enrollment_date")));
@@ -1035,16 +1048,17 @@ public class ReportDao extends AbstractDao {
             return data;
         };
 
-        Log.d("hapaa1: ",sql);
+        Log.d("hapaa1: ", sql);
 
         List<Map<String, String>> res = readData(sql, map);
 
-        if (res != null && res.size() > 0) {
+        if (res != null && !res.isEmpty()) {
             return res;
         } else {
             return new ArrayList<>();
         }
     }
+
     public static List<Map<String, String>> getVmmcStaticListOfAeRegister(Date reportDate, Date startDate, Date endDate) {
         String sql = "WITH VMMC_LIST_AE_CTE AS (\n" +
                 "    SELECT\n" +
@@ -1147,16 +1161,17 @@ public class ReportDao extends AbstractDao {
             return data;
         };
 
-        Log.d("hapaa: ",sql);
+        Log.d("hapaa: ", sql);
 
         List<Map<String, String>> res = readData(sql, map);
 
-        if (res != null && res.size() > 0) {
+        if (res != null && !res.isEmpty()) {
             return res;
         } else {
             return new ArrayList<>();
         }
     }
+
     public static List<Map<String, String>> getVmmcOutreachListOfAeRegister(Date reportDate, Date startDate, Date endDate) {
         String sql = "WITH VMMC_LIST_AE_CTE AS (\n" +
                 "    SELECT\n" +
@@ -1258,11 +1273,11 @@ public class ReportDao extends AbstractDao {
             return data;
         };
 
-        Log.d("hapaa: ",sql);
+        Log.d("hapaa: ", sql);
 
         List<Map<String, String>> res = readData(sql, map);
 
-        if (res != null && res.size() > 0) {
+        if (res != null && !res.isEmpty()) {
             return res;
         } else {
             return new ArrayList<>();
@@ -1275,32 +1290,30 @@ public class ReportDao extends AbstractDao {
 
         List<String> type_of_adverse_event = new ArrayList<>();
 
-        if(cursor.getString(cursor.getColumnIndex("type_of_adverse_event")) != null) {
-            if(cursor.getString(cursor.getColumnIndex("type_of_adverse_event")).contains("excessive_skin_removed")){
+        if (cursor.getString(cursor.getColumnIndex("type_of_adverse_event")) != null) {
+            if (cursor.getString(cursor.getColumnIndex("type_of_adverse_event")).contains("excessive_skin_removed")) {
                 type_of_adverse_event.add("Excessive skin removed");
             }
 
-            if(cursor.getString(cursor.getColumnIndex("type_of_adverse_event")).contains("excessive_bleeding")){
+            if (cursor.getString(cursor.getColumnIndex("type_of_adverse_event")).contains("excessive_bleeding")) {
                 type_of_adverse_event.add("Excessive bleeding");
             }
 
-            if(cursor.getString(cursor.getColumnIndex("type_of_adverse_event")).contains("damage_to_penis")){
+            if (cursor.getString(cursor.getColumnIndex("type_of_adverse_event")).contains("damage_to_penis")) {
                 type_of_adverse_event.add("Injury to the penis");
             }
 
-            if(cursor.getString(cursor.getColumnIndex("type_of_adverse_event")).contains("anesthetic_related_events")){
+            if (cursor.getString(cursor.getColumnIndex("type_of_adverse_event")).contains("anesthetic_related_events")) {
                 type_of_adverse_event.add("Anesthetic related events");
             }
 
-            if(cursor.getString(cursor.getColumnIndex("type_of_adverse_event")).contains("device_displacement")){
+            if (cursor.getString(cursor.getColumnIndex("type_of_adverse_event")).contains("device_displacement")) {
                 type_of_adverse_event.add("Device displacement");
             }
 
-            if(cursor.getString(cursor.getColumnIndex("type_of_adverse_event")).contains("others")){
+            if (cursor.getString(cursor.getColumnIndex("type_of_adverse_event")).contains("others")) {
                 type_of_adverse_event.add(cursor.getString(cursor.getColumnIndex("type_of_adverse_event_others")));
-            }
-
-            else {
+            } else {
                 type_of_adverse_event.add(" ");
             }
 
@@ -1326,10 +1339,50 @@ public class ReportDao extends AbstractDao {
         List<Integer> res = readData(sql, map);
 
 
-        if (res != null && res.size() > 0 && res.get(0) != null) {
+        if (res != null && !res.isEmpty() && res.get(0) != null) {
             return res.get(0);
         } else
             return 0;
+    }
+
+    /**
+     * Bulk fetches indicator values for the given codes and dates.
+     */
+    public static Map<String, Integer> getReportPerIndicatorCodesBulk(Map<String, Date> indicatorsWithDates) {
+        Map<String, Integer> result = new HashMap<>();
+        if (indicatorsWithDates.isEmpty()) return result;
+
+        StringBuilder inClause = new StringBuilder();
+        Set<String> keys = indicatorsWithDates.keySet();
+        for (String key : keys) {
+            inClause.append("'").append(key).append("',");
+        }
+        inClause.setLength(inClause.length() - 1); // remove trailing comma
+
+        String sql = "SELECT indicator_code, indicator_value, day FROM indicator_daily_tally " +
+                "WHERE indicator_code IN (" + inClause.toString() + ")";
+
+        DataMap<Pair<String, Pair<String, Integer>>> map = cursor -> {
+            String code = cursor.getString(cursor.getColumnIndex("indicator_code"));
+            String day = cursor.getString(cursor.getColumnIndex("day"));
+            int value = getCursorIntValue(cursor, "indicator_value");
+            return new Pair<>(code, new Pair<>(day, value));
+        };
+
+        List<Pair<String, Pair<String, Integer>>> rawResults = readData(sql, map);
+
+        for (Pair<String, Pair<String, Integer>> pair : rawResults) {
+            String code = pair.first;
+            String day = pair.second.first;
+            Integer value = pair.second.second;
+            Date expected = indicatorsWithDates.get(code);
+            if (day != null && expected != null &&
+                    day.substring(0, 7).equals(new java.text.SimpleDateFormat("yyyy-MM").format(expected))) {
+                result.put(code, value);
+            }
+        }
+
+        return result;
     }
 
     //    for vmmc reports
@@ -1337,13 +1390,6 @@ public class ReportDao extends AbstractDao {
             startDate, Date endDate) {
         String reportDateString = simpleDateFormat.format(reportDate);
         String sql = "";
-
-//        sql = "SELECT indicator_value\n" +
-//                "FROM indicator_daily_tally\n" +
-//                "WHERE indicator_code = '" + indicatorCode + "'\n" +
-//                "  AND date((substr('" + reportDateString + "', 7, 4) || '-' || substr('" + reportDateString + "', 4, 2) || '-' || '01')) = date((substr(day, 1, 4) || '-' || substr(day, 6, 2) || '-' || '01'))\n" +
-//                "ORDER BY day DESC LIMIT 1";
-
         if (startDate != null && endDate != null) {
             // implement later
         } else {
@@ -1360,7 +1406,7 @@ public class ReportDao extends AbstractDao {
         List<Integer> res = readData(sql, map);
 
 
-        if (res != null && res.size() > 0 && res.get(0) != null) {
+        if (res != null && !res.isEmpty() && res.get(0) != null) {
             return res.get(0);
         } else
             return 0;
@@ -1371,10 +1417,105 @@ public class ReportDao extends AbstractDao {
         String sql = " SELECT month FROM monthly_tallies ORDER by month DESC LIMIT 1";
         DataMap<String> map = cursor -> getCursorValue(cursor, "month");
         List<String> res = readData(sql, map);
-        if (res != null && res.size() > 0 && res.get(0) != null) {
+        if (res != null && !res.isEmpty() && res.get(0) != null) {
             return res.get(0);
         } else
             return null;
+    }
+
+    public static List<CHW> getChwsLastSyncDate() {
+        String sql = " SELECT * FROM ec_providers_last_sync_date " +
+                "INNER JOIN provider ON provider.username = ec_providers_last_sync_date.base_entity_id " +
+                "WHERE base_entity_id != '" + Utils.getAllSharedPreferences().fetchRegisteredANM() + "'";
+
+        DataMap<CHW> map = cursor -> {
+            String chwUserName = cursor.getString(cursor.getColumnIndex("first_name")) + " " + cursor.getString(cursor.getColumnIndex("middle_name")) + " " + cursor.getString(cursor.getColumnIndex("last_name"));
+            long lastSyncTimestamp = cursor.getLong(cursor.getColumnIndex("last_sync_date"));
+            Date date = new Date(lastSyncTimestamp);
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+            return new CHW(chwUserName, sdf.format(date));
+        };
+
+        return readData(sql, map);
+    }
+
+    public static List<DhisDataValues> getDhisDataValues(JSONObject reportObject) {
+        List<DhisDataValues> dhisDataValues = new ArrayList<>();
+
+        // 1) Gather all keys from the JSON
+        List<String> codes = new ArrayList<>();
+        Iterator<String> keyIter = reportObject.keys();
+        while (keyIter.hasNext()) {
+            codes.add(keyIter.next());
+        }
+        if (codes.isEmpty()) {
+            return dhisDataValues;
+        }
+
+        // 2) Build a quoted, comma-separated list for SQL IN (...)
+        StringBuilder inClause = new StringBuilder();
+        for (int i = 0; i < codes.size(); i++) {
+            inClause.append("'").append(codes.get(i)).append("'");
+            if (i < codes.size() - 1) inClause.append(",");
+        }
+
+        // 3) Single query for all expected_indicators
+        String sql = "SELECT indicator_code, expected_indicators " +
+                "FROM indicator_queries " +
+                "WHERE indicator_code IN (" + inClause + ") AND expected_indicators IS NOT NULL";
+
+        // 4) Map each row into a Pair<code, JSONArray>
+        DataMap<Pair<String, List<String>>> mapper = cursor -> {
+            String code = cursor.getString(cursor.getColumnIndex("indicator_code"));
+            String jsonStr = cursor.getString(cursor.getColumnIndex("expected_indicators"));
+            Gson gson = new Gson();
+            List<String> indicators;
+            try {
+                // Parse JSON array text into a String[]
+                indicators = Arrays.asList(gson.fromJson(jsonStr, String[].class));
+            } catch (Exception e) {
+                Timber.e(e);
+                indicators = Collections.emptyList();
+            }
+            return new Pair<>(code, indicators);
+        };
+
+        List<Pair<String, List<String>>> results = readData(sql, mapper);
+
+        // 5) Build a lookup map
+        Map<String, List<String>> expectedMap = new HashMap<>();
+        for (Pair<String, List<String>> pair : results) {
+            if (pair.first != null && pair.second != null) {
+                expectedMap.put(pair.first, pair.second);
+            }
+        }
+
+        // 6) Loop keys again, assemble DhisDataValues
+        for (String code : codes) {
+            int value = 0;
+            try {
+                value = reportObject.getInt(code);
+            } catch (JSONException e) {
+                Timber.e(e);
+            }
+            List<String> arr = expectedMap.get(code);
+            if (arr != null && arr.size() >= 2) {
+                DhisDataValues ddv = new DhisDataValues();
+                try {
+                    ddv.setCategoryOptionCombo(arr.get(0));
+                    ddv.setDataElement(arr.get(1));
+                } catch (Exception ex) {
+                    Timber.e(ex);
+                }
+                ddv.setValue(value);
+                dhisDataValues.add(ddv);
+            } else {
+                Timber.d("%s has no expected_indicators", code);
+            }
+        }
+
+        return dhisDataValues;
+
     }
 
 }

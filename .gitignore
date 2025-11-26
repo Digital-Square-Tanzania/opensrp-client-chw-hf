@@ -5,6 +5,7 @@
 *.ipr
 *.iws
 .idea/
+.vscode/
 .classpath
 .project
 bin/

@@ -1913,4 +1913,37 @@
     <string name="vmmc_due_clients">Today Visits</string>
     <string name="vmmc_overdue_clients">Missed Visits</string>
 
+
+    <string name="hps_reports">iCCHW REPORTS</string>
+    <string name="hps_reports_subtitle">View Reports For iCCHW</string>
+    <string name="hps_annual_reports_title">iCCHW ANNUAL REPORTS</string>
+    <string name="hps_monthly_reports_title">iCCHW MONTHLY REPORTS</string>
+
+    <string name="reports_view_sync_status">CHW Sync Status</string>
+    <string name="reports_upload_to_dhis2">Upload to DHIS2</string>
+
+    <!-- DHIS2 Summary/History -->
+    <string name="dhis2_summary_title">DHIS2 Summary</string>
+    <string name="dhis2_history_title">DHIS2 Sent History</string>
+    <string name="dhis2_no_items">No items to display</string>
+    <string name="dhis2_items_count">Items: %1$d</string>
+    <string name="dhis2_history_title_line">Period %1$s</string>
+    <string name="dhis2_history_sub_line">Org Unit %1$s • %2$s</string>
+    <string name="menu_view_dhis2_history">View DHIS2 Sent History</string>
+    <string name="dhis2_history_sub_line_with_type">%1$s • %2$s</string>
+    <string name="dhis2_submissions_title">DHIS2 Submissions</string>
+    <string name="dhis2_submissions_subtitle">View sent DHIS2 reports</string>
+    <string name="menu_filter">Filter</string>
+    <string name="menu_clear_filters">Clear Filters</string>
+    <string name="filter_title">Filter Submissions</string>
+    <string name="report_type_label">Report Type</string>
+    <string name="type_all">All</string>
+    <string name="type_monthly">Monthly</string>
+    <string name="type_annual">Annual</string>
+    <string name="select_period">Select Period</string>
+    <string name="period_not_set">Period: Not set</string>
+    <string name="apply">Apply</string>
+    <string name="cancel">Cancel</string>
+    <string name="na">N/A</string>
+
 </resources>

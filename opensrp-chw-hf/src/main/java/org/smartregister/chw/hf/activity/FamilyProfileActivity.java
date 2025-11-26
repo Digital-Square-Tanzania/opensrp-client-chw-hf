@@ -155,6 +155,11 @@ public class FamilyProfileActivity extends CoreFamilyProfileActivity {
     }
 
     @Override
+    protected void startHpsHouseholdEnrollment(String s) {
+        //Not Required
+    }
+
+    @Override
     protected HashMap<String, String> getAncFamilyHeadNameAndPhone(String baseEntityId) {
         return getFamilyProfilePresenter().getAncFamilyHeadNameAndPhone(baseEntityId);
     }
