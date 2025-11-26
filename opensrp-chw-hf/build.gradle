@@ -62,7 +62,6 @@ allprojects {
             }
         }
 
-
         maven {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/Digital-Square-Tanzania/CircleProgressbar")
@@ -236,8 +235,8 @@ android {
             applicationId "org.smartregister.chw.moh.hf"
             minSdkVersion 26
             targetSdkVersion 34
-            versionCode 37
-            versionName "1.2.10"
+            versionCode 67
+            versionName "1.4.0"
             testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
             multiDexEnabled true
             buildConfigField "String", 'opensrp_url', '"https://ucs.moh.go.tz/opensrp/"'
@@ -274,8 +273,6 @@ android {
     }
     ndkVersion '21.1.6352462'
 
-    ndkVersion '28.0.12433566 rc1'
-
 }
 
 def flavors = android.productFlavors.collect { flavor -> flavor.name }
@@ -307,6 +304,9 @@ dependencies {
         exclude group: 'com.github.chivorns', module: 'smartmaterialspinner'
         exclude group: 'io.realm', module: 'realm-android-library'
         exclude group: 'io.realm', module: 'realm-annotations'
+        exclude group: 'com.facebook.soloader', module: 'soloader'
+        exclude group: 'io.realm', module: 'realm-android-library'
+        exclude group: 'io.realm', module: 'realm-annotations'
         exclude group: 'net.zetetic', module: 'android-database-sqlcipher'
         exclude group: 'com.github.chivorns', module: 'smartmaterialspinner'
         exclude group: 'com.nerdstone', module: 'neat-form-core'
@@ -333,7 +333,8 @@ dependencies {
     implementation group: 'io.realm', name: 'realm-android-library', version: '10.19.0'
     implementation group: 'io.realm', name: 'realm-annotations', version: '10.19.0'
     implementation 'org.mozilla:rhino:1.7.13' // or a newer stable version
-
+    implementation 'com.facebook.soloader:soloader:0.12.1'
+    implementation 'net.zetetic:android-database-sqlcipher:4.5.4'
     implementation('org.smartregister:opensrp-client-chw-ld:1.0.31-NACP-SNAPSHOT@aar') {
         transitive = true
         exclude group: 'org.smartregister', module: 'opensrp-client-core'
