@@ -10,9 +10,10 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.4.2'
+        classpath 'org.apache.commons:commons-lang3:3.10'
+        classpath 'com.android.tools.build:gradle:8.5.2'
         classpath 'com.google.gms:google-services:4.3.3'
-        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.3.0'
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:3.0.6'
     }
 }
 
@@ -88,9 +89,13 @@ allprojects {
 }
 
 android {
+    namespace "org.smartregister.chw.hf"
     useLibrary 'org.apache.http.legacy'
-    compileSdkVersion 34
-    buildToolsVersion androidBuildToolsVersion
+    compileSdk androidCompileSdkVersion
+
+    buildFeatures {
+        buildConfig = true
+    }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -99,8 +104,8 @@ android {
 
     defaultConfig {
         applicationId "org.smartregister.chw.hf"
-        minSdkVersion 26
-        targetSdkVersion 34
+        minSdkVersion androidMinSdkVersion
+        targetSdkVersion androidTargetSdkVersion
         versionCode 11
         versionName "1.2.13"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -225,6 +230,11 @@ android {
             force 'androidx.appcompat:appcompat:1.0.0'
             force 'com.google.android.material:material:1.0.0'
             force 'com.google.guava:guava:31.1-android'
+            // Keep all Kotlin stdlib variants on the same version to avoid duplicate classes
+            force 'org.jetbrains.kotlin:kotlin-stdlib:1.8.10'
+            force 'org.jetbrains.kotlin:kotlin-stdlib-common:1.8.10'
+            force 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.10'
+            force 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.10'
         }
         exclude group: 'com.google.guava', module: 'listenablefuture'
     }
@@ -396,23 +406,26 @@ tasks.withType(JavaCompile).configureEach {
     }
 }
 
-task jacocoTestReport(type: JacocoReport, dependsOn: ['testNacpDebugUnitTest']) {
+task jacocoTestReport(type: JacocoReport, dependsOn: [
+        'testNacpDebugUnitTest'
+]) {
+
     reports {
-        xml.enabled = true
-        html.enabled = true
+        xml.required = true
+        html.required = true
     }
 
     getReports().getXml().setDestination(file("${buildDir}/reports/jacoco/jacocoRootReport/merged.xml"))
     getReports().getHtml().setDestination(file("${buildDir}/reports/jacoco/jacocoRootReport/html"))
 
     def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*', '**/*$ViewBinder*.*']
-    def debugTree = fileTree(dir: "$project.buildDir/intermediates/javac/debug/classes/", excludes: fileFilter)
+    def debugTree = fileTree(dir: "$project.buildDir/intermediates/javac/baDebug/classes/", excludes: fileFilter)
     def mainSrc = "$project.projectDir/src/main/java"
 
     sourceDirectories.setFrom(files([mainSrc]))
     classDirectories.setFrom(files([debugTree]))
     executionData.setFrom(fileTree(dir: project.buildDir, includes: [
-            'jacoco/testNacpDebugUnitTest.exec', 'outputs/code-coverage/connected/*coverage.ec'
+            'jacoco/testBaDebugUnitTest.exec', 'outputs/code-coverage/connected/*coverage.ec'
     ]))
 }
 
