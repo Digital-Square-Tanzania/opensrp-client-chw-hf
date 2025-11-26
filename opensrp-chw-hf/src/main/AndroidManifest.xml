@@ -5,6 +5,9 @@
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -608,6 +611,26 @@
         <activity
             android:name=".activity.AsrhReportsViewActivity"
             android:theme="@style/HFTheme.NoActionBar" />
+        <activity
+            android:name=".activity.HpsReportsViewActivity"
+            android:exported="false"
+            android:theme="@style/HFTheme.NoActionBar" />
+        <activity
+            android:name=".activity.HpsReportsActivity"
+            android:exported="false"
+            android:theme="@style/HFTheme.NoActionBar" />
+        <activity
+            android:name=".activity.Dhis2ReportHistoryActivity"
+            android:exported="false"
+            android:theme="@style/HFTheme.NoActionBar" />
+        <activity
+            android:name=".activity.Dhis2SummaryActivity"
+            android:exported="false"
+            android:theme="@style/HFTheme.NoActionBar" />
+        <activity
+            android:name=".activity.Dhis2SummaryViewActivity"
+            android:exported="false"
+            android:theme="@style/HFTheme.NoActionBar" />
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="3f94f9c3caeff331b3a2bd8c2182b663ad6a955a" />
@@ -663,6 +686,8 @@
         <service android:name=".sync.intent.GenerateMonthlyTalliesIntentService"
             android:foregroundServiceType="dataSync"/>
         <service android:name=".sync.intent.CloseVmmcMembershipIntentService"
+            android:foregroundServiceType="dataSync"/>
+        <service android:name="org.smartregister.sync.intent.ProvidersSyncIntentService"
             android:foregroundServiceType="dataSync"/>
 
         <service android:name=".sync.intent.PullUniqueLabTestSampleTrackingIdsIntentService"

@@ -402,6 +402,16 @@ public class AllClientsMemberProfileActivity extends CoreAllClientsMemberProfile
     }
 
     @Override
+    protected void startHtsScreening() {
+        //To be implemented
+    }
+
+    @Override
+    protected void startHpsEnrollment() {
+        //Not Required
+    }
+
+    @Override
     protected void setIndependentClient(boolean isIndependentClient) {
         super.isIndependent = isIndependentClient;
     }

@@ -114,6 +114,10 @@ public class Constants extends CoreConstants {
         public static final String PMTCT_POST_PNC_REGISTRATION = "PMTCT Post PNC Registration";
 
         public static final String FP_ECP_SCREENING = "FP ECP Screening";
+
+        public static final String SEND_MONTHLY_MTUHA_BOOK_3_TO_DHIS2 = "Send MTUHA BOOK3 Report To DHIS2";
+
+        public static final String SEND_ANNUAL_REPORTS_TO_DHIS2 = "Send MTUHA Annual Report To DHIS2";
     }
 
     public static final class TableName {
@@ -734,6 +738,14 @@ public class Constants extends CoreConstants {
             String HIV_TEST_RESULT = "hiv_test_result";
             String HIV_TEST_RESULT_DATE = "hiv_test_result_date";
             String CTC_NUMBER = "ctc_number";
+
+            String REPORT_DATA = "report_data";
+
+            String REPORT_DHIS_PAYLOAD = "dhis2_payload";
+
+            // Additional metadata to support history and re-visualization
+            String REPORT_PERIOD = "report_period"; // e.g., yyyyMM or yyyy
+            String REPORT_CATEGORY = "report_category"; // e.g., hps_monthly | hps_annual
         }
 
         public interface ClinicFindings{
@@ -825,6 +837,13 @@ public class Constants extends CoreConstants {
             String ASRH_REPORT = "asrh_report";
 
             String CECAP_REPORT = "cecap_report";
+
+            String HPS_REPORT = "hps_report";
+        }
+
+        public interface HpsReportKeys {
+            String HPS_MONTHLY_REPORT = "hps-monthly-report";
+            String HPS_ANNUAL_REPORT = "hps-annual-report";
         }
 
         public interface ReportPaths {
@@ -893,6 +912,11 @@ public class Constants extends CoreConstants {
             String CECAP_OTHER_REPORT_PATH = "cecap-other-report";
 
             String ASRH_REPORT_PATH = "asrh-report";
+
+            String HPS_MONTHLY_REPORT_PATH = "hps_reports/hps-monthly-report";
+
+            String HPS_ANNUAL_REPORT_PATH = "hps_reports/hps-annual-report";
+
         }
     }
 

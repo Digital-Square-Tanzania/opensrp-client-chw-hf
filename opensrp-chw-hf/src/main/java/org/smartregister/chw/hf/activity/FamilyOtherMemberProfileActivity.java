@@ -233,6 +233,16 @@ public class FamilyOtherMemberProfileActivity extends CoreFamilyOtherMemberProfi
     }
 
     @Override
+    protected void startHtsScreening() {
+        //Tobe Implemented
+    }
+
+    @Override
+    protected void startHpsEnrollment() {
+        //Not Required
+    }
+
+    @Override
     protected void setIndependentClient(boolean b) {
         this.isIndependent = false;
     }

@@ -23,7 +23,7 @@ import timber.log.Timber;
  */
 
 public class UniqueLabTestSampleTrackingIdRepository extends BaseRepository {
-    private static final String UniqueTestSamplesTrackingId_SQL = "CREATE TABLE unique_lab_test_sample_tracking_ids(_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,openmrs_id VARCHAR NOT NULL,status VARCHAR NULL, used_by VARCHAR NULL,synced_by VARCHAR NULL,created_at DATETIME NULL,updated_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP )";
+    private static final String UniqueTestSamplesTrackingId_SQL = "CREATE TABLE IF NOT EXISTS unique_lab_test_sample_tracking_ids(_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,openmrs_id VARCHAR NOT NULL,status VARCHAR NULL, used_by VARCHAR NULL,synced_by VARCHAR NULL,created_at DATETIME NULL,updated_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP )";
     private static final String UniqueIds_TABLE_NAME = "unique_lab_test_sample_tracking_ids";
     private static final String ID_COLUMN = "_id";
     private static final String OPENMRS_ID_COLUMN = "openmrs_id";
@@ -38,6 +38,10 @@ public class UniqueLabTestSampleTrackingIdRepository extends BaseRepository {
     private static final String STATUS_NOT_USED = "not_used";
     private static final String STATUS_RESERVED = "reserved";
     private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);
+
+    public UniqueLabTestSampleTrackingIdRepository() {
+        ensureTableExists();
+    }
 
     public static void createTable(SQLiteDatabase database) {
         database.execSQL(UniqueTestSamplesTrackingId_SQL);
@@ -60,7 +64,7 @@ public class UniqueLabTestSampleTrackingIdRepository extends BaseRepository {
      */
     public void bulkInsertOpenmrsIds(List<String> ids) {
 
-        if (ids == null || ids.isEmpty()){
+        if (ids == null || ids.isEmpty()) {
             return;
         }
         SQLiteDatabase database = getWritableDatabase();
@@ -148,17 +152,31 @@ public class UniqueLabTestSampleTrackingIdRepository extends BaseRepository {
         return reserveOrClose(uniqueId, STATUS_RESERVED);
     }
 
+    private void ensureTableExists() {
+        try {
+            getWritableDatabase().execSQL(UniqueTestSamplesTrackingId_SQL);
+        } catch (Exception e) {
+            Timber.e(e, "Error while ensuring the TableExists");
+        }
+    }
+
     /**
      * Release reserved ids so that they can be reused
      *
      * @return the number of opened ids
      */
     public int releaseReservedIds() {
-        ContentValues values = new ContentValues();
-        values.put(STATUS_COLUMN, STATUS_NOT_USED);
-        values.put(USED_BY_COLUMN, "");
-        values.put(UPDATED_AT_COLUMN, dateFormat.format(new Date()));
-        return getWritableDatabase().update(UniqueIds_TABLE_NAME, values, STATUS_COLUMN + " = ?", new String[]{STATUS_RESERVED});
+        try {
+            ensureTableExists();
+            ContentValues values = new ContentValues();
+            values.put(STATUS_COLUMN, STATUS_NOT_USED);
+            values.put(USED_BY_COLUMN, "");
+            values.put(UPDATED_AT_COLUMN, dateFormat.format(new Date()));
+            return getWritableDatabase().update(UniqueIds_TABLE_NAME, values, STATUS_COLUMN + " = ?", new String[]{STATUS_RESERVED});
+        } catch (Exception e) {
+            Timber.e(e, "Error releasing ReservedIds");
+        }
+        return -1;
     }
 
     private int reserveOrClose(String openmrsId, String status) {
