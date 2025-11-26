@@ -9,7 +9,7 @@ buildscript {
         maven{  url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.4.2'
+        classpath 'com.android.tools.build:gradle:8.5.2'
         classpath 'gradle.plugin.org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.10.2'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -55,11 +55,10 @@ subprojects {
 
     group = 'org.smartregister'
 
-    ext.androidToolsBuildGradle = '29.0.3'
-    ext.androidBuildToolsVersion = '29.0.3'
+    ext.androidToolsBuildGradle = '4.0.1'
     ext.androidMinSdkVersion = 18
-    ext.androidCompileSdkVersion = 29
-    ext.androidTargetSdkVersion = 29
+    ext.androidCompileSdkVersion = 35
+    ext.androidTargetSdkVersion = 35
 
     ext.androidAnnotationsVersion = '3.0.1'
     ext.androidAnnotationsAPIVersion = '3.0.1'
@@ -82,49 +81,27 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-task jacocoTestReport(type: JacocoReport) {
-    sourceDirectories.setFrom(files())
-    classDirectories.setFrom(files())
-    executionData.setFrom(files())
+task jacocoTestReport(type: JacocoReport, dependsOn: [
+        'testNacpDebugUnitTest'
+]) {
 
     reports {
-        html{
-            html.enabled = true
-            destination file("${buildDir}/reports/jacoco/jacocoRootReport/jacocoFullReport")
-        }
-
-        xml{
-            xml.enabled = true
-            destination file("${buildDir}/reports/jacoco/jacocoRootReport/jacocoFullReport.xml")
-        }
-
-        csv.enabled = false
+        xml.required = true
+        html.required = true
     }
 
-    // Work-around to allow us to build list of executionData files in doFirst
-    onlyIf = {
-        true
-    }
+    getReports().getXml().setDestination(file("${buildDir}/reports/jacoco/jacocoRootReport/merged.xml"))
+    getReports().getHtml().setDestination(file("${buildDir}/reports/jacoco/jacocoRootReport/html"))
 
-    /*
-     * Builds list of source dirs, class dirs, and executionData files
-     * when task is run, not at script evaluation time
-     */
-    doFirst {
-        subprojects.findAll { subproject ->
-            subproject.pluginManager.hasPlugin('java')
-        }.each { subproject ->
-            additionalSourceDirs files((Set<File>) subproject.sourceSets.main.allJava.srcDirs)
-            additionalClassDirs ((FileCollection) subproject.sourceSets.main.output)
-            if (subproject.pluginManager.hasPlugin('jacoco')) {
-                executionData subproject.tasks.jacocoTestReport.executionData
-            }
-        }
+    def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*', '**/*$ViewBinder*.*']
+    def debugTree = fileTree(dir: "$project.buildDir/intermediates/javac/baDebug/classes/", excludes: fileFilter)
+    def mainSrc = "$project.projectDir/src/main/java"
 
-        executionData.setFrom(files(executionData.findAll {
-            it.exists()
-        }))
-    }
+    sourceDirectories.setFrom(files([mainSrc]))
+    classDirectories.setFrom(files([debugTree]))
+    executionData.setFrom(fileTree(dir: project.buildDir, includes: [
+            'jacoco/testBaDebugUnitTest.exec', 'outputs/code-coverage/connected/*coverage.ec'
+    ]))
 }
 
 task build {
