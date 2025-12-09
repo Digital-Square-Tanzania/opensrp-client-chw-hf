@@ -9,14 +9,16 @@
             "field": "eventType",
             "field_value": "Family Registration",
             "creates_case": [
-              "ec_family"
+              "ec_family",
+              "ec_providers_last_sync_date"
             ]
           },
           {
             "field": "eventType",
             "field_value": "Family Member Registration",
             "creates_case": [
-              "ec_family_member"
+              "ec_family_member",
+              "ec_providers_last_sync_date"
             ]
           },
           {
@@ -24,7 +26,8 @@
             "field_value": "Child Registration",
             "creates_case": [
               "ec_child",
-              "ec_family_member"
+              "ec_family_member",
+              "ec_providers_last_sync_date"
             ]
           },
           {
@@ -53,14 +56,16 @@
             "field": "eventType",
             "field_value": "Update Family Registration",
             "creates_case": [
-              "ec_family"
+              "ec_family",
+              "ec_providers_last_sync_date"
             ]
           },
           {
             "field": "eventType",
             "field_value": "Update Family Member Registration",
             "creates_case": [
-              "ec_family_member"
+              "ec_family_member",
+              "ec_providers_last_sync_date"
             ]
           },
           {
@@ -68,14 +73,16 @@
             "field_value": "Update Child Registration",
             "creates_case": [
               "ec_child",
-              "ec_family_member"
+              "ec_family_member",
+              "ec_providers_last_sync_date"
             ]
           },
           {
             "field": "eventType",
             "field_value": "Update Family Relations",
             "creates_case": [
-              "ec_family"
+              "ec_family",
+              "ec_providers_last_sync_date"
             ]
           },
           {
@@ -90,7 +97,8 @@
             "field_value": "Child Home Visit",
             "creates_case": [
               "ec_child",
-              "ec_child_activity"
+              "ec_child_activity",
+              "ec_providers_last_sync_date"
             ]
           },
           {
@@ -1223,6 +1231,53 @@
             "field_value": "GBV Follow-up Visit",
             "creates_case": [
               "ec_gbv_visit"
+            ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "HPS Client Enrollment",
+            "creates_case": [
+              "ec_hps_client_register"
+            ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "HPS Household Enrollment",
+            "creates_case": [
+              "ec_hps_household_register",
+              "ec_providers_last_sync_date"
+            ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "HPS Client Follow-up Visit",
+            "creates_case": [
+              "ec_hps_client_services",
+              "ec_providers_last_sync_date"
+            ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "HPS Household Services",
+            "creates_case": [
+              "ec_hps_household_services",
+              "ec_providers_last_sync_date"
+            ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "Remove Family Member",
+            "creates_case": [
+              "ec_hps_death_register",
+              "ec_providers_last_sync_date"
+            ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "Remove Child Under 5",
+            "creates_case": [
+              "ec_hps_death_register",
+              "ec_providers_last_sync_date"
             ]
           },
           {

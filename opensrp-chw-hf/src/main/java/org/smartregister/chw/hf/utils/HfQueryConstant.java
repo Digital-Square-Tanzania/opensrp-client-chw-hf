@@ -51,7 +51,7 @@ public interface HfQueryConstant {
             "    WHERE ec_tb_register.tb_case_closure_date is null\n" +
             "    UNION ALL\n" +
             "    SELECT ec_hiv_index_hf.base_entity_id AS base_entity_id\n" +
-            "    FROM ec_hiv_index_hf\n" +
+            "    FROM ec_hiv_index_hf WHERE (ctc_number IS NOT NULL OR (test_results IS NOT NULL AND test_results = 'Negative' COLLATE NOCASE) OR how_to_notify_the_contact_client = 'na' COLLATE NOCASE)\n" +
             "    UNION ALL\n" +
             "    SELECT ec_hiv_register.base_entity_id AS base_entity_id\n" +
             "    FROM ec_hiv_register WHERE (UPPER (ec_hiv_register.client_hiv_status_after_testing) LIKE UPPER('Positive')) \n" +

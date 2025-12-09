@@ -76,6 +76,33 @@
         }
       },
       {
+        "key": "has_experienced_last_normal_menstrual_period",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "has_experienced_last_normal_menstrual_period",
+        "type": "native_radio",
+        "label": "Has the client experienced her Last Normal Menstrual Period (LNMP)?",
+        "text_color": "#000000",
+        "options": [
+          {
+            "key": "yes",
+            "text": "Yes",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "yes"
+          },
+          {
+            "key": "no",
+            "text": "No",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "no"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Required"
+        }
+      },
+      {
         "key": "lnmp",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -88,6 +115,12 @@
         "v_required": {
           "value": "true",
           "err": "Please select date"
+        },
+        "relevance": {
+          "step1:has_experienced_last_normal_menstrual_period": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
         }
       },
       {
@@ -113,6 +146,12 @@
         "v_required": {
           "value": "true",
           "err": "Tafadhali taja"
+        },
+        "relevance": {
+          "step1:has_experienced_last_normal_menstrual_period": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
         }
       },
       {
@@ -140,6 +179,12 @@
         "v_required": {
           "value": "true",
           "err": "Tafadhali taja"
+        },
+        "relevance": {
+          "step1:has_experienced_last_normal_menstrual_period": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
         }
       },
       {
@@ -165,6 +210,12 @@
         "v_required": {
           "value": "true",
           "err": "Tafadhali taja"
+        },
+        "relevance": {
+          "step1:has_experienced_last_normal_menstrual_period": {
+            "type": "string",
+            "ex": "equalTo(., \"yes\")"
+          }
         }
       },
       {

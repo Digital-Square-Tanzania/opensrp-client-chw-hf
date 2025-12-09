@@ -68,7 +68,7 @@ public class HfSyncConfiguration extends SyncConfiguration {
 
     @Override
     public String getTopAllowedLocationLevel() {
-        return "Country";
+        return "Region";
     }
 
     @Override

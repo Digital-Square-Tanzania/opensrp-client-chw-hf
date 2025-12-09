@@ -63,9 +63,18 @@
           "value": "true",
           "err": "Tafadhali jaza"
         },
+        "v_numeric": {
+          "value": "true",
+          "err": "Tafadhali jaza idadi ya mizunguko ya vidonge kwa usahihi"
+        },
         "v_max": {
-          "value": "50",
-          "err": "Namba ya POP lazima iwe sawasawa au chini ya 50"
+          "value": "12",
+          "err": "Namba ya POP lazima iwe sawasawa au chini ya 12"
+        },
+        "v_max_length": {
+          "value": "2",
+          "is_fixed_size": "true",
+          "err": "Tafadhali jaza jibu sahihi"
         },
         "relevance": {
           "rules-engine": {

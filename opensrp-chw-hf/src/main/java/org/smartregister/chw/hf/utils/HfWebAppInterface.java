@@ -42,11 +42,27 @@ public class HfWebAppInterface {
 
     private static final String DEFAULT_LOCALITY_NAME = "dfltLocName";
 
-    private static final String HFR_CODE = "userLocAttribute";
+    public static final String HFR_CODE = "userLocAttribute";
 
     Context mContext;
 
     String reportType;
+
+    // Optional override to feed precomputed JSON back to the WebView
+    // Map of reportKey -> JSON string (serialized using Gson style where applicable)
+    private static volatile String overrideReportType = null;
+    private static final java.util.Map<String, String> overrideData = new java.util.concurrent.ConcurrentHashMap<>();
+
+    public static void setOverride(String reportType, java.util.Map<String, String> data) {
+        overrideReportType = reportType;
+        overrideData.clear();
+        if (data != null) overrideData.putAll(data);
+    }
+
+    public static void clearOverride() {
+        overrideReportType = null;
+        overrideData.clear();
+    }
 
 
     public HfWebAppInterface(Context c, String reportType) {
@@ -56,6 +72,31 @@ public class HfWebAppInterface {
 
     @JavascriptInterface
     public String getData(String key) {
+        // Use override when provided for this report type
+        if (overrideReportType != null && overrideReportType.equalsIgnoreCase(reportType)) {
+            String raw = overrideData.get(key);
+            if (raw != null) {
+                try {
+                    // Re-serialize via Gson to match expected { nameValuePairs: {...} } / { values: [...] }
+                    com.google.gson.Gson gson = new com.google.gson.Gson();
+                    try {
+                        org.json.JSONObject obj = new org.json.JSONObject(raw);
+                        return gson.toJson(obj);
+                    } catch (org.json.JSONException jex) {
+                        try {
+                            org.json.JSONArray arr = new org.json.JSONArray(raw);
+                            return gson.toJson(arr);
+                        } catch (org.json.JSONException jex2) {
+                            // Return as-is if unparsable
+                            return raw;
+                        }
+                    }
+                } catch (Exception e) {
+                    Timber.e(e);
+                    return raw;
+                }
+            }
+        }
         if (reportType.equalsIgnoreCase(Constants.ReportConstants.ReportTypes.PMTCT_REPORT)) {
             switch (key) {
                 case THREE_MONTHS:
@@ -251,6 +292,17 @@ public class HfWebAppInterface {
                 default:
                     return "";
             }
+        }else if (reportType.equalsIgnoreCase(Constants.ReportConstants.ReportTypes.HPS_REPORT)) {
+            switch (key) {
+                case Constants.ReportConstants.HpsReportKeys.HPS_MONTHLY_REPORT:
+                    ReportUtils.setPrintJobName("HPS_report_ya_mwezi-" + ReportUtils.getReportPeriod() + ".pdf");
+                    return ReportUtils.HpsReports.computeClientsReports(ReportUtils.getReportDate());
+                case Constants.ReportConstants.HpsReportKeys.HPS_ANNUAL_REPORT:
+                    ReportUtils.setPrintJobName("HPS_report_ya_mwaka-" + ReportUtils.getReportPeriod() + ".pdf");
+                    return ReportUtils.HpsReports.computeClientsAnnualReports(ReportUtils.getReportDate());
+                default:
+                    return "";
+            }
         } else if (reportType.equalsIgnoreCase(Constants.ReportConstants.ReportTypes.HTS_REPORT)) {
             switch (key) {
                 case HTS_MONTHLY_REPORT:
@@ -307,5 +359,11 @@ public class HfWebAppInterface {
     @JavascriptInterface
     public String getReportingHFRCODE() {
         return getAllSharedPreferences().getPreference(HFR_CODE);
+    }
+
+    // Backward/compat alias used in some report scripts
+    @JavascriptInterface
+    public String getReportingChw() {
+        return getReportingFacility();
     }
 }

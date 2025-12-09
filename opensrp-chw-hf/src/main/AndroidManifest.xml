@@ -5,6 +5,9 @@
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -38,13 +41,11 @@
             android:icon="@drawable/ic_launcher"
             android:launchMode="singleTask"
             android:roundIcon="@drawable/ic_launcher_round"
-            android:screenOrientation="portrait"
             android:theme="@style/HFTheme.Login"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
         <activity
             android:name=".activity.RequestPhoneNumberCollectionPermission"
-            android:exported="true"
-            android:screenOrientation="portrait">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -144,7 +145,6 @@
 
         <activity
             android:name=".activity.AncPartnerTestingHistoryActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/HFTheme.NoActionBar" />
 
         <activity
@@ -237,18 +237,15 @@
         <activity
             android:name="org.smartregister.family.activity.FamilyWizardFormActivity"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait"
             android:theme="@style/HFTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
         <activity
             android:name=".activity.FamilyRegisterActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.FamilyProfileActivity"
             android:label="@string/title_family_detail"
             android:parentActivityName=".activity.FamilyRegisterActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/HFTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -265,35 +262,27 @@
         </activity>
         <activity
             android:name=".activity.PmtctRegisterActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.VmmcRegisterActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.VmmcProfileActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.HeiRegisterActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.HeiProfileActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.HeiFollowupVisitActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.HeiHivResultsViewActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.PmtctProfileActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.PmtctFollowupVisitActivity"
@@ -306,90 +295,72 @@
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.ChildRegisterActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.AncMedicalHistoryActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.AncRegistrationDetailsActivity"
-            android:screenOrientation="portrait"
+            android:theme="@style/HFTheme.NoActionBar" />
+        <activity
+            android:name=".activity.FpRegistrationDetailsActivity"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.ChildHomeVisitActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.ChildProfileActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.FpMemberProfileActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.FpEcpMemberProfileActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.FpScreeningActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.FpOtherServicesActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.FpFollowupVisitProvisionOfServicesActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.FamilyRemoveMemberActivity"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.FamilyProfileMenuActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name="org.smartregister.chw.core.activity.CoreChildMedicalHistoryActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.ReferralRegisterActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.ReferralTaskViewActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.PregnancyConfirmationViewActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.CommunityFollowupFeedbackViewActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.CommunityIndexFollowupFeedbackViewActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.AncRegisterActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.AncMemberProfileActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.AncFirstFacilityVisitActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.AncRecurringFacilityVisitActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.PncRegisterActivity"
@@ -405,7 +376,6 @@
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.AllClientsRegisterActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.AllClientsMemberProfileActivity"
@@ -509,17 +479,14 @@
 
         <activity
             android:name=".activity.LDRegisterActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/HFTheme.NoActionBar" />
 
         <activity
             android:name=".activity.LDProfileActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/HFTheme.NoActionBar" />
 
         <activity
             android:name=".activity.LDRegistrationFormActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/HFTheme.NoActionBar" />
 
         <activity
@@ -535,7 +502,6 @@
 
         <activity
             android:name=".activity.LDActiveManagementStageActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/HFTheme.NoActionBar" />
 
         <activity
@@ -544,15 +510,12 @@
 
         <activity
             android:name=".activity.LDPostDeliveryManagementMotherActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.LDRegistrationDetailsActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.LdSummaryDetailsActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
             android:name=".activity.KvpMedicalHistoryActivity"
@@ -659,6 +622,26 @@
         <activity
             android:name=".activity.AsrhReportsViewActivity"
             android:theme="@style/HFTheme.NoActionBar" />
+        <activity
+            android:name=".activity.HpsReportsViewActivity"
+            android:exported="false"
+            android:theme="@style/HFTheme.NoActionBar" />
+        <activity
+            android:name=".activity.HpsReportsActivity"
+            android:exported="false"
+            android:theme="@style/HFTheme.NoActionBar" />
+        <activity
+            android:name=".activity.Dhis2ReportHistoryActivity"
+            android:exported="false"
+            android:theme="@style/HFTheme.NoActionBar" />
+        <activity
+            android:name=".activity.Dhis2SummaryActivity"
+            android:exported="false"
+            android:theme="@style/HFTheme.NoActionBar" />
+        <activity
+            android:name=".activity.Dhis2SummaryViewActivity"
+            android:exported="false"
+            android:theme="@style/HFTheme.NoActionBar" />
 
 
         <activity
@@ -732,6 +715,8 @@
         <service android:name=".sync.intent.GenerateMonthlyTalliesIntentService"
             android:foregroundServiceType="dataSync"/>
         <service android:name=".sync.intent.CloseVmmcMembershipIntentService"
+            android:foregroundServiceType="dataSync"/>
+        <service android:name="org.smartregister.sync.intent.ProvidersSyncIntentService"
             android:foregroundServiceType="dataSync"/>
 
         <service android:name=".sync.intent.PullUniqueLabTestSampleTrackingIdsIntentService"

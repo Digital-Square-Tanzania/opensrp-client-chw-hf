@@ -416,6 +416,11 @@ public class AllClientsMemberProfileActivity extends CoreAllClientsMemberProfile
     }
 
     @Override
+    protected void startHpsEnrollment() {
+        //Not Required
+    }
+
+    @Override
     protected void setIndependentClient(boolean isIndependentClient) {
         super.isIndependent = isIndependentClient;
     }
@@ -441,7 +446,7 @@ public class AllClientsMemberProfileActivity extends CoreAllClientsMemberProfile
         if (gender.equalsIgnoreCase("Female")) {
             return Utils.isMemberOfReproductiveAge(commonPersonObject, 10, 55);
         } else if (gender.equalsIgnoreCase("Male")) {
-            return Utils.isMemberOfReproductiveAge(commonPersonObject, 15, 49);
+            return Utils.isMemberOfReproductiveAge(commonPersonObject, 15, 70);
         } else {
             return false;
         }

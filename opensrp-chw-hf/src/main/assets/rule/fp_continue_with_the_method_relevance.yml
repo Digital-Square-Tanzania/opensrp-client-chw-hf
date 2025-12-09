@@ -1,4 +1,11 @@
 ---
+name: step1_client_wants_continue_with_fp_method
+description: client_wants_continue_with_fp_method relevance
+priority: 1
+condition: "!global_fp_method_selected.equalsIgnoreCase('vasectomy') && !global_fp_method_selected.equalsIgnoreCase('btl')"
+actions:
+  - "isRelevant = true"
+---
 name: step1_method_expired_prompt
 description: method_expired_prompt relevance
 priority: 1

@@ -20,7 +20,7 @@ public class HfNavigationMenu implements NavigationMenu.Flavour {
 
     @Override
     public List<Pair<String, Locale>> getSupportedLanguages() {
-        return Arrays.asList(Pair.of("English", Locale.ENGLISH), Pair.of("Kiswahili", new Locale("sw")));
+        return Arrays.asList(Pair.of("English", Locale.ENGLISH));
     }
 
     @Override

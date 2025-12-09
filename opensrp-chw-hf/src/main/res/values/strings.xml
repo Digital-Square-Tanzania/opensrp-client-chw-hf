@@ -752,7 +752,6 @@
     <string name="hts_reports_subtitle">View Reports For HTS</string>
 
 
-
     <string name="view_visits_history">View Visits History</string>
     <string name="visits_history">Visits History</string>
     <string name="kvp_visit_title">KVP Visit {0}: {1}</string>
@@ -1497,7 +1496,8 @@
 
     <string name="anc_pregnancy_confirmation_date">ANC Pregnancy Confirmation: {0}</string>
     <string name="anc_registration_date">ANC Registration: {0}</string>
-
+    <string name="fp_registration_date">Family Planning Registration: {0}</string>
+    <string name="edit_fp_registration">Edit Family Planning Registration</string>
 
     <string name="edit_partner_testing">Edit Partner Testing</string>
     <string name="edit_pregnancy_confirmation">Edit Pregnancy Confirmation</string>
@@ -1558,7 +1558,7 @@
     <string name="fp_client_agreed_on_fp_choice">Has the client agreed on the family planning of choice:</string>
     <string name="fp_selected_fp_method_after_counseling">Selected family planning method after counseling:</string>
     <string name="fp_client_used_fp_before">Has the client ever used any family planning method:</string>
-    <string name="fp_fp_registration_number">Client registration number should be of the format (XXXX/XXX):</string>
+    <string name="fp_fp_registration_number">Client registration number (XXXX/XXX):</string>
     <string name="fp_client_level_education">Client’s Level of Education:</string>
     <string name="fp_method_expired">Has the FP method expired:</string>
     <string name="fp_client_wants_continue_with_fp_method">Does the client want to continue with the family planning method:</string>
@@ -1620,14 +1620,6 @@
     <string name="fp_condom_refilled">Condom:</string>
     <string name="fp_number_male_condoms_refilled">Specify quantity (Male):</string>
     <string name="fp_number_female_condoms_refilled">Specify quantity (Female):</string>
-
-
-
-
-
-
-
-
 
 
     <string name="fp_yes">Yes</string>
@@ -1710,6 +1702,14 @@
     <string name="fp_community">Community</string>
     <string name="fp_male">Male</string>
     <string name="fp_female">Female</string>
+
+    <string name="fp_provision">ECP Provision</string>
+    <string name="fp_was_ecp_provided">Was the ECP provided</string>
+    <string name="fp_type_of_ecp_provided">What type of ECP was provided</string>
+    <string name="fp_ecp_counseling_provided">Was ECP counseling provided</string>
+    <string name="fp_type_of_incident">Type of the incidence</string>
+    <string name="fp_when_did_incidence_occur">When did the incidence occur</string>
+    <string name="fp_specify_other_incident">Specify other incident</string>
 
     <string name="ecp_provision">ECP Provision</string>
     <string name="ecp_was_ecp_provided">Was the ECP provided</string>
@@ -2046,5 +2046,38 @@
     <string name="hts_dbs_expire_date_hint">Select DBS expire date</string>
 
     <string name="action_hts_samples">HTS Samples</string>
+
+
+    <string name="hps_reports">iCCHW REPORTS</string>
+    <string name="hps_reports_subtitle">View Reports For iCCHW</string>
+    <string name="hps_annual_reports_title">iCCHW ANNUAL REPORTS</string>
+    <string name="hps_monthly_reports_title">iCCHW MONTHLY REPORTS</string>
+
+    <string name="reports_view_sync_status">CHW Sync Status</string>
+    <string name="reports_upload_to_dhis2">Upload to DHIS2</string>
+
+    <!-- DHIS2 Summary/History -->
+    <string name="dhis2_summary_title">DHIS2 Summary</string>
+    <string name="dhis2_history_title">DHIS2 Sent History</string>
+    <string name="dhis2_no_items">No items to display</string>
+    <string name="dhis2_items_count">Items: %1$d</string>
+    <string name="dhis2_history_title_line">Period %1$s</string>
+    <string name="dhis2_history_sub_line">Org Unit %1$s • %2$s</string>
+    <string name="menu_view_dhis2_history">View DHIS2 Sent History</string>
+    <string name="dhis2_history_sub_line_with_type">%1$s • %2$s</string>
+    <string name="dhis2_submissions_title">DHIS2 Submissions</string>
+    <string name="dhis2_submissions_subtitle">View sent DHIS2 reports</string>
+    <string name="menu_filter">Filter</string>
+    <string name="menu_clear_filters">Clear Filters</string>
+    <string name="filter_title">Filter Submissions</string>
+    <string name="report_type_label">Report Type</string>
+    <string name="type_all">All</string>
+    <string name="type_monthly">Monthly</string>
+    <string name="type_annual">Annual</string>
+    <string name="select_period">Select Period</string>
+    <string name="period_not_set">Period: Not set</string>
+    <string name="apply">Apply</string>
+    <string name="cancel">Cancel</string>
+    <string name="na">N/A</string>
 
 </resources>
