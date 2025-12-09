@@ -15,7 +15,8 @@
             android:id="@+id/collapsing_toolbar_appbarlayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/anc_member_profile_bg">
+            android:background="@color/anc_member_profile_bg"
+            android:fitsSystemWindows="true">
 
             <View
                 android:layout_width="match_parent"
