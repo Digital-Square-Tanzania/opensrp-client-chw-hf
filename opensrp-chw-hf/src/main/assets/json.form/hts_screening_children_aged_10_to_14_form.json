@@ -440,7 +440,7 @@
         "relevance": {
           "rules-engine": {
             "ex-rules": {
-              "rules-file": "hts_screening_rules_2_to_9.yml"
+              "rules-file": "hts_screening_rules_10_to_14.yml"
             }
           }
         }

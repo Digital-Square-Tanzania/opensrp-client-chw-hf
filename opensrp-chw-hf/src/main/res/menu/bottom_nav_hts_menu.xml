@@ -7,11 +7,11 @@
         android:icon="@mipmap/ic_home"
         android:title="@string/home"
         app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/action_view_pregnancy_confirmation_referrals"
-        android:enabled="true"
-        android:icon="@drawable/ic_trending_down_black_24dp"
-        android:title="@string/action_hts_samples"
-        app:showAsAction="ifRoom" />
+<!--    <item-->
+<!--        android:id="@+id/action_view_pregnancy_confirmation_referrals"-->
+<!--        android:enabled="true"-->
+<!--        android:icon="@drawable/ic_trending_down_black_24dp"-->
+<!--        android:title="@string/action_hts_samples"-->
+<!--        app:showAsAction="ifRoom" />-->
 
 </menu>

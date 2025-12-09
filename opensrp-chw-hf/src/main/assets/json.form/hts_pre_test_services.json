@@ -113,6 +113,12 @@
             "text": "Group",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "group"
+          },
+          {
+            "key": "family",
+            "text": "Family Counselling",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "family"
           }
         ],
         "v_required": {
