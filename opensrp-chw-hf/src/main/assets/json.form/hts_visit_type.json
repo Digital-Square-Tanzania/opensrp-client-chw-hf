@@ -184,10 +184,50 @@
         }
       },
       {
-        "key": "hts_client_type",
+        "key": "hts_client_type_new",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "hts_client_type",
+        "openmrs_entity_id": "hts_client_type_new",
+        "type": "native_radio",
+        "label": "Client Type",
+        "options": [
+          {
+            "key": "index_contact",
+            "text": "Index Contact",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "index_contact"
+          },
+          {
+            "key": "normal_client",
+            "text": "Normal Client",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "normal_client"
+          },
+          {
+            "key": "social_network_contact",
+            "text": "Social Network Contact",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "social_network_contact"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select a value"
+        },
+
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "hts_visit_type_rule.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "hts_client_type_returning",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "hts_client_type_returning",
         "type": "native_radio",
         "label": "Client Type",
         "options": [
@@ -219,6 +259,28 @@
         "v_required": {
           "value": "true",
           "err": "Please select a value"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "hts_visit_type_rule.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "hts_client_type",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "hts_client_type",
+        "type": "hidden",
+        "hint": "Client Type",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "hts_visit_type_rule.yml"
+            }
+          }
         }
       },
       {
