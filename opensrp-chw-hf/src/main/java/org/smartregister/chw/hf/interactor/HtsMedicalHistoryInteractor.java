@@ -68,10 +68,8 @@ public class HtsMedicalHistoryInteractor extends CoreBaseAncMedicalHistoryIntera
 
                 List<Visit> childVisits = getChildVisits(visit.getVisitId());
                 for (Visit childVisit : childVisits) {
-                    List<VisitDetail> childVisitDetails = getVisitDetailsOnly(childVisit.getVisitId());
-                    Map<String, List<VisitDetail>> groupedChildVisitDetails = getVisitGroups(childVisitDetails);
-
-                    for (Map.Entry<String, List<VisitDetail>> entry : groupedChildVisitDetails.entrySet()) {
+                    Map<String, List<VisitDetail>> mVisitDetails = childVisit.getVisitDetails();
+                    for (Map.Entry<String, List<VisitDetail>> entry : mVisitDetails.entrySet()) {
                         visitDetails.computeIfAbsent(entry.getKey(), key -> new ArrayList<>()).addAll(entry.getValue());
                     }
                 }
