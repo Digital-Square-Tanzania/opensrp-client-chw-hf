@@ -1970,32 +1970,47 @@
     <string name="hts_on_tb_treatment">On TB Treatment</string>
     <string name="hts_not_screened">Not Screened</string>
     <string name="hts_hts_does_client_need_hiv_self_test_kits">Does the client need HIV self test kits?</string>
-    <string name="hts_hts_repeat_first_test_kit_batch_number">Kit batch number</string>
-    <string name="hts_hts_repeat_first_test_kit_batch_number_hint">Specify kit batch number</string>
-    <string name="hts_hts_repeat_first_test_kit_expire_date_hint">Select kit expire date</string>
-    <string name="hts_hts_repeat_first_hiv_test_result">First HIV Test result</string>
-    <string name="hts_non_reactive">Non-Reactive</string>
-    <string name="hts_reactive">Reactive</string>
-    <string name="hts_invalid">Invalid</string>
-    <string name="hts_wastage">Wastage</string>
-    <string name="hts_second_kit_batch_number">Second kit batch number</string>
-    <string name="hts_second_kit_batch_number_hint">Specify second kit batch number</string>
-    <string name="hts_second_kit_expire_date_hint">Select second kit expire date</string>
-    <string name="hts_second_hiv_test_result">Second HIV Test result</string>
-    <string name="hts_unigold_kit_batch_number">Unigold kit batch number</string>
-    <string name="hts_unigold_kit_batch_number_hint">Specify unigold kit batch number</string>
-    <string name="hts_unigold_kit_expire_date_hint">Select unigold kit expire date</string>
-    <string name="hts_unigold_hiv_test_result">Unigold HIV Test result</string>
-    <string name="hts_negative">Negative</string>
-    <string name="hts_positive">Positive</string>
-    <string name="hts_final_hiv_status">Final HIV Test result</string>
-    <string name="hts_known_positive">Known Positive</string>
-    <string name="hts_inconclusive">Inconclusive</string>
-    <string name="hts_post_test_services">Was client provided with post-test counselling?</string>
-    <string name="hts_post_test_services_yes">Yes</string>
-    <string name="hts_post_test_services_no">No</string>
+	<string name="hts_hts_repeat_first_test_kit_batch_number">Kit batch number</string>
+	<string name="hts_hts_repeat_first_test_kit_batch_number_hint">Specify kit batch number</string>
+	<string name="hts_hts_repeat_first_test_kit_expire_date_hint">Select kit expire date</string>
+	<string name="hts_hts_repeat_first_hiv_test_result">First HIV Test result</string>
+	<string name="hts_hts_type_of_test_used">Type of test used</string>
+	<string name="hts_hts_kit_batch_number">Kit batch number</string>
+	<string name="hts_hts_kit_expire_date">Kit expire date</string>
+	<string name="hts_hts_first_hiv_test_result">First HIV Test result</string>
+	<string name="hts_syphilis_test_results">Syphilis test results</string>
+	<string name="hts_non_reactive">Non-Reactive</string>
+	<string name="hts_reactive">Reactive</string>
+	<string name="hts_invalid">Invalid</string>
+	<string name="hts_wastage">Wastage</string>
+	<string name="hts_hts_second_kit_batch_number">Second kit batch number</string>
+	<string name="hts_second_kit_batch_number">Second kit batch number</string>
+	<string name="hts_second_kit_batch_number_hint">Specify second kit batch number</string>
+	<string name="hts_hts_second_kit_expire_date">Second kit expire date</string>
+	<string name="hts_second_kit_expire_date_hint">Select second kit expire date</string>
+	<string name="hts_hts_second_hiv_test_result">Second HIV Test result</string>
+	<string name="hts_second_hiv_test_result">Second HIV Test result</string>
+	<string name="hts_hts_unigold_kit_batch_number">Unigold kit batch number</string>
+	<string name="hts_unigold_kit_batch_number">Unigold kit batch number</string>
+	<string name="hts_unigold_kit_batch_number_hint">Specify unigold kit batch number</string>
+	<string name="hts_hts_unigold_kit_expire_date">Unigold kit expire date</string>
+	<string name="hts_unigold_kit_expire_date_hint">Select unigold kit expire date</string>
+	<string name="hts_hts_unigold_hiv_test_result">Unigold HIV Test result</string>
+	<string name="hts_unigold_hiv_test_result">Unigold HIV Test result</string>
+	<string name="hts_negative">Negative</string>
+	<string name="hts_positive">Positive</string>
+	<string name="hts_hts_final_hiv_status">Final HIV Test result</string>
+	<string name="hts_final_hiv_status">Final HIV Test result</string>
+	<string name="hts_known_positive">Known Positive</string>
+	<string name="hts_inconclusive">Inconclusive</string>
+	<string name="hts_hts_repeat_first_test_kit_expire_date">Repeat first kit expire date</string>
+	<string name="hts_hts_post_test_services">Was client provided with post-test counselling?</string>
+	<string name="hts_post_test_services">Was client provided with post-test counselling?</string>
+	<string name="hts_post_test_services_yes">Yes</string>
+	<string name="hts_post_test_services_no">No</string>
 
-    <string name="hts_hiv_results_disclosure">HIV results disclosure</string>
+	<string name="hts_hts_hiv_results_disclosure">HIV results disclosure</string>
+	<string name="hts_hiv_results_disclosure">HIV results disclosure</string>
     <string name="hts_disclosure_husband">Husband</string>
     <string name="hts_disclosure_wife">Wife</string>
     <string name="hts_disclosure_partner_not_spouse">Partner who is not wife/husband</string>
@@ -2005,7 +2020,8 @@
     <string name="hts_disclosure_others">Others</string>
     <string name="hts_disclosure_not_ready_to_share">Not ready to share</string>
 
-    <string name="hts_preventive_services">Referral for preventive services</string>
+	<string name="hts_hts_preventive_services">Referral for preventive services</string>
+	<string name="hts_preventive_services">Referral for preventive services</string>
     <string name="hts_preventive_services_tuberculosis_clinic">Tuberculosis Clinic</string>
     <string name="hts_preventive_services_sputum_testing_laboratory">Sputum Testing Laboratory</string>
     <string name="hts_preventive_services_prevention_of_mother_to_child_transmission">Prevention of Mother to Child Transmission</string>
@@ -2020,29 +2036,37 @@
     <string name="hts_preventive_services_others">Others (Specify)</string>
     <string name="hts_preventive_services_none">None</string>
 
-    <string name="hts_were_condoms_distributed">Were condoms distributed?</string>
+	<string name="hts_hts_were_condoms_distributed">Were condoms distributed?</string>
+	<string name="hts_were_condoms_distributed">Were condoms distributed?</string>
     <string name="hts_were_condoms_distributed_yes">Yes</string>
     <string name="hts_were_condoms_distributed_no">No</string>
 
-    <string name="hts_condom_distribution">Condom distribution</string>
+	<string name="hts_hts_condom_distribution">Condom distribution</string>
+	<string name="hts_condom_distribution">Condom distribution</string>
     <string name="hts_condom_distribution_male">Male</string>
     <string name="hts_condom_distribution_female">Female</string>
 
-    <string name="hts_number_of_male_condoms_provided">Number of male condoms provided</string>
-    <string name="hts_number_of_female_condoms_provided">Number of female condoms provided</string>
+	<string name="hts_hts_number_of_male_condoms_provided">Number of male condoms provided</string>
+	<string name="hts_number_of_male_condoms_provided">Number of male condoms provided</string>
+	<string name="hts_hts_number_of_female_condoms_provided">Number of female condoms provided</string>
+	<string name="hts_number_of_female_condoms_provided">Number of female condoms provided</string>
 
-    <string name="hts_sample_collection_for_dna_pcr_test">Was sample collected for DNA-PCR test?</string>
+	<string name="hts_hts_sample_collection_for_dna_pcr_test">Was sample collected for DNA-PCR test?</string>
+	<string name="hts_sample_collection_for_dna_pcr_test">Was sample collected for DNA-PCR test?</string>
     <string name="hts_sample_collection_for_dna_pcr_test_yes">Yes</string>
     <string name="hts_sample_collection_for_dna_pcr_test_no">No</string>
 
-    <string name="hts_type_of_sample_collected">Type of sample collected</string>
+	<string name="hts_hts_type_of_sample_collected">Type of sample collected</string>
+	<string name="hts_type_of_sample_collected">Type of sample collected</string>
     <string name="hts_type_of_sample_collected_dbs">DBS</string>
     <string name="hts_type_of_sample_collected_whole_sample">Whole Sample</string>
 
-    <string name="hts_dbs_kit_batch_number">DBS kit batch number</string>
+	<string name="hts_hts_dbs_kit_batch_number">DBS kit batch number</string>
+	<string name="hts_dbs_kit_batch_number">DBS kit batch number</string>
     <string name="hts_dbs_kit_batch_number_hint">Specify DBS kit batch number</string>
 
-    <string name="hts_dbs_expire_date">DBS expire date</string>
+	<string name="hts_hts_dbs_expire_date">DBS expire date</string>
+	<string name="hts_dbs_expire_date">DBS expire date</string>
     <string name="hts_dbs_expire_date_hint">Select DBS expire date</string>
 
     <string name="action_hts_samples">HTS Samples</string>
