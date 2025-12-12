@@ -142,7 +142,7 @@
         "options": [
           {
             "key": "tb_suspect",
-            "text": "TB Suspect",
+            "text": "TB Presumptive",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "tb_suspect"
           },
