@@ -136,6 +136,22 @@
         }
       },
       {
+        "key": "prompt_repeat_the_test_using_another_test_kit",
+        "type": "toaster_notes",
+        "text": "Repeat the HIV Test",
+        "openmrs_entity_id": "prompt_repeat_the_test_using_another_test_kit",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "info",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "hts_unigold_test_rules.yml"
+            }
+          }
+        }
+      },
+      {
         "key": "test_type",
         "type": "hidden",
         "openmrs_entity_id": "test_type",
@@ -164,6 +180,22 @@
         "type": "toaster_notes",
         "text": "The client is HIV Positive",
         "openmrs_entity_id": "prompt_for_hiv_positive",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "hts_unigold_test_rules.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "prompt_for_verification",
+        "type": "toaster_notes",
+        "text": "The Client is Diagnosed HIV Positive, Conduct Re-Test for Verification",
+        "openmrs_entity_id": "prompt_for_verification",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
         "toaster_type": "problem",
