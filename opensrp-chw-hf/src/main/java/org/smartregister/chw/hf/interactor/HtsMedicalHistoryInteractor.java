@@ -1,5 +1,6 @@
 package org.smartregister.chw.hf.interactor;
 
+import static org.smartregister.chw.anc.util.VisitUtils.getChildVisits;
 import static org.smartregister.chw.anc.util.VisitUtils.getVisitDetailsOnly;
 import static org.smartregister.chw.anc.util.VisitUtils.getVisitGroups;
 import static org.smartregister.chw.anc.util.VisitUtils.getVisitsOnly;
@@ -17,7 +18,9 @@ import org.smartregister.chw.hf.domain.SortableVisit;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class HtsMedicalHistoryInteractor extends CoreBaseAncMedicalHistoryInteractor {
     public static List<SortableVisit> getVisits(String memberID, String... eventTypes) {
@@ -57,6 +60,25 @@ public class HtsMedicalHistoryInteractor extends CoreBaseAncMedicalHistoryIntera
             String[] eventTypes = new String[]{HTS_SERVICES};
             List<SortableVisit> visits = getVisits(memberID, eventTypes);
             final List<Visit> all_visits = new ArrayList<>(visits);
+
+            for (Visit visit : visits) {
+                Map<String, List<VisitDetail>> visitDetails = visit.getVisitDetails() == null
+                        ? new HashMap<>()
+                        : new HashMap<>(visit.getVisitDetails());
+
+                List<Visit> childVisits = getChildVisits(visit.getVisitId());
+                for (Visit childVisit : childVisits) {
+                    List<VisitDetail> childVisitDetails = getVisitDetailsOnly(childVisit.getVisitId());
+                    Map<String, List<VisitDetail>> groupedChildVisitDetails = getVisitGroups(childVisitDetails);
+
+                    for (Map.Entry<String, List<VisitDetail>> entry : groupedChildVisitDetails.entrySet()) {
+                        visitDetails.computeIfAbsent(entry.getKey(), key -> new ArrayList<>()).addAll(entry.getValue());
+                    }
+                }
+
+                visit.setVisitDetails(visitDetails);
+            }
+
             appExecutors.mainThread().execute(() -> callBack.onDataFetched(all_visits));
         };
 
