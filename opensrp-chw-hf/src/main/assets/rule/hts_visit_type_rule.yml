@@ -40,3 +40,24 @@ priority: 1
 condition: "true"
 actions:
   - "calculation = step1_hts_testing_approach.equals('cbhts') ? 'cbhts' : step1_hts_testing_approach.equals('citc') ? 'citc' : step1_hts_pitc_testing_point"
+---
+name: step1_hts_client_type_new
+description:
+priority: 1
+condition: "step1_hts_visit_type.equals('new_client')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_hts_client_type_returning
+description:
+priority: 1
+condition: "step1_hts_visit_type.equals('returning')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_hts_client_type
+description:
+priority: 1
+condition: "true"
+actions:
+  - "calculation = step1_hts_visit_type.equals('new_client') ? step1_hts_client_type_new : step1_hts_client_type_returning"
