@@ -136,6 +136,22 @@
         }
       },
       {
+        "key": "prompt_repeat_the_test_using_another_test_kit",
+        "type": "toaster_notes",
+        "text": "Repeat the HIV Test",
+        "openmrs_entity_id": "prompt_repeat_the_test_using_another_test_kit",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "info",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "hts_second_hiv_test_rules.yml"
+            }
+          }
+        }
+      },
+      {
         "key": "test_type",
         "type": "hidden",
         "openmrs_entity_id": "test_type",
