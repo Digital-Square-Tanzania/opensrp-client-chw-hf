@@ -163,6 +163,18 @@
             android:name=".activity.LTFURegisterActivity"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
+            android:name=".activity.AypFacilityServicesRegisterActivity"
+            android:theme="@style/HFTheme.NoActionBar" />
+        <activity
+            android:name=".activity.AypFacilityServicesProfileActivity"
+            android:theme="@style/HFTheme.NoActionBar" />
+        <activity
+            android:name=".activity.AypFacilityServicesMedicalHistoryActivity"
+            android:theme="@style/HFTheme.NoActionBar" />
+        <activity
+            android:name=".activity.AypFacilityBiomedicalVisitActivity"
+            android:theme="@style/HFTheme.NoActionBar" />
+        <activity
             android:name=".activity.ReferralsDetailsViewActivity"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity

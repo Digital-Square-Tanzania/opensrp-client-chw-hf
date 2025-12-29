@@ -1321,6 +1321,13 @@
             "creates_case": [
               "ec_hts_tests"
             ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "AYP Facility Screening",
+            "creates_case": [
+              "ec_ayp_facility_screening"
+            ]
           }
         ]
       }

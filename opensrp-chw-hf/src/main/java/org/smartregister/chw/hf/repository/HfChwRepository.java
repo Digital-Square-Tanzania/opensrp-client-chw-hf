@@ -476,6 +476,14 @@ public class HfChwRepository extends CoreChwRepository {
         } catch (Exception e) {
             Timber.e(e);
         }
+
+        try {
+            DatabaseMigrationUtils.createAddedECTables(db,
+                    new HashSet<>(Collections.singletonList("ec_ayp_facility_screening")),
+                    HealthFacilityApplication.createCommonFtsObject());
+        } catch (Exception e) {
+            Timber.e(e, "upgradeToVersion29");
+        }
     }
 
 

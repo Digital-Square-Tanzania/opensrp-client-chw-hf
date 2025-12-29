@@ -260,6 +260,7 @@
 
     <!-- Labour and Delivery String Resources-->
     <string name="menu_ld">L&amp;D</string>
+    <string name="menu_ayp_facility_services">AYP Facility Services</string>
     <string name="ld_registration">L&amp;D Registration</string>
     <string name="ld_registration_triage_title">Triage</string>
     <string name="ld_registration_true_labour_title">True Labour Confirmation</string>
@@ -2103,5 +2104,40 @@
     <string name="apply">Apply</string>
     <string name="cancel">Cancel</string>
     <string name="na">N/A</string>
+
+    <string name="ayp_facility_services_register_title">AYP Facility Services</string>
+    <string name="ayp_facility_record_biomedical_visit">Record AYP Facility visit</string>
+    <string name="ayp_facility_visit_history">AYP facility visit history</string>
+    <string name="ayp_facility_visit">AYP facility visit</string>
+    <string name="ayp_services_visit_type">AYP services</string>
+    <string name="ayp_in_school_follow_up_visit_type">AYP follow-up</string>
+    <string name="ayp_facility_screening_visit_type">AYP facility screening</string>
+    <string name="ayp_visit_history_unknown_date">Unknown date</string>
+    <string name="ayp_eligibility">AYP eligibility</string>
+    <string name="enrollment_status">Enrollment status</string>
+    <string name="enrollment_date">Enrollment date</string>
+    <string name="uic_number">UIC number</string>
+    <string name="enrollment_education_level">Education level at enrollment</string>
+    <string name="ayp_beneficiary">AYP beneficiary</string>
+    <string name="program_name">Program name</string>
+    <string name="program_name_other_specify">Other program name</string>
+    <string name="linkage_economic_strengthening">Linked to economic strengthening</string>
+    <string name="economic_strengthening_options">Economic strengthening options</string>
+    <string name="hts_result">HTS result</string>
+    <string name="hivst_result">HIVST result</string>
+    <string name="condom_distribution_male">Male condoms distributed</string>
+    <string name="condom_distribution_female">Female condoms distributed</string>
+    <string name="gbv_screening">GBV screening</string>
+    <string name="post_gbv_services_provided">Post-GBV services provided</string>
+    <string name="sti_screening_result">STI screening result</string>
+    <string name="sti_treatment_client">STI treatment (client)</string>
+    <string name="sti_treatment_partner">STI treatment (partner)</string>
+    <string name="tb_screening_result">TB screening result</string>
+    <string name="pep_service_provided">PEP service provided</string>
+    <string name="hepatitis_screening_result">Hepatitis screening result</string>
+    <string name="family_planning_method">Family planning method provided</string>
+    <string name="referral_to_other_services">Referral to other services</string>
+    <string name="next_appointment_date">Next appointment</string>
+    <string name="visit_notes">Visit notes</string>
 
 </resources>
