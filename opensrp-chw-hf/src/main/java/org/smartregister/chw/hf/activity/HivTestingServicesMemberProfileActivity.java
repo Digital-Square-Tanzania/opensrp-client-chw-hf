@@ -1,6 +1,7 @@
 package org.smartregister.chw.hf.activity;
 
 import static org.smartregister.chw.hf.utils.JsonFormUtils.getAutoPopulatedJsonEditFormString;
+import static org.smartregister.chw.hf.utils.VisitUtils.truncateTimeFromDate;
 import static org.smartregister.util.Utils.getName;
 
 import android.app.Activity;
@@ -10,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.vijay.jsonwizard.constants.JsonFormConstants;
 import com.vijay.jsonwizard.domain.Form;
@@ -31,6 +33,8 @@ import org.smartregister.chw.hf.custom_view.HtsFloatingMenu;
 import org.smartregister.chw.hf.dataloader.FamilyMemberDataLoader;
 import org.smartregister.chw.hivst.dao.HivstDao;
 import org.smartregister.chw.hts.HtsLibrary;
+import org.smartregister.chw.hts.dao.HtsDao;
+import org.smartregister.chw.hts.domain.Visit;
 import org.smartregister.chw.hts.util.Constants;
 import org.smartregister.chw.hts.util.HtsVisitsUtil;
 import org.smartregister.chw.hts.util.VisitUtils;
@@ -42,6 +46,10 @@ import org.smartregister.commonregistry.CommonPersonObject;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.commonregistry.CommonRepository;
 import org.smartregister.family.util.DBConstants;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import timber.log.Timber;
 
@@ -64,8 +72,49 @@ public class HivTestingServicesMemberProfileActivity extends CoreHtsProfileActiv
     }
 
     @Override
-    protected void setupViews() {
-        super.setupViews();
+    protected void setupButtons() {
+        super.setupButtons();
+
+        boolean hivstPendingRegistration = HtsDao.wereSelfTestingKitsDistributed(memberObject.getBaseEntityId()) && !HivstDao.isRegisteredForHivst(memberObject.getBaseEntityId());
+
+        boolean hivstPendingDistribution = false;
+        String lastSelfTestingFollowupDateString = HivstDao.clientLastFollowup(memberObject.getBaseEntityId());
+        if (lastSelfTestingFollowupDateString == null && HtsDao.wereSelfTestingKitsDistributed(memberObject.getBaseEntityId())) {
+            hivstPendingDistribution = true;
+        } else {
+            try {
+                Date lastSelfTestingFollowupDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).parse(lastSelfTestingFollowupDateString);
+
+                Visit previousVisit = getServiceVisit();
+                if (truncateTimeFromDate(lastSelfTestingFollowupDate).before(truncateTimeFromDate(previousVisit.getDate())) && previousVisit.getProcessed()) {
+                    hivstPendingDistribution = true;
+                }
+            } catch (Exception e) {
+                Timber.e(e);
+            }
+        }
+
+        if (hivstPendingRegistration) {
+            textViewRecordHts.setVisibility(View.GONE);
+            visitStatus.setVisibility(View.VISIBLE);
+            ((TextView) findViewById(R.id.textview_not_visit_this_month)).setText(getContext().getString(R.string.pending_hivst_registration));
+            textViewUndo.setText(getContext().getString(R.string.register_button_text));
+            textViewUndo.setVisibility(View.VISIBLE);
+            textViewUndo.setOnClickListener(v -> startHivstRegistration());
+            imageViewCross.setImageResource(org.smartregister.chw.core.R.drawable.activityrow_notvisited);
+        } else if (hivstPendingDistribution) {
+            visitStatus.setVisibility(View.VISIBLE);
+            textViewRecordHts.setVisibility(View.GONE);
+            ((TextView) findViewById(R.id.textview_not_visit_this_month)).setText(getContext().getString(R.string.pending_hivst_followup));
+            textViewUndo.setText(getContext().getString(R.string.distribute_button_text));
+            textViewUndo.setVisibility(View.VISIBLE);
+            textViewUndo.setOnClickListener(v -> HivstProfileActivity.startProfile(HivTestingServicesMemberProfileActivity.this, memberObject.getBaseEntityId(), true));
+            imageViewCross.setImageResource(org.smartregister.chw.core.R.drawable.activityrow_notvisited);
+        } else {
+            visitStatus.setVisibility(View.GONE);
+        }
+
+
         try {
             VisitUtils.processVisits(HtsLibrary.getInstance().visitRepository(), HtsLibrary.getInstance().visitDetailsRepository(), memberObject.getBaseEntityId());
         } catch (Exception e) {
