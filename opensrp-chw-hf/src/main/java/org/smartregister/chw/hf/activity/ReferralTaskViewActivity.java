@@ -7,17 +7,23 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 
 import org.json.JSONObject;
 import org.smartregister.chw.core.activity.BaseReferralTaskViewActivity;
+import org.smartregister.chw.core.application.CoreChwApplication;
+import org.smartregister.chw.core.repository.ChwTaskRepository;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.core.utils.CoreReferralUtils;
 import org.smartregister.chw.hf.BuildConfig;
 import org.smartregister.chw.hf.HealthFacilityApplication;
 import org.smartregister.chw.hf.R;
+import org.smartregister.chw.hf.repository.HfTaskRepository;
 import org.smartregister.chw.hf.utils.AllClientsUtils;
+import org.smartregister.chw.hf.utils.Constants;
+import org.smartregister.chw.hf.utils.HfReferralUtils;
 import org.smartregister.clientandeventmodel.Event;
 import org.smartregister.clientandeventmodel.Obs;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
@@ -27,6 +33,7 @@ import org.smartregister.family.util.Utils;
 import org.smartregister.opd.utils.OpdDbConstants;
 import org.smartregister.repository.AllSharedPreferences;
 import org.smartregister.repository.BaseRepository;
+import org.smartregister.repository.TaskRepository;
 import org.smartregister.sync.helper.ECSyncHelper;
 import org.smartregister.util.JsonFormUtils;
 import org.smartregister.view.customcontrols.CustomFontTextView;
@@ -37,6 +44,9 @@ import java.util.Date;
 import timber.log.Timber;
 
 public class ReferralTaskViewActivity extends BaseReferralTaskViewActivity implements View.OnClickListener {
+
+    private CustomFontTextView serviceGivenBeforeReferral;
+    protected LinearLayout serviceGivenBeforeReferralLayout;
 
     public static void startReferralTaskViewActivity(Activity activity, CommonPersonObjectClient personObjectClient, Task task, String startingActivity) {
         ReferralTaskViewActivity.personObjectClient = personObjectClient;
@@ -90,12 +100,16 @@ public class ReferralTaskViewActivity extends BaseReferralTaskViewActivity imple
         CustomFontTextView markAskDone = findViewById(R.id.mark_ask_done);
         markAskDone.setOnClickListener(this);
 
+        serviceGivenBeforeReferral = findViewById(R.id.client_services_referral);
+        serviceGivenBeforeReferralLayout = findViewById(R.id.client_services_referral_layout);
+
         if (getStartingActivity().equals(CoreConstants.REGISTERED_ACTIVITIES.REFERRALS_REGISTER_ACTIVITY)) {
             viewProfile.setOnClickListener(this);
         } else {
             viewProfile.setVisibility(View.INVISIBLE);
         }
         getReferralDetails();
+        getServicesBeforeReferral();
     }
 
     public void setStartingActivity(String startingActivity) {
@@ -172,8 +186,14 @@ public class ReferralTaskViewActivity extends BaseReferralTaskViewActivity imple
     private void completeTask() {
         Task currentTask = getTask();
         currentTask.setForEntity(getBaseEntityId());
-        currentTask.setStatus(Task.TaskStatus.IN_PROGRESS);
+        currentTask.setStatus((checkReferralType()) ? Task.TaskStatus.COMPLETED: Task.TaskStatus.IN_PROGRESS);
         CoreReferralUtils.completeTask(currentTask, false);
+    }
+
+    private boolean checkReferralType(){
+        TaskRepository taskRepository = CoreChwApplication.getInstance().getTaskRepository();
+        String referralType = ((HfTaskRepository) taskRepository).getTaskReferralType(getTask());
+        return referralType.equals(Constants.ADDO_REFERRAL_TYPE);
     }
 
     public String getBaseEntityId() {
@@ -206,5 +226,17 @@ public class ReferralTaskViewActivity extends BaseReferralTaskViewActivity imple
             default:
                 return "";
         }
+    }
+
+    private void getServicesBeforeReferral() {
+
+        if (getTask() != null) {
+            String servicesGiven = HfReferralUtils.getServiceGivenBeforeReferral(getTask().getReasonReference());
+            if (servicesGiven != null) {
+                serviceGivenBeforeReferralLayout.setVisibility(View.VISIBLE);
+                serviceGivenBeforeReferral.setText(servicesGiven);
+            }
+        }
+
     }
 }

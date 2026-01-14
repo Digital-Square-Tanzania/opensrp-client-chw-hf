@@ -2,13 +2,18 @@ package org.smartregister.chw.hf.repository;
 
 import static org.smartregister.util.Utils.getAllSharedPreferences;
 
+import android.database.sqlite.SQLiteException;
+import android.util.Log;
+
 import net.sqlcipher.Cursor;
 
 import org.smartregister.chw.core.repository.ChwTaskRepository;
 import org.smartregister.chw.core.utils.ChwDBConstants;
 import org.smartregister.chw.core.utils.CoreConstants;
+import org.smartregister.cloudant.models.Event;
 import org.smartregister.domain.Task;
 import org.smartregister.repository.AllSharedPreferences;
+import org.smartregister.repository.EventClientRepository;
 import org.smartregister.repository.TaskNotesRepository;
 
 import java.util.HashSet;
@@ -61,5 +66,24 @@ public class HfTaskRepository extends ChwTaskRepository {
                 cursor.close();
         }
         return taskSet;
+    }
+
+    public String getTaskReferralType(Task task) {
+        String query = String.format(
+                "SELECT task.*, ec_referral.referral_type " +
+                        "FROM %s " +
+                        "INNER JOIN ec_referral ON ec_referral.id = task.reason_reference " +
+                        "WHERE task.reason_reference = '%s'",
+                TASK_TABLE, task.getReasonReference());
+        try (Cursor cursor = getReadableDatabase().rawQuery(query, null)) {
+            if (cursor.moveToFirst()) {
+                return cursor.getString(cursor.getColumnIndexOrThrow("referral_type"));
+            }
+        } catch (SQLiteException e) {
+            Timber.e("SQLiteException %S", e.getMessage());
+        } catch (Exception e) {
+            Timber.e("Exception %S", e.getMessage());
+        }
+        return "";
     }
 }

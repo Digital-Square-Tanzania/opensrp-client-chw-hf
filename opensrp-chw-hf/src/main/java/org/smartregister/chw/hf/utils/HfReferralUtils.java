@@ -3,8 +3,11 @@ package org.smartregister.chw.hf.utils;
 import android.view.View;
 import android.widget.TextView;
 
+import net.sqlcipher.Cursor;
+
 import org.joda.time.DateTime;
 import org.joda.time.Duration;
+import org.smartregister.chw.core.utils.ChwDBConstants;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.core.utils.CoreReferralUtils;
 import org.smartregister.chw.hf.HealthFacilityApplication;
@@ -13,7 +16,10 @@ import org.smartregister.chw.hf.repository.HfTaskRepository;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.domain.Task;
 
+import java.util.Arrays;
 import java.util.Calendar;
+
+import timber.log.Timber;
 
 public class HfReferralUtils extends CoreReferralUtils {
 
@@ -93,5 +99,32 @@ public class HfReferralUtils extends CoreReferralUtils {
             }
         }
         return focus;
+    }
+
+    public static String getServiceGivenBeforeReferral(String reasonReference) {
+        String serviceGiven = null;
+
+        try (Cursor cursor =  HealthFacilityApplication.getInstance()
+                    .getRepository()
+                    .getReadableDatabase()
+                    .rawQuery("SELECT service_before_referral FROM ec_referral WHERE id = ? ",
+                    new String[]{reasonReference})) {
+            if (cursor.moveToFirst()) {
+                String[] columnNames = cursor.getColumnNames();
+                Timber.d("Available columns: %s", Arrays.toString(columnNames));
+
+                int columnIndex = cursor.getColumnIndex("service_before_referral");
+
+                if (columnIndex != -1) {
+                    serviceGiven = cursor.getString(columnIndex);
+                }
+
+            }
+        } catch (Exception e) {
+            Timber.e(e);
+        }
+
+        return serviceGiven;
+
     }
 }
