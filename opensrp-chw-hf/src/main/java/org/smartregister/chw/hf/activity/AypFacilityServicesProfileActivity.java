@@ -1,9 +1,10 @@
 package org.smartregister.chw.hf.activity;
 
 import android.app.Activity;
-
+import org.smartregister.chw.ayp.AypLibrary;
 import org.smartregister.chw.ayp.dao.AypDao;
 import org.smartregister.chw.ayp.domain.MemberObject;
+import org.smartregister.chw.ayp.domain.Visit;
 import org.smartregister.chw.ayp.util.Constants;
 import org.smartregister.chw.core.activity.CoreAypProfileActivity;
 import org.smartregister.chw.hf.R;
@@ -28,6 +29,11 @@ public class AypFacilityServicesProfileActivity extends CoreAypProfileActivity {
         if (textViewContinueaypService != null) {
             textViewContinueaypService.setVisibility(android.view.View.GONE);
         }
+    }
+
+    @Override
+    protected Visit getAypOutSchoolVisit() {
+        return AypLibrary.getInstance().visitRepository().getLatestVisit(memberObject.getBaseEntityId(), Constants.EVENT_TYPE.AYP_FACILITY_SERVICES);
     }
 
     @Override
