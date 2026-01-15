@@ -393,6 +393,11 @@ public class AllClientsMemberProfileActivity extends CoreAllClientsMemberProfile
     }
 
     @Override
+    protected void startHarmReductionAssessment() {
+        // Not supported in HF build
+    }
+
+    @Override
     protected void startAgywScreening() {
         //do nothing
     }
