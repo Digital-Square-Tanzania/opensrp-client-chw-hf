@@ -83,4 +83,10 @@ public class AypFacilityServicesProfileActivity extends CoreAypProfileActivity {
         return AypLibrary.getInstance().visitRepository().getLatestVisit(memberObject.getBaseEntityId(), Constants.EVENT_TYPE.AYP_FACILITY_SERVICES);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        refreshMedicalHistory(true);
+    }
+
 }
