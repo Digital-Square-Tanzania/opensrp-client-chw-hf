@@ -1,6 +1,8 @@
 package org.smartregister.chw.hf.activity;
 
 import android.app.Activity;
+import android.view.View;
+
 import org.smartregister.chw.ayp.AypLibrary;
 import org.smartregister.chw.ayp.dao.AypDao;
 import org.smartregister.chw.ayp.domain.MemberObject;
@@ -70,4 +72,15 @@ public class AypFacilityServicesProfileActivity extends CoreAypProfileActivity {
     protected MemberObject getMemberObject(String baseEntityId) {
         return AypDao.getFacilityMember(baseEntityId);
     }
+
+    @Override
+    public void refreshMedicalHistory(boolean hasHistory) {
+        boolean showLastVisit = getLatestFollowUpVisit() != null;
+        rlLastVisit.setVisibility(showLastVisit ? View.VISIBLE : View.GONE);
+    }
+
+    private Visit getLatestFollowUpVisit() {
+        return AypLibrary.getInstance().visitRepository().getLatestVisit(memberObject.getBaseEntityId(), Constants.EVENT_TYPE.AYP_FACILITY_SERVICES);
+    }
+
 }
