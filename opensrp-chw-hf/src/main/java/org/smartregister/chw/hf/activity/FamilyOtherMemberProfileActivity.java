@@ -206,6 +206,11 @@ public class FamilyOtherMemberProfileActivity extends CoreFamilyOtherMemberProfi
     }
 
     @Override
+    protected void startHarmReductionAssessment() {
+        // Not implemented in HF build
+    }
+
+    @Override
     protected void startPrEPRegistration() {
         String gender = AllClientsUtils.getClientGender(baseEntityId);
         String dob = Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.DOB, false);
