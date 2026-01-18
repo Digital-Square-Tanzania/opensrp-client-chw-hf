@@ -6,6 +6,7 @@ import android.os.Build;
 
 import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.core.CrashlyticsCore;
+import com.evernote.android.job.JobApi;
 import com.evernote.android.job.JobManager;
 import com.mapbox.mapboxsdk.Mapbox;
 
@@ -59,6 +60,8 @@ import org.smartregister.chw.hf.configs.AllClientsRegisterRowOptions;
 import org.smartregister.chw.hf.custom_view.FacilityMenu;
 import org.smartregister.chw.hf.custom_view.HfNavigationMenu;
 import org.smartregister.chw.hf.job.HfJobCreator;
+import org.smartregister.chw.hf.job.HfJobProxy14;
+import org.smartregister.chw.hf.job.HfJobProxy19;
 import org.smartregister.chw.hf.model.NavigationModel;
 import org.smartregister.chw.hf.provider.HfAllClientsRegisterQueryProvider;
 import org.smartregister.chw.hf.repository.HfChwRepository;
@@ -96,6 +99,7 @@ import org.smartregister.repository.TaskNotesRepository;
 import org.smartregister.repository.TaskRepository;
 import org.smartregister.util.Utils;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -226,9 +230,13 @@ public class HealthFacilityApplication extends CoreChwApplication implements Cor
         context.updateCommonFtsObject(createCommonFtsObject());
         context.updateCommonFtsObject(getCommonFtsObject());
 
+
         //init Job Manager
         SyncStatusBroadcastReceiver.init(this);
-        JobManager.create(this).addJobCreator(new HfJobCreator());
+        JobManager jobManager = JobManager.create(this);
+        applyJobProxyFixes();
+        jobManager.addJobCreator(new HfJobCreator());
+
 
         //Necessary to determine the right form to pick from assets
         CoreConstants.JSON_FORM.setLocaleAndAssetManager(HealthFacilityApplication.getCurrentLocale(),
@@ -430,6 +438,22 @@ public class HealthFacilityApplication extends CoreChwApplication implements Cor
                 .LAST_INTERACTED_WITH, ChildDBConstants.KEY.DATE_CREATED, DBConstants.KEY.DATE_REMOVED, DBConstants.KEY.DOB, ChildDBConstants.KEY.ENTRY_POINT
         });
         return map;
+    }
+
+
+    private void applyJobProxyFixes() {
+        try {
+            Field cachedProxyField = JobApi.class.getDeclaredField("mCachedProxy");
+            cachedProxyField.setAccessible(true);
+
+            JobApi.V_14.invalidateCachedProxy();
+            cachedProxyField.set(JobApi.V_14, new HfJobProxy14(this));
+
+            JobApi.V_19.invalidateCachedProxy();
+            cachedProxyField.set(JobApi.V_19, new HfJobProxy19(this));
+        } catch (Exception e) {
+            Timber.e(e, "Failed to apply job proxy fixes");
+        }
     }
 
     public interface Flavor {

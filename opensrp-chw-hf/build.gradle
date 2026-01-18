@@ -296,6 +296,9 @@ flavors.each { productFlavorName ->
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation('com.evernote:android-job:1.4.3') {
+        version { strictly '1.4.3' }
+    }
     implementation('org.smartregister:opensrp-client-chw-core:1.8.0-ALPHA1-MOH-SNAPSHOT@aar') {
 //    implementation(project(":opensrp-chw-core")) {
         transitive = true
