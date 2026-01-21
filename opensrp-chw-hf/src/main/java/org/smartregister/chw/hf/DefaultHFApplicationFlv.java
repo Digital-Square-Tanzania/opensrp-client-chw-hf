@@ -73,6 +73,6 @@ public class DefaultHFApplicationFlv implements HealthFacilityApplication.Flavor
 
     @Override
     public boolean hasAypFacilityServices() {
-        return true;
+        return false;
     }
 }
