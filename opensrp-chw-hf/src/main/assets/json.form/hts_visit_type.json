@@ -184,10 +184,10 @@
         }
       },
       {
-        "key": "hts_client_type_new",
+        "key": "hts_client_type",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "hts_client_type_new",
+        "openmrs_entity_id": "hts_client_type",
         "type": "native_radio",
         "label": "Client Type",
         "options": [
@@ -224,66 +224,6 @@
         }
       },
       {
-        "key": "hts_client_type_returning",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "hts_client_type_returning",
-        "type": "native_radio",
-        "label": "Client Type",
-        "options": [
-          {
-            "key": "index_contact",
-            "text": "Index Contact",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "index_contact"
-          },
-          {
-            "key": "normal_client",
-            "text": "Normal Client",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "normal_client"
-          },
-          {
-            "key": "verification",
-            "text": "Verification",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "verification"
-          },
-          {
-            "key": "social_network_contact",
-            "text": "Social Network Contact",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "social_network_contact"
-          }
-        ],
-        "v_required": {
-          "value": "true",
-          "err": "Please select a value"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "hts_visit_type_rule.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "hts_client_type",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "hts_client_type",
-        "type": "hidden",
-        "hint": "Client Type",
-        "calculation": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "hts_visit_type_rule.yml"
-            }
-          }
-        }
-      },
-      {
         "key": "hts_testing_approach",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -296,24 +236,15 @@
             "text": "CBHTS",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "cbhts"
-          },
-          {
-            "key": "pitc",
-            "text": "PITC",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "pitc"
-          },
-          {
-            "key": "citc",
-            "text": "CITC",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "citc"
           }
         ],
         "v_required": {
           "value": "true",
           "err": "Please select a value"
         },
+        "value": "cbhts",
+        "editable": false,
+        "read_only": true,
         "relevance": {
           "rules-engine": {
             "ex-rules": {
