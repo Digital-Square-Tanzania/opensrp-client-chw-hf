@@ -194,7 +194,7 @@
       {
         "key": "prompt_for_verification",
         "type": "toaster_notes",
-        "text": "The Client is Diagnosed HIV Positive, Conduct Re-Test for Verification",
+        "text": "The Client is Diagnosed HIV Positive, Link the client to CTC for Re-Test for Verification",
         "openmrs_entity_id": "prompt_for_verification",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
