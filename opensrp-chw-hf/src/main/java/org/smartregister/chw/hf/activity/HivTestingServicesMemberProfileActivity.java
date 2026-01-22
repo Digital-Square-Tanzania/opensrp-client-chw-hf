@@ -138,13 +138,7 @@ public class HivTestingServicesMemberProfileActivity extends CoreHtsProfileActiv
         } catch (Exception e) {
             Timber.e(e);
         }
-//        if (HtsDao.hasTestResults(memberObject.getBaseEntityId())) {
-//            rlTestResults.setVisibility(View.VISIBLE);
-//            viewSeparator1.setVisibility(View.VISIBLE);
-//        } else {
-//            rlTestResults.setVisibility(View.GONE);
-//            viewSeparator1.setVisibility(View.GONE);
-//        }
+        HtsDao.closeHtsClientsWithFinalTestResults();
     }
 
     @Override
