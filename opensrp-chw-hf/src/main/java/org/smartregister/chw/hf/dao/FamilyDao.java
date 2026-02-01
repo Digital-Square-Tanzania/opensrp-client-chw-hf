@@ -3,7 +3,7 @@ package org.smartregister.chw.hf.dao;
 import android.database.Cursor;
 import android.util.Pair;
 
-import net.sqlcipher.database.SQLiteDatabase;
+import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
 import org.json.JSONObject;
 import org.smartregister.chw.hf.HealthFacilityApplication;

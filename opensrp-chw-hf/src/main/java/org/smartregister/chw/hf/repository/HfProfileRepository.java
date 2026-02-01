@@ -2,7 +2,7 @@ package org.smartregister.chw.hf.repository;
 
 import android.database.Cursor;
 
-import net.sqlcipher.database.SQLiteDatabase;
+import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
 import org.smartregister.chw.anc.util.DBConstants;
 import org.smartregister.chw.pnc.repository.ProfileRepository;
@@ -41,7 +41,7 @@ public class HfProfileRepository extends ProfileRepository {
         List<CommonPersonObjectClient> childMemberObjects = new ArrayList<>();
 
         SQLiteDatabase database = getReadableDatabase();
-        net.sqlcipher.Cursor cursor = null;
+        Cursor cursor = null;
         try {
             if (database == null) {
                 return null;
