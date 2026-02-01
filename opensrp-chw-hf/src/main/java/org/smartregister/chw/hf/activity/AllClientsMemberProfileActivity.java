@@ -204,6 +204,11 @@ public class AllClientsMemberProfileActivity extends CoreAllClientsMemberProfile
     }
 
     @Override
+    protected void startTbLeprosyScreening() {
+        //Not Required in HF
+    }
+
+    @Override
     protected void startIntegratedCommunityCaseManagementEnrollment() {
 
     }
@@ -410,6 +415,26 @@ public class AllClientsMemberProfileActivity extends CoreAllClientsMemberProfile
     @Override
     protected void startHpsEnrollment() {
         //Not Required
+    }
+
+    @Override
+    protected void startAypFacilityScreening() {
+        //Not Required in HF
+    }
+
+    @Override
+    protected void startAypInSchoolEnrollment() {
+        //Not Required in HF
+    }
+
+    @Override
+    protected void startAypParentalEnrollment() {
+        //Not Required in HF
+    }
+
+    @Override
+    protected void startAypOutSchoolEnrollment() {
+        //Not Required in HF
     }
 
     @Override

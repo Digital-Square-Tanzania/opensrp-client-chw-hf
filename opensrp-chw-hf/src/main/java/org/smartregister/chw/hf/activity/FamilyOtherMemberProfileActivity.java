@@ -122,6 +122,11 @@ public class FamilyOtherMemberProfileActivity extends CoreFamilyOtherMemberProfi
     }
 
     @Override
+    protected void startTbLeprosyScreening() {
+        //Not Required in HF
+    }
+
+    @Override
     protected void startIntegratedCommunityCaseManagementEnrollment() {
         //TODO implement startIntegratedCommunityCaseManagementEnrollment for HF
     }
@@ -240,6 +245,26 @@ public class FamilyOtherMemberProfileActivity extends CoreFamilyOtherMemberProfi
     @Override
     protected void startHpsEnrollment() {
         //Not Required
+    }
+
+    @Override
+    protected void startAypFacilityScreening() {
+        //Not Required in HF
+    }
+
+    @Override
+    protected void startAypInSchoolEnrollment() {
+        //Not Required in HF
+    }
+
+    @Override
+    protected void startAypParentalEnrollment() {
+        //Not Required in HF
+    }
+
+    @Override
+    protected void startAypOutSchoolEnrollment() {
+        //Not Required in HF
     }
 
     @Override
