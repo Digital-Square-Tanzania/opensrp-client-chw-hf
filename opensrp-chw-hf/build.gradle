@@ -341,13 +341,12 @@ dependencies {
     }
     implementation 'org.mozilla:rhino:1.7.13' // or a newer stable version
 
-    implementation 'net.zetetic:sqlcipher-android:4.5.4'
+    implementation 'net.zetetic:sqlcipher-android:4.10.0'
 
     implementation group: 'io.realm', name: 'realm-android-library', version: '10.19.0'
     implementation group: 'io.realm', name: 'realm-annotations', version: '10.19.0'
     implementation 'org.mozilla:rhino:1.7.13' // or a newer stable version
     implementation 'com.facebook.soloader:soloader:0.12.1'
-    implementation 'net.zetetic:sqlcipher-android:4.5.4'
     implementation('org.smartregister:opensrp-client-chw-ld:1.0.31-NACP-SNAPSHOT@aar') {
         transitive = true
         exclude group: 'org.smartregister', module: 'opensrp-client-core'
