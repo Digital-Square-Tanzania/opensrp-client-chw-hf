@@ -1,6 +1,8 @@
 package org.smartregister.chw.hf.utils;
 
-import net.sqlcipher.database.SQLiteDatabase;
+import android.database.Cursor;
+
+import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
 import org.json.JSONObject;
 import org.smartregister.chw.core.utils.CoreChildUtils;
@@ -89,7 +91,7 @@ public class HfChildUtils extends CoreChildUtils {
         CommonPersonObjectClient child = null;
         ProfileRepository profileRepository = PncLibrary.getInstance().profileRepository();
         SQLiteDatabase database = profileRepository.getReadableDatabase();
-        net.sqlcipher.Cursor cursor;
+        Cursor cursor;
 
         try {
             if (database == null) {

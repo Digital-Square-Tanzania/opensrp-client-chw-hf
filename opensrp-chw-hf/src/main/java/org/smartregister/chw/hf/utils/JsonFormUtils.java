@@ -5,7 +5,7 @@ import static org.smartregister.AllConstants.LocationConstants.SPECIAL_TAG_FOR_O
 import android.content.Context;
 import android.util.Pair;
 
-import net.sqlcipher.database.SQLiteDatabase;
+import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.Triple;

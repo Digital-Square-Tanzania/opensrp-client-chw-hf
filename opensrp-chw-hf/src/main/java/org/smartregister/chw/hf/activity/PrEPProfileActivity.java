@@ -129,16 +129,16 @@ public class PrEPProfileActivity extends CoreKvpProfileActivity {
         final CommonPersonObject commonPersonObject = commonRepository.findByBaseEntityId(memberObject.getBaseEntityId());
         final CommonPersonObjectClient client = new CommonPersonObjectClient(commonPersonObject.getCaseId(), commonPersonObject.getDetails(), "");
 
-        baseKvpFloatingMenu.findViewById(org.smartregister.kvp.R.id.refer_to_facility_layout).setVisibility(View.VISIBLE);
-        ((TextView) baseKvpFloatingMenu.findViewById(org.smartregister.kvp.R.id.refer_to_facility_text)).setText(R.string.lost_to_followup_referral);
+        baseKvpFloatingMenu.findViewById(org.smartregister.chw.kvp.R.id.refer_to_facility_layout).setVisibility(View.VISIBLE);
+        ((TextView) baseKvpFloatingMenu.findViewById(org.smartregister.chw.kvp.R.id.refer_to_facility_text)).setText(R.string.lost_to_followup_referral);
 
         OnClickFloatingMenu onClickFloatingMenu = viewId -> {
-            if (viewId == org.smartregister.kvp.R.id.kvp_fab) {
+            if (viewId == org.smartregister.chw.kvp.R.id.kvp_fab) {
                 baseKvpFloatingMenu.animateFAB();
-            } else if (viewId == org.smartregister.kvp.R.id.call_layout) {
+            } else if (viewId == org.smartregister.chw.kvp.R.id.call_layout) {
                 baseKvpFloatingMenu.launchCallWidget();
                 baseKvpFloatingMenu.animateFAB();
-            } else if (viewId == org.smartregister.kvp.R.id.refer_to_facility_layout) {
+            } else if (viewId == org.smartregister.chw.kvp.R.id.refer_to_facility_layout) {
                 String gender = org.smartregister.chw.core.utils.Utils.getValue(commonPersonObject.getColumnmaps(), org.smartregister.family.util.DBConstants.KEY.GENDER, false);
                 String dob = org.smartregister.chw.core.utils.Utils.getValue(commonPersonObject.getColumnmaps(), org.smartregister.family.util.DBConstants.KEY.DOB, false);
                 LFTUFormUtils.startLTFUReferral(this, memberObject.getBaseEntityId(), gender, org.smartregister.chw.core.utils.Utils.getAgeFromDate(dob));

@@ -3,7 +3,7 @@ package org.smartregister.chw.hf.repository;
 import android.content.ContentValues;
 import android.database.Cursor;
 
-import net.sqlcipher.database.SQLiteDatabase;
+import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
 import org.json.JSONObject;
 import org.smartregister.chw.hf.domain.dhis2_reports.Dhis2ReportHistory;
