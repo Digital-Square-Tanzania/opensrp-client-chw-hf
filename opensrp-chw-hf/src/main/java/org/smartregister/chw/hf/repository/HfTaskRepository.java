@@ -2,7 +2,7 @@ package org.smartregister.chw.hf.repository;
 
 import static org.smartregister.util.Utils.getAllSharedPreferences;
 
-import net.sqlcipher.Cursor;
+import android.database.Cursor;
 
 import org.smartregister.chw.core.repository.ChwTaskRepository;
 import org.smartregister.chw.core.utils.ChwDBConstants;

@@ -39,6 +39,7 @@ allprojects {
         }
 
         maven { url 'https://maven.google.com' }
+        mavenCentral()
 
         maven {
 
@@ -299,7 +300,7 @@ dependencies {
     implementation('com.evernote:android-job:1.4.3') {
         version { strictly '1.4.3' }
     }
-    implementation('org.smartregister:opensrp-client-chw-core:1.8.0-ALPHA3-MOH-SNAPSHOT@aar') {
+    implementation('org.smartregister:opensrp-client-chw-core:2.0.0-MOH-SNAPSHOT@aar') {
 //    implementation(project(":opensrp-chw-core")) {
         transitive = true
         exclude group: 'com.android.support', module: 'appcompat-v7'
@@ -320,7 +321,9 @@ dependencies {
         exclude group: 'com.facebook.soloader', module: 'soloader'
         exclude group: 'io.realm', module: 'realm-android-library'
         exclude group: 'io.realm', module: 'realm-annotations'
+        exclude group: 'net.zetetic', module: 'sqlcipher-android'
         exclude group: 'net.zetetic', module: 'android-database-sqlcipher'
+        exclude group: 'com.github.lecho', module: 'hellocharts-library'
         exclude group: 'com.github.chivorns', module: 'smartmaterialspinner'
         exclude group: 'com.nerdstone', module: 'neat-form-core'
         exclude group: "com.google.guava", module: 'listenablefuture'
@@ -341,13 +344,12 @@ dependencies {
     }
     implementation 'org.mozilla:rhino:1.7.13' // or a newer stable version
 
-    implementation 'net.zetetic:android-database-sqlcipher:4.5.4'
+    implementation 'net.zetetic:sqlcipher-android:4.10.0'
 
     implementation group: 'io.realm', name: 'realm-android-library', version: '10.19.0'
     implementation group: 'io.realm', name: 'realm-annotations', version: '10.19.0'
     implementation 'org.mozilla:rhino:1.7.13' // or a newer stable version
     implementation 'com.facebook.soloader:soloader:0.12.1'
-    implementation 'net.zetetic:android-database-sqlcipher:4.5.4'
     implementation('org.smartregister:opensrp-client-chw-ld:1.0.31-NACP-SNAPSHOT@aar') {
         transitive = true
         exclude group: 'org.smartregister', module: 'opensrp-client-core'
@@ -392,6 +394,7 @@ dependencies {
     testImplementation 'org.mockito:mockito-core:3.1.0'
     testImplementation 'org.robolectric:robolectric:4.3.1'
     testImplementation 'org.robolectric:shadows-multidex:4.3.1'
+    testImplementation 'org.robolectric:shadows-support-v4:3.4-rc2'
     testImplementation 'androidx.test:core:1.2.0'
 }
 

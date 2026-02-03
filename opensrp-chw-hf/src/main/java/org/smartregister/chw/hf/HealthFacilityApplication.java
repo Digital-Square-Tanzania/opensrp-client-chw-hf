@@ -10,6 +10,7 @@ import com.evernote.android.job.JobApi;
 import com.evernote.android.job.JobManager;
 import com.mapbox.mapboxsdk.Mapbox;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
 import org.smartregister.AllConstants;
 import org.smartregister.Context;
@@ -113,6 +114,7 @@ import timber.log.Timber;
 public class HealthFacilityApplication extends CoreChwApplication implements CoreApplication {
     private static final Flavor flavor = new DefaultHFApplicationFlv();
     private CommonFtsObject commonFtsObject;
+    private String repositoryPassword;
 
     public static Flavor getApplicationFlavor() {
         return flavor;
@@ -177,8 +179,14 @@ public class HealthFacilityApplication extends CoreChwApplication implements Cor
     @Override
     public Repository getRepository() {
         try {
-            if (repository == null) {
+            String currentPassword = CoreChwApplication.getInstance().getPassword();
+            if (repository == null
+                    || (StringUtils.isNotBlank(currentPassword) && !currentPassword.equals(repositoryPassword))) {
+                if (repository != null) {
+                    repository.close();
+                }
                 repository = new HfChwRepository(getInstance().getApplicationContext(), context);
+                repositoryPassword = currentPassword;
             }
         } catch (UnsatisfiedLinkError e) {
             Timber.e(e);
