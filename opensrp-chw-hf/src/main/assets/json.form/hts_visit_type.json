@@ -213,14 +213,6 @@
         "v_required": {
           "value": "true",
           "err": "Please select a value"
-        },
-
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "hts_visit_type_rule.yml"
-            }
-          }
         }
       },
       {

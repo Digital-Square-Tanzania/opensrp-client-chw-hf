@@ -392,36 +392,11 @@ public class AllClientsMemberProfileActivity extends CoreAllClientsMemberProfile
         PrEPRegisterActivity.startMe(this, baseEntityId, gender, age);
     }
 
-    @Override
-    protected void startTbLeprosyScreening() {
-        // Not supported in HF build
-    }
 
     @Override
     protected void startAgywScreening() {
         //do nothing
     }
-
-    @Override
-    protected void startAypInSchoolEnrollment() {
-        // HF flavor does not support direct AYP in-school enrollment from this profile
-    }
-
-    @Override
-    protected void startAypParentalEnrollment() {
-        // HF flavor does not support direct AYP parental enrollment from this profile
-    }
-
-    @Override
-    protected void startAypOutSchoolEnrollment() {
-
-    }
-
-    @Override
-    protected void startAypFacilityScreening() {
-        AypFacilityServicesRegisterActivity.startRegistration(AllClientsMemberProfileActivity.this, baseEntityId);
-    }
-
 
     @Override
     protected void startSbcRegistration() {
