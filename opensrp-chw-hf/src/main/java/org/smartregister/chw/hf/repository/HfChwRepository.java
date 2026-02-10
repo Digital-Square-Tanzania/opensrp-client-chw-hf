@@ -532,6 +532,15 @@ public class HfChwRepository extends CoreChwRepository {
         }
     }
 
+    private static void upgradeToVersion30(SQLiteDatabase db) {
+        try {
+            String addMissingColumnsQuery = "ALTER TABLE location ADD COLUMN status VARCHAR;";
+            db.execSQL(addMissingColumnsQuery);
+        } catch (Exception e) {
+            Timber.e(e);
+        }
+    }
+
 
     private static void upgradeToVersion10ForBaSouth(SQLiteDatabase db) {
         try {
@@ -687,6 +696,8 @@ public class HfChwRepository extends CoreChwRepository {
                     break;
                 case 29:
                     upgradeToVersion29(db);
+                case 30:
+                    upgradeToVersion30(db);
                     break;
                 default:
                     break;
