@@ -13,6 +13,13 @@ condition: "step1_hts_has_the_client_recently_tested_with_hivst.equals('yes')"
 actions:
   - "isRelevant = true"
 ---
+name: step1_hts_previous_hivst_test_results
+description:
+priority: 1
+condition: "step1_hts_has_the_client_recently_tested_with_hivst.equals('yes')"
+actions:
+  - "isRelevant = true"
+---
 name: step1_hts_pitc_testing_point
 description:
 priority: 1
