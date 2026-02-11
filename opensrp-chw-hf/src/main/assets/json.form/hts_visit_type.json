@@ -486,6 +486,20 @@
         }
       },
       {
+        "key": "type_of_index_client",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "type_of_index_client",
+        "type": "hidden",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "hts_visit_type_rule.yml"
+            }
+          }
+        }
+      },
+      {
         "key": "hts_testing_approach",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",

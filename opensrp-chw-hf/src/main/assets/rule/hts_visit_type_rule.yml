@@ -68,6 +68,14 @@ priority: 1
 condition: "step1_hts_client_type.equals('index_contact') && global_sex.equalsIgnoreCase('male') && global_age >= 19"
 actions:
   - "isRelevant = true"
+---
+name: step1_type_of_index_client
+description:
+priority: 1
+condition: "true"
+actions:
+  - "calculation = (step1_type_of_index_client_female_below_11 != null && !step1_type_of_index_client_female_below_11.equals('')) ? step1_type_of_index_client_female_below_11 : (step1_type_of_index_client_female_11_to_18 != null && !step1_type_of_index_client_female_11_to_18.equals('')) ? step1_type_of_index_client_female_11_to_18 : (step1_type_of_index_client_female_19_and_above != null && !step1_type_of_index_client_female_19_and_above.equals('')) ? step1_type_of_index_client_female_19_and_above : (step1_type_of_index_client_male_below_11 != null && !step1_type_of_index_client_male_below_11.equals('')) ? step1_type_of_index_client_male_below_11 : (step1_type_of_index_client_male_11_to_18 != null && !step1_type_of_index_client_male_11_to_18.equals('')) ? step1_type_of_index_client_male_11_to_18 : (step1_type_of_index_client_male_19_and_above != null && !step1_type_of_index_client_male_19_and_above.equals('')) ? step1_type_of_index_client_male_19_and_above : ''"
+---
 name: step1_hts_testing_approach
 description:
 priority: 1
