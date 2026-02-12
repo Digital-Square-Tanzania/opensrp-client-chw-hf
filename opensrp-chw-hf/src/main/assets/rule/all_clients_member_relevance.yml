@@ -96,3 +96,10 @@ priority: 1
 condition: "step2_has_primary_caregiver == 'Yes'"
 actions:
   - "isRelevant = true"
+---
+name: step2_service_provider_other
+description: other service provider
+priority: 1
+condition: "step2_service_provider == 'chk_other'"
+actions:
+  - "isRelevant = true"

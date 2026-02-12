@@ -105,6 +105,11 @@
         "openmrs_entity_id": "clinician_phone_number",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
+        "v_max_length": {
+          "value": "10",
+          "is_fixed_size": "true",
+          "err": "Please enter a valid input"
+        },
         "v_numeric": {
           "value": "true",
           "err": "Number must be a total of 10 digits and must start with 06 au 07."

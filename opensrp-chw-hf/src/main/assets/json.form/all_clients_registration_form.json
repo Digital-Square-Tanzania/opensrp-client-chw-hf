@@ -416,6 +416,11 @@
         "openmrs_entity_id": "phone_number",
         "type": "edit_text",
         "hint": "Client phone number",
+        "v_max_length": {
+          "value": "10",
+          "is_fixed_size": "true",
+          "err": "Please enter a valid input"
+        },
         "v_numeric": {
           "value": "true",
           "err": "Number must be a total of 10 digits in length"
@@ -430,7 +435,7 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "person_attribute",
         "openmrs_entity_id": "id_avail",
-        "type": "check_box",
+        "type": "native_radio",
         "label": "Do you have any of the following IDs?",
         "combine_checkbox_option_values": "true",
         "label_text_style": "normal",
@@ -438,6 +443,10 @@
         "exclusive": [
           "chk_none"
         ],
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the ID"
+        },
         "options": [
           {
             "key": "chk_national_id",
@@ -628,93 +637,25 @@
         "openmrs_entity": "person_attribute",
         "openmrs_entity_id": "Health_Insurance_Type",
         "type": "spinner",
-        "hint": "Health insurance provider",
+        "hint": "Select the type of health insurance that the client has",
         "values": [
-          "Community Health Fund (CHF)/(iCHF)",
-          "National Social Security Fund - Social Health Insurance Benefit (SHIB)",
-          "National Health Insurance Fund (NHIF)",
-          "Tiba Kwa Kadi (TIKA)",
-          "AAR Healthcare",
-          "Strategies Insurance",
-          "Milvik Tanzania Ltd (BIMA Mkononi)",
-          "Britam Insurance Tanzania",
-          "Jubilee Insurance",
-          "Resolutions Insurance",
-          "Reliance Insurance",
-          "Other",
-          "None"
+          "Public Health Insurance",
+          "Private Health Insurance",
+          "Not Insured"
         ],
         "keys": [
-          "Community Health Fund (CHF)",
-          "National Social Security Fund - Social Health Insurance Benefit (SHIB)",
-          "National Health Insurance Fund (NHIF)",
-          "Tiba Kwa Kadi (TIKA)",
-          "AAR Healthcare",
-          "Strategies Insurance",
-          "Milvik Tanzania Ltd (BIMA Mkononi)",
-          "Britam Insurance Tanzania",
-          "Jubilee Insurance",
-          "Resolutions Insurance",
-          "Reliance Insurance",
-          "Other",
-          "None"
+          "Public Health Insurance",
+          "Private Health Insurance",
+          "Not Insured"
         ],
         "openmrs_choice_ids": {
-          "Community Health Fund (CHF)": "Community_Health_Fund",
-          "National Social Security Fund - Social Health Insurance Benefit (SHIB)": "National_Social_Security_Fund",
-          "National Health Insurance Fund (NHIF)": "National_Health_Insurance_Fund",
-          "Tiba Kwa Kadi (TIKA)": "Tiba_kwa_Kadi",
-          "AAR Healthcare": "AAR_Healthcare",
-          "AAR Strategies Insurance": "Strategies_Insurance",
-          "Milvik Tanzania Ltd (BIMA Mkononi)": "BIMA_Mkononi",
-          "Britam Insurance Tanzania": "Britam_Insurance_Tanzania",
-          "Jubilee Insurance": "Jubilee_Insurance",
-          "Resolutions Insurance": "Resolutions_Insurance",
-          "Reliance Insurance": "Reliance_Insurance",
-          "Other": "Other_Health_Insurance_Type",
-          "None": "No_Health_Insurance"
+          "Public Health Insurance": "Public Health Insurance",
+          "Private Health Insurance": "Private Health Insurance",
+          "Not Insured": "Not Insured"
         },
         "v_required": {
           "value": "true",
           "err": "Please enter the insurance provider"
-        }
-      },
-      {
-        "key": "insurance_provider_other",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "person_attribute",
-        "openmrs_entity_id": "Other_Health_Insurance_Type",
-        "type": "edit_text",
-        "hint": "Other health insurance provider",
-        "v_required": {
-          "value": "true",
-          "err": "Please specify the insurance provider"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "all_clients_member_relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "insurance_provider_number",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "person_attribute",
-        "openmrs_entity_id": "Health_Insurance_Number",
-        "type": "edit_text",
-        "hint": "Health insurance provider number",
-        "v_required": {
-          "value": "true",
-          "err": "Please add the health insurance provider iD Number"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "all_clients_member_relevance.yml"
-            }
-          }
         }
       },
       {
@@ -812,58 +753,64 @@
         "text_color": "#C0C0C0",
         "options": [
           {
-            "key": "physical_impairments",
-            "text": "Mobility and Physical Impairments",
+            "key": "physical_disability",
+            "text": "Mobility / Physical disability",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "physical_impairments"
+            "openmrs_entity_id": "physical_disability"
           },
           {
-            "key": "spinal_cord_disability",
-            "text": "Spinal Cord Disability",
+            "key": "visual_impairment",
+            "text": "Visual impairment / Blindness",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "spinal_cord_disability"
+            "openmrs_entity_id": "visual_impairment"
           },
           {
-            "key": "brain_disability",
-            "text": "Head Injuries - Brain Disability",
+            "key": "hearing_impairment",
+            "text": "Hearing impairment / Deafness",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "brain_disability"
+            "openmrs_entity_id": "hearing_impairment"
           },
           {
-            "key": "vision_disability",
-            "text": "Vision Disability",
+            "key": "intellectual_disability",
+            "text": "Intellectual disability / Cognitive impairment",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "vision_disability"
+            "openmrs_entity_id": "intellectual_disability"
           },
           {
-            "key": "hearing_disability",
-            "text": "Hearing Disability",
+            "key": "psychosocial_mental_health_disability",
+            "text": "Psychosocial / Mental health disability",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "hearing_disability"
+            "openmrs_entity_id": "psychosocial_mental_health_disability"
           },
           {
-            "key": "learning_disabilities",
-            "text": "Cognitive or Learning Disabilities",
+            "key": "communication_speech_impairment",
+            "text": "Communication / Speech impairment",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "learning_disabilities"
+            "openmrs_entity_id": "communication_speech_impairment"
           },
           {
-            "key": "psychological_disorders",
-            "text": "Psychological Disorders",
+            "key": "self_care_disability",
+            "text": "Self-care disability",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "psychological_disorders"
+            "openmrs_entity_id": "self_care_disability"
           },
           {
-            "key": "invisible_disabilities",
-            "text": "Invisible Disabilities",
+            "key": "remembering_concentration_impairment",
+            "text": "Remembering / Concentration impairment",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "invisible_disabilities"
+            "openmrs_entity_id": "remembering_concentration_impairment"
           },
           {
             "key": "albinism",
-            "text": "Albinism",
+            "text": "Disability from special condition such as albinism",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "albinism"
+          },
+          {
+            "key": "other_disabilities",
+            "text": "Other disabilities (Specify)",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "other_disabilities"
           }
         ],
         "relevance": {
@@ -933,6 +880,11 @@
         "openmrs_entity_id": "other_phone_number",
         "type": "edit_text",
         "hint": "Primary caregiver phone number",
+        "v_max_length": {
+          "value": "10",
+          "is_fixed_size": "true",
+          "err": "Please enter a valid input"
+        },
         "v_numeric": {
           "value": "true",
           "err": "Number must be a total of 10 digits in length"
@@ -960,22 +912,40 @@
         "text_color": "#C0C0C0",
         "options": [
           {
-            "key": "chk_self_employed",
-            "text": "Self-Employed",
+            "key": "chk_fisherman",
+            "text": "Fisherman",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "chk_self_employed"
+            "openmrs_entity_id": "chk_fisherman"
           },
           {
-            "key": "chk_employed",
-            "text": "Employed",
+            "key": "chk_miner",
+            "text": "Miner",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "chk_employed"
+            "openmrs_entity_id": "chk_miner"
           },
           {
-            "key": "chk_unemployed",
-            "text": "Unemployed",
+            "key": "chk_truck_driver",
+            "text": "Truck Driver",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "chk_unemployed"
+            "openmrs_entity_id": "chk_truck_driver"
+          },
+          {
+            "key": "chk_bus_driver",
+            "text": "Bus Driver",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_bus_driver"
+          },
+          {
+            "key": "chk_pastoralist",
+            "text": "Pastoralist",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_pastoralist"
+          },
+          {
+            "key": "chk_business_person",
+            "text": "Business Person",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_business_person"
           },
           {
             "key": "chk_farmer",
@@ -984,16 +954,43 @@
             "openmrs_entity_id": "chk_farmer"
           },
           {
-            "key": "chk_traditional_healer",
-            "text": "Traditional healer",
+            "key": "chk_other",
+            "text": "Other",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "chk_traditional_healer"
+            "openmrs_entity_id": "chk_other"
+          },
+          {
+            "key": "chk_none",
+            "text": "Other",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_none"
           }
         ],
         "v_required": {
           "value": "true",
           "err": "Please pick at least one"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "all_clients_member_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "service_provider_other",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person_attribute",
+        "openmrs_entity_id": "service_provider_other",
+        "type": "edit_text",
+        "hint": "Others (Specify)",
+        "edit_type": "name",
+        "v_required": {
+          "value": "true",
+          "err": "Please enter the occupation"
         },
         "relevance": {
           "rules-engine": {
