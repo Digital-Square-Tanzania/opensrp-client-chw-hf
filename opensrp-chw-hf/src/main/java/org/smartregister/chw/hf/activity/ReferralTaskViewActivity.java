@@ -172,8 +172,8 @@ public class ReferralTaskViewActivity extends BaseReferralTaskViewActivity imple
     private void completeTask() {
         Task currentTask = getTask();
         currentTask.setForEntity(getBaseEntityId());
-        currentTask.setStatus(Task.TaskStatus.IN_PROGRESS);
-        CoreReferralUtils.completeTask(currentTask, false);
+        currentTask.setStatus(Task.TaskStatus.COMPLETED);
+        CoreReferralUtils.completeTask(currentTask, true);
     }
 
     public String getBaseEntityId() {

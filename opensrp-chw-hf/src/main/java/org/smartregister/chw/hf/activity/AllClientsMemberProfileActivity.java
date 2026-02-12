@@ -6,14 +6,12 @@ import static org.smartregister.util.Utils.getName;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import androidx.annotation.RequiresApi;
 import androidx.viewpager.widget.ViewPager;
 
 import com.vijay.jsonwizard.utils.FormUtils;
@@ -21,6 +19,7 @@ import com.vijay.jsonwizard.utils.FormUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.smartregister.chw.ayp.dao.AypDao;
 import org.smartregister.chw.cecap.dao.CecapDao;
 import org.smartregister.chw.core.activity.CoreAllClientsMemberProfileActivity;
 import org.smartregister.chw.core.activity.CoreFamilyProfileActivity;
@@ -46,8 +45,8 @@ import org.smartregister.chw.kvp.dao.KvpDao;
 import org.smartregister.chw.ld.dao.LDDao;
 import org.smartregister.chw.malaria.dao.MalariaDao;
 import org.smartregister.chw.sbc.dao.SbcDao;
-import org.smartregister.commonregistry.CommonPersonObject;
 import org.smartregister.chw.vmmc.dao.VmmcDao;
+import org.smartregister.commonregistry.CommonPersonObject;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.commonregistry.CommonRepository;
 import org.smartregister.family.adapter.ViewPagerAdapter;
@@ -132,6 +131,18 @@ public class AllClientsMemberProfileActivity extends CoreAllClientsMemberProfile
             String dob = Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.DOB, false);
             int age = Utils.getAgeFromDate(dob);
             menu.findItem(R.id.action_cancer_preventive_services_registration).setVisible(!CecapDao.isRegisteredForCecap(baseEntityId) && age >= 14);
+        }
+        if (HealthFacilityApplication.getApplicationFlavor().hasHts()) {
+            String dob = Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.DOB, false);
+            int age = Utils.getAgeFromDate(dob);
+            menu.findItem(R.id.action_hts_screening).setVisible(!SbcDao.isRegisteredForSbc(baseEntityId) && age >= 2);
+        }
+
+        if (HealthFacilityApplication.getApplicationFlavor().hasAypFacilityServices()) {
+            String dob = Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.DOB, false);
+            int age = Utils.getAgeFromDate(dob);
+            boolean eligibleForAyp = age >= 10 && age < 25;
+            menu.findItem(R.id.action_ayp_facility_screening).setVisible(eligibleForAyp && !AypDao.isRegisteredForAypFacilityServices(baseEntityId));
         }
         return true;
     }
@@ -381,6 +392,7 @@ public class AllClientsMemberProfileActivity extends CoreAllClientsMemberProfile
         PrEPRegisterActivity.startMe(this, baseEntityId, gender, age);
     }
 
+
     @Override
     protected void startAgywScreening() {
         //do nothing
@@ -408,7 +420,11 @@ public class AllClientsMemberProfileActivity extends CoreAllClientsMemberProfile
 
     @Override
     protected void startHtsScreening() {
-        //To be implemented
+        String gender = Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.GENDER, false);
+        String dob = Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.DOB, false);
+        int clientAge = Utils.getAgeFromDate(dob);
+
+        HivTestingServicesRegisterActivity.startRegistration(AllClientsMemberProfileActivity.this, baseEntityId, clientAge, gender);
     }
 
     @Override

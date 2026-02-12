@@ -17,6 +17,7 @@ import androidx.fragment.app.FragmentActivity;
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
 import org.smartregister.chw.anc.domain.MemberObject;
+import org.smartregister.chw.ayp.dao.AypDao;
 import org.smartregister.chw.cecap.dao.CecapDao;
 import org.smartregister.chw.core.application.CoreChwApplication;
 import org.smartregister.chw.core.dao.AncDao;
@@ -33,6 +34,7 @@ import org.smartregister.chw.hf.activity.ChildProfileActivity;
 import org.smartregister.chw.hf.activity.FamilyOtherMemberProfileActivity;
 import org.smartregister.chw.hf.activity.FpMemberProfileActivity;
 import org.smartregister.chw.hf.activity.HivProfileActivity;
+import org.smartregister.chw.hf.activity.HivTestingServicesMemberProfileActivity;
 import org.smartregister.chw.hf.activity.KvpProfileActivity;
 import org.smartregister.chw.hf.activity.LDProfileActivity;
 import org.smartregister.chw.hf.activity.MalariaProfileActivity;
@@ -271,7 +273,7 @@ public class AllClientsUtils {
     }
 
     public static void goToHTsProfile(FragmentActivity activity, CommonPersonObjectClient hivClient) {
-        HivProfileActivity.startHivProfileActivity(activity, HfHtsDao.getMember(hivClient.getCaseId()));
+        HivTestingServicesMemberProfileActivity.startMe(activity, hivClient.getCaseId());
     }
 
     public static void goToTbProfile(FragmentActivity activity, CommonPersonObjectClient tbClient) {
@@ -369,6 +371,13 @@ public class AllClientsUtils {
         // Cecap options
         if (HealthFacilityApplication.getApplicationFlavor().hasCecap()) {
             setMenuItemVisibility(menu, R.id.action_cancer_preventive_services_registration, !CecapDao.isRegisteredForCecap(baseEntityId) && age >= 14);
+        }
+
+        if (HealthFacilityApplication.getApplicationFlavor().hasAypFacilityServices()) {
+            boolean eligibleForAyp = age >= 10 && age < 25;
+            setMenuItemVisibility(menu, org.smartregister.chw.core.R.id.action_ayp_facility_screening, eligibleForAyp && !AypDao.isRegisteredForAypFacilityServices(baseEntityId));
+        } else {
+            setMenuItemVisibility(menu, org.smartregister.chw.core.R.id.action_ayp_facility_screening, false);
         }
     }
 

@@ -6,6 +6,7 @@ import android.os.Build;
 
 import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.core.CrashlyticsCore;
+import com.evernote.android.job.JobApi;
 import com.evernote.android.job.JobManager;
 import com.mapbox.mapboxsdk.Mapbox;
 
@@ -16,6 +17,7 @@ import org.smartregister.Context;
 import org.smartregister.CoreLibrary;
 import org.smartregister.P2POptions;
 import org.smartregister.chw.anc.AncLibrary;
+import org.smartregister.chw.ayp.AypLibrary;
 import org.smartregister.chw.cdp.CdpLibrary;
 import org.smartregister.chw.cecap.CecapLibrary;
 import org.smartregister.chw.core.application.CoreChwApplication;
@@ -32,12 +34,14 @@ import org.smartregister.chw.hf.activity.AncRegisterActivity;
 import org.smartregister.chw.hf.activity.CdpRegisterActivity;
 import org.smartregister.chw.hf.activity.CecapRegisterActivity;
 import org.smartregister.chw.hf.activity.ChildRegisterActivity;
+import org.smartregister.chw.hf.activity.AypFacilityServicesRegisterActivity;
 import org.smartregister.chw.hf.activity.FamilyProfileActivity;
 import org.smartregister.chw.hf.activity.FamilyRegisterActivity;
 import org.smartregister.chw.hf.activity.FpRegisterActivity;
 import org.smartregister.chw.hf.activity.HeiRegisterActivity;
 import org.smartregister.chw.hf.activity.HivIndexContactsContactsRegisterActivity;
 import org.smartregister.chw.hf.activity.HivRegisterActivity;
+import org.smartregister.chw.hf.activity.HivTestingServicesRegisterActivity;
 import org.smartregister.chw.hf.activity.HivstRegisterActivity;
 import org.smartregister.chw.hf.activity.HtsRegisterActivity;
 import org.smartregister.chw.hf.activity.KvpRegisterActivity;
@@ -57,6 +61,8 @@ import org.smartregister.chw.hf.configs.AllClientsRegisterRowOptions;
 import org.smartregister.chw.hf.custom_view.FacilityMenu;
 import org.smartregister.chw.hf.custom_view.HfNavigationMenu;
 import org.smartregister.chw.hf.job.HfJobCreator;
+import org.smartregister.chw.hf.job.HfJobProxy14;
+import org.smartregister.chw.hf.job.HfJobProxy19;
 import org.smartregister.chw.hf.model.NavigationModel;
 import org.smartregister.chw.hf.provider.HfAllClientsRegisterQueryProvider;
 import org.smartregister.chw.hf.repository.HfChwRepository;
@@ -65,6 +71,7 @@ import org.smartregister.chw.hf.sync.HfClientProcessor;
 import org.smartregister.chw.hf.sync.HfSyncConfiguration;
 import org.smartregister.chw.hiv.HivLibrary;
 import org.smartregister.chw.hivst.HivstLibrary;
+import org.smartregister.chw.hts.HtsLibrary;
 import org.smartregister.chw.kvp.KvpLibrary;
 import org.smartregister.chw.lab.LabLibrary;
 import org.smartregister.chw.ld.LDLibrary;
@@ -93,6 +100,7 @@ import org.smartregister.repository.TaskNotesRepository;
 import org.smartregister.repository.TaskRepository;
 import org.smartregister.util.Utils;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -162,9 +170,9 @@ public class HealthFacilityApplication extends CoreChwApplication implements Cor
             registeredActivities.put(CoreConstants.REGISTERED_ACTIVITIES.SBC_REGISTER_ACTIVITY, SbcRegisterActivity.class);
             registeredActivities.put(CoreConstants.REGISTERED_ACTIVITIES.CECAP_REGISTER_ACTIVITY, CecapRegisterActivity.class);
             registeredActivities.put(CoreConstants.REGISTERED_ACTIVITIES.LAB_REGISTER_ACTIVITY, LabRegisterActivity.class);
+            registeredActivities.put(CoreConstants.REGISTERED_ACTIVITIES.HIV_TESTING_SERVICES_REGISTER_ACTIVITY, HivTestingServicesRegisterActivity.class);
+            registeredActivities.put(CoreConstants.REGISTERED_ACTIVITIES.AYP_FACILITY_REGISTER_ACTIVITY, AypFacilityServicesRegisterActivity.class);
         }
-//          TODO uncomment these when NACP is ready to test these modules
-        //registeredActivities.put(CoreConstants.REGISTERED_ACTIVITIES.TB_REGISTER_ACTIVITY, TbRegisterActivity.class);
         return registeredActivities;
     }
 
@@ -230,9 +238,13 @@ public class HealthFacilityApplication extends CoreChwApplication implements Cor
         context.updateCommonFtsObject(createCommonFtsObject());
         context.updateCommonFtsObject(getCommonFtsObject());
 
+
         //init Job Manager
         SyncStatusBroadcastReceiver.init(this);
-        JobManager.create(this).addJobCreator(new HfJobCreator());
+        JobManager jobManager = JobManager.create(this);
+        applyJobProxyFixes();
+        jobManager.addJobCreator(new HfJobCreator());
+
 
         //Necessary to determine the right form to pick from assets
         CoreConstants.JSON_FORM.setLocaleAndAssetManager(HealthFacilityApplication.getCurrentLocale(),
@@ -337,6 +349,11 @@ public class HealthFacilityApplication extends CoreChwApplication implements Cor
             LabLibrary.init(context, getRepository(), BuildConfig.VERSION_CODE, BuildConfig.DATABASE_VERSION);
         }
 
+        if (flavor.hasHts()) {
+            HtsLibrary.init(context, getRepository(), BuildConfig.VERSION_CODE, BuildConfig.DATABASE_VERSION);
+        }
+        AypLibrary.init(context, getRepository(), BuildConfig.VERSION_CODE, BuildConfig.DATABASE_VERSION);
+
         //Needed for all clients register
         OpdLibrary.init(context, getRepository(),
                 new OpdConfiguration.Builder(HfAllClientsRegisterQueryProvider.class)
@@ -431,6 +448,22 @@ public class HealthFacilityApplication extends CoreChwApplication implements Cor
         return map;
     }
 
+
+    private void applyJobProxyFixes() {
+        try {
+            Field cachedProxyField = JobApi.class.getDeclaredField("mCachedProxy");
+            cachedProxyField.setAccessible(true);
+
+            JobApi.V_14.invalidateCachedProxy();
+            cachedProxyField.set(JobApi.V_14, new HfJobProxy14(this));
+
+            JobApi.V_19.invalidateCachedProxy();
+            cachedProxyField.set(JobApi.V_19, new HfJobProxy19(this));
+        } catch (Exception e) {
+            Timber.e(e, "Failed to apply job proxy fixes");
+        }
+    }
+
     public interface Flavor {
         boolean hasCdp();
 
@@ -456,6 +489,10 @@ public class HealthFacilityApplication extends CoreChwApplication implements Cor
 
         boolean hasHps();
 
+        boolean hasHts();
+
         boolean hasMap();
+
+        boolean hasAypFacilityServices();
     }
 }

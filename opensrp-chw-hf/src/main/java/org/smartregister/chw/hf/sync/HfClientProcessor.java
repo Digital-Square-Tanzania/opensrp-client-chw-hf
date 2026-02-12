@@ -75,62 +75,101 @@ public class HfClientProcessor extends CoreClientProcessor {
     protected void processEvents(ClientClassification clientClassification, Table vaccineTable, Table serviceTable, EventClient eventClient, Event event, String eventType) throws Exception {
         super.processEvents(clientClassification, vaccineTable, serviceTable, eventClient, event, eventType);
 
-        switch (eventType) {
-            case org.smartregister.chw.hf.utils.Constants.Events.SEND_MONTHLY_MTUHA_BOOK_3_TO_DHIS2:
-            case org.smartregister.chw.hf.utils.Constants.Events.SEND_ANNUAL_REPORTS_TO_DHIS2:
-                try {
-                    new org.smartregister.chw.hf.repository.Dhis2ReportHistoryRepository().saveFromEvent(event);
-                } catch (Exception e) {
-                    Timber.e(e, "Failed to persist DHIS2 history from event");
-                }
-                break;
-            case ANC_PREGNANCY_CONFIRMATION:
-            case ANC_FOLLOWUP_CLIENT_REGISTRATION:
-            case ANC_FIRST_FACILITY_VISIT:
-            case ANC_RECURRING_FACILITY_VISIT:
-            case PNC_VISIT:
-            case PNC_CHILD_FOLLOWUP:
-            case LD_PARTOGRAPHY:
-            case LD_REGISTRATION:
-            case LD_ACTIVE_MANAGEMENT_OF_3RD_STAGE_OF_LABOUR:
-            case LD_GENERAL_EXAMINATION:
-            case LD_POST_DELIVERY_MOTHER_MANAGEMENT:
-            case ANC_PARTNER_TESTING:
-            case org.smartregister.chw.kvp.util.Constants.EVENT_TYPE.KVP_BEHAVIORAL_SERVICE_VISIT:
-            case org.smartregister.chw.kvp.util.Constants.EVENT_TYPE.KVP_BIO_MEDICAL_SERVICE_VISIT:
-            case org.smartregister.chw.kvp.util.Constants.EVENT_TYPE.KVP_STRUCTURAL_SERVICE_VISIT:
-            case org.smartregister.chw.kvp.util.Constants.EVENT_TYPE.KVP_OTHER_SERVICE_VISIT:
-            case org.smartregister.chw.kvp.util.Constants.EVENT_TYPE.PrEP_FOLLOWUP_VISIT:
-            case org.smartregister.chw.vmmc.util.Constants.EVENT_TYPE.VMMC_SERVICES:
-            case org.smartregister.chw.vmmc.util.Constants.EVENT_TYPE.VMMC_PROCEDURE:
-            case org.smartregister.chw.vmmc.util.Constants.EVENT_TYPE.VMMC_DISCHARGE:
-            case org.smartregister.chw.vmmc.util.Constants.EVENT_TYPE.VMMC_FOLLOW_UP_VISIT:
-            case org.smartregister.chw.vmmc.util.Constants.EVENT_TYPE.VMMC_NOTIFIABLE_EVENTS:
-            case org.smartregister.chw.cecap.util.Constants.EVENT_TYPE.CECAP_FOLLOW_UP_VISIT:
-            case Constants.EVENT_TYPE.PMTCT_FOLLOWUP:
-            case FamilyPlanningConstants.EVENT_TYPE.FP_POINT_OF_SERVICE_DELIVERY:
-            case FamilyPlanningConstants.EVENT_TYPE.FP_COUNSELING:
-            case FamilyPlanningConstants.EVENT_TYPE.FP_PROVIDE_METHOD:
-            case FamilyPlanningConstants.EVENT_TYPE.FP_OTHER_SERVICES:
-            case org.smartregister.chw.sbc.util.Constants.EVENT_TYPE.SBC_FOLLOW_UP_VISIT:
-            case FP_REGISTRATION_EVENT:
-            case FamilyPlanningConstants.EVENT_TYPE.FP_ECP_PROVISION:
-            case FamilyPlanningConstants.EVENT_TYPE.FP_ECP_SCREENING:
-                if (eventClient.getEvent() == null) {
-                    return;
-                }
-                processVisitEvent(eventClient);
-                processEvent(eventClient.getEvent(), eventClient.getClient(), clientClassification);
-                break;
-            case HEI_FOLLOWUP:
-            case HEI_POSITIVE_INFANT:
-            case HEI_NEGATIVE_INFANT:
-                processVisitEvent(eventClient);
-                processEvent(eventClient.getEvent(), eventClient.getClient(), clientClassification);
-                processHeiFollowupCEvent(eventClient.getEvent());
-                break;
+        if (eventType.contains(org.smartregister.chw.hts.util.Constants.EVENT_TYPE.HTS_FIRST_HIV_TEST)) {
+            if (eventClient.getEvent() == null) {
+                return;
+            }
+            processVisitEvent(eventClient);
 
-            case org.smartregister.chw.ld.util.Constants.EVENT_TYPE.VOID_EVENT:
+            Event contactsEvents = eventClient.getEvent();
+            contactsEvents.setEventType(org.smartregister.chw.hts.util.Constants.EVENT_TYPE.HTS_FIRST_HIV_TEST);
+
+            processEvent(eventClient.getEvent(), eventClient.getClient(), clientClassification);
+        } else if (eventType.contains(org.smartregister.chw.hts.util.Constants.EVENT_TYPE.HTS_SECOND_HIV_TEST)) {
+            if (eventClient.getEvent() == null) {
+                return;
+            }
+            processVisitEvent(eventClient);
+            Event contactsEvents = eventClient.getEvent();
+            contactsEvents.setEventType(org.smartregister.chw.hts.util.Constants.EVENT_TYPE.HTS_SECOND_HIV_TEST);
+
+            processEvent(eventClient.getEvent(), eventClient.getClient(), clientClassification);
+
+        } else if (eventType.contains(org.smartregister.chw.hts.util.Constants.EVENT_TYPE.HTS_UNIGOLD_HIV_TEST)) {
+            if (eventClient.getEvent() == null) {
+                return;
+            }
+            processVisitEvent(eventClient);
+            Event contactsEvents = eventClient.getEvent();
+            contactsEvents.setEventType(org.smartregister.chw.hts.util.Constants.EVENT_TYPE.HTS_UNIGOLD_HIV_TEST);
+
+            processEvent(eventClient.getEvent(), eventClient.getClient(), clientClassification);
+        } else if (eventType.contains(org.smartregister.chw.hts.util.Constants.EVENT_TYPE.REPEAT_FIRST_HIV_TEST)) {
+            if (eventClient.getEvent() == null) {
+                return;
+            }
+            processVisitEvent(eventClient);
+            Event contactsEvents = eventClient.getEvent();
+            contactsEvents.setEventType(org.smartregister.chw.hts.util.Constants.EVENT_TYPE.REPEAT_FIRST_HIV_TEST);
+
+            processEvent(eventClient.getEvent(), eventClient.getClient(), clientClassification);
+        } else {
+            switch (eventType) {
+                case org.smartregister.chw.hf.utils.Constants.Events.SEND_MONTHLY_MTUHA_BOOK_3_TO_DHIS2:
+                case org.smartregister.chw.hf.utils.Constants.Events.SEND_ANNUAL_REPORTS_TO_DHIS2:
+                    try {
+                        new org.smartregister.chw.hf.repository.Dhis2ReportHistoryRepository().saveFromEvent(event);
+                    } catch (Exception e) {
+                        Timber.e(e, "Failed to persist DHIS2 history from event");
+                    }
+                    break;
+                case ANC_PREGNANCY_CONFIRMATION:
+                case ANC_FOLLOWUP_CLIENT_REGISTRATION:
+                case ANC_FIRST_FACILITY_VISIT:
+                case ANC_RECURRING_FACILITY_VISIT:
+                case PNC_VISIT:
+                case PNC_CHILD_FOLLOWUP:
+                case LD_PARTOGRAPHY:
+                case LD_REGISTRATION:
+                case LD_ACTIVE_MANAGEMENT_OF_3RD_STAGE_OF_LABOUR:
+                case LD_GENERAL_EXAMINATION:
+                case LD_POST_DELIVERY_MOTHER_MANAGEMENT:
+                case ANC_PARTNER_TESTING:
+                case org.smartregister.chw.kvp.util.Constants.EVENT_TYPE.KVP_BEHAVIORAL_SERVICE_VISIT:
+                case org.smartregister.chw.kvp.util.Constants.EVENT_TYPE.KVP_BIO_MEDICAL_SERVICE_VISIT:
+                case org.smartregister.chw.kvp.util.Constants.EVENT_TYPE.KVP_STRUCTURAL_SERVICE_VISIT:
+                case org.smartregister.chw.kvp.util.Constants.EVENT_TYPE.KVP_OTHER_SERVICE_VISIT:
+                case org.smartregister.chw.kvp.util.Constants.EVENT_TYPE.PrEP_FOLLOWUP_VISIT:
+                case org.smartregister.chw.vmmc.util.Constants.EVENT_TYPE.VMMC_SERVICES:
+                case org.smartregister.chw.vmmc.util.Constants.EVENT_TYPE.VMMC_PROCEDURE:
+                case org.smartregister.chw.vmmc.util.Constants.EVENT_TYPE.VMMC_DISCHARGE:
+                case org.smartregister.chw.vmmc.util.Constants.EVENT_TYPE.VMMC_FOLLOW_UP_VISIT:
+                case org.smartregister.chw.vmmc.util.Constants.EVENT_TYPE.VMMC_NOTIFIABLE_EVENTS:
+                case org.smartregister.chw.cecap.util.Constants.EVENT_TYPE.CECAP_FOLLOW_UP_VISIT:
+                case Constants.EVENT_TYPE.PMTCT_FOLLOWUP:
+                case FamilyPlanningConstants.EVENT_TYPE.FP_POINT_OF_SERVICE_DELIVERY:
+                case FamilyPlanningConstants.EVENT_TYPE.FP_COUNSELING:
+                case FamilyPlanningConstants.EVENT_TYPE.FP_PROVIDE_METHOD:
+                case FamilyPlanningConstants.EVENT_TYPE.FP_OTHER_SERVICES:
+                case org.smartregister.chw.sbc.util.Constants.EVENT_TYPE.SBC_FOLLOW_UP_VISIT:
+                case FP_REGISTRATION_EVENT:
+                case FamilyPlanningConstants.EVENT_TYPE.FP_ECP_PROVISION:
+                case FamilyPlanningConstants.EVENT_TYPE.FP_ECP_SCREENING:
+                    if (eventClient.getEvent() == null) {
+                        return;
+                    }
+                    processVisitEvent(eventClient);
+                    processEvent(eventClient.getEvent(), eventClient.getClient(), clientClassification);
+                    break;
+                case HEI_FOLLOWUP:
+                case HEI_POSITIVE_INFANT:
+                case HEI_NEGATIVE_INFANT:
+                    processVisitEvent(eventClient);
+                    processEvent(eventClient.getEvent(), eventClient.getClient(), clientClassification);
+                    processHeiFollowupCEvent(eventClient.getEvent());
+                    break;
+
+                case org.smartregister.chw.ld.util.Constants.EVENT_TYPE.VOID_EVENT:
             case DELETE_EVENT:
                 processDeleteEvent(eventClient.getEvent());
 
@@ -139,11 +178,13 @@ public class HfClientProcessor extends CoreClientProcessor {
                 break;
             default:
                 break;
+            }
         }
 
         //Used to fix instances where clients were registered without a DOB on past app version leading to app crushes
         FamilyDao.fixClientsWithNullDob();
     }
+
     private void processHpsAnnualCensusRegisterEvent(Event event) {
         try {
             List<Obs> censusObs = event.getObs();

@@ -1,0 +1,641 @@
+#indicators:
+#  - key: kvp-1-<10-pwid-ME
+#    grouping: KVP
+#    description: Idadi wa wateja wapya waliosajiliwa katika kipindi cha ripoti Umri <10
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE client_status = ''new_visit'' AND ekr.client_group =''pwid'' AND (date(''now'')-date(efm.dob))<10 AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-1-10-14-pwid-ME
+#    grouping: KVP
+#    description: Idadi wa wateja wapya waliosajiliwa katika kipindi cha ripoti Umri 10-14
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE client_status = ''new_visit'' AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+10 years'') <= date(''now'')) AND (date(efm.dob, ''+15 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-1-15-19-pwid-ME
+#    grouping: KVP
+#    description: Idadi wa wateja wapya waliosajiliwa katika kipindi cha ripoti Umri 15-19
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE client_status = ''new_visit'' AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+15 years'') <= date(''now'')) AND (date(efm.dob, ''+20 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-1-20-24-pwid-ME
+#    grouping: KVP
+#    description: Idadi wa wateja wapya waliosajiliwa katika kipindi cha ripoti Umri 20-24
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE client_status = ''new_visit'' AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+20 years'') <= date(''now'')) AND (date(efm.dob, ''+25 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-1-25-29-pwid-ME
+#    grouping: KVP
+#    description: Idadi wa wateja wapya waliosajiliwa katika kipindi cha ripoti Umri 25-29
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE client_status = ''new_visit'' AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+25 years'') <= date(''now'')) AND (date(efm.dob, ''+30 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-1-30-34-pwid-ME
+#    grouping: KVP
+#    description: Idadi wa wateja wapya waliosajiliwa katika kipindi cha ripoti Umri 30-34
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE client_status = ''new_visit'' AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+30 years'') <= date(''now'')) AND (date(efm.dob, ''+35 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-1-35-39-pwid-ME
+#    grouping: KVP
+#    description: Idadi wa wateja wapya waliosajiliwa katika kipindi cha ripoti Umri 35-39
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE client_status = ''new_visit'' AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+35 years'') <= date(''now'')) AND (date(efm.dob, ''+40 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-1-40-44-pwid-ME
+#    grouping: KVP
+#    description: Idadi wa wateja wapya waliosajiliwa katika kipindi cha ripoti Umri 40-44
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE client_status = ''new_visit'' AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+40 years'') <= date(''now'')) AND (date(efm.dob, ''+45 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-1-45-49-pwid-ME
+#    grouping: KVP
+#    description: Idadi wa wateja wapya waliosajiliwa katika kipindi cha ripoti Umri 45-49
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE client_status = ''new_visit'' AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+45 years'') <= date(''now'')) AND (date(efm.dob, ''+50 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-1->50-pwid-ME
+#    grouping: KVP
+#    description: Idadi wa wateja wapya waliosajiliwa katika kipindi cha ripoti Umri >50
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE client_status = ''new_visit'' AND ekr.client_group =''pwid'' AND (date(''now'')-date(efm.dob))>=50 AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-2-<10-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja wa makundi maalum waliofikiwa na huduma za kinga kufuatana
+#      na kiwango cha chini kinachotakiwa (minimum standards) katika kipindi cha
+#      ripoti Umri <10
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id INNER JOIN ec_kvp_structural_services ekss ON efm.base_entity_id = ekss.entity_id INNER JOIN ec_kvp_behavioral_services ekbs ON efm.base_entity_id = ekbs.entity_id INNER JOIN ec_kvp_other_services ekos ON efm.base_entity_id = ekos.entity_id WHERE ((ekbms.client_status IS NOT NULL OR ekbs.iec_sbcc_materials IS NOT NULL OR ekss.gbv_screening IS NOT NULL OR ekos.other_services_referrals_provided)) AND ekr.client_group =''pwid'' AND (date(''now'')-date(efm.dob))<10 AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-2-10-14-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja wa makundi maalum waliofikiwa na huduma za kinga kufuatana
+#      na kiwango cha chini kinachotakiwa (minimum standards) katika kipindi cha
+#      ripoti Umri 10-14
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id INNER JOIN ec_kvp_structural_services ekss ON efm.base_entity_id = ekss.entity_id INNER JOIN ec_kvp_behavioral_services ekbs ON efm.base_entity_id = ekbs.entity_id INNER JOIN ec_kvp_other_services ekos ON efm.base_entity_id = ekos.entity_id WHERE ((ekbms.client_status IS NOT NULL OR ekbs.iec_sbcc_materials IS NOT NULL OR ekss.gbv_screening IS NOT NULL OR ekos.other_services_referrals_provided)) AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+10 years'') <= date(''now'')) AND (date(efm.dob, ''+15 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-2-15-19-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja wa makundi maalum waliofikiwa na huduma za kinga kufuatana
+#      na kiwango cha chini kinachotakiwa (minimum standards) katika kipindi cha
+#      ripoti Umri 15-19
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id INNER JOIN ec_kvp_structural_services ekss ON efm.base_entity_id = ekss.entity_id INNER JOIN ec_kvp_behavioral_services ekbs ON efm.base_entity_id = ekbs.entity_id INNER JOIN ec_kvp_other_services ekos ON efm.base_entity_id = ekos.entity_id WHERE ((ekbms.client_status IS NOT NULL OR ekbs.iec_sbcc_materials IS NOT NULL OR ekss.gbv_screening IS NOT NULL OR ekos.other_services_referrals_provided)) AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+15 years'') <= date(''now'')) AND (date(efm.dob, ''+20 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-2-20-24-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja wa makundi maalum waliofikiwa na huduma za kinga kufuatana
+#      na kiwango cha chini kinachotakiwa (minimum standards) katika kipindi cha
+#      ripoti Umri 20-24
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id INNER JOIN ec_kvp_structural_services ekss ON efm.base_entity_id = ekss.entity_id INNER JOIN ec_kvp_behavioral_services ekbs ON efm.base_entity_id = ekbs.entity_id INNER JOIN ec_kvp_other_services ekos ON efm.base_entity_id = ekos.entity_id WHERE ((ekbms.client_status IS NOT NULL OR ekbs.iec_sbcc_materials IS NOT NULL OR ekss.gbv_screening IS NOT NULL OR ekos.other_services_referrals_provided)) AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+20 years'') <= date(''now'')) AND (date(efm.dob, ''+25 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-2-25-29-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja wa makundi maalum waliofikiwa na huduma za kinga kufuatana
+#      na kiwango cha chini kinachotakiwa (minimum standards) katika kipindi cha
+#      ripoti Umri 25-29
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id INNER JOIN ec_kvp_structural_services ekss ON efm.base_entity_id = ekss.entity_id INNER JOIN ec_kvp_behavioral_services ekbs ON efm.base_entity_id = ekbs.entity_id INNER JOIN ec_kvp_other_services ekos ON efm.base_entity_id = ekos.entity_id WHERE ((ekbms.client_status IS NOT NULL OR ekbs.iec_sbcc_materials IS NOT NULL OR ekss.gbv_screening IS NOT NULL OR ekos.other_services_referrals_provided)) AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+25 years'') <= date(''now'')) AND (date(efm.dob, ''+30 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-2-30-34-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja wa makundi maalum waliofikiwa na huduma za kinga kufuatana
+#      na kiwango cha chini kinachotakiwa (minimum standards) katika kipindi cha
+#      ripoti Umri 30-34
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id INNER JOIN ec_kvp_structural_services ekss ON efm.base_entity_id = ekss.entity_id INNER JOIN ec_kvp_behavioral_services ekbs ON efm.base_entity_id = ekbs.entity_id INNER JOIN ec_kvp_other_services ekos ON efm.base_entity_id = ekos.entity_id WHERE ((ekbms.client_status IS NOT NULL OR ekbs.iec_sbcc_materials IS NOT NULL OR ekss.gbv_screening IS NOT NULL OR ekos.other_services_referrals_provided)) AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+30 years'') <= date(''now'')) AND (date(efm.dob, ''+35 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-2-35-39-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja wa makundi maalum waliofikiwa na huduma za kinga kufuatana
+#      na kiwango cha chini kinachotakiwa (minimum standards) katika kipindi cha
+#      ripoti Umri 35-39
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id INNER JOIN ec_kvp_structural_services ekss ON efm.base_entity_id = ekss.entity_id INNER JOIN ec_kvp_behavioral_services ekbs ON efm.base_entity_id = ekbs.entity_id INNER JOIN ec_kvp_other_services ekos ON efm.base_entity_id = ekos.entity_id WHERE ((ekbms.client_status IS NOT NULL OR ekbs.iec_sbcc_materials IS NOT NULL OR ekss.gbv_screening IS NOT NULL OR ekos.other_services_referrals_provided)) AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+35 years'') <= date(''now'')) AND (date(efm.dob, ''+40 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-2-40-44-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja wa makundi maalum waliofikiwa na huduma za kinga kufuatana
+#      na kiwango cha chini kinachotakiwa (minimum standards) katika kipindi cha
+#      ripoti Umri 40-44
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id INNER JOIN ec_kvp_structural_services ekss ON efm.base_entity_id = ekss.entity_id INNER JOIN ec_kvp_behavioral_services ekbs ON efm.base_entity_id = ekbs.entity_id INNER JOIN ec_kvp_other_services ekos ON efm.base_entity_id = ekos.entity_id WHERE ((ekbms.client_status IS NOT NULL OR ekbs.iec_sbcc_materials IS NOT NULL OR ekss.gbv_screening IS NOT NULL OR ekos.other_services_referrals_provided)) AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+40 years'') <= date(''now'')) AND (date(efm.dob, ''+45 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-2-45-49-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja wa makundi maalum waliofikiwa na huduma za kinga kufuatana
+#      na kiwango cha chini kinachotakiwa (minimum standards) katika kipindi cha
+#      ripoti Umri 45-49
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id INNER JOIN ec_kvp_structural_services ekss ON efm.base_entity_id = ekss.entity_id INNER JOIN ec_kvp_behavioral_services ekbs ON efm.base_entity_id = ekbs.entity_id INNER JOIN ec_kvp_other_services ekos ON efm.base_entity_id = ekos.entity_id WHERE ((ekbms.client_status IS NOT NULL OR ekbs.iec_sbcc_materials IS NOT NULL OR ekss.gbv_screening IS NOT NULL OR ekos.other_services_referrals_provided)) AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+45 years'') <= date(''now'')) AND (date(efm.dob, ''+50 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-2->50-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja wa makundi maalum waliofikiwa na huduma za kinga kufuatana
+#      na kiwango cha chini kinachotakiwa (minimum standards) katika kipindi cha
+#      ripoti Umri >50
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id INNER JOIN ec_kvp_structural_services ekss ON efm.base_entity_id = ekss.entity_id INNER JOIN ec_kvp_behavioral_services ekbs ON efm.base_entity_id = ekbs.entity_id INNER JOIN ec_kvp_other_services ekos ON efm.base_entity_id = ekos.entity_id WHERE ((ekbms.client_status IS NOT NULL OR ekbs.iec_sbcc_materials IS NOT NULL OR ekss.gbv_screening IS NOT NULL OR ekos.other_services_referrals_provided)) AND ekr.client_group =''pwid'' AND (date(''now'')-date(efm.dob))>=50 AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-3-<10-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja waliopata huduma za ukatili wa kijinsia katika kipindi cha
+#      ripoti Umri <10
+#    indicatorQuery: ' SELECT count(DISTINCT ekss.entity_id) as count FROM ec_kvp_structural_services ekss INNER JOIN ec_family_member efm ON efm.base_entity_id = ekss.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE (ekss.gbv_screening = ''case_reported'' OR ekss.gbv_screening = ''referred'' OR ekss.gbv_screening = ''received_post_gbv_care'') AND ekr.client_group =''pwid'' AND (date(''now'')-date(efm.dob))<10 AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekss.kvp_visit_date, 7, 4) || ''-'' || substr(ekss.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-3-10-14-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja waliopata huduma za ukatili wa kijinsia katika kipindi cha
+#      ripoti Umri 10-14
+#    indicatorQuery: ' SELECT count(DISTINCT ekss.entity_id) as count FROM ec_kvp_structural_services ekss INNER JOIN ec_family_member efm ON efm.base_entity_id = ekss.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE (ekss.gbv_screening = ''case_reported'' OR ekss.gbv_screening = ''referred'' OR ekss.gbv_screening = ''received_post_gbv_care'') AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+10 years'') <= date(''now'')) AND (date(efm.dob, ''+15 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekss.kvp_visit_date, 7, 4) || ''-'' || substr(ekss.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-3-15-19-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja waliopata huduma za ukatili wa kijinsia katika kipindi cha
+#      ripoti Umri 15-19
+#    indicatorQuery: ' SELECT count(DISTINCT ekss.entity_id) as count FROM ec_kvp_structural_services ekss INNER JOIN ec_family_member efm ON efm.base_entity_id = ekss.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE (ekss.gbv_screening = ''case_reported'' OR ekss.gbv_screening = ''referred'' OR ekss.gbv_screening = ''received_post_gbv_care'') AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+15 years'') <= date(''now'')) AND (date(efm.dob, ''+20 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekss.kvp_visit_date, 7, 4) || ''-'' || substr(ekss.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-3-20-24-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja waliopata huduma za ukatili wa kijinsia katika kipindi cha
+#      ripoti Umri 20-24
+#    indicatorQuery: ' SELECT count(DISTINCT ekss.entity_id) as count FROM ec_kvp_structural_services ekss INNER JOIN ec_family_member efm ON efm.base_entity_id = ekss.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE (ekss.gbv_screening = ''case_reported'' OR ekss.gbv_screening = ''referred'' OR ekss.gbv_screening = ''received_post_gbv_care'') AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+20 years'') <= date(''now'')) AND (date(efm.dob, ''+25 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekss.kvp_visit_date, 7, 4) || ''-'' || substr(ekss.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-3-25-29-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja waliopata huduma za ukatili wa kijinsia katika kipindi cha
+#      ripoti Umri 25-29
+#    indicatorQuery: ' SELECT count(DISTINCT ekss.entity_id) as count FROM ec_kvp_structural_services ekss INNER JOIN ec_family_member efm ON efm.base_entity_id = ekss.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE (ekss.gbv_screening = ''case_reported'' OR ekss.gbv_screening = ''referred'' OR ekss.gbv_screening = ''received_post_gbv_care'') AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+25 years'') <= date(''now'')) AND (date(efm.dob, ''+30 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekss.kvp_visit_date, 7, 4) || ''-'' || substr(ekss.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-3-30-34-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja waliopata huduma za ukatili wa kijinsia katika kipindi cha
+#      ripoti Umri 30-34
+#    indicatorQuery: ' SELECT count(DISTINCT ekss.entity_id) as count FROM ec_kvp_structural_services ekss INNER JOIN ec_family_member efm ON efm.base_entity_id = ekss.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE (ekss.gbv_screening = ''case_reported'' OR ekss.gbv_screening = ''referred'' OR ekss.gbv_screening = ''received_post_gbv_care'') AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+30 years'') <= date(''now'')) AND (date(efm.dob, ''+35 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekss.kvp_visit_date, 7, 4) || ''-'' || substr(ekss.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-3-35-39-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja waliopata huduma za ukatili wa kijinsia katika kipindi cha
+#      ripoti Umri 35-39
+#    indicatorQuery: ' SELECT count(DISTINCT ekss.entity_id) as count FROM ec_kvp_structural_services ekss INNER JOIN ec_family_member efm ON efm.base_entity_id = ekss.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE (ekss.gbv_screening = ''case_reported'' OR ekss.gbv_screening = ''referred'' OR ekss.gbv_screening = ''received_post_gbv_care'') AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+35 years'') <= date(''now'')) AND (date(efm.dob, ''+40 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekss.kvp_visit_date, 7, 4) || ''-'' || substr(ekss.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-3-40-44-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja waliopata huduma za ukatili wa kijinsia katika kipindi cha
+#      ripoti Umri 40-44
+#    indicatorQuery: ' SELECT count(DISTINCT ekss.entity_id) as count FROM ec_kvp_structural_services ekss INNER JOIN ec_family_member efm ON efm.base_entity_id = ekss.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE (ekss.gbv_screening = ''case_reported'' OR ekss.gbv_screening = ''referred'' OR ekss.gbv_screening = ''received_post_gbv_care'') AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+40 years'') <= date(''now'')) AND (date(efm.dob, ''+45 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekss.kvp_visit_date, 7, 4) || ''-'' || substr(ekss.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-3-45-49-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja waliopata huduma za ukatili wa kijinsia katika kipindi cha
+#      ripoti Umri 45-49
+#    indicatorQuery: ' SELECT count(DISTINCT ekss.entity_id) as count FROM ec_kvp_structural_services ekss INNER JOIN ec_family_member efm ON efm.base_entity_id = ekss.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE (ekss.gbv_screening = ''case_reported'' OR ekss.gbv_screening = ''referred'' OR ekss.gbv_screening = ''received_post_gbv_care'') AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+45 years'') <= date(''now'')) AND (date(efm.dob, ''+50 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekss.kvp_visit_date, 7, 4) || ''-'' || substr(ekss.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-3->50-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja waliopata huduma za ukatili wa kijinsia katika kipindi cha
+#      ripoti Umri >50
+#    indicatorQuery: ' SELECT count(DISTINCT ekss.entity_id) as count FROM ec_kvp_structural_services ekss INNER JOIN ec_family_member efm ON efm.base_entity_id = ekss.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE (ekss.gbv_screening = ''case_reported'' OR ekss.gbv_screening = ''referred'' OR ekss.gbv_screening = ''received_post_gbv_care'') AND ekr.client_group =''pwid'' AND (date(''now'')-date(efm.dob))>=50 AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekss.kvp_visit_date, 7, 4) || ''-'' || substr(ekss.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-4-<10-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja waliopata huduma za ukatili wa kijinsia katika kipindi cha
+#      ripoti Umri <10
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE (ekbms.sti_screening = ''positive'' OR ekbms.sti_screening = ''negative'') AND ekr.client_group =''pwid'' AND (date(''now'')-date(efm.dob))<10 AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-4-10-14-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja waliochunguzwa maambukizi ya magonjwa ya ngono katika
+#      kipindi cha ripoti Umri 10-14
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE (ekbms.sti_screening = ''positive'' OR ekbms.sti_screening = ''negative'') AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+10 years'') <= date(''now'')) AND (date(efm.dob, ''+15 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-4-15-19-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja waliochunguzwa maambukizi ya magonjwa ya ngono katika
+#      kipindi cha ripoti Umri 15-19
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE (ekbms.sti_screening = ''positive'' OR ekbms.sti_screening = ''negative'') AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+15 years'') <= date(''now'')) AND (date(efm.dob, ''+20 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-4-20-24-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja waliochunguzwa maambukizi ya magonjwa ya ngono katika
+#      kipindi cha ripoti Umri 20-24
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE (ekbms.sti_screening = ''positive'' OR ekbms.sti_screening = ''negative'') AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+20 years'') <= date(''now'')) AND (date(efm.dob, ''+25 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-4-25-29-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja waliochunguzwa maambukizi ya magonjwa ya ngono katika
+#      kipindi cha ripoti Umri 25-29
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE (ekbms.sti_screening = ''positive'' OR ekbms.sti_screening = ''negative'') AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+25 years'') <= date(''now'')) AND (date(efm.dob, ''+30 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-4-30-34-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja waliochunguzwa maambukizi ya magonjwa ya ngono katika
+#      kipindi cha ripoti Umri 30-34
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE (ekbms.sti_screening = ''positive'' OR ekbms.sti_screening = ''negative'') AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+30 years'') <= date(''now'')) AND (date(efm.dob, ''+35 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-4-35-39-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja waliochunguzwa maambukizi ya magonjwa ya ngono katika
+#      kipindi cha ripoti Umri 35-39
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE (ekbms.sti_screening = ''positive'' OR ekbms.sti_screening = ''negative'') AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+35 years'') <= date(''now'')) AND (date(efm.dob, ''+40 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-4-40-44-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja waliochunguzwa maambukizi ya magonjwa ya ngono katika
+#      kipindi cha ripoti Umri 40-44
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE (ekbms.sti_screening = ''positive'' OR ekbms.sti_screening = ''negative'') AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+40 years'') <= date(''now'')) AND (date(efm.dob, ''+45 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-4-45-49-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja waliochunguzwa maambukizi ya magonjwa ya ngono katika
+#      kipindi cha ripoti Umri 45-49
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE (ekbms.sti_screening = ''positive'' OR ekbms.sti_screening = ''negative'') AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+45 years'') <= date(''now'')) AND (date(efm.dob, ''+50 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-4->50-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja waliochunguzwa maambukizi ya magonjwa ya ngono katika
+#      kipindi cha ripoti Umri >50
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE (ekbms.sti_screening = ''positive'' OR ekbms.sti_screening = ''negative'') AND ekr.client_group =''pwid'' AND (date(''now'')-date(efm.dob))>=50 AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-5-<10-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja waliochunguzwa maambukizi ya homa ya ini (Hepatitis B)
+#      katika kipindi cha ripoti Umri <10
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE (ekbms.hep_b_testing = ''positive'' OR ekbms.hep_b_testing = ''negative'' OR ekbms.hep_b_testing = ''positive_and_referred'') AND ekr.client_group =''pwid'' AND (date(''now'')-date(efm.dob))<10 AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-5-10-14-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja waliochunguzwa maambukizi ya homa ya ini (Hepatitis B)
+#      katika kipindi cha ripoti Umri 10-14
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE (ekbms.hep_b_testing = ''positive'' OR ekbms.hep_b_testing = ''negative'' OR ekbms.hep_b_testing = ''positive_and_referred'') AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+10 years'') <= date(''now'')) AND (date(efm.dob, ''+15 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-5-15-19-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja waliochunguzwa maambukizi ya homa ya ini (Hepatitis B)
+#      katika kipindi cha ripoti Umri 15-19
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE (ekbms.hep_b_testing = ''positive'' OR ekbms.hep_b_testing = ''negative'' OR ekbms.hep_b_testing = ''positive_and_referred'') AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+15 years'') <= date(''now'')) AND (date(efm.dob, ''+20 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-5-20-24-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja waliochunguzwa maambukizi ya homa ya ini (Hepatitis B)
+#      katika kipindi cha ripoti Umri 20-24
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE (ekbms.hep_b_testing = ''positive'' OR ekbms.hep_b_testing = ''negative'' OR ekbms.hep_b_testing = ''positive_and_referred'') AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+20 years'') <= date(''now'')) AND (date(efm.dob, ''+25 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-5-25-29-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja waliochunguzwa maambukizi ya homa ya ini (Hepatitis B)
+#      katika kipindi cha ripoti Umri 25-29
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE (ekbms.hep_b_testing = ''positive'' OR ekbms.hep_b_testing = ''negative'' OR ekbms.hep_b_testing = ''positive_and_referred'') AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+25 years'') <= date(''now'')) AND (date(efm.dob, ''+30 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-5-30-34-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja waliochunguzwa maambukizi ya homa ya ini (Hepatitis B)
+#      katika kipindi cha ripoti Umri 30-34
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE (ekbms.hep_b_testing = ''positive'' OR ekbms.hep_b_testing = ''negative'' OR ekbms.hep_b_testing = ''positive_and_referred'') AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+30 years'') <= date(''now'')) AND (date(efm.dob, ''+35 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-5-35-39-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja waliochunguzwa maambukizi ya homa ya ini (Hepatitis B)
+#      katika kipindi cha ripoti Umri 35-39
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE (ekbms.hep_b_testing = ''positive'' OR ekbms.hep_b_testing = ''negative'' OR ekbms.hep_b_testing = ''positive_and_referred'') AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+35 years'') <= date(''now'')) AND (date(efm.dob, ''+40 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-5-40-44-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja waliochunguzwa maambukizi ya homa ya ini (Hepatitis B)
+#      katika kipindi cha ripoti Umri 40-44
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE (ekbms.hep_b_testing = ''positive'' OR ekbms.hep_b_testing = ''negative'' OR ekbms.hep_b_testing = ''positive_and_referred'') AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+40 years'') <= date(''now'')) AND (date(efm.dob, ''+45 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-5-45-49-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja waliochunguzwa maambukizi ya homa ya ini (Hepatitis B)
+#      katika kipindi cha ripoti Umri 45-49
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE (ekbms.hep_b_testing = ''positive'' OR ekbms.hep_b_testing = ''negative'' OR ekbms.hep_b_testing = ''positive_and_referred'') AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+45 years'') <= date(''now'')) AND (date(efm.dob, ''+50 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-5->50-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja waliochunguzwa maambukizi ya homa ya ini (Hepatitis B)
+#      katika kipindi cha ripoti Umri >50
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE (ekbms.hep_b_testing = ''positive'' OR ekbms.hep_b_testing = ''negative'' OR ekbms.hep_b_testing = ''positive_and_referred'') AND ekr.client_group =''pwid'' AND (date(''now'')-date(efm.dob))>=50 AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-6-<10-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja waliochunguzwa maambukizi ya homa ya ini (Hepatitis C)
+#      katika kipindi cha ripoti Umri <10
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE (ekbms.hep_c_testing = ''positive'' OR ekbms.hep_c_testing = ''negative'' OR ekbms.hep_c_testing = ''positive_and_referred'') AND ekr.client_group =''pwid'' AND (date(''now'')-date(efm.dob))<10 AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-6-10-14-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja waliochunguzwa maambukizi ya homa ya ini (Hepatitis C)
+#      katika kipindi cha ripoti Umri 10-14
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE (ekbms.hep_c_testing = ''positive'' OR ekbms.hep_c_testing = ''negative'' OR ekbms.hep_c_testing = ''positive_and_referred'') AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+10 years'') <= date(''now'')) AND (date(efm.dob, ''+15 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-6-15-19-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja waliochunguzwa maambukizi ya homa ya ini (Hepatitis C)
+#      katika kipindi cha ripoti Umri 15-19
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE (ekbms.hep_c_testing = ''positive'' OR ekbms.hep_c_testing = ''negative'' OR ekbms.hep_c_testing = ''positive_and_referred'') AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+15 years'') <= date(''now'')) AND (date(efm.dob, ''+20 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-6-20-24-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja waliochunguzwa maambukizi ya homa ya ini (Hepatitis C)
+#      katika kipindi cha ripoti Umri 20-24
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE (ekbms.hep_c_testing = ''positive'' OR ekbms.hep_c_testing = ''negative'' OR ekbms.hep_c_testing = ''positive_and_referred'') AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+20 years'') <= date(''now'')) AND (date(efm.dob, ''+25 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-6-25-29-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja waliochunguzwa maambukizi ya homa ya ini (Hepatitis C)
+#      katika kipindi cha ripoti Umri 25-29
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE (ekbms.hep_c_testing = ''positive'' OR ekbms.hep_c_testing = ''negative'' OR ekbms.hep_c_testing = ''positive_and_referred'') AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+25 years'') <= date(''now'')) AND (date(efm.dob, ''+30 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-6-30-34-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja waliochunguzwa maambukizi ya homa ya ini (Hepatitis C)
+#      katika kipindi cha ripoti Umri 30-34
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE (ekbms.hep_c_testing = ''positive'' OR ekbms.hep_c_testing = ''negative'' OR ekbms.hep_c_testing = ''positive_and_referred'') AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+30 years'') <= date(''now'')) AND (date(efm.dob, ''+35 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-6-35-39-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja waliochunguzwa maambukizi ya homa ya ini (Hepatitis C)
+#      katika kipindi cha ripoti Umri 35-39
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE (ekbms.hep_c_testing = ''positive'' OR ekbms.hep_c_testing = ''negative'' OR ekbms.hep_c_testing = ''positive_and_referred'') AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+35 years'') <= date(''now'')) AND (date(efm.dob, ''+40 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-6-40-44-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja waliochunguzwa maambukizi ya homa ya ini (Hepatitis C)
+#      katika kipindi cha ripoti Umri 40-44
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE (ekbms.hep_c_testing = ''positive'' OR ekbms.hep_c_testing = ''negative'' OR ekbms.hep_c_testing = ''positive_and_referred'') AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+40 years'') <= date(''now'')) AND (date(efm.dob, ''+45 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-6-45-49-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja waliochunguzwa maambukizi ya homa ya ini (Hepatitis C)
+#      katika kipindi cha ripoti Umri 45-49
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE (ekbms.hep_c_testing = ''positive'' OR ekbms.hep_c_testing = ''negative'' OR ekbms.hep_c_testing = ''positive_and_referred'') AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+45 years'') <= date(''now'')) AND (date(efm.dob, ''+50 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-6->50-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja waliochunguzwa maambukizi ya homa ya ini (Hepatitis C)
+#      katika kipindi cha ripoti Umri >50
+#    indicatorQuery: ' SELECT count(DISTINCT ekbms.entity_id) as count FROM ec_kvp_bio_medical_services ekbms INNER JOIN ec_family_member efm ON efm.base_entity_id = ekbms.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE (ekbms.hep_c_testing = ''positive'' OR ekbms.hep_c_testing = ''negative'' OR ekbms.hep_c_testing = ''positive_and_referred'') AND ekr.client_group =''pwid'' AND (date(''now'')-date(efm.dob))>=50 AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(ekbms.kvp_visit_date, 7, 4) || ''-'' || substr(ekbms.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-7-<10-pwid-ME
+#    grouping: KVP
+#    description: Idadi ya wateja waliotathiminiwa kutumia huduma za dawa kinga Umri <10
+#    indicatorQuery: ' SELECT count(ekr.id) as count FROM ec_kvp_register ekr INNER JOIN ec_family_member efm ON efm.base_entity_id = ekr.id WHERE prep_assessment=''yes'' AND ekr.client_group =''pwid'' AND (date(''now'')-date(efm.dob))<10 AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(strftime(''%Y-%m-%d'', datetime(ekr.last_interacted_with / 1000, ''unixepoch'', ''localtime'')), 1, 4) ||''-'' || substr(strftime(''%Y-%m-%d'', datetime(ekr.last_interacted_with / 1000, ''unixepoch'', ''localtime'')), 6, 2) ||''-'' || ''01'')'
+#  - key: kvp-7-10-14-pwid-ME
+#    grouping: KVP
+#    description: Idadi ya wateja waliotathiminiwa kutumia huduma za dawa kinga Umri 10-14
+#    indicatorQuery: ' SELECT count(ekr.id) as count FROM ec_kvp_register ekr INNER JOIN ec_family_member efm ON efm.base_entity_id = ekr.id WHERE prep_assessment=''yes'' AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+10 years'') <= date(''now'')) AND (date(efm.dob, ''+15 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(strftime(''%Y-%m-%d'', datetime(ekr.last_interacted_with / 1000, ''unixepoch'', ''localtime'')), 1, 4) ||''-'' || substr(strftime(''%Y-%m-%d'', datetime(ekr.last_interacted_with / 1000, ''unixepoch'', ''localtime'')), 6, 2) ||''-'' || ''01'')'
+#  - key: kvp-7-15-19-pwid-ME
+#    grouping: KVP
+#    description: Idadi ya wateja waliotathiminiwa kutumia huduma za dawa kinga Umri 15-19
+#    indicatorQuery: ' SELECT count(ekr.id) as count FROM ec_kvp_register ekr INNER JOIN ec_family_member efm ON efm.base_entity_id = ekr.id WHERE prep_assessment=''yes'' AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+15 years'') <= date(''now'')) AND (date(efm.dob, ''+20 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(strftime(''%Y-%m-%d'', datetime(ekr.last_interacted_with / 1000, ''unixepoch'', ''localtime'')), 1, 4) ||''-'' || substr(strftime(''%Y-%m-%d'', datetime(ekr.last_interacted_with / 1000, ''unixepoch'', ''localtime'')), 6, 2) ||''-'' || ''01'')'
+#  - key: kvp-7-20-24-pwid-ME
+#    grouping: KVP
+#    description: Idadi ya wateja waliotathiminiwa kutumia huduma za dawa kinga Umri 20-24
+#    indicatorQuery: ' SELECT count(ekr.id) as count FROM ec_kvp_register ekr INNER JOIN ec_family_member efm ON efm.base_entity_id = ekr.id WHERE prep_assessment=''yes'' AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+20 years'') <= date(''now'')) AND (date(efm.dob, ''+25 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(strftime(''%Y-%m-%d'', datetime(ekr.last_interacted_with / 1000, ''unixepoch'', ''localtime'')), 1, 4) ||''-'' || substr(strftime(''%Y-%m-%d'', datetime(ekr.last_interacted_with / 1000, ''unixepoch'', ''localtime'')), 6, 2) ||''-'' || ''01'')'
+#  - key: kvp-7-25-29-pwid-ME
+#    grouping: KVP
+#    description: Idadi ya wateja waliotathiminiwa kutumia huduma za dawa kinga Umri 25-29
+#    indicatorQuery: ' SELECT count(ekr.id) as count FROM ec_kvp_register ekr INNER JOIN ec_family_member efm ON efm.base_entity_id = ekr.id WHERE prep_assessment=''yes'' AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+25 years'') <= date(''now'')) AND (date(efm.dob, ''+30 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(strftime(''%Y-%m-%d'', datetime(ekr.last_interacted_with / 1000, ''unixepoch'', ''localtime'')), 1, 4) ||''-'' || substr(strftime(''%Y-%m-%d'', datetime(ekr.last_interacted_with / 1000, ''unixepoch'', ''localtime'')), 6, 2) ||''-'' || ''01'')'
+#  - key: kvp-7-30-34-pwid-ME
+#    grouping: KVP
+#    description: Idadi ya wateja waliotathiminiwa kutumia huduma za dawa kinga Umri 30-34
+#    indicatorQuery: ' SELECT count(ekr.id) as count FROM ec_kvp_register ekr INNER JOIN ec_family_member efm ON efm.base_entity_id = ekr.id WHERE prep_assessment=''yes'' AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+30 years'') <= date(''now'')) AND (date(efm.dob, ''+35 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(strftime(''%Y-%m-%d'', datetime(ekr.last_interacted_with / 1000, ''unixepoch'', ''localtime'')), 1, 4) ||''-'' || substr(strftime(''%Y-%m-%d'', datetime(ekr.last_interacted_with / 1000, ''unixepoch'', ''localtime'')), 6, 2) ||''-'' || ''01'')'
+#  - key: kvp-7-35-39-pwid-ME
+#    grouping: KVP
+#    description: Idadi ya wateja waliotathiminiwa kutumia huduma za dawa kinga Umri 35-39
+#    indicatorQuery: ' SELECT count(ekr.id) as count FROM ec_kvp_register ekr INNER JOIN ec_family_member efm ON efm.base_entity_id = ekr.id WHERE prep_assessment=''yes'' AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+35 years'') <= date(''now'')) AND (date(efm.dob, ''+40 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(strftime(''%Y-%m-%d'', datetime(ekr.last_interacted_with / 1000, ''unixepoch'', ''localtime'')), 1, 4) ||''-'' || substr(strftime(''%Y-%m-%d'', datetime(ekr.last_interacted_with / 1000, ''unixepoch'', ''localtime'')), 6, 2) ||''-'' || ''01'')'
+#  - key: kvp-7-40-44-pwid-ME
+#    grouping: KVP
+#    description: Idadi ya wateja waliotathiminiwa kutumia huduma za dawa kinga Umri 40-44
+#    indicatorQuery: ' SELECT count(ekr.id) as count FROM ec_kvp_register ekr INNER JOIN ec_family_member efm ON efm.base_entity_id = ekr.id WHERE prep_assessment=''yes'' AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+40 years'') <= date(''now'')) AND (date(efm.dob, ''+45 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(strftime(''%Y-%m-%d'', datetime(ekr.last_interacted_with / 1000, ''unixepoch'', ''localtime'')), 1, 4) ||''-'' || substr(strftime(''%Y-%m-%d'', datetime(ekr.last_interacted_with / 1000, ''unixepoch'', ''localtime'')), 6, 2) ||''-'' || ''01'')'
+#  - key: kvp-7-45-49-pwid-ME
+#    grouping: KVP
+#    description: Idadi ya wateja waliotathiminiwa kutumia huduma za dawa kinga Umri 45-49
+#    indicatorQuery: ' SELECT count(ekr.id) as count FROM ec_kvp_register ekr INNER JOIN ec_family_member efm ON efm.base_entity_id = ekr.id WHERE prep_assessment=''yes'' AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+45 years'') <= date(''now'')) AND (date(efm.dob, ''+50 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(strftime(''%Y-%m-%d'', datetime(ekr.last_interacted_with / 1000, ''unixepoch'', ''localtime'')), 1, 4) ||''-'' || substr(strftime(''%Y-%m-%d'', datetime(ekr.last_interacted_with / 1000, ''unixepoch'', ''localtime'')), 6, 2) ||''-'' || ''01'')'
+#  - key: kvp-7->50-pwid-ME
+#    grouping: KVP
+#    description: Idadi ya wateja waliotathiminiwa kutumia huduma za dawa kinga Umri >50
+#    indicatorQuery: ' SELECT count(ekr.id) as count FROM ec_kvp_register ekr INNER JOIN ec_family_member efm ON efm.base_entity_id = ekr.id WHERE prep_assessment=''yes'' AND ekr.client_group =''pwid'' AND (date(''now'')-date(efm.dob))>=50 AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(strftime(''%Y-%m-%d'', datetime(ekr.last_interacted_with / 1000, ''unixepoch'', ''localtime'')), 1, 4) ||''-'' || substr(strftime(''%Y-%m-%d'', datetime(ekr.last_interacted_with / 1000, ''unixepoch'', ''localtime'')), 6, 2) ||''-'' || ''01'')'
+#  - key: kvp-8-<10-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja wanaostahili kuanza dawa kinga katika kipindi cha ripoti
+#      Umri <10
+#    indicatorQuery: ' SELECT count(ekr.id) as count FROM ec_kvp_register ekr INNER JOIN ec_family_member efm ON efm.base_entity_id = ekr.id WHERE prep_qualified=''yes'' AND ekr.client_group =''pwid'' AND (date(''now'')-date(efm.dob))<10 AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(strftime(''%Y-%m-%d'', datetime(ekr.last_interacted_with / 1000, ''unixepoch'', ''localtime'')), 1, 4) ||''-'' || substr(strftime(''%Y-%m-%d'', datetime(ekr.last_interacted_with / 1000, ''unixepoch'', ''localtime'')), 6, 2) ||''-'' || ''01'')'
+#  - key: kvp-8-10-14-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja wanaostahili kuanza dawa kinga katika kipindi cha ripoti
+#      Umri 10-14
+#    indicatorQuery: ' SELECT count(ekr.id) as count FROM ec_kvp_register ekr INNER JOIN ec_family_member efm ON efm.base_entity_id = ekr.id WHERE prep_qualified=''yes'' AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+10 years'') <= date(''now'')) AND (date(efm.dob, ''+15 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(strftime(''%Y-%m-%d'', datetime(ekr.last_interacted_with / 1000, ''unixepoch'', ''localtime'')), 1, 4) ||''-'' || substr(strftime(''%Y-%m-%d'', datetime(ekr.last_interacted_with / 1000, ''unixepoch'', ''localtime'')), 6, 2) ||''-'' || ''01'')'
+#  - key: kvp-8-15-19-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja wanaostahili kuanza dawa kinga katika kipindi cha ripoti
+#      Umri 15-19
+#    indicatorQuery: ' SELECT count(ekr.id) as count FROM ec_kvp_register ekr INNER JOIN ec_family_member efm ON efm.base_entity_id = ekr.id WHERE prep_qualified=''yes'' AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+15 years'') <= date(''now'')) AND (date(efm.dob, ''+20 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(strftime(''%Y-%m-%d'', datetime(ekr.last_interacted_with / 1000, ''unixepoch'', ''localtime'')), 1, 4) ||''-'' || substr(strftime(''%Y-%m-%d'', datetime(ekr.last_interacted_with / 1000, ''unixepoch'', ''localtime'')), 6, 2) ||''-'' || ''01'')'
+#  - key: kvp-8-20-24-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja wanaostahili kuanza dawa kinga katika kipindi cha ripoti
+#      Umri 20-24
+#    indicatorQuery: ' SELECT count(ekr.id) as count FROM ec_kvp_register ekr INNER JOIN ec_family_member efm ON efm.base_entity_id = ekr.id WHERE prep_qualified=''yes'' AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+20 years'') <= date(''now'')) AND (date(efm.dob, ''+25 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(strftime(''%Y-%m-%d'', datetime(ekr.last_interacted_with / 1000, ''unixepoch'', ''localtime'')), 1, 4) ||''-'' || substr(strftime(''%Y-%m-%d'', datetime(ekr.last_interacted_with / 1000, ''unixepoch'', ''localtime'')), 6, 2) ||''-'' || ''01'')'
+#  - key: kvp-8-25-29-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja wanaostahili kuanza dawa kinga katika kipindi cha ripoti
+#      Umri 25-29
+#    indicatorQuery: ' SELECT count(ekr.id) as count FROM ec_kvp_register ekr INNER JOIN ec_family_member efm ON efm.base_entity_id = ekr.id WHERE prep_qualified=''yes'' AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+25 years'') <= date(''now'')) AND (date(efm.dob, ''+30 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(strftime(''%Y-%m-%d'', datetime(ekr.last_interacted_with / 1000, ''unixepoch'', ''localtime'')), 1, 4) ||''-'' || substr(strftime(''%Y-%m-%d'', datetime(ekr.last_interacted_with / 1000, ''unixepoch'', ''localtime'')), 6, 2) ||''-'' || ''01'')'
+#  - key: kvp-8-30-34-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja wanaostahili kuanza dawa kinga katika kipindi cha ripoti
+#      Umri 30-34
+#    indicatorQuery: ' SELECT count(ekr.id) as count FROM ec_kvp_register ekr INNER JOIN ec_family_member efm ON efm.base_entity_id = ekr.id WHERE prep_qualified=''yes'' AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+30 years'') <= date(''now'')) AND (date(efm.dob, ''+35 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(strftime(''%Y-%m-%d'', datetime(ekr.last_interacted_with / 1000, ''unixepoch'', ''localtime'')), 1, 4) ||''-'' || substr(strftime(''%Y-%m-%d'', datetime(ekr.last_interacted_with / 1000, ''unixepoch'', ''localtime'')), 6, 2) ||''-'' || ''01'')'
+#  - key: kvp-8-35-39-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja wanaostahili kuanza dawa kinga katika kipindi cha ripoti
+#      Umri 35-39
+#    indicatorQuery: ' SELECT count(ekr.id) as count FROM ec_kvp_register ekr INNER JOIN ec_family_member efm ON efm.base_entity_id = ekr.id WHERE prep_qualified=''yes'' AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+35 years'') <= date(''now'')) AND (date(efm.dob, ''+40 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(strftime(''%Y-%m-%d'', datetime(ekr.last_interacted_with / 1000, ''unixepoch'', ''localtime'')), 1, 4) ||''-'' || substr(strftime(''%Y-%m-%d'', datetime(ekr.last_interacted_with / 1000, ''unixepoch'', ''localtime'')), 6, 2) ||''-'' || ''01'')'
+#  - key: kvp-8-40-44-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja wanaostahili kuanza dawa kinga katika kipindi cha ripoti
+#      Umri 40-44
+#    indicatorQuery: ' SELECT count(ekr.id) as count FROM ec_kvp_register ekr INNER JOIN ec_family_member efm ON efm.base_entity_id = ekr.id WHERE prep_qualified=''yes'' AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+40 years'') <= date(''now'')) AND (date(efm.dob, ''+45 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(strftime(''%Y-%m-%d'', datetime(ekr.last_interacted_with / 1000, ''unixepoch'', ''localtime'')), 1, 4) ||''-'' || substr(strftime(''%Y-%m-%d'', datetime(ekr.last_interacted_with / 1000, ''unixepoch'', ''localtime'')), 6, 2) ||''-'' || ''01'')'
+#  - key: kvp-8-45-49-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja wanaostahili kuanza dawa kinga katika kipindi cha ripoti
+#      Umri 45-49
+#    indicatorQuery: ' SELECT count(ekr.id) as count FROM ec_kvp_register ekr INNER JOIN ec_family_member efm ON efm.base_entity_id = ekr.id WHERE prep_qualified=''yes'' AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+45 years'') <= date(''now'')) AND (date(efm.dob, ''+50 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(strftime(''%Y-%m-%d'', datetime(ekr.last_interacted_with / 1000, ''unixepoch'', ''localtime'')), 1, 4) ||''-'' || substr(strftime(''%Y-%m-%d'', datetime(ekr.last_interacted_with / 1000, ''unixepoch'', ''localtime'')), 6, 2) ||''-'' || ''01'')'
+#  - key: kvp-8->50-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja wanaostahili kuanza dawa kinga katika kipindi cha ripoti
+#      Umri >50
+#    indicatorQuery: ' SELECT count(ekr.id) as count FROM ec_kvp_register ekr INNER JOIN ec_family_member efm ON efm.base_entity_id = ekr.id WHERE prep_qualified=''yes'' AND ekr.client_group =''pwid'' AND (date(''now'')-date(efm.dob))>=50 AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(strftime(''%Y-%m-%d'', datetime(ekr.last_interacted_with / 1000, ''unixepoch'', ''localtime'')), 1, 4) ||''-'' || substr(strftime(''%Y-%m-%d'', datetime(ekr.last_interacted_with / 1000, ''unixepoch'', ''localtime'')), 6, 2) ||''-'' || ''01'')'
+#  - key: kvp-9-<10-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja wapya  ambao wameanza kutumia dawa kinga katika kipindi
+#      cha ripoti Umri <10
+#    indicatorQuery: ' SELECT count(DISTINCT epf.entity_id) as count FROM ec_prep_followup epf INNER JOIN ec_family_member efm ON efm.base_entity_id = epf.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE prep_status = ''initiated'' AND visit_type = ''new_client'' AND ekr.client_group =''pwid'' AND (date(''now'')-date(efm.dob))<10 AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(epf.kvp_visit_date, 7, 4) || ''-'' || substr(epf.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-9-10-14-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja wapya  ambao wameanza kutumia dawa kinga katika kipindi
+#      cha ripoti Umri 10-14
+#    indicatorQuery: ' SELECT count(DISTINCT epf.entity_id) as count FROM ec_prep_followup epf INNER JOIN ec_family_member efm ON efm.base_entity_id = epf.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE prep_status = ''initiated'' AND visit_type = ''new_client'' AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+10 years'') <= date(''now'')) AND (date(efm.dob, ''+15 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(epf.kvp_visit_date, 7, 4) || ''-'' || substr(epf.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-9-15-19-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja wapya  ambao wameanza kutumia dawa kinga katika kipindi
+#      cha ripoti Umri 15-19
+#    indicatorQuery: ' SELECT count(DISTINCT epf.entity_id) as count FROM ec_prep_followup epf INNER JOIN ec_family_member efm ON efm.base_entity_id = epf.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE prep_status = ''initiated'' AND visit_type = ''new_client'' AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+15 years'') <= date(''now'')) AND (date(efm.dob, ''+20 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(epf.kvp_visit_date, 7, 4) || ''-'' || substr(epf.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-9-20-24-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja wapya  ambao wameanza kutumia dawa kinga katika kipindi
+#      cha ripoti Umri 20-24
+#    indicatorQuery: ' SELECT count(DISTINCT epf.entity_id) as count FROM ec_prep_followup epf INNER JOIN ec_family_member efm ON efm.base_entity_id = epf.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE prep_status = ''initiated'' AND visit_type = ''new_client'' AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+20 years'') <= date(''now'')) AND (date(efm.dob, ''+25 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(epf.kvp_visit_date, 7, 4) || ''-'' || substr(epf.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-9-25-29-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja wapya  ambao wameanza kutumia dawa kinga katika kipindi
+#      cha ripoti Umri 25-29
+#    indicatorQuery: ' SELECT count(DISTINCT epf.entity_id) as count FROM ec_prep_followup epf INNER JOIN ec_family_member efm ON efm.base_entity_id = epf.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE prep_status = ''initiated'' AND visit_type = ''new_client'' AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+25 years'') <= date(''now'')) AND (date(efm.dob, ''+30 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(epf.kvp_visit_date, 7, 4) || ''-'' || substr(epf.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-9-30-34-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja wapya  ambao wameanza kutumia dawa kinga katika kipindi
+#      cha ripoti Umri 30-34
+#    indicatorQuery: ' SELECT count(DISTINCT epf.entity_id) as count FROM ec_prep_followup epf INNER JOIN ec_family_member efm ON efm.base_entity_id = epf.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE prep_status = ''initiated'' AND visit_type = ''new_client'' AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+30 years'') <= date(''now'')) AND (date(efm.dob, ''+35 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(epf.kvp_visit_date, 7, 4) || ''-'' || substr(epf.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-9-35-39-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja wapya  ambao wameanza kutumia dawa kinga katika kipindi
+#      cha ripoti Umri 35-39
+#    indicatorQuery: ' SELECT count(DISTINCT epf.entity_id) as count FROM ec_prep_followup epf INNER JOIN ec_family_member efm ON efm.base_entity_id = epf.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE prep_status = ''initiated'' AND visit_type = ''new_client'' AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+35 years'') <= date(''now'')) AND (date(efm.dob, ''+40 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(epf.kvp_visit_date, 7, 4) || ''-'' || substr(epf.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-9-40-44-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja wapya  ambao wameanza kutumia dawa kinga katika kipindi
+#      cha ripoti Umri 40-44
+#    indicatorQuery: ' SELECT count(DISTINCT epf.entity_id) as count FROM ec_prep_followup epf INNER JOIN ec_family_member efm ON efm.base_entity_id = epf.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE prep_status = ''initiated'' AND visit_type = ''new_client'' AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+40 years'') <= date(''now'')) AND (date(efm.dob, ''+45 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(epf.kvp_visit_date, 7, 4) || ''-'' || substr(epf.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-9-45-49-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja wapya  ambao wameanza kutumia dawa kinga katika kipindi
+#      cha ripoti Umri 45-49
+#    indicatorQuery: ' SELECT count(DISTINCT epf.entity_id) as count FROM ec_prep_followup epf INNER JOIN ec_family_member efm ON efm.base_entity_id = epf.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE prep_status = ''initiated'' AND visit_type = ''new_client'' AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+45 years'') <= date(''now'')) AND (date(efm.dob, ''+50 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(epf.kvp_visit_date, 7, 4) || ''-'' || substr(epf.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-9->50-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja wapya  ambao wameanza kutumia dawa kinga katika kipindi
+#      cha ripoti Umri >50
+#    indicatorQuery: ' SELECT count(DISTINCT epf.entity_id) as count FROM ec_prep_followup epf INNER JOIN ec_family_member efm ON efm.base_entity_id = epf.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE prep_status = ''initiated'' AND visit_type = ''new_client'' AND ekr.client_group =''pwid'' AND (date(''now'')-date(efm.dob))>=50 AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(epf.kvp_visit_date, 7, 4) || ''-'' || substr(epf.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-10-<10-pwid-ME
+#    grouping: KVP
+#    description: Idadi ya wateja waliopata dawa kinga katika kipindi cha ripoti Umri <10
+#    indicatorQuery: ' SELECT count(DISTINCT epf.entity_id) as count FROM ec_prep_followup epf INNER JOIN ec_family_member efm ON efm.base_entity_id = epf.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE prep_drug_offered = ''tdf_ftc'' AND ekr.client_group =''pwid'' AND (date(''now'')-date(efm.dob))<10 AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(epf.kvp_visit_date, 7, 4) || ''-'' || substr(epf.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-10-10-14-pwid-ME
+#    grouping: KVP
+#    description: Idadi ya wateja waliopata dawa kinga katika kipindi cha ripoti Umri 10-14
+#    indicatorQuery: ' SELECT count(DISTINCT epf.entity_id) as count FROM ec_prep_followup epf INNER JOIN ec_family_member efm ON efm.base_entity_id = epf.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE prep_drug_offered = ''tdf_ftc'' AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+10 years'') <= date(''now'')) AND (date(efm.dob, ''+15 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(epf.kvp_visit_date, 7, 4) || ''-'' || substr(epf.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-10-15-19-pwid-ME
+#    grouping: KVP
+#    description: Idadi ya wateja waliopata dawa kinga katika kipindi cha ripoti Umri 15-19
+#    indicatorQuery: ' SELECT count(DISTINCT epf.entity_id) as count FROM ec_prep_followup epf INNER JOIN ec_family_member efm ON efm.base_entity_id = epf.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE prep_drug_offered = ''tdf_ftc'' AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+15 years'') <= date(''now'')) AND (date(efm.dob, ''+20 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(epf.kvp_visit_date, 7, 4) || ''-'' || substr(epf.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-10-20-24-pwid-ME
+#    grouping: KVP
+#    description: Idadi ya wateja waliopata dawa kinga katika kipindi cha ripoti Umri 20-24
+#    indicatorQuery: ' SELECT count(DISTINCT epf.entity_id) as count FROM ec_prep_followup epf INNER JOIN ec_family_member efm ON efm.base_entity_id = epf.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE prep_drug_offered = ''tdf_ftc'' AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+20 years'') <= date(''now'')) AND (date(efm.dob, ''+25 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(epf.kvp_visit_date, 7, 4) || ''-'' || substr(epf.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-10-25-29-pwid-ME
+#    grouping: KVP
+#    description: Idadi ya wateja waliopata dawa kinga katika kipindi cha ripoti Umri 25-29
+#    indicatorQuery: ' SELECT count(DISTINCT epf.entity_id) as count FROM ec_prep_followup epf INNER JOIN ec_family_member efm ON efm.base_entity_id = epf.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE prep_drug_offered = ''tdf_ftc'' AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+25 years'') <= date(''now'')) AND (date(efm.dob, ''+30 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(epf.kvp_visit_date, 7, 4) || ''-'' || substr(epf.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-10-30-34-pwid-ME
+#    grouping: KVP
+#    description: Idadi ya wateja waliopata dawa kinga katika kipindi cha ripoti Umri 30-34
+#    indicatorQuery: ' SELECT count(DISTINCT epf.entity_id) as count FROM ec_prep_followup epf INNER JOIN ec_family_member efm ON efm.base_entity_id = epf.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE prep_drug_offered = ''tdf_ftc'' AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+30 years'') <= date(''now'')) AND (date(efm.dob, ''+35 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(epf.kvp_visit_date, 7, 4) || ''-'' || substr(epf.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-10-35-39-pwid-ME
+#    grouping: KVP
+#    description: Idadi ya wateja waliopata dawa kinga katika kipindi cha ripoti Umri 35-39
+#    indicatorQuery: ' SELECT count(DISTINCT epf.entity_id) as count FROM ec_prep_followup epf INNER JOIN ec_family_member efm ON efm.base_entity_id = epf.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE prep_drug_offered = ''tdf_ftc'' AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+35 years'') <= date(''now'')) AND (date(efm.dob, ''+40 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(epf.kvp_visit_date, 7, 4) || ''-'' || substr(epf.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-10-40-44-pwid-ME
+#    grouping: KVP
+#    description: Idadi ya wateja waliopata dawa kinga katika kipindi cha ripoti Umri 40-44
+#    indicatorQuery: ' SELECT count(DISTINCT epf.entity_id) as count FROM ec_prep_followup epf INNER JOIN ec_family_member efm ON efm.base_entity_id = epf.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE prep_drug_offered = ''tdf_ftc'' AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+40 years'') <= date(''now'')) AND (date(efm.dob, ''+45 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(epf.kvp_visit_date, 7, 4) || ''-'' || substr(epf.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-10-45-49-pwid-ME
+#    grouping: KVP
+#    description: Idadi ya wateja waliopata dawa kinga katika kipindi cha ripoti Umri 45-49
+#    indicatorQuery: ' SELECT count(DISTINCT epf.entity_id) as count FROM ec_prep_followup epf INNER JOIN ec_family_member efm ON efm.base_entity_id = epf.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE prep_drug_offered = ''tdf_ftc'' AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+45 years'') <= date(''now'')) AND (date(efm.dob, ''+50 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(epf.kvp_visit_date, 7, 4) || ''-'' || substr(epf.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-10->50-pwid-ME
+#    grouping: KVP
+#    description: Idadi ya wateja waliopata dawa kinga katika kipindi cha ripoti Umri >50
+#    indicatorQuery: ' SELECT count(DISTINCT epf.entity_id) as count FROM ec_prep_followup epf INNER JOIN ec_family_member efm ON efm.base_entity_id = epf.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE prep_drug_offered = ''tdf_ftc'' AND ekr.client_group =''pwid'' AND (date(''now'')-date(efm.dob))>=50 AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(epf.kvp_visit_date, 7, 4) || ''-'' || substr(epf.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-11-<10-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja wanaoendelea kutumia dawa kinga katika kipindi cha ripoti
+#      (Isipokuwa wateja  Wapya) Umri <10
+#    indicatorQuery: ' SELECT count(DISTINCT epf.entity_id) as count FROM ec_prep_followup epf INNER JOIN ec_family_member efm ON efm.base_entity_id = epf.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE prep_drug_offered = ''tdf_ftc'' AND visit_type != ''new_client'' AND ekr.client_group =''pwid'' AND (date(''now'')-date(efm.dob))<10 AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(epf.kvp_visit_date, 7, 4) || ''-'' || substr(epf.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-11-10-14-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja wanaoendelea kutumia dawa kinga katika kipindi cha ripoti
+#      (Isipokuwa wateja  Wapya) Umri 10-14
+#    indicatorQuery: ' SELECT count(DISTINCT epf.entity_id) as count FROM ec_prep_followup epf INNER JOIN ec_family_member efm ON efm.base_entity_id = epf.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE prep_drug_offered = ''tdf_ftc'' AND visit_type != ''new_client'' AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+10 years'') <= date(''now'')) AND (date(efm.dob, ''+15 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(epf.kvp_visit_date, 7, 4) || ''-'' || substr(epf.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-11-15-19-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja wanaoendelea kutumia dawa kinga katika kipindi cha ripoti
+#      (Isipokuwa wateja  Wapya) Umri 15-19
+#    indicatorQuery: ' SELECT count(DISTINCT epf.entity_id) as count FROM ec_prep_followup epf INNER JOIN ec_family_member efm ON efm.base_entity_id = epf.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE prep_drug_offered = ''tdf_ftc'' AND visit_type != ''new_client'' AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+15 years'') <= date(''now'')) AND (date(efm.dob, ''+20 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(epf.kvp_visit_date, 7, 4) || ''-'' || substr(epf.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-11-20-24-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja wanaoendelea kutumia dawa kinga katika kipindi cha ripoti
+#      (Isipokuwa wateja  Wapya) Umri 20-24
+#    indicatorQuery: ' SELECT count(DISTINCT epf.entity_id) as count FROM ec_prep_followup epf INNER JOIN ec_family_member efm ON efm.base_entity_id = epf.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE prep_drug_offered = ''tdf_ftc'' AND visit_type != ''new_client'' AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+20 years'') <= date(''now'')) AND (date(efm.dob, ''+25 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(epf.kvp_visit_date, 7, 4) || ''-'' || substr(epf.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-11-25-29-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja wanaoendelea kutumia dawa kinga katika kipindi cha ripoti
+#      (Isipokuwa wateja  Wapya) Umri 25-29
+#    indicatorQuery: ' SELECT count(DISTINCT epf.entity_id) as count FROM ec_prep_followup epf INNER JOIN ec_family_member efm ON efm.base_entity_id = epf.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE prep_drug_offered = ''tdf_ftc'' AND visit_type != ''new_client'' AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+25 years'') <= date(''now'')) AND (date(efm.dob, ''+30 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(epf.kvp_visit_date, 7, 4) || ''-'' || substr(epf.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-11-30-34-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja wanaoendelea kutumia dawa kinga katika kipindi cha ripoti
+#      (Isipokuwa wateja  Wapya) Umri 30-34
+#    indicatorQuery: ' SELECT count(DISTINCT epf.entity_id) as count FROM ec_prep_followup epf INNER JOIN ec_family_member efm ON efm.base_entity_id = epf.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE prep_drug_offered = ''tdf_ftc'' AND visit_type != ''new_client'' AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+30 years'') <= date(''now'')) AND (date(efm.dob, ''+35 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(epf.kvp_visit_date, 7, 4) || ''-'' || substr(epf.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-11-35-39-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja wanaoendelea kutumia dawa kinga katika kipindi cha ripoti
+#      (Isipokuwa wateja  Wapya) Umri 35-39
+#    indicatorQuery: ' SELECT count(DISTINCT epf.entity_id) as count FROM ec_prep_followup epf INNER JOIN ec_family_member efm ON efm.base_entity_id = epf.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE prep_drug_offered = ''tdf_ftc'' AND visit_type != ''new_client'' AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+35 years'') <= date(''now'')) AND (date(efm.dob, ''+40 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(epf.kvp_visit_date, 7, 4) || ''-'' || substr(epf.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-11-40-44-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja wanaoendelea kutumia dawa kinga katika kipindi cha ripoti
+#      (Isipokuwa wateja  Wapya) Umri 40-44
+#    indicatorQuery: ' SELECT count(DISTINCT epf.entity_id) as count FROM ec_prep_followup epf INNER JOIN ec_family_member efm ON efm.base_entity_id = epf.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE prep_drug_offered = ''tdf_ftc'' AND visit_type != ''new_client'' AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+40 years'') <= date(''now'')) AND (date(efm.dob, ''+45 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(epf.kvp_visit_date, 7, 4) || ''-'' || substr(epf.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-11-45-49-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja wanaoendelea kutumia dawa kinga katika kipindi cha ripoti
+#      (Isipokuwa wateja  Wapya) Umri 45-49
+#    indicatorQuery: ' SELECT count(DISTINCT epf.entity_id) as count FROM ec_prep_followup epf INNER JOIN ec_family_member efm ON efm.base_entity_id = epf.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE prep_drug_offered = ''tdf_ftc'' AND visit_type != ''new_client'' AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+45 years'') <= date(''now'')) AND (date(efm.dob, ''+50 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(epf.kvp_visit_date, 7, 4) || ''-'' || substr(epf.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-11->50-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja wanaoendelea kutumia dawa kinga katika kipindi cha ripoti
+#      (Isipokuwa wateja  Wapya) Umri >50
+#    indicatorQuery: ' SELECT count(DISTINCT epf.entity_id) as count FROM ec_prep_followup epf INNER JOIN ec_family_member efm ON efm.base_entity_id = epf.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE prep_drug_offered = ''tdf_ftc'' AND visit_type != ''new_client'' AND ekr.client_group =''pwid'' AND (date(''now'')-date(efm.dob))>=50 AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(epf.kvp_visit_date, 7, 4) || ''-'' || substr(epf.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-14-a-<10-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja walioacha  dawa kinga kwa sababu yoyote ile katika kipindi
+#      cha ripoti Umri <10
+#    indicatorQuery: ' SELECT count(DISTINCT epf.entity_id) as count FROM ec_prep_followup epf INNER JOIN ec_family_member efm ON efm.base_entity_id = epf.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE prep_status=''discontinued_quit'' AND reasons_stopping_prep IS NOT NULL AND ekr.client_group =''pwid'' AND (date(''now'')-date(efm.dob))<10 AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(epf.kvp_visit_date, 7, 4) || ''-'' || substr(epf.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-14-a-10-14-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja walioacha  dawa kinga kwa sababu yoyote ile katika kipindi
+#      cha ripoti Umri 10-14
+#    indicatorQuery: ' SELECT count(DISTINCT epf.entity_id) as count FROM ec_prep_followup epf INNER JOIN ec_family_member efm ON efm.base_entity_id = epf.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE prep_status=''discontinued_quit'' AND reasons_stopping_prep IS NOT NULL AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+10 years'') <= date(''now'')) AND (date(efm.dob, ''+15 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(epf.kvp_visit_date, 7, 4) || ''-'' || substr(epf.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-14-a-15-19-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja walioacha  dawa kinga kwa sababu yoyote ile katika kipindi
+#      cha ripoti Umri 15-19
+#    indicatorQuery: ' SELECT count(DISTINCT epf.entity_id) as count FROM ec_prep_followup epf INNER JOIN ec_family_member efm ON efm.base_entity_id = epf.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE prep_status=''discontinued_quit'' AND reasons_stopping_prep IS NOT NULL AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+15 years'') <= date(''now'')) AND (date(efm.dob, ''+20 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(epf.kvp_visit_date, 7, 4) || ''-'' || substr(epf.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-14-a-20-24-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja walioacha  dawa kinga kwa sababu yoyote ile katika kipindi
+#      cha ripoti Umri 20-24
+#    indicatorQuery: ' SELECT count(DISTINCT epf.entity_id) as count FROM ec_prep_followup epf INNER JOIN ec_family_member efm ON efm.base_entity_id = epf.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE prep_status=''discontinued_quit'' AND reasons_stopping_prep IS NOT NULL AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+20 years'') <= date(''now'')) AND (date(efm.dob, ''+25 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(epf.kvp_visit_date, 7, 4) || ''-'' || substr(epf.kvp_visit_date, 4, 2) || ''-'' || ''01'')'
+#  - key: kvp-14-a-25-29-pwid-ME
+#    grouping: KVP
+#    description: >-
+#      Idadi ya wateja walioacha  dawa kinga kwa sababu yoyote ile katika kipindi
+#      cha ripoti Umri 25-29
+#    indicatorQuery: ' SELECT count(DISTINCT epf.entity_id) as count FROM ec_prep_followup epf INNER JOIN ec_family_member efm ON efm.base_entity_id = epf.entity_id INNER JOIN ec_kvp_register ekr ON efm.base_entity_id = ekr.id WHERE prep_status=''discontinued_quit'' AND reasons_stopping_prep IS NOT NULL AND ekr.client_group =''pwid'' AND (date(efm.dob, ''+25 years'') <= date(''now'')) AND (date(efm.dob, ''+30 years'') > date(''now'')) AND (efm.gender=''Male'') AND date((substr(''%s'', 1, 4) || ''-'' || substr(''%s'', 6, 2) || ''-'' || ''01'')) = date(substr(epf.kvp_visit_date, 7, 4) || ''-'' || substr(epf.kvp_visit_date, 4, 2) || ''-'' || ''01'')'

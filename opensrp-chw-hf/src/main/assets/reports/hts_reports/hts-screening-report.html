@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <script src="../report-script.js"></script>
+
+    <style>
+    *{
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.show-on-print {
+  display: none;
+}
+
+body{
+    font-family: Helvetica;
+    -webkit-font-smoothing: antialiased;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+
+/* Table Styles */
+
+.table-wrapper{
+    margin: 10px;
+    margin-right: 10px;
+}
+
+.fl-table {
+    border-radius: 5px;
+    font-size: 10px;
+    font-weight: normal;
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 100%;
+    background-color: white;
+}
+
+.fl-table td, .fl-table th {
+    padding: 5px;
+}
+
+
+ul {
+    width: 100%;
+}
+ul li {
+    width: 49%;
+    display: inline-block;
+}
+
+ul li > * {
+    width: 30%;
+    margin-bottom: 5px;
+}
+
+.no-data {
+  background: #ccc;
+}
+
+.total-both {
+  background: #f2f5f3;
+}
+
+.color-male{
+  background: #FCD5B4;
+}
+
+.color-female{
+  background: #D8E4BC;
+}
+
+@media print {
+  .show-on-print {
+    display: block;
+  }
+
+  .child-table {
+    width: 50%;
+  }
+}
+</style>
+</head>
+
+<body onload="loadData('hts_screening_reports')">
+
+<div class="show-on-print" style="font-size:12px;">
+    <h1>MAKUNDI MAALUM YA WALIOPO KWENYE HATARI YA KUPATA MAAMBUKIZI YA VVU</h1>
+    <h2>TAARIFA YA [MWEZI/MWAKA]: <span id="report_period"></span></h2>
+    <h2>KITUO: <span id="reporting_facility"></span></h2>
+</div>
+
+<div class="table-wrapper">
+    <table class="fl-table">
+        <thead>
+        <tr>
+            <th class="total-both" rowspan="3">Namba</th>
+            <th class="total-both" rowspan="3">Maelezo</th>
+            <th class="color-male"  colspan="3">WANAUME (ME)</th>
+            <th class="color-female"  colspan="3">WANAWAKE (KE)</th>
+            <th class="total-both"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th></th>
+            <th></th>
+            <th class="color-male" >2-9</th>
+            <th class="color-male" >10-14</th>
+            <th class="color-male" >&#62;=15</th>
+            <th class="color-female" >2-9</th>
+            <th class="color-female" >10-14</th>
+            <th class="color-female" >&#62;=15</th>
+            <th class="total-both">JUMLA</th>
+        </tr>
+        <tr>
+            <th>1.</th>
+            <td>Idadi ya wateja waliofanyiwa uchunguzi (screening) </td>
+            <td align="center" class="color-male" id="hts-1-2-9-ME"></td>
+            <td align="center" class="color-male" id="hts-1-10-14-ME"></td>
+            <td align="center" class="color-male" id="hts-1->=15-ME"></td>
+            <td align="center" class="color-female" id="hts-1-2-9-KE"></td>
+            <td align="center" class="color-female" id="hts-1-10-14-KE"></td>
+            <td align="center" class="color-female" id="hts-1->=15-KE"></td>
+            <td align="center" class="total-both" id="hts-1-jumla-both-ME-KE"></td>
+        </tr>
+        <tr>
+            <th>2.</th>
+            <td>Idadi ya wateja waliofanyiwa uchunguzi na kukutwa na sifa za upimaji </td>
+            <td align="center" class="color-male" id="hts-2-2-9-ME"></td>
+            <td align="center" class="color-male" id="hts-2-10-14-ME"></td>
+            <td align="center" class="color-male" id="hts-2->=15-ME"></td>
+            <td align="center" class="color-female" id="hts-2-2-9-KE"></td>
+            <td align="center" class="color-female" id="hts-2-10-14-KE"></td>
+            <td align="center" class="color-female" id="hts-2->=15-KE"></td>
+            <td align="center" class="total-both" id="hts-2-jumla-both-ME-KE"></td>
+        </tr>
+        <tr>
+            <th>3.</th>
+            <td>Idadi ya wateja waliopimwa VVU baada ya kufanyiwa uchunguzi (wenye sifa na wasio na sifa za upimaji) </td>
+            <td align="center" class="color-male" id="hts-3-2-9-ME"></td>
+            <td align="center" class="color-male" id="hts-3-10-14-ME"></td>
+            <td align="center" class="color-male" id="hts-3->=15-ME"></td>
+            <td align="center" class="color-female" id="hts-3-2-9-KE"></td>
+            <td align="center" class="color-female" id="hts-3-10-14-KE"></td>
+            <td align="center" class="color-female" id="hts-3->=15-KE"></td>
+            <td align="center" class="total-both" id="hts-3-jumla-both-ME-KE"></td>
+        </tr>
+        <tr>
+            <th>4.</th>
+            <td>Jumla ya wateja waliopimwa VVU na wana sifa za upimaji </td>
+            <td align="center" class="color-male" id="hts-4-2-9-ME"></td>
+            <td align="center" class="color-male" id="hts-4-10-14-ME"></td>
+            <td align="center" class="color-male" id="hts-4->=15-ME"></td>
+            <td align="center" class="color-female" id="hts-4-2-9-KE"></td>
+            <td align="center" class="color-female" id="hts-4-10-14-KE"></td>
+            <td align="center" class="color-female" id="hts-4->=15-KE"></td>
+            <td align="center" class="total-both" id="hts-4-jumla-both-ME-KE"></td>
+        </tr>
+        <tr>
+            <th>5.</th>
+            <td>Idadi ya wateja waliopimwa na kukutwa na maambukizi baada ya uchunguzi (Wenye sifa na wasio na sifa za upimaji) </td>
+            <td align="center" class="color-male" id="hts-5-2-9-ME"></td>
+            <td align="center" class="color-male" id="hts-5-10-14-ME"></td>
+            <td align="center" class="color-male" id="hts-5->=15-ME"></td>
+            <td align="center" class="color-female" id="hts-5-2-9-KE"></td>
+            <td align="center" class="color-female" id="hts-5-10-14-KE"></td>
+            <td align="center" class="color-female" id="hts-5->=15-KE"></td>
+            <td align="center" class="total-both" id="hts-5-jumla-both-ME-KE"></td>
+        </tr>
+        <tr>
+            <th>6.</th>
+            <td> Idadi ya wateja waliopimwa na kukutwa na maambukizi, waliokuwa na sifa za upimaji</td>
+            <td align="center" class="color-male" id="hts-6-2-9-ME"></td>
+            <td align="center" class="color-male" id="hts-6-10-14-ME"></td>
+            <td align="center" class="color-male" id="hts-6->=15-ME"></td>
+            <td align="center" class="color-female" id="hts-6-2-9-KE"></td>
+            <td align="center" class="color-female" id="hts-6-10-14-KE"></td>
+            <td align="center" class="color-female" id="hts-6->=15-KE"></td>
+            <td align="center" class="total-both" id="hts-6-jumla-both-ME-KE"></td>
+        </tr>
+        <tbody>
+    </table>
+</div>
+
+</body>
+<script>
+    function loadData(reportKey, reportType) {
+  const data = JSON.parse(Android.getData(reportKey));
+  const keys = Object.keys(data.nameValuePairs);
+  const reportPeriod = document.getElementById("report_period");
+  const reportingFacility = document.getElementById("reporting_facility");
+  keys.forEach((key) => {
+    let element;
+    if(reportType!== null && reportType === "pnc"){
+      element = document.getElementById(key.replace("pnc-",""));
+    }else{
+      element = document.getElementById(key);
+    }
+    if (element !== null && typeof element !== "undefined") {
+      element.innerHTML = data.nameValuePairs[key];
+    }
+  });
+  reportPeriod.innerHTML = Android.getDataPeriod();
+  reportingFacility.innerHTML = Android.getReportingFacility();
+}
+</script>
+</html>

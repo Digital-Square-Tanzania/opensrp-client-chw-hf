@@ -260,6 +260,7 @@
 
     <!-- Labour and Delivery String Resources-->
     <string name="menu_ld">L&amp;D</string>
+    <string name="menu_ayp_facility_services">AYP Facility Services</string>
     <string name="ld_registration">L&amp;D Registration</string>
     <string name="ld_registration_triage_title">Triage</string>
     <string name="ld_registration_true_labour_title">True Labour Confirmation</string>
@@ -748,6 +749,8 @@
     <string name="vmmc_register_subtitle">View Service Register For VMMC</string>
     <string name="vmmc_theatre_register_subtitle">View Theatre Register For VMMC</string>
     <string name="vmmc_list_of_ae_subtitle">VMMC Clients with AE</string>
+    <string name="hts_reports">HTS REPORTS</string>
+    <string name="hts_reports_subtitle">View Reports For HTS</string>
 
 
     <string name="view_visits_history">View Visits History</string>
@@ -1912,6 +1915,162 @@
     <string name="vmmc_tomorrow_visits">Tomorrow visits</string>
     <string name="vmmc_due_clients">Today Visits</string>
     <string name="vmmc_overdue_clients">Missed Visits</string>
+    <string name="hts_screening_report">HTS Screening</string>
+
+
+    <!--    HTS Module-->
+    <string name="hts">HIV Testing Services</string>
+    <string name="hts_screening">HTS Screening</string>
+    <string name="hts_sample_registration">HTS Sample Registration</string>
+    <string name="hts_hts_visit_type">Client Visit Type:</string>
+    <string name="hts_new_client">New Client</string>
+    <string name="hts_repeat">Repeat</string>
+    <string name="hts_returning">Returning</string>
+    <string name="hts_hts_has_the_client_recently_tested_with_hivst">Has the user recently tested with HIVST?</string>
+    <string name="hts_yes">Yes</string>
+    <string name="hts_no">No</string>
+    <string name="hts_hts_previous_hivst_client_type">Previous HIVST client type</string>
+    <string name="hts_self">Self</string>
+    <string name="hts_peer_friend">Peer Friend</string>
+    <string name="hts_sexual_partner">Sexual Partner</string>
+    <string name="hts_hts_previous_hivst_test_type">Previous HIVST test type</string>
+    <string name="hts_oral_based_self_test">Oral Based Self Test (STO)</string>
+    <string name="hts_blood_based_self_test">Blood Based Self Test (STB)</string>
+    <string name="hts_hts_client_type">Client Type</string>
+    <string name="hts_index_contact">Index Contact</string>
+    <string name="hts_normal_client">Normal Client</string>
+    <string name="hts_verification">Verification</string>
+    <string name="hts_social_network_contact">Social Network Contact</string>
+    <string name="hts_hts_testing_approach">Testing Approach</string>
+    <string name="hts_cbhts">CBHTS</string>
+    <string name="hts_pitc">PITC</string>
+    <string name="hts_citc">CITC</string>
+    <string name="hts_hts_pitc_testing_point">Testing Point</string>
+    <string name="hts_sti_clinic">STI Clinic</string>
+    <string name="hts_tb_clinic">TB Clinic</string>
+    <string name="hts_ipd">IPD</string>
+    <string name="hts_opd">OPD</string>
+    <string name="hts_blood_donation">Blood Donation</string>
+    <string name="hts_family_planning">Family Planning</string>
+    <string name="hts_ctc">CTC</string>
+    <string name="hts_vmmc">VMMC</string>
+    <string name="hts_outreach">Outreach</string>
+    <string name="hts_rch">RCH</string>
+    <string name="hts_laboratory">Laboratory</string>
+    <string name="hts_cervical_cancer_screening">Cervical Cancer Screening</string>
+    <string name="hts_other">Others (Specify)</string>
+    <string name="hts_hts_other_testing_point">Specify other testing point</string>
+    <string name="hts_hts_has_pre_test_counselling_been_provided">Has Pre-Test Counselling been provided?</string>
+    <string name="hts_hts_type_of_counselling_provided">Type of counselling provided</string>
+    <string name="hts_individual">Individual</string>
+    <string name="hts_couple">Couple</string>
+    <string name="hts_with_parent_or_guardian">With parent/guardian</string>
+    <string name="hts_hts_clients_tb_screening_outcome">Select clients TB screening outcome</string>
+    <string name="hts_tb_suspect">TB Suspect</string>
+    <string name="hts_screened_negative">Screened Negative</string>
+    <string name="hts_on_tb_treatment">On TB Treatment</string>
+    <string name="hts_not_screened">Not Screened</string>
+    <string name="hts_hts_does_client_need_hiv_self_test_kits">Does the client need HIV self test kits?</string>
+	<string name="hts_hts_repeat_first_test_kit_batch_number">Kit batch number</string>
+	<string name="hts_hts_repeat_first_test_kit_batch_number_hint">Specify kit batch number</string>
+	<string name="hts_hts_repeat_first_test_kit_expire_date_hint">Select kit expire date</string>
+	<string name="hts_hts_repeat_first_hiv_test_result">First HIV Test result</string>
+	<string name="hts_hts_type_of_test_used">Type of test used</string>
+	<string name="hts_hts_kit_batch_number">Kit batch number</string>
+	<string name="hts_hts_kit_expire_date">Kit expire date</string>
+	<string name="hts_hts_first_hiv_test_result">First HIV Test result</string>
+	<string name="hts_syphilis_test_results">Syphilis test results</string>
+	<string name="hts_non_reactive">Non-Reactive</string>
+	<string name="hts_reactive">Reactive</string>
+	<string name="hts_invalid">Invalid</string>
+	<string name="hts_wastage">Wastage</string>
+	<string name="hts_hts_second_kit_batch_number">Second kit batch number</string>
+	<string name="hts_second_kit_batch_number">Second kit batch number</string>
+	<string name="hts_second_kit_batch_number_hint">Specify second kit batch number</string>
+	<string name="hts_hts_second_kit_expire_date">Second kit expire date</string>
+	<string name="hts_second_kit_expire_date_hint">Select second kit expire date</string>
+	<string name="hts_hts_second_hiv_test_result">Second HIV Test result</string>
+	<string name="hts_second_hiv_test_result">Second HIV Test result</string>
+	<string name="hts_hts_unigold_kit_batch_number">Unigold kit batch number</string>
+	<string name="hts_unigold_kit_batch_number">Unigold kit batch number</string>
+	<string name="hts_unigold_kit_batch_number_hint">Specify unigold kit batch number</string>
+	<string name="hts_hts_unigold_kit_expire_date">Unigold kit expire date</string>
+	<string name="hts_unigold_kit_expire_date_hint">Select unigold kit expire date</string>
+	<string name="hts_hts_unigold_hiv_test_result">Unigold HIV Test result</string>
+	<string name="hts_unigold_hiv_test_result">Unigold HIV Test result</string>
+	<string name="hts_negative">Negative</string>
+	<string name="hts_positive">Positive</string>
+	<string name="hts_hts_final_hiv_status">Final HIV Test result</string>
+	<string name="hts_final_hiv_status">Final HIV Test result</string>
+	<string name="hts_known_positive">Known Positive</string>
+	<string name="hts_inconclusive">Inconclusive</string>
+	<string name="hts_hts_repeat_first_test_kit_expire_date">Repeat first kit expire date</string>
+	<string name="hts_hts_post_test_services">Was client provided with post-test counselling?</string>
+	<string name="hts_post_test_services">Was client provided with post-test counselling?</string>
+	<string name="hts_post_test_services_yes">Yes</string>
+	<string name="hts_post_test_services_no">No</string>
+
+	<string name="hts_hts_hiv_results_disclosure">HIV results disclosure</string>
+	<string name="hts_hiv_results_disclosure">HIV results disclosure</string>
+    <string name="hts_disclosure_husband">Husband</string>
+    <string name="hts_disclosure_wife">Wife</string>
+    <string name="hts_disclosure_partner_not_spouse">Partner who is not wife/husband</string>
+    <string name="hts_disclosure_relative">Relative</string>
+    <string name="hts_disclosure_friend">Friend</string>
+    <string name="hts_disclosure_religious_leader">Religious Leader</string>
+    <string name="hts_disclosure_others">Others</string>
+    <string name="hts_disclosure_not_ready_to_share">Not ready to share</string>
+
+	<string name="hts_hts_preventive_services">Referral for preventive services</string>
+	<string name="hts_preventive_services">Referral for preventive services</string>
+    <string name="hts_preventive_services_tuberculosis_clinic">Tuberculosis Clinic</string>
+    <string name="hts_preventive_services_sputum_testing_laboratory">Sputum Testing Laboratory</string>
+    <string name="hts_preventive_services_prevention_of_mother_to_child_transmission">Prevention of Mother to Child Transmission</string>
+    <string name="hts_preventive_services_family_planning">Family Planning</string>
+    <string name="hts_preventive_services_sexual_transmitted_infections_clinic">Sexual Transmitted Infections Clinic (STIs)</string>
+    <string name="hts_preventive_services_care_and_treatment_clinic">Care and Treatment Clinic</string>
+    <string name="hts_preventive_services_voluntary_medical_male_circumcision_vmmc">Voluntary Medical Male Circumcision (VMMC)</string>
+    <string name="hts_preventive_services_prep_services">PrEP services</string>
+    <string name="hts_preventive_services_gbv_services">Gender Based Violence Services (GBV)</string>
+    <string name="hts_preventive_services_pep_services">PEP services</string>
+    <string name="hts_preventive_services_adolescent_and_youth_people_friendly_services">Adolescent and Youth People Friendly Services</string>
+    <string name="hts_preventive_services_others">Others (Specify)</string>
+    <string name="hts_preventive_services_none">None</string>
+
+	<string name="hts_hts_were_condoms_distributed">Were condoms distributed?</string>
+	<string name="hts_were_condoms_distributed">Were condoms distributed?</string>
+    <string name="hts_were_condoms_distributed_yes">Yes</string>
+    <string name="hts_were_condoms_distributed_no">No</string>
+
+	<string name="hts_hts_condom_distribution">Condom distribution</string>
+	<string name="hts_condom_distribution">Condom distribution</string>
+    <string name="hts_condom_distribution_male">Male</string>
+    <string name="hts_condom_distribution_female">Female</string>
+
+	<string name="hts_hts_number_of_male_condoms_provided">Number of male condoms provided</string>
+	<string name="hts_number_of_male_condoms_provided">Number of male condoms provided</string>
+	<string name="hts_hts_number_of_female_condoms_provided">Number of female condoms provided</string>
+	<string name="hts_number_of_female_condoms_provided">Number of female condoms provided</string>
+
+	<string name="hts_hts_sample_collection_for_dna_pcr_test">Was sample collected for DNA-PCR test?</string>
+	<string name="hts_sample_collection_for_dna_pcr_test">Was sample collected for DNA-PCR test?</string>
+    <string name="hts_sample_collection_for_dna_pcr_test_yes">Yes</string>
+    <string name="hts_sample_collection_for_dna_pcr_test_no">No</string>
+
+	<string name="hts_hts_type_of_sample_collected">Type of sample collected</string>
+	<string name="hts_type_of_sample_collected">Type of sample collected</string>
+    <string name="hts_type_of_sample_collected_dbs">DBS</string>
+    <string name="hts_type_of_sample_collected_whole_sample">Whole Sample</string>
+
+	<string name="hts_hts_dbs_kit_batch_number">DBS kit batch number</string>
+	<string name="hts_dbs_kit_batch_number">DBS kit batch number</string>
+    <string name="hts_dbs_kit_batch_number_hint">Specify DBS kit batch number</string>
+
+	<string name="hts_hts_dbs_expire_date">DBS expire date</string>
+	<string name="hts_dbs_expire_date">DBS expire date</string>
+    <string name="hts_dbs_expire_date_hint">Select DBS expire date</string>
+
+    <string name="action_hts_samples">HTS Samples</string>
 
 
     <string name="hps_reports">iCCHW REPORTS</string>
@@ -1945,5 +2104,40 @@
     <string name="apply">Apply</string>
     <string name="cancel">Cancel</string>
     <string name="na">N/A</string>
+
+    <string name="ayp_facility_services_register_title">AYP Facility Services</string>
+    <string name="ayp_facility_record_biomedical_visit">Record AYP Facility visit</string>
+    <string name="ayp_facility_visit_history">AYP facility visit history</string>
+    <string name="ayp_facility_visit">AYP facility visit</string>
+    <string name="ayp_services_visit_type">AYP services</string>
+    <string name="ayp_in_school_follow_up_visit_type">AYP follow-up</string>
+    <string name="ayp_facility_screening_visit_type">AYP facility screening</string>
+    <string name="ayp_visit_history_unknown_date">Unknown date</string>
+    <string name="ayp_eligibility">AYP eligibility</string>
+    <string name="enrollment_status">Enrollment status</string>
+    <string name="enrollment_date">Enrollment date</string>
+    <string name="uic_number">UIC number</string>
+    <string name="enrollment_education_level">Education level at enrollment</string>
+    <string name="ayp_beneficiary">AYP beneficiary</string>
+    <string name="program_name">Program name</string>
+    <string name="program_name_other_specify">Other program name</string>
+    <string name="linkage_economic_strengthening">Linked to economic strengthening</string>
+    <string name="economic_strengthening_options">Economic strengthening options</string>
+    <string name="hts_result">HTS result</string>
+    <string name="hivst_result">HIVST result</string>
+    <string name="condom_distribution_male">Male condoms distributed</string>
+    <string name="condom_distribution_female">Female condoms distributed</string>
+    <string name="gbv_screening">GBV screening</string>
+    <string name="post_gbv_services_provided">Post-GBV services provided</string>
+    <string name="sti_screening_result">STI screening result</string>
+    <string name="sti_treatment_client">STI treatment (client)</string>
+    <string name="sti_treatment_partner">STI treatment (partner)</string>
+    <string name="tb_screening_result">TB screening result</string>
+    <string name="pep_service_provided">PEP service provided</string>
+    <string name="hepatitis_screening_result">Hepatitis screening result</string>
+    <string name="family_planning_method">Family planning method provided</string>
+    <string name="referral_to_other_services">Referral to other services</string>
+    <string name="next_appointment_date">Next appointment</string>
+    <string name="visit_notes">Visit notes</string>
 
 </resources>

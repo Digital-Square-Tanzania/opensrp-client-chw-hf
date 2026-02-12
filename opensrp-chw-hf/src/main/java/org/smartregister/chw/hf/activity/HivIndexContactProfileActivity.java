@@ -1,10 +1,8 @@
 package org.smartregister.chw.hf.activity;
 
 import static org.smartregister.AllConstants.LocationConstants.SPECIAL_TAG_FOR_OPENMRS_TEAM_MEMBERS;
-import static org.smartregister.chw.hf.utils.JsonFormUtils.SYNC_LOCATION_ID;
 import static org.smartregister.chw.hf.utils.JsonFormUtils.getAutoPopulatedJsonEditFormString;
 import static org.smartregister.chw.hiv.util.Constants.ActivityPayload.HIV_MEMBER_OBJECT;
-import static org.smartregister.util.JsonFormUtils.STEP1;
 
 import android.app.Activity;
 import android.content.Context;
@@ -28,7 +26,6 @@ import org.smartregister.chw.core.activity.CoreHivIndexContactProfileActivity;
 import org.smartregister.chw.core.listener.OnClickFloatingMenu;
 import org.smartregister.chw.core.model.CoreAllClientsMemberModel;
 import org.smartregister.chw.core.utils.CoreConstants;
-import org.smartregister.chw.core.utils.CoreJsonFormUtils;
 import org.smartregister.chw.core.utils.UpdateDetailsUtil;
 import org.smartregister.chw.core.utils.Utils;
 import org.smartregister.chw.hf.HealthFacilityApplication;
@@ -78,29 +75,11 @@ public class HivIndexContactProfileActivity extends CoreHivIndexContactProfileAc
     }
 
     public static void startHivIndexContactFollowupActivity(Activity activity, String baseEntityID) throws JSONException {
-
-        Intent intent = new Intent(activity, HivFormsActivity.class);
-        intent.putExtra(org.smartregister.chw.hiv.util.Constants.ActivityPayload.BASE_ENTITY_ID, baseEntityID);
-
-        HivIndexContactObject hivIndexContactObject = HivIndexDao.getMember(baseEntityID);
-
-        if (hivIndexContactObject.getRelationship().equals("sexual_partner")) { //Changing the rule file to the rule file for index contacts who are sex partners
-            JSONObject form = (new FormUtils()).getFormJsonFromRepositoryOrAssets(activity, CoreConstants.JSON_FORM.getHivIndexContactFollowupVisit());
-            if (form != null)
-                form.put("rules_file", "rule/hiv_index_contact_followup_for_sex_partner_rules.yml");
-            intent.putExtra(org.smartregister.chw.hiv.util.Constants.ActivityPayload.JSON_FORM, form.toString());
-        } else { //Leaving the default rule files for non sex partners index contacts
-            intent.putExtra(org.smartregister.chw.hiv.util.Constants.ActivityPayload.JSON_FORM, (new FormUtils()).getFormJsonFromRepositoryOrAssets(activity, CoreConstants.JSON_FORM.getHivIndexContactFollowupVisit()).toString());
-        }
-
-        intent.putExtra(org.smartregister.chw.hiv.util.Constants.ActivityPayload.ACTION, Constants.ActivityPayloadType.FOLLOW_UP_VISIT);
-        intent.putExtra(org.smartregister.chw.hiv.util.Constants.ActivityPayload.USE_DEFAULT_NEAT_FORM_LAYOUT, false);
-
-        activity.startActivityForResult(intent, org.smartregister.chw.anc.util.Constants.REQUEST_CODE_HOME_VISIT);
+        HtsVisitActivity.startMe(activity, baseEntityID, org.smartregister.chw.hts.util.Constants.INDEX_CLIENT_PROFILE_TYPE, false);
     }
 
     public void setReferralAndFollowupFeedback(List<HivIndexFollowupFeedbackDetailsModel> followupFeedbackDetailsModel) {
-        if (notificationAndReferralRecyclerView != null && followupFeedbackDetailsModel.size() > 0) {
+        if (notificationAndReferralRecyclerView != null && !followupFeedbackDetailsModel.isEmpty()) {
             RecyclerView.Adapter mAdapter = new HivIndexFollowupCardViewAdapter(followupFeedbackDetailsModel, this, getCommonPersonObjectClient(), CoreConstants.REGISTERED_ACTIVITIES.HIV_INDEX_REGISTER_ACTIVITY);
             notificationAndReferralRecyclerView.setAdapter(mAdapter);
             notificationAndReferralLayout.setVisibility(View.VISIBLE);
@@ -155,7 +134,7 @@ public class HivIndexContactProfileActivity extends CoreHivIndexContactProfileAc
                 if (preFilledForm != null)
                     UpdateDetailsUtil.startUpdateClientDetailsActivity(preFilledForm, this);
                 return true;
-            } else if (itemId == R.id.action_hivst_registration){
+            } else if (itemId == R.id.action_hivst_registration) {
                 startHivstRegistration();
                 return true;
             }
@@ -207,7 +186,7 @@ public class HivIndexContactProfileActivity extends CoreHivIndexContactProfileAc
         }
     }
 
-    private void startHivstRegistration(){
+    private void startHivstRegistration() {
         CommonRepository commonRepository = org.smartregister.family.util.Utils.context().commonrepository(org.smartregister.family.util.Utils.metadata().familyMemberRegister.tableName);
 
         final CommonPersonObject commonPersonObject = commonRepository.findByBaseEntityId(getHivIndexContactObject().getBaseEntityId());
@@ -223,7 +202,7 @@ public class HivIndexContactProfileActivity extends CoreHivIndexContactProfileAc
         getMenuInflater().inflate(org.smartregister.chw.core.R.menu.hiv_profile_menu, menu);
         menu.findItem(R.id.action_issue_hiv_community_followup_referral).setVisible(true);
         CommonPersonObjectClient commonPersonObject = getCommonPersonObjectClient();
-        if(HealthFacilityApplication.getApplicationFlavor().hasHivst()) {
+        if (HealthFacilityApplication.getApplicationFlavor().hasHivst()) {
             String dob = Utils.getValue(commonPersonObject.getColumnmaps(), org.smartregister.family.util.DBConstants.KEY.DOB, false);
             int age = Utils.getAgeFromDate(dob);
             menu.findItem(R.id.action_hivst_registration).setVisible(HivstDao.isRegisteredForHivst(getHivIndexContactObject().getBaseEntityId()) && age >= 15);

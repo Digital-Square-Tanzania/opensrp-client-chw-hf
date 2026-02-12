@@ -1279,6 +1279,55 @@
               "ec_hps_death_register",
               "ec_providers_last_sync_date"
             ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "HTS Screening",
+            "creates_case": [
+              "ec_hts_register"
+            ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "Hts Services",
+            "creates_case": [
+              "ec_hts_services"
+            ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "HTS First HIV Test",
+            "creates_case": [
+              "ec_hts_tests"
+            ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "HTS Second HIV Test",
+            "creates_case": [
+              "ec_hts_tests"
+            ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "Uni-Gold HIV Test",
+            "creates_case": [
+              "ec_hts_tests"
+            ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "Repeat of First HIV Test",
+            "creates_case": [
+              "ec_hts_tests"
+            ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "AYP Facility Screening",
+            "creates_case": [
+              "ec_ayp_facility_screening"
+            ]
           }
         ]
       }

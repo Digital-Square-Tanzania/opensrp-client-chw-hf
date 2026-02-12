@@ -48,7 +48,10 @@ public class ReportsActivity extends SecuredActivity implements View.OnClickList
     protected ConstraintLayout vmcReports;
 
     protected ConstraintLayout hpsReports;
+
     protected ConstraintLayout dhis2HistoryLayout;
+
+    protected ConstraintLayout htsReports;
 
     protected TextView textViewLogs;
 
@@ -76,6 +79,7 @@ public class ReportsActivity extends SecuredActivity implements View.OnClickList
         fpReportsLayout = findViewById(R.id.fp_reports);
         asrhReportsLayout = findViewById(R.id.asrh_reports);
         cecapReportsLayout = findViewById(R.id.cecap_reports);
+        htsReports = findViewById(R.id.hts_reports);
         textViewLogs = findViewById(R.id.textView_logs);
         hpsReports = findViewById(R.id.hps_reports);
         dhis2HistoryLayout = findViewById(R.id.dhis2_history);
@@ -97,6 +101,7 @@ public class ReportsActivity extends SecuredActivity implements View.OnClickList
         }
 
 
+
         pmtctReportsLayout.setOnClickListener(this);
         ancReportsLayout.setOnClickListener(this);
         pncReportsLayout.setOnClickListener(this);
@@ -111,6 +116,7 @@ public class ReportsActivity extends SecuredActivity implements View.OnClickList
         vmcReports.setOnClickListener(this);
         asrhReportsLayout.setOnClickListener(this);
         cecapReportsLayout.setOnClickListener(this);
+        htsReports.setOnClickListener(this);
         hpsReports.setOnClickListener(this);
         dhis2HistoryLayout.setOnClickListener(this);
     }
@@ -183,6 +189,9 @@ public class ReportsActivity extends SecuredActivity implements View.OnClickList
             startActivity(intent);
         } else if (id == R.id.cecap_reports) {
             Intent intent = new Intent(this, CecapReportsActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.hts_reports) {
+            Intent intent = new Intent(this, HtsReportsActivity.class);
             startActivity(intent);
         } else if (id == R.id.hps_reports) {
             Intent intent = new Intent(this, HpsReportsActivity.class);

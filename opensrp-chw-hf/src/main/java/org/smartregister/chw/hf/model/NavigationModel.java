@@ -11,11 +11,11 @@ import java.util.Arrays;
 import java.util.List;
 
 public class NavigationModel implements org.smartregister.chw.core.model.NavigationModel.Flavor {
-    private List<NavigationOption> navigationOptions = new ArrayList<>();
+    private final List<NavigationOption> navigationOptions = new ArrayList<>();
 
     @Override
     public List<NavigationOption> getNavigationItems() {
-        if (navigationOptions.size() == 0) {
+        if (navigationOptions.isEmpty()) {
 
             NavigationOption op1 = new NavigationOption(R.drawable.sidemenu_all_clients, R.drawable.sidemenu_all_clients_active, R.string.menu_all_clients, CoreConstants.DrawerMenu.ALL_CLIENTS, 0);
             NavigationOption op2 = new NavigationOption(R.mipmap.sidemenu_families, R.mipmap.sidemenu_families_active, R.string.menu_all_families, CoreConstants.DrawerMenu.ALL_FAMILIES, 0);
@@ -41,14 +41,16 @@ public class NavigationModel implements org.smartregister.chw.core.model.Navigat
             NavigationOption op22 = new NavigationOption(R.mipmap.sidemenu_hiv, R.mipmap.sidemenu_hiv_active, R.string.vmmc, CoreConstants.DrawerMenu.VMMC, 0);
             NavigationOption op23 = new NavigationOption(R.mipmap.sidemenu_hiv, R.mipmap.sidemenu_hiv_active, R.string.lab, CoreConstants.DrawerMenu.LAB, 0);
             NavigationOption op24 = new NavigationOption(R.mipmap.sidemenu_hiv, R.mipmap.sidemenu_hiv_active, R.string.cecap, CoreConstants.DrawerMenu.CECAP, 0);
+            NavigationOption op25 = new NavigationOption(R.mipmap.sidemenu_hiv, R.mipmap.sidemenu_hiv_active, R.string.menu_hts, CoreConstants.DrawerMenu.HTS, 0);
+            NavigationOption op26 = new NavigationOption(R.mipmap.sidemenu_hiv, R.mipmap.sidemenu_hiv_active, R.string.menu_ayp_facility_services, CoreConstants.DrawerMenu.AYP_FACILITY, 0);
 
 
             // ANC, PMTCT, LD, PNC, HEI, Child,LTFU, Referrals
             if (BuildConfig.BUILD_FOR_BORESHA_AFYA_SOUTH) {
                 if (BuildConfig.BUILD_FOR_PMTCT_CASE_BASED_MANAGEMENT) {
-                    navigationOptions.addAll(Arrays.asList(op1, op3, op15, op4, op13, op14, op12));
+                    navigationOptions.addAll(Arrays.asList(op1, op3, op15, op4, op13, op14, op26, op12));
                 } else {
-                    navigationOptions.addAll(Arrays.asList(op1, op3, op15, op4, op13, op14,op23, op9, op8, op10));
+                    navigationOptions.addAll(Arrays.asList(op1, op3, op15, op4, op13, op14, op23, op25, op26, op8, op10));
                     if (HealthFacilityApplication.getApplicationFlavor().hasChildModule()) {
                         navigationOptions.add(4, op5);
                     }
@@ -91,7 +93,7 @@ public class NavigationModel implements org.smartregister.chw.core.model.Navigat
                     navigationOptions.add(14, op23);
                 }
             } else {
-                navigationOptions.addAll(Arrays.asList(op1, op2, op3, op4, op5, op6, op7, op12));
+                navigationOptions.addAll(Arrays.asList(op1, op2, op3, op4, op5, op6, op7, op26, op12));
             }
         }
 
