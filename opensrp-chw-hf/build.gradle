@@ -329,6 +329,7 @@ dependencies {
         exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib-jdk7'
         exclude group: "org.jetbrains.kotlin", module: "kotlin-stdlib-jdk8"
     }
+    implementation 'org.smartregister:opensrp-plan-evaluator:0.0.19-SNAPSHOT'
 
     api("com.nerdstone:neat-form-core:1.1.9-NACP-SNAPSHOT") {
         transitive = true
@@ -358,6 +359,11 @@ dependencies {
         exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib-jdk7'
         exclude group: "org.jetbrains.kotlin", module: "kotlin-stdlib-jdk8"
     }
+
+    // Maps (used by Kujaku/Mapbox initialization in HealthFacilityApplication)
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:8.3.3'
+    implementation 'io.ona.kujaku:library:0.9.0'
+    implementation 'androidx.work:work-runtime:2.8.1'
 
     // Explicit Kotlin stdlib dependency, only version 1.8.10
     implementation "org.jetbrains.kotlin:kotlin-stdlib:1.8.10"
