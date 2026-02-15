@@ -325,8 +325,7 @@
             "field": "eventType",
             "field_value": "Referral Registration",
             "creates_case": [
-              "ec_referral",
-              "ec_hts_register"
+              "ec_referral"
             ]
           },
           {
