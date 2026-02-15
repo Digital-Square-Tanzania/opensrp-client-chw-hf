@@ -554,6 +554,16 @@ public class HfChwRepository extends CoreChwRepository {
         }
     }
 
+    private static void upgradeToVersion31(SQLiteDatabase db) {
+        try {
+            DatabaseMigrationUtils.createAddedECTables(db,
+                    new HashSet<>(Collections.singletonList("ec_hts_verification_test_results")),
+                    HealthFacilityApplication.createCommonFtsObject());
+        } catch (Exception e) {
+            Timber.e(e, "upgradeToVersion31");
+        }
+    }
+
     private static void upgradeToVersion10ForBaSouth(SQLiteDatabase db) {
         try {
             db.execSQL("ALTER TABLE ec_family_member ADD COLUMN reasons_for_registration TEXT NULL;");
@@ -714,6 +724,8 @@ public class HfChwRepository extends CoreChwRepository {
                     break;
                 case 30:
                     upgradeToVersion30(db);
+                case 31:
+                    upgradeToVersion31(db);
                     break;
                 default:
                     break;
