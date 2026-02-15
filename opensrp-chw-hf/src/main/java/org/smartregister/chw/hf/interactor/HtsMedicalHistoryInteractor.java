@@ -4,6 +4,7 @@ import static org.smartregister.chw.anc.util.VisitUtils.getChildVisits;
 import static org.smartregister.chw.anc.util.VisitUtils.getVisitDetailsOnly;
 import static org.smartregister.chw.anc.util.VisitUtils.getVisitGroups;
 import static org.smartregister.chw.anc.util.VisitUtils.getVisitsOnly;
+import static org.smartregister.chw.hts.util.Constants.EVENT_TYPE.HIV_VERIFICATION_TEST_RESULTS;
 import static org.smartregister.chw.hts.util.Constants.EVENT_TYPE.HTS_FIRST_HIV_TEST;
 import static org.smartregister.chw.hts.util.Constants.EVENT_TYPE.HTS_SECOND_HIV_TEST;
 import static org.smartregister.chw.hts.util.Constants.EVENT_TYPE.HTS_SERVICES;
@@ -60,7 +61,7 @@ public class HtsMedicalHistoryInteractor extends CoreBaseAncMedicalHistoryIntera
     public void getMemberHistory(final String memberID, final Context context, final BaseAncMedicalHistoryContract.InteractorCallBack callBack) {
         final Runnable runnable = () -> {
 
-            String[] eventTypes = new String[]{HTS_SERVICES};
+            String[] eventTypes = new String[]{HTS_SERVICES, HIV_VERIFICATION_TEST_RESULTS};
             List<SortableVisit> visits = getVisits(memberID, eventTypes);
             final List<Visit> all_visits = new ArrayList<>(visits);
 

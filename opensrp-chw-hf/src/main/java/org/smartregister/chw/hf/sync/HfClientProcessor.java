@@ -62,7 +62,8 @@ public class HfClientProcessor extends CoreClientProcessor {
             org.smartregister.chw.hts.util.Constants.EVENT_TYPE.HTS_FIRST_HIV_TEST,
             org.smartregister.chw.hts.util.Constants.EVENT_TYPE.HTS_SECOND_HIV_TEST,
             org.smartregister.chw.hts.util.Constants.EVENT_TYPE.HTS_UNIGOLD_HIV_TEST,
-            org.smartregister.chw.hts.util.Constants.EVENT_TYPE.REPEAT_FIRST_HIV_TEST
+            org.smartregister.chw.hts.util.Constants.EVENT_TYPE.REPEAT_FIRST_HIV_TEST,
+            org.smartregister.chw.hts.util.Constants.EVENT_TYPE.HIV_VERIFICATION_TEST_RESULTS
     ));
 
     private static final Set<String> VISIT_EVENTS_TO_PROCESS = Collections.unmodifiableSet(new HashSet<>(Arrays.asList(
