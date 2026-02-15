@@ -75,7 +75,17 @@ public class HfClientProcessor extends CoreClientProcessor {
     protected void processEvents(ClientClassification clientClassification, Table vaccineTable, Table serviceTable, EventClient eventClient, Event event, String eventType) throws Exception {
         super.processEvents(clientClassification, vaccineTable, serviceTable, eventClient, event, eventType);
 
-        if (eventType.contains(org.smartregister.chw.hts.util.Constants.EVENT_TYPE.HTS_FIRST_HIV_TEST)) {
+        if (eventType.contains(org.smartregister.chw.hts.util.Constants.EVENT_TYPE.HTS_SERVICES)) {
+            if (eventClient.getEvent() == null) {
+                return;
+            }
+            processVisitEvent(eventClient);
+
+            Event contactsEvents = eventClient.getEvent();
+            contactsEvents.setEventType(org.smartregister.chw.hts.util.Constants.EVENT_TYPE.HTS_SERVICES);
+
+            processEvent(eventClient.getEvent(), eventClient.getClient(), clientClassification);
+        } else if (eventType.contains(org.smartregister.chw.hts.util.Constants.EVENT_TYPE.HTS_FIRST_HIV_TEST)) {
             if (eventClient.getEvent() == null) {
                 return;
             }
