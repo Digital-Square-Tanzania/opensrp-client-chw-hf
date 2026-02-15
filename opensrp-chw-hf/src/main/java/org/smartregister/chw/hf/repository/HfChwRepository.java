@@ -223,7 +223,7 @@ public class HfChwRepository extends CoreChwRepository {
 
                 reportingLibraryInstance.initIndicatorData(indicatorsConfigFile, db); // This will persist the data in the DB
                 reportingLibraryInstance.getContext().allSharedPreferences().savePreference(indicatorDataInitialisedPref, "true");
-                reportingLibraryInstance.getContext().allSharedPreferences().savePreference(appVersionCodePref, String.valueOf(org.smartregister.chw.core.BuildConfig.VERSION_CODE));
+                reportingLibraryInstance.getContext().allSharedPreferences().savePreference(appVersionCodePref, String.valueOf(BuildConfig.VERSION_CODE));
             }
         } catch (Exception e) {
             Timber.e(e);
@@ -545,6 +545,14 @@ public class HfChwRepository extends CoreChwRepository {
         }
     }
 
+    private static void upgradeToVersion30(SQLiteDatabase db) {
+        try {
+            String addMissingColumnsQuery = "ALTER TABLE ec_hivst_results ADD COLUMN source_form_submission_id VARCHAR;";
+            db.execSQL(addMissingColumnsQuery);
+        } catch (Exception e) {
+            Timber.e(e, "upgradeToVersion30");
+        }
+    }
 
     private static void upgradeToVersion10ForBaSouth(SQLiteDatabase db) {
         try {
@@ -703,6 +711,9 @@ public class HfChwRepository extends CoreChwRepository {
                     break;
                 case 29:
                     upgradeToVersion29(db);
+                    break;
+                case 30:
+                    upgradeToVersion30(db);
                     break;
                 default:
                     break;
