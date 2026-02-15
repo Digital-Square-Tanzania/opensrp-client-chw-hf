@@ -222,7 +222,6 @@ android {
         }
         unitTests.all {
             systemProperty 'robolectric.enabledSdks', '28'
-            jvmArgs '-noverify'
         }
     }
 
@@ -395,14 +394,25 @@ dependencies {
 
     testImplementation 'junit:junit:4.13'
     testImplementation 'org.mockito:mockito-core:3.1.0'
-    testImplementation 'org.robolectric:robolectric:4.3.1'
-    testImplementation 'org.robolectric:shadows-multidex:4.3.1'
-    testImplementation 'androidx.test:core:1.2.0'
+    testImplementation 'org.robolectric:robolectric:4.13'
+    testImplementation 'org.robolectric:shadows-multidex:4.13'
+    testImplementation 'androidx.test:core:1.6.1'
 }
 
 
-tasks.withType(Test) {
-    jacoco.includeNoLocationClasses = true
+tasks.withType(Test).configureEach {
+    // Avoid instrumentation/runtime issues with generated JDK classes on newer JVMs.
+    jacoco.includeNoLocationClasses = false
+
+    // Required for Robolectric and reflective test utilities on JDK 17+.
+    jvmArgs(
+            '--add-opens=java.base/java.lang=ALL-UNNAMED',
+            '--add-opens=java.base/java.lang.reflect=ALL-UNNAMED',
+            '--add-opens=java.base/java.io=ALL-UNNAMED',
+            '--add-opens=java.base/java.net=ALL-UNNAMED',
+            '--add-opens=java.base/java.util=ALL-UNNAMED',
+            '--add-opens=java.base/java.util.concurrent=ALL-UNNAMED'
+    )
 }
 
 // Keep line numbers in debug builds by default so Android Studio can map breakpoints/stack traces.
@@ -427,20 +437,15 @@ task jacocoTestReport(type: JacocoReport, dependsOn: [
     getReports().getHtml().setDestination(file("${buildDir}/reports/jacoco/jacocoRootReport/html"))
 
     def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*', '**/*$ViewBinder*.*']
-    def debugTree = fileTree(dir: "$project.buildDir/intermediates/javac/baDebug/classes/", excludes: fileFilter)
+    def debugTree = fileTree(dir: "$project.buildDir/intermediates/javac/nacpDebug/compileNacpDebugJavaWithJavac/classes", excludes: fileFilter)
     def mainSrc = "$project.projectDir/src/main/java"
 
     sourceDirectories.setFrom(files([mainSrc]))
     classDirectories.setFrom(files([debugTree]))
     executionData.setFrom(fileTree(dir: project.buildDir, includes: [
-            'jacoco/testBaDebugUnitTest.exec', 'outputs/code-coverage/connected/*coverage.ec'
+            'jacoco/testNacpDebugUnitTest.exec', 'outputs/code-coverage/connected/*coverage.ec'
     ]))
 }
-
-tasks.withType(Test) {
-    jacoco.includeNoLocationClasses = true
-}
-
 
 tasks.coveralls {
     dependsOn 'jacocoTestReport'

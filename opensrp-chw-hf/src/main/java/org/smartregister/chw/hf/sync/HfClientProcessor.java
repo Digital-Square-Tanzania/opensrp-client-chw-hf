@@ -44,11 +44,95 @@ import org.smartregister.sync.ClientProcessorForJava;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import timber.log.Timber;
 
 public class HfClientProcessor extends CoreClientProcessor {
+
+    private static final String HPS_FIELD_YEAR = "year";
+    private static final String HPS_FIELD_SELECT_AGE_GROUP = "select_age_group";
+    private static final String ANTIBODY_TEST = "Antibody Test";
+
+    private static final List<String> HTS_EVENT_TYPES = Collections.unmodifiableList(Arrays.asList(
+            org.smartregister.chw.hts.util.Constants.EVENT_TYPE.HTS_SERVICES,
+            org.smartregister.chw.hts.util.Constants.EVENT_TYPE.HTS_FIRST_HIV_TEST,
+            org.smartregister.chw.hts.util.Constants.EVENT_TYPE.HTS_SECOND_HIV_TEST,
+            org.smartregister.chw.hts.util.Constants.EVENT_TYPE.HTS_UNIGOLD_HIV_TEST,
+            org.smartregister.chw.hts.util.Constants.EVENT_TYPE.REPEAT_FIRST_HIV_TEST
+    ));
+
+    private static final Set<String> VISIT_EVENTS_TO_PROCESS = Collections.unmodifiableSet(new HashSet<>(Arrays.asList(
+            ANC_PREGNANCY_CONFIRMATION,
+            ANC_FOLLOWUP_CLIENT_REGISTRATION,
+            ANC_FIRST_FACILITY_VISIT,
+            ANC_RECURRING_FACILITY_VISIT,
+            PNC_VISIT,
+            PNC_CHILD_FOLLOWUP,
+            LD_PARTOGRAPHY,
+            LD_REGISTRATION,
+            LD_ACTIVE_MANAGEMENT_OF_3RD_STAGE_OF_LABOUR,
+            LD_GENERAL_EXAMINATION,
+            LD_POST_DELIVERY_MOTHER_MANAGEMENT,
+            ANC_PARTNER_TESTING,
+            org.smartregister.chw.kvp.util.Constants.EVENT_TYPE.KVP_BEHAVIORAL_SERVICE_VISIT,
+            org.smartregister.chw.kvp.util.Constants.EVENT_TYPE.KVP_BIO_MEDICAL_SERVICE_VISIT,
+            org.smartregister.chw.kvp.util.Constants.EVENT_TYPE.KVP_STRUCTURAL_SERVICE_VISIT,
+            org.smartregister.chw.kvp.util.Constants.EVENT_TYPE.KVP_OTHER_SERVICE_VISIT,
+            org.smartregister.chw.kvp.util.Constants.EVENT_TYPE.PrEP_FOLLOWUP_VISIT,
+            org.smartregister.chw.vmmc.util.Constants.EVENT_TYPE.VMMC_SERVICES,
+            org.smartregister.chw.vmmc.util.Constants.EVENT_TYPE.VMMC_PROCEDURE,
+            org.smartregister.chw.vmmc.util.Constants.EVENT_TYPE.VMMC_DISCHARGE,
+            org.smartregister.chw.vmmc.util.Constants.EVENT_TYPE.VMMC_FOLLOW_UP_VISIT,
+            org.smartregister.chw.vmmc.util.Constants.EVENT_TYPE.VMMC_NOTIFIABLE_EVENTS,
+            org.smartregister.chw.cecap.util.Constants.EVENT_TYPE.CECAP_FOLLOW_UP_VISIT,
+            Constants.EVENT_TYPE.PMTCT_FOLLOWUP,
+            FamilyPlanningConstants.EVENT_TYPE.FP_POINT_OF_SERVICE_DELIVERY,
+            FamilyPlanningConstants.EVENT_TYPE.FP_COUNSELING,
+            FamilyPlanningConstants.EVENT_TYPE.FP_PROVIDE_METHOD,
+            FamilyPlanningConstants.EVENT_TYPE.FP_OTHER_SERVICES,
+            org.smartregister.chw.sbc.util.Constants.EVENT_TYPE.SBC_FOLLOW_UP_VISIT,
+            FP_REGISTRATION_EVENT,
+            FamilyPlanningConstants.EVENT_TYPE.FP_ECP_PROVISION,
+            FamilyPlanningConstants.EVENT_TYPE.FP_ECP_SCREENING
+    )));
+
+    private static final Set<String> HPS_REAL_COLUMNS = Collections.unmodifiableSet(new HashSet<>(Arrays.asList(
+            "amount_of_solid_waste_generated_annually_tons",
+            "amount_of_solid_waste_disposed_at_a_designated_site_annually_tons"
+    )));
+
+    private static final Set<String> HPS_TEXT_COLUMNS = Collections.unmodifiableSet(new HashSet<>(Arrays.asList(
+            HPS_FIELD_SELECT_AGE_GROUP,
+            "select_centers_category",
+            "types_of_pesticides_used_ponds",
+            "types_of_pesticides_used_cans",
+            "types_of_pesticides_used_drums",
+            "types_of_pesticides_used_barrels",
+            "types_of_pesticides_used_coconut_shells",
+            "amount_of_pesticide_used_ponds",
+            "amount_of_pesticide_used_cans",
+            "amount_of_pesticide_used_drums",
+            "amount_of_pesticide_used_barrels",
+            "amount_of_pesticide_used_coconut_shells"
+    )));
+
+    private static final List<String> PMTCT_FOLLOWUP_TABLES = Collections.unmodifiableList(Arrays.asList(
+            "ec_ld_partograph",
+            "ec_pmtct_followup",
+            "ec_pmtct_hvl_results",
+            "ec_pmtct_cd4_results",
+            "ec_hei_followup",
+            "ec_hei_hiv_results",
+            "ec_anc_followup",
+            "ec_pnc_followup",
+            "ec_prep_followup",
+            "ec_cecap_test_results",
+            "ec_kvp_hepatitis_test_results"
+    ));
 
     private HfClientProcessor(Context context) {
         super(context);
@@ -75,217 +159,194 @@ public class HfClientProcessor extends CoreClientProcessor {
     protected void processEvents(ClientClassification clientClassification, Table vaccineTable, Table serviceTable, EventClient eventClient, Event event, String eventType) throws Exception {
         super.processEvents(clientClassification, vaccineTable, serviceTable, eventClient, event, eventType);
 
-        if (eventType.contains(org.smartregister.chw.hts.util.Constants.EVENT_TYPE.HTS_SERVICES)) {
-            if (eventClient.getEvent() == null) {
+        String matchedHtsEventType = findMatchingHtsEventType(eventType);
+        if (matchedHtsEventType != null) {
+            if (!processHtsEvent(eventClient, clientClassification, matchedHtsEventType)) {
                 return;
             }
-            processVisitEvent(eventClient);
+        } else if (!processNonHtsEvent(eventType, eventClient, event, clientClassification)) {
+            return;
+        }
 
-            Event contactsEvents = eventClient.getEvent();
-            contactsEvents.setEventType(org.smartregister.chw.hts.util.Constants.EVENT_TYPE.HTS_SERVICES);
+        // Used to fix instances where clients were registered without a DOB on past app version leading to app crashes.
+        FamilyDao.fixClientsWithNullDob();
+    }
 
-            processEvent(eventClient.getEvent(), eventClient.getClient(), clientClassification);
-        } else if (eventType.contains(org.smartregister.chw.hts.util.Constants.EVENT_TYPE.HTS_FIRST_HIV_TEST)) {
-            if (eventClient.getEvent() == null) {
-                return;
+    static String findMatchingHtsEventType(String eventType) {
+        for (String htsEventType : HTS_EVENT_TYPES) {
+            if (eventType.contains(htsEventType)) {
+                return htsEventType;
             }
-            processVisitEvent(eventClient);
+        }
+        return null;
+    }
 
-            Event contactsEvents = eventClient.getEvent();
-            contactsEvents.setEventType(org.smartregister.chw.hts.util.Constants.EVENT_TYPE.HTS_FIRST_HIV_TEST);
+    private boolean processHtsEvent(EventClient eventClient, ClientClassification clientClassification, String htsEventType) throws Exception {
+        Event currentEvent = eventClient.getEvent();
+        if (currentEvent == null) {
+            return false;
+        }
 
-            processEvent(eventClient.getEvent(), eventClient.getClient(), clientClassification);
-        } else if (eventType.contains(org.smartregister.chw.hts.util.Constants.EVENT_TYPE.HTS_SECOND_HIV_TEST)) {
-            if (eventClient.getEvent() == null) {
-                return;
-            }
-            processVisitEvent(eventClient);
-            Event contactsEvents = eventClient.getEvent();
-            contactsEvents.setEventType(org.smartregister.chw.hts.util.Constants.EVENT_TYPE.HTS_SECOND_HIV_TEST);
+        processVisitEvent(eventClient);
+        currentEvent.setEventType(htsEventType);
+        processEvent(currentEvent, eventClient.getClient(), clientClassification);
+        return true;
+    }
 
-            processEvent(eventClient.getEvent(), eventClient.getClient(), clientClassification);
+    private boolean processNonHtsEvent(String eventType, EventClient eventClient, Event event, ClientClassification clientClassification) throws Exception {
+        if (VISIT_EVENTS_TO_PROCESS.contains(eventType)) {
+            return processVisitAndClientEvent(eventClient, clientClassification);
+        }
 
-        } else if (eventType.contains(org.smartregister.chw.hts.util.Constants.EVENT_TYPE.HTS_UNIGOLD_HIV_TEST)) {
-            if (eventClient.getEvent() == null) {
-                return;
-            }
-            processVisitEvent(eventClient);
-            Event contactsEvents = eventClient.getEvent();
-            contactsEvents.setEventType(org.smartregister.chw.hts.util.Constants.EVENT_TYPE.HTS_UNIGOLD_HIV_TEST);
-
-            processEvent(eventClient.getEvent(), eventClient.getClient(), clientClassification);
-        } else if (eventType.contains(org.smartregister.chw.hts.util.Constants.EVENT_TYPE.REPEAT_FIRST_HIV_TEST)) {
-            if (eventClient.getEvent() == null) {
-                return;
-            }
-            processVisitEvent(eventClient);
-            Event contactsEvents = eventClient.getEvent();
-            contactsEvents.setEventType(org.smartregister.chw.hts.util.Constants.EVENT_TYPE.REPEAT_FIRST_HIV_TEST);
-
-            processEvent(eventClient.getEvent(), eventClient.getClient(), clientClassification);
-        } else {
-            switch (eventType) {
-                case org.smartregister.chw.hf.utils.Constants.Events.SEND_MONTHLY_MTUHA_BOOK_3_TO_DHIS2:
-                case org.smartregister.chw.hf.utils.Constants.Events.SEND_ANNUAL_REPORTS_TO_DHIS2:
-                    try {
-                        new org.smartregister.chw.hf.repository.Dhis2ReportHistoryRepository().saveFromEvent(event);
-                    } catch (Exception e) {
-                        Timber.e(e, "Failed to persist DHIS2 history from event");
-                    }
-                    break;
-                case ANC_PREGNANCY_CONFIRMATION:
-                case ANC_FOLLOWUP_CLIENT_REGISTRATION:
-                case ANC_FIRST_FACILITY_VISIT:
-                case ANC_RECURRING_FACILITY_VISIT:
-                case PNC_VISIT:
-                case PNC_CHILD_FOLLOWUP:
-                case LD_PARTOGRAPHY:
-                case LD_REGISTRATION:
-                case LD_ACTIVE_MANAGEMENT_OF_3RD_STAGE_OF_LABOUR:
-                case LD_GENERAL_EXAMINATION:
-                case LD_POST_DELIVERY_MOTHER_MANAGEMENT:
-                case ANC_PARTNER_TESTING:
-                case org.smartregister.chw.kvp.util.Constants.EVENT_TYPE.KVP_BEHAVIORAL_SERVICE_VISIT:
-                case org.smartregister.chw.kvp.util.Constants.EVENT_TYPE.KVP_BIO_MEDICAL_SERVICE_VISIT:
-                case org.smartregister.chw.kvp.util.Constants.EVENT_TYPE.KVP_STRUCTURAL_SERVICE_VISIT:
-                case org.smartregister.chw.kvp.util.Constants.EVENT_TYPE.KVP_OTHER_SERVICE_VISIT:
-                case org.smartregister.chw.kvp.util.Constants.EVENT_TYPE.PrEP_FOLLOWUP_VISIT:
-                case org.smartregister.chw.vmmc.util.Constants.EVENT_TYPE.VMMC_SERVICES:
-                case org.smartregister.chw.vmmc.util.Constants.EVENT_TYPE.VMMC_PROCEDURE:
-                case org.smartregister.chw.vmmc.util.Constants.EVENT_TYPE.VMMC_DISCHARGE:
-                case org.smartregister.chw.vmmc.util.Constants.EVENT_TYPE.VMMC_FOLLOW_UP_VISIT:
-                case org.smartregister.chw.vmmc.util.Constants.EVENT_TYPE.VMMC_NOTIFIABLE_EVENTS:
-                case org.smartregister.chw.cecap.util.Constants.EVENT_TYPE.CECAP_FOLLOW_UP_VISIT:
-                case Constants.EVENT_TYPE.PMTCT_FOLLOWUP:
-                case FamilyPlanningConstants.EVENT_TYPE.FP_POINT_OF_SERVICE_DELIVERY:
-                case FamilyPlanningConstants.EVENT_TYPE.FP_COUNSELING:
-                case FamilyPlanningConstants.EVENT_TYPE.FP_PROVIDE_METHOD:
-                case FamilyPlanningConstants.EVENT_TYPE.FP_OTHER_SERVICES:
-                case org.smartregister.chw.sbc.util.Constants.EVENT_TYPE.SBC_FOLLOW_UP_VISIT:
-                case FP_REGISTRATION_EVENT:
-                case FamilyPlanningConstants.EVENT_TYPE.FP_ECP_PROVISION:
-                case FamilyPlanningConstants.EVENT_TYPE.FP_ECP_SCREENING:
-                    if (eventClient.getEvent() == null) {
-                        return;
-                    }
-                    processVisitEvent(eventClient);
-                    processEvent(eventClient.getEvent(), eventClient.getClient(), clientClassification);
-                    break;
-                case HEI_FOLLOWUP:
-                case HEI_POSITIVE_INFANT:
-                case HEI_NEGATIVE_INFANT:
-                    processVisitEvent(eventClient);
-                    processEvent(eventClient.getEvent(), eventClient.getClient(), clientClassification);
-                    processHeiFollowupCEvent(eventClient.getEvent());
-                    break;
-
-                case org.smartregister.chw.ld.util.Constants.EVENT_TYPE.VOID_EVENT:
+        switch (eventType) {
+            case org.smartregister.chw.hf.utils.Constants.Events.SEND_MONTHLY_MTUHA_BOOK_3_TO_DHIS2:
+            case org.smartregister.chw.hf.utils.Constants.Events.SEND_ANNUAL_REPORTS_TO_DHIS2:
+                saveDhis2History(event);
+                break;
+            case HEI_FOLLOWUP:
+            case HEI_POSITIVE_INFANT:
+            case HEI_NEGATIVE_INFANT:
+                processHeiEvent(eventClient, clientClassification);
+                break;
+            case org.smartregister.chw.ld.util.Constants.EVENT_TYPE.VOID_EVENT:
             case DELETE_EVENT:
                 processDeleteEvent(eventClient.getEvent());
-
-             case org.smartregister.chw.hps.util.Constants.EVENT_TYPE.HPS_ANNUAL_CENSUS:
+                // Intentional fall-through to preserve existing behavior for delete/void events.
+            case org.smartregister.chw.hps.util.Constants.EVENT_TYPE.HPS_ANNUAL_CENSUS:
                 processHpsAnnualCensusRegisterEvent(eventClient.getEvent());
                 break;
             default:
                 break;
-            }
         }
 
-        //Used to fix instances where clients were registered without a DOB on past app version leading to app crushes
-        FamilyDao.fixClientsWithNullDob();
+        return true;
+    }
+
+    private boolean processVisitAndClientEvent(EventClient eventClient, ClientClassification clientClassification) throws Exception {
+        Event currentEvent = eventClient.getEvent();
+        if (currentEvent == null) {
+            return false;
+        }
+
+        processVisitEvent(eventClient);
+        processEvent(currentEvent, eventClient.getClient(), clientClassification);
+        return true;
+    }
+
+    private void processHeiEvent(EventClient eventClient, ClientClassification clientClassification) throws Exception {
+        processVisitEvent(eventClient);
+        processEvent(eventClient.getEvent(), eventClient.getClient(), clientClassification);
+        processHeiFollowupCEvent(eventClient.getEvent());
+    }
+
+    private void saveDhis2History(Event event) {
+        try {
+            new org.smartregister.chw.hf.repository.Dhis2ReportHistoryRepository().saveFromEvent(event);
+        } catch (Exception e) {
+            Timber.e(e, "Failed to persist DHIS2 history from event");
+        }
     }
 
     private void processHpsAnnualCensusRegisterEvent(Event event) {
         try {
-            List<Obs> censusObs = event.getObs();
+            HpsAnnualCensusRegister annualCensusRegister = createAnnualCensusRegister(event);
+            populateAnnualCensusIndicators(annualCensusRegister, event.getObs());
 
-            HpsAnnualCensusRegister dto = new HpsAnnualCensusRegister();
-            dto.setBaseEntityId(event.getBaseEntityId());
-            dto.setProviderId(event.getProviderId());
-            dto.setLastInteractedWith(event.getVersion());
-
-            // Identify special typed columns
-            java.util.Set<String> realColumns = new java.util.HashSet<>(java.util.Arrays.asList(
-                    "amount_of_solid_waste_generated_annually_tons",
-                    "amount_of_solid_waste_disposed_at_a_designated_site_annually_tons"
-            ));
-            java.util.Set<String> textColumns = new java.util.HashSet<>(java.util.Arrays.asList(
-                    "select_age_group",
-                    "select_centers_category",
-                    "types_of_pesticides_used_ponds",
-                    "types_of_pesticides_used_cans",
-                    "types_of_pesticides_used_drums",
-                    "types_of_pesticides_used_barrels",
-                    "types_of_pesticides_used_coconut_shells",
-                    "amount_of_pesticide_used_ponds",
-                    "amount_of_pesticide_used_cans",
-                    "amount_of_pesticide_used_drums",
-                    "amount_of_pesticide_used_barrels",
-                    "amount_of_pesticide_used_coconut_shells"
-            ));
-
-            if (censusObs != null && !censusObs.isEmpty()) {
-                for (Obs obs : censusObs) {
-                    String field = obs.getFormSubmissionField();
-                    Object rawVal = obs.getValue();
-                    String stringVal = rawVal != null ? String.valueOf(rawVal) : null;
-
-                    if ("year".equals(field)) {
-                        try {
-                            if (stringVal != null && stringVal.trim().length() > 0) {
-                                dto.setYear(Integer.valueOf(stringVal.trim()));
-                            }
-                        } catch (Exception ignore) { /* leave null if not parsable */ }
-                        continue;
-                    }
-
-                    if ("select_age_group".equals(field)) {
-                        // Multi-select may be in values list
-                        String val = (obs.getValues() != null && !obs.getValues().isEmpty()) ? obs.getValues().toString() : stringVal;
-                        dto.setSelectAgeGroup(val);
-                        dto.putString(field, val);
-                        continue;
-                    }
-
-                    if (textColumns.contains(field)) {
-                        String val = (obs.getValues() != null && !obs.getValues().isEmpty()) ? obs.getValues().toString() : stringVal;
-                        dto.putString(field, val);
-                        continue;
-                    }
-
-                    if (realColumns.contains(field)) {
-                        try {
-                            if (stringVal != null && stringVal.trim().length() > 0) {
-                                dto.putReal(field, Double.valueOf(stringVal.trim()));
-                            }
-                        } catch (NumberFormatException e) {
-                            // If value is not a valid double, skip it
-                        }
-                        continue;
-                    }
-
-                    // Default: attempt to store as integer
-                    try {
-                        if (stringVal != null && stringVal.trim().length() > 0) {
-                            dto.putInteger(field, Integer.valueOf(stringVal.trim()));
-                        }
-                    } catch (NumberFormatException e) {
-                        // if not an integer, fallback to string to avoid data loss
-                        dto.putString(field, stringVal);
-                    }
-                }
-            }
-
-            // Save or update (upsert) using (year, provider_id) composite key
-            if (dto.getYear() == null || dto.getProviderId() == null || dto.getProviderId().trim().isEmpty()) {
+            if (isMissingAnnualCensusIdentifiers(annualCensusRegister)) {
                 Timber.w("Skipping HPS annual census save: missing year/provider_id (year=%s, provider_id=%s)",
-                        String.valueOf(dto.getYear()), dto.getProviderId());
+                        String.valueOf(annualCensusRegister.getYear()), annualCensusRegister.getProviderId());
                 return;
             }
-            new HpsAnnualCensorReportsRepository().save(dto);
+
+            new HpsAnnualCensorReportsRepository().save(annualCensusRegister);
         } catch (Exception e) {
             Timber.e(e, "Error processing HPS Annual Census register event");
         }
+    }
+
+    private HpsAnnualCensusRegister createAnnualCensusRegister(Event event) {
+        HpsAnnualCensusRegister annualCensusRegister = new HpsAnnualCensusRegister();
+        annualCensusRegister.setBaseEntityId(event.getBaseEntityId());
+        annualCensusRegister.setProviderId(event.getProviderId());
+        annualCensusRegister.setLastInteractedWith(event.getVersion());
+        return annualCensusRegister;
+    }
+
+    private void populateAnnualCensusIndicators(HpsAnnualCensusRegister annualCensusRegister, List<Obs> censusObs) {
+        if (censusObs == null || censusObs.isEmpty()) {
+            return;
+        }
+
+        for (Obs obs : censusObs) {
+            applyAnnualCensusObservation(annualCensusRegister, obs);
+        }
+    }
+
+    static void applyAnnualCensusObservation(HpsAnnualCensusRegister annualCensusRegister, Obs obs) {
+        String field = obs.getFormSubmissionField();
+        String stringValue = extractObservationStringValue(obs);
+
+        if (HPS_FIELD_YEAR.equals(field)) {
+            if (hasText(stringValue)) {
+                try {
+                    annualCensusRegister.setYear(Integer.valueOf(stringValue.trim()));
+                } catch (NumberFormatException ignored) {
+                    // Leave year as null when the value cannot be parsed.
+                }
+            }
+            return;
+        }
+
+        if (HPS_FIELD_SELECT_AGE_GROUP.equals(field)) {
+            String value = getObservationTextValue(obs, stringValue);
+            annualCensusRegister.setSelectAgeGroup(value);
+            annualCensusRegister.putString(field, value);
+            return;
+        }
+
+        if (HPS_TEXT_COLUMNS.contains(field)) {
+            annualCensusRegister.putString(field, getObservationTextValue(obs, stringValue));
+            return;
+        }
+
+        if (HPS_REAL_COLUMNS.contains(field)) {
+            if (hasText(stringValue)) {
+                try {
+                    annualCensusRegister.putReal(field, Double.valueOf(stringValue.trim()));
+                } catch (NumberFormatException ignored) {
+                    // Skip invalid double values.
+                }
+            }
+            return;
+        }
+
+        if (hasText(stringValue)) {
+            try {
+                annualCensusRegister.putInteger(field, Integer.valueOf(stringValue.trim()));
+            } catch (NumberFormatException e) {
+                // Preserve non-integer values as text to avoid data loss.
+                annualCensusRegister.putString(field, stringValue);
+            }
+        }
+    }
+
+    static String extractObservationStringValue(Obs obs) {
+        Object rawValue = obs.getValue();
+        return rawValue != null ? String.valueOf(rawValue) : null;
+    }
+
+    private static String getObservationTextValue(Obs obs, String fallbackValue) {
+        return (obs.getValues() != null && !obs.getValues().isEmpty()) ? obs.getValues().toString() : fallbackValue;
+    }
+
+    private static boolean hasText(String value) {
+        return value != null && value.trim().length() > 0;
+    }
+
+    private boolean isMissingAnnualCensusIdentifiers(HpsAnnualCensusRegister annualCensusRegister) {
+        return annualCensusRegister.getYear() == null
+                || annualCensusRegister.getProviderId() == null
+                || annualCensusRegister.getProviderId().trim().isEmpty();
     }
 
     private void processVisitEvent(EventClient eventClient) {
@@ -303,19 +364,19 @@ public class HfClientProcessor extends CoreClientProcessor {
             if (StringUtils.isBlank(value) || (object != null && !(object instanceof Obs))) {
                 return value;
             }
-            // Skip human readable values and just get values which would aid in translations
-            final String VALUES = "values";
-            List values = new ArrayList();
+            // Skip human readable values and just get values which would aid in translations.
+            final String valuesKey = "values";
+            List<?> values = new ArrayList<>();
 
-            Object valueObject = getValue(object, VALUES);
+            Object valueObject = getValue(object, valuesKey);
             if (valueObject instanceof List) {
-                values = (List) valueObject;
+                values = (List<?>) valueObject;
             }
             if (object == null || values.isEmpty()) {
                 return value;
             }
 
-            return values.size() == 1 ? values.get(0).toString() : values.toString();
+            return values.size() == 1 ? String.valueOf(values.get(0)) : values.toString();
 
         } catch (Exception e) {
             Timber.e(e);
@@ -324,64 +385,67 @@ public class HfClientProcessor extends CoreClientProcessor {
     }
 
     private void processHeiFollowupCEvent(Event event) {
+        if (event == null) {
+            return;
+        }
+
         List<Obs> heiFollowupObs = event.getObs();
+        if (heiFollowupObs == null || heiFollowupObs.isEmpty()) {
+            return;
+        }
+
         String typeOfHivTest = null;
         String hivTestResult = null;
         String hivTestResultDate = null;
         String ctcNumber = null;
-        if (heiFollowupObs.size() > 0) {
-            for (Obs obs : heiFollowupObs) {
-                if (TYPE_OF_HIV_TEST.equals(obs.getFormSubmissionField())) {
-                    typeOfHivTest = (String) obs.getValue();
-                } else if (HIV_TEST_RESULT.equals(obs.getFormSubmissionField())) {
-                    hivTestResult = (String) obs.getValue();
-                } else if (HIV_TEST_RESULT_DATE.equals(obs.getFormSubmissionField())) {
-                    hivTestResultDate = (String) obs.getValue();
-                } else if (CTC_NUMBER.equals(obs.getFormSubmissionField())) {
-                    ctcNumber = (String) obs.getValue();
-                }
-            }
 
-            if (typeOfHivTest != null && typeOfHivTest.equals("Antibody Test"))
-                HeiDao.saveAntiBodyTestResults(event.getBaseEntityId(), event.getFormSubmissionId(), hivTestResult, hivTestResultDate, ctcNumber);
+        for (Obs obs : heiFollowupObs) {
+            if (TYPE_OF_HIV_TEST.equals(obs.getFormSubmissionField())) {
+                typeOfHivTest = (String) obs.getValue();
+            } else if (HIV_TEST_RESULT.equals(obs.getFormSubmissionField())) {
+                hivTestResult = (String) obs.getValue();
+            } else if (HIV_TEST_RESULT_DATE.equals(obs.getFormSubmissionField())) {
+                hivTestResultDate = (String) obs.getValue();
+            } else if (CTC_NUMBER.equals(obs.getFormSubmissionField())) {
+                ctcNumber = (String) obs.getValue();
+            }
+        }
+
+        if (ANTIBODY_TEST.equals(typeOfHivTest)) {
+            HeiDao.saveAntiBodyTestResults(event.getBaseEntityId(), event.getFormSubmissionId(), hivTestResult, hivTestResultDate, ctcNumber);
         }
     }
 
     @Override
     public void processDeleteEvent(Event event) {
         try {
-            List<String> pmtctFollowupTables = Arrays.asList("ec_ld_partograph", "ec_pmtct_followup", "ec_pmtct_hvl_results", "ec_pmtct_cd4_results", "ec_hei_followup", "ec_hei_hiv_results", "ec_anc_followup", "ec_pnc_followup", "ec_prep_followup", "ec_cecap_test_results", "ec_kvp_hepatitis_test_results");
-            if (event.getDetails().containsKey(org.smartregister.chw.anc.util.Constants.JSON_FORM_EXTRA.DELETE_FORM_SUBMISSION_ID)) {
-                // delete from vaccine table
-                EventDao.deleteVaccineByFormSubmissionId(event.getDetails().get(org.smartregister.chw.anc.util.Constants.JSON_FORM_EXTRA.DELETE_FORM_SUBMISSION_ID));
-                // delete from visit table
-                EventDao.deleteVisitByFormSubmissionId(event.getDetails().get(org.smartregister.chw.anc.util.Constants.JSON_FORM_EXTRA.DELETE_FORM_SUBMISSION_ID));
-                // delete from recurring service table
-                EventDao.deleteServiceByFormSubmissionId(event.getDetails().get(org.smartregister.chw.anc.util.Constants.JSON_FORM_EXTRA.DELETE_FORM_SUBMISSION_ID));
+            boolean hasDeleteFormSubmissionId = event.getDetails().containsKey(org.smartregister.chw.anc.util.Constants.JSON_FORM_EXTRA.DELETE_FORM_SUBMISSION_ID);
+            String formSubmissionId = hasDeleteFormSubmissionId
+                    ? event.getDetails().get(org.smartregister.chw.anc.util.Constants.JSON_FORM_EXTRA.DELETE_FORM_SUBMISSION_ID)
+                    : event.getFormSubmissionId();
 
-                //delete from all PMTCT Case Based Management tables that use formSubmissionIds as primaryKeys
-                for (String tableName : pmtctFollowupTables) {
-                    try {
-                        HfPmtctDao.deleteEntryFromTableByFormSubmissionId(tableName, event.getDetails().get(org.smartregister.chw.anc.util.Constants.JSON_FORM_EXTRA.DELETE_FORM_SUBMISSION_ID));
-                    } catch (Exception e) {
-                        Timber.e(e);
-                    }
-                }
+            if (hasDeleteFormSubmissionId) {
+                EventDao.deleteVaccineByFormSubmissionId(formSubmissionId);
+                EventDao.deleteVisitByFormSubmissionId(formSubmissionId);
+                EventDao.deleteServiceByFormSubmissionId(formSubmissionId);
             } else {
                 super.processDeleteEvent(event);
-                //delete from all PMTCT Case Based Management tables that use formSubmissionIds as primaryKeys
-                for (String tableName : pmtctFollowupTables) {
-                    try {
-                        HfPmtctDao.deleteEntryFromTableByFormSubmissionId(tableName, event.getFormSubmissionId());
-                    } catch (Exception e) {
-                        Timber.e(e);
-                    }
-                }
             }
 
+            deleteFromPmtctFollowupTables(formSubmissionId);
             Timber.d("Ending processDeleteEvent: %s", event.getEventId());
         } catch (Exception e) {
             Timber.e(e);
+        }
+    }
+
+    private void deleteFromPmtctFollowupTables(String formSubmissionId) {
+        for (String tableName : PMTCT_FOLLOWUP_TABLES) {
+            try {
+                HfPmtctDao.deleteEntryFromTableByFormSubmissionId(tableName, formSubmissionId);
+            } catch (Exception e) {
+                Timber.e(e);
+            }
         }
     }
 }
