@@ -231,6 +231,8 @@ android {
             force 'androidx.appcompat:appcompat:1.0.0'
             force 'com.google.android.material:material:1.0.0'
             force 'com.google.guava:guava:31.1-android'
+            // Rhino 1.7.14 references javax.lang.model.SourceVersion and crashes on Android.
+            force 'org.mozilla:rhino:1.7.13'
             // Keep all Kotlin stdlib variants on the same version to avoid duplicate classes
             force 'org.jetbrains.kotlin:kotlin-stdlib:1.8.10'
             force 'org.jetbrains.kotlin:kotlin-stdlib-common:1.8.10'
@@ -300,7 +302,7 @@ dependencies {
     implementation('com.evernote:android-job:1.4.3') {
         version { strictly '1.4.3' }
     }
-    implementation('org.smartregister:opensrp-client-chw-core:2.0.0-MOH-SNAPSHOT@aar') {
+    implementation('org.smartregister:opensrp-client-chw-core:2.0.1-MOH-SNAPSHOT@aar') {
 //    implementation(project(":opensrp-chw-core")) {
         transitive = true
         exclude group: 'com.android.support', module: 'appcompat-v7'
@@ -342,13 +344,14 @@ dependencies {
         exclude group: "org.jetbrains.kotlin", module: "kotlin-stdlib-jdk8"
         exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib-jdk7'
     }
-    implementation 'org.mozilla:rhino:1.7.13' // or a newer stable version
+    implementation('org.mozilla:rhino:1.7.13') {
+        version { strictly '1.7.13' }
+    }
 
     implementation 'net.zetetic:sqlcipher-android:4.10.0'
 
     implementation group: 'io.realm', name: 'realm-android-library', version: '10.19.0'
     implementation group: 'io.realm', name: 'realm-annotations', version: '10.19.0'
-    implementation 'org.mozilla:rhino:1.7.13' // or a newer stable version
     implementation 'com.facebook.soloader:soloader:0.12.1'
     implementation('org.smartregister:opensrp-client-chw-ld:1.0.31-NACP-SNAPSHOT@aar') {
         transitive = true
@@ -402,10 +405,11 @@ tasks.withType(Test) {
     jacoco.includeNoLocationClasses = true
 }
 
-// Workaround for D8 NullPointerException during dexing by stripping debug info from class files
-// This should only be used as a last resort in debug builds and can be removed once AGP/D8 is upgraded
+// Keep line numbers in debug builds by default so Android Studio can map breakpoints/stack traces.
+// Opt-in only: pass -PstripDebugInfoForDebugBuild=true if you need the old D8 workaround temporarily.
+def stripDebugInfoForDebugBuild = project.findProperty("stripDebugInfoForDebugBuild")?.toString()?.toBoolean() ?: false
 tasks.withType(JavaCompile).configureEach {
-    if (name.contains("Debug")) {
+    if (stripDebugInfoForDebugBuild && name.contains("Debug")) {
         options.debug = false
     }
 }
