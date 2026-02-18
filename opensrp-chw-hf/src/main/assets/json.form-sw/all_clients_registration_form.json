@@ -416,6 +416,11 @@
         "openmrs_entity_id": "phone_number",
         "type": "edit_text",
         "hint": "Namba ya simu ya mteja",
+        "v_max_length": {
+          "value": "10",
+          "is_fixed_size": "true",
+          "err": "Please enter a valid input"
+        },
         "v_numeric": {
           "value": "true",
           "err": "Namba lazima iwe jumla ya tarakimu 10 kwa urefu"
@@ -430,7 +435,7 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "person_attribute",
         "openmrs_entity_id": "id_avail",
-        "type": "check_box",
+        "type": "native_radio",
         "label": "Je, una kitambulisho chochote kati ya vifuatavyo?",
         "combine_checkbox_option_values": "true",
         "label_text_style": "normal",
@@ -438,6 +443,10 @@
         "exclusive": [
           "chk_none"
         ],
+        "v_required": {
+          "value": "true",
+          "err": "Tafadhali ingiza kitambulisho"
+        },
         "options": [
           {
             "key": "chk_national_id",
@@ -628,93 +637,25 @@
         "openmrs_entity": "person_attribute",
         "openmrs_entity_id": "Health_Insurance_Type",
         "type": "spinner",
-        "hint": "Mtoa huduma ya bima ya afya",
+        "hint": "Chagua bima ya afya ambayo mteja anayo",
         "values": [
-          "Mfuko wa Afya ya Jamii (CHF)/(iCHF)",
-          "Mfuko wa Taifa wa Hifadhi ya Jamii - Manufaa ya Bima ya Afya ya Jamii (SHIB)",
-          "Mfuko wa Taifa wa Bima ya Afya (NHIF)",
-          "Tiba Kwa Kadi (TIKA)",
-          "AAR Huduma ya Afya",
-          "Bima ya afya Strategies",
-          "Milvik Tanzania Ltd (BIMA Mkononi)",
-          "Bima ya afya ya Britam Tanzania",
-          "Bima ya afya Jubilee",
-          "Bima ya afya ya Resolutions",
-          "Bima ya afya ya Reliance",
-          "Nyinginezo",
-          "Hakuna"
+          "Bima ya Afya ya Umma (mfano NHIF,ICHF)",
+          "Bima ya Afya Binafsi (mfano AAR,Jubilee,Britam)",
+          "Hana Bima"
         ],
         "keys": [
-          "Community Health Fund (CHF)",
-          "National Social Security Fund - Social Health Insurance Benefit (SHIB)",
-          "National Health Insurance Fund (NHIF)",
-          "Tiba Kwa Kadi (TIKA)",
-          "AAR Healthcare",
-          "Strategies Insurance",
-          "Milvik Tanzania Ltd (BIMA Mkononi)",
-          "Britam Insurance Tanzania",
-          "Jubilee Insurance",
-          "Resolutions Insurance",
-          "Reliance Insurance",
-          "Other",
-          "None"
+          "Bima ya Afya ya Umma (mfano NHIF,ICHF)",
+          "Bima ya Afya Binafsi (mfano AAR,Jubilee,Britam)",
+          "Hana Bima"
         ],
         "openmrs_choice_ids": {
-          "Community Health Fund (CHF)": "Community_Health_Fund",
-          "National Social Security Fund - Social Health Insurance Benefit (SHIB)": "National_Social_Security_Fund",
-          "National Health Insurance Fund (NHIF)": "National_Health_Insurance_Fund",
-          "Tiba Kwa Kadi (TIKA)": "Tiba_kwa_Kadi",
-          "AAR Healthcare": "AAR_Healthcare",
-          "AAR Strategies Insurance": "Strategies_Insurance",
-          "Milvik Tanzania Ltd (BIMA Mkononi)": "BIMA_Mkononi",
-          "Britam Insurance Tanzania": "Britam_Insurance_Tanzania",
-          "Jubilee Insurance": "Jubilee_Insurance",
-          "Resolutions Insurance": "Resolutions_Insurance",
-          "Reliance Insurance": "Reliance_Insurance",
-          "Other": "Other_Health_Insurance_Type",
-          "None": "No_Health_Insurance"
+          "Bima ya Afya ya Umma (mfano NHIF,ICHF)": "Bima ya Afya ya Umma (mfano NHIF,ICHF)",
+          "Bima ya Afya Binafsi (mfano AAR,Jubilee,Britam)": "Bima ya Afya Binafsi (mfano AAR,Jubilee,Britam)",
+          "Hana Bima": "Hana Bima"
         },
         "v_required": {
           "value": "true",
           "err": "Tafadhali ingiza mtoa huduma wa bima"
-        }
-      },
-      {
-        "key": "insurance_provider_other",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "person_attribute",
-        "openmrs_entity_id": "Other_Health_Insurance_Type",
-        "type": "edit_text",
-        "hint": "Mtoa huduma mwingine wa bima ya afya",
-        "v_required": {
-          "value": "true",
-          "err": "Tafadhali bainisha mtoa huduma wa bima"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "all_clients_member_relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "insurance_provider_number",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "person_attribute",
-        "openmrs_entity_id": "Health_Insurance_Number",
-        "type": "edit_text",
-        "hint": "Namba ya bima ya afya ya mteja",
-        "v_required": {
-          "value": "true",
-          "err": "Tafadhali jaza namba ya bima ya afya ya mteja"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "all_clients_member_relevance.yml"
-            }
-          }
         }
       },
       {
@@ -933,6 +874,11 @@
         "openmrs_entity_id": "other_phone_number",
         "type": "edit_text",
         "hint": "Namba ya simu ya mlezi mkuu",
+        "v_max_length": {
+          "value": "10",
+          "is_fixed_size": "true",
+          "err": "Please enter a valid input"
+        },
         "v_numeric": {
           "value": "true",
           "err": "Namba lazima iwe jumla ya tarakimu 10 kwa urefu"
@@ -960,22 +906,40 @@
         "text_color": "#C0C0C0",
         "options": [
           {
-            "key": "chk_self_employed",
-            "text": "Amejiajiri",
+            "key": "chk_fisherman",
+            "text": "Mvuvi",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "chk_self_employed"
+            "openmrs_entity_id": "chk_fisherman"
           },
           {
-            "key": "chk_employed",
-            "text": "Ameajiriwa",
+            "key": "chk_miner",
+            "text": "Kazi eneo la madini",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "chk_employed"
+            "openmrs_entity_id": "chk_miner"
           },
           {
-            "key": "chk_unemployed",
-            "text": "Hajaajiriwa",
+            "key": "chk_truck_driver",
+            "text": "Dereva wa malori",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "chk_unemployed"
+            "openmrs_entity_id": "chk_truck_driver"
+          },
+          {
+            "key": "chk_bus_driver",
+            "text": "Dereva wa mabasi",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_bus_driver"
+          },
+          {
+            "key": "chk_pastoralist",
+            "text": "Mfugaji",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_pastoralist"
+          },
+          {
+            "key": "chk_business_person",
+            "text": "Mfanyabiashara",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_business_person"
           },
           {
             "key": "chk_farmer",
@@ -984,16 +948,43 @@
             "openmrs_entity_id": "chk_farmer"
           },
           {
-            "key": "chk_traditional_healer",
-            "text": "Mtoa huduma ya Tiba Asili",
+            "key": "chk_other",
+            "text": "Nyinginezo",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "chk_traditional_healer"
+            "openmrs_entity_id": "chk_other"
+          },
+          {
+            "key": "chk_none",
+            "text": "Hana Kazi",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_none"
           }
         ],
         "v_required": {
           "value": "true",
           "err": "Tafadhali chagua angalau moja"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "all_clients_member_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "service_provider_other",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person_attribute",
+        "openmrs_entity_id": "service_provider_other",
+        "type": "edit_text",
+        "hint": "Kazi nyinginezo (Taja)",
+        "edit_type": "name",
+        "v_required": {
+          "value": "true",
+          "err": "Tafadhali jaza kazi nyingine"
         },
         "relevance": {
           "rules-engine": {
