@@ -103,4 +103,45 @@ priority: 1
 condition: "step1_service_provider == 'chk_other'"
 actions:
   - "isRelevant = true"
-
+---
+name: step1_national_id
+description: specify national id
+priority: 1
+condition: "(step1_id_avail != null && step1_id_avail.contains('chk_national_id')) || (step1_national_id != null && !step1_national_id.isEmpty())"
+actions:
+  - "isRelevant = true"
+---
+name: step1_voter_id
+description: specify voter id
+priority: 1
+condition: "(step1_id_avail != null && step1_id_avail.contains('chk_voters_id')) || (step1_voter_id != null && !step1_voter_id.isEmpty())"
+actions:
+  - "isRelevant = true"
+---
+name: step1_driver_license
+description: specify driver licence
+priority: 1
+condition: "(step1_id_avail != null && step1_id_avail.contains('chk_drivers_license')) || (step1_driver_license != null && !step1_driver_license.isEmpty())"
+actions:
+  - "isRelevant = true"
+---
+name: step1_passport_number
+description: specify passport
+priority: 1
+condition: "(step1_id_avail != null && step1_id_avail.contains('chk_passport_number')) || (step1_passport_number != null && !step1_passport_number.isEmpty())"
+actions:
+  - "isRelevant = true"
+---
+name: step1_specify_other_disabilities
+description: specify other disabilities
+priority: 1
+condition: "step1_type_of_disability.contains('other_disabilities')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_specify_other_disabilities
+description: specify other disabilities
+priority: 1
+condition: "step1_type_of_disability.contains('other_disabilities')"
+actions:
+  - "isRelevant = true"

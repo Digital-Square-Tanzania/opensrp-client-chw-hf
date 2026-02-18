@@ -336,7 +336,7 @@
           },
           {
             "key": "chk_passport_number",
-            "text": "Passort",
+            "text": "Passport",
             "openmrs_entity": "person_attribute",
             "openmrs_entity_id": "chk_passport_number"
           },
@@ -362,7 +362,7 @@
         "openmrs_entity_id": "National_ID",
         "type": "mask_edit_text",
         "mask": "########-#####-#####-##",
-        "mask_hint": "12345678912345678912",
+        "mask_hint": "00000000000000000000",
         "allowed_chars": "0123456789",
         "hint": "National ID number e.g 12345678-91234-56789-12",
         "edit_type": "number",
@@ -380,14 +380,10 @@
           "err": "Please enter a valid national ID"
         },
         "relevance": {
-          "step1:id_avail": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "chk_national_id"
-                ]
-              }
-            ]
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "all_clients_member_update_relevance.yml"
+            }
           }
         }
       },
@@ -398,7 +394,7 @@
         "openmrs_entity_id": "Voter_Registration_Number",
         "type": "mask_edit_text",
         "mask": "T-####-####-###-#",
-        "mask_hint": "123456789123",
+        "mask_hint": "000000000000",
         "allowed_chars": "0123456789",
         "hint": "Voter's registration number e.g T-1234-5678-912-3",
         "edit_type": "number",
@@ -416,14 +412,10 @@
           "err": "Please enter a valid voters registration number"
         },
         "relevance": {
-          "step1:id_avail": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "chk_voters_id"
-                ]
-              }
-            ]
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "all_clients_member_update_relevance.yml"
+            }
           }
         }
       },
@@ -434,7 +426,7 @@
         "openmrs_entity_id": "Driver_License_Number",
         "type": "mask_edit_text",
         "mask": "##########",
-        "mask_hint": "1234567891",
+        "mask_hint": "0000000000",
         "allowed_chars": "0123456789",
         "hint": "Driver's license number e.g 1234567891",
         "edit_type": "number",
@@ -452,14 +444,10 @@
           "err": "Please enter a valid driver's license number"
         },
         "relevance": {
-          "step1:id_avail": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "chk_drivers_license"
-                ]
-              }
-            ]
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "all_clients_member_update_relevance.yml"
+            }
           }
         }
       },
@@ -470,7 +458,7 @@
         "openmrs_entity_id": "Passport",
         "type": "mask_edit_text",
         "mask": "TAE-###-###",
-        "mask_hint": "123456",
+        "mask_hint": "0000000",
         "allowed_chars": "0123456789",
         "hint": "Passport number e.g TAE-123-456",
         "edit_type": "number",
@@ -488,14 +476,10 @@
           "err": "Please enter a valid passport number"
         },
         "relevance": {
-          "step1:id_avail": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "chk_passport_number"
-                ]
-              }
-            ]
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "all_clients_member_update_relevance.yml"
+            }
           }
         }
       },
@@ -695,6 +679,25 @@
         }
       },
       {
+        "key": "specify_other_disabilities",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "specify_other_disabilities",
+        "type": "edit_text",
+        "hint": "Other Disabilities",
+        "v_required": {
+          "value": "true",
+          "err": "Please specify disabilities"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "all_clients_member_update_relevance.yml"
+            }
+          }
+        }
+      },
+      {
         "key": "has_primary_caregiver",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -830,7 +833,7 @@
           },
           {
             "key": "chk_none",
-            "text": "Other",
+            "text": "None",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "chk_none"
