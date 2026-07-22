@@ -1,6 +1,8 @@
 package org.smartregister.chw.hf;
 
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.Build;
 
@@ -104,6 +106,7 @@ import io.ona.kujaku.KujakuLibrary;
 import timber.log.Timber;
 
 public class HealthFacilityApplication extends CoreChwApplication implements CoreApplication {
+    private static final String FABRIC_CRASHLYTICS_BUILD_ID = "com.crashlytics.android.build_id";
     private static final Flavor flavor = new DefaultHFApplicationFlv();
     private CommonFtsObject commonFtsObject;
     private String repositoryPassword;
@@ -242,14 +245,17 @@ public class HealthFacilityApplication extends CoreChwApplication implements Cor
         FacilityMenu.setupNavigationMenu(this, new HfNavigationMenu(), new NavigationModel(),
                 getRegisteredActivities(), true);
 
-        if (BuildConfig.DEBUG) {
+        boolean isFabricCrashlyticsConfigured = isFabricCrashlyticsConfigured();
+        if (BuildConfig.DEBUG || !isFabricCrashlyticsConfigured) {
             Timber.plant(new Timber.DebugTree());
+            if (!BuildConfig.DEBUG) {
+                Timber.w("Fabric Crashlytics build ID is missing; skipping Fabric initialization.");
+            }
         } else {
             Timber.plant(new CrashlyticsTree(this.context.allSharedPreferences().fetchRegisteredANM()));
+            Fabric.with(this, new Crashlytics.Builder().core(new CrashlyticsCore.Builder()
+                    .disabled(false).build()).build());
         }
-
-        Fabric.with(this, new Crashlytics.Builder().core(new CrashlyticsCore.Builder()
-                .disabled(BuildConfig.DEBUG).build()).build());
 
         // init json helper
         this.jsonSpecHelper = new JsonSpecHelper(this);
@@ -429,6 +435,19 @@ public class HealthFacilityApplication extends CoreChwApplication implements Cor
                 .LAST_INTERACTED_WITH, ChildDBConstants.KEY.DATE_CREATED, DBConstants.KEY.DATE_REMOVED, DBConstants.KEY.DOB, ChildDBConstants.KEY.ENTRY_POINT
         });
         return map;
+    }
+
+    private boolean isFabricCrashlyticsConfigured() {
+        try {
+            ApplicationInfo applicationInfo = getPackageManager().getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA);
+            if (applicationInfo.metaData == null) {
+                return false;
+            }
+
+            return StringUtils.isNotBlank(applicationInfo.metaData.getString(FABRIC_CRASHLYTICS_BUILD_ID));
+        } catch (PackageManager.NameNotFoundException e) {
+            return false;
+        }
     }
 
     public interface Flavor {
