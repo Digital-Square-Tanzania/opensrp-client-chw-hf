@@ -297,7 +297,7 @@ flavors.each { productFlavorName ->
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation('org.smartregister:opensrp-client-chw-core:2.0.0-MOH-SNAPSHOT@aar') {
+    implementation('org.smartregister:opensrp-client-chw-core:2.1.6-MOH-SNAPSHOT@aar') {
 //    implementation(project(":opensrp-chw-core")) {
         transitive = true
         exclude group: 'com.android.support', module: 'appcompat-v7'
@@ -307,6 +307,8 @@ dependencies {
         exclude group: "org.koin", module: "koin-android"
         exclude group: "org.koin", module: "koin-androidx-scope"
         exclude group: "org.koin", module: "koin-androidx-viewmodel"
+        exclude group: 'io.github.bluecodesystems', module: 'opensrp-client-core'
+        exclude group: 'io.github.bluecodesystems', module: 'opensrp-configurable-views'
 //        exclude group: 'com.ibm.fhir', module: 'fhir-model'
         exclude group: "com.github.stephenc.jcip", module: "jcip-annotations"
         exclude group: 'com.mcxiaoke.volley', module: 'library'
@@ -362,7 +364,9 @@ dependencies {
 
     // Maps (used by Kujaku/Mapbox initialization in HealthFacilityApplication)
     implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:8.3.3'
-    implementation 'io.ona.kujaku:library:0.9.0'
+    implementation('io.ona.kujaku:library:0.9.0') {
+        exclude group: 'stax', module: 'stax-api'
+    }
     implementation 'androidx.work:work-runtime:2.8.1'
 
     // Explicit Kotlin stdlib dependency, only version 1.8.10

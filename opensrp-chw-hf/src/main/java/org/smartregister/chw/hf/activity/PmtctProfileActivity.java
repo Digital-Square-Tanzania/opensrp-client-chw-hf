@@ -663,5 +663,8 @@ public class PmtctProfileActivity extends CorePmtctProfileActivity {
         }
     }
 
-
+    @Override
+    public void onEventSaveComplete(boolean success) {
+        // Not required for the HF profile.
+    }
 }

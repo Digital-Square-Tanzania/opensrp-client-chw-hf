@@ -159,6 +159,11 @@ public class HivstProfileActivity extends CoreHivstProfileActivity {
     }
 
     @Override
+    public void onEventSaveComplete(boolean success) {
+        // Not required for the HF profile.
+    }
+
+    @Override
     public void refreshMedicalHistory(boolean hasHistory) {
         rlLastVisit.setVisibility(View.GONE);
     }

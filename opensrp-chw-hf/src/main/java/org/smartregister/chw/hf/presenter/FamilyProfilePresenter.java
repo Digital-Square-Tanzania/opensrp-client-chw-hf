@@ -39,4 +39,11 @@ public class FamilyProfilePresenter extends CoreFamilyProfilePresenter {
             Timber.e(e);
         }
     }
+
+    @Override
+    public void onEventSaveComplete(boolean success) {
+        if (success) {
+            getView().hideProgressDialog();
+        }
+    }
 }

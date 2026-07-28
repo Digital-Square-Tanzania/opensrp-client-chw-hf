@@ -212,6 +212,8 @@ public class TbProfileActivity extends CoreTbProfileActivity
         //overriding setupFollowupVisitEditViews row
     }
 
-
+    @Override
+    public void onEventSaveComplete(boolean success) {
+        // Not required for the HF profile.
+    }
 }
-

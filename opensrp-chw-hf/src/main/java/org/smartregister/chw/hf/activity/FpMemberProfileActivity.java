@@ -443,4 +443,9 @@ public class FpMemberProfileActivity extends CoreFamilyPlanningMemberProfileActi
     public void viewRegistrationDetails() {
         FpRegistrationDetailsActivity.startMe(FpMemberProfileActivity.this, fpMemberObject);
     }
+
+    @Override
+    public void onEventSaveComplete(boolean success) {
+        // Not required for the HF profile.
+    }
 }

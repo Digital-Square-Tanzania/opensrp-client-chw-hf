@@ -467,6 +467,11 @@ public class HivProfileActivity extends CoreHivProfileActivity implements HivPro
         }
     }
 
+    @Override
+    public void onEventSaveComplete(boolean success) {
+        // Not required for the HF profile.
+    }
+
     private class SetIndexClientsTask extends AsyncTask<Void, Void, Integer> {
         private HivMemberObject hivMemberObject;
 
@@ -489,4 +494,3 @@ public class HivProfileActivity extends CoreHivProfileActivity implements HivPro
         }
     }
 }
-
