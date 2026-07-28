@@ -111,6 +111,16 @@ public class FamilyOtherMemberProfileActivity extends CoreFamilyOtherMemberProfi
     }
 
     @Override
+    protected void startHarmReductionAssessment() {
+        // Harm reduction assessment is not available in the HF app.
+    }
+
+    @Override
+    protected void startHarmReductionSoberHouseEnrollment() {
+        // Harm reduction sober-house enrollment is not available in the HF app.
+    }
+
+    @Override
     protected void startMalariaRegister() {
         //TODO implement start malaria register for HF
     }

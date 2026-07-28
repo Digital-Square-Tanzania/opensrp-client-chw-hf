@@ -384,5 +384,9 @@ public class HivIndexContactProfileActivity extends CoreHivIndexContactProfileAc
 
         activity.startActivityForResult(intent, org.smartregister.chw.anc.util.Constants.REQUEST_CODE_HOME_VISIT);
     }
-}
 
+    @Override
+    public void onEventSaveComplete(boolean success) {
+        // Not required for the HF profile.
+    }
+}

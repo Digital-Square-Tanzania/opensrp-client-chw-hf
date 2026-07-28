@@ -196,4 +196,9 @@ public class MalariaProfileActivity extends CoreMalariaProfileActivity implement
     public void setCommonPersonObjectClient(CommonPersonObjectClient commonPersonObjectClient) {
         this.commonPersonObjectClient = commonPersonObjectClient;
     }
+
+    @Override
+    public void onEventSaveComplete(boolean success) {
+        // Not required for the HF profile.
+    }
 }

@@ -196,5 +196,9 @@ public class VmmcProfileActivity extends CoreVmmcProfileActivity {
     public void notifyHasPhone(boolean b) {
         //do nothing
     }
-}
 
+    @Override
+    public void onEventSaveComplete(boolean success) {
+        // Not required for the HF profile.
+    }
+}

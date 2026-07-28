@@ -226,4 +226,9 @@ public class FpEcpMemberProfileActivity extends CoreFamilyPlanningMemberProfileA
         super.onActivityResult(requestCode, resultCode, data);
         new Handler(Looper.getMainLooper()).postDelayed(this::finish, 3000);
     }
+
+    @Override
+    public void onEventSaveComplete(boolean success) {
+        // Not required for the HF profile.
+    }
 }

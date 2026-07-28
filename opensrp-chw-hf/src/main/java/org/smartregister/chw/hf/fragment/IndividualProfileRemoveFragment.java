@@ -124,6 +124,11 @@ public class IndividualProfileRemoveFragment extends CoreIndividualProfileRemove
     }
 
     @Override
+    public void startJsonRegistrationFrom(JSONObject jsonObject, String removeReason) {
+        // Individual registration is not launched from the HF removal flow.
+    }
+
+    @Override
     protected Class<? extends CoreFamilyRegisterActivity> getFamilyRegisterActivityClass() {
         return FamilyRegisterActivity.class;
     }

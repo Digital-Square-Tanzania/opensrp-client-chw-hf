@@ -473,6 +473,16 @@ public class AllClientsMemberProfileActivity extends CoreAllClientsMemberProfile
         AncRegisterActivity.startAncRegistrationActivity(AllClientsMemberProfileActivity.this, baseEntityId, PhoneNumber, CoreConstants.JSON_FORM.ANC_PREGNANCY_CONFIRMATION, null, familyBaseEntityId, familyName);
     }
 
+    @Override
+    protected void startHarmReductionAssessment() {
+        // Harm reduction assessment is not available in the HF app.
+    }
+
+    @Override
+    protected void startHarmReductionSoberHouseEnrollment() {
+        // Harm reduction sober-house enrollment is not available in the HF app.
+    }
+
     protected void startAncTransferInRegistration() {
         AncRegisterActivity.startAncRegistrationActivity(AllClientsMemberProfileActivity.this, baseEntityId, PhoneNumber, Constants.JSON_FORM.ANC_TRANSFER_IN_REGISTRATION, null, familyBaseEntityId, familyName);
     }
