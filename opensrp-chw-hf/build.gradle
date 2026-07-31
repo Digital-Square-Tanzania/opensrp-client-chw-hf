@@ -148,8 +148,8 @@ android {
             minifyEnabled false
             zipAlignEnabled true
             ndk {
-                // Mapbox 8.3.3 ships a 4 KB-aligned x86_64 binary.
-                abiFilters 'armeabi-v7a', 'arm64-v8a'
+                // Mapbox 8.3.3 is only 16 KB-aligned for ARM64.
+                abiFilters 'arm64-v8a'
             }
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField "int", "OPENMRS_UNIQUE_ID_INITIAL_BATCH_SIZE", '250'
