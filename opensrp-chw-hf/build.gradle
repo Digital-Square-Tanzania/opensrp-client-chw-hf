@@ -147,6 +147,10 @@ android {
 //            debuggable true //Useful when debugging release builds
             minifyEnabled false
             zipAlignEnabled true
+            ndk {
+                // Mapbox 8.3.3 ships a 4 KB-aligned x86_64 binary.
+                abiFilters 'armeabi-v7a', 'arm64-v8a'
+            }
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField "int", "OPENMRS_UNIQUE_ID_INITIAL_BATCH_SIZE", '250'
             buildConfigField "int", "OPENMRS_UNIQUE_ID_BATCH_SIZE", '100'
@@ -246,8 +250,8 @@ android {
             applicationId "org.smartregister.chw.moh.hf"
             minSdkVersion 26
             targetSdkVersion androidTargetSdkVersion
-            versionCode 69
-            versionName "1.4.1"
+            versionCode 70
+            versionName "1.4.2"
             testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
             multiDexEnabled true
             buildConfigField "String", 'opensrp_url', '"https://ucs.moh.go.tz/opensrp/"'

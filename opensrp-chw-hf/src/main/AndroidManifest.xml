@@ -722,4 +722,11 @@
             android:name="org.apache.http.legacy"
             android:required="false" />
     </application>
+
+    <uses-permission
+        android:name="android.permission.READ_MEDIA_IMAGES"
+        tools:node="remove" />
+    <uses-permission
+        android:name="android.permission.READ_MEDIA_VIDEO"
+        tools:node="remove" />
 </manifest>
