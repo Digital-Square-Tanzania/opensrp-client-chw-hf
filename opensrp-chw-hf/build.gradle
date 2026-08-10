@@ -204,6 +204,8 @@ android {
             force 'androidx.appcompat:appcompat:1.0.0'
             force 'com.google.android.material:material:1.0.0'
             force 'com.google.guava:guava:31.1-android'
+            // Rhino 1.7.14 references javax.lang.model.SourceVersion, which Android does not provide.
+            force 'org.mozilla:rhino:1.7.15'
             // Keep all Kotlin stdlib variants on the same version to avoid duplicate classes
             force 'org.jetbrains.kotlin:kotlin-stdlib:1.8.10'
             force 'org.jetbrains.kotlin:kotlin-stdlib-common:1.8.10'
@@ -219,8 +221,8 @@ android {
             applicationId "org.smartregister.chw.moh.hf"
             minSdkVersion 26
             targetSdkVersion androidTargetSdkVersion
-            versionCode 72
-            versionName "1.4.4"
+            versionCode 74
+            versionName "1.4.5"
             testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
             multiDexEnabled true
             buildConfigField "String", 'opensrp_url', '"https://ucs.moh.go.tz/opensrp/"'
@@ -316,13 +318,12 @@ dependencies {
         exclude group: "org.jetbrains.kotlin", module: "kotlin-stdlib-jdk8"
         exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib-jdk7'
     }
-    implementation 'org.mozilla:rhino:1.7.13' // or a newer stable version
+    implementation 'org.mozilla:rhino:1.7.15'
 
     implementation 'net.zetetic:sqlcipher-android:4.10.0'
 
     implementation group: 'io.realm', name: 'realm-android-library', version: '10.19.0'
     implementation group: 'io.realm', name: 'realm-annotations', version: '10.19.0'
-    implementation 'org.mozilla:rhino:1.7.13' // or a newer stable version
     implementation 'com.facebook.soloader:soloader:0.12.1'
     implementation('org.smartregister:opensrp-client-chw-ld:1.0.31-NACP-SNAPSHOT@aar') {
         transitive = true
