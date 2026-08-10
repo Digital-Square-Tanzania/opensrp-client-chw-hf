@@ -9,7 +9,6 @@ import android.os.Build;
 import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.core.CrashlyticsCore;
 import com.evernote.android.job.JobManager;
-import com.mapbox.mapboxsdk.Mapbox;
 
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
@@ -102,7 +101,6 @@ import java.util.Locale;
 import java.util.Map;
 
 import io.fabric.sdk.android.Fabric;
-import io.ona.kujaku.KujakuLibrary;
 import timber.log.Timber;
 
 public class HealthFacilityApplication extends CoreChwApplication implements CoreApplication {
@@ -368,17 +366,6 @@ public class HealthFacilityApplication extends CoreChwApplication implements Cor
         saveLanguage(Locale.ENGLISH.getLanguage());
         // set up processor
         FamilyLibrary.getInstance().setClientProcessorForJava(HfClientProcessor.getInstance(getApplicationContext()));
-
-        //initialize Map
-        if (getApplicationFlavor().hasMap()) {
-            initializeMapBox();
-        }
-    }
-
-    protected void initializeMapBox() {
-        // Init Kujaku
-        Mapbox.getInstance(getApplicationContext(), BuildConfig.MAPBOX_SDK_ACCESS_TOKEN);
-        KujakuLibrary.init(getApplicationContext());
     }
 
     @Override
@@ -474,7 +461,5 @@ public class HealthFacilityApplication extends CoreChwApplication implements Cor
         boolean hasCecap();
 
         boolean hasHps();
-
-        boolean hasMap();
     }
 }

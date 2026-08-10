@@ -23,21 +23,6 @@ if (rootProject.file("github.properties").exists()) {
 }
 allprojects {
     repositories {
-        // Mapbox Maven repository
-        maven {
-            url 'https://api.mapbox.com/downloads/v2/releases/maven'
-            authentication {
-                basic(BasicAuthentication)
-            }
-            credentials {
-                // Do not change the username below.
-                // This should always be `mapbox` (not your username).
-                username = 'mapbox'
-                // Use the secret token you stored in gradle.properties as the password
-                password = project.properties['MAPBOX_DOWNLOADS_TOKEN']
-            }
-        }
-
         maven { url 'https://maven.google.com' }
         mavenCentral()
 
@@ -124,21 +109,6 @@ android {
         buildConfigField "boolean", "IS_SYNC_SETTINGS", "false"
 
 
-        if (project.rootProject.file("local.properties").exists()) {
-            Properties properties = new Properties()
-            properties.load(project.rootProject.file("local.properties").newDataInputStream())
-            if (properties != null &&
-                    properties.containsKey("mapbox.sdk.token")) {
-                buildConfigField "String", "MAPBOX_SDK_ACCESS_TOKEN", properties["mapbox.sdk.token"]
-            } else {
-                println("Mapbox key config variables is not set in your local.properties")
-                buildConfigField "String", "MAPBOX_SDK_ACCESS_TOKEN", "\"sample_key\""
-            }
-
-        } else {
-            println("local.properties does not exist")
-            buildConfigField "String", "MAPBOX_SDK_ACCESS_TOKEN", "\"sample_key\""
-        }
     }
 
 
@@ -148,8 +118,7 @@ android {
             minifyEnabled false
             zipAlignEnabled true
             ndk {
-                // Mapbox 8.3.3 is only 16 KB-aligned for ARM64.
-                abiFilters 'arm64-v8a'
+                abiFilters 'armeabi-v7a', 'arm64-v8a'
             }
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField "int", "OPENMRS_UNIQUE_ID_INITIAL_BATCH_SIZE", '250'
@@ -250,8 +219,8 @@ android {
             applicationId "org.smartregister.chw.moh.hf"
             minSdkVersion 26
             targetSdkVersion androidTargetSdkVersion
-            versionCode 70
-            versionName "1.4.2"
+            versionCode 72
+            versionName "1.4.4"
             testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
             multiDexEnabled true
             buildConfigField "String", 'opensrp_url', '"https://ucs.moh.go.tz/opensrp/"'
@@ -318,6 +287,7 @@ dependencies {
         exclude group: 'com.mcxiaoke.volley', module: 'library'
         exclude group: 'org.smartregister', module: 'opensrp-client-materialedittext'
         exclude group: 'org.smartregister', module: 'opensrp-client-chw-ld'
+        exclude group: 'io.ona.kujaku', module: 'library'
         exclude group: 'com.github.chivorns', module: 'smartmaterialspinner'
         exclude group: 'io.realm', module: 'realm-android-library'
         exclude group: 'io.realm', module: 'realm-annotations'
@@ -366,11 +336,6 @@ dependencies {
         exclude group: "org.jetbrains.kotlin", module: "kotlin-stdlib-jdk8"
     }
 
-    // Maps (used by Kujaku/Mapbox initialization in HealthFacilityApplication)
-    implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:8.3.3'
-    implementation('io.ona.kujaku:library:0.9.0') {
-        exclude group: 'stax', module: 'stax-api'
-    }
     implementation 'androidx.work:work-runtime:2.8.1'
 
     // Explicit Kotlin stdlib dependency, only version 1.8.10

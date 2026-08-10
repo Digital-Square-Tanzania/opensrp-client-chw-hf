@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+        CHW Core 2.1.6 still packages a disabled ANC map layout. These attributes
+        allow that unused library resource to link without packaging Kujaku/Mapbox.
+    -->
+    <attr name="mapbox_uiLogoGravity">
+        <flag name="bottom" value="0x50" />
+        <flag name="center_horizontal" value="0x01" />
+    </attr>
+    <attr name="mapbox_uiLogoMarginRight" format="dimension" />
+    <attr name="mapbox_uiAttributionGravity">
+        <flag name="bottom" value="0x50" />
+        <flag name="center_horizontal" value="0x01" />
+    </attr>
+</resources>
