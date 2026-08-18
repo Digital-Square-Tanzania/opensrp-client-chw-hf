@@ -112,7 +112,10 @@ public class AdvancedSearchFragmentPresenter implements Presenter, AdvancedSearc
     public void onResultsFound(List<Entity> members, boolean isLocal) {
         System.out.println("Member size: " + members.size());
 
-        getView().showResults(members, isLocal);
+        AdvancedSearchContract.View view = getView();
+        if (view != null) {
+            view.showResults(members, isLocal);
+        }
     }
 
 }

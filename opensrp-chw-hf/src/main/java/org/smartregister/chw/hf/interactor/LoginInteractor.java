@@ -1,5 +1,9 @@
 package org.smartregister.chw.hf.interactor;
 
+import android.content.Context;
+
+import androidx.annotation.VisibleForTesting;
+
 import org.smartregister.CoreLibrary;
 import org.smartregister.P2POptions;
 import org.smartregister.chw.core.job.ChwIndicatorGeneratingJob;
@@ -32,8 +36,21 @@ import org.smartregister.worker.SyncServiceWorker;
 import java.util.concurrent.TimeUnit;
 
 public class LoginInteractor extends BaseLoginInteractor implements BaseLoginContract.Interactor {
+    private final Context applicationContext;
+
     public LoginInteractor(BaseLoginContract.Presenter loginPresenter) {
+        this(loginPresenter, CoreLibrary.getInstance().context().applicationContext());
+    }
+
+    @VisibleForTesting
+    LoginInteractor(BaseLoginContract.Presenter loginPresenter, Context applicationContext) {
         super(loginPresenter);
+        this.applicationContext = applicationContext;
+    }
+
+    @Override
+    public Context getApplicationContext() {
+        return applicationContext;
     }
 
     @Override
