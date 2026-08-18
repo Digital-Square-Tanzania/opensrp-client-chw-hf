@@ -2,6 +2,7 @@ package org.smartregister.chw.hf.fragment;
 
 import static androidx.core.content.ContextCompat.getSystemService;
 
+import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -294,9 +295,16 @@ public class AdvancedSearchFragment extends BaseRegisterFragment implements Adva
         //Todo implement this
     }
 
+    @Override
     public void showResults(List<Entity> members, boolean isLocal) {
-        FamilyMemberAdapter adapter = new FamilyMemberAdapter(getView().getContext(), members, isLocal);
-        ListView listView = rootView.findViewById(R.id.family_member_list);
+        View fragmentView = getView();
+        Context context = getContext();
+        if (fragmentView == null || context == null) {
+            return;
+        }
+
+        FamilyMemberAdapter adapter = new FamilyMemberAdapter(context, members, isLocal);
+        ListView listView = fragmentView.findViewById(R.id.family_member_list);
         listView.setAdapter(adapter);
         updateMatchingResults(members.size());
         switchViews(true);
