@@ -542,6 +542,15 @@ public class HfChwRepository extends CoreChwRepository {
         }
     }
 
+    private static void upgradeToVersion31(SQLiteDatabase db) {
+        try {
+            String addMissingColumnsQuery = "ALTER TABLE ec_hivst_results ADD COLUMN source_form_submission_id VARCHAR;";
+            db.execSQL(addMissingColumnsQuery);
+        } catch (Exception e) {
+            Timber.e(e, "upgradeToVersion31");
+        }
+    }
+
 
     private static void upgradeToVersion10ForBaSouth(SQLiteDatabase db) {
         try {
@@ -699,6 +708,9 @@ public class HfChwRepository extends CoreChwRepository {
                     upgradeToVersion29(db);
                 case 30:
                     upgradeToVersion30(db);
+                    break;
+                case 31:
+                    upgradeToVersion31(db);
                     break;
                 default:
                     break;
