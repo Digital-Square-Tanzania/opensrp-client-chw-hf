@@ -91,6 +91,7 @@ import org.smartregister.repository.AllSharedPreferences;
 import org.smartregister.repository.Repository;
 import org.smartregister.repository.TaskNotesRepository;
 import org.smartregister.repository.TaskRepository;
+import org.smartregister.util.LangUtils;
 import org.smartregister.util.Utils;
 
 import java.util.ArrayList;
@@ -235,8 +236,8 @@ public class HealthFacilityApplication extends CoreChwApplication implements Cor
         JobManager.create(this).addJobCreator(new HfJobCreator());
 
         //Necessary to determine the right form to pick from assets
-        CoreConstants.JSON_FORM.setLocaleAndAssetManager(HealthFacilityApplication.getCurrentLocale(),
-                HealthFacilityApplication.getInstance().getApplicationContext().getAssets());
+        CoreConstants.JSON_FORM.setLocaleAndAssetManager(
+                new Locale(LangUtils.getLanguage(this)), getAssets());
 
         //Setup Navigation menu. Done only once when app is created
         FacilityMenu.setupNavigationMenu(this, new HfNavigationMenu(), new NavigationModel(),
@@ -347,19 +348,6 @@ public class HealthFacilityApplication extends CoreChwApplication implements Cor
         );
         setOpenSRPUrl();
 
-//        Disabled changing language on HF application
-//        Configuration configuration = getApplicationContext().getResources().getConfiguration();
-//        String language;
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-//            language = configuration.getLocales().get(0).getLanguage();
-//        } else {
-//            language = configuration.locale.getLanguage();
-//        }
-//
-//        if (language.equals(Locale.FRENCH.getLanguage())) {
-//            saveLanguage(Locale.FRENCH.getLanguage());
-//        }
-        saveLanguage(Locale.ENGLISH.getLanguage());
         // set up processor
         FamilyLibrary.getInstance().setClientProcessorForJava(HfClientProcessor.getInstance(getApplicationContext()));
 

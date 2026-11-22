@@ -118,6 +118,9 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
 
         //update other_kvp_category
         JSONObject other_kvp_category = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "other_kvp_category");
+        if (other_kvp_category != null) {
+            other_kvp_category.put("label", context.getString(R.string.marp_other_client_category));
+        }
         KvpJsonFormUtils.removeOptionFromCheckboxListWithKey(other_kvp_category, KvpDao.getDominantKVPGroup(memberObject.getBaseEntityId()));
         if (memberObject.getGender().equalsIgnoreCase(Constants.MALE)) {
             //remove FSW, AGYW
