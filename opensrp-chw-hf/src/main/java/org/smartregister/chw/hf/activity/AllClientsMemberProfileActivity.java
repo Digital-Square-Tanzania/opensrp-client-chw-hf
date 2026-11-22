@@ -437,6 +437,16 @@ public class AllClientsMemberProfileActivity extends CoreAllClientsMemberProfile
     }
 
     @Override
+    protected void startMotherMentorEnrollment() {
+        //Not Required in HF
+    }
+
+    @Override
+    protected void startMotherMentorEnrollIit() {
+        //Not Required in HF
+    }
+
+    @Override
     protected void setIndependentClient(boolean isIndependentClient) {
         super.isIndependent = isIndependentClient;
     }
