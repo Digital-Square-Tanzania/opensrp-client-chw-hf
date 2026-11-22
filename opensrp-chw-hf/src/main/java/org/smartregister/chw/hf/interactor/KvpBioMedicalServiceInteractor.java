@@ -1,5 +1,6 @@
 package org.smartregister.chw.hf.interactor;
 
+import static org.smartregister.AllConstants.OPTIONS;
 import static org.smartregister.util.JsonFormUtils.VALUE;
 
 import org.apache.commons.lang3.StringUtils;
@@ -20,6 +21,7 @@ import org.smartregister.chw.hf.actionhelper.kvp.KvpStiScreeningActionHelper;
 import org.smartregister.chw.hf.actionhelper.kvp.KvpTbScreeningActionHelper;
 import org.smartregister.chw.hf.actionhelper.kvp.KvpVmmcActionHelper;
 import org.smartregister.chw.hf.dao.HfKvpDao;
+import org.smartregister.chw.hf.utils.MarpGroupLabels;
 import org.smartregister.chw.kvp.contract.BaseKvpVisitContract;
 import org.smartregister.chw.kvp.dao.KvpDao;
 import org.smartregister.chw.kvp.domain.MemberObject;
@@ -120,6 +122,7 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
         JSONObject other_kvp_category = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "other_kvp_category");
         if (other_kvp_category != null) {
             other_kvp_category.put("label", context.getString(R.string.marp_other_client_category));
+            MarpGroupLabels.applyLongLabels(context.getResources(), other_kvp_category.getJSONArray(OPTIONS));
         }
         KvpJsonFormUtils.removeOptionFromCheckboxListWithKey(other_kvp_category, KvpDao.getDominantKVPGroup(memberObject.getBaseEntityId()));
         if (memberObject.getGender().equalsIgnoreCase(Constants.MALE)) {

@@ -494,6 +494,8 @@
     <string name="prep_screening">PrEP Screening</string>
     <string name="kvp_fsw">WHR</string>
     <string name="kvp_msm">MHR</string>
+    <string name="marp_mhr_option">A man at higher risk (MHR)</string>
+    <string name="marp_whr_option">A woman at high risk (WHR)</string>
     <string name="kvp_agyw">vAGYW</string>
 
     <string name="vmmc_medical_history">Medical History</string>
