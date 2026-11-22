@@ -10,3 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 
 - Use MARP wording in English and Kiswahili across Kituoni enrollment, client navigation, services, and related forms ([#222](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/222)).
+
+### Fixed
+
+- Filter eligible MARP enrollment groups in both languages using the screening form field ([#222](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/222)).

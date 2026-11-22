@@ -398,6 +398,8 @@ dependencies {
     implementation 'com.github.lecho:hellocharts-library:1.5.8@aar'
 
     testImplementation 'junit:junit:4.13'
+    // Use real JSON objects in local presenter tests.
+    testImplementation 'org.json:json:20180813'
     testImplementation 'org.mockito:mockito-core:3.1.0'
     testImplementation 'org.robolectric:robolectric:4.3.1'
     testImplementation 'org.robolectric:shadows-multidex:4.3.1'
