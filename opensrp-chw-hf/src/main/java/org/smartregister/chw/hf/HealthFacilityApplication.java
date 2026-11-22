@@ -255,7 +255,7 @@ public class HealthFacilityApplication extends CoreChwApplication implements Cor
         this.jsonSpecHelper = new JsonSpecHelper(this);
 
         //Initialize Peer to peer modules
-        P2POptions p2POptions = new P2POptions(true);
+        P2POptions p2POptions = new TeamP2POptions(context.allSharedPreferences());
         p2POptions.setAuthorizationService(new CoreAuthorizationService());
 
         // init libraries
