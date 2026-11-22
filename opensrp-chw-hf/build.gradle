@@ -342,13 +342,13 @@ dependencies {
         exclude group: "org.jetbrains.kotlin", module: "kotlin-stdlib-jdk8"
         exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib-jdk7'
     }
-    implementation 'org.mozilla:rhino:1.7.13' // or a newer stable version
+    // Rhino 1.7.14's Java bridge uses SourceVersion, which Android does not provide.
+    implementation 'org.mozilla:rhino:1.7.15.1'
 
     implementation 'net.zetetic:sqlcipher-android:4.10.0'
 
     implementation group: 'io.realm', name: 'realm-android-library', version: '10.19.0'
     implementation group: 'io.realm', name: 'realm-annotations', version: '10.19.0'
-    implementation 'org.mozilla:rhino:1.7.13' // or a newer stable version
     implementation 'com.facebook.soloader:soloader:0.12.1'
     implementation('org.smartregister:opensrp-client-chw-ld:1.0.31-NACP-SNAPSHOT@aar') {
         transitive = true
