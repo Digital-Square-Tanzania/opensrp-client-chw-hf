@@ -1,5 +1,5 @@
 {
-  "count": "10",
+  "count": "13",
   "skip_blank_steps": true,
   "properties_file_name": "marp_screening",
   "encounter_type": "KVP Registration",
@@ -1243,6 +1243,210 @@
             }
           }
         }
+      }
+    ]
+  },
+  "step11": {
+    "title": "{{high_risk_title}}",
+    "next": "step12",
+    "fields": [
+      {
+        "key": "pregnancy_breastfeeding_risk_criteria",
+        "type": "check_box",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "label": "{{high_risk_checklist}}",
+        "exclusive": [
+          "none"
+        ],
+        "options": [
+          {
+            "key": "partner_not_on_art",
+            "text": "{{high_risk_partner_not_on_art}}"
+          },
+          {
+            "key": "partner_art_under_six_months",
+            "text": "{{high_risk_partner_art_under_six_months}}"
+          },
+          {
+            "key": "partner_art_adherence_concerns",
+            "text": "{{high_risk_partner_art_adherence_concerns}}"
+          },
+          {
+            "key": "partner_no_viral_suppression_evidence",
+            "text": "{{high_risk_partner_no_viral_suppression_evidence}}"
+          },
+          {
+            "key": "partner_multiple_partners_or_unknown_hiv_status",
+            "text": "{{high_risk_partner_multiple_partners_or_unknown_hiv_status}}"
+          },
+          {
+            "key": "multiple_partners_without_condom",
+            "text": "{{high_risk_multiple_partners_without_condom}}"
+          },
+          {
+            "key": "pep_within_six_months",
+            "text": "{{high_risk_pep_within_six_months}}"
+          },
+          {
+            "key": "polygamous_marriage",
+            "text": "{{high_risk_polygamous_marriage}}"
+          },
+          {
+            "key": "sti_current_or_within_six_months",
+            "text": "{{high_risk_sti_current_or_within_six_months}}"
+          },
+          {
+            "key": "ongoing_sexual_violence",
+            "text": "{{high_risk_ongoing_sexual_violence}}"
+          },
+          {
+            "key": "client_or_partner_injects_drugs",
+            "text": "{{high_risk_client_or_partner_injects_drugs}}"
+          },
+          {
+            "key": "higher_risk_partner",
+            "text": "{{high_risk_higher_risk_partner}}"
+          },
+          {
+            "key": "long_distance_relationship",
+            "text": "{{high_risk_long_distance_relationship}}"
+          },
+          {
+            "key": "requests_prep_without_disclosing_risk",
+            "text": "{{high_risk_requests_prep_without_disclosing_risk}}"
+          },
+          {
+            "key": "none",
+            "text": "{{high_risk_none}}"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{intake_answer_required}}"
+        }
+      }
+    ]
+  },
+  "step12": {
+    "title": "{{enrollment_title}}",
+    "fields": [
+      {
+        "key": "prompt_for_pregnant_breastfeeding_high_risk",
+        "type": "toaster_notes",
+        "text": "{{high_risk_enrollment_prompt}}",
+        "openmrs_entity_id": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "problem"
+      },
+      {
+        "key": "birth_region",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "birth_region",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "label_info_title": "{{high_risk_birth_region_title}}",
+        "label_info_text": "",
+        "hint": "{{high_risk_birth_region_hint}}",
+        "values": [
+          "Arusha",
+          "Dar es Salaam",
+          "Dodoma",
+          "Geita",
+          "Iringa",
+          "Kagera",
+          "Katavi",
+          "Kigoma",
+          "Kilimanjaro",
+          "Lindi",
+          "Manyara",
+          "Mara",
+          "Mbeya",
+          "Morogoro",
+          "Mtwara",
+          "Mwanza",
+          "Njombe",
+          "Pwani",
+          "Rukwa",
+          "Ruvuma",
+          "Shinyanga",
+          "Simiyu",
+          "Singida",
+          "Songwe",
+          "Tabora",
+          "Tanga"
+        ],
+        "keys": [
+          "Arusha",
+          "Dar es Salaam",
+          "Dodoma",
+          "Geita",
+          "Iringa",
+          "Kagera",
+          "Katavi",
+          "Kigoma",
+          "Kilimanjaro",
+          "Lindi",
+          "Manyara",
+          "Mara",
+          "Mbeya",
+          "Morogoro",
+          "Mtwara",
+          "Mwanza",
+          "Njombe",
+          "Pwani",
+          "Rukwa",
+          "Ruvuma",
+          "Shinyanga",
+          "Simiyu",
+          "Singida",
+          "Songwe",
+          "Tabora",
+          "Tanga"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{high_risk_birth_region_required}}"
+        }
+      },
+      {
+        "key": "client_group",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "client_group",
+        "label": "{{high_risk_dominant_group}}",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "pregnant_breastfeeding_high_risk",
+            "text": "{{high_risk_group_label}}",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "pregnant_breastfeeding_high_risk"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{intake_answer_required}}"
+        }
+      }
+    ]
+  },
+  "step13": {
+    "title": "{{enrollment_title}}",
+    "fields": [
+      {
+        "key": "prompt_no_group",
+        "type": "toaster_notes",
+        "text": "{{prompt_no_group}}",
+        "openmrs_entity_id": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_parent": "",
+        "toaster_type": "info"
       }
     ]
   }

@@ -3,6 +3,7 @@ package org.smartregister.chw.hf.utils;
 import static com.vijay.jsonwizard.constants.JsonFormConstants.CHECK_BOX;
 import static com.vijay.jsonwizard.constants.JsonFormConstants.FIELDS;
 import static com.vijay.jsonwizard.constants.JsonFormConstants.FIRST_STEP_NAME;
+import static com.vijay.jsonwizard.constants.JsonFormConstants.HIDDEN;
 import static com.vijay.jsonwizard.constants.JsonFormConstants.KEY;
 import static com.vijay.jsonwizard.constants.JsonFormConstants.NEXT;
 import static com.vijay.jsonwizard.constants.JsonFormConstants.OPENMRS_ENTITY;
@@ -11,6 +12,7 @@ import static com.vijay.jsonwizard.constants.JsonFormConstants.OPENMRS_ENTITY_PA
 import static com.vijay.jsonwizard.constants.JsonFormConstants.OPTIONS_FIELD_NAME;
 import static com.vijay.jsonwizard.constants.JsonFormConstants.TYPE;
 import static com.vijay.jsonwizard.constants.JsonFormConstants.VALUE;
+import static com.vijay.jsonwizard.constants.JsonFormConstants.VALUES;
 import static org.smartregister.chw.core.utils.CoreJsonFormUtils.ENCOUNTER_TYPE;
 
 import com.vijay.jsonwizard.interfaces.JsonApi;
@@ -24,10 +26,17 @@ import org.smartregister.util.JsonFormUtils;
 
 public final class MarpPregnancyScreening {
     public static final String INTAKE_STEP = "step10";
-    // Screening 3 adds the destination under this ID and increases the form count.
     public static final String HIGH_RISK_STEP = "step11";
+    public static final String ENROLLMENT_STEP = "step12";
+    public static final String NO_GROUP_STEP = "step13";
     public static final String PREGNANCY_FIELD = "is_pregnant";
     public static final String BREASTFEEDING_FIELD = "is_breastfeeding";
+    public static final String CHECKLIST_FIELD = "pregnancy_breastfeeding_risk_criteria";
+    public static final String GROUP_CODE = "pregnant_breastfeeding_high_risk";
+
+    private static final String GENERAL_ENROLLMENT_STEP = "step9";
+    private static final String BIRTH_REGION = "birth_region";
+    private static final String CLIENT_GROUP = "client_group";
 
     private MarpPregnancyScreening() {
     }
@@ -61,6 +70,61 @@ public final class MarpPregnancyScreening {
             }
         }
         return "";
+    }
+
+    public static String highRiskOutcome(JSONObject form) {
+        JSONObject highRisk = form.optJSONObject(HIGH_RISK_STEP);
+        if (highRisk == null || !HIGH_RISK_STEP.equals(nextStep(form))) {
+            return "";
+        }
+        JSONObject checklist = JsonFormUtils.getFieldJSONObject(highRisk.optJSONArray(FIELDS), CHECKLIST_FIELD);
+        JSONArray options = checklist.optJSONArray(OPTIONS_FIELD_NAME);
+        boolean criterionSelected = false;
+        for (int i = 0; i < options.length(); i++) {
+            JSONObject option = options.optJSONObject(i);
+            if (option.optBoolean(VALUE)) {
+                if ("none".equals(option.optString(KEY))) {
+                    return NO_GROUP_STEP;
+                }
+                criterionSelected = true;
+            }
+        }
+        return criterionSelected ? highRisk.optString(NEXT) : "";
+    }
+
+    public static boolean prepareEnrollmentResult(JSONObject form, String step) throws JSONException {
+        if (!step.equals(highRiskOutcome(form))) {
+            return false;
+        }
+
+        boolean enroll = ENROLLMENT_STEP.equals(step);
+        JSONArray result = new JSONArray().put(new JSONObject()
+                .put(KEY, "should_enroll")
+                .put(TYPE, HIDDEN)
+                .put(OPENMRS_ENTITY, "concept")
+                .put(OPENMRS_ENTITY_ID, "should_enroll")
+                .put(VALUE, enroll ? "yes" : "no"));
+        if (enroll) {
+            JSONArray fields = form.getJSONObject(ENROLLMENT_STEP).getJSONArray(FIELDS);
+            JSONObject region = JsonFormUtils.getFieldJSONObject(fields, BIRTH_REGION);
+            JSONObject group = JsonFormUtils.getFieldJSONObject(fields, CLIENT_GROUP);
+            String regionName = Utils.getValueAfterTranslation(region);
+            if (regionName.isEmpty() || !GROUP_CODE.equals(Utils.getValueAfterTranslation(group))) {
+                return false;
+            }
+            JSONObject savedRegion = new JSONObject(region.toString()).put(VALUE, regionName);
+            // These region names have no coded choices. Persist the selected name as the observation value.
+            savedRegion.remove(VALUES);
+            result.put(savedRegion).put(group);
+        }
+
+        // The KVP enrollment writer reads numbered steps 1 through 10.
+        form.getJSONObject(GENERAL_ENROLLMENT_STEP).put(FIELDS, result);
+        JSONArray intakeFields = form.getJSONObject(INTAKE_STEP).getJSONArray(FIELDS);
+        if ("yes".equals(Utils.getValueAfterTranslation(JsonFormUtils.getFieldJSONObject(intakeFields, PREGNANCY_FIELD)))) {
+            JsonFormUtils.getFieldJSONObject(intakeFields, BREASTFEEDING_FIELD).remove(VALUE);
+        }
+        return true;
     }
 
     public static void discardBranchAnswers(JsonApi api, String previousStep, String nextStep) throws JSONException {

@@ -38,6 +38,19 @@ public class KvpJsonWizardFormActivity extends FamilyWizardFormActivity {
     }
 
     @Override
+    protected void checkBoxWriteValue(String step, String parentKey, String childObjectKey,
+                                      String childKey, String value, boolean popup) throws JSONException {
+        super.checkBoxWriteValue(step, parentKey, childObjectKey, childKey, value, popup);
+        JSONObject form = getmJSONObject();
+        if (!popup && MarpPregnancyScreening.HIGH_RISK_STEP.equals(step)
+                && MarpPregnancyScreening.CHECKLIST_FIELD.equals(parentKey)
+                && MarpPregnancyScreening.HIGH_RISK_STEP.equals(MarpPregnancyScreening.nextStep(form))
+                && !MarpPregnancyScreening.ENROLLMENT_STEP.equals(MarpPregnancyScreening.highRiskOutcome(form))) {
+            MarpPregnancyScreening.discardBranchAnswers(this, MarpPregnancyScreening.ENROLLMENT_STEP, "");
+        }
+    }
+
+    @Override
     protected void toggleViewVisibility(View view, boolean visible, boolean popup) {
         super.toggleViewVisibility(view, visible, popup);
         if (visible && !popup && view instanceof ViewGroup && "client_group".equals(view.getTag(R.id.key))) {

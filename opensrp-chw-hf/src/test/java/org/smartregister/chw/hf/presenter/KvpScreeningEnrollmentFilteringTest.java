@@ -3,7 +3,6 @@ package org.smartregister.chw.hf.presenter;
 import android.content.Context;
 import android.content.res.Resources;
 
-import com.vijay.jsonwizard.fragments.JsonFormFragment;
 import com.vijay.jsonwizard.interactors.JsonFormInteractor;
 import com.vijay.jsonwizard.interfaces.JsonApi;
 import com.vijay.jsonwizard.utils.AppExecutors;
@@ -13,6 +12,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.Test;
 import org.smartregister.chw.hf.R;
+import org.smartregister.chw.hf.fragment.KvpScreeningJsonFormFragment;
+import org.smartregister.chw.hf.utils.MarpPregnancyScreening;
 import org.mockito.ArgumentCaptor;
 import org.smartregister.util.JsonFormUtils;
 
@@ -23,6 +24,7 @@ import java.util.Locale;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.ArgumentMatchers.isNull;
 import static org.mockito.Mockito.mock;
@@ -55,6 +57,16 @@ public class KvpScreeningEnrollmentFilteringTest {
     @Test
     public void femaleWhrOnlyInEnglish() throws Exception {
         assertOnlyFemaleWhr(Locale.ENGLISH, "MARP Enrollment");
+    }
+
+    @Test
+    public void highRiskEnrollmentPreselectsItsOnlyGroupAndRequiresBirthRegionInEnglish() throws Exception {
+        assertHighRiskEnrollment(Locale.ENGLISH, "MARP Enrollment", "Pregnant or breastfeeding women at high risk");
+    }
+
+    @Test
+    public void highRiskEnrollmentPreselectsItsOnlyGroupAndRequiresBirthRegionInKiswahili() throws Exception {
+        assertHighRiskEnrollment(KISWAHILI, "Usajili wa MARP", "Wajawazito na wanaonyonyesha walio katika hatari");
     }
 
     @Test
@@ -120,6 +132,17 @@ public class KvpScreeningEnrollmentFilteringTest {
                 KISWAHILI.equals(locale) ? WHR_SW : WHR_EN, "fsw");
     }
 
+    private static void assertHighRiskEnrollment(Locale locale, String title, String label) throws Exception {
+        JSONObject form = loadScreeningForm("kvp_screening_female", locale);
+        String step = MarpPregnancyScreening.ENROLLMENT_STEP;
+        String group = MarpPregnancyScreening.GROUP_CODE;
+        assertEnrollmentOptions(form, step, locale, title, group, label, group);
+        JSONObject enrollment = form.getJSONObject(step);
+        assertTrue(field(enrollment, "birth_region").getJSONObject("v_required").getBoolean("value"));
+        assertFalse(field(enrollment, "birth_region").has("value"));
+        assertTrue(field(enrollment, "prompt_for_pregnant_breastfeeding_high_risk").getString("text").contains(label));
+    }
+
     private static void assertEnrollmentOptions(JSONObject form, String stepName, Locale locale,
                                                 String title, String groupKey, String groupLabel,
                                                 String selectedKey) throws Exception {
@@ -136,7 +159,7 @@ public class KvpScreeningEnrollmentFilteringTest {
     }
 
     private static JSONObject renderEnrollment(JSONObject form, String stepName, Locale locale) throws Exception {
-        JsonFormFragment fragment = mock(JsonFormFragment.class);
+        KvpScreeningJsonFormFragment fragment = mock(KvpScreeningJsonFormFragment.class);
         JsonFormInteractor interactor = mock(JsonFormInteractor.class);
         JsonApi jsonApi = mock(JsonApi.class);
         AppExecutors executors = mock(AppExecutors.class);

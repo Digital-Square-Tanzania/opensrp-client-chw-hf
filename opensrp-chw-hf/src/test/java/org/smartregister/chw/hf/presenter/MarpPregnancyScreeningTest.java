@@ -2,6 +2,7 @@ package org.smartregister.chw.hf.presenter;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
@@ -10,16 +11,22 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.when;
 import static org.smartregister.chw.hf.utils.MarpPregnancyScreening.BREASTFEEDING_FIELD;
+import static org.smartregister.chw.hf.utils.MarpPregnancyScreening.CHECKLIST_FIELD;
+import static org.smartregister.chw.hf.utils.MarpPregnancyScreening.ENROLLMENT_STEP;
+import static org.smartregister.chw.hf.utils.MarpPregnancyScreening.GROUP_CODE;
 import static org.smartregister.chw.hf.utils.MarpPregnancyScreening.HIGH_RISK_STEP;
 import static org.smartregister.chw.hf.utils.MarpPregnancyScreening.INTAKE_STEP;
+import static org.smartregister.chw.hf.utils.MarpPregnancyScreening.NO_GROUP_STEP;
 import static org.smartregister.chw.hf.utils.MarpPregnancyScreening.PREGNANCY_FIELD;
 
+import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 
 import com.vijay.jsonwizard.R;
-import com.vijay.jsonwizard.fragments.JsonFormFragment;
 import com.vijay.jsonwizard.interactors.JsonFormInteractor;
 import com.vijay.jsonwizard.interfaces.JsonApi;
+import com.vijay.jsonwizard.interfaces.OnFieldsInvalid;
 import com.vijay.jsonwizard.utils.AppExecutors;
 import com.vijay.jsonwizard.utils.NativeFormLangUtils;
 import com.vijay.jsonwizard.widgets.NativeRadioButtonFactory;
@@ -27,13 +34,25 @@ import com.vijay.jsonwizard.widgets.NativeRadioButtonFactory;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.Test;
+import org.smartregister.chw.hf.fragment.KvpScreeningJsonFormFragment;
 import org.smartregister.chw.hf.utils.MarpPregnancyScreening;
+import org.smartregister.chw.kvp.util.KvpJsonFormUtils;
+import org.smartregister.chw.kvp.util.KvpUtil;
+import org.smartregister.clientandeventmodel.Event;
+import org.smartregister.clientandeventmodel.Obs;
+import org.smartregister.domain.tag.FormTag;
 import org.smartregister.util.JsonFormUtils;
 
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
+import java.util.Set;
+import java.util.concurrent.Executor;
 
 public class MarpPregnancyScreeningTest {
 
@@ -45,7 +64,9 @@ public class MarpPregnancyScreeningTest {
         assertEquals("step1", MarpPregnancyScreening.firstStep(male));
         assertEquals("drug_use", male.getJSONObject("step1").getJSONArray("fields").getJSONObject(0).getString("key"));
         assertEquals("step1", MarpPregnancyScreening.firstStep(loadForm("prep_initiation", Locale.ENGLISH)));
-        assertTrue(female.getInt("count") >= 10);
+        assertEquals(13, female.getInt("count"));
+        assertTrue(female.has(HIGH_RISK_STEP));
+        assertFalse(male.has(HIGH_RISK_STEP));
     }
 
     @Test
@@ -124,21 +145,24 @@ public class MarpPregnancyScreeningTest {
 
     @Test
     public void leavingHighRiskClearsThatBranchAndItsEnrollmentSelection() throws Exception {
-        JSONObject form = loadForm("kvp_screening_female", Locale.ENGLISH);
-        JSONObject checklist = addHighRiskFixture(form);
-        checklist.getJSONArray("options").getJSONObject(0).put("value", true);
-        checklist.put("value", new JSONArray().put("criterion"));
-        JSONObject clientGroup = field(form, "step9", "client_group").put("value", "high_risk_group");
+        JSONObject form = pregnantForm(Locale.ENGLISH);
+        JSONObject checklist = field(form, HIGH_RISK_STEP, CHECKLIST_FIELD);
+        selection(form, "polygamous_marriage").put("value", true);
+        checklist.put("value", new JSONArray().put("polygamous_marriage"));
+        JSONObject clientGroup = field(form, ENROLLMENT_STEP, "client_group").put("value", GROUP_CODE);
+        JSONObject region = field(form, ENROLLMENT_STEP, "birth_region").put("value", "Tanga");
         field(form, INTAKE_STEP, PREGNANCY_FIELD).put("value", "no");
-        field(form, INTAKE_STEP, BREASTFEEDING_FIELD).put("value", "no");
+        JSONObject breastfeeding = field(form, INTAKE_STEP, BREASTFEEDING_FIELD).put("value", "no");
         JsonApi api = formApi(form);
 
         MarpPregnancyScreening.discardBranchAnswers(api, HIGH_RISK_STEP, MarpPregnancyScreening.nextStep(form));
 
         assertFalse(checklist.has("value"));
-        assertFalse(checklist.getJSONArray("options").getJSONObject(0).has("value"));
+        assertFalse(selection(form, "polygamous_marriage").has("value"));
         assertFalse(clientGroup.has("value"));
-        verify(api).writeValue(HIGH_RISK_STEP, "checklist", "options", "criterion", "false",
+        assertFalse(region.has("value"));
+        assertEquals("no", breastfeeding.getString("value"));
+        verify(api).writeValue(HIGH_RISK_STEP, CHECKLIST_FIELD, "options", "polygamous_marriage", "false",
                 "", "", "", false);
     }
 
@@ -150,33 +174,26 @@ public class MarpPregnancyScreeningTest {
     }
 
     @Test
-    public void blocksBothYesRoutesUntilDestinationIsAdded() throws Exception {
+    public void presenterBlocksIncompleteIntake() throws Exception {
         JSONObject form = loadForm("kvp_screening_female", Locale.ENGLISH);
-        form.remove(HIGH_RISK_STEP);
         JsonApi api = formApi(form);
-        AppExecutors executors = mock(AppExecutors.class);
-        when(api.getAppExecutors()).thenReturn(executors);
-        when(executors.mainThread()).thenReturn(Runnable::run);
-        KvpScreeningJsonFormFragmentPresenter presenter = intakePresenter(api);
+        KvpScreeningJsonFormFragment fragment = mock(KvpScreeningJsonFormFragment.class);
+        KvpScreeningJsonFormFragmentPresenter presenter = presenter(api, fragment, INTAKE_STEP);
         JSONObject pregnant = field(form, INTAKE_STEP, PREGNANCY_FIELD);
-        JSONObject breastfeeding = field(form, INTAKE_STEP, BREASTFEEDING_FIELD);
 
-        pregnant.put("value", "yes");
         assertTrue(presenter.executeRefreshLogicForNextStep());
         pregnant.put("value", "no");
-        breastfeeding.put("value", "yes");
         assertTrue(presenter.executeRefreshLogicForNextStep());
         verify(api, never()).setNextStep("step1");
         verify(api, never()).setNextStep(HIGH_RISK_STEP);
     }
 
     @Test
-    public void presenterPreparesDrugUseForNoNoAndHighRiskWhenAvailable() throws Exception {
+    public void presenterPreparesDrugUseForNoNoAndTheActualHighRiskPageForYes() throws Exception {
         JSONObject form = loadForm("kvp_screening_female", Locale.ENGLISH);
-        addHighRiskFixture(form);
         JsonApi api = formApi(form);
         when(api.isNextStepRelevant()).thenReturn(true);
-        KvpScreeningJsonFormFragmentPresenter presenter = intakePresenter(api);
+        KvpScreeningJsonFormFragmentPresenter presenter = presenter(api, mock(KvpScreeningJsonFormFragment.class), INTAKE_STEP);
         JSONObject pregnant = field(form, INTAKE_STEP, PREGNANCY_FIELD).put("value", "no");
         JSONObject breastfeeding = field(form, INTAKE_STEP, BREASTFEEDING_FIELD).put("value", "no");
 
@@ -195,25 +212,214 @@ public class MarpPregnancyScreeningTest {
         verify(api, times(2)).setNextStep(HIGH_RISK_STEP);
     }
 
-    private static KvpScreeningJsonFormFragmentPresenter intakePresenter(JsonApi api) {
-        JsonFormFragment fragment = mock(JsonFormFragment.class);
+    @Test
+    public void nextShowsEnglishChecklistErrorAndAcceptsACriterionAfterward() throws Exception {
+        assertChecklistFeedback(Locale.ENGLISH, "Please select an answer", "polygamous_marriage", ENROLLMENT_STEP);
+    }
+
+    @Test
+    public void nextShowsKiswahiliChecklistErrorAndAcceptsNoneAfterward() throws Exception {
+        assertChecklistFeedback(new Locale("sw"), "Tafadhali chagua jibu", "none", NO_GROUP_STEP);
+    }
+
+    private static void assertChecklistFeedback(Locale locale, String error, String optionKey, String expectedStep)
+            throws Exception {
+        JSONObject form = pregnantForm(locale);
+        JSONObject checklist = field(form, HIGH_RISK_STEP, CHECKLIST_FIELD);
+        LinearLayout checkboxGroup = mock(LinearLayout.class);
+        when(checkboxGroup.getTag(R.id.address)).thenReturn(HIGH_RISK_STEP + ":" + CHECKLIST_FIELD);
+        when(checkboxGroup.getTag(R.id.key)).thenReturn(CHECKLIST_FIELD);
+        when(checkboxGroup.getTag(R.id.is_checkbox_linear_layout)).thenReturn(true);
+        when(checkboxGroup.getTag(R.id.extraPopup)).thenReturn(false);
+        LinearLayout row = mock(LinearLayout.class);
+        CheckBox checkbox = checkBox(optionKey);
+        when(checkbox.isChecked()).thenReturn(false);
+        when(checkboxGroup.isEnabled()).thenReturn(true);
+        when(checkboxGroup.getTag(R.id.error)).thenReturn(checklist.getJSONObject("v_required").getString("err"));
+        when(checkboxGroup.getChildCount()).thenReturn(2);
+        when(checkboxGroup.getChildAt(1)).thenReturn(row);
+        when(row.getChildAt(0)).thenReturn(checkbox);
+
+        JsonApi api = formApi(form);
+        when(api.getFormDataView(HIGH_RISK_STEP + ":" + CHECKLIST_FIELD)).thenReturn(checkboxGroup);
+        when(api.getFormDataViews()).thenReturn(List.of(checkboxGroup));
+        when(api.getInvalidFields()).thenReturn(new HashMap<>());
+        AppExecutors executors = mock(AppExecutors.class);
+        when(api.getAppExecutors()).thenReturn(executors);
+        when(executors.diskIO()).thenReturn(mock(Executor.class));
+        when(api.isNextStepRelevant()).thenReturn(true);
+        KvpScreeningJsonFormFragment fragment = mock(KvpScreeningJsonFormFragment.class);
+        JSONObject step = form.getJSONObject(HIGH_RISK_STEP);
+        when(fragment.getStep(HIGH_RISK_STEP)).thenReturn(step);
+        when(fragment.getOnFieldsInvalidCallback()).thenReturn(mock(OnFieldsInvalid.class));
         when(fragment.getJsonApi()).thenReturn(api);
         KvpScreeningJsonFormFragmentPresenter presenter = new KvpScreeningJsonFormFragmentPresenter(
                 fragment, mock(JsonFormInteractor.class)) {
             {
-                mStepName = INTAKE_STEP;
+                mStepName = HIGH_RISK_STEP;
+                mStepDetails = step;
+            }
+
+            @Override
+            protected boolean moveToNextWizardStep() {
+                return true;
+            }
+        };
+        presenter.attachView(fragment);
+
+        assertFalse(presenter.onNextClick(checkboxGroup));
+        verify(fragment).scrollToView(checkboxGroup);
+        verify(fragment).showHighRiskChecklistError(checkboxGroup, error);
+        verify(api, never()).setNextStep(ENROLLMENT_STEP);
+        verify(api, never()).setNextStep(NO_GROUP_STEP);
+
+        when(checkbox.isChecked()).thenReturn(true);
+        selection(form, optionKey).put("value", true);
+        presenter.onCheckedChanged(checkbox, true);
+        verify(fragment).dismissHighRiskChecklistError();
+        when(api.nextStep()).thenReturn(expectedStep);
+        assertTrue(presenter.onNextClick(checkboxGroup));
+        verify(api).setNextStep(expectedStep);
+    }
+
+    @Test
+    public void nativeCheckboxListenerClearsTheOpposingSelectionsInBothDirections() throws Exception {
+        JSONObject form = pregnantForm(Locale.ENGLISH);
+        KvpScreeningJsonFormFragment fragment = mock(KvpScreeningJsonFormFragment.class);
+        when(fragment.getStep(HIGH_RISK_STEP)).thenReturn(form.getJSONObject(HIGH_RISK_STEP));
+        KvpScreeningJsonFormFragmentPresenter presenter = presenter(formApi(form), fragment, HIGH_RISK_STEP);
+        CheckBox none = checkBox("none");
+        CheckBox criterion = checkBox("polygamous_marriage");
+
+        presenter.onCheckedChanged(none, true);
+        verify(fragment).unCheckAllExcept(CHECKLIST_FIELD, "none", none);
+        presenter.onCheckedChanged(criterion, true);
+        verify(fragment).unCheck(CHECKLIST_FIELD, "none", criterion);
+    }
+
+    @Test
+    public void pregnancyEnrollmentPersistsOnlyApplicableIntakeInTheKvpEvent() throws Exception {
+        JSONObject form = pregnantForm(Locale.ENGLISH);
+        field(form, INTAKE_STEP, BREASTFEEDING_FIELD).put("value", "yes");
+        assertEnrollmentEvent(form, "yes", null);
+    }
+
+    @Test
+    public void breastfeedingEnrollmentPersistsBothApplicableIntakeAnswersInTheKvpEvent() throws Exception {
+        JSONObject form = pregnantForm(new Locale("sw"));
+        field(form, INTAKE_STEP, PREGNANCY_FIELD).put("value", "no");
+        field(form, INTAKE_STEP, BREASTFEEDING_FIELD).put("value", "yes");
+        assertEnrollmentEvent(form, "no", "yes");
+    }
+
+    @Test
+    public void nonePreventsEnrollmentEvenAfterABirthRegionAndGroupWereSelected() throws Exception {
+        JSONObject form = pregnantForm(Locale.ENGLISH);
+        selection(form, "none").put("value", true);
+        field(form, ENROLLMENT_STEP, "birth_region").put("value", "Tanga");
+        field(form, ENROLLMENT_STEP, "client_group").put("value", GROUP_CODE);
+        assertFalse(MarpPregnancyScreening.prepareEnrollmentResult(form, ENROLLMENT_STEP));
+        assertTrue(MarpPregnancyScreening.prepareEnrollmentResult(form, NO_GROUP_STEP));
+        assertFalse(KvpUtil.isClientToBeRegistered(form.toString()));
+        JSONArray fields = KvpJsonFormUtils.kvpFormFields(form);
+        assertNull(JsonFormUtils.getFieldJSONObject(fields, "birth_region"));
+        assertNull(JsonFormUtils.getFieldJSONObject(fields, "client_group"));
+    }
+
+    @Test
+    public void highRiskChecklistAndNoGroupOutcomeUseBothTranslationBundles() throws Exception {
+        assertHighRiskCopy(Locale.ENGLISH, "Pregnant/Breastfeeding High Risk",
+                "HIV-negative pregnant and breastfeeding women at increased risk of acquiring HIV",
+                "Is in a polygamous marriage", "None",
+                "The client does not fall in any of the MARP groups and won't be enrolled to MARP friendly services");
+        assertHighRiskCopy(new Locale("sw"), "Mjamzito/Anayenyonyesha mwenye hatari kubwa",
+                "Wajawazito na wanaonyonyesha wasio na VVU walio katika hatari kubwa ya kupata VVU",
+                "Yuko kwenye ndoa ya wake wengi", "Hakuna",
+                "Mteja hayuko kwenye kundi lolote la MARP na hatasajiliwa kwenye huduma rafiki za MARP");
+    }
+
+    private static KvpScreeningJsonFormFragmentPresenter presenter(JsonApi api, KvpScreeningJsonFormFragment fragment,
+                                                                  String step) {
+        when(fragment.getJsonApi()).thenReturn(api);
+        KvpScreeningJsonFormFragmentPresenter presenter = new KvpScreeningJsonFormFragmentPresenter(
+                fragment, mock(JsonFormInteractor.class)) {
+            {
+                mStepName = step;
             }
         };
         presenter.attachView(fragment);
         return presenter;
     }
 
-    private static JSONObject addHighRiskFixture(JSONObject form) throws Exception {
-        JSONObject checklist = new JSONObject().put("key", "checklist").put("type", "check_box")
-                .put("options", new JSONArray().put(new JSONObject().put("key", "criterion")));
-        form.put(HIGH_RISK_STEP, new JSONObject().put("next", "step9")
-                .put("fields", new JSONArray().put(checklist)));
-        return checklist;
+    private static CheckBox checkBox(String key) {
+        CheckBox option = mock(CheckBox.class);
+        when(option.getTag(R.id.key)).thenReturn(CHECKLIST_FIELD);
+        when(option.getTag(R.id.childKey)).thenReturn(key);
+        when(option.isChecked()).thenReturn(true);
+        return option;
+    }
+
+    private static JSONObject pregnantForm(Locale locale) throws Exception {
+        JSONObject form = loadForm("kvp_screening_female", locale);
+        field(form, INTAKE_STEP, PREGNANCY_FIELD).put("value", "yes");
+        return form;
+    }
+
+    private static JSONObject selection(JSONObject form, String key) throws Exception {
+        return JsonFormUtils.getFieldJSONObject(field(form, HIGH_RISK_STEP, CHECKLIST_FIELD).getJSONArray("options"), key);
+    }
+
+    private static void assertEnrollmentEvent(JSONObject form, String pregnancy, String breastfeeding) throws Exception {
+        selection(form, "polygamous_marriage").put("value", true);
+        field(form, ENROLLMENT_STEP, "client_group").put("value", GROUP_CODE);
+        assertFalse(MarpPregnancyScreening.prepareEnrollmentResult(form, ENROLLMENT_STEP));
+        field(form, ENROLLMENT_STEP, "birth_region").put("value", "Tanga");
+        assertTrue(MarpPregnancyScreening.prepareEnrollmentResult(form, ENROLLMENT_STEP));
+        assertTrue(KvpUtil.isClientToBeRegistered(form.toString()));
+
+        JSONArray fields = KvpJsonFormUtils.kvpFormFields(form);
+        Event event = JsonFormUtils.createEvent(fields, form.getJSONObject("metadata"), new FormTag(),
+                "synthetic-client", "KVP Registration", "KVP Registration");
+        assertObservation(event, "birth_region", "Tanga");
+        assertObservation(event, "client_group", GROUP_CODE);
+        assertObservation(event, PREGNANCY_FIELD, pregnancy);
+        assertObservation(event, BREASTFEEDING_FIELD, breastfeeding);
+        assertObservation(event, CHECKLIST_FIELD, null);
+    }
+
+    private static void assertObservation(Event event, String field, String expected) {
+        List<Obs> matches = new ArrayList<>();
+        for (Obs obs : event.getObs()) {
+            if (field.equals(obs.getFieldCode())) {
+                matches.add(obs);
+            }
+        }
+        assertEquals(field, expected == null ? 0 : 1, matches.size());
+        if (expected != null) {
+            assertEquals(List.of(expected), matches.get(0).getValues());
+        }
+    }
+
+    private static void assertHighRiskCopy(Locale locale, String title, String label, String criterion,
+                                           String none, String noGroupMessage) throws Exception {
+        JSONObject form = pregnantForm(locale);
+        assertEquals(title, form.getJSONObject(HIGH_RISK_STEP).getString("title"));
+        JSONObject checklist = field(form, HIGH_RISK_STEP, CHECKLIST_FIELD);
+        assertEquals(label, checklist.getString("label"));
+        assertTrue(checklist.getJSONObject("v_required").getBoolean("value"));
+        assertEquals(new JSONArray().put("none").toString(), checklist.getJSONArray("exclusive").toString());
+        JSONArray options = checklist.getJSONArray("options");
+        assertEquals(15, options.length());
+        Set<String> keys = new HashSet<>();
+        for (int i = 0; i < options.length(); i++) {
+            JSONObject option = options.getJSONObject(i);
+            assertTrue(keys.add(option.getString("key")));
+            assertFalse(option.getString("text").contains("{{"));
+        }
+        assertEquals(criterion, selection(form, "polygamous_marriage").getString("text"));
+        assertEquals(none, selection(form, "none").getString("text"));
+        assertEquals(noGroupMessage, field(form, NO_GROUP_STEP, "prompt_no_group").getString("text"));
+        assertEquals(1, form.getJSONObject(NO_GROUP_STEP).getJSONArray("fields").length());
     }
 
     private static void assertIntakeCopy(Locale locale, String title, String pregnancy, String breastfeeding,

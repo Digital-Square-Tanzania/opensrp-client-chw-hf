@@ -10,6 +10,8 @@ import static org.smartregister.util.JsonFormUtils.VALUE;
 
 import android.app.ProgressDialog;
 import android.view.View;
+import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 
 import com.vijay.jsonwizard.constants.JsonFormConstants;
 import com.vijay.jsonwizard.fragments.JsonFormFragment;
@@ -18,6 +20,7 @@ import com.vijay.jsonwizard.interfaces.JsonApi;
 import com.vijay.jsonwizard.presenters.JsonWizardFormFragmentPresenter;
 import com.vijay.jsonwizard.rules.RulesEngineDateUtil;
 import com.vijay.jsonwizard.utils.Utils;
+import com.vijay.jsonwizard.utils.ValidationStatus;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,10 +42,10 @@ import java.util.Locale;
 import timber.log.Timber;
 
 public class KvpScreeningJsonFormFragmentPresenter extends JsonWizardFormFragmentPresenter {
-    private final JsonFormFragment formFragment;
+    private final KvpScreeningJsonFormFragment formFragment;
     private boolean cleanupAndExit = false;
 
-    public KvpScreeningJsonFormFragmentPresenter(JsonFormFragment formFragment, JsonFormInteractor jsonFormInteractor) {
+    public KvpScreeningJsonFormFragmentPresenter(KvpScreeningJsonFormFragment formFragment, JsonFormInteractor jsonFormInteractor) {
         super(formFragment, jsonFormInteractor);
         this.formFragment = formFragment;
     }
@@ -83,7 +86,9 @@ public class KvpScreeningJsonFormFragmentPresenter extends JsonWizardFormFragmen
 
             if (currentJsonState.getString(ENCOUNTER_TYPE).equalsIgnoreCase(Constants.EVENT_TYPE.KVP_REGISTRATION)) {
                 JSONObject clientGroup = JsonFormUtils.getFieldJSONObject(step.optJSONArray(FIELDS), "client_group");
-                if (clientGroup != null) {
+                if (clientGroup != null && MarpPregnancyScreening.ENROLLMENT_STEP.equals(mStepName)) {
+                    clientGroup.put(VALUE, MarpPregnancyScreening.GROUP_CODE);
+                } else if (clientGroup != null) {
                     JSONArray clientGroupArray = clientGroup.getJSONArray(OPTIONS);
                     JSONObject isPwud = JsonFormUtils.getFieldJSONObject(currentJsonState.getJSONObject("step1").getJSONArray(FIELDS), "is_pwud");
                     JSONObject isPwid = JsonFormUtils.getFieldJSONObject(currentJsonState.getJSONObject("step2").getJSONArray(FIELDS), "is_pwid");
@@ -407,25 +412,47 @@ public class KvpScreeningJsonFormFragmentPresenter extends JsonWizardFormFragmen
     }
 
     @Override
+    public boolean onNextClick(LinearLayout mainViews) {
+        if (MarpPregnancyScreening.HIGH_RISK_STEP.equals(mStepName)) {
+            String address = mStepName + ":" + MarpPregnancyScreening.CHECKLIST_FIELD;
+            View checklist = formFragment.getJsonApi().getFormDataView(address);
+            if (checklist instanceof LinearLayout) {
+                ValidationStatus status = validate(formFragment, checklist, true);
+                if (!status.isValid()) {
+                    formFragment.showHighRiskChecklistError((LinearLayout) checklist, status.getErrorMessage());
+                    return false;
+                }
+            }
+        }
+        return super.onNextClick(mainViews);
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton button, boolean isChecked) {
+        super.onCheckedChanged(button, isChecked);
+        if (MarpPregnancyScreening.HIGH_RISK_STEP.equals(mStepName) && isChecked
+                && MarpPregnancyScreening.CHECKLIST_FIELD.equals(button.getTag(com.vijay.jsonwizard.R.id.key))) {
+            formFragment.dismissHighRiskChecklistError();
+        }
+    }
+
+    @Override
     public boolean executeRefreshLogicForNextStep() {
         JsonApi api = formFragment.getJsonApi();
         JSONObject form = api.getmJSONObject();
+        String next;
         if (MarpPregnancyScreening.isIntakeStep(form, mStepName)) {
-            String next = MarpPregnancyScreening.nextStep(form);
-            if (next.isEmpty()) {
-                return true;
-            }
-            if (!form.has(next)) {
-                // The local Screening 2 build stops here until Screening 3 supplies the High Risk page.
-                api.getAppExecutors().mainThread().execute(() -> {
-                    if (formFragment.isAdded()) {
-                        getView().showSnackBar(formFragment.getString(R.string.marp_high_risk_screening_unavailable));
-                    }
-                });
-                return true;
-            }
-            api.setNextStep(next);
+            next = MarpPregnancyScreening.nextStep(form);
+        } else if (MarpPregnancyScreening.HIGH_RISK_STEP.equals(mStepName)
+                && MarpPregnancyScreening.isIntakeStep(form, MarpPregnancyScreening.INTAKE_STEP)) {
+            next = MarpPregnancyScreening.highRiskOutcome(form);
+        } else {
+            return super.executeRefreshLogicForNextStep();
         }
+        if (next.isEmpty() || !form.has(next)) {
+            return true;
+        }
+        api.setNextStep(next);
         return super.executeRefreshLogicForNextStep();
     }
 
