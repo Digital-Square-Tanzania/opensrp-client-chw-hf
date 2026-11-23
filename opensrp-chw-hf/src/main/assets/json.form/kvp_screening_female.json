@@ -113,7 +113,7 @@
     ]
   },
   "step1": {
-    "title": "PWUD",
+    "title": "{{drug_use_title}}",
     "next": "step2",
     "fields": [
       {
@@ -121,20 +121,20 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "drug_use",
-        "label": "Has the client used illegal drugs in the past 12 months?",
+        "label": "{{drug_use_label}}",
         "text_color": "#000000",
         "type": "native_radio",
         "options": [
           {
             "key": "yes",
-            "text": "Yes",
+            "text": "{{drug_use_yes}}",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "yes"
           },
           {
             "key": "no",
-            "text": "No",
+            "text": "{{drug_use_no}}",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "no"
@@ -162,7 +162,7 @@
     ]
   },
   "step2": {
-    "title": "PWID",
+    "title": "{{drug_use_title}}",
     "next": "step3",
     "fields": [
       {
@@ -170,20 +170,20 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "drug_injection",
-        "label": "Has the client ever injected him or herself with drugs?",
+        "label": "{{drug_injection_label}}",
         "text_color": "#000000",
         "type": "native_radio",
         "options": [
           {
             "key": "yes",
-            "text": "Yes",
+            "text": "{{drug_use_yes}}",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "yes"
           },
           {
             "key": "no",
-            "text": "No",
+            "text": "{{drug_use_no}}",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "no"

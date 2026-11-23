@@ -90,35 +90,10 @@ public class KvpScreeningJsonFormFragmentPresenter extends JsonWizardFormFragmen
                     clientGroup.put(VALUE, MarpPregnancyScreening.GROUP_CODE);
                 } else if (clientGroup != null) {
                     JSONArray clientGroupArray = clientGroup.getJSONArray(OPTIONS);
-                    JSONObject isPwud = JsonFormUtils.getFieldJSONObject(currentJsonState.getJSONObject("step1").getJSONArray(FIELDS), "is_pwud");
-                    JSONObject isPwid = JsonFormUtils.getFieldJSONObject(currentJsonState.getJSONObject("step2").getJSONArray(FIELDS), "is_pwid");
+                    updateDrugGroupOptions(currentJsonState, clientGroupArray);
 
                     //Male KVP Screening Form
                     if (mStepName.equals("step8")) {
-                        if (!isPwud.has(OpdConstants.JSON_FORM_KEY.VALUE) || !isPwud.getString(VALUE).equals("yes")) {
-                            for (int i = 0; i < clientGroupArray.length(); i++) {
-                                if (clientGroupArray.getJSONObject(i).getString(KEY).equals("pwud")) {
-                                    clientGroupArray.remove(i);
-                                    break;
-                                }
-                            }
-                        } else if (!containsKey(clientGroupArray, "pwud")) {
-                            clientGroupArray.put(new JSONObject("{\"key\":\"pwud\",\"text\":\"PWUD\",\"openmrs_entity_parent\":\"\",\"openmrs_entity\":\"concept\",\"openmrs_entity_id\":\"pwud\"}"));
-                        }
-
-
-                        if (!isPwid.has(OpdConstants.JSON_FORM_KEY.VALUE) || !isPwid.getString(VALUE).equals("yes")) {
-                            for (int i = 0; i < clientGroupArray.length(); i++) {
-                                if (clientGroupArray.getJSONObject(i).getString(KEY).equals("pwid")) {
-                                    clientGroupArray.remove(i);
-                                    break;
-                                }
-                            }
-                        } else if (!containsKey(clientGroupArray, "pwid")) {
-                            clientGroupArray.put(new JSONObject("{\"key\":\"pwid\",\"text\":\"PWID\",\"openmrs_entity_parent\":\"\",\"openmrs_entity\":\"concept\",\"openmrs_entity_id\":\"pwid\"}"));
-                        }
-
-
                         JSONObject isMsm = JsonFormUtils.getFieldJSONObject(currentJsonState.getJSONObject("step4").getJSONArray(FIELDS), "is_msm");
                         if (!isMsm.has(OpdConstants.JSON_FORM_KEY.VALUE) || !isMsm.getString(VALUE).equals("yes")) {
                             for (int i = 0; i < clientGroupArray.length(); i++) {
@@ -194,29 +169,6 @@ public class KvpScreeningJsonFormFragmentPresenter extends JsonWizardFormFragmen
                         }
 
                     } else if (mStepName.equals("step9")) {  //Female KVP Screening Form
-
-                        if (!isPwud.has(OpdConstants.JSON_FORM_KEY.VALUE) || !isPwud.getString(VALUE).equals("yes")) {
-                            for (int i = 0; i < clientGroupArray.length(); i++) {
-                                if (clientGroupArray.getJSONObject(i).getString(KEY).equals("pwud")) {
-                                    clientGroupArray.remove(i);
-                                    break;
-                                }
-                            }
-                        } else if (!containsKey(clientGroupArray, "pwud")) {
-                            clientGroupArray.put(new JSONObject("{\"key\":\"pwud\",\"text\":\"PWUD\",\"openmrs_entity_parent\":\"\",\"openmrs_entity\":\"concept\",\"openmrs_entity_id\":\"pwud\"}"));
-                        }
-
-
-                        if (!isPwid.has(OpdConstants.JSON_FORM_KEY.VALUE) || !isPwid.getString(VALUE).equals("yes")) {
-                            for (int i = 0; i < clientGroupArray.length(); i++) {
-                                if (clientGroupArray.getJSONObject(i).getString(KEY).equals("pwid")) {
-                                    clientGroupArray.remove(i);
-                                    break;
-                                }
-                            }
-                        } else if (!containsKey(clientGroupArray, "pwid")) {
-                            clientGroupArray.put(new JSONObject("{\"key\":\"pwid\",\"text\":\"PWID\",\"openmrs_entity_parent\":\"\",\"openmrs_entity\":\"concept\",\"openmrs_entity_id\":\"pwid\"}"));
-                        }
 
                         JSONObject isFsw = JsonFormUtils.getFieldJSONObject(currentJsonState.getJSONObject("step5").getJSONArray(FIELDS), "is_fsw");
                         if (!isFsw.has(OpdConstants.JSON_FORM_KEY.VALUE) || !isFsw.getString(VALUE).equals("yes")) {
@@ -467,12 +419,45 @@ public class KvpScreeningJsonFormFragmentPresenter extends JsonWizardFormFragmen
         return false;
     }
 
+    private void updateDrugGroupOptions(JSONObject form, JSONArray options) throws JSONException {
+        JSONObject drugUse = JsonFormUtils.getFieldJSONObject(form.getJSONObject("step1").getJSONArray(FIELDS), "is_pwud");
+        JSONObject drugInjection = JsonFormUtils.getFieldJSONObject(form.getJSONObject("step2").getJSONArray(FIELDS), "is_pwid");
+        // The existing is_pwud calculation records any recent drug use.
+        boolean usedDrugs = "yes".equals(drugUse.optString(VALUE));
+        boolean injectedDrugs = "yes".equals(drugInjection.optString(VALUE));
+        updateDrugGroupOption(options, "pwud", R.string.marp_pwud_enrollment_option, usedDrugs && !injectedDrugs);
+        updateDrugGroupOption(options, "pwid", R.string.marp_pwid_enrollment_option, usedDrugs && injectedDrugs);
+    }
+
+    private void updateDrugGroupOption(JSONArray options, String key, int labelResId, boolean eligible) throws JSONException {
+        for (int i = 0; i < options.length(); i++) {
+            JSONObject option = options.getJSONObject(i);
+            if (key.equals(option.getString(KEY))) {
+                if (eligible) {
+                    option.put(JsonFormConstants.TEXT, formFragment.getContext().getString(labelResId));
+                } else {
+                    options.remove(i);
+                }
+                return;
+            }
+        }
+        if (eligible) {
+            options.put(new JSONObject()
+                    .put(KEY, key)
+                    .put(JsonFormConstants.TEXT, formFragment.getContext().getString(labelResId))
+                    .put("openmrs_entity_parent", "")
+                    .put("openmrs_entity", "concept")
+                    .put("openmrs_entity_id", key));
+        }
+    }
+
     private void preselectRiskGroup(JSONObject clientGroup, JSONArray options) throws JSONException {
         String selectedKey = clientGroup.optString(VALUE);
         if (containsKey(options, selectedKey)) {
             return;
         }
-        if ("msm".equals(selectedKey) || "fsw".equals(selectedKey)) {
+        if ("msm".equals(selectedKey) || "fsw".equals(selectedKey)
+                || "pwud".equals(selectedKey) || "pwid".equals(selectedKey)) {
             clientGroup.remove(VALUE);
         }
         if (options.length() == 1) {

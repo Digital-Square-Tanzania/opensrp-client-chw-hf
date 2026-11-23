@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
+- Use bilingual Drug Use screening wording and show the matching dominant enrollment option for injecting or non-injecting drug use in Kituoni ([#227](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/227)).
 - Hide MARP/PrEP Enrollment before age 15. From All Clients, open the client profile for MARP clients so eligible clients can use the overflow action to reopen their saved MARP profile with a localized enrollment message ([#224](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/224)).
 - Use MARP wording in English and Kiswahili across Kituoni enrollment, client navigation, services, and related forms ([#222](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/222)).
 - Use MHR and WHR in Kituoni screening, enrollment, Client Status, and MARP profiles, with bilingual enrollment and Client Status options and the existing group codes ([#223](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/223)).

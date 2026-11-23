@@ -384,6 +384,8 @@
     <string name="kvp_msm">MHR</string>
     <string name="marp_mhr_option">Mwanaume aliye katika hatari zaidi (MHR)</string>
     <string name="marp_whr_option">Mwanamke aliye katika hatari zaidi (WHR)</string>
+    <string name="marp_pwid_enrollment_option">Wajidunga dawa za kulevya</string>
+    <string name="marp_pwud_enrollment_option">Watumiaji wa dawa za kulevya kwa njia nyingine</string>
     <string name="kvp_agyw">vAGYW</string>
     <string name="kvp_other_services_referrals">Afua Zinginezo na Rufaa</string>
     <string name="prep_visit_type">Aina ya Hudhurio</string>
