@@ -636,7 +636,7 @@
   },
   "step7": {
     "title": "{{other_groups_title}}",
-    "next": "step8",
+    "next": "step9",
     "fields": [
       {
         "key": "other_groups_at_risk",
@@ -711,84 +711,6 @@
         "type": "hidden",
         "disabled": true,
         "value": "none"
-      }
-    ]
-  },
-  "step8": {
-    "title": "PrEP Assessment",
-    "next": "step9",
-    "fields": [
-      {
-        "key": "prep_assessment",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "prep_assessment",
-        "label": "Has the client been assessed for the use of PrEP?",
-        "text_color": "#000000",
-        "type": "native_radio",
-        "options": [
-          {
-            "key": "yes",
-            "text": "Yes",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "yes"
-          },
-          {
-            "key": "no",
-            "text": "No",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "no"
-          }
-        ],
-        "v_required": {
-          "value": "true",
-          "err": "Please select an answer"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "kvp_screening_female_relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "prep_qualified",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "prep_qualified",
-        "label": "Is the client eligible to receive PrEP?",
-        "text_color": "#000000",
-        "type": "native_radio",
-        "options": [
-          {
-            "key": "yes",
-            "text": "Yes",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "yes"
-          },
-          {
-            "key": "no",
-            "text": "No",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "no"
-          }
-        ],
-        "v_required": {
-          "value": "true",
-          "err": "Please select an answer"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "kvp_screening_female_relevance.yml"
-            }
-          }
-        }
       }
     ]
   },
