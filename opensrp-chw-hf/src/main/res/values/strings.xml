@@ -504,6 +504,7 @@
     <string name="kvp_msm">MHR</string>
     <string name="marp_mhr_option">A man at higher risk (MHR)</string>
     <string name="marp_whr_option">A woman at high risk (WHR)</string>
+    <string name="marp_agyw_option">Adolescent girls and young women</string>
     <string name="marp_discordant_partner_option">Discordant partner</string>
     <string name="marp_pwid_enrollment_option">People who inject drugs</string>
     <string name="marp_pwud_enrollment_option">People who use drugs through non-injecting routes</string>

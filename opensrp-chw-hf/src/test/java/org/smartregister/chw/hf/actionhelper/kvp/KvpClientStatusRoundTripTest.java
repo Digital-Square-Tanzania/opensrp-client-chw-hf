@@ -50,7 +50,7 @@ public class KvpClientStatusRoundTripTest {
     public void reopensSavedLegacyGroupsWithTheirExistingLabels() throws Exception {
         Map<String, String> labels = Map.of(
                 "prisoner", "Prisoners", "rumandee", "Rumandee", "mobile_population", "Mobile population",
-                "other_vulnerable_population", "Other vulnerable population");
+                "other_vulnerable_population", "Other vulnerable population", "agyw", "vAGYW");
         assertGroupRoundTrip(labels);
     }
 

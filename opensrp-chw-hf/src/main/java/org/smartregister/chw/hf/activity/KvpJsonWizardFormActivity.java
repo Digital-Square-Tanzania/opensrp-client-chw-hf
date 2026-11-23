@@ -18,6 +18,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.hf.fragment.KvpScreeningJsonFormFragment;
 import org.smartregister.chw.hf.utils.JsonFormUtils;
+import org.smartregister.chw.hf.utils.MarpAgywScreening;
 import org.smartregister.chw.hf.utils.MarpDiscordantCoupleScreening;
 import org.smartregister.chw.hf.utils.MarpOtherGroupsScreening;
 import org.smartregister.chw.hf.utils.MarpPregnancyScreening;
@@ -113,6 +114,7 @@ public class KvpJsonWizardFormActivity extends FamilyWizardFormActivity {
             super.widgetsWriteValue(step, key, value, entityParent, entity, entityId, popup);
             if (!popup && !value.isEmpty()) {
                 MarpDiscordantCoupleScreening.onRadioAnswerChanged(this, step, key);
+                MarpAgywScreening.onRadioAnswerChanged(this, step, key);
             }
             if (!popup && form != null && "step1".equals(step) && "drug_use".equals(key) && "no".equals(value)
                     && Constants.EVENT_TYPE.KVP_REGISTRATION.equalsIgnoreCase(form.optString("encounter_type"))) {
@@ -135,6 +137,10 @@ public class KvpJsonWizardFormActivity extends FamilyWizardFormActivity {
         if (!popup && MarpDiscordantCoupleScreening.PARTNER_PARAMETERS.equals(parentKey)
                 && MarpDiscordantCoupleScreening.isScreeningStep(form, step)) {
             MarpDiscordantCoupleScreening.refreshEligibility(this);
+        }
+        if (!popup && MarpAgywScreening.CHECKLIST_FIELD.equals(parentKey)
+                && MarpAgywScreening.isScreeningStep(form, step)) {
+            MarpAgywScreening.refreshEligibility(this);
         }
         if (!popup && MarpOtherGroupsScreening.CHECKLIST_FIELD.equals(parentKey)
                 && MarpOtherGroupsScreening.isScreeningStep(form, step)) {

@@ -28,6 +28,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.fragment.KvpScreeningJsonFormFragment;
+import org.smartregister.chw.hf.utils.MarpAgywScreening;
 import org.smartregister.chw.hf.utils.MarpDiscordantCoupleScreening;
 import org.smartregister.chw.hf.utils.MarpGroupLabels;
 import org.smartregister.chw.hf.utils.MarpOtherGroupsScreening;
@@ -87,6 +88,8 @@ public class KvpScreeningJsonFormFragmentPresenter extends JsonWizardFormFragmen
         }
 
         try {
+            boolean agywEligible = MarpAgywScreening.ENROLLMENT_STEP.equals(mStepName)
+                    && MarpAgywScreening.refreshEligibility(formFragment.getJsonApi());
             JSONObject currentJsonState = new JSONObject(getView().getCurrentJsonState());
 
             if (currentJsonState.getString(ENCOUNTER_TYPE).equalsIgnoreCase(Constants.EVENT_TYPE.KVP_REGISTRATION)) {
@@ -116,7 +119,7 @@ public class KvpScreeningJsonFormFragmentPresenter extends JsonWizardFormFragmen
                         } else if (!containsKey(clientGroupArray, "msm")) {
                             clientGroupArray.put(new JSONObject("{\"key\":\"msm\",\"text\":\"MHR\",\"openmrs_entity_parent\":\"\",\"openmrs_entity\":\"concept\",\"openmrs_entity_id\":\"msm\"}"));
                         }
-                    } else if (mStepName.equals("step9")) {  //Female KVP Screening Form
+                    } else if (MarpAgywScreening.ENROLLMENT_STEP.equals(mStepName)) {  //Female KVP Screening Form
 
                         JSONObject isFsw = JsonFormUtils.getFieldJSONObject(currentJsonState.getJSONObject("step5").getJSONArray(FIELDS), "is_fsw");
                         if (!isFsw.has(OpdConstants.JSON_FORM_KEY.VALUE) || !isFsw.getString(VALUE).equals("yes")) {
@@ -130,17 +133,8 @@ public class KvpScreeningJsonFormFragmentPresenter extends JsonWizardFormFragmen
                             clientGroupArray.put(new JSONObject("{\"key\":\"fsw\",\"text\":\"WHR\",\"openmrs_entity_parent\":\"\",\"openmrs_entity\":\"concept\",\"openmrs_entity_id\":\"fsw\"}"));
                         }
 
-                        JSONObject isAgwy = JsonFormUtils.getFieldJSONObject(currentJsonState.getJSONObject("step6").getJSONArray(FIELDS), "is_agyw");
-                        if (!isAgwy.has(OpdConstants.JSON_FORM_KEY.VALUE) || !isAgwy.getString(VALUE).equals("yes")) {
-                            for (int i = 0; i < clientGroupArray.length(); i++) {
-                                if (clientGroupArray.getJSONObject(i).getString(KEY).equals("agyw")) {
-                                    clientGroupArray.remove(i);
-                                    break;
-                                }
-                            }
-                        } else if (!containsKey(clientGroupArray, "agyw")) {
-                            clientGroupArray.put(new JSONObject("{\"key\":\"agyw\",\"text\":\"vAGYW\",\"openmrs_entity_parent\":\"\",\"openmrs_entity\":\"concept\",\"openmrs_entity_id\":\"agyw\"}"));
-                        }
+                        updateGroupOption(clientGroupArray, MarpAgywScreening.GROUP_CODE,
+                                R.string.marp_agyw_option, agywEligible);
                     }
                     MarpGroupLabels.applyLongLabels(formFragment.getContext().getResources(), clientGroupArray);
                     preselectRiskGroup(clientGroup, clientGroupArray);
@@ -280,7 +274,10 @@ public class KvpScreeningJsonFormFragmentPresenter extends JsonWizardFormFragmen
     public void onCheckedChanged(CompoundButton button, boolean isChecked) {
         super.onCheckedChanged(button, isChecked);
         String checklistKey = getRequiredChecklistKey();
-        if (isChecked && checklistKey != null && checklistKey.equals(button.getTag(com.vijay.jsonwizard.R.id.key))) {
+        Object changedKey = button.getTag(com.vijay.jsonwizard.R.id.key);
+        boolean changedSchool = MarpAgywScreening.CHECKLIST_FIELD.equals(checklistKey)
+                && MarpAgywScreening.SCHOOL_FIELD.equals(changedKey);
+        if (isChecked && checklistKey != null && (checklistKey.equals(changedKey) || changedSchool)) {
             formFragment.dismissChecklistError();
         }
         if (MarpPregnancyScreening.HIGH_RISK_STEP.equals(mStepName) && isChecked
@@ -291,6 +288,9 @@ public class KvpScreeningJsonFormFragmentPresenter extends JsonWizardFormFragmen
 
     private String getRequiredChecklistKey() {
         JSONObject form = formFragment.getJsonApi().getmJSONObject();
+        if (MarpAgywScreening.isScreeningStep(form, mStepName)) {
+            return MarpAgywScreening.CHECKLIST_FIELD;
+        }
         if (MarpOtherGroupsScreening.isScreeningStep(form, mStepName)) {
             return MarpOtherGroupsScreening.CHECKLIST_FIELD;
         }
