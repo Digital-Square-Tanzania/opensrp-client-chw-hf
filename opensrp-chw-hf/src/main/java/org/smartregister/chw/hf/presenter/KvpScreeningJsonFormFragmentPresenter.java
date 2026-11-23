@@ -14,6 +14,7 @@ import android.view.View;
 import com.vijay.jsonwizard.constants.JsonFormConstants;
 import com.vijay.jsonwizard.fragments.JsonFormFragment;
 import com.vijay.jsonwizard.interactors.JsonFormInteractor;
+import com.vijay.jsonwizard.interfaces.JsonApi;
 import com.vijay.jsonwizard.presenters.JsonWizardFormFragmentPresenter;
 import com.vijay.jsonwizard.rules.RulesEngineDateUtil;
 import com.vijay.jsonwizard.utils.Utils;
@@ -24,6 +25,7 @@ import org.json.JSONObject;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.fragment.KvpScreeningJsonFormFragment;
 import org.smartregister.chw.hf.utils.MarpGroupLabels;
+import org.smartregister.chw.hf.utils.MarpPregnancyScreening;
 import org.smartregister.chw.kvp.util.Constants;
 import org.smartregister.family.util.JsonFormUtils;
 import org.smartregister.opd.utils.OpdConstants;
@@ -404,6 +406,30 @@ public class KvpScreeningJsonFormFragmentPresenter extends JsonWizardFormFragmen
         super.cleanUp();
     }
 
+    @Override
+    public boolean executeRefreshLogicForNextStep() {
+        JsonApi api = formFragment.getJsonApi();
+        JSONObject form = api.getmJSONObject();
+        if (MarpPregnancyScreening.isIntakeStep(form, mStepName)) {
+            String next = MarpPregnancyScreening.nextStep(form);
+            if (next.isEmpty()) {
+                return true;
+            }
+            if (!form.has(next)) {
+                // The local Screening 2 build stops here until Screening 3 supplies the High Risk page.
+                api.getAppExecutors().mainThread().execute(() -> {
+                    if (formFragment.isAdded()) {
+                        getView().showSnackBar(formFragment.getString(R.string.marp_high_risk_screening_unavailable));
+                    }
+                });
+                return true;
+            }
+            api.setNextStep(next);
+        }
+        return super.executeRefreshLogicForNextStep();
+    }
+
+    @Override
     protected boolean moveToNextWizardStep() {
         final String nextStep = getFormFragment().getJsonApi().nextStep();
         if (!"".equals(nextStep)) {
