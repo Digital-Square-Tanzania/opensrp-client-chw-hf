@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.vijay.jsonwizard.utils.FormUtils;
 
 import org.apache.commons.lang3.StringUtils;
@@ -44,11 +45,36 @@ import timber.log.Timber;
 
 public class KvpProfileActivity extends CoreKvpProfileActivity {
 
+    private static final String EXTRA_OPENED_FROM_ENROLLMENT = "opened_from_marp_enrollment";
+
     public static void startProfile(Activity activity, String baseEntityId) {
+        activity.startActivity(profileIntent(activity, baseEntityId));
+    }
+
+    static void startProfileFromEnrollment(Activity activity, String baseEntityId) {
+        Intent intent = profileIntent(activity, baseEntityId);
+        intent.putExtra(EXTRA_OPENED_FROM_ENROLLMENT, true);
+        activity.startActivity(intent);
+    }
+
+    private static Intent profileIntent(Activity activity, String baseEntityId) {
         Intent intent = new Intent(activity, KvpProfileActivity.class);
         intent.putExtra(Constants.ACTIVITY_PAYLOAD.BASE_ENTITY_ID, baseEntityId);
         intent.putExtra(Constants.ACTIVITY_PAYLOAD.PROFILE_TYPE, Constants.PROFILE_TYPES.KVP_PROFILE);
-        activity.startActivity(intent);
+        return intent;
+    }
+
+    @Override
+    protected void onCreation() {
+        super.onCreation();
+        if (getIntent().getBooleanExtra(EXTRA_OPENED_FROM_ENROLLMENT, false)) {
+            getIntent().removeExtra(EXTRA_OPENED_FROM_ENROLLMENT);
+            Snackbar message = Snackbar.make(findViewById(android.R.id.content),
+                    R.string.marp_enrollment_already_enrolled, Snackbar.LENGTH_LONG);
+            TextView text = message.getView().findViewById(com.google.android.material.R.id.snackbar_text);
+            text.setMaxLines(Integer.MAX_VALUE);
+            message.show();
+        }
     }
 
     @Override
