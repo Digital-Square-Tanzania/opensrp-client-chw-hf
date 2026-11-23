@@ -20,26 +20,19 @@ condition: "true"
 actions:
   - "calculation = (step5_sexual_intercourse_with.equals('man') || step5_sexual_intercourse_with.equals('both')) ? 'yes' : 'no' "
 ---
-name: step6_is_ovp_kvp
-description: check if client falls in other groups at risk of hiv infection
-priority: 1
-condition: "true"
-actions:
-  - "calculation = !step6_other_groups_at_risk.equals('none') ? 'yes' : 'no' "
----
 name: step8_should_enroll
 description: check if should enroll client if they belong to any kvp group
 priority: 1
 condition: "true"
 actions:
-  - "calculation = (step1_is_pwud.equals('yes') || step2_is_pwid.equals('yes') || step5_is_msm.equals('yes') || step4_is_sdc.equals('yes') || step6_is_ovp_kvp.equals('yes')) ? 'yes' : 'no' "
+  - "calculation = (step1_is_pwud.equals('yes') || step2_is_pwid.equals('yes') || step5_is_msm.equals('yes') || step4_is_sdc.equals('yes') || (!step6_eligible_other_marp_groups.isEmpty() && !step6_eligible_other_marp_groups.equals('none'))) ? 'yes' : 'no' "
 ---
 name: step8_other_screened_client_group
 description: other KVP Groups Calculation
 priority: 1
 condition: "true"
 actions:
-  - "def getOtherKvpGroups(pwud,pwid,sdc,msm,ovp,serodiscordant_couple) {
+  - "def getOtherKvpGroups(pwud,pwid,sdc,msm,otherMarpGroups,serodiscordant_couple) {
         String otherGroups = '';
                
         if(pwud.contains('yes')){
@@ -59,8 +52,8 @@ actions:
           otherGroups+='msm,';
         }
         
-        if(ovp.equals('yes')){
-          otherGroups+='other_vulnerable_population,';
+        if(!otherMarpGroups.isEmpty() && !otherMarpGroups.equals('none')){
+          otherGroups+=otherMarpGroups+',';
         }
         
         if(serodiscordant_couple.equals('yes')){
@@ -74,6 +67,6 @@ actions:
         return otherGroups;
                
      }"
-  - "calculation = '['+getOtherKvpGroups(step1_is_pwud, step2_is_pwid, step4_is_sdc, step5_is_msm, step6_is_ovp_kvp, step4_is_sdc)+']'"
+  - "calculation = '['+getOtherKvpGroups(step1_is_pwud, step2_is_pwid, step4_is_sdc, step5_is_msm, step6_eligible_other_marp_groups, step4_is_sdc)+']'"
 
 

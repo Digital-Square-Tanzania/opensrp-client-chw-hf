@@ -195,6 +195,34 @@
             "openmrs_entity_id": "other_vulnerable_population"
           },
           {
+            "key": "long_distance_truck_drivers",
+            "text": "Long-distance truck drivers",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "long_distance_truck_drivers"
+          },
+          {
+            "key": "fisherfolk",
+            "text": "Fisherfolk",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "fisherfolk"
+          },
+          {
+            "key": "miners",
+            "text": "Miners",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "miners"
+          },
+          {
+            "key": "other_key_and_vulnerable_populations",
+            "text": "Other key and vulnerable populations",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "other_key_and_vulnerable_populations"
+          },
+          {
             "key": "none",
             "text": "None",
             "openmrs_entity_parent": "",

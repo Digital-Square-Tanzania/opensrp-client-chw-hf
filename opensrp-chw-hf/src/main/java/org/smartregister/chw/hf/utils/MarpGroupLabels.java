@@ -25,6 +25,11 @@ public final class MarpGroupLabels {
                     option.put(TEXT, resources.getString(R.string.marp_whr_option));
                     break;
                 default:
+                    MarpOtherGroupsScreening.Group group =
+                            MarpOtherGroupsScreening.Group.fromCode(option.getString(KEY));
+                    if (group != null) {
+                        option.put(TEXT, resources.getString(group.label));
+                    }
                     break;
             }
         }

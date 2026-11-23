@@ -19,6 +19,7 @@ import org.json.JSONObject;
 import org.smartregister.chw.hf.fragment.KvpScreeningJsonFormFragment;
 import org.smartregister.chw.hf.utils.JsonFormUtils;
 import org.smartregister.chw.hf.utils.MarpDiscordantCoupleScreening;
+import org.smartregister.chw.hf.utils.MarpOtherGroupsScreening;
 import org.smartregister.chw.hf.utils.MarpPregnancyScreening;
 import org.smartregister.chw.kvp.util.Constants;
 import org.smartregister.family.activity.FamilyWizardFormActivity;
@@ -27,9 +28,11 @@ import java.util.Arrays;
 import java.util.List;
 
 public class KvpJsonWizardFormActivity extends FamilyWizardFormActivity {
-    private static final List<String> RETIRED_GROUPS = Arrays.asList("prisoner", "rumandee", "mobile_population");
+    private static final List<String> RETIRED_GROUPS = Arrays.asList(
+            "prisoner", "rumandee", "mobile_population", "other_vulnerable_population");
     private static final List<String> RETIRED_QUESTIONS = Arrays.asList(
-            "prisoner_or_rumandee", "is_prisoner", "is_rumandee", "mobile_population", "is_mobile_population");
+            "prisoner_or_rumandee", "is_prisoner", "is_rumandee", "mobile_population", "is_mobile_population",
+            "is_ovp_kvp");
     private static final List<String> RETIRED_PROMPTS = Arrays.asList(
             "prompt_for_prisoners_kvp", "prompt_for_rumandee_kvp", "prompt_for_mobile_population_kvp");
 
@@ -133,6 +136,10 @@ public class KvpJsonWizardFormActivity extends FamilyWizardFormActivity {
                 && MarpDiscordantCoupleScreening.isScreeningStep(form, step)) {
             MarpDiscordantCoupleScreening.refreshEligibility(this);
         }
+        if (!popup && MarpOtherGroupsScreening.CHECKLIST_FIELD.equals(parentKey)
+                && MarpOtherGroupsScreening.isScreeningStep(form, step)) {
+            MarpOtherGroupsScreening.refreshEligibility(this, step);
+        }
         if (!popup && MarpPregnancyScreening.HIGH_RISK_STEP.equals(step)
                 && MarpPregnancyScreening.CHECKLIST_FIELD.equals(parentKey)
                 && MarpPregnancyScreening.HIGH_RISK_STEP.equals(MarpPregnancyScreening.nextStep(form))
@@ -155,7 +162,9 @@ public class KvpJsonWizardFormActivity extends FamilyWizardFormActivity {
             RadioButton option = options.get(0);
             Object key = option.getTag(R.id.childKey);
             // Use the widget after relevance makes it available so Save validates the checked radio.
-            if (option.isEnabled() && !option.isChecked() && ("msm".equals(key) || "fsw".equals(key))) {
+            if (option.isEnabled() && !option.isChecked()
+                    && ("msm".equals(key) || "fsw".equals(key)
+                    || MarpOtherGroupsScreening.Group.fromCode(key) != null)) {
                 option.setChecked(true);
             }
         }

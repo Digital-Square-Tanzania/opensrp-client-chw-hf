@@ -497,6 +497,10 @@
     <string name="kvp_fsw">WHR</string>
     <string name="kvp_pregnant_breastfeeding_high_risk">Pregnant or breastfeeding women at high risk</string>
     <string name="marp_enrollment_result_invalid">Check the screening answers and try saving again.</string>
+    <string name="kvp_long_distance_truck_drivers">Long-distance truck drivers</string>
+    <string name="kvp_fisherfolk">Fisherfolk</string>
+    <string name="kvp_miners">Miners</string>
+    <string name="kvp_other_key_and_vulnerable_populations">Other key and vulnerable populations</string>
     <string name="kvp_msm">MHR</string>
     <string name="marp_mhr_option">A man at higher risk (MHR)</string>
     <string name="marp_whr_option">A woman at high risk (WHR)</string>

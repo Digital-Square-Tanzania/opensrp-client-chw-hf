@@ -635,7 +635,7 @@
     ]
   },
   "step7": {
-    "title": "Other Vulnerable Population",
+    "title": "{{other_groups_title}}",
     "next": "step8",
     "fields": [
       {
@@ -643,34 +643,59 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "other_groups_at_risk",
-        "label": "Other groups at risk of HIV infection",
+        "label": "{{other_groups_question}}",
         "text_color": "#000000",
-        "type": "native_radio",
+        "type": "check_box",
+        "combine_checkbox_option_values": "true",
+        "exclusive": [
+          "none"
+        ],
         "options": [
           {
+            "key": "long_distance_truck_drivers",
+            "text": "{{other_groups_long_distance_truck_drivers}}",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "long_distance_truck_drivers"
+          },
+          {
+            "key": "fisherfolk",
+            "text": "{{other_groups_fisherfolk}}",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "fisherfolk"
+          },
+          {
+            "key": "miners",
+            "text": "{{other_groups_miners}}",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "miners"
+          },
+          {
+            "key": "farmers_on_large_farms",
+            "text": "{{other_groups_farmers_on_large_farms}}",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "farmers_on_large_farms"
+          },
+          {
+            "key": "construction_workers",
+            "text": "{{other_groups_construction_workers}}",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "construction_workers"
+          },
+          {
             "key": "disabled",
-            "text": "Disabled",
+            "text": "{{other_groups_disabled}}",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "disabled"
           },
           {
-            "key": "street_children_or_orphans",
-            "text": "Street children or orphans",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "street_children_or_orphans"
-          },
-          {
-            "key": "street_working_children",
-            "text": "Young working children on the streets",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "street_working_children"
-          },
-          {
             "key": "none",
-            "text": "None",
+            "text": "{{other_groups_none}}",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "none"
@@ -678,22 +703,14 @@
         ],
         "v_required": {
           "value": "true",
-          "err": "Please select an answer"
+          "err": "{{other_groups_answer_required}}"
         }
       },
       {
-        "key": "is_ovp_kvp",
+        "key": "eligible_other_marp_groups",
         "type": "hidden",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "is_ovp_kvp",
-        "openmrs_entity_parent": "",
-        "calculation": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "kvp_screening_female_calculation.yml"
-            }
-          }
-        }
+        "disabled": true,
+        "value": "none"
       }
     ]
   },
@@ -1025,13 +1042,6 @@
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "serodiscordant_couple"
-          },
-          {
-            "key": "other_vulnerable_population",
-            "text": "Other vulnerable population",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "other_vulnerable_population"
           }
         ],
         "v_required": {

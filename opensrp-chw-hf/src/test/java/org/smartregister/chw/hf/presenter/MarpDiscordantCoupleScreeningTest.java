@@ -143,11 +143,11 @@ public class MarpDiscordantCoupleScreeningTest {
             Rule prompt = rule(rules(sex, "relevance"), enrollmentStep + "_prompt_for_sdc_kvp");
             Facts results = new Facts();
             for (String field : List.of("step1_is_pwud", "step2_is_pwid", "step4_is_sdc",
-                    "step5_is_msm", "step5_is_fsw", "step6_is_agyw",
-                    otherGroupStep + "_is_ovp_kvp")) {
+                    "step5_is_msm", "step5_is_fsw", "step6_is_agyw")) {
                 results.put(field, "no");
             }
 
+            results.put(otherGroupStep + "_eligible_other_marp_groups", "none");
             // Carried flags from older screening data cannot make the new form eligible.
             results.put(otherGroupStep + "_is_prisoner", "yes");
             results.put(otherGroupStep + "_is_rumandee", "yes");
@@ -163,10 +163,19 @@ public class MarpDiscordantCoupleScreeningTest {
             assertTrue(calculateSecondaryGroups(secondaryGroups, results).contains("serodiscordant_couple"));
 
             results.put("step4_is_sdc", "no");
-            results.put(otherGroupStep + "_is_ovp_kvp", "yes");
+            results.put(otherGroupStep + "_eligible_other_marp_groups", "fisherfolk,miners");
             enroll.execute(results);
             assertEquals("yes", results.get("calculation"));
-            assertEquals("[other_vulnerable_population]", calculateSecondaryGroups(secondaryGroups, results));
+            assertEquals("[fisherfolk,miners]", calculateSecondaryGroups(secondaryGroups, results));
+            results.put(otherGroupStep + "_eligible_other_marp_groups", "other_key_and_vulnerable_populations");
+            assertEquals("[other_key_and_vulnerable_populations]", calculateSecondaryGroups(secondaryGroups, results));
+
+            // Other Groups can be changed back to None without discarding earlier eligibility.
+            results.put("step1_is_pwud", "yes");
+            results.put(otherGroupStep + "_eligible_other_marp_groups", "none");
+            enroll.execute(results);
+            assertEquals("yes", results.get("calculation"));
+            assertEquals("[pwud]", calculateSecondaryGroups(secondaryGroups, results));
         }
     }
 
@@ -174,82 +183,109 @@ public class MarpDiscordantCoupleScreeningTest {
     public void emptyChecklistQueuesLocalizedFeedbackAndCorrectedNextAdvances() throws Exception {
         for (Locale locale : List.of(Locale.ENGLISH, KISWAHILI)) {
             JSONObject form = loadForm("male", locale);
-            String address = "step4:" + PARAMETERS;
-            String error = findField(form, PARAMETERS).getJSONObject("v_required").getString("err");
-            LinearLayout checklist = mock(LinearLayout.class);
-            when(checklist.getTag(R.id.error)).thenReturn(error);
-            when(checklist.getTag(R.id.is_checkbox_linear_layout)).thenReturn(true);
-            when(checklist.getTag(R.id.address)).thenReturn(address);
-            when(checklist.getTag(R.id.key)).thenReturn(PARAMETERS);
-            when(checklist.isEnabled()).thenReturn(true);
-            when(checklist.isShown()).thenReturn(true);
-            when(checklist.isAttachedToWindow()).thenReturn(true);
-
-            ConstraintLayout heading = mock(ConstraintLayout.class);
-            Context context = mock(Context.class);
-            when(heading.getContext()).thenReturn(context);
-            when(context.getResources()).thenReturn(mock(Resources.class));
-            when(checklist.getChildAt(0)).thenReturn(heading);
-            when(checklist.getChildCount()).thenReturn(3);
-            LinearLayout firstRow = mock(LinearLayout.class);
-            LinearLayout secondRow = mock(LinearLayout.class);
-            CheckBox first = mock(CheckBox.class);
-            CheckBox second = mock(CheckBox.class);
-            when(checklist.getChildAt(1)).thenReturn(firstRow);
-            when(checklist.getChildAt(2)).thenReturn(secondRow);
-            when(firstRow.getChildAt(0)).thenReturn(first);
-            when(secondRow.getChildAt(0)).thenReturn(second);
-
-            Queue<Runnable> uiTasks = new ArrayDeque<>();
-            JsonApi api = mock(JsonApi.class);
-            when(api.getAppExecutors()).thenReturn(new AppExecutors(Runnable::run, Runnable::run, uiTasks::add));
-            when(api.getmJSONObject()).thenReturn(form);
-            when(api.getFormDataView(address)).thenReturn(checklist);
-            when(api.getFormDataViews()).thenReturn(List.of(checklist));
-            when(api.getInvalidFields()).thenReturn(new HashMap<>());
-            when(api.nextStep()).thenReturn(form.getJSONObject("step4").getString("next"));
-            when(api.isNextStepRelevant()).thenReturn(true);
-            KvpScreeningJsonFormFragment fragment = mock(KvpScreeningJsonFormFragment.class);
-            when(fragment.getView()).thenReturn(mock(View.class));
-            when(fragment.getJsonApi()).thenReturn(api);
-            when(fragment.getOnFieldsInvalidCallback()).thenReturn(mock(OnFieldsInvalid.class));
-            when(fragment.getCurrentJsonState()).thenReturn(form.toString());
-            doCallRealMethod().when(fragment).showDiscordantChecklistError(checklist, error);
-            JsonFormInteractor interactor = mock(JsonFormInteractor.class);
-            KvpScreeningJsonFormFragmentPresenter presenter = new KvpScreeningJsonFormFragmentPresenter(
-                    fragment, interactor) {
-                {
-                    mStepName = "step4";
-                    mStepDetails = form.optJSONObject(mStepName);
-                }
-            };
-            presenter.attachView(fragment);
-
-            // Both Next controls invoke this presenter. Drain the queued UI work separately.
-            assertFalse(presenter.onNextClick(mock(LinearLayout.class)));
-            assertFalse(presenter.onNextClick(mock(LinearLayout.class)));
-            verify(heading, never()).addView(any(View.class), any(ConstraintLayout.LayoutParams.class));
-            verify(fragment, never()).scrollToView(checklist);
-            verify(fragment, never()).transactThis(any());
-
-            assertEquals(2, uiTasks.size());
-            uiTasks.remove().run();
-            verify(heading).addView(any(View.class), any(ConstraintLayout.LayoutParams.class));
-            verify(fragment).scrollToView(checklist);
-
-            when(first.isChecked()).thenReturn(true);
-            when(second.isChecked()).thenReturn(true);
-            uiTasks.remove().run();
-            // The queued retry must not render or scroll after the checklist is corrected.
-            verify(heading).addView(any(View.class), any(ConstraintLayout.LayoutParams.class));
-            verify(fragment).scrollToView(checklist);
-            assertTrue(CheckBoxFactory.isValid(checklist));
-
-            presenter.onNextClick(mock(LinearLayout.class));
-            verify(interactor).fetchFormElements(eq("step5"), eq(fragment), eq(form.getJSONObject("step5")),
-                    any(), eq(false));
-            verify(fragment).transactThis(any(KvpScreeningJsonFormFragment.class));
+            assertRequiredChecklistFeedback(form, "step4", PARAMETERS);
         }
+    }
+
+    @Test
+    public void otherGroupsShowsRequiredFeedbackAndAdvancesAfterCorrection() throws Exception {
+        for (Locale locale : List.of(Locale.ENGLISH, KISWAHILI)) {
+            for (String sex : List.of("male", "female")) {
+                assertRequiredChecklistFeedback(loadForm(sex, locale), "male".equals(sex) ? "step6" : "step7",
+                        "other_groups_at_risk");
+            }
+        }
+    }
+
+    private static void assertRequiredChecklistFeedback(JSONObject form, String step, String key) throws Exception {
+        String address = step + ":" + key;
+        String error = org.smartregister.util.JsonFormUtils.getFieldJSONObject(
+                form.getJSONObject(step).getJSONArray("fields"), key).getJSONObject("v_required").getString("err");
+        String next = form.getJSONObject(step).getString("next");
+        LinearLayout checklist = mock(LinearLayout.class);
+        when(checklist.getTag(R.id.error)).thenReturn(error);
+        when(checklist.getTag(R.id.is_checkbox_linear_layout)).thenReturn(true);
+        when(checklist.getTag(R.id.address)).thenReturn(address);
+        when(checklist.getTag(R.id.key)).thenReturn(key);
+        when(checklist.isEnabled()).thenReturn(true);
+        when(checklist.isShown()).thenReturn(true);
+        when(checklist.isAttachedToWindow()).thenReturn(true);
+
+        ConstraintLayout heading = mock(ConstraintLayout.class);
+        Context context = mock(Context.class);
+        when(heading.getContext()).thenReturn(context);
+        when(context.getResources()).thenReturn(mock(Resources.class));
+        when(checklist.getChildAt(0)).thenReturn(heading);
+        when(checklist.getChildCount()).thenReturn(3);
+        LinearLayout firstRow = mock(LinearLayout.class);
+        LinearLayout secondRow = mock(LinearLayout.class);
+        CheckBox first = mock(CheckBox.class);
+        CheckBox second = mock(CheckBox.class);
+        when(checklist.getChildAt(1)).thenReturn(firstRow);
+        when(checklist.getChildAt(2)).thenReturn(secondRow);
+        when(firstRow.getChildAt(0)).thenReturn(first);
+        when(secondRow.getChildAt(0)).thenReturn(second);
+
+        Queue<Runnable> uiTasks = new ArrayDeque<>();
+        JsonApi api = mock(JsonApi.class);
+        when(api.getAppExecutors()).thenReturn(new AppExecutors(Runnable::run, Runnable::run, uiTasks::add));
+        when(api.getmJSONObject()).thenReturn(form);
+        when(api.getFormDataView(address)).thenReturn(checklist);
+        when(api.getFormDataViews()).thenReturn(List.of(checklist));
+        when(api.getInvalidFields()).thenReturn(new HashMap<>());
+        when(api.nextStep()).thenReturn(next);
+        when(api.isNextStepRelevant()).thenReturn(true);
+        KvpScreeningJsonFormFragment fragment = mock(KvpScreeningJsonFormFragment.class);
+        when(fragment.getView()).thenReturn(mock(View.class));
+        when(fragment.getJsonApi()).thenReturn(api);
+        when(fragment.getStep(step)).thenReturn(form.getJSONObject(step));
+        when(fragment.getOnFieldsInvalidCallback()).thenReturn(mock(OnFieldsInvalid.class));
+        when(fragment.getCurrentJsonState()).thenReturn(form.toString());
+        doCallRealMethod().when(fragment).showChecklistError(checklist, error);
+        JsonFormInteractor interactor = mock(JsonFormInteractor.class);
+        KvpScreeningJsonFormFragmentPresenter presenter = new KvpScreeningJsonFormFragmentPresenter(
+                fragment, interactor) {
+            {
+                mStepName = step;
+                mStepDetails = form.optJSONObject(mStepName);
+            }
+        };
+        presenter.attachView(fragment);
+
+        // Both Next controls invoke this presenter. Drain the queued UI work separately.
+        assertFalse(presenter.onNextClick(mock(LinearLayout.class)));
+        assertFalse(presenter.onNextClick(mock(LinearLayout.class)));
+        verify(heading, never()).addView(any(View.class), any(ConstraintLayout.LayoutParams.class));
+        verify(fragment, never()).scrollToView(checklist);
+        verify(fragment, never()).transactThis(any());
+
+        assertEquals(2, uiTasks.size());
+        uiTasks.remove().run();
+        verify(heading).addView(any(View.class), any(ConstraintLayout.LayoutParams.class));
+        verify(fragment).scrollToView(checklist);
+
+        when(first.getTag(R.id.key)).thenReturn(key);
+        when(first.getTag(R.id.childKey)).thenReturn("none");
+        when(first.isChecked()).thenReturn(true);
+        presenter.onCheckedChanged(first, true);
+        verify(fragment).unCheckAllExcept(key, "none", first);
+        verify(fragment).dismissChecklistError();
+        uiTasks.remove().run();
+        // The queued retry must not render or scroll after the checklist is corrected.
+        verify(heading).addView(any(View.class), any(ConstraintLayout.LayoutParams.class));
+        verify(fragment).scrollToView(checklist);
+        assertTrue(CheckBoxFactory.isValid(checklist));
+
+        when(second.getTag(R.id.key)).thenReturn(key);
+        when(second.getTag(R.id.childKey)).thenReturn(PARAMETERS.equals(key) ? "not_started_art" : "fisherfolk");
+        when(second.isChecked()).thenReturn(true);
+        presenter.onCheckedChanged(second, true);
+        verify(fragment).unCheck(key, "none", second);
+
+        presenter.onNextClick(mock(LinearLayout.class));
+        verify(interactor).fetchFormElements(eq(next), eq(fragment), eq(form.getJSONObject(next)),
+                any(), eq(false));
+        verify(fragment).transactThis(any(KvpScreeningJsonFormFragment.class));
     }
 
     private static void assertCopy(JSONObject form, String title, List<String> labels, List<String> choices,
@@ -286,11 +322,6 @@ public class MarpDiscordantCoupleScreeningTest {
                 assertEquals(expected.get(j), options.getJSONObject(j).getString("text"));
             }
         }
-    }
-
-    private static JSONObject findField(JSONObject form, String key) throws Exception {
-        return org.smartregister.util.JsonFormUtils.getFieldJSONObject(
-                form.getJSONObject("step4").getJSONArray("fields"), key);
     }
 
     private static JSONObject loadForm(String sex, Locale locale) throws Exception {

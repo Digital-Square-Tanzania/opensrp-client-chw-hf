@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.Locale;
 
 import static org.junit.Assert.assertEquals;
@@ -50,6 +51,14 @@ public class MarpScreeningWordingTest {
         try {
             for (Locale locale : new Locale[]{Locale.ENGLISH, new Locale("sw")}) {
                 Locale.setDefault(locale);
+                boolean swahili = "sw".equals(locale.getLanguage());
+                List<String> keys = List.of("long_distance_truck_drivers", "fisherfolk", "miners",
+                        "farmers_on_large_farms", "construction_workers", "disabled", "none");
+                List<String> labels = swahili
+                        ? List.of("Madereva wa masafa marefu", "Wavuvi", "Wachimba madini",
+                                "Wakulima wa mashamba makubwa", "Wafanyakazi wa ujenzi", "Walemavu", "Hakuna")
+                        : List.of("Long-distance truck drivers", "Fisherfolk", "Miners",
+                                "Farmers on large farms", "Construction workers", "Disabled", "None");
                 for (String sex : new String[]{"male", "female"}) {
                     boolean male = "male".equals(sex);
                     JsonObject form = loadTranslatedForm("kvp_screening_" + sex);
@@ -58,16 +67,36 @@ public class MarpScreeningWordingTest {
                     assertEquals(otherGroupsStep, form.getAsJsonObject(male ? "step5" : "step6")
                             .get("next").getAsString());
                     JsonObject otherGroups = form.getAsJsonObject(otherGroupsStep);
+                    assertEquals(swahili ? "Makundi mengine" : "Other Groups", otherGroups.get("title").getAsString());
                     assertEquals(prepStep, otherGroups.get("next").getAsString());
                     assertEquals(male ? "step8" : "step9", form.getAsJsonObject(prepStep).get("next").getAsString());
                     JsonArray fields = otherGroups.getAsJsonArray("fields");
                     assertEquals(2, fields.size());
-                    assertEquals("other_groups_at_risk", fields.get(0).getAsJsonObject().get("key").getAsString());
-                    assertEquals("is_ovp_kvp", fields.get(1).getAsJsonObject().get("key").getAsString());
+                    JsonObject checklist = fields.get(0).getAsJsonObject();
+                    assertEquals("other_groups_at_risk", checklist.get("key").getAsString());
+                    assertEquals("check_box", checklist.get("type").getAsString());
+                    assertEquals(swahili ? "Makundi mengine yaliyo katika hatari zaidi ya kupata maambukizi ya VVU"
+                            : "Other groups with higher risk of acquiring HIV infection", checklist.get("label").getAsString());
+                    JsonObject required = checklist.getAsJsonObject("v_required");
+                    assertTrue(required.get("value").getAsBoolean());
+                    assertEquals(swahili ? "Chagua angalau chaguo moja" : "Select at least one option",
+                            required.get("err").getAsString());
+                    assertEquals("[\"none\"]", checklist.getAsJsonArray("exclusive").toString());
+                    JsonArray options = checklist.getAsJsonArray("options");
+                    assertEquals(keys.size(), options.size());
+                    for (int i = 0; i < keys.size(); i++) {
+                        assertAnswer(options.get(i).getAsJsonObject(), keys.get(i), labels.get(i));
+                    }
+                    assertEquals("hidden", fields.get(1).getAsJsonObject().get("type").getAsString());
+                    assertFalse(otherGroups.toString().contains("not_applicable"));
                     assertFalse(form.toString().contains("mobile_population"));
                     assertFalse(form.toString().contains("long_distance_drivers"));
                     assertFalse(form.toString().toLowerCase(Locale.ROOT).contains("prisoner"));
                     assertFalse(form.toString().toLowerCase(Locale.ROOT).contains("rumandee"));
+                    if (!male) {
+                        // The separate vAGYW question keeps its existing answer for Screening 7 review.
+                        assertTrue(form.getAsJsonObject("step6").toString().contains("not_applicable"));
+                    }
                 }
             }
         } finally {

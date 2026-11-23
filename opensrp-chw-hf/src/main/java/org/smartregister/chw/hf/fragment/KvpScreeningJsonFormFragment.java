@@ -28,7 +28,7 @@ import timber.log.Timber;
 
 public class KvpScreeningJsonFormFragment extends JsonWizardFormFragment {
     private Snackbar highRiskChecklistError;
-    private TextView discordantChecklistError;
+    private TextView checklistError;
 
     public static KvpScreeningJsonFormFragment getFormFragment(String stepName) {
         KvpScreeningJsonFormFragment jsonFormFragment = new KvpScreeningJsonFormFragment();
@@ -55,7 +55,7 @@ public class KvpScreeningJsonFormFragment extends JsonWizardFormFragment {
         });
     }
 
-    public void showDiscordantChecklistError(LinearLayout checklist, String message) {
+    public void showChecklistError(LinearLayout checklist, String message) {
         // Bottom Next validates on a Native Forms worker. Recheck the checklist on the UI thread.
         getJsonApi().getAppExecutors().mainThread().execute(() -> {
             if (getView() == null || !checklist.isAttachedToWindow() || !checklist.isShown()
@@ -65,33 +65,33 @@ public class KvpScreeningJsonFormFragment extends JsonWizardFormFragment {
             }
             // Native Forms expects every child after the heading to be a checkbox row.
             ConstraintLayout heading = (ConstraintLayout) checklist.getChildAt(0);
-            if (discordantChecklistError == null || discordantChecklistError.getParent() != heading) {
-                discordantChecklistError = new TextView(heading.getContext());
-                discordantChecklistError.setTextColor(ContextCompat.getColor(heading.getContext(),
+            if (checklistError == null || checklistError.getParent() != heading) {
+                checklistError = new TextView(heading.getContext());
+                checklistError.setTextColor(ContextCompat.getColor(heading.getContext(),
                         com.vijay.jsonwizard.R.color.toaster_note_red_icon));
-                discordantChecklistError.setAccessibilityLiveRegion(View.ACCESSIBILITY_LIVE_REGION_POLITE);
+                checklistError.setAccessibilityLiveRegion(View.ACCESSIBILITY_LIVE_REGION_POLITE);
                 ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(0,
                         ConstraintLayout.LayoutParams.WRAP_CONTENT);
                 params.topToBottom = com.vijay.jsonwizard.R.id.label_text;
                 params.startToStart = com.vijay.jsonwizard.R.id.label_text;
                 params.endToEnd = ConstraintLayout.LayoutParams.PARENT_ID;
-                heading.addView(discordantChecklistError, params);
+                heading.addView(checklistError, params);
             }
-            discordantChecklistError.setText(message);
-            discordantChecklistError.setVisibility(View.VISIBLE);
+            checklistError.setText(message);
+            checklistError.setVisibility(View.VISIBLE);
             scrollToView(checklist);
         });
     }
 
-    public void dismissDiscordantChecklistError() {
-        if (discordantChecklistError != null) {
-            discordantChecklistError.setVisibility(View.GONE);
+    public void dismissChecklistError() {
+        if (checklistError != null) {
+            checklistError.setVisibility(View.GONE);
         }
     }
 
     @Override
     public void onDestroyView() {
-        discordantChecklistError = null;
+        checklistError = null;
         dismissHighRiskChecklistError();
         super.onDestroyView();
     }

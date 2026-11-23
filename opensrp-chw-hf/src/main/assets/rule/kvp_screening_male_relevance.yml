@@ -88,7 +88,7 @@ actions:
 name: step8_prompt_for_ovp_kvp
 description: prompt_for_ovp_kvp relevance
 priority: 1
-condition: "step6_is_ovp_kvp.equals('yes')"
+condition: "step6_eligible_other_marp_groups.contains('other_key_and_vulnerable_populations')"
 actions:
   - "isRelevant = true"
 ---

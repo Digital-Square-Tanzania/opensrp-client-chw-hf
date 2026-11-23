@@ -33,6 +33,11 @@ public class KvpEnrollmentRadioValidationTest {
     }
 
     @Test
+    public void soleOtherGroupPassesRequiredRadioValidationAfterRelevanceRefresh() {
+        assertSoleGroupPassesValidation("other_key_and_vulnerable_populations");
+    }
+
+    @Test
     public void doesNotReplaceAnExplicitChoiceWhenMultipleGroupsAreAvailable() {
         LinearLayout root = mock(LinearLayout.class);
         RadioButton mhr = radio("msm");
