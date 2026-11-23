@@ -43,7 +43,7 @@ public class KvpScreeningJsonFormFragment extends JsonWizardFormFragment {
                 return;
             }
             if (highRiskChecklistError == null || !highRiskChecklistError.isShownOrQueued()) {
-                highRiskChecklistError = Snackbar.make(getMainView(), message, Snackbar.LENGTH_INDEFINITE);
+                highRiskChecklistError = Snackbar.make(getMainView(), message, Snackbar.LENGTH_LONG);
                 highRiskChecklistError.show();
             }
         });
