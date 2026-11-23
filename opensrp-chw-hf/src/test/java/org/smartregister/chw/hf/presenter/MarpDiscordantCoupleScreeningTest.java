@@ -5,6 +5,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.doCallRealMethod;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
@@ -49,6 +50,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Queue;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class MarpDiscordantCoupleScreeningTest {
     private static final String KNOWS_STATUS = "client_knows_hiv_status";
@@ -78,6 +80,83 @@ public class MarpDiscordantCoupleScreeningTest {
                     "Mwenza hana ushahidi wa kufubaza VVU", "Hakuna"),
                     "Tafadhali chagua jibu", "Chagua angalau kigezo kimoja cha mwenza");
         }
+    }
+
+    @Test
+    public void sexualBehaviourHasOneLocalizedRequiredQuestionWithTheExistingAnswerCodes() throws Exception {
+        for (Locale locale : List.of(Locale.ENGLISH, KISWAHILI)) {
+            boolean swahili = KISWAHILI.equals(locale);
+            for (String sex : List.of("male", "female")) {
+                JSONObject page = loadForm(sex, locale).getJSONObject("step3");
+                assertEquals(swahili ? "Tabia ya Ngono" : "Sexual Behavior", page.getString("title"));
+                JSONArray fields = page.getJSONArray("fields");
+                assertEquals(1, fields.length());
+                JSONObject field = fields.getJSONObject(0);
+                assertEquals("sexual_intercourse", field.getString("key"));
+                assertEquals("sexual_intercourse", field.getString("openmrs_entity_id"));
+                assertEquals("native_radio", field.getString("type"));
+                assertEquals(swahili ? "Umewahi kushiriki tendo la ngono?"
+                        : "Has the client ever had sexual intercourse?", field.getString("label"));
+                JSONObject required = field.getJSONObject("v_required");
+                assertTrue(required.getBoolean("value"));
+                String error = swahili ? "Tafadhali chagua jibu" : "Please select an answer";
+                assertEquals(error, required.getString("err"));
+                JSONArray options = field.getJSONArray("options");
+                assertEquals(2, options.length());
+                JSONObject yes = options.getJSONObject(0);
+                assertEquals("yes", yes.getString("key"));
+                assertEquals("yes", yes.getString("openmrs_entity_id"));
+                assertEquals(swahili ? "Ndio" : "Yes", yes.getString("text"));
+                JSONObject no = options.getJSONObject(1);
+                assertEquals("no", no.getString("key"));
+                assertEquals("no", no.getString("openmrs_entity_id"));
+                assertEquals(swahili ? "Hapana" : "No", no.getString("text"));
+
+                RadioGroup radio = mock(RadioGroup.class);
+                when(radio.getTag(R.id.error)).thenReturn(error);
+                when(radio.isEnabled()).thenReturn(true);
+                assertFalse(NativeRadioButtonFactory.isValid(radio));
+            }
+        }
+    }
+
+    @Test
+    public void sexualBehaviourPreparesOtherGroupsForNoAndDiscordantCoupleForYes() throws Exception {
+        for (Locale locale : List.of(Locale.ENGLISH, KISWAHILI)) {
+            for (String sex : List.of("male", "female")) {
+                assertSexualBehaviourDestination(sex, locale, "no", "female".equals(sex) ? "step7" : "step6");
+                assertSexualBehaviourDestination(sex, locale, "yes", "step4");
+            }
+        }
+    }
+
+    private static void assertSexualBehaviourDestination(String sex, Locale locale, String answer, String expectedStep)
+            throws Exception {
+        JSONObject form = loadForm(sex, locale);
+        form.getJSONObject("global").put("age", 19);
+        form.getJSONObject("step3").getJSONArray("fields").getJSONObject(0).put("value", answer);
+        JsonApi api = mock(JsonApi.class);
+        when(api.getmJSONObject()).thenReturn(form);
+        when(api.isNextStepRelevant()).thenReturn(true);
+        AtomicReference<String> next = new AtomicReference<>(form.getJSONObject("step3").getString("next"));
+        when(api.nextStep()).thenAnswer(call -> next.get());
+        doAnswer(call -> {
+            next.set(call.getArgument(0));
+            return null;
+        }).when(api).setNextStep(any(String.class));
+        KvpScreeningJsonFormFragment fragment = mock(KvpScreeningJsonFormFragment.class);
+        when(fragment.getJsonApi()).thenReturn(api);
+        JsonFormInteractor interactor = mock(JsonFormInteractor.class);
+        KvpScreeningJsonFormFragmentPresenter presenter = new KvpScreeningJsonFormFragmentPresenter(fragment, interactor) {
+            {
+                mStepName = "step3";
+            }
+        };
+        presenter.attachView(fragment);
+
+        assertFalse(presenter.executeRefreshLogicForNextStep());
+        verify(interactor).fetchFormElements(eq(expectedStep), eq(fragment), eq(form.getJSONObject(expectedStep)),
+                any(), eq(false));
     }
 
     @Test

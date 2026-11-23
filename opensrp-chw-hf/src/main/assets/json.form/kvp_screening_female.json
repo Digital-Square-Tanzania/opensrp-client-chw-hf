@@ -218,7 +218,7 @@
     ]
   },
   "step3": {
-    "title": "Sexual Behavior",
+    "title": "{{sexual_behaviour_title}}",
     "next": "step4",
     "fields": [
       {
@@ -226,20 +226,20 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "sexual_intercourse",
-        "label": "Have you ever engaged in sexual activity, do you think about engaging in sexual activity, or are you at risk of engaging in sexual activity?",
+        "label": "{{sexual_intercourse_label}}",
         "text_color": "#000000",
         "type": "native_radio",
         "options": [
           {
             "key": "yes",
-            "text": "Yes",
+            "text": "{{intake_yes}}",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "yes"
           },
           {
             "key": "no",
-            "text": "No",
+            "text": "{{intake_no}}",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "no"
@@ -247,7 +247,7 @@
         ],
         "v_required": {
           "value": "true",
-          "err": "Please select an answer"
+          "err": "{{intake_answer_required}}"
         }
       }
     ]

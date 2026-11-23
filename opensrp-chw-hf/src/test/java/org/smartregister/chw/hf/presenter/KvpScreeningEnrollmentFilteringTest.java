@@ -25,6 +25,7 @@ import org.smartregister.chw.hf.fragment.KvpScreeningJsonFormFragment;
 import org.smartregister.chw.hf.utils.MarpDiscordantCoupleScreening;
 import org.smartregister.chw.hf.utils.MarpOtherGroupsScreening;
 import org.smartregister.chw.hf.utils.MarpPregnancyScreening;
+import org.smartregister.chw.hf.utils.MarpSexualBehaviourScreening;
 import org.mockito.ArgumentCaptor;
 import org.smartregister.chw.kvp.util.KvpJsonFormUtils;
 import org.smartregister.chw.kvp.util.KvpUtil;
@@ -39,6 +40,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
 
 import static org.junit.Assert.assertEquals;
@@ -296,6 +298,58 @@ public class KvpScreeningEnrollmentFilteringTest {
     }
 
     @Test
+    public void noSexualHistoryClearsSkippedRiskAnswersAndKeepsIndependentGroups() throws Exception {
+        for (String sex : List.of("male", "female")) {
+            boolean female = "female".equals(sex);
+            JSONObject form = loadScreeningForm("kvp_screening_" + sex, Locale.ENGLISH);
+            KvpJsonWizardFormActivity activity = formActivity(form);
+            String riskQuestion = female ? "sex_for_money" : "sexual_intercourse_with";
+            String riskFlag = female ? "is_fsw" : "is_msm";
+            String otherGroupsStep = female ? "step7" : "step6";
+            String enrollmentStep = female ? "step9" : "step8";
+            JSONObject riskPage = form.getJSONObject("step5");
+            JSONObject otherGroups = form.getJSONObject(otherGroupsStep);
+            JSONObject dominant = field(form.getJSONObject(enrollmentStep), "client_group");
+
+            writeAnswer(activity, "step1", "drug_use", "yes");
+            writeAnswer(activity, "step3", "sexual_intercourse", "yes");
+            writeAnswer(activity, "step5", riskQuestion, female ? "yes" : "man");
+            writeAnswer(activity, "step5", riskFlag, "yes");
+            checkOtherGroup(activity, otherGroupsStep, TRUCK_DRIVERS, true);
+            writeAnswer(activity, enrollmentStep, "client_group", female ? "agyw" : "msm");
+            if (female) {
+                writeAnswer(activity, "step6", "client_in_school", "no");
+                activity.writeValue("step6", "harsh_condition_impact", "options", "sex_for_material", "true",
+                        "", "concept", "sex_for_material", false);
+                writeAnswer(activity, "step6", "is_agyw", "yes");
+            }
+
+            writeAnswer(activity, "step3", "sexual_intercourse", "no");
+            assertEquals(otherGroupsStep, MarpSexualBehaviourScreening.nextStepAfterNo(activity, "step3"));
+            assertEquals("no", field(form.getJSONObject("step3"), "sexual_intercourse").getString("value"));
+            assertFalse(field(riskPage, riskQuestion).has("value"));
+            assertFalse(field(riskPage, riskFlag).has("value"));
+            assertFalse(dominant.has("value"));
+            assertEquals("yes", field(form.getJSONObject("step1"), "drug_use").getString("value"));
+            assertEquals(TRUCK_DRIVERS, field(otherGroups, "eligible_other_marp_groups").getString("value"));
+            assertEquals(Set.of(MarpOtherGroupsScreening.Group.TRUCK_DRIVERS),
+                    MarpOtherGroupsScreening.eligibleGroups(form));
+            if (female) {
+                JSONObject vagyw = new JSONObject(activity.currentJsonState()).getJSONObject("step6");
+                assertFalse(field(vagyw, "client_in_school").has("value"));
+                assertFalse(field(vagyw, "is_agyw").has("value"));
+                JSONObject criterion = JsonFormUtils.getFieldJSONObject(
+                        field(vagyw, "harsh_condition_impact").getJSONArray("options"), "sex_for_material");
+                assertFalse(criterion.optBoolean("value"));
+            }
+
+            writeAnswer(activity, enrollmentStep, "client_group", TRUCK_DRIVERS);
+            assertEquals(otherGroupsStep, MarpSexualBehaviourScreening.nextStepAfterNo(activity, "step3"));
+            assertEquals(TRUCK_DRIVERS, dominant.getString("value"));
+        }
+    }
+
+    @Test
     public void noneDropsOnlyTheDiscordantOptionAndRequiresReselectionWhenEligibleAgain() throws Exception {
         String enrollmentStep = "step8";
         JSONObject form = loadScreeningForm("kvp_screening_male", Locale.ENGLISH);
@@ -448,7 +502,7 @@ public class KvpScreeningEnrollmentFilteringTest {
 
     private static KvpJsonWizardFormActivity formActivity(JSONObject form) throws Exception {
         // Android's JSONObject.getString coerces JSONArray, unlike the test runtime's org.json.
-        for (String step : List.of(DISCORDANT_STEP, MarpOtherGroupsScreening.checklistStep(form))) {
+        for (String step : List.of(DISCORDANT_STEP, "step6", "step7")) {
             JSONArray fields = form.getJSONObject(step).getJSONArray("fields");
             for (int i = 0; i < fields.length(); i++) {
                 JSONObject field = fields.getJSONObject(i);

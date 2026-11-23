@@ -32,6 +32,7 @@ import org.smartregister.chw.hf.utils.MarpDiscordantCoupleScreening;
 import org.smartregister.chw.hf.utils.MarpGroupLabels;
 import org.smartregister.chw.hf.utils.MarpOtherGroupsScreening;
 import org.smartregister.chw.hf.utils.MarpPregnancyScreening;
+import org.smartregister.chw.hf.utils.MarpSexualBehaviourScreening;
 import org.smartregister.chw.kvp.util.Constants;
 import org.smartregister.family.util.JsonFormUtils;
 import org.smartregister.opd.utils.OpdConstants;
@@ -310,7 +311,15 @@ public class KvpScreeningJsonFormFragmentPresenter extends JsonWizardFormFragmen
                 && MarpPregnancyScreening.isIntakeStep(form, MarpPregnancyScreening.INTAKE_STEP)) {
             next = MarpPregnancyScreening.highRiskOutcome(form);
         } else {
-            return super.executeRefreshLogicForNextStep();
+            try {
+                next = MarpSexualBehaviourScreening.nextStepAfterNo(api, mStepName);
+            } catch (JSONException e) {
+                Timber.e(e, "Could not prepare the MARP Sexual Behaviour route");
+                return true;
+            }
+            if (next.isEmpty()) {
+                return super.executeRefreshLogicForNextStep();
+            }
         }
         if (next.isEmpty() || !form.has(next)) {
             return true;
