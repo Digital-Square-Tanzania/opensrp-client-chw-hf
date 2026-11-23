@@ -1,5 +1,7 @@
 package org.smartregister.chw.hf.activity;
 
+import static org.smartregister.chw.hf.actionhelper.kvp.KvpClientStatusActionHelper.OTHER_CATEGORY;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -139,7 +141,7 @@ public class KvpMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
                     String[] cervicalCancerScreeningServicesParams = {"cervical_cancer_screening"};
                     extractVisitDetails(visits, cervicalCancerScreeningServicesParams, visitDetails, x, context);
 
-                    String[] clientStatusServicesParams = {"client_status", "other_kvp_category"};
+                    String[] clientStatusServicesParams = {"client_status", OTHER_CATEGORY};
                     extractVisitDetails(visits, clientStatusServicesParams, visitDetails, x, context);
 
                     String[] condomProvisionParams = {"condoms_given", "type_of_issued_condoms", "number_of_male_condoms_issued", "number_of_female_condoms_issued"};
@@ -247,8 +249,11 @@ public class KvpMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
 
 
                         try {
-                            int resource = context.getResources().getIdentifier("kvp_" + entry.getKey(), "string", context.getPackageName());
-                            evaluateView(context, vals, visitDetailTv, entry.getKey(), resource, "");
+                            String key = entry.getKey();
+                            boolean otherCategory = OTHER_CATEGORY.equals(key);
+                            int resource = otherCategory ? R.string.marp_other_client_category
+                                    : context.getResources().getIdentifier("kvp_" + key, "string", context.getPackageName());
+                            evaluateView(context, vals, visitDetailTv, key, resource, otherCategory ? "kvp_" : "");
                         } catch (Exception e) {
                             Timber.e(e);
                         }
@@ -333,7 +338,7 @@ public class KvpMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
                 return context.getString(resourceId);
             } catch (Exception e) {
                 Timber.e(e);
-                return prefix + resourceName;
+                return resourceName;
             }
         }
     }

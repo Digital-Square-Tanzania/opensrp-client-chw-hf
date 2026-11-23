@@ -1,6 +1,7 @@
 package org.smartregister.chw.hf.interactor;
 
 import static org.smartregister.AllConstants.OPTIONS;
+import static org.smartregister.chw.hf.actionhelper.kvp.KvpClientStatusActionHelper.OTHER_CATEGORY;
 import static org.smartregister.util.JsonFormUtils.VALUE;
 
 import org.apache.commons.lang3.StringUtils;
@@ -119,7 +120,7 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
         }
 
         //update other_kvp_category
-        JSONObject other_kvp_category = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "other_kvp_category");
+        JSONObject other_kvp_category = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, OTHER_CATEGORY);
         if (other_kvp_category != null) {
             other_kvp_category.put("label", context.getString(R.string.marp_other_client_category));
             MarpGroupLabels.applyLongLabels(context.getResources(), other_kvp_category.getJSONArray(OPTIONS));
@@ -363,7 +364,7 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
         public void onPayloadReceived(String jsonPayload) {
             try {
                 JSONObject jsonObject = new JSONObject(jsonPayload);
-                other_kvp_category = CoreJsonFormUtils.getValue(jsonObject, "other_kvp_category");
+                other_kvp_category = CoreJsonFormUtils.getValue(jsonObject, OTHER_CATEGORY);
             } catch (JSONException e) {
                 e.printStackTrace();
             }

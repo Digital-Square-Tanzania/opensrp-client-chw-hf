@@ -25,9 +25,12 @@ import timber.log.Timber;
 
 public class KvpClientStatusActionHelper implements BaseKvpVisitAction.KvpVisitActionHelper {
 
+    public static final String OTHER_CATEGORY = "other_kvp_category";
+
     protected MemberObject memberObject;
     private String client_status;
     private String jsonPayload;
+    private boolean editingVisit;
 
     public KvpClientStatusActionHelper(MemberObject memberObject) {
         this.memberObject = memberObject;
@@ -36,6 +39,7 @@ public class KvpClientStatusActionHelper implements BaseKvpVisitAction.KvpVisitA
     @Override
     public void onJsonFormLoaded(String jsonPayload, Context context, Map<String, List<VisitDetail>> map) {
         this.jsonPayload = jsonPayload;
+        editingVisit = map != null;
     }
 
     @Override
@@ -44,24 +48,21 @@ public class KvpClientStatusActionHelper implements BaseKvpVisitAction.KvpVisitA
             JSONObject jsonObject = new JSONObject(jsonPayload);
             JSONObject global = jsonObject.getJSONObject("global");
 
-            JSONArray fields = jsonObject.getJSONObject(STEP1).getJSONArray(FIELDS);
-            JSONObject otherKvpCategory = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "other_kvp_category");
-            JSONArray options = otherKvpCategory.getJSONArray(OPTIONS);
-
-            String otherScreenedGroups = HfKvpDao.getOtherKvpClientGroups(memberObject.getBaseEntityId());
-
-            for (int i = 0; i < options.length(); i++) {
-                String key = options.getJSONObject(i).getString(KEY);
-                if (otherScreenedGroups.contains(key)) {
-                    options.getJSONObject(i).put(VALUE, true);
+            // The visit action restores saved selections after preprocessing, including an empty selection.
+            if (!editingVisit) {
+                JSONArray fields = jsonObject.getJSONObject(STEP1).getJSONArray(FIELDS);
+                JSONObject category = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, OTHER_CATEGORY);
+                JSONArray options = category.getJSONArray(OPTIONS);
+                String otherScreenedGroups = getScreeningDefaults();
+                for (int i = 0; i < options.length(); i++) {
+                    JSONObject option = options.getJSONObject(i);
+                    if (otherScreenedGroups.contains(option.getString(KEY))) {
+                        option.put(VALUE, true);
+                    }
                 }
             }
 
-            if(StringUtils.isNotBlank(HfKvpDao.getClientStatus(memberObject.getBaseEntityId()))){
-                global.put("first_visit_done", "yes");
-            } else {
-                global.put("first_visit_done", "no");
-            }
+            global.put("first_visit_done", hasPreviousClientStatus() ? "yes" : "no");
 
             return jsonObject.toString();
         } catch (JSONException e) {
@@ -69,6 +70,14 @@ public class KvpClientStatusActionHelper implements BaseKvpVisitAction.KvpVisitA
         }
 
         return null;
+    }
+
+    protected String getScreeningDefaults() {
+        return HfKvpDao.getOtherKvpClientGroups(memberObject.getBaseEntityId());
+    }
+
+    protected boolean hasPreviousClientStatus() {
+        return StringUtils.isNotBlank(HfKvpDao.getClientStatus(memberObject.getBaseEntityId()));
     }
 
     @Override
