@@ -346,6 +346,7 @@
     <string name="kvp_registration">Usajili wa MARP/PrEP</string>
     <string name="kvp_prep_registration">Usajili wa MARP/PrEP</string>
     <string name="marp_enrollment_minimum_age">Usajili wa MARP/PrEP ni kwa wateja wenye umri wa miaka 15 na zaidi.</string>
+    <string name="marp_high_risk_screening_unavailable">Ukurasa wa uchunguzi wa hatari kwa wajawazito na wanaonyonyesha haupatikani.</string>
     <string name="marp_enrollment_already_enrolled">Tayari amesajiliwa. Inafungua taarifa za MARP.</string>
     <string name="return_to_kvp_clients">Rudi kwa wateja wote wa MARP</string>
     <string name="return_to_kvp_prep_clients">Rudi kwa wateja wote wa MARP/PrEP</string>

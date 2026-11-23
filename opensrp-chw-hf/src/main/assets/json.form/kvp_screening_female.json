@@ -1,5 +1,5 @@
 {
-  "count": "9",
+  "count": "10",
   "skip_blank_steps": true,
   "properties_file_name": "marp_screening",
   "encounter_type": "KVP Registration",
@@ -44,6 +44,74 @@
     "encounter_location": ""
   },
   "global": {},
+  "step10": {
+    "title": "{{pregnancy_breastfeeding_title}}",
+    "next": "step1",
+    "fields": [
+      {
+        "key": "is_pregnant",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "is_pregnant",
+        "label": "{{is_pregnant_label}}",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "yes",
+            "text": "{{intake_yes}}",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "yes"
+          },
+          {
+            "key": "no",
+            "text": "{{intake_no}}",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "no"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{intake_answer_required}}"
+        }
+      },
+      {
+        "key": "is_breastfeeding",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "is_breastfeeding",
+        "label": "{{is_breastfeeding_label}}",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "yes",
+            "text": "{{intake_yes}}",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "yes"
+          },
+          {
+            "key": "no",
+            "text": "{{intake_no}}",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "no"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{intake_answer_required}}"
+        },
+        "relevance": {
+          "step10:is_pregnant": {
+            "type": "string",
+            "ex": "equalTo(., \"no\")"
+          }
+        }
+      }
+    ]
+  },
   "step1": {
     "title": "PWUD",
     "next": "step2",

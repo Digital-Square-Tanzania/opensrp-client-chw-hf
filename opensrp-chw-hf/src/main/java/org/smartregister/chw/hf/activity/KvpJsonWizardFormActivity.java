@@ -5,10 +5,12 @@ import android.view.ViewGroup;
 import android.widget.RadioButton;
 
 import com.vijay.jsonwizard.R;
-import com.vijay.jsonwizard.constants.JsonFormConstants;
 import com.vijay.jsonwizard.utils.Utils;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.smartregister.chw.hf.fragment.KvpScreeningJsonFormFragment;
+import org.smartregister.chw.hf.utils.MarpPregnancyScreening;
 import org.smartregister.family.activity.FamilyWizardFormActivity;
 
 import java.util.List;
@@ -16,9 +18,23 @@ import java.util.List;
 public class KvpJsonWizardFormActivity extends FamilyWizardFormActivity {
     @Override
     public synchronized void initializeFormFragment() {
-        KvpScreeningJsonFormFragment formFragment = KvpScreeningJsonFormFragment.getFormFragment(JsonFormConstants.FIRST_STEP_NAME);
+        String step = MarpPregnancyScreening.firstStep(getmJSONObject());
+        KvpScreeningJsonFormFragment formFragment = KvpScreeningJsonFormFragment.getFormFragment(step);
         getSupportFragmentManager().beginTransaction()
                 .add(com.vijay.jsonwizard.R.id.container, formFragment).commitAllowingStateLoss();
+    }
+
+    @Override
+    protected void widgetsWriteValue(String step, String key, String value, String entityParent,
+                                     String entity, String entityId, boolean popup) throws JSONException {
+        JSONObject form = getmJSONObject();
+        if (!popup && MarpPregnancyScreening.isIntakeStep(form, step)) {
+            String previousRoute = MarpPregnancyScreening.nextStep(form);
+            super.widgetsWriteValue(step, key, value, entityParent, entity, entityId, false);
+            MarpPregnancyScreening.discardBranchAnswers(this, previousRoute, MarpPregnancyScreening.nextStep(form));
+        } else {
+            super.widgetsWriteValue(step, key, value, entityParent, entity, entityId, popup);
+        }
     }
 
     @Override
