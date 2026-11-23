@@ -360,7 +360,7 @@ public class KvpScreeningJsonFormFragmentPresenter extends JsonWizardFormFragmen
         if (MarpDiscordantCoupleScreening.isScreeningStep(api.getmJSONObject(), mStepName)) {
             View checklist = api.getFormDataView(mStepName + ":" + MarpDiscordantCoupleScreening.PARTNER_PARAMETERS);
             if (checklist instanceof LinearLayout && checklist.isShown()) {
-                ValidationStatus status = validate(formFragment, checklist, true);
+                ValidationStatus status = validate(formFragment, checklist, false);
                 if (!status.isValid()) {
                     formFragment.showDiscordantChecklistError((LinearLayout) checklist, status.getErrorMessage());
                     return false;
