@@ -20,6 +20,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
+- Show the localized required-field prompt when Next is tapped with an empty pregnancy and breastfeeding High Risk checklist, and clear the prompt after a selection ([#226](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/226)).
+
 - Preselect and validate sole MHR and WHR enrollment choices, and restore and display saved secondary groups in Client Status, visit history and the MARP profile ([#223](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/223)).
 - Filter eligible MARP enrollment groups in both languages using the screening form field ([#222](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/222)).
 - Integrate Kituoni startup and post-login fixes with Rhino pinned to 1.7.13, CHW Core 2.2.0-MOTHER-MENTOR-ALPHA-53-UCSW-92-ENTRY-INTEGRATION-MOH-SNAPSHOT, and Android NDK 28.0.12433566 ([#222](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/222)).

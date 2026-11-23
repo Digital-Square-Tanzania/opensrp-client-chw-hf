@@ -10,6 +10,8 @@ import static org.smartregister.util.JsonFormUtils.VALUE;
 
 import android.app.ProgressDialog;
 import android.view.View;
+import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 
 import com.vijay.jsonwizard.constants.JsonFormConstants;
 import com.vijay.jsonwizard.fragments.JsonFormFragment;
@@ -18,6 +20,7 @@ import com.vijay.jsonwizard.interfaces.JsonApi;
 import com.vijay.jsonwizard.presenters.JsonWizardFormFragmentPresenter;
 import com.vijay.jsonwizard.rules.RulesEngineDateUtil;
 import com.vijay.jsonwizard.utils.Utils;
+import com.vijay.jsonwizard.utils.ValidationStatus;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,10 +42,10 @@ import java.util.Locale;
 import timber.log.Timber;
 
 public class KvpScreeningJsonFormFragmentPresenter extends JsonWizardFormFragmentPresenter {
-    private final JsonFormFragment formFragment;
+    private final KvpScreeningJsonFormFragment formFragment;
     private boolean cleanupAndExit = false;
 
-    public KvpScreeningJsonFormFragmentPresenter(JsonFormFragment formFragment, JsonFormInteractor jsonFormInteractor) {
+    public KvpScreeningJsonFormFragmentPresenter(KvpScreeningJsonFormFragment formFragment, JsonFormInteractor jsonFormInteractor) {
         super(formFragment, jsonFormInteractor);
         this.formFragment = formFragment;
     }
@@ -406,6 +409,31 @@ public class KvpScreeningJsonFormFragmentPresenter extends JsonWizardFormFragmen
     public void cleanUp() {
         cleanupAndExit = true;
         super.cleanUp();
+    }
+
+    @Override
+    public boolean onNextClick(LinearLayout mainViews) {
+        if (MarpPregnancyScreening.HIGH_RISK_STEP.equals(mStepName)) {
+            String address = mStepName + ":" + MarpPregnancyScreening.CHECKLIST_FIELD;
+            View checklist = formFragment.getJsonApi().getFormDataView(address);
+            if (checklist instanceof LinearLayout) {
+                ValidationStatus status = validate(formFragment, checklist, true);
+                if (!status.isValid()) {
+                    formFragment.showHighRiskChecklistError((LinearLayout) checklist, status.getErrorMessage());
+                    return false;
+                }
+            }
+        }
+        return super.onNextClick(mainViews);
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton button, boolean isChecked) {
+        super.onCheckedChanged(button, isChecked);
+        if (MarpPregnancyScreening.HIGH_RISK_STEP.equals(mStepName) && isChecked
+                && MarpPregnancyScreening.CHECKLIST_FIELD.equals(button.getTag(com.vijay.jsonwizard.R.id.key))) {
+            formFragment.dismissHighRiskChecklistError();
+        }
     }
 
     @Override

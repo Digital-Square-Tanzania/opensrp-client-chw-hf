@@ -5,10 +5,13 @@ import static org.smartregister.family.util.Constants.JSON_FORM_EXTRA.JSON;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.LinearLayout;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.vijay.jsonwizard.fragments.JsonWizardFormFragment;
 import com.vijay.jsonwizard.interactors.JsonFormInteractor;
 import com.vijay.jsonwizard.presenters.JsonFormFragmentPresenter;
+import com.vijay.jsonwizard.widgets.CheckBoxFactory;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -19,6 +22,7 @@ import org.smartregister.chw.hf.utils.MarpPregnancyScreening;
 import timber.log.Timber;
 
 public class KvpScreeningJsonFormFragment extends JsonWizardFormFragment {
+    private Snackbar highRiskChecklistError;
 
     public static KvpScreeningJsonFormFragment getFormFragment(String stepName) {
         KvpScreeningJsonFormFragment jsonFormFragment = new KvpScreeningJsonFormFragment();
@@ -31,6 +35,31 @@ public class KvpScreeningJsonFormFragment extends JsonWizardFormFragment {
     @Override
     protected JsonFormFragmentPresenter createPresenter() {
         return new KvpScreeningJsonFormFragmentPresenter(this, JsonFormInteractor.getInstance());
+    }
+
+    public void showHighRiskChecklistError(LinearLayout checklist, String message) {
+        getJsonApi().getAppExecutors().mainThread().execute(() -> {
+            if (getView() == null || !checklist.isAttachedToWindow() || CheckBoxFactory.isValid(checklist)) {
+                return;
+            }
+            if (highRiskChecklistError == null || !highRiskChecklistError.isShownOrQueued()) {
+                highRiskChecklistError = Snackbar.make(getMainView(), message, Snackbar.LENGTH_INDEFINITE);
+                highRiskChecklistError.show();
+            }
+        });
+    }
+
+    @Override
+    public void onDestroyView() {
+        dismissHighRiskChecklistError();
+        super.onDestroyView();
+    }
+
+    public void dismissHighRiskChecklistError() {
+        if (highRiskChecklistError != null) {
+            highRiskChecklistError.dismiss();
+            highRiskChecklistError = null;
+        }
     }
 
     @Override

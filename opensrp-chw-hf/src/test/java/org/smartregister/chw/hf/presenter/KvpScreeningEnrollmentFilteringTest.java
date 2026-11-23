@@ -3,7 +3,6 @@ package org.smartregister.chw.hf.presenter;
 import android.content.Context;
 import android.content.res.Resources;
 
-import com.vijay.jsonwizard.fragments.JsonFormFragment;
 import com.vijay.jsonwizard.interactors.JsonFormInteractor;
 import com.vijay.jsonwizard.interfaces.JsonApi;
 import com.vijay.jsonwizard.utils.AppExecutors;
@@ -13,6 +12,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.Test;
 import org.smartregister.chw.hf.R;
+import org.smartregister.chw.hf.fragment.KvpScreeningJsonFormFragment;
 import org.smartregister.chw.hf.utils.MarpPregnancyScreening;
 import org.mockito.ArgumentCaptor;
 import org.smartregister.util.JsonFormUtils;
@@ -159,7 +159,7 @@ public class KvpScreeningEnrollmentFilteringTest {
     }
 
     private static JSONObject renderEnrollment(JSONObject form, String stepName, Locale locale) throws Exception {
-        JsonFormFragment fragment = mock(JsonFormFragment.class);
+        KvpScreeningJsonFormFragment fragment = mock(KvpScreeningJsonFormFragment.class);
         JsonFormInteractor interactor = mock(JsonFormInteractor.class);
         JsonApi jsonApi = mock(JsonApi.class);
         AppExecutors executors = mock(AppExecutors.class);

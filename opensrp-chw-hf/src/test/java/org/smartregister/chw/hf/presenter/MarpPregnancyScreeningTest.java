@@ -24,16 +24,17 @@ import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 
 import com.vijay.jsonwizard.R;
-import com.vijay.jsonwizard.fragments.JsonFormFragment;
 import com.vijay.jsonwizard.interactors.JsonFormInteractor;
 import com.vijay.jsonwizard.interfaces.JsonApi;
+import com.vijay.jsonwizard.interfaces.OnFieldsInvalid;
+import com.vijay.jsonwizard.utils.AppExecutors;
 import com.vijay.jsonwizard.utils.NativeFormLangUtils;
-import com.vijay.jsonwizard.widgets.CheckBoxFactory;
 import com.vijay.jsonwizard.widgets.NativeRadioButtonFactory;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.Test;
+import org.smartregister.chw.hf.fragment.KvpScreeningJsonFormFragment;
 import org.smartregister.chw.hf.utils.MarpPregnancyScreening;
 import org.smartregister.chw.kvp.util.KvpJsonFormUtils;
 import org.smartregister.chw.kvp.util.KvpUtil;
@@ -46,10 +47,12 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
+import java.util.concurrent.Executor;
 
 public class MarpPregnancyScreeningTest {
 
@@ -174,7 +177,7 @@ public class MarpPregnancyScreeningTest {
     public void presenterBlocksIncompleteIntake() throws Exception {
         JSONObject form = loadForm("kvp_screening_female", Locale.ENGLISH);
         JsonApi api = formApi(form);
-        JsonFormFragment fragment = mock(JsonFormFragment.class);
+        KvpScreeningJsonFormFragment fragment = mock(KvpScreeningJsonFormFragment.class);
         KvpScreeningJsonFormFragmentPresenter presenter = presenter(api, fragment, INTAKE_STEP);
         JSONObject pregnant = field(form, INTAKE_STEP, PREGNANCY_FIELD);
 
@@ -190,7 +193,7 @@ public class MarpPregnancyScreeningTest {
         JSONObject form = loadForm("kvp_screening_female", Locale.ENGLISH);
         JsonApi api = formApi(form);
         when(api.isNextStepRelevant()).thenReturn(true);
-        KvpScreeningJsonFormFragmentPresenter presenter = presenter(api, mock(JsonFormFragment.class), INTAKE_STEP);
+        KvpScreeningJsonFormFragmentPresenter presenter = presenter(api, mock(KvpScreeningJsonFormFragment.class), INTAKE_STEP);
         JSONObject pregnant = field(form, INTAKE_STEP, PREGNANCY_FIELD).put("value", "no");
         JSONObject breastfeeding = field(form, INTAKE_STEP, BREASTFEEDING_FIELD).put("value", "no");
 
@@ -210,42 +213,79 @@ public class MarpPregnancyScreeningTest {
     }
 
     @Test
-    public void checklistRequiresAnAnswerAndPresenterRoutesToTheTwoEnrollmentOutcomes() throws Exception {
-        JSONObject form = pregnantForm(Locale.ENGLISH);
+    public void nextShowsEnglishChecklistErrorAndAcceptsACriterionAfterward() throws Exception {
+        assertChecklistFeedback(Locale.ENGLISH, "Please select an answer", "polygamous_marriage", ENROLLMENT_STEP);
+    }
+
+    @Test
+    public void nextShowsKiswahiliChecklistErrorAndAcceptsNoneAfterward() throws Exception {
+        assertChecklistFeedback(new Locale("sw"), "Tafadhali chagua jibu", "none", NO_GROUP_STEP);
+    }
+
+    private static void assertChecklistFeedback(Locale locale, String error, String optionKey, String expectedStep)
+            throws Exception {
+        JSONObject form = pregnantForm(locale);
         JSONObject checklist = field(form, HIGH_RISK_STEP, CHECKLIST_FIELD);
         LinearLayout checkboxGroup = mock(LinearLayout.class);
+        when(checkboxGroup.getTag(R.id.address)).thenReturn(HIGH_RISK_STEP + ":" + CHECKLIST_FIELD);
+        when(checkboxGroup.getTag(R.id.key)).thenReturn(CHECKLIST_FIELD);
+        when(checkboxGroup.getTag(R.id.is_checkbox_linear_layout)).thenReturn(true);
+        when(checkboxGroup.getTag(R.id.extraPopup)).thenReturn(false);
         LinearLayout row = mock(LinearLayout.class);
-        CheckBox checkbox = mock(CheckBox.class);
+        CheckBox checkbox = checkBox(optionKey);
+        when(checkbox.isChecked()).thenReturn(false);
         when(checkboxGroup.isEnabled()).thenReturn(true);
         when(checkboxGroup.getTag(R.id.error)).thenReturn(checklist.getJSONObject("v_required").getString("err"));
         when(checkboxGroup.getChildCount()).thenReturn(2);
         when(checkboxGroup.getChildAt(1)).thenReturn(row);
         when(row.getChildAt(0)).thenReturn(checkbox);
-        assertFalse(CheckBoxFactory.isValid(checkboxGroup));
-        when(checkbox.isChecked()).thenReturn(true);
-        assertTrue(CheckBoxFactory.isValid(checkboxGroup));
 
         JsonApi api = formApi(form);
+        when(api.getFormDataView(HIGH_RISK_STEP + ":" + CHECKLIST_FIELD)).thenReturn(checkboxGroup);
+        when(api.getFormDataViews()).thenReturn(List.of(checkboxGroup));
+        when(api.getInvalidFields()).thenReturn(new HashMap<>());
+        AppExecutors executors = mock(AppExecutors.class);
+        when(api.getAppExecutors()).thenReturn(executors);
+        when(executors.diskIO()).thenReturn(mock(Executor.class));
         when(api.isNextStepRelevant()).thenReturn(true);
-        KvpScreeningJsonFormFragmentPresenter presenter = presenter(api, mock(JsonFormFragment.class), HIGH_RISK_STEP);
-        assertTrue(presenter.executeRefreshLogicForNextStep());
-        verify(api, never()).setNextStep(ENROLLMENT_STEP);
-        selection(form, "polygamous_marriage").put("value", true);
-        when(api.nextStep()).thenReturn(ENROLLMENT_STEP);
-        assertFalse(presenter.executeRefreshLogicForNextStep());
-        verify(api).setNextStep(ENROLLMENT_STEP);
+        KvpScreeningJsonFormFragment fragment = mock(KvpScreeningJsonFormFragment.class);
+        JSONObject step = form.getJSONObject(HIGH_RISK_STEP);
+        when(fragment.getStep(HIGH_RISK_STEP)).thenReturn(step);
+        when(fragment.getOnFieldsInvalidCallback()).thenReturn(mock(OnFieldsInvalid.class));
+        when(fragment.getJsonApi()).thenReturn(api);
+        KvpScreeningJsonFormFragmentPresenter presenter = new KvpScreeningJsonFormFragmentPresenter(
+                fragment, mock(JsonFormInteractor.class)) {
+            {
+                mStepName = HIGH_RISK_STEP;
+                mStepDetails = step;
+            }
 
-        selection(form, "polygamous_marriage").put("value", false);
-        selection(form, "none").put("value", true);
-        when(api.nextStep()).thenReturn(NO_GROUP_STEP);
-        assertFalse(presenter.executeRefreshLogicForNextStep());
-        verify(api).setNextStep(NO_GROUP_STEP);
+            @Override
+            protected boolean moveToNextWizardStep() {
+                return true;
+            }
+        };
+        presenter.attachView(fragment);
+
+        assertFalse(presenter.onNextClick(checkboxGroup));
+        verify(fragment).scrollToView(checkboxGroup);
+        verify(fragment).showHighRiskChecklistError(checkboxGroup, error);
+        verify(api, never()).setNextStep(ENROLLMENT_STEP);
+        verify(api, never()).setNextStep(NO_GROUP_STEP);
+
+        when(checkbox.isChecked()).thenReturn(true);
+        selection(form, optionKey).put("value", true);
+        presenter.onCheckedChanged(checkbox, true);
+        verify(fragment).dismissHighRiskChecklistError();
+        when(api.nextStep()).thenReturn(expectedStep);
+        assertTrue(presenter.onNextClick(checkboxGroup));
+        verify(api).setNextStep(expectedStep);
     }
 
     @Test
     public void nativeCheckboxListenerClearsTheOpposingSelectionsInBothDirections() throws Exception {
         JSONObject form = pregnantForm(Locale.ENGLISH);
-        JsonFormFragment fragment = mock(JsonFormFragment.class);
+        KvpScreeningJsonFormFragment fragment = mock(KvpScreeningJsonFormFragment.class);
         when(fragment.getStep(HIGH_RISK_STEP)).thenReturn(form.getJSONObject(HIGH_RISK_STEP));
         KvpScreeningJsonFormFragmentPresenter presenter = presenter(formApi(form), fragment, HIGH_RISK_STEP);
         CheckBox none = checkBox("none");
@@ -298,7 +338,7 @@ public class MarpPregnancyScreeningTest {
                 "Mteja hayuko kwenye kundi lolote la MARP na hatasajiliwa kwenye huduma rafiki za MARP");
     }
 
-    private static KvpScreeningJsonFormFragmentPresenter presenter(JsonApi api, JsonFormFragment fragment,
+    private static KvpScreeningJsonFormFragmentPresenter presenter(JsonApi api, KvpScreeningJsonFormFragment fragment,
                                                                   String step) {
         when(fragment.getJsonApi()).thenReturn(api);
         KvpScreeningJsonFormFragmentPresenter presenter = new KvpScreeningJsonFormFragmentPresenter(
