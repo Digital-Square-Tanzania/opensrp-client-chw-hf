@@ -1,5 +1,6 @@
 package org.smartregister.chw.hf.activity;
 
+import static org.smartregister.chw.hf.actionhelper.kvp.KvpClientStatusActionHelper.OTHER_CATEGORY;
 import static org.smartregister.chw.hf.utils.Constants.JsonForm.HIV_REGISTRATION;
 import static org.smartregister.util.Utils.getName;
 
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 import com.vijay.jsonwizard.utils.FormUtils;
 
+import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
 import org.smartregister.chw.core.activity.CoreKvpProfileActivity;
 import org.smartregister.chw.core.utils.CoreConstants;
@@ -22,6 +24,7 @@ import org.smartregister.chw.hivst.dao.HivstDao;
 import org.smartregister.chw.kvp.KvpLibrary;
 import org.smartregister.chw.kvp.dao.KvpDao;
 import org.smartregister.chw.kvp.domain.Visit;
+import org.smartregister.chw.kvp.domain.VisitDetail;
 import org.smartregister.chw.kvp.util.Constants;
 import org.smartregister.chw.kvp.util.DBConstants;
 import org.smartregister.commonregistry.CommonPersonObject;
@@ -30,8 +33,11 @@ import org.smartregister.commonregistry.CommonRepository;
 import org.smartregister.family.util.Utils;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import timber.log.Timber;
@@ -295,6 +301,30 @@ public class KvpProfileActivity extends CoreKvpProfileActivity {
     @Override
     public void openMedicalHistory() {
         KvpMedicalHistoryActivity.startMe(this, memberObject);
+    }
+
+    @Override
+    protected void showKvpGroups(String baseEntityId) {
+        super.showKvpGroups(baseEntityId);
+        KvpLibrary library = KvpLibrary.getInstance();
+        Visit visit = library.visitRepository().getLatestVisit(baseEntityId, Constants.EVENT_TYPE.KVP_BIO_MEDICAL_SERVICE_VISIT);
+        if (visit == null || Boolean.TRUE.equals(visit.getProcessed())) {
+            return;
+        }
+
+        // A submitted visit has local details before its event reaches the processed profile table.
+        List<VisitDetail> details = library.visitDetailsRepository().getVisits(visit.getVisitId());
+        List<String> groups = new ArrayList<>();
+        for (VisitDetail detail : details) {
+            if (OTHER_CATEGORY.equals(detail.getVisitKey()) && StringUtils.isNotBlank(detail.getDetails())) {
+                groups.addAll(Arrays.asList(detail.getDetails().trim().split(",\\s*")));
+            }
+        }
+
+        String labels = groups.size() == 1 && "none".equalsIgnoreCase(groups.get(0))
+                ? "" : readStringResourcesWithPrefix(groups, "kvp_");
+        textViewOtherKvpGroups.setVisibility(labels.isEmpty() ? View.GONE : View.VISIBLE);
+        textViewOtherKvpGroups.setText(getString(R.string.other_kvp_groups, labels));
     }
 
     private Visit getVisit(String eventType) {

@@ -185,7 +185,7 @@
     ]
   },
   "step4": {
-    "title": "Men at High Risk(MHR)",
+    "title": "MHR",
     "next": "step5",
     "fields": [
       {

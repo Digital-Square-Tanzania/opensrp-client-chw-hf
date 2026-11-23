@@ -23,6 +23,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.fragment.KvpScreeningJsonFormFragment;
+import org.smartregister.chw.hf.utils.MarpGroupLabels;
 import org.smartregister.chw.kvp.util.Constants;
 import org.smartregister.family.util.JsonFormUtils;
 import org.smartregister.opd.utils.OpdConstants;
@@ -296,6 +297,8 @@ public class KvpScreeningJsonFormFragmentPresenter extends JsonWizardFormFragmen
                         }
 
                     }
+                    MarpGroupLabels.applyLongLabels(formFragment.getContext().getResources(), clientGroupArray);
+                    preselectRiskGroup(clientGroup, clientGroupArray);
                 }
             } else if (currentJsonState.getString(ENCOUNTER_TYPE).equalsIgnoreCase(formFragment.getString(R.string.prep_initiation)) && mStepName.equals("step2")) {
                     JSONObject prepStatusObj = JsonFormUtils.getFieldJSONObject(currentJsonState.getJSONObject("step1").getJSONArray(FIELDS), "prep_status");
@@ -409,6 +412,22 @@ public class KvpScreeningJsonFormFragmentPresenter extends JsonWizardFormFragmen
             getView().transactThis(next);
         }
         return false;
+    }
+
+    private void preselectRiskGroup(JSONObject clientGroup, JSONArray options) throws JSONException {
+        String selectedKey = clientGroup.optString(VALUE);
+        if (containsKey(options, selectedKey)) {
+            return;
+        }
+        if ("msm".equals(selectedKey) || "fsw".equals(selectedKey)) {
+            clientGroup.remove(VALUE);
+        }
+        if (options.length() == 1) {
+            String onlyKey = options.getJSONObject(0).getString(KEY);
+            if ("msm".equals(onlyKey) || "fsw".equals(onlyKey)) {
+                clientGroup.put(VALUE, onlyKey);
+            }
+        }
     }
 
     // Function to check if a specified key exists in the options array
