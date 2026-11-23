@@ -27,24 +27,38 @@ condition: "step3_sexual_intercourse.equals('no') && (global_age >= 10 && global
 actions:
   - "isRelevant = true"
 ---
+name: step4_client_knows_hiv_status
+description: client_knows_hiv_status relevance
+priority: 1
+condition: "step3_sexual_intercourse.equals('yes')"
+actions:
+  - "isRelevant = true"
+---
 name: step4_hiv_status_on_screening
 description: hiv_status_on_screening relevance
 priority: 1
-condition: "step3_sexual_intercourse.equals('yes')"
+condition: "step3_sexual_intercourse.equals('yes') && step4_client_knows_hiv_status.equals('yes')"
 actions:
   - "isRelevant = true"
 ---
 name: step4_hiv_positive_partner
 description: hiv_positive_partner relevance
 priority: 1
-condition: "step4_hiv_status_on_screening.equals('negative')"
+condition: "step3_sexual_intercourse.equals('yes') && step4_client_knows_hiv_status.equals('yes') && step4_hiv_status_on_screening.equals('negative')"
+actions:
+  - "isRelevant = true"
+---
+name: step4_partner_hiv_care_status
+description: partner_hiv_care_status relevance
+priority: 1
+condition: "step3_sexual_intercourse.equals('yes') && step4_client_knows_hiv_status.equals('yes') && step4_hiv_status_on_screening.equals('negative') && step4_hiv_positive_partner.equals('yes')"
 actions:
   - "isRelevant = true"
 ---
 name: step5_sex_for_money
 description: sex_for_money relevance
 priority: 1
-condition: "!step4_hiv_status_on_screening.isEmpty()"
+condition: "step3_sexual_intercourse.equals('yes')"
 actions:
   - "isRelevant = true"
 ---

@@ -13,19 +13,12 @@ condition: "true"
 actions:
   - "calculation = step2_drug_injection.equals('yes') ? 'yes' : 'no'"
 ---
-name: step4_is_msm
+name: step5_is_msm
 description: check if client falls in msm
 priority: 1
 condition: "true"
 actions:
-  - "calculation = (step4_sexual_intercourse_with.equals('man') || step4_sexual_intercourse_with.equals('both')) ? 'yes' : 'no' "
----
-name: step5_is_sdc
-description: check if client falls in sdc
-priority: 1
-condition: "true"
-actions:
-  - "calculation = (step5_hiv_status_on_screening.equals('negative') && step5_hiv_positive_partner.equals('yes')) ? 'yes' : 'no' "
+  - "calculation = (step5_sexual_intercourse_with.equals('man') || step5_sexual_intercourse_with.equals('both')) ? 'yes' : 'no' "
 ---
 name: step6_is_prisoner
 description: check if client is prisoner
@@ -60,7 +53,7 @@ description: check if should enroll client if they belong to any kvp group
 priority: 1
 condition: "true"
 actions:
-  - "calculation = (step1_is_pwud.equals('yes') || step2_is_pwid.equals('yes') || step4_is_msm.equals('yes') || step5_is_sdc.equals('yes') || step6_is_prisoner.equals('yes')  || step6_is_rumandee.equals('yes') || step6_is_mobile_population.equals('yes') || step6_is_ovp_kvp.equals('yes')) ? 'yes' : 'no' "
+  - "calculation = (step1_is_pwud.equals('yes') || step2_is_pwid.equals('yes') || step5_is_msm.equals('yes') || step4_is_sdc.equals('yes') || step6_is_prisoner.equals('yes')  || step6_is_rumandee.equals('yes') || step6_is_mobile_population.equals('yes') || step6_is_ovp_kvp.equals('yes')) ? 'yes' : 'no' "
 ---
 name: step8_other_screened_client_group
 description: other KVP Groups Calculation
@@ -114,6 +107,6 @@ actions:
         return otherGroups;
                
      }"
-  - "calculation = '['+getOtherKvpGroups(step1_is_pwud, step2_is_pwid, step5_is_sdc, step4_is_msm, step6_is_prisoner,step6_is_rumandee, step6_is_mobile_population, step6_is_ovp_kvp, step5_is_sdc)+']'"
+  - "calculation = '['+getOtherKvpGroups(step1_is_pwud, step2_is_pwid, step4_is_sdc, step5_is_msm, step6_is_prisoner,step6_is_rumandee, step6_is_mobile_population, step6_is_ovp_kvp, step4_is_sdc)+']'"
 
 

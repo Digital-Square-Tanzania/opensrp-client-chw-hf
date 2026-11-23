@@ -2,14 +2,14 @@
 name: step7_prep_assessment
 description: is the client eligible for prep
 priority: 1
-condition: "!step5_hiv_status_on_screening.equals('positive')"
+condition: "!step4_hiv_status_on_screening.equals('positive')"
 actions:
   - "isRelevant = true"
 ---
 name: step7_prep_qualified
 description: is the client eligible for prep
 priority: 1
-condition: "step7_prep_assessment.equals('yes')  && !step5_hiv_status_on_screening.equals('positive')"
+condition: "step7_prep_assessment.equals('yes')  && !step4_hiv_status_on_screening.equals('positive')"
 actions:
   - "isRelevant = true"
 
@@ -21,39 +21,52 @@ condition: "step1_drug_use.equals('yes')"
 actions:
   - "isRelevant = true"
 ---
-name: step4_sexual_intercourse_with
+name: step5_sexual_intercourse_with
 description: sexual_intercourse_with relevance
 priority: 1
 condition: "step3_sexual_intercourse.equals('yes')"
 actions:
   - "isRelevant = true"
 ---
-name: step5_hiv_status_on_screening
-description: hiv_status relevance
+name: step4_client_knows_hiv_status
+description: client_knows_hiv_status relevance
 priority: 1
 condition: "step3_sexual_intercourse.equals('yes')"
 actions:
   - "isRelevant = true"
 ---
-name: step5_hiv_positive_partner
-description: hiv_positive_partner relevance
+name: step4_hiv_status_on_screening
+description: hiv_status_on_screening relevance
 priority: 1
-condition: "step5_hiv_status_on_screening.equals('negative')"
+condition: "step3_sexual_intercourse.equals('yes') && step4_client_knows_hiv_status.equals('yes')"
 actions:
   - "isRelevant = true"
-
+---
+name: step4_hiv_positive_partner
+description: hiv_positive_partner relevance
+priority: 1
+condition: "step3_sexual_intercourse.equals('yes') && step4_client_knows_hiv_status.equals('yes') && step4_hiv_status_on_screening.equals('negative')"
+actions:
+  - "isRelevant = true"
+---
+name: step4_partner_hiv_care_status
+description: partner_hiv_care_status relevance
+priority: 1
+condition: "step3_sexual_intercourse.equals('yes') && step4_client_knows_hiv_status.equals('yes') && step4_hiv_status_on_screening.equals('negative') && step4_hiv_positive_partner.equals('yes')"
+actions:
+  - "isRelevant = true"
 ---
 name: step8_prompt_for_sdc_kvp
 description: prompt_for_sdc_kvp relevance0
 priority: 1
-condition: "step5_is_sdc.equals('yes')"
+condition: "step4_is_sdc.equals('yes')"
 actions:
   - "isRelevant = true"
 ---
 name: step8_prompt_for_msm_kvp
 description: prompt_for_msm_kvp relevance
 priority: 1
-condition: "step4_is_msm.equals('yes')"
+condition: "step5_is_msm.equals('yes')"
 actions:
   - "isRelevant = true"
 ---

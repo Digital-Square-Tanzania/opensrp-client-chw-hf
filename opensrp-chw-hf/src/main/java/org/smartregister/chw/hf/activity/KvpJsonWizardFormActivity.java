@@ -11,6 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.hf.fragment.KvpScreeningJsonFormFragment;
 import org.smartregister.chw.hf.utils.JsonFormUtils;
+import org.smartregister.chw.hf.utils.MarpDiscordantCoupleScreening;
 import org.smartregister.chw.hf.utils.MarpPregnancyScreening;
 import org.smartregister.chw.kvp.util.Constants;
 import org.smartregister.family.activity.FamilyWizardFormActivity;
@@ -36,6 +37,9 @@ public class KvpJsonWizardFormActivity extends FamilyWizardFormActivity {
             MarpPregnancyScreening.discardBranchAnswers(this, previousRoute, MarpPregnancyScreening.nextStep(form));
         } else {
             super.widgetsWriteValue(step, key, value, entityParent, entity, entityId, popup);
+            if (!popup && !value.isEmpty()) {
+                MarpDiscordantCoupleScreening.onRadioAnswerChanged(this, step, key);
+            }
             if (!popup && form != null && "step1".equals(step) && "drug_use".equals(key) && "no".equals(value)
                     && Constants.EVENT_TYPE.KVP_REGISTRATION.equalsIgnoreCase(form.optString("encounter_type"))) {
                 JSONObject injectionStep = form.optJSONObject("step2");
@@ -54,6 +58,10 @@ public class KvpJsonWizardFormActivity extends FamilyWizardFormActivity {
                                       String childKey, String value, boolean popup) throws JSONException {
         super.checkBoxWriteValue(step, parentKey, childObjectKey, childKey, value, popup);
         JSONObject form = getmJSONObject();
+        if (!popup && MarpDiscordantCoupleScreening.PARTNER_PARAMETERS.equals(parentKey)
+                && MarpDiscordantCoupleScreening.isScreeningStep(form, step)) {
+            MarpDiscordantCoupleScreening.refreshEligibility(this);
+        }
         if (!popup && MarpPregnancyScreening.HIGH_RISK_STEP.equals(step)
                 && MarpPregnancyScreening.CHECKLIST_FIELD.equals(parentKey)
                 && MarpPregnancyScreening.HIGH_RISK_STEP.equals(MarpPregnancyScreening.nextStep(form))

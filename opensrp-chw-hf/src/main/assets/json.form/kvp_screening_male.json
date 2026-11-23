@@ -185,8 +185,187 @@
     ]
   },
   "step4": {
-    "title": "MHR",
+    "title": "{{discordant_couple_title}}",
     "next": "step5",
+    "fields": [
+      {
+        "key": "client_knows_hiv_status",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "client_knows_hiv_status",
+        "label": "{{discordant_knows_status}}",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "yes",
+            "text": "{{intake_yes}}",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "yes"
+          },
+          {
+            "key": "no",
+            "text": "{{intake_no}}",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "no"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{intake_answer_required}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kvp_screening_male_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "hiv_status_on_screening",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "hiv_status_on_screening",
+        "label": "{{discordant_client_status}}",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "positive",
+            "text": "{{discordant_positive}}",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "positive"
+          },
+          {
+            "key": "negative",
+            "text": "{{discordant_negative}}",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "negative"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{intake_answer_required}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kvp_screening_male_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "hiv_positive_partner",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "hiv_positive_partner",
+        "label": "{{discordant_positive_partner}}",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "yes",
+            "text": "{{intake_yes}}",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "yes"
+          },
+          {
+            "key": "no",
+            "text": "{{intake_no}}",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "no"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{intake_answer_required}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kvp_screening_male_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "partner_hiv_care_status",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "partner_hiv_care_status",
+        "label": "{{discordant_partner_parameters}}",
+        "text_color": "#000000",
+        "type": "check_box",
+        "exclusive": [
+          "none"
+        ],
+        "options": [
+          {
+            "key": "not_started_art",
+            "text": "{{discordant_not_started_art}}",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "not_started_art"
+          },
+          {
+            "key": "art_less_than_six_months",
+            "text": "{{discordant_art_under_six_months}}",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "art_less_than_six_months"
+          },
+          {
+            "key": "art_adherence_doubt",
+            "text": "{{discordant_art_adherence_doubt}}",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "art_adherence_doubt"
+          },
+          {
+            "key": "no_evidence_viral_suppression",
+            "text": "{{discordant_no_viral_suppression_evidence}}",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "no_evidence_viral_suppression"
+          },
+          {
+            "key": "none",
+            "text": "{{high_risk_none}}",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "none"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kvp_screening_male_relevance.yml"
+            }
+          }
+        },
+        "v_required": {
+          "value": "true",
+          "err": "{{discordant_parameters_required}}"
+        }
+      },
+      {
+        "key": "is_sdc",
+        "type": "hidden",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "is_sdc",
+        "openmrs_entity_parent": ""
+      }
+    ]
+  },
+  "step5": {
+    "title": "MHR",
+    "next": "step6",
     "fields": [
       {
         "key": "sexual_intercourse_with",
@@ -236,165 +415,6 @@
         "type": "hidden",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "is_msm",
-        "openmrs_entity_parent": "",
-        "calculation": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "kvp_screening_male_calculation.yml"
-            }
-          }
-        }
-      }
-    ]
-  },
-  "step5": {
-    "title": "Serodiscordant Couple",
-    "next": "step6",
-    "fields": [
-      {
-        "key": "hiv_status_on_screening",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "hiv_status_on_screening",
-        "label": "What is the client's HIV status?",
-        "text_color": "#000000",
-        "type": "native_radio",
-        "options": [
-          {
-            "key": "positive",
-            "text": "Positive",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "positive"
-          },
-          {
-            "key": "negative",
-            "text": "Negative",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "negative"
-          },
-          {
-            "key": "unknown",
-            "text": "Unknown",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "unknown"
-          }
-        ],
-        "v_required": {
-          "value": "true",
-          "err": "Please select an answer"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "kvp_screening_male_relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "hiv_positive_partner",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "hiv_positive_partner",
-        "label": "Is the client in a sexual relationship with a partner who is HIV positive?",
-        "text_color": "#000000",
-        "type": "native_radio",
-        "options": [
-          {
-            "key": "yes",
-            "text": "Yes",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "yes"
-          },
-          {
-            "key": "no",
-            "text": "No",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "no"
-          }
-        ],
-        "v_required": {
-          "value": "true",
-          "err": "Please select an answer"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "kvp_screening_male_relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "partner_hiv_care_status",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "partner_hiv_care_status",
-        "label": "Select the partner's criteria of HIV care status",
-        "text_color": "#000000",
-        "type": "check_box",
-        "exclusive": [
-          "not_started_art"
-        ],
-        "options": [
-          {
-            "key": "not_started_art",
-            "text": "Has not started ART",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "not_started_art"
-          },
-          {
-            "key": "art_more_than_six_months_unused",
-            "text": "Has not taken ART for more than six months",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "art_more_than_six_months_unused"
-          },
-          {
-            "key": "art_adherence_doubt",
-            "text": "Doubt about adherence/use of ART",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "art_adherence_doubt"
-          },
-          {
-            "key": "no_evidence_low_vl",
-            "text": "The partner has no evidence of low viral load count",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "no_evidence_low_vl"
-          }
-        ],
-        "relevance": {
-          "step5:hiv_positive_partner": {
-            "type": "string",
-            "ex": "equalTo(., \"yes\")"
-          }
-        }
-      },
-      {
-        "key": "prompt_counsel_for_testing",
-        "type": "toaster_notes",
-        "text": "Counsel for HIV testing",
-        "openmrs_entity_id": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_parent": "",
-        "toaster_type": "warning",
-        "relevance": {
-          "step5:hiv_status": {
-            "type": "string",
-            "ex": "equalTo(., \"unknown\")"
-          }
-        }
-      },
-      {
-        "key": "is_sdc",
-        "type": "hidden",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "is_sdc",
         "openmrs_entity_parent": "",
         "calculation": {
           "rules-engine": {
@@ -969,7 +989,7 @@
           },
           {
             "key": "serodiscordant_couple",
-            "text": "Serodiscordant couple",
+            "text": "{{discordant_partner_group}}",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "serodiscordant_couple"

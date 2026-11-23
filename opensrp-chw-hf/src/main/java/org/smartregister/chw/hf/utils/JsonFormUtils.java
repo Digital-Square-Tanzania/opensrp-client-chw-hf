@@ -1,5 +1,13 @@
 package org.smartregister.chw.hf.utils;
 
+import static com.vijay.jsonwizard.constants.JsonFormConstants.CHECK_BOX;
+import static com.vijay.jsonwizard.constants.JsonFormConstants.KEY;
+import static com.vijay.jsonwizard.constants.JsonFormConstants.OPENMRS_ENTITY;
+import static com.vijay.jsonwizard.constants.JsonFormConstants.OPENMRS_ENTITY_ID;
+import static com.vijay.jsonwizard.constants.JsonFormConstants.OPENMRS_ENTITY_PARENT;
+import static com.vijay.jsonwizard.constants.JsonFormConstants.OPTIONS_FIELD_NAME;
+import static com.vijay.jsonwizard.constants.JsonFormConstants.TYPE;
+import static com.vijay.jsonwizard.constants.JsonFormConstants.VALUE;
 import static org.smartregister.AllConstants.LocationConstants.SPECIAL_TAG_FOR_OPENMRS_TEAM_MEMBERS;
 
 import android.content.Context;
@@ -51,6 +59,25 @@ public class JsonFormUtils extends CoreJsonFormUtils {
             api.writeValue(step, field.getString("key"), "", field.optString("openmrs_entity_parent"),
                     field.optString("openmrs_entity"), field.optString("openmrs_entity_id"), false);
             field.remove("value");
+        }
+    }
+
+    static void clearFormAnswer(JsonApi api, String stepName, JSONObject field) throws JSONException {
+        String key = field.getString(KEY);
+        if (CHECK_BOX.equals(field.optString(TYPE))) {
+            JSONArray options = field.getJSONArray(OPTIONS_FIELD_NAME);
+            for (int i = 0; i < options.length(); i++) {
+                JSONObject option = options.getJSONObject(i);
+                if (option.optBoolean(VALUE)) {
+                    api.writeValue(stepName, key, OPTIONS_FIELD_NAME, option.getString(KEY), "false",
+                            option.optString(OPENMRS_ENTITY_PARENT), option.optString(OPENMRS_ENTITY),
+                            option.optString(OPENMRS_ENTITY_ID), false);
+                    option.remove(VALUE);
+                }
+            }
+            field.remove(VALUE);
+        } else {
+            clearFormValue(api, stepName, field);
         }
     }
 

@@ -5,7 +5,12 @@ import static org.smartregister.family.util.Constants.JSON_FORM_EXTRA.JSON;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.vijay.jsonwizard.fragments.JsonWizardFormFragment;
@@ -23,6 +28,7 @@ import timber.log.Timber;
 
 public class KvpScreeningJsonFormFragment extends JsonWizardFormFragment {
     private Snackbar highRiskChecklistError;
+    private TextView discordantChecklistError;
 
     public static KvpScreeningJsonFormFragment getFormFragment(String stepName) {
         KvpScreeningJsonFormFragment jsonFormFragment = new KvpScreeningJsonFormFragment();
@@ -49,8 +55,34 @@ public class KvpScreeningJsonFormFragment extends JsonWizardFormFragment {
         });
     }
 
+    public void showDiscordantChecklistError(LinearLayout checklist, String message) {
+        // Native Forms expects every child after the heading to be a checkbox row.
+        ConstraintLayout heading = (ConstraintLayout) checklist.getChildAt(0);
+        if (discordantChecklistError == null || discordantChecklistError.getParent() != heading) {
+            discordantChecklistError = new TextView(heading.getContext());
+            discordantChecklistError.setTextColor(ContextCompat.getColor(heading.getContext(),
+                    com.vijay.jsonwizard.R.color.toaster_note_red_icon));
+            discordantChecklistError.setAccessibilityLiveRegion(View.ACCESSIBILITY_LIVE_REGION_POLITE);
+            ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(0,
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT);
+            params.topToBottom = com.vijay.jsonwizard.R.id.label_text;
+            params.startToStart = com.vijay.jsonwizard.R.id.label_text;
+            params.endToEnd = ConstraintLayout.LayoutParams.PARENT_ID;
+            heading.addView(discordantChecklistError, params);
+        }
+        discordantChecklistError.setText(message);
+        discordantChecklistError.setVisibility(View.VISIBLE);
+    }
+
+    public void dismissDiscordantChecklistError() {
+        if (discordantChecklistError != null) {
+            discordantChecklistError.setVisibility(View.GONE);
+        }
+    }
+
     @Override
     public void onDestroyView() {
+        discordantChecklistError = null;
         dismissHighRiskChecklistError();
         super.onDestroyView();
     }
