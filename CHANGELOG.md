@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
+- Clear a skipped injecting answer and keep the reselected dominant MARP group when saving after Drug Use backtracking ([#227](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/227)).
 - Show the localized required-field prompt when Next is tapped with an empty pregnancy and breastfeeding High Risk checklist, and clear the prompt after a selection ([#226](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/226)).
 
 - Preselect and validate sole MHR and WHR enrollment choices, and restore and display saved secondary groups in Client Status, visit history and the MARP profile ([#223](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/223)).

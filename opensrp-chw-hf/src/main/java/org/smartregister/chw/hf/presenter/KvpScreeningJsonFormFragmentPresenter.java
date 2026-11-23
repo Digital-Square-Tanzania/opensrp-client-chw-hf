@@ -2,6 +2,7 @@ package org.smartregister.chw.hf.presenter;
 
 import static com.vijay.jsonwizard.utils.FormUtils.NATIIVE_FORM_DATE_FORMAT_PATTERN;
 import static org.smartregister.chw.core.utils.CoreJsonFormUtils.ENCOUNTER_TYPE;
+import static org.smartregister.chw.hf.utils.JsonFormUtils.clearFormValue;
 import static org.smartregister.client.utils.constants.JsonFormConstants.V_MAX;
 import static org.smartregister.opd.utils.OpdConstants.JSON_FORM_KEY.OPTIONS;
 import static org.smartregister.util.JsonFormUtils.FIELDS;
@@ -452,13 +453,13 @@ public class KvpScreeningJsonFormFragmentPresenter extends JsonWizardFormFragmen
     }
 
     private void preselectRiskGroup(JSONObject clientGroup, JSONArray options) throws JSONException {
-        String selectedKey = clientGroup.optString(VALUE);
+        String selectedKey = Utils.getValueAfterTranslation(clientGroup);
         if (containsKey(options, selectedKey)) {
             return;
         }
         if ("msm".equals(selectedKey) || "fsw".equals(selectedKey)
                 || "pwud".equals(selectedKey) || "pwid".equals(selectedKey)) {
-            clientGroup.remove(VALUE);
+            clearFormValue(formFragment.getJsonApi(), mStepName, clientGroup);
         }
         if (options.length() == 1) {
             String onlyKey = options.getJSONObject(0).getString(KEY);

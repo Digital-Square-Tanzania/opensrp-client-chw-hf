@@ -10,7 +10,9 @@ import com.vijay.jsonwizard.utils.Utils;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.hf.fragment.KvpScreeningJsonFormFragment;
+import org.smartregister.chw.hf.utils.JsonFormUtils;
 import org.smartregister.chw.hf.utils.MarpPregnancyScreening;
+import org.smartregister.chw.kvp.util.Constants;
 import org.smartregister.family.activity.FamilyWizardFormActivity;
 
 import java.util.List;
@@ -34,6 +36,16 @@ public class KvpJsonWizardFormActivity extends FamilyWizardFormActivity {
             MarpPregnancyScreening.discardBranchAnswers(this, previousRoute, MarpPregnancyScreening.nextStep(form));
         } else {
             super.widgetsWriteValue(step, key, value, entityParent, entity, entityId, popup);
+            if (!popup && form != null && "step1".equals(step) && "drug_use".equals(key) && "no".equals(value)
+                    && Constants.EVENT_TYPE.KVP_REGISTRATION.equalsIgnoreCase(form.optString("encounter_type"))) {
+                JSONObject injectionStep = form.optJSONObject("step2");
+                if (injectionStep != null) {
+                    JsonFormUtils.clearFormValue(this, "step2", JsonFormUtils.getFieldJSONObject(
+                            injectionStep.optJSONArray("fields"), "drug_injection"));
+                    JsonFormUtils.clearFormValue(this, "step2", JsonFormUtils.getFieldJSONObject(
+                            injectionStep.optJSONArray("fields"), "is_pwid"));
+                }
+            }
         }
     }
 

@@ -5,11 +5,14 @@ import static org.smartregister.AllConstants.LocationConstants.SPECIAL_TAG_FOR_O
 import android.content.Context;
 import android.util.Pair;
 
+import com.vijay.jsonwizard.interfaces.JsonApi;
+
 import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.Triple;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.core.dao.ChwNotificationDao;
 import org.smartregister.chw.core.utils.CoreConstants;
@@ -41,6 +44,15 @@ public class JsonFormUtils extends CoreJsonFormUtils {
     public static final String METADATA = "metadata";
     public static final String ENCOUNTER_TYPE = "encounter_type";
     public static final String SYNC_LOCATION_ID = "sync_location_id";
+
+    public static void clearFormValue(JsonApi api, String step, JSONObject field) throws JSONException {
+        if (field != null && field.has("value")) {
+            // Clear the wizard's write cache as well as the serialized answer.
+            api.writeValue(step, field.getString("key"), "", field.optString("openmrs_entity_parent"),
+                    field.optString("openmrs_entity"), field.optString("openmrs_entity_id"), false);
+            field.remove("value");
+        }
+    }
 
     public static Pair<Client, Event> processChildRegistrationForm(AllSharedPreferences allSharedPreferences, String jsonString) {
         try {
