@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
+- Use the bilingual MARPS register group names and eligibility rules for the dominant group at Kituoni enrollment. Save the selected group and the remaining eligible groups under their existing codes ([#235](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/235)).
 - Update the Kituoni vAGYW checklist and make it required when shown. Offer the localized enrollment option for qualifying answers and clear stale criteria after backtracking ([#232](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/232)).
 - Ask a single bilingual sexual intercourse question in Kituoni MARP screening. Route No directly to Other Groups and Yes to Discordant Couple ([#231](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/231)).
 - Show None in English and Hakuna in Kiswahili for the exclusive, non-qualifying vAGYW screening answer in Kituoni ([#230](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/230)).

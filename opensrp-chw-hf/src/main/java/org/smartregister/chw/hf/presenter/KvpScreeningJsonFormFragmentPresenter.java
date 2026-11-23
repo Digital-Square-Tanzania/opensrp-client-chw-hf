@@ -2,11 +2,8 @@ package org.smartregister.chw.hf.presenter;
 
 import static com.vijay.jsonwizard.utils.FormUtils.NATIIVE_FORM_DATE_FORMAT_PATTERN;
 import static org.smartregister.chw.core.utils.CoreJsonFormUtils.ENCOUNTER_TYPE;
-import static org.smartregister.chw.hf.utils.JsonFormUtils.clearFormValue;
 import static org.smartregister.client.utils.constants.JsonFormConstants.V_MAX;
-import static org.smartregister.opd.utils.OpdConstants.JSON_FORM_KEY.OPTIONS;
 import static org.smartregister.util.JsonFormUtils.FIELDS;
-import static org.smartregister.util.JsonFormUtils.KEY;
 import static org.smartregister.util.JsonFormUtils.VALUE;
 
 import android.app.ProgressDialog;
@@ -23,27 +20,24 @@ import com.vijay.jsonwizard.rules.RulesEngineDateUtil;
 import com.vijay.jsonwizard.utils.Utils;
 import com.vijay.jsonwizard.utils.ValidationStatus;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.fragment.KvpScreeningJsonFormFragment;
 import org.smartregister.chw.hf.utils.MarpAgywScreening;
 import org.smartregister.chw.hf.utils.MarpDiscordantCoupleScreening;
-import org.smartregister.chw.hf.utils.MarpGroupLabels;
+import org.smartregister.chw.hf.utils.MarpEnrollmentScreening;
 import org.smartregister.chw.hf.utils.MarpOtherGroupsScreening;
 import org.smartregister.chw.hf.utils.MarpPregnancyScreening;
 import org.smartregister.chw.hf.utils.MarpSexualBehaviourScreening;
 import org.smartregister.chw.kvp.util.Constants;
 import org.smartregister.family.util.JsonFormUtils;
-import org.smartregister.opd.utils.OpdConstants;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.Set;
 
 import timber.log.Timber;
 
@@ -88,57 +82,18 @@ public class KvpScreeningJsonFormFragmentPresenter extends JsonWizardFormFragmen
         }
 
         try {
-            boolean agywEligible = MarpAgywScreening.ENROLLMENT_STEP.equals(mStepName)
-                    && MarpAgywScreening.refreshEligibility(formFragment.getJsonApi());
+            if (MarpAgywScreening.ENROLLMENT_STEP.equals(mStepName)) {
+                MarpAgywScreening.refreshEligibility(formFragment.getJsonApi());
+            }
             JSONObject currentJsonState = new JSONObject(getView().getCurrentJsonState());
 
-            if (currentJsonState.getString(ENCOUNTER_TYPE).equalsIgnoreCase(Constants.EVENT_TYPE.KVP_REGISTRATION)) {
+            if (MarpEnrollmentScreening.isEnrollmentStep(currentJsonState, mStepName)) {
+                MarpEnrollmentScreening.prepareStep(formFragment.getJsonApi(), currentJsonState, mStepName,
+                        step, formFragment.getContext());
+            } else if (Constants.EVENT_TYPE.KVP_REGISTRATION.equalsIgnoreCase(currentJsonState.getString(ENCOUNTER_TYPE))
+                    && MarpPregnancyScreening.ENROLLMENT_STEP.equals(mStepName)) {
                 JSONObject clientGroup = JsonFormUtils.getFieldJSONObject(step.optJSONArray(FIELDS), "client_group");
-                if (clientGroup != null && MarpPregnancyScreening.ENROLLMENT_STEP.equals(mStepName)) {
-                    clientGroup.put(VALUE, MarpPregnancyScreening.GROUP_CODE);
-                } else if (clientGroup != null) {
-                    JSONArray clientGroupArray = clientGroup.getJSONArray(OPTIONS);
-                    updateDrugGroupOptions(currentJsonState, clientGroupArray);
-                    updateGroupOption(clientGroupArray, MarpDiscordantCoupleScreening.GROUP_CODE,
-                            R.string.marp_discordant_partner_option, MarpDiscordantCoupleScreening.isEligible(currentJsonState));
-                    Set<MarpOtherGroupsScreening.Group> otherGroups = MarpOtherGroupsScreening.eligibleGroups(currentJsonState);
-                    for (MarpOtherGroupsScreening.Group group : MarpOtherGroupsScreening.Group.values()) {
-                        updateGroupOption(clientGroupArray, group.code, group.label, otherGroups.contains(group));
-                    }
-
-                    //Male KVP Screening Form
-                    if (mStepName.equals("step8")) {
-                        JSONObject isMsm = JsonFormUtils.getFieldJSONObject(currentJsonState.getJSONObject("step5").getJSONArray(FIELDS), "is_msm");
-                        if (!isMsm.has(OpdConstants.JSON_FORM_KEY.VALUE) || !isMsm.getString(VALUE).equals("yes")) {
-                            for (int i = 0; i < clientGroupArray.length(); i++) {
-                                if (clientGroupArray.getJSONObject(i).getString(KEY).equals("msm")) {
-                                    clientGroupArray.remove(i);
-                                    break;
-                                }
-                            }
-                        } else if (!containsKey(clientGroupArray, "msm")) {
-                            clientGroupArray.put(new JSONObject("{\"key\":\"msm\",\"text\":\"MHR\",\"openmrs_entity_parent\":\"\",\"openmrs_entity\":\"concept\",\"openmrs_entity_id\":\"msm\"}"));
-                        }
-                    } else if (MarpAgywScreening.ENROLLMENT_STEP.equals(mStepName)) {  //Female KVP Screening Form
-
-                        JSONObject isFsw = JsonFormUtils.getFieldJSONObject(currentJsonState.getJSONObject("step5").getJSONArray(FIELDS), "is_fsw");
-                        if (!isFsw.has(OpdConstants.JSON_FORM_KEY.VALUE) || !isFsw.getString(VALUE).equals("yes")) {
-                            for (int i = 0; i < clientGroupArray.length(); i++) {
-                                if (clientGroupArray.getJSONObject(i).getString(KEY).equals("fsw")) {
-                                    clientGroupArray.remove(i);
-                                    break;
-                                }
-                            }
-                        } else if (!containsKey(clientGroupArray, "fsw")) {
-                            clientGroupArray.put(new JSONObject("{\"key\":\"fsw\",\"text\":\"WHR\",\"openmrs_entity_parent\":\"\",\"openmrs_entity\":\"concept\",\"openmrs_entity_id\":\"fsw\"}"));
-                        }
-
-                        updateGroupOption(clientGroupArray, MarpAgywScreening.GROUP_CODE,
-                                R.string.marp_agyw_option, agywEligible);
-                    }
-                    MarpGroupLabels.applyLongLabels(formFragment.getContext().getResources(), clientGroupArray);
-                    preselectRiskGroup(clientGroup, clientGroupArray);
-                }
+                clientGroup.put(VALUE, MarpPregnancyScreening.GROUP_CODE);
             } else if (currentJsonState.getString(ENCOUNTER_TYPE).equalsIgnoreCase(formFragment.getString(R.string.prep_initiation)) && mStepName.equals("step2")) {
                     JSONObject prepStatusObj = JsonFormUtils.getFieldJSONObject(currentJsonState.getJSONObject("step1").getJSONArray(FIELDS), "prep_status");
                     String prepStatus = "";
@@ -337,70 +292,5 @@ public class KvpScreeningJsonFormFragmentPresenter extends JsonWizardFormFragmen
             getView().transactThis(next);
         }
         return false;
-    }
-
-    private void updateDrugGroupOptions(JSONObject form, JSONArray options) throws JSONException {
-        JSONObject drugUse = JsonFormUtils.getFieldJSONObject(form.getJSONObject("step1").getJSONArray(FIELDS), "is_pwud");
-        JSONObject drugInjection = JsonFormUtils.getFieldJSONObject(form.getJSONObject("step2").getJSONArray(FIELDS), "is_pwid");
-        // The existing is_pwud calculation records any recent drug use.
-        boolean usedDrugs = "yes".equals(drugUse.optString(VALUE));
-        boolean injectedDrugs = "yes".equals(drugInjection.optString(VALUE));
-        updateGroupOption(options, "pwud", R.string.marp_pwud_enrollment_option, usedDrugs && !injectedDrugs);
-        updateGroupOption(options, "pwid", R.string.marp_pwid_enrollment_option, usedDrugs && injectedDrugs);
-    }
-
-    private void updateGroupOption(JSONArray options, String key, int labelResId, boolean eligible) throws JSONException {
-        for (int i = 0; i < options.length(); i++) {
-            JSONObject option = options.getJSONObject(i);
-            if (key.equals(option.getString(KEY))) {
-                if (eligible) {
-                    option.put(JsonFormConstants.TEXT, formFragment.getContext().getString(labelResId));
-                } else {
-                    options.remove(i);
-                }
-                return;
-            }
-        }
-        if (eligible) {
-            options.put(new JSONObject()
-                    .put(KEY, key)
-                    .put(JsonFormConstants.TEXT, formFragment.getContext().getString(labelResId))
-                    .put("openmrs_entity_parent", "")
-                    .put("openmrs_entity", "concept")
-                    .put("openmrs_entity_id", key));
-        }
-    }
-
-    private void preselectRiskGroup(JSONObject clientGroup, JSONArray options) throws JSONException {
-        String selectedKey = Utils.getValueAfterTranslation(clientGroup);
-        if (containsKey(options, selectedKey)) {
-            return;
-        }
-        if (!selectedKey.isEmpty()) {
-            clearFormValue(formFragment.getJsonApi(), mStepName, clientGroup);
-        }
-        if (options.length() == 1) {
-            String onlyKey = options.getJSONObject(0).getString(KEY);
-            if ("msm".equals(onlyKey) || "fsw".equals(onlyKey)
-                    || MarpOtherGroupsScreening.Group.fromCode(onlyKey) != null) {
-                clientGroup.put(VALUE, onlyKey);
-            }
-        }
-    }
-
-    // Function to check if a specified key exists in the options array
-    private boolean containsKey(JSONArray options, String searchKey) {
-        try {
-            for (int i = 0; i < options.length(); i++) {
-                JSONObject option = options.getJSONObject(i);
-                if (option.has("key") && option.getString("key").equals(searchKey)) {
-                    return true;
-                }
-            }
-            return false;
-        } catch (Exception e) {
-            Timber.e(e);
-            return false;
-        }
     }
 }

@@ -157,7 +157,8 @@ public class KvpJsonWizardFormActivity extends FamilyWizardFormActivity {
     @Override
     protected void toggleViewVisibility(View view, boolean visible, boolean popup) {
         super.toggleViewVisibility(view, visible, popup);
-        if (visible && !popup && view instanceof ViewGroup && "client_group".equals(view.getTag(R.id.key))) {
+        if (visible && !popup && view instanceof ViewGroup && "client_group".equals(view.getTag(R.id.key))
+                && Constants.EVENT_TYPE.KVP_REGISTRATION.equalsIgnoreCase(getmJSONObject().optString("encounter_type"))) {
             selectSoleEnrollmentOption((ViewGroup) view);
         }
     }
@@ -166,11 +167,8 @@ public class KvpJsonWizardFormActivity extends FamilyWizardFormActivity {
         List<RadioButton> options = Utils.getRadioButtons(group);
         if (options.size() == 1) {
             RadioButton option = options.get(0);
-            Object key = option.getTag(R.id.childKey);
             // Use the widget after relevance makes it available so Save validates the checked radio.
-            if (option.isEnabled() && !option.isChecked()
-                    && ("msm".equals(key) || "fsw".equals(key)
-                    || MarpOtherGroupsScreening.Group.fromCode(key) != null)) {
+            if (option.isEnabled() && !option.isChecked()) {
                 option.setChecked(true);
             }
         }

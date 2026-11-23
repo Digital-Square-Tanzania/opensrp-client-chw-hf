@@ -88,6 +88,7 @@ public class MarpRiskGroupWordingTest {
         // The profile resolves both dominant and other groups using "kvp_" + the stored key.
         assertEquals("MHR", string(strings, "kvp_" + mhr.getString("key")));
         assertEquals("WHR", string(strings, "kvp_" + whr.getString("key")));
+        assertEquals("AGYW", string(strings, "kvp_agyw"));
     }
 
     private static Document loadStrings(String resourceFolder) throws Exception {
