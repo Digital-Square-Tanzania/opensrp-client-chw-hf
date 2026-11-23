@@ -27,9 +27,11 @@ import java.util.Arrays;
 import java.util.List;
 
 public class KvpJsonWizardFormActivity extends FamilyWizardFormActivity {
-    private static final List<String> RETIRED_GROUPS = Arrays.asList("prisoner", "rumandee");
-    private static final List<String> RETIRED_QUESTIONS = Arrays.asList("prisoner_or_rumandee", "is_prisoner", "is_rumandee");
-    private static final List<String> RETIRED_PROMPTS = Arrays.asList("prompt_for_prisoners_kvp", "prompt_for_rumandee_kvp");
+    private static final List<String> RETIRED_GROUPS = Arrays.asList("prisoner", "rumandee", "mobile_population");
+    private static final List<String> RETIRED_QUESTIONS = Arrays.asList(
+            "prisoner_or_rumandee", "is_prisoner", "is_rumandee", "mobile_population", "is_mobile_population");
+    private static final List<String> RETIRED_PROMPTS = Arrays.asList(
+            "prompt_for_prisoners_kvp", "prompt_for_rumandee_kvp", "prompt_for_mobile_population_kvp");
 
     @Override
     public void setmJSONObject(JSONObject form) {

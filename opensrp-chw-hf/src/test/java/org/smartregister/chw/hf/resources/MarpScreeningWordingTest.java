@@ -61,9 +61,11 @@ public class MarpScreeningWordingTest {
                     assertEquals(prepStep, otherGroups.get("next").getAsString());
                     assertEquals(male ? "step8" : "step9", form.getAsJsonObject(prepStep).get("next").getAsString());
                     JsonArray fields = otherGroups.getAsJsonArray("fields");
-                    assertEquals(4, fields.size());
-                    assertEquals("mobile_population", fields.get(0).getAsJsonObject().get("key").getAsString());
-                    assertEquals("other_groups_at_risk", fields.get(1).getAsJsonObject().get("key").getAsString());
+                    assertEquals(2, fields.size());
+                    assertEquals("other_groups_at_risk", fields.get(0).getAsJsonObject().get("key").getAsString());
+                    assertEquals("is_ovp_kvp", fields.get(1).getAsJsonObject().get("key").getAsString());
+                    assertFalse(form.toString().contains("mobile_population"));
+                    assertFalse(form.toString().contains("long_distance_drivers"));
                     assertFalse(form.toString().toLowerCase(Locale.ROOT).contains("prisoner"));
                     assertFalse(form.toString().toLowerCase(Locale.ROOT).contains("rumandee"));
                 }
@@ -120,8 +122,8 @@ public class MarpScreeningWordingTest {
         Locale originalLocale = Locale.getDefault();
         try {
             Locale.setDefault(locale);
-            assertEnrollmentForm("kvp_screening_male", "step8", 7, title, outcomePrefix);
-            assertEnrollmentForm("kvp_screening_female", "step9", 8, title, outcomePrefix);
+            assertEnrollmentForm("kvp_screening_male", "step8", 6, title, outcomePrefix);
+            assertEnrollmentForm("kvp_screening_female", "step9", 7, title, outcomePrefix);
         } finally {
             Locale.setDefault(originalLocale);
         }

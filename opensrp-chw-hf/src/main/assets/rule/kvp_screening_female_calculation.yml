@@ -27,13 +27,6 @@ condition: "true"
 actions:
   - "calculation = (!step6_harsh_condition_impact.isEmpty() && !step6_harsh_condition_impact.contains('not_applicable')) ? 'yes' : 'no'"
 ---
-name: step7_is_mobile_population
-description: check if client is a mobile population
-priority: 1
-condition: "true"
-actions:
-  - "calculation = !step7_mobile_population.equals('none') ? 'yes' : 'no' "
----
 name: step7_is_ovp_kvp
 description: check if client falls in other groups at risk of hiv infection
 priority: 1
@@ -46,14 +39,14 @@ description: check if should enroll client if they belong to any kvp group
 priority: 1
 condition: "true"
 actions:
-  - "calculation = (step1_is_pwud.equals('yes') || step2_is_pwid.equals('yes') || step5_is_fsw.equals('yes') || step6_is_agyw.equals('yes') || step4_is_sdc.equals('yes') || step7_is_mobile_population.equals('yes') || step7_is_ovp_kvp.equals('yes')) ? 'yes' : 'no' "
+  - "calculation = (step1_is_pwud.equals('yes') || step2_is_pwid.equals('yes') || step5_is_fsw.equals('yes') || step6_is_agyw.equals('yes') || step4_is_sdc.equals('yes') || step7_is_ovp_kvp.equals('yes')) ? 'yes' : 'no' "
 ---
 name: step9_other_screened_client_group
 description: other KVP Groups Calculation
 priority: 1
 condition: "true"
 actions:
-  - "def getOtherKvpGroups(pwud,pwid,sdc,fsw,agyw,mobile_population,ovp,serodiscordant_couple) {
+  - "def getOtherKvpGroups(pwud,pwid,sdc,fsw,agyw,ovp,serodiscordant_couple) {
         String otherGroups = '';
                
         if(pwud.contains('yes')){
@@ -77,11 +70,6 @@ actions:
           otherGroups+='agyw,';
         }
 
-         if(mobile_population.equals('yes')){
-           otherGroups+='mobile_population,';
-         }
-        
-
          if(serodiscordant_couple.equals('yes')){
            otherGroups+='serodiscordant_couple,';
          }
@@ -98,6 +86,6 @@ actions:
         return otherGroups;
                
      }"
-  - "calculation = '['+getOtherKvpGroups(step1_is_pwud, step2_is_pwid, step4_is_sdc, step5_is_fsw, step6_is_agyw, step7_is_mobile_population, step7_is_ovp_kvp, step4_is_sdc)+']'"
+  - "calculation = '['+getOtherKvpGroups(step1_is_pwud, step2_is_pwid, step4_is_sdc, step5_is_fsw, step6_is_agyw, step7_is_ovp_kvp, step4_is_sdc)+']'"
 
 
