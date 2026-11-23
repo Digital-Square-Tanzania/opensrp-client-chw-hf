@@ -6,9 +6,14 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.vijay.jsonwizard.utils.NativeFormLangUtils;
 
+import org.jeasy.rules.api.Facts;
+import org.jeasy.rules.api.Rule;
+import org.jeasy.rules.mvel.MVELRuleFactory;
+import org.jeasy.rules.support.YamlRuleDefinitionReader;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -20,6 +25,9 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class MarpScreeningWordingTest {
+    private static final String VAGYW_NONE = "not_applicable";
+    private static final List<String> VAGYW_CRITERIA = List.of(
+            "sex_for_material", "sexually_abused", "sex_last_three_months", "infected_with_sexual_disease");
 
     @Test
     public void rendersEveryEnrollmentOutcomeInEnglish() throws IOException {
@@ -93,15 +101,89 @@ public class MarpScreeningWordingTest {
                     assertFalse(form.toString().contains("long_distance_drivers"));
                     assertFalse(form.toString().toLowerCase(Locale.ROOT).contains("prisoner"));
                     assertFalse(form.toString().toLowerCase(Locale.ROOT).contains("rumandee"));
-                    if (!male) {
-                        // The separate vAGYW question keeps its existing answer for Screening 7 review.
-                        assertTrue(form.getAsJsonObject("step6").toString().contains("not_applicable"));
-                    }
                 }
             }
         } finally {
             Locale.setDefault(originalLocale);
         }
+    }
+
+    @Test
+    public void bothScreeningFormsUseLocalizedNoneWithoutChangingVagywAnswerCodes() throws IOException {
+        Locale originalLocale = Locale.getDefault();
+        try {
+            for (Locale locale : List.of(Locale.ENGLISH, new Locale("sw"))) {
+                Locale.setDefault(locale);
+                JsonObject male = loadTranslatedForm("kvp_screening_male");
+                JsonObject female = loadTranslatedForm("kvp_screening_female");
+                for (JsonObject form : List.of(male, female)) {
+                    assertFalse(form.toString().toLowerCase(Locale.ROOT).contains("not applicable"));
+                }
+                assertFalse(male.toString().contains("harsh_condition_impact"));
+
+                JsonObject page = female.getAsJsonObject("step6");
+                assertEquals("step7", page.get("next").getAsString());
+                JsonObject checklist = page.getAsJsonArray("fields").get(1).getAsJsonObject();
+                assertEquals("harsh_condition_impact", checklist.get("key").getAsString());
+                assertEquals("check_box", checklist.get("type").getAsString());
+                assertEquals("[\"not_applicable\"]", checklist.getAsJsonArray("exclusive").toString());
+                assertEquals("equalTo(., \"no\")", checklist.getAsJsonObject("relevance")
+                        .getAsJsonObject("step6:client_in_school").get("ex").getAsString());
+                JsonArray options = checklist.getAsJsonArray("options");
+                assertEquals(VAGYW_CRITERIA.size() + 1, options.size());
+                for (int i = 0; i < VAGYW_CRITERIA.size(); i++) {
+                    JsonObject option = options.get(i).getAsJsonObject();
+                    assertEquals(VAGYW_CRITERIA.get(i), option.get("key").getAsString());
+                    assertEquals(VAGYW_CRITERIA.get(i), option.get("openmrs_entity_id").getAsString());
+                }
+                assertAnswer(options.get(VAGYW_CRITERIA.size()).getAsJsonObject(), VAGYW_NONE,
+                        "sw".equals(locale.getLanguage()) ? "Hakuna" : "None");
+            }
+        } finally {
+            Locale.setDefault(originalLocale);
+        }
+    }
+
+    @Test
+    public void vagywRetainsVisibilityAndQualifiesOnlyWithAnOrdinaryCriterion() throws Exception {
+        Rule visibility = loadVagywRule("relevance", "step6_client_in_school");
+        Facts client = new Facts();
+        client.put("step5_is_fsw", "no");
+        client.put("global_age", 19);
+        assertTrue(visibility.evaluate(client));
+        client.put("global_age", 24);
+        assertTrue(visibility.evaluate(client));
+        client.put("global_age", 25);
+        assertFalse(visibility.evaluate(client));
+        client.put("global_age", 19);
+        client.put("step5_is_fsw", "yes");
+        assertFalse(visibility.evaluate(client));
+
+        Rule eligibility = loadVagywRule("calculation", "step6_is_agyw");
+        Facts answers = new Facts();
+        answers.put("step6_harsh_condition_impact", List.of());
+        eligibility.execute(answers);
+        assertEquals("no", answers.get("calculation"));
+        answers.put("step6_harsh_condition_impact", List.of(VAGYW_NONE));
+        eligibility.execute(answers);
+        assertEquals("no", answers.get("calculation"));
+        for (String criterion : VAGYW_CRITERIA) {
+            answers.put("step6_harsh_condition_impact", List.of(criterion));
+            eligibility.execute(answers);
+            assertEquals("yes", answers.get("calculation"));
+        }
+    }
+
+    private static Rule loadVagywRule(String type, String name) throws Exception {
+        try (Reader reader = Files.newBufferedReader(Paths.get("src", "main", "assets", "rule",
+                "kvp_screening_female_" + type + ".yml"))) {
+            for (Rule rule : new MVELRuleFactory(new YamlRuleDefinitionReader()).createRules(reader)) {
+                if (name.equals(rule.getName())) {
+                    return rule;
+                }
+            }
+        }
+        throw new AssertionError("Missing rule " + name);
     }
 
     private static void assertDrugUseWording(Locale locale, String title, String recentUse,

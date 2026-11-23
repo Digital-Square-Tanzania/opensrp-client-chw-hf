@@ -602,7 +602,7 @@
           },
           {
             "key": "not_applicable",
-            "text": "Not applicable",
+            "text": "{{vagyw_none}}",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "not_applicable"
           }
