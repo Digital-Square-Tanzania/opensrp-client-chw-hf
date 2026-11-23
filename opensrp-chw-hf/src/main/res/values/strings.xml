@@ -458,6 +458,8 @@
     <string name="kvp_clients">MARP Clients</string>
     <string name="kvp_registration">MARP/PrEP Enrollment</string>
     <string name="kvp_prep_registration">MARP/PrEP Enrollment</string>
+    <string name="marp_enrollment_minimum_age">MARP/PrEP Enrollment is for clients aged 15 years and above.</string>
+    <string name="marp_enrollment_already_enrolled">Already enrolled. Opening the MARP profile.</string>
     <string name="return_to_kvp_clients">Return to all MARP Clients</string>
     <string name="return_to_kvp_prep_clients">Return to all MARP/PrEP Clients</string>
     <string name="record_kvp">Provide MARP Service</string>
