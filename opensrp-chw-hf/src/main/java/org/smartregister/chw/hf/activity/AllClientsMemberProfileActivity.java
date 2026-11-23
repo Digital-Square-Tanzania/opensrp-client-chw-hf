@@ -122,8 +122,8 @@ public class AllClientsMemberProfileActivity extends CoreAllClientsMemberProfile
             int age = Utils.getAgeFromDate(dob);
             menu.findItem(R.id.action_hivst_registration).setVisible(!HivstDao.isRegisteredForHivst(baseEntityId) && age >= 15);
         }
-        menu.findItem(R.id.action_kvp_registration)
-                .setVisible(HealthFacilityApplication.getApplicationFlavor().hasKvpPrEP());
+        updateMarpEnrollmentVisibility(menu.findItem(R.id.action_kvp_registration),
+                HealthFacilityApplication.getApplicationFlavor().hasKvpPrEP());
         if (HealthFacilityApplication.getApplicationFlavor().hasSbc()) {
             String dob = Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.DOB, false);
             int age = Utils.getAgeFromDate(dob);
@@ -364,21 +364,31 @@ public class AllClientsMemberProfileActivity extends CoreAllClientsMemberProfile
         //do nothing--> this is for chw
     }
 
+    void updateMarpEnrollmentVisibility(MenuItem item, boolean hasMarpEnrollment) {
+        item.setVisible(hasMarpEnrollment && getMarpScreeningAge() >= MIN_MARP_SCREENING_AGE);
+    }
+
     @Override
     protected void startKvpRegistration() {
-        if (isMarpEnrolled()) {
-            showMarpEnrollmentMessage(R.string.marp_enrollment_already_enrolled);
-            KvpProfileActivity.startProfile(this, baseEntityId);
-            return;
-        }
-
-        String dob = Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.DOB, false);
-        int age = Utils.getAgeFromDate(dob);
+        int age = getMarpScreeningAge();
         if (age < MIN_MARP_SCREENING_AGE) {
             showMarpEnrollmentMessage(R.string.marp_enrollment_minimum_age);
             return;
         }
+        if (isMarpEnrolled()) {
+            KvpProfileActivity.startProfileFromEnrollment(this, baseEntityId);
+            return;
+        }
         startMarpScreening(age);
+    }
+
+    private int getMarpScreeningAge() {
+        String dob = Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.DOB, false);
+        try {
+            return Utils.getAgeFromDate(dob);
+        } catch (IllegalArgumentException e) {
+            return 0;
+        }
     }
 
     void startMarpScreening(int age) {
