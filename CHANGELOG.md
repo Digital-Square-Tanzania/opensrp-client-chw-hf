@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - Start Kituoni MARP screening for female clients with required pregnancy and breastfeeding questions in English and Kiswahili. Route applicable Yes answers to the dedicated High Risk branch ([#225](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/225)).
+- Add the bilingual pregnancy and breastfeeding High Risk checklist and its sole dominant MARP group. Save the applicable intake answers with enrollment and show the existing no-group outcome when None is selected ([#226](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/226)).
 
 ### Changed
 

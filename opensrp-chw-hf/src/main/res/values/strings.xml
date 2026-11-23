@@ -459,7 +459,6 @@
     <string name="kvp_registration">MARP/PrEP Enrollment</string>
     <string name="kvp_prep_registration">MARP/PrEP Enrollment</string>
     <string name="marp_enrollment_minimum_age">MARP/PrEP Enrollment is for clients aged 15 years and above.</string>
-    <string name="marp_high_risk_screening_unavailable">The Pregnant/Breastfeeding High Risk page is unavailable.</string>
     <string name="marp_enrollment_already_enrolled">Already enrolled. Opening the MARP profile.</string>
     <string name="return_to_kvp_clients">Return to all MARP Clients</string>
     <string name="return_to_kvp_prep_clients">Return to all MARP/PrEP Clients</string>
@@ -496,6 +495,8 @@
     <string name="prep_initiation">PrEP Initiation</string>
     <string name="prep_screening">PrEP Screening</string>
     <string name="kvp_fsw">WHR</string>
+    <string name="kvp_pregnant_breastfeeding_high_risk">Pregnant or breastfeeding women at high risk</string>
+    <string name="marp_enrollment_result_invalid">Check the screening answers and try saving again.</string>
     <string name="kvp_msm">MHR</string>
     <string name="marp_mhr_option">A man at higher risk (MHR)</string>
     <string name="marp_whr_option">A woman at high risk (WHR)</string>

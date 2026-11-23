@@ -83,7 +83,9 @@ public class KvpScreeningJsonFormFragmentPresenter extends JsonWizardFormFragmen
 
             if (currentJsonState.getString(ENCOUNTER_TYPE).equalsIgnoreCase(Constants.EVENT_TYPE.KVP_REGISTRATION)) {
                 JSONObject clientGroup = JsonFormUtils.getFieldJSONObject(step.optJSONArray(FIELDS), "client_group");
-                if (clientGroup != null) {
+                if (clientGroup != null && MarpPregnancyScreening.ENROLLMENT_STEP.equals(mStepName)) {
+                    clientGroup.put(VALUE, MarpPregnancyScreening.GROUP_CODE);
+                } else if (clientGroup != null) {
                     JSONArray clientGroupArray = clientGroup.getJSONArray(OPTIONS);
                     JSONObject isPwud = JsonFormUtils.getFieldJSONObject(currentJsonState.getJSONObject("step1").getJSONArray(FIELDS), "is_pwud");
                     JSONObject isPwid = JsonFormUtils.getFieldJSONObject(currentJsonState.getJSONObject("step2").getJSONArray(FIELDS), "is_pwid");
@@ -410,22 +412,19 @@ public class KvpScreeningJsonFormFragmentPresenter extends JsonWizardFormFragmen
     public boolean executeRefreshLogicForNextStep() {
         JsonApi api = formFragment.getJsonApi();
         JSONObject form = api.getmJSONObject();
+        String next;
         if (MarpPregnancyScreening.isIntakeStep(form, mStepName)) {
-            String next = MarpPregnancyScreening.nextStep(form);
-            if (next.isEmpty()) {
-                return true;
-            }
-            if (!form.has(next)) {
-                // The local Screening 2 build stops here until Screening 3 supplies the High Risk page.
-                api.getAppExecutors().mainThread().execute(() -> {
-                    if (formFragment.isAdded()) {
-                        getView().showSnackBar(formFragment.getString(R.string.marp_high_risk_screening_unavailable));
-                    }
-                });
-                return true;
-            }
-            api.setNextStep(next);
+            next = MarpPregnancyScreening.nextStep(form);
+        } else if (MarpPregnancyScreening.HIGH_RISK_STEP.equals(mStepName)
+                && MarpPregnancyScreening.isIntakeStep(form, MarpPregnancyScreening.INTAKE_STEP)) {
+            next = MarpPregnancyScreening.highRiskOutcome(form);
+        } else {
+            return super.executeRefreshLogicForNextStep();
         }
+        if (next.isEmpty() || !form.has(next)) {
+            return true;
+        }
+        api.setNextStep(next);
         return super.executeRefreshLogicForNextStep();
     }
 
