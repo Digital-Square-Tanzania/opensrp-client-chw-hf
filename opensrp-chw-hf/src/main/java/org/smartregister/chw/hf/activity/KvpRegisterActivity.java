@@ -74,6 +74,9 @@ public class KvpRegisterActivity extends CoreKvpRegisterActivity {
 
         Intent intent = new Intent(this, KvpJsonWizardFormActivity.class);
         intent.putExtra(org.smartregister.family.util.Constants.JSON_FORM_EXTRA.JSON, jsonForm.toString());
+        if (jsonForm.has(JsonFormConstants.MLS.PROPERTIES_FILE_NAME)) {
+            intent.putExtra(JsonFormConstants.PERFORM_FORM_TRANSLATION, true);
+        }
         Form form = new Form();
         form.setActionBarBackground(org.smartregister.chw.core.R.color.family_actionbar);
         form.setWizard(true);

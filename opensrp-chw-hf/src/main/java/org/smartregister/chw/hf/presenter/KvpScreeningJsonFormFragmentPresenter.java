@@ -2,7 +2,6 @@ package org.smartregister.chw.hf.presenter;
 
 import static com.vijay.jsonwizard.utils.FormUtils.NATIIVE_FORM_DATE_FORMAT_PATTERN;
 import static org.smartregister.chw.core.utils.CoreJsonFormUtils.ENCOUNTER_TYPE;
-import static org.smartregister.chw.core.utils.CoreJsonFormUtils.TITLE;
 import static org.smartregister.client.utils.constants.JsonFormConstants.V_MAX;
 import static org.smartregister.opd.utils.OpdConstants.JSON_FORM_KEY.OPTIONS;
 import static org.smartregister.util.JsonFormUtils.FIELDS;
@@ -60,12 +59,16 @@ public class KvpScreeningJsonFormFragmentPresenter extends JsonWizardFormFragmen
 
     @Override
     public void addFormElements() {
+        addFormElements(getView().getArguments().getString(JsonFormConstants.STEPNAME));
+    }
+
+    void addFormElements(String stepName) {
         final ProgressDialog dialog = new ProgressDialog(formFragment.getContext());
         dialog.setCancelable(false);
         dialog.setTitle(formFragment.getContext().getString(com.vijay.jsonwizard.R.string.loading));
         dialog.setMessage(formFragment.getContext().getString(com.vijay.jsonwizard.R.string.loading_form_message));
         dialog.show();
-        mStepName = getView().getArguments().getString(JsonFormConstants.STEPNAME);
+        mStepName = stepName;
 
         JSONObject step = getView().getStep(mStepName);
         if (step == null) {
@@ -76,16 +79,14 @@ public class KvpScreeningJsonFormFragmentPresenter extends JsonWizardFormFragmen
             JSONObject currentJsonState = new JSONObject(getView().getCurrentJsonState());
 
             if (currentJsonState.getString(ENCOUNTER_TYPE).equalsIgnoreCase(Constants.EVENT_TYPE.KVP_REGISTRATION)) {
-                if (step.getString(TITLE).contains("Enrollment")) {
+                JSONObject clientGroup = JsonFormUtils.getFieldJSONObject(step.optJSONArray(FIELDS), "client_group");
+                if (clientGroup != null) {
+                    JSONArray clientGroupArray = clientGroup.getJSONArray(OPTIONS);
                     JSONObject isPwud = JsonFormUtils.getFieldJSONObject(currentJsonState.getJSONObject("step1").getJSONArray(FIELDS), "is_pwud");
                     JSONObject isPwid = JsonFormUtils.getFieldJSONObject(currentJsonState.getJSONObject("step2").getJSONArray(FIELDS), "is_pwid");
 
                     //Male KVP Screening Form
                     if (mStepName.equals("step8")) {
-
-                        JSONObject clientGroup = JsonFormUtils.getFieldJSONObject(step.getJSONArray(FIELDS), "client_group");
-                        JSONArray clientGroupArray = clientGroup.getJSONArray(OPTIONS);
-
                         if (!isPwud.has(OpdConstants.JSON_FORM_KEY.VALUE) || !isPwud.getString(VALUE).equals("yes")) {
                             for (int i = 0; i < clientGroupArray.length(); i++) {
                                 if (clientGroupArray.getJSONObject(i).getString(KEY).equals("pwud")) {
@@ -185,10 +186,6 @@ public class KvpScreeningJsonFormFragmentPresenter extends JsonWizardFormFragmen
                         }
 
                     } else if (mStepName.equals("step9")) {  //Female KVP Screening Form
-
-                        JSONObject clientGroup = JsonFormUtils.getFieldJSONObject(step.getJSONArray(FIELDS), "client_group");
-                        JSONArray clientGroupArray = clientGroup.getJSONArray(OPTIONS);
-
 
                         if (!isPwud.has(OpdConstants.JSON_FORM_KEY.VALUE) || !isPwud.getString(VALUE).equals("yes")) {
                             for (int i = 0; i < clientGroupArray.length(); i++) {

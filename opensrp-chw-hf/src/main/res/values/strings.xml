@@ -452,7 +452,28 @@
     <string name="callPhoneRequestMessage">Facility Healthcare Worker collect user phone numbers to be used for monitoring, evaluation and analysis of visits conducted by clients at the health facility.</string>
     <string name="referral_for_mother_champion_services_sent">Linked to Mother Champion Community Services</string>
     <string name="linked_to_mother_champion">Linked to Mother Champion in {0}</string>
-    <string name="kvp_screening">KVP Screening</string>
+    <string name="kvp_screening">MARP Screening</string>
+    <string name="menu_kvp">MARP/PrEP</string>
+    <string name="menu_kvp_prep">MARP/PrEP</string>
+    <string name="kvp_clients">MARP Clients</string>
+    <string name="kvp_registration">MARP/PrEP Enrollment</string>
+    <string name="kvp_prep_registration">MARP/PrEP Enrollment</string>
+    <string name="return_to_kvp_clients">Return to all MARP Clients</string>
+    <string name="return_to_kvp_prep_clients">Return to all MARP/PrEP Clients</string>
+    <string name="record_kvp">Provide MARP Service</string>
+    <string name="dominant_kvp_group">Dominant MARP Group: %s</string>
+    <string name="other_kvp_groups">Other MARP Groups: %s</string>
+    <string name="kvp">MARP</string>
+    <string name="kvp_client">MARP Client</string>
+    <string name="call_kvp_client">MARP/PrEP Client</string>
+    <string name="kvp_positive">MARP positive</string>
+    <string name="view_kvp_test_result">View MARP test results</string>
+    <string name="kvp_friendly_services">MARP Friendly Services</string>
+    <string name="marp_other_client_category">Other client\'s MARP category</string>
+    <string name="marp_biomedical_service_visit">MARP Biomedical Service Visit</string>
+    <string name="marp_behavioral_service_visit">MARP Behavioral Service Visit</string>
+    <string name="marp_structural_service_visit">MARP Structural Service Visit</string>
+    <string name="marp_other_service_visit">MARP Other Service Visit</string>
     <string name="kvp_client_status">Client Status</string>
     <string name="kvp_hts">HTS</string>
     <string name="kvp_pep_assesment">PEP assesment</string>
@@ -738,8 +759,8 @@
     <string name="cdp_issuing_at_the_facility_report">CDP Issuing at the facility Report</string>
     <string name="cdp_issuing_from_the_facility_report">CDP Issuing from the facility Report</string>
     <string name="cdp_receiving_report">CDP Receiving Report</string>
-    <string name="kvp_reports">KVP REPORTS</string>
-    <string name="kvp_reports_subtitle">View Reports For KVP</string>
+    <string name="kvp_reports">MARP REPORTS</string>
+    <string name="kvp_reports_subtitle">View Reports For MARP</string>
     <string name="kvp_prep_missap_reports_subtitle">View Missed Appointments Clients List</string>
     <string name="vmmc_reports">VMMC REPORTS</string>
     <string name="vmmc_service_register">VMMC Monthly Service Register</string>
@@ -752,7 +773,7 @@
 
     <string name="view_visits_history">View Visits History</string>
     <string name="visits_history">Visits History</string>
-    <string name="kvp_visit_title">KVP Visit {0}: {1}</string>
+    <string name="kvp_visit_title">MARP Visit {0}: {1}</string>
 
     <!--    KVP Medical History-->
     <string name="kvp_previous_hiv_testing_method">Previous HIV testing method: </string>

@@ -1,6 +1,7 @@
 {
   "count": "9",
   "skip_blank_steps": true,
+  "properties_file_name": "marp_screening",
   "encounter_type": "KVP Registration",
   "entity_id": "",
   "metadata": {
@@ -822,7 +823,7 @@
     ]
   },
   "step9": {
-    "title": "KVP Enrollment",
+    "title": "{{enrollment_title}}",
     "fields": [
       {
         "key": "should_enroll",
@@ -841,7 +842,7 @@
       {
         "key": "prompt_for_sdc_kvp",
         "type": "toaster_notes",
-        "text": "The client falls in SDC KVP group\nThe client should be enrolled to KVP friendly services",
+        "text": "{{prompt_for_sdc_kvp}}",
         "openmrs_entity_id": "",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
@@ -857,7 +858,7 @@
       {
         "key": "prompt_for_agyw_kvp",
         "type": "toaster_notes",
-        "text": "The client falls in vAGYW KVP group\nThe client should be enrolled to KVP friendly services",
+        "text": "{{prompt_for_agyw_kvp}}",
         "openmrs_entity_id": "",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
@@ -873,7 +874,7 @@
       {
         "key": "prompt_for_ovp_kvp",
         "type": "toaster_notes",
-        "text": "The client falls in Other vulnerable population KVP group\nThe client should be enrolled to KVP friendly services",
+        "text": "{{prompt_for_ovp_kvp}}",
         "openmrs_entity_id": "",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
@@ -889,7 +890,7 @@
       {
         "key": "prompt_for_fsw_kvp",
         "type": "toaster_notes",
-        "text": "The client falls in WHR KVP group\nThe client should be enrolled to KVP friendly services",
+        "text": "{{prompt_for_fsw_kvp}}",
         "openmrs_entity_id": "",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
@@ -905,7 +906,7 @@
       {
         "key": "prompt_for_pwud_kvp",
         "type": "toaster_notes",
-        "text": "The client falls in PWUD KVP group\nThe client should be enrolled to KVP friendly services",
+        "text": "{{prompt_for_pwud_kvp}}",
         "openmrs_entity_id": "",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
@@ -921,7 +922,7 @@
       {
         "key": "prompt_for_pwid_kvp",
         "type": "toaster_notes",
-        "text": "The client falls in PWID KVP group\nThe client should be enrolled to KVP friendly services",
+        "text": "{{prompt_for_pwid_kvp}}",
         "openmrs_entity_id": "",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
@@ -937,7 +938,7 @@
       {
         "key": "prompt_for_prisoners_kvp",
         "type": "toaster_notes",
-        "text": "The client falls in PRISONERS KVP group\nThe client should be enrolled to KVP friendly services",
+        "text": "{{prompt_for_prisoners_kvp}}",
         "openmrs_entity_id": "",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
@@ -953,7 +954,7 @@
       {
         "key": "prompt_for_rumandee_kvp",
         "type": "toaster_notes",
-        "text": "The client falls in RUMANDEE KVP group\nThe client should be enrolled to KVP friendly services",
+        "text": "{{prompt_for_rumandee_kvp}}",
         "openmrs_entity_id": "",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
@@ -969,7 +970,7 @@
       {
         "key": "prompt_for_mobile_population_kvp",
         "type": "toaster_notes",
-        "text": "The client falls in MOBILE POPULATION KVP group\nThe client should be enrolled to KVP friendly services",
+        "text": "{{prompt_for_mobile_population_kvp}}",
         "openmrs_entity_id": "",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
@@ -985,7 +986,7 @@
       {
         "key": "prompt_no_group",
         "type": "toaster_notes",
-        "text": "The client does not fall in any of the KVP groups and won't be enrolled to KVP friendly services",
+        "text": "{{prompt_no_group}}",
         "openmrs_entity_id": "",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",

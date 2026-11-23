@@ -27,6 +27,7 @@ import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.interactor.KvpMedicalHistoryInteractor;
 import org.smartregister.chw.kvp.domain.MemberObject;
 import org.smartregister.chw.kvp.repository.VisitRepository;
+import org.smartregister.chw.kvp.util.Constants.EVENT_TYPE;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -189,6 +190,24 @@ public class KvpMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
         }
 
 
+        private String getVisitTitle(Context context, String visitType) {
+            if (visitType == null) {
+                return null;
+            }
+            switch (visitType) {
+                case EVENT_TYPE.KVP_BIO_MEDICAL_SERVICE_VISIT:
+                    return context.getString(R.string.marp_biomedical_service_visit);
+                case EVENT_TYPE.KVP_BEHAVIORAL_SERVICE_VISIT:
+                    return context.getString(R.string.marp_behavioral_service_visit);
+                case EVENT_TYPE.KVP_STRUCTURAL_SERVICE_VISIT:
+                    return context.getString(R.string.marp_structural_service_visit);
+                case EVENT_TYPE.KVP_OTHER_SERVICE_VISIT:
+                    return context.getString(R.string.marp_other_service_visit);
+                default:
+                    return visitType;
+            }
+        }
+
         protected void processVisit(List<LinkedHashMap<String, String>> community_visits, Context context, List<Visit> visits) {
             VisitRepository visitRepository = new VisitRepository();
             if (community_visits != null && !community_visits.isEmpty()) {
@@ -201,7 +220,8 @@ public class KvpMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
                     View edit = view.findViewById(R.id.textview_edit);
                     LinearLayout visitDetailsLayout = view.findViewById(R.id.visit_details_layout);
 
-                    tvTitle.setText(visits.get(x).getVisitType() + " " + visits.get(x).getDate());
+                    Visit visit = visits.get(x);
+                    tvTitle.setText(getVisitTitle(context, visit.getVisitType()) + " " + visit.getDate());
 
                     if (shouldShowEditButton(visits.get(x).getDate()) &&
                             Objects.equals(visits.get(x).getVisitId(), visitRepository.getLatestVisit(visits.get(x).getBaseEntityId(), visits.get(x).getVisitType()).getVisitId())) {

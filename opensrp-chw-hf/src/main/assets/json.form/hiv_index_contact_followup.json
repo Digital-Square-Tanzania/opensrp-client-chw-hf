@@ -349,8 +349,8 @@
           "properties": {
             "notification_type": "info",
             "dismissible": "no",
-            "title": "Client should be enrolled to KVP/PrEP",
-            "text": "The client is a sex partner of a HIV Positive client and should be enrolled to KVP/PrEP",
+            "title": "Client should be enrolled to MARP/PrEP",
+            "text": "The client is a sex partner of a HIV Positive client and should be enrolled to MARP/PrEP",
             "background_color": "#082455",
             "text_color": "#EBEE2F"
           },
