@@ -431,42 +431,6 @@
     "next": "step7",
     "fields": [
       {
-        "key": "prisoner_or_rumandee",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "prisoner_or_rumandee",
-        "label": "Is the client a prisoner or a rumandee?",
-        "text_color": "#000000",
-        "type": "native_radio",
-        "options": [
-          {
-            "key": "prisoner",
-            "text": "Prisoner",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "prisoner"
-          },
-          {
-            "key": "rumandee",
-            "text": "Rumandee",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "rumandee"
-          },
-          {
-            "key": "none",
-            "text": "None",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "none"
-          }
-        ],
-        "v_required": {
-          "value": "true",
-          "err": "Please select an answer"
-        }
-      },
-      {
         "key": "mobile_population",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -564,34 +528,6 @@
         "v_required": {
           "value": "true",
           "err": "Please select an answer"
-        }
-      },
-      {
-        "key": "is_prisoner",
-        "type": "hidden",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "is_prisoner_or_rumandee",
-        "openmrs_entity_parent": "",
-        "calculation": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "kvp_screening_male_calculation.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "is_rumandee",
-        "type": "hidden",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "is_prisoner_or_rumandee",
-        "openmrs_entity_parent": "",
-        "calculation": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "kvp_screening_male_calculation.yml"
-            }
-          }
         }
       },
       {
@@ -785,38 +721,6 @@
       },
 
       {
-        "key": "prompt_for_prisoners_kvp",
-        "type": "toaster_notes",
-        "text": "{{prompt_for_prisoners_kvp}}",
-        "openmrs_entity_id": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_parent": "",
-        "toaster_type": "problem",
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "kvp_screening_male_relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "prompt_for_rumandee_kvp",
-        "type": "toaster_notes",
-        "text": "{{prompt_for_rumandee_kvp}}",
-        "openmrs_entity_id": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_parent": "",
-        "toaster_type": "problem",
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "kvp_screening_male_relevance.yml"
-            }
-          }
-        }
-      },
-      {
         "key": "prompt_for_mobile_population_kvp",
         "type": "toaster_notes",
         "text": "{{prompt_for_mobile_population_kvp}}",
@@ -972,20 +876,6 @@
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "pwid"
-          },
-          {
-            "key": "prisoner",
-            "text": "Prisoners",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "prisoner"
-          },
-          {
-            "key": "rumandee",
-            "text": "Rumandee",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "rumandee"
           },
           {
             "key": "serodiscordant_couple",

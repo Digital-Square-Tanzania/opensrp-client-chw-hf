@@ -144,13 +144,16 @@ public class MarpDiscordantCoupleScreeningTest {
             Facts results = new Facts();
             for (String field : List.of("step1_is_pwud", "step2_is_pwid", "step4_is_sdc",
                     "step5_is_msm", "step5_is_fsw", "step6_is_agyw",
-                    otherGroupStep + "_is_prisoner", otherGroupStep + "_is_rumandee",
                     otherGroupStep + "_is_mobile_population", otherGroupStep + "_is_ovp_kvp")) {
                 results.put(field, "no");
             }
 
+            // Carried flags from older screening data cannot make the new form eligible.
+            results.put(otherGroupStep + "_is_prisoner", "yes");
+            results.put(otherGroupStep + "_is_rumandee", "yes");
             enroll.execute(results);
             assertEquals("no", results.get("calculation"));
+            assertEquals("[]", calculateSecondaryGroups(secondaryGroups, results));
             assertFalse(prompt.evaluate(results));
             results.put("step4_is_sdc", "yes");
             enroll.execute(results);

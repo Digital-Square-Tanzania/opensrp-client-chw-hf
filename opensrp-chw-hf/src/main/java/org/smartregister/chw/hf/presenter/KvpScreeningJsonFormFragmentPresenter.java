@@ -110,31 +110,6 @@ public class KvpScreeningJsonFormFragmentPresenter extends JsonWizardFormFragmen
                             clientGroupArray.put(new JSONObject("{\"key\":\"msm\",\"text\":\"MHR\",\"openmrs_entity_parent\":\"\",\"openmrs_entity\":\"concept\",\"openmrs_entity_id\":\"msm\"}"));
                         }
 
-
-                        JSONObject isPrisoner = JsonFormUtils.getFieldJSONObject(currentJsonState.getJSONObject("step6").getJSONArray(FIELDS), "is_prisoner");
-                        if (!isPrisoner.has(OpdConstants.JSON_FORM_KEY.VALUE) || !isPrisoner.getString(VALUE).equals("yes")) {
-                            for (int i = 0; i < clientGroupArray.length(); i++) {
-                                if (clientGroupArray.getJSONObject(i).getString(KEY).equals("prisoner")) {
-                                    clientGroupArray.remove(i);
-                                    break;
-                                }
-                            }
-                        } else if (!containsKey(clientGroupArray, "prisoner")) {
-                            clientGroupArray.put(new JSONObject("{\"key\":\"prisoner\",\"text\":\"Prisoners\",\"openmrs_entity_parent\":\"\",\"openmrs_entity\":\"concept\",\"openmrs_entity_id\":\"prisoner\"}"));
-                        }
-
-                        JSONObject isRumandee = JsonFormUtils.getFieldJSONObject(currentJsonState.getJSONObject("step6").getJSONArray(FIELDS), "is_rumandee");
-                        if (!isRumandee.has(OpdConstants.JSON_FORM_KEY.VALUE) || !isRumandee.getString(VALUE).equals("yes")) {
-                            for (int i = 0; i < clientGroupArray.length(); i++) {
-                                if (clientGroupArray.getJSONObject(i).getString(KEY).equals("rumandee")) {
-                                    clientGroupArray.remove(i);
-                                    break;
-                                }
-                            }
-                        } else if (!containsKey(clientGroupArray, "rumandee")) {
-                            clientGroupArray.put(new JSONObject("{\"key\":\"rumandee\",\"text\":\"Rumandee\",\"openmrs_entity_parent\":\"\",\"openmrs_entity\":\"concept\",\"openmrs_entity_id\":\"rumandee\"}"));
-                        }
-
                         JSONObject isMobilePopulation = JsonFormUtils.getFieldJSONObject(currentJsonState.getJSONObject("step6").getJSONArray(FIELDS), "is_mobile_population");
                         if (!isMobilePopulation.has(OpdConstants.JSON_FORM_KEY.VALUE) || !isMobilePopulation.getString(VALUE).equals("yes")) {
                             for (int i = 0; i < clientGroupArray.length(); i++) {
@@ -184,31 +159,6 @@ public class KvpScreeningJsonFormFragmentPresenter extends JsonWizardFormFragmen
                             }
                         } else if (!containsKey(clientGroupArray, "agyw")) {
                             clientGroupArray.put(new JSONObject("{\"key\":\"agyw\",\"text\":\"vAGYW\",\"openmrs_entity_parent\":\"\",\"openmrs_entity\":\"concept\",\"openmrs_entity_id\":\"agyw\"}"));
-                        }
-
-
-                        JSONObject isPrisoner = JsonFormUtils.getFieldJSONObject(currentJsonState.getJSONObject("step7").getJSONArray(FIELDS), "is_prisoner");
-                        if (!isPrisoner.has(OpdConstants.JSON_FORM_KEY.VALUE) || !isPrisoner.getString(VALUE).equals("yes")) {
-                            for (int i = 0; i < clientGroupArray.length(); i++) {
-                                if (clientGroupArray.getJSONObject(i).getString(KEY).equals("prisoner")) {
-                                    clientGroupArray.remove(i);
-                                    break;
-                                }
-                            }
-                        } else if (!containsKey(clientGroupArray, "prisoner")) {
-                            clientGroupArray.put(new JSONObject("{\"key\":\"prisoner\",\"text\":\"Prisoners\",\"openmrs_entity_parent\":\"\",\"openmrs_entity\":\"concept\",\"openmrs_entity_id\":\"prisoner\"}"));
-                        }
-
-                        JSONObject isRumandee = JsonFormUtils.getFieldJSONObject(currentJsonState.getJSONObject("step7").getJSONArray(FIELDS), "is_rumandee");
-                        if (!isRumandee.has(OpdConstants.JSON_FORM_KEY.VALUE) || !isRumandee.getString(VALUE).equals("yes")) {
-                            for (int i = 0; i < clientGroupArray.length(); i++) {
-                                if (clientGroupArray.getJSONObject(i).getString(KEY).equals("rumandee")) {
-                                    clientGroupArray.remove(i);
-                                    break;
-                                }
-                            }
-                        } else if (!containsKey(clientGroupArray, "rumandee")) {
-                            clientGroupArray.put(new JSONObject("{\"key\":\"rumandee\",\"text\":\"Rumandee\",\"openmrs_entity_parent\":\"\",\"openmrs_entity\":\"concept\",\"openmrs_entity_id\":\"rumandee\"}"));
                         }
 
                         JSONObject isMobilePopulation = JsonFormUtils.getFieldJSONObject(currentJsonState.getJSONObject("step7").getJSONArray(FIELDS), "is_mobile_population");
