@@ -46,6 +46,25 @@ public class KvpClientStatusRoundTripTest {
         assertFalse(option(category(reopened), "pwud").optBoolean("value"));
     }
 
+    @Test
+    public void reopensSavedLegacyGroupsWithTheirExistingLabels() throws Exception {
+        for (String code : List.of("prisoner", "rumandee")) {
+            JSONObject original = form();
+            JSONObject savedCategory = category(original);
+            option(savedCategory, code).put("value", true);
+            savedCategory.put("value", new JSONArray(List.of(code)));
+            Event saved = new Event();
+            JsonFormUtils.addObservation(saved, savedCategory);
+            Map<String, List<VisitDetail>> details = NCUtil.eventsObsToDetails(
+                    saved.getObs(), "synthetic-visit", "synthetic-client");
+            JSONObject reopened = category(open(form(), details));
+            JSONObject group = option(reopened, code);
+            assertTrue(group.getBoolean("value"));
+            assertEquals("prisoner".equals(code) ? "Prisoners" : "Rumandee", group.getString("text"));
+            assertEquals(code, reopened.getJSONArray("value").getString(0));
+        }
+    }
+
     private static void assertRoundTrip(String chosen, String excluded) throws Exception {
         JSONObject form = form();
         JSONObject category = category(form);

@@ -142,6 +142,60 @@ public class KvpScreeningEnrollmentFilteringTest {
     }
 
     @Test
+    public void olderScreeningStateCannotRestoreRetiredGroupsOnEnrollmentOrBacktracking() throws Exception {
+        for (String sex : List.of("male", "female")) {
+            String otherGroupsStep = "male".equals(sex) ? "step6" : "step7";
+            String enrollmentStep = "male".equals(sex) ? "step8" : "step9";
+            for (Locale locale : List.of(Locale.ENGLISH, KISWAHILI)) {
+                for (String retiredGroup : List.of("prisoner", "rumandee")) {
+                    JSONObject form = loadScreeningForm("kvp_screening_" + sex, locale);
+                    JSONObject otherGroups = form.getJSONObject(otherGroupsStep);
+                    JSONObject enrollment = form.getJSONObject(enrollmentStep);
+                    otherGroups.getJSONArray("fields")
+                            .put(carriedField("prisoner_or_rumandee", retiredGroup))
+                            .put(carriedField("is_" + retiredGroup, "yes"));
+                    enrollment.getJSONArray("fields").put(carriedField(
+                            "prisoner".equals(retiredGroup) ? "prompt_for_prisoners_kvp" : "prompt_for_rumandee_kvp", ""));
+                    JSONObject group = field(enrollment, "client_group");
+                    group.getJSONArray("options")
+                            .put(carriedField("prisoner", ""))
+                            .put(carriedField("rumandee", ""));
+                    group.put("value", retiredGroup);
+                    field(enrollment, "should_enroll").put("value", "yes");
+                    field(enrollment, "other_screened_client_group").put("value", "[" + retiredGroup + "]");
+
+                    KvpJsonWizardFormActivity activity = formActivity(form);
+                    assertFalse(field(enrollment, "should_enroll").has("value"));
+                    assertFalse(field(enrollment, "other_screened_client_group").has("value"));
+                    JSONObject renderedGroup = field(renderEnrollment(form, enrollmentStep, locale, activity), "client_group");
+                    assertFalse(renderedGroup.has("value"));
+                    assertEquals(0, renderedGroup.getJSONArray("options").length());
+
+                    // Represent a valid answer on returning to Other Groups and reenabling enrollment.
+                    writeAnswer(activity, otherGroupsStep, "is_mobile_population", "yes");
+                    renderedGroup = field(renderEnrollment(form, enrollmentStep, locale, activity), "client_group");
+                    assertEquals(1, renderedGroup.getJSONArray("options").length());
+                    assertEquals("mobile_population", renderedGroup.getJSONArray("options")
+                            .getJSONObject(0).getString("key"));
+                    writeAnswer(activity, enrollmentStep, "should_enroll", "yes");
+                    writeAnswer(activity, enrollmentStep, "birth_region", "Tanga");
+                    writeAnswer(activity, enrollmentStep, "client_group", "mobile_population");
+                    writeAnswer(activity, enrollmentStep, "other_screened_client_group", "[mobile_population]");
+
+                    JSONObject submitted = saveEnrollment(activity, enrollmentStep);
+                    assertFalse(submitted.toString().contains("prisoner"));
+                    assertFalse(submitted.toString().contains("rumandee"));
+                    assertEnrollmentEvent(submitted, "mobile_population");
+                }
+            }
+        }
+    }
+
+    private static JSONObject carriedField(String key, String value) throws JSONException {
+        return new JSONObject().put("key", key).put("value", value);
+    }
+
+    @Test
     public void discordantOptionIsBilingualAndSavesItsExistingGroupCode() throws Exception {
         for (String sex : List.of("male", "female")) {
             String enrollmentStep = "male".equals(sex) ? "step8" : "step9";

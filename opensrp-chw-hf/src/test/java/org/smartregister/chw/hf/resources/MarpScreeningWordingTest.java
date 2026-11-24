@@ -44,6 +44,35 @@ public class MarpScreeningWordingTest {
                 "Umewahi kujidunga sindano za dawa ya kulevya?", "Ndio", "Hapana");
     }
 
+    @Test
+    public void otherGroupsRoutesToPrepWithOnlyTheRemainingQuestionsInBothLanguages() throws IOException {
+        Locale originalLocale = Locale.getDefault();
+        try {
+            for (Locale locale : new Locale[]{Locale.ENGLISH, new Locale("sw")}) {
+                Locale.setDefault(locale);
+                for (String sex : new String[]{"male", "female"}) {
+                    boolean male = "male".equals(sex);
+                    JsonObject form = loadTranslatedForm("kvp_screening_" + sex);
+                    String otherGroupsStep = male ? "step6" : "step7";
+                    String prepStep = male ? "step7" : "step8";
+                    assertEquals(otherGroupsStep, form.getAsJsonObject(male ? "step5" : "step6")
+                            .get("next").getAsString());
+                    JsonObject otherGroups = form.getAsJsonObject(otherGroupsStep);
+                    assertEquals(prepStep, otherGroups.get("next").getAsString());
+                    assertEquals(male ? "step8" : "step9", form.getAsJsonObject(prepStep).get("next").getAsString());
+                    JsonArray fields = otherGroups.getAsJsonArray("fields");
+                    assertEquals(4, fields.size());
+                    assertEquals("mobile_population", fields.get(0).getAsJsonObject().get("key").getAsString());
+                    assertEquals("other_groups_at_risk", fields.get(1).getAsJsonObject().get("key").getAsString());
+                    assertFalse(form.toString().toLowerCase(Locale.ROOT).contains("prisoner"));
+                    assertFalse(form.toString().toLowerCase(Locale.ROOT).contains("rumandee"));
+                }
+            }
+        } finally {
+            Locale.setDefault(originalLocale);
+        }
+    }
+
     private static void assertDrugUseWording(Locale locale, String title, String recentUse,
                                              String injecting, String yes, String no) throws IOException {
         Locale originalLocale = Locale.getDefault();
@@ -91,8 +120,8 @@ public class MarpScreeningWordingTest {
         Locale originalLocale = Locale.getDefault();
         try {
             Locale.setDefault(locale);
-            assertEnrollmentForm("kvp_screening_male", "step8", 9, title, outcomePrefix);
-            assertEnrollmentForm("kvp_screening_female", "step9", 10, title, outcomePrefix);
+            assertEnrollmentForm("kvp_screening_male", "step8", 7, title, outcomePrefix);
+            assertEnrollmentForm("kvp_screening_female", "step9", 8, title, outcomePrefix);
         } finally {
             Locale.setDefault(originalLocale);
         }
