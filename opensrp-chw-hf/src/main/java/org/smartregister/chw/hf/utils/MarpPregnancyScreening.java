@@ -14,6 +14,7 @@ import static com.vijay.jsonwizard.constants.JsonFormConstants.TYPE;
 import static com.vijay.jsonwizard.constants.JsonFormConstants.VALUE;
 import static com.vijay.jsonwizard.constants.JsonFormConstants.VALUES;
 import static org.smartregister.chw.core.utils.CoreJsonFormUtils.ENCOUNTER_TYPE;
+import static org.smartregister.chw.hf.utils.JsonFormUtils.clearFormValue;
 
 import com.vijay.jsonwizard.interfaces.JsonApi;
 import com.vijay.jsonwizard.utils.Utils;
@@ -156,11 +157,9 @@ public final class MarpPregnancyScreening {
                     option.remove(VALUE);
                 }
             }
-        } else if (field.has(VALUE)) {
-            // Update the wizard's write cache so a repeated selection will be accepted after returning.
-            api.writeValue(stepName, key, "", field.optString(OPENMRS_ENTITY_PARENT),
-                    field.optString(OPENMRS_ENTITY), field.optString(OPENMRS_ENTITY_ID), false);
+            field.remove(VALUE);
+        } else {
+            clearFormValue(api, stepName, field);
         }
-        field.remove(VALUE);
     }
 }
