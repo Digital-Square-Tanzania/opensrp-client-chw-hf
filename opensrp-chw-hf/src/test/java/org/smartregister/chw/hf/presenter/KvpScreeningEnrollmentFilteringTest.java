@@ -482,6 +482,8 @@ public class KvpScreeningEnrollmentFilteringTest {
 
                 JSONObject submitted = saveEnrollment(activity, enrollment);
                 Event event = assertEnrollmentEvent(submitted, TRUCK_DRIVERS);
+                assertFalse(event.getObs().stream().map(Obs::getFieldCode)
+                        .anyMatch(code -> "prep_assessment".equals(code) || "prep_qualified".equals(code)));
                 Obs checklist = event.getObs().stream()
                         .filter(obs -> MarpOtherGroupsScreening.CHECKLIST_FIELD.equals(obs.getFieldCode()))
                         .findFirst().orElseThrow();
@@ -646,7 +648,11 @@ public class KvpScreeningEnrollmentFilteringTest {
     private static KvpJsonWizardFormActivity formActivity(JSONObject form) throws Exception {
         // Android's JSONObject.getString coerces JSONArray, unlike the test runtime's org.json.
         for (String step : List.of(DISCORDANT_STEP, "step6", "step7")) {
-            JSONArray fields = form.getJSONObject(step).getJSONArray("fields");
+            JSONObject page = form.optJSONObject(step);
+            if (page == null) {
+                continue;
+            }
+            JSONArray fields = page.getJSONArray("fields");
             for (int i = 0; i < fields.length(); i++) {
                 JSONObject field = fields.getJSONObject(i);
                 if ("check_box".equals(field.optString("type"))) {

@@ -1,18 +1,4 @@
 ---
-name: step8_prep_assessment
-description: is the client eligible for prep
-priority: 1
-condition: "!step4_hiv_status_on_screening.equals('positive')"
-actions:
-  - "isRelevant = true"
----
-name: step8_prep_qualified
-description: is the client eligible for prep
-priority: 1
-condition: "step8_prep_assessment.equals('yes')  && !step4_hiv_status_on_screening.equals('positive')"
-actions:
-  - "isRelevant = true"
----
 name: step2_drug_injection
 description: drug_injection relevance
 priority: 1
@@ -94,13 +80,6 @@ name: step9_prompt_for_agyw_kvp
 description: prompt_for_agyw_kvp relevance
 priority: 1
 condition: "step6_is_agyw.equals('yes')"
-actions:
-  - "isRelevant = true"
----
-name: step8_prep_assessment
-description: prep_assessment relevance
-priority: 1
-condition: "step4_hiv_status_on_screening.equals('negative') && step4_hiv_status_on_screening.equals('unknown')"
 actions:
   - "isRelevant = true"
 ---

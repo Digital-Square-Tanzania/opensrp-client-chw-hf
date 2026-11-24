@@ -55,7 +55,7 @@ public class MarpScreeningWordingTest {
     }
 
     @Test
-    public void otherGroupsRoutesToPrepWithOnlyTheRemainingQuestionsInBothLanguages() throws IOException {
+    public void otherGroupsKeepsItsChecklistAndRoutesToEnrollmentInBothLanguages() throws IOException {
         Locale originalLocale = Locale.getDefault();
         try {
             for (Locale locale : new Locale[]{Locale.ENGLISH, new Locale("sw")}) {
@@ -72,13 +72,14 @@ public class MarpScreeningWordingTest {
                     boolean male = "male".equals(sex);
                     JsonObject form = loadTranslatedForm("kvp_screening_" + sex);
                     String otherGroupsStep = male ? "step6" : "step7";
-                    String prepStep = male ? "step7" : "step8";
+                    String enrollmentStep = male ? "step8" : "step9";
                     assertEquals(otherGroupsStep, form.getAsJsonObject(male ? "step5" : "step6")
                             .get("next").getAsString());
                     JsonObject otherGroups = form.getAsJsonObject(otherGroupsStep);
                     assertEquals(swahili ? "Makundi mengine" : "Other Groups", otherGroups.get("title").getAsString());
-                    assertEquals(prepStep, otherGroups.get("next").getAsString());
-                    assertEquals(male ? "step8" : "step9", form.getAsJsonObject(prepStep).get("next").getAsString());
+                    assertEquals(enrollmentStep, otherGroups.get("next").getAsString());
+                    assertEquals(swahili ? "Usajili wa MARP" : "MARP Enrollment",
+                            form.getAsJsonObject(enrollmentStep).get("title").getAsString());
                     JsonArray fields = otherGroups.getAsJsonArray("fields");
                     assertEquals(2, fields.size());
                     JsonObject checklist = fields.get(0).getAsJsonObject();
