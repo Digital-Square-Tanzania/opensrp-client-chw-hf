@@ -28,6 +28,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.fragment.KvpScreeningJsonFormFragment;
+import org.smartregister.chw.hf.utils.MarpDiscordantCoupleScreening;
 import org.smartregister.chw.hf.utils.MarpGroupLabels;
 import org.smartregister.chw.hf.utils.MarpPregnancyScreening;
 import org.smartregister.chw.kvp.util.Constants;
@@ -92,10 +93,12 @@ public class KvpScreeningJsonFormFragmentPresenter extends JsonWizardFormFragmen
                 } else if (clientGroup != null) {
                     JSONArray clientGroupArray = clientGroup.getJSONArray(OPTIONS);
                     updateDrugGroupOptions(currentJsonState, clientGroupArray);
+                    updateGroupOption(clientGroupArray, MarpDiscordantCoupleScreening.GROUP_CODE,
+                            R.string.marp_discordant_partner_option, MarpDiscordantCoupleScreening.isEligible(currentJsonState));
 
                     //Male KVP Screening Form
                     if (mStepName.equals("step8")) {
-                        JSONObject isMsm = JsonFormUtils.getFieldJSONObject(currentJsonState.getJSONObject("step4").getJSONArray(FIELDS), "is_msm");
+                        JSONObject isMsm = JsonFormUtils.getFieldJSONObject(currentJsonState.getJSONObject("step5").getJSONArray(FIELDS), "is_msm");
                         if (!isMsm.has(OpdConstants.JSON_FORM_KEY.VALUE) || !isMsm.getString(VALUE).equals("yes")) {
                             for (int i = 0; i < clientGroupArray.length(); i++) {
                                 if (clientGroupArray.getJSONObject(i).getString(KEY).equals("msm")) {
@@ -107,18 +110,6 @@ public class KvpScreeningJsonFormFragmentPresenter extends JsonWizardFormFragmen
                             clientGroupArray.put(new JSONObject("{\"key\":\"msm\",\"text\":\"MHR\",\"openmrs_entity_parent\":\"\",\"openmrs_entity\":\"concept\",\"openmrs_entity_id\":\"msm\"}"));
                         }
 
-
-                        JSONObject isSdc = JsonFormUtils.getFieldJSONObject(currentJsonState.getJSONObject("step5").getJSONArray(FIELDS), "is_sdc");
-                        if (!isSdc.has(OpdConstants.JSON_FORM_KEY.VALUE) || !isSdc.getString(VALUE).equals("yes")) {
-                            for (int i = 0; i < clientGroupArray.length(); i++) {
-                                if (clientGroupArray.getJSONObject(i).getString(KEY).equals("serodiscordant_couple")) {
-                                    clientGroupArray.remove(i);
-                                    break;
-                                }
-                            }
-                        } else if (!containsKey(clientGroupArray, "serodiscordant_couple")) {
-                            clientGroupArray.put(new JSONObject("{\"key\":\"serodiscordant_couple\",\"text\":\"Serodiscordant couple\",\"openmrs_entity_parent\":\"\",\"openmrs_entity\":\"concept\",\"openmrs_entity_id\":\"serodiscordant_couple\"}"));
-                        }
 
                         JSONObject isPrisoner = JsonFormUtils.getFieldJSONObject(currentJsonState.getJSONObject("step6").getJSONArray(FIELDS), "is_prisoner");
                         if (!isPrisoner.has(OpdConstants.JSON_FORM_KEY.VALUE) || !isPrisoner.getString(VALUE).equals("yes")) {
@@ -195,18 +186,6 @@ public class KvpScreeningJsonFormFragmentPresenter extends JsonWizardFormFragmen
                             clientGroupArray.put(new JSONObject("{\"key\":\"agyw\",\"text\":\"vAGYW\",\"openmrs_entity_parent\":\"\",\"openmrs_entity\":\"concept\",\"openmrs_entity_id\":\"agyw\"}"));
                         }
 
-
-                        JSONObject isSdc = JsonFormUtils.getFieldJSONObject(currentJsonState.getJSONObject("step4").getJSONArray(FIELDS), "is_sdc");
-                        if (!isSdc.has(OpdConstants.JSON_FORM_KEY.VALUE) || !isSdc.getString(VALUE).equals("yes")) {
-                            for (int i = 0; i < clientGroupArray.length(); i++) {
-                                if (clientGroupArray.getJSONObject(i).getString(KEY).equals("serodiscordant_couple")) {
-                                    clientGroupArray.remove(i);
-                                    break;
-                                }
-                            }
-                        } else if (!containsKey(clientGroupArray, "serodiscordant_couple")) {
-                            clientGroupArray.put(new JSONObject("{\"key\":\"serodiscordant_couple\",\"text\":\"Serodiscordant couple\",\"openmrs_entity_parent\":\"\",\"openmrs_entity\":\"concept\",\"openmrs_entity_id\":\"serodiscordant_couple\"}"));
-                        }
 
                         JSONObject isPrisoner = JsonFormUtils.getFieldJSONObject(currentJsonState.getJSONObject("step7").getJSONArray(FIELDS), "is_prisoner");
                         if (!isPrisoner.has(OpdConstants.JSON_FORM_KEY.VALUE) || !isPrisoner.getString(VALUE).equals("yes")) {
@@ -377,12 +356,27 @@ public class KvpScreeningJsonFormFragmentPresenter extends JsonWizardFormFragmen
                 }
             }
         }
+        JsonApi api = formFragment.getJsonApi();
+        if (MarpDiscordantCoupleScreening.isScreeningStep(api.getmJSONObject(), mStepName)) {
+            View checklist = api.getFormDataView(mStepName + ":" + MarpDiscordantCoupleScreening.PARTNER_PARAMETERS);
+            if (checklist instanceof LinearLayout && checklist.isShown()) {
+                ValidationStatus status = validate(formFragment, checklist, false);
+                if (!status.isValid()) {
+                    formFragment.showDiscordantChecklistError((LinearLayout) checklist, status.getErrorMessage());
+                    return false;
+                }
+            }
+        }
         return super.onNextClick(mainViews);
     }
 
     @Override
     public void onCheckedChanged(CompoundButton button, boolean isChecked) {
         super.onCheckedChanged(button, isChecked);
+        if (isChecked && MarpDiscordantCoupleScreening.isScreeningStep(formFragment.getJsonApi().getmJSONObject(),
+                mStepName)) {
+            formFragment.dismissDiscordantChecklistError();
+        }
         if (MarpPregnancyScreening.HIGH_RISK_STEP.equals(mStepName) && isChecked
                 && MarpPregnancyScreening.CHECKLIST_FIELD.equals(button.getTag(com.vijay.jsonwizard.R.id.key))) {
             formFragment.dismissHighRiskChecklistError();
@@ -426,11 +420,11 @@ public class KvpScreeningJsonFormFragmentPresenter extends JsonWizardFormFragmen
         // The existing is_pwud calculation records any recent drug use.
         boolean usedDrugs = "yes".equals(drugUse.optString(VALUE));
         boolean injectedDrugs = "yes".equals(drugInjection.optString(VALUE));
-        updateDrugGroupOption(options, "pwud", R.string.marp_pwud_enrollment_option, usedDrugs && !injectedDrugs);
-        updateDrugGroupOption(options, "pwid", R.string.marp_pwid_enrollment_option, usedDrugs && injectedDrugs);
+        updateGroupOption(options, "pwud", R.string.marp_pwud_enrollment_option, usedDrugs && !injectedDrugs);
+        updateGroupOption(options, "pwid", R.string.marp_pwid_enrollment_option, usedDrugs && injectedDrugs);
     }
 
-    private void updateDrugGroupOption(JSONArray options, String key, int labelResId, boolean eligible) throws JSONException {
+    private void updateGroupOption(JSONArray options, String key, int labelResId, boolean eligible) throws JSONException {
         for (int i = 0; i < options.length(); i++) {
             JSONObject option = options.getJSONObject(i);
             if (key.equals(option.getString(KEY))) {
@@ -458,7 +452,8 @@ public class KvpScreeningJsonFormFragmentPresenter extends JsonWizardFormFragmen
             return;
         }
         if ("msm".equals(selectedKey) || "fsw".equals(selectedKey)
-                || "pwud".equals(selectedKey) || "pwid".equals(selectedKey)) {
+                || "pwud".equals(selectedKey) || "pwid".equals(selectedKey)
+                || MarpDiscordantCoupleScreening.GROUP_CODE.equals(selectedKey)) {
             clearFormValue(formFragment.getJsonApi(), mStepName, clientGroup);
         }
         if (options.length() == 1) {

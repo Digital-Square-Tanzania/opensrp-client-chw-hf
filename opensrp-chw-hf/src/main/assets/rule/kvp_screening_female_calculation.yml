@@ -13,13 +13,6 @@ condition: "true"
 actions:
   - "calculation = step2_drug_injection.equals('yes') ? 'yes' : 'no'"
 ---
-name: step4_is_sdc
-description: check if client falls in sdc
-priority: 1
-condition: "true"
-actions:
-  - "calculation = (step4_hiv_status_on_screening.equals('negative') && step4_hiv_positive_partner.equals('yes')) ? 'yes' : 'no' "
----
 name: step5_is_fsw
 description: check if client falls in msm
 priority: 1
@@ -67,7 +60,7 @@ description: check if should enroll client if they belong to any kvp group
 priority: 1
 condition: "true"
 actions:
-  - "calculation = (step1_is_pwud.equals('yes') || step2_is_pwid.equals('yes') || step5_is_fsw.equals('yes') || step6_is_agyw.equals('yes') || step4_is_sdc.equals('yes') || step7_is_prisoner.equals('yes')  || step7_is_rumandee.equals('yes') || step7_is_mobile_population.equals('yes')  step7_is_ovp_kvp.equals('yes')) ? 'yes' : 'no' "
+  - "calculation = (step1_is_pwud.equals('yes') || step2_is_pwid.equals('yes') || step5_is_fsw.equals('yes') || step6_is_agyw.equals('yes') || step4_is_sdc.equals('yes') || step7_is_prisoner.equals('yes')  || step7_is_rumandee.equals('yes') || step7_is_mobile_population.equals('yes') || step7_is_ovp_kvp.equals('yes')) ? 'yes' : 'no' "
 ---
 name: step9_other_screened_client_group
 description: other KVP Groups Calculation

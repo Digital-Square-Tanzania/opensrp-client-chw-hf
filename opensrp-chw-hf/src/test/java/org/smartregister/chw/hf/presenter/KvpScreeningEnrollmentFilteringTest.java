@@ -16,11 +16,13 @@ import com.vijay.jsonwizard.utils.AppExecutors;
 import com.vijay.jsonwizard.utils.NativeFormLangUtils;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Test;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.activity.KvpJsonWizardFormActivity;
 import org.smartregister.chw.hf.fragment.KvpScreeningJsonFormFragment;
+import org.smartregister.chw.hf.utils.MarpDiscordantCoupleScreening;
 import org.smartregister.chw.hf.utils.MarpPregnancyScreening;
 import org.mockito.ArgumentCaptor;
 import org.smartregister.chw.kvp.util.KvpJsonFormUtils;
@@ -50,6 +52,9 @@ import static org.mockito.Mockito.when;
 
 public class KvpScreeningEnrollmentFilteringTest {
 
+    private static final String DISCORDANT_STEP = MarpDiscordantCoupleScreening.STEP;
+    private static final String DISCORDANT_GROUP = MarpDiscordantCoupleScreening.GROUP_CODE;
+    private static final String PARTNER_PARAMETERS = MarpDiscordantCoupleScreening.PARTNER_PARAMETERS;
     private static final Locale KISWAHILI = new Locale("sw");
     private static final String MHR_EN = "A man at higher risk (MHR)";
     private static final String MHR_SW = "Mwanaume aliye katika hatari zaidi (MHR)";
@@ -76,7 +81,7 @@ public class KvpScreeningEnrollmentFilteringTest {
         JSONObject form = loadScreeningForm("kvp_screening_male", Locale.ENGLISH);
         field(form.getJSONObject("step1"), "is_pwud").put("value", "no");
         field(form.getJSONObject("step2"), "is_pwid").put("value", "yes");
-        field(form.getJSONObject("step4"), "is_msm").put("value", "yes");
+        field(form.getJSONObject("step5"), "is_msm").put("value", "yes");
         field(form.getJSONObject("step8"), "client_group").put("value", "pwid");
 
         assertEnrollmentOptions(form, "step8", Locale.ENGLISH, "MARP Enrollment", "msm", MHR_EN, "msm");
@@ -136,7 +141,158 @@ public class KvpScreeningEnrollmentFilteringTest {
         assertEnrollmentEvent(submittedForm, "pwid");
     }
 
+    @Test
+    public void discordantOptionIsBilingualAndSavesItsExistingGroupCode() throws Exception {
+        for (String sex : List.of("male", "female")) {
+            String enrollmentStep = "male".equals(sex) ? "step8" : "step9";
+            for (Locale locale : List.of(Locale.ENGLISH, KISWAHILI)) {
+                JSONObject form = loadScreeningForm("kvp_screening_" + sex, locale);
+                KvpJsonWizardFormActivity activity = formActivity(form);
+                answerDiscordantQuestions(activity);
+                checkParameter(activity, "not_started_art", true);
+                checkParameter(activity, "art_less_than_six_months", true);
+                assertEquals("yes", field(form.getJSONObject(DISCORDANT_STEP), "is_sdc").getString("value"));
+                checkParameter(activity, "not_started_art", false);
+
+                String title = KISWAHILI.equals(locale) ? "Usajili wa MARP" : "MARP Enrollment";
+                assertEnrollmentOptions(form, enrollmentStep, locale, title, DISCORDANT_GROUP,
+                        discordantLabel(locale), "");
+                writeAnswer(activity, enrollmentStep, "should_enroll", "yes");
+                writeAnswer(activity, enrollmentStep, "birth_region", "Tanga");
+                writeAnswer(activity, enrollmentStep, "client_group", DISCORDANT_GROUP);
+
+                JSONObject submitted = saveEnrollment(activity, enrollmentStep);
+                assertEnrollmentEvent(submitted, DISCORDANT_GROUP);
+                Event event = JsonFormUtils.createEvent(KvpJsonFormUtils.kvpFormFields(submitted),
+                        submitted.getJSONObject("metadata"), new FormTag(), "synthetic-client",
+                        "KVP Registration", "KVP Registration");
+                Obs parameter = event.getObs().stream()
+                        .filter(obs -> PARTNER_PARAMETERS.equals(obs.getFieldCode()))
+                        .findFirst().orElseThrow();
+                assertEquals(List.of("art_less_than_six_months"), parameter.getValues());
+            }
+        }
+    }
+
+    @Test
+    public void changingPartnerStatusOrSexualHistoryDiscardsInactiveAnswers() throws Exception {
+        for (String sex : List.of("male", "female")) {
+            JSONObject form = loadScreeningForm("kvp_screening_" + sex, KISWAHILI);
+            KvpJsonWizardFormActivity activity = formActivity(form);
+            JSONObject page = form.getJSONObject(DISCORDANT_STEP);
+            JSONObject checklist = field(page, PARTNER_PARAMETERS);
+            answerDiscordantQuestions(activity);
+            checkParameter(activity, "not_started_art", true);
+
+            writeAnswer(activity, DISCORDANT_STEP, "hiv_positive_partner", "no");
+            assertFalse(checklist.has("value"));
+            assertEquals("no", field(page, "is_sdc").getString("value"));
+            writeAnswer(activity, DISCORDANT_STEP, "hiv_positive_partner", "yes");
+            assertFalse(MarpDiscordantCoupleScreening.isEligible(form));
+            checkParameter(activity, "not_started_art", true);
+            assertTrue(MarpDiscordantCoupleScreening.isEligible(form));
+
+            writeAnswer(activity, DISCORDANT_STEP, "hiv_status_on_screening", "positive");
+            assertFalse(field(page, "hiv_positive_partner").has("value"));
+            assertFalse(checklist.has("value"));
+            writeAnswer(activity, DISCORDANT_STEP, "hiv_status_on_screening", "negative");
+            assertFalse(field(page, "hiv_positive_partner").has("value"));
+            writeAnswer(activity, DISCORDANT_STEP, "hiv_positive_partner", "yes");
+            checkParameter(activity, "not_started_art", true);
+
+            writeAnswer(activity, DISCORDANT_STEP, "client_knows_hiv_status", "no");
+            assertFalse(field(page, "hiv_status_on_screening").has("value"));
+            assertFalse(field(page, "hiv_positive_partner").has("value"));
+            assertFalse(checklist.has("value"));
+            answerDiscordantQuestions(activity);
+            checkParameter(activity, "not_started_art", true);
+            assertTrue(MarpDiscordantCoupleScreening.isEligible(form));
+
+            writeAnswer(activity, "step3", "sexual_intercourse", "no");
+            assertFalse(field(page, "client_knows_hiv_status").has("value"));
+            assertFalse(field(page, "hiv_status_on_screening").has("value"));
+            assertFalse(field(page, "hiv_positive_partner").has("value"));
+            assertFalse(checklist.has("value"));
+            assertEquals("no", field(page, "is_sdc").getString("value"));
+        }
+    }
+
+    @Test
+    public void noneDropsOnlyTheDiscordantOptionAndRequiresReselectionWhenEligibleAgain() throws Exception {
+        String enrollmentStep = "step8";
+        JSONObject form = loadScreeningForm("kvp_screening_male", Locale.ENGLISH);
+        KvpJsonWizardFormActivity activity = formActivity(form);
+        answerDiscordantQuestions(activity);
+        checkParameter(activity, "not_started_art", true);
+        writeAnswer(activity, "step6", "is_mobile_population", "yes");
+        writeAnswer(activity, enrollmentStep, "client_group", DISCORDANT_GROUP);
+
+        // Native Forms unchecks the old choices before writing the exclusive choice.
+        checkParameter(activity, "not_started_art", false);
+        checkParameter(activity, "none", true);
+        JSONObject group = field(renderEnrollment(form, enrollmentStep, Locale.ENGLISH, activity), "client_group");
+        assertFalse(group.has("value"));
+        assertEquals(1, group.getJSONArray("options").length());
+        assertEquals("mobile_population", group.getJSONArray("options").getJSONObject(0).getString("key"));
+        assertEquals("no", field(form.getJSONObject(DISCORDANT_STEP), "is_sdc").getString("value"));
+
+        writeAnswer(activity, enrollmentStep, "client_group", "mobile_population");
+        checkParameter(activity, "none", false);
+        checkParameter(activity, "art_adherence_doubt", true);
+        group = field(renderEnrollment(form, enrollmentStep, Locale.ENGLISH, activity), "client_group");
+        assertEquals("mobile_population", group.getString("value"));
+        assertEquals(2, group.getJSONArray("options").length());
+
+        checkParameter(activity, "art_adherence_doubt", false);
+        checkParameter(activity, "none", true);
+        group = field(renderEnrollment(form, enrollmentStep, Locale.ENGLISH, activity), "client_group");
+        assertEquals("mobile_population", group.getString("value"));
+
+        checkParameter(activity, "none", false);
+        checkParameter(activity, "not_started_art", true);
+        group = field(renderEnrollment(form, enrollmentStep, Locale.ENGLISH, activity), "client_group");
+        assertEquals(2, group.getJSONArray("options").length());
+        assertEquals("mobile_population", group.getString("value"));
+        writeAnswer(activity, enrollmentStep, "should_enroll", "yes");
+        writeAnswer(activity, enrollmentStep, "birth_region", "Tanga");
+        writeAnswer(activity, enrollmentStep, "client_group", DISCORDANT_GROUP);
+        assertEnrollmentEvent(saveEnrollment(activity, enrollmentStep), DISCORDANT_GROUP);
+    }
+
+    private static void answerDiscordantQuestions(KvpJsonWizardFormActivity activity) throws Exception {
+        writeAnswer(activity, "step3", "sexual_intercourse", "yes");
+        writeAnswer(activity, DISCORDANT_STEP, "client_knows_hiv_status", "yes");
+        writeAnswer(activity, DISCORDANT_STEP, "hiv_status_on_screening", "negative");
+        writeAnswer(activity, DISCORDANT_STEP, "hiv_positive_partner", "yes");
+    }
+
+    private static void checkParameter(KvpJsonWizardFormActivity activity, String key, boolean checked)
+            throws Exception {
+        activity.writeValue(DISCORDANT_STEP, PARTNER_PARAMETERS, "options", key, String.valueOf(checked),
+                "", "concept", key, false);
+    }
+
+    private static String discordantLabel(Locale locale) {
+        return KISWAHILI.equals(locale) ? "Mwenza mwenye majibu kinzani" : "Discordant partner";
+    }
+
     private static KvpJsonWizardFormActivity formActivity(JSONObject form) throws Exception {
+        JSONArray discordantFields = form.getJSONObject(DISCORDANT_STEP).getJSONArray("fields");
+        for (int i = 0; i < discordantFields.length(); i++) {
+            JSONObject field = discordantFields.getJSONObject(i);
+            if (PARTNER_PARAMETERS.equals(field.getString("key"))) {
+                // Android's JSONObject.getString coerces JSONArray, unlike the test runtime's org.json.
+                discordantFields.put(i, new JSONObject(field.toString()) {
+                    @Override
+                    public String getString(String name) throws JSONException {
+                        Object value = get(name);
+                        return value instanceof JSONArray ? value.toString() : super.getString(name);
+                    }
+                });
+                break;
+            }
+        }
+
         ArchTaskExecutor executor = ArchTaskExecutor.getInstance();
         executor.setDelegate(new TaskExecutor() {
             @Override
@@ -246,12 +402,12 @@ public class KvpScreeningEnrollmentFilteringTest {
         JSONObject form = loadScreeningForm("kvp_screening_male", KISWAHILI);
         JSONObject enrollment = form.getJSONObject("step8");
         field(enrollment, "client_group").put("value", "msm");
-        field(form.getJSONObject("step4"), "is_msm").put("value", "no");
+        field(form.getJSONObject("step5"), "is_msm").put("value", "no");
         JSONObject group = field(renderEnrollment(form, "step8", KISWAHILI), "client_group");
         assertEquals(0, group.getJSONArray("options").length());
         assertFalse(group.has("value"));
 
-        field(form.getJSONObject("step4"), "is_msm").put("value", "yes");
+        field(form.getJSONObject("step5"), "is_msm").put("value", "yes");
         assertEnrollmentOptions(form, "step8", KISWAHILI, "Usajili wa MARP", "msm", MHR_SW, "msm");
     }
 
@@ -259,7 +415,7 @@ public class KvpScreeningEnrollmentFilteringTest {
     public void retainsAnExistingSelectionWhenMultipleGroupsQualify() throws Exception {
         JSONObject form = loadScreeningForm("kvp_screening_male", Locale.ENGLISH);
         field(form.getJSONObject("step1"), "is_pwud").put("value", "yes");
-        field(form.getJSONObject("step4"), "is_msm").put("value", "yes");
+        field(form.getJSONObject("step5"), "is_msm").put("value", "yes");
         JSONObject clientGroup = field(form.getJSONObject("step8"), "client_group");
 
         JSONObject rendered = field(renderEnrollment(form, "step8", Locale.ENGLISH), "client_group");
@@ -318,8 +474,8 @@ public class KvpScreeningEnrollmentFilteringTest {
 
     private static void assertOnlyMaleMhr(Locale locale, String title) throws Exception {
         JSONObject form = loadScreeningForm("kvp_screening_male", locale);
-        assertEquals("MHR", form.getJSONObject("step4").getString("title"));
-        field(form.getJSONObject("step4"), "is_msm").put("value", "yes");
+        assertEquals("MHR", form.getJSONObject("step5").getString("title"));
+        field(form.getJSONObject("step5"), "is_msm").put("value", "yes");
         assertEnrollmentOptions(form, "step8", locale, title, "msm",
                 KISWAHILI.equals(locale) ? MHR_SW : MHR_EN, "msm");
     }
@@ -377,6 +533,7 @@ public class KvpScreeningEnrollmentFilteringTest {
                 .thenReturn(KISWAHILI.equals(locale) ? PWID_SW : PWID_EN);
         when(context.getString(R.string.marp_pwud_enrollment_option))
                 .thenReturn(KISWAHILI.equals(locale) ? PWUD_SW : PWUD_EN);
+        when(context.getString(R.string.marp_discordant_partner_option)).thenReturn(discordantLabel(locale));
         when(context.getResources()).thenReturn(resources);
         when(fragment.getContext()).thenReturn(context);
         when(fragment.getStep(stepName)).thenReturn(form.getJSONObject(stepName));
