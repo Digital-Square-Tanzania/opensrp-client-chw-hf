@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
+- Ask a single bilingual sexual intercourse question in Kituoni MARP screening. Route No directly to Other Groups and Yes to Discordant Couple ([#231](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/231)).
 - Show None in English and Hakuna in Kiswahili for the exclusive, non-qualifying vAGYW screening answer in Kituoni ([#230](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/230)).
 - Replace Kituoni MARP Other Groups with a bilingual checklist and add enrollment groups for long-distance truck drivers, fisherfolk, miners, and other key and vulnerable populations. Keep legacy enrollment codes and labels available ([#233](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/233)).
 - Move bilingual Discordant Couple screening after Sexual Behaviour in Kituoni and offer the Discordant partner group when a qualifying partner parameter is selected ([#228](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/228)).
