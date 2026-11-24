@@ -199,30 +199,54 @@ public class MarpScreeningWordingTest {
     }
 
     @Test
-    public void vagywAloneEnablesEnrollmentAndUsesTheExistingGroupCode() throws Exception {
-        Rule enrollment = loadVagywRule("calculation", "step9_should_enroll");
-        Rule groups = loadVagywRule("calculation", "step9_other_screened_client_group");
-        Facts client = new Facts();
-        client.put("step1_is_pwud", "no");
-        client.put("step2_is_pwid", "no");
-        client.put("step4_is_sdc", "no");
-        client.put("step5_is_fsw", "no");
-        client.put("step6_is_agyw", "yes");
-        client.put("step7_eligible_other_marp_groups", "none");
-        enrollment.execute(client);
-        assertEquals("yes", client.get("calculation"));
-        Facts revised = new Facts();
-        revised.asMap().putAll(client.asMap());
-        groups.execute(client);
-        assertEquals("[agyw]", client.get("calculation"));
-        revised.put("step6_is_agyw", "no");
-        enrollment.execute(revised);
-        assertEquals("no", revised.get("calculation"));
-        revised.put("step7_eligible_other_marp_groups", "fisherfolk");
-        enrollment.execute(revised);
-        assertEquals("yes", revised.get("calculation"));
-        groups.execute(revised);
-        assertEquals("[fisherfolk]", revised.get("calculation"));
+    public void enrollmentFieldsFollowEligibilityInBothForms() throws Exception {
+        for (String sex : List.of("male", "female")) {
+            String step = "male".equals(sex) ? "step8" : "step9";
+            Facts client = new Facts();
+            try (Reader reader = Files.newBufferedReader(Paths.get("src", "main", "assets", "rule",
+                    "kvp_screening_" + sex + "_relevance.yml"))) {
+                int checked = 0;
+                for (Rule rule : new MVELRuleFactory(new YamlRuleDefinitionReader()).createRules(reader)) {
+                    if (List.of(step + "_birth_region", step + "_client_group").contains(rule.getName())) {
+                        client.put(step + "_should_enroll", "no");
+                        assertFalse(rule.evaluate(client));
+                        client.put(step + "_should_enroll", "yes");
+                        assertTrue(rule.evaluate(client));
+                        checked++;
+                    }
+                }
+                assertEquals(2, checked);
+            }
+        }
+    }
+
+    @Test
+    public void enrollmentShowsOnlyTheMatchingDrugOutcomeInBothForms() throws Exception {
+        for (String sex : List.of("male", "female")) {
+            String step = "male".equals(sex) ? "step8" : "step9";
+            try (Reader reader = Files.newBufferedReader(Paths.get("src", "main", "assets", "rule",
+                    "kvp_screening_" + sex + "_relevance.yml"))) {
+                int checked = 0;
+                for (Rule rule : new MVELRuleFactory(new YamlRuleDefinitionReader()).createRules(reader)) {
+                    boolean pwid = (step + "_prompt_for_pwid_kvp").equals(rule.getName());
+                    if (pwid || (step + "_prompt_for_pwud_kvp").equals(rule.getName())) {
+                        Facts client = new Facts();
+                        client.put("step1_drug_use", "yes");
+                        client.put("step2_drug_injection", "yes");
+                        assertEquals(pwid, rule.evaluate(client));
+                        client.put("step2_drug_injection", "no");
+                        assertEquals(!pwid, rule.evaluate(client));
+                        client.put("step2_drug_injection", "");
+                        assertFalse(rule.evaluate(client));
+                        client.put("step1_drug_use", "no");
+                        client.put("step2_drug_injection", "yes");
+                        assertFalse(rule.evaluate(client));
+                        checked++;
+                    }
+                }
+                assertEquals(2, checked);
+            }
+        }
     }
 
     private static Rule loadVagywRule(String type, String name) throws Exception {

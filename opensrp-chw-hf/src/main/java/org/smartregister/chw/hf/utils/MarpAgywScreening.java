@@ -45,7 +45,7 @@ public final class MarpAgywScreening {
         }
 
         JSONObject school = field(form, STEP, SCHOOL_FIELD);
-        if (changedWhr && qualifiesForWhr(form, age(form))) {
+        if (changedWhr && qualifiesForWhr(form)) {
             clearFormAnswer(api, STEP, school);
         }
         if (!"no".equals(Utils.getValueAfterTranslation(school))) {
@@ -59,7 +59,7 @@ public final class MarpAgywScreening {
             return false;
         }
         int age = age(form);
-        if (age < 15 || age > 24 || qualifiesForWhr(form, age)
+        if (age < 15 || age > 24 || qualifiesForWhr(form)
                 || !"yes".equals(answer(form, "step3", "sexual_intercourse"))
                 || !"no".equals(answer(form, STEP, SCHOOL_FIELD))
                 || MarpPregnancyScreening.HIGH_RISK_STEP.equals(MarpPregnancyScreening.nextStep(form))) {
@@ -104,9 +104,9 @@ public final class MarpAgywScreening {
         return eligible;
     }
 
-    private static boolean qualifiesForWhr(JSONObject form, int age) {
+    static boolean qualifiesForWhr(JSONObject form) {
         // Use the inputs here because Native Forms publishes is_fsw asynchronously.
-        return age >= 18 && "yes".equals(answer(form, "step5", "sex_for_money"))
+        return age(form) >= 18 && "yes".equals(answer(form, "step5", "sex_for_money"))
                 && "yes".equals(answer(form, "step5", "main_income_source_is_sex"));
     }
 

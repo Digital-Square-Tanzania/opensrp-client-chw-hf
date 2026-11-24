@@ -212,50 +212,15 @@ public class MarpDiscordantCoupleScreeningTest {
     }
 
     @Test
-    public void enrollmentRulesUseTheDiscordantFlagAndKeepIndependentEligibility() throws Exception {
+    public void enrollmentPromptUsesTheDiscordantFlagInBothForms() throws Exception {
         for (String sex : List.of("male", "female")) {
-            boolean male = "male".equals(sex);
-            String otherGroupStep = male ? "step6" : "step7";
-            String enrollmentStep = male ? "step8" : "step9";
-            Rules calculation = rules(sex, "calculation");
-            Rule enroll = rule(calculation, enrollmentStep + "_should_enroll");
-            Rule secondaryGroups = rule(calculation, enrollmentStep + "_other_screened_client_group");
+            String enrollmentStep = "male".equals(sex) ? "step8" : "step9";
             Rule prompt = rule(rules(sex, "relevance"), enrollmentStep + "_prompt_for_sdc_kvp");
-            Facts results = new Facts();
-            for (String field : List.of("step1_is_pwud", "step2_is_pwid", "step4_is_sdc",
-                    "step5_is_msm", "step5_is_fsw", "step6_is_agyw")) {
-                results.put(field, "no");
-            }
-
-            results.put(otherGroupStep + "_eligible_other_marp_groups", "none");
-            // Carried flags from older screening data cannot make the new form eligible.
-            results.put(otherGroupStep + "_is_prisoner", "yes");
-            results.put(otherGroupStep + "_is_rumandee", "yes");
-            results.put(otherGroupStep + "_is_mobile_population", "yes");
-            enroll.execute(results);
-            assertEquals("no", results.get("calculation"));
-            assertEquals("[]", calculateSecondaryGroups(secondaryGroups, results));
-            assertFalse(prompt.evaluate(results));
-            results.put("step4_is_sdc", "yes");
-            enroll.execute(results);
-            assertEquals("yes", results.get("calculation"));
-            assertTrue(prompt.evaluate(results));
-            assertTrue(calculateSecondaryGroups(secondaryGroups, results).contains("serodiscordant_couple"));
-
-            results.put("step4_is_sdc", "no");
-            results.put(otherGroupStep + "_eligible_other_marp_groups", "fisherfolk,miners");
-            enroll.execute(results);
-            assertEquals("yes", results.get("calculation"));
-            assertEquals("[fisherfolk,miners]", calculateSecondaryGroups(secondaryGroups, results));
-            results.put(otherGroupStep + "_eligible_other_marp_groups", "other_key_and_vulnerable_populations");
-            assertEquals("[other_key_and_vulnerable_populations]", calculateSecondaryGroups(secondaryGroups, results));
-
-            // Other Groups can be changed back to None without discarding earlier eligibility.
-            results.put("step1_is_pwud", "yes");
-            results.put(otherGroupStep + "_eligible_other_marp_groups", "none");
-            enroll.execute(results);
-            assertEquals("yes", results.get("calculation"));
-            assertEquals("[pwud]", calculateSecondaryGroups(secondaryGroups, results));
+            Facts answers = new Facts();
+            answers.put("step4_is_sdc", "no");
+            assertFalse(prompt.evaluate(answers));
+            answers.put("step4_is_sdc", "yes");
+            assertTrue(prompt.evaluate(answers));
         }
     }
 
@@ -445,14 +410,6 @@ public class MarpDiscordantCoupleScreeningTest {
         try (Reader reader = Files.newBufferedReader(path)) {
             return new MVELRuleFactory(new YamlRuleDefinitionReader()).createRules(reader);
         }
-    }
-
-    private static String calculateSecondaryGroups(Rule rule, Facts answers) throws Exception {
-        // RulesEngineFactory supplies fresh facts per calculation. MVEL adds the helper function to that map.
-        Facts facts = new Facts();
-        answers.asMap().forEach(facts::put);
-        rule.execute(facts);
-        return facts.get("calculation");
     }
 
     private static Rule rule(Rules rules, String name) {

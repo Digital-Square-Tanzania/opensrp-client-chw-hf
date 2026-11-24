@@ -722,14 +722,7 @@
         "type": "hidden",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "should_enroll",
-        "openmrs_entity_parent": "",
-        "calculation": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "kvp_screening_female_calculation.yml"
-            }
-          }
-        }
+        "openmrs_entity_parent": ""
       },
       {
         "key": "prompt_for_sdc_kvp",
@@ -850,9 +843,9 @@
         "openmrs_entity_id": "birth_region",
         "openmrs_data_type": "select one",
         "type": "spinner",
-        "label_info_title": "Client's Region of Birth",
+        "label_info_title": "{{high_risk_birth_region_title}}",
         "label_info_text": "",
-        "hint": "Select the client's Region of Birth",
+        "hint": "{{high_risk_birth_region_hint}}",
         "values": [
           "Arusha",
           "Dar es Salaam",
@@ -911,7 +904,7 @@
         ],
         "v_required": {
           "value": "true",
-          "err": "Please select the region"
+          "err": "{{high_risk_birth_region_required}}"
         },
         "relevance": {
           "rules-engine": {
@@ -926,49 +919,13 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "client_group",
-        "label": "Select the client group as screened by the health care provider",
+        "label": "{{enrollment_dominant_group}}",
         "text_color": "#000000",
         "type": "native_radio",
-        "options": [
-          {
-            "key": "fsw",
-            "text": "WHR",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "fsw"
-          },
-          {
-            "key": "pwud",
-            "text": "PWUD",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "pwud"
-          },
-          {
-            "key": "pwid",
-            "text": "PWID",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "pwid"
-          },
-          {
-            "key": "agyw",
-            "text": "vAGYW",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "agyw"
-          },
-          {
-            "key": "serodiscordant_couple",
-            "text": "{{discordant_partner_group}}",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "serodiscordant_couple"
-          }
-        ],
+        "options": [],
         "v_required": {
           "value": "true",
-          "err": "Please select an answer"
+          "err": "{{intake_answer_required}}"
         },
         "relevance": {
           "rules-engine": {
@@ -983,14 +940,7 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "other_screened_client_group",
-        "type": "hidden",
-        "calculation": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "kvp_screening_female_calculation.yml"
-            }
-          }
-        }
+        "type": "hidden"
       }
     ]
   },
@@ -1165,7 +1115,7 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "client_group",
-        "label": "{{high_risk_dominant_group}}",
+        "label": "{{enrollment_dominant_group}}",
         "text_color": "#000000",
         "type": "native_radio",
         "options": [

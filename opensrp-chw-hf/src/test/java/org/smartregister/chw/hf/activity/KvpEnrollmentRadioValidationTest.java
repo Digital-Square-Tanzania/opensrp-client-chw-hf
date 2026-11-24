@@ -38,6 +38,14 @@ public class KvpEnrollmentRadioValidationTest {
     }
 
     @Test
+    public void soleDrugChecklistOrMaternityGroupPassesRequiredRadioValidation() {
+        for (String key : new String[]{"pwid", "pwud", "agyw", "serodiscordant_couple",
+                "pregnant_breastfeeding_high_risk"}) {
+            assertSoleGroupPassesValidation(key);
+        }
+    }
+
+    @Test
     public void doesNotReplaceAnExplicitChoiceWhenMultipleGroupsAreAvailable() {
         LinearLayout root = mock(LinearLayout.class);
         RadioButton mhr = radio("msm");

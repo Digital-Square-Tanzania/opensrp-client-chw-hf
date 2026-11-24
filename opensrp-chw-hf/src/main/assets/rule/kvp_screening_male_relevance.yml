@@ -58,14 +58,14 @@ actions:
 name: step8_prompt_for_pwud_kvp
 description: prompt_for_pwud_kvp relevance
 priority: 1
-condition: "step1_is_pwud.equals('yes')"
+condition: "step1_drug_use.equals('yes') && step2_drug_injection.equals('no')"
 actions:
   - "isRelevant = true"
 ---
 name: step8_prompt_for_pwid_kvp
 description: prompt_for_pwid_kvp relevance
 priority: 1
-condition: "step2_is_pwid.equals('yes')"
+condition: "step1_drug_use.equals('yes') && step2_drug_injection.equals('yes')"
 actions:
   - "isRelevant = true"
 

@@ -22,6 +22,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.presenter.KvpScreeningJsonFormFragmentPresenter;
+import org.smartregister.chw.hf.utils.MarpEnrollmentScreening;
 import org.smartregister.chw.hf.utils.MarpPregnancyScreening;
 
 import timber.log.Timber;
@@ -108,17 +109,21 @@ public class KvpScreeningJsonFormFragment extends JsonWizardFormFragment {
         String step = requireArguments().getString(STEPNAME);
         boolean isHighRiskOutcome = MarpPregnancyScreening.ENROLLMENT_STEP.equals(step)
                 || MarpPregnancyScreening.NO_GROUP_STEP.equals(step);
-        if (isHighRiskOutcome && MarpPregnancyScreening.isIntakeStep(
-                getJsonApi().getmJSONObject(), MarpPregnancyScreening.INTAKE_STEP)) {
+        JSONObject currentForm = getJsonApi().getmJSONObject();
+        boolean maternity = isHighRiskOutcome
+                && MarpPregnancyScreening.isIntakeStep(currentForm, MarpPregnancyScreening.INTAKE_STEP);
+        if (maternity || MarpEnrollmentScreening.isEnrollmentStep(currentForm, step)) {
             try {
                 JSONObject form = new JSONObject(result.getStringExtra(JSON));
-                if (!MarpPregnancyScreening.prepareEnrollmentResult(form, step)) {
+                boolean valid = maternity ? MarpPregnancyScreening.prepareEnrollmentResult(form, step)
+                        : MarpEnrollmentScreening.prepareEnrollmentResult(form, step);
+                if (!valid) {
                     showSnackBar(getString(R.string.marp_enrollment_result_invalid));
                     return;
                 }
                 result.putExtra(JSON, form.toString());
             } catch (JSONException e) {
-                Timber.e("Unable to prepare the MARP high-risk enrollment result");
+                Timber.e("Unable to prepare the MARP enrollment result");
                 showSnackBar(getString(R.string.marp_enrollment_result_invalid));
                 return;
             }
