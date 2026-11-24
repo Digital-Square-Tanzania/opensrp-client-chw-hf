@@ -58,7 +58,14 @@ actions:
 name: step6_client_in_school
 description: client_in_school relevance
 priority: 1
-condition: "(step5_is_fsw.equals('no') && global_age >= 10 && global_age <= 24)"
+condition: "global_age >= 15 && global_age <= 24 && step3_sexual_intercourse.equals('yes') && step5_is_fsw.equals('no')"
+actions:
+  - "isRelevant = true"
+---
+name: step6_harsh_condition_impact
+description: vAGYW checklist relevance
+priority: 1
+condition: "global_age >= 15 && global_age <= 24 && step3_sexual_intercourse.equals('yes') && step5_is_fsw.equals('no') && step6_client_in_school.equals('no')"
 actions:
   - "isRelevant = true"
 ---

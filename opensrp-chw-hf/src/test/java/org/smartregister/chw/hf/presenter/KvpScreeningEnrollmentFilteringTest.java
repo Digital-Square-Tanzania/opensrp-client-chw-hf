@@ -22,6 +22,7 @@ import org.junit.Test;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.activity.KvpJsonWizardFormActivity;
 import org.smartregister.chw.hf.fragment.KvpScreeningJsonFormFragment;
+import org.smartregister.chw.hf.utils.MarpAgywScreening;
 import org.smartregister.chw.hf.utils.MarpDiscordantCoupleScreening;
 import org.smartregister.chw.hf.utils.MarpOtherGroupsScreening;
 import org.smartregister.chw.hf.utils.MarpPregnancyScreening;
@@ -489,6 +490,148 @@ public class KvpScreeningEnrollmentFilteringTest {
         }
     }
 
+    @Test
+    public void vagywQualifyingAnswersUseTheExistingGroupAndNewObservationCodesInBothLanguages() throws Exception {
+        for (Locale locale : List.of(Locale.ENGLISH, KISWAHILI)) {
+            JSONObject form = loadScreeningForm("kvp_screening_female", locale);
+            KvpJsonWizardFormActivity activity = adultVagywScreening(form);
+            String enrollment = MarpAgywScreening.ENROLLMENT_STEP;
+            JSONObject eligibility = field(form.getJSONObject(MarpAgywScreening.STEP), "is_agyw");
+            assertEquals("no", eligibility.getString("value"));
+            checkVagyw(activity, "not_applicable", true);
+            assertEquals("no", eligibility.getString("value"));
+            assertEquals(0, field(renderEnrollment(form, enrollment, locale, activity), "client_group")
+                    .getJSONArray("options").length());
+
+            checkVagyw(activity, "not_applicable", false);
+            for (String choice : List.of("sex_for_material", "partner_self_injects_drugs", "sexually_abused",
+                    "infected_with_sexual_disease", "unprotected_sex_last_three_months")) {
+                checkVagyw(activity, choice, true);
+                assertEquals("yes", eligibility.getString("value"));
+                checkVagyw(activity, choice, false);
+                assertEquals("no", eligibility.getString("value"));
+            }
+
+            String criterion = KISWAHILI.equals(locale)
+                    ? "unprotected_sex_last_three_months" : "partner_self_injects_drugs";
+            checkVagyw(activity, criterion, true);
+            JSONObject group = field(renderEnrollment(form, enrollment, locale, activity), "client_group");
+            assertEquals(1, group.getJSONArray("options").length());
+            assertGroupOption(group, 0, MarpAgywScreening.GROUP_CODE, agywLabel(locale));
+            writeAnswer(activity, enrollment, "should_enroll", "yes");
+            writeAnswer(activity, enrollment, "birth_region", "Tanga");
+            writeAnswer(activity, enrollment, "client_group", MarpAgywScreening.GROUP_CODE);
+
+            JSONObject submitted = saveEnrollment(activity, enrollment);
+            Event event = assertEnrollmentEvent(submitted, MarpAgywScreening.GROUP_CODE);
+            Obs checklist = event.getObs().stream()
+                    .filter(obs -> MarpAgywScreening.CHECKLIST_FIELD.equals(obs.getFieldCode()))
+                    .findFirst().orElseThrow();
+            assertEquals(List.of(criterion), checklist.getValues());
+
+            KvpJsonWizardFormActivity reopened = formActivity(submitted);
+            group = field(renderEnrollment(submitted, enrollment, locale, reopened), "client_group");
+            assertEquals(MarpAgywScreening.GROUP_CODE, group.getString("value"));
+            assertGroupOption(group, 0, MarpAgywScreening.GROUP_CODE, agywLabel(locale));
+        }
+    }
+
+    @Test
+    public void changingSchoolOrWhrClearsTheChecklistAndOnlyTheStaleAgywEnrollmentChoice() throws Exception {
+        JSONObject form = loadScreeningForm("kvp_screening_female", KISWAHILI);
+        KvpJsonWizardFormActivity activity = adultVagywScreening(form);
+        String step = MarpAgywScreening.STEP;
+        String enrollment = MarpAgywScreening.ENROLLMENT_STEP;
+        String criterion = "partner_self_injects_drugs";
+        JSONObject school = field(form.getJSONObject(step), "client_in_school");
+        JSONObject checklist = field(form.getJSONObject(step), MarpAgywScreening.CHECKLIST_FIELD);
+        JSONObject eligibility = field(form.getJSONObject(step), "is_agyw");
+        JSONObject group = field(form.getJSONObject(enrollment), "client_group");
+
+        checkOtherGroup(activity, "step7", TRUCK_DRIVERS, true);
+        checkVagyw(activity, criterion, true);
+        writeAnswer(activity, enrollment, "client_group", MarpAgywScreening.GROUP_CODE);
+        writeAnswer(activity, step, "client_in_school", "yes");
+        assertEquals("yes", school.getString("value"));
+        assertFalse(checklist.has("value"));
+        assertEquals("no", eligibility.getString("value"));
+        assertFalse(group.has("value"));
+        JSONObject rendered = field(renderEnrollment(form, enrollment, KISWAHILI, activity), "client_group");
+        assertEquals(1, rendered.getJSONArray("options").length());
+        assertGroupOption(rendered, 0, TRUCK_DRIVERS, "Madereva wa masafa marefu");
+
+        writeAnswer(activity, step, "client_in_school", "no");
+        assertFalse(checklist.has("value"));
+        checkVagyw(activity, criterion, true);
+        assertEquals("yes", eligibility.getString("value"));
+        writeAnswer(activity, "step5", "sex_for_money", "yes");
+        writeAnswer(activity, "step5", "main_income_source_is_sex", "yes");
+        assertFalse(school.has("value"));
+        assertFalse(checklist.has("value"));
+        assertEquals("no", eligibility.getString("value"));
+        assertEquals(TRUCK_DRIVERS, group.getString("value"));
+
+        writeAnswer(activity, "step5", "sex_for_money", "no");
+        assertFalse(school.has("value"));
+        writeAnswer(activity, step, "client_in_school", "no");
+        checkVagyw(activity, criterion, true);
+        assertEquals("yes", eligibility.getString("value"));
+    }
+
+    @Test
+    public void olderAdultsAndBothMaternityRoutesCannotKeepAgywEligibility() throws Exception {
+        for (String route : List.of("age", MarpPregnancyScreening.PREGNANCY_FIELD,
+                MarpPregnancyScreening.BREASTFEEDING_FIELD)) {
+            JSONObject form = loadScreeningForm("kvp_screening_female", Locale.ENGLISH);
+            KvpJsonWizardFormActivity activity = adultVagywScreening(form);
+            String step = MarpAgywScreening.STEP;
+            String enrollment = MarpAgywScreening.ENROLLMENT_STEP;
+            String criterion = "unprotected_sex_last_three_months";
+            JSONObject checklist = field(form.getJSONObject(step), MarpAgywScreening.CHECKLIST_FIELD);
+            checkVagyw(activity, criterion, true);
+            assertTrue(MarpAgywScreening.isEligible(form));
+            writeAnswer(activity, enrollment, "client_group", MarpAgywScreening.GROUP_CODE);
+
+            if ("age".equals(route)) {
+                form.getJSONObject("global").put("age", 36);
+                assertEquals(0, field(renderEnrollment(form, enrollment, Locale.ENGLISH, activity),
+                        "client_group").getJSONArray("options").length());
+            } else {
+                writeAnswer(activity, MarpPregnancyScreening.INTAKE_STEP, route, "yes");
+                assertEquals(MarpPregnancyScreening.HIGH_RISK_STEP, MarpPregnancyScreening.nextStep(form));
+                assertFalse(checklist.has("value"));
+            }
+            assertFalse(MarpAgywScreening.isEligible(form));
+            assertFalse(field(form.getJSONObject(enrollment), "client_group").has("value"));
+        }
+    }
+
+    private static KvpJsonWizardFormActivity adultVagywScreening(JSONObject form) throws Exception {
+        form.getJSONObject("global").put("age", 19);
+        KvpJsonWizardFormActivity activity = formActivity(form);
+        String intake = MarpPregnancyScreening.INTAKE_STEP;
+        writeAnswer(activity, intake, MarpPregnancyScreening.PREGNANCY_FIELD, "no");
+        writeAnswer(activity, intake, MarpPregnancyScreening.BREASTFEEDING_FIELD, "no");
+        writeAnswer(activity, "step1", "is_pwud", "no");
+        writeAnswer(activity, "step2", "is_pwid", "no");
+        writeAnswer(activity, "step3", "sexual_intercourse", "yes");
+        writeAnswer(activity, "step5", "sex_for_money", "no");
+        writeAnswer(activity, "step5", "is_fsw", "no");
+        writeAnswer(activity, MarpAgywScreening.STEP, "client_in_school", "no");
+        return activity;
+    }
+
+    private static void checkVagyw(KvpJsonWizardFormActivity activity, String criterion, boolean checked)
+            throws JSONException {
+        activity.writeValue(MarpAgywScreening.STEP, MarpAgywScreening.CHECKLIST_FIELD, "options", criterion,
+                String.valueOf(checked), "", "concept", criterion, false);
+    }
+
+    private static String agywLabel(Locale locale) {
+        return KISWAHILI.equals(locale)
+                ? "Msichana rika balehe na mwanamke kijana" : "Adolescent girls and young women";
+    }
+
     private static void assertGroupOption(JSONObject group, int index, String key, String label) throws Exception {
         JSONObject option = group.getJSONArray("options").getJSONObject(index);
         assertEquals(key, option.getString("key"));
@@ -760,6 +903,7 @@ public class KvpScreeningEnrollmentFilteringTest {
         when(context.getString(R.string.marp_pwud_enrollment_option))
                 .thenReturn(KISWAHILI.equals(locale) ? PWUD_SW : PWUD_EN);
         when(context.getString(R.string.marp_discordant_partner_option)).thenReturn(discordantLabel(locale));
+        when(context.getString(R.string.marp_agyw_option)).thenReturn(agywLabel(locale));
         boolean swahili = KISWAHILI.equals(locale);
         when(resources.getString(R.string.kvp_long_distance_truck_drivers))
                 .thenReturn(swahili ? "Madereva wa masafa marefu" : "Long-distance truck drivers");

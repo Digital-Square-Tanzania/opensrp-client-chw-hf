@@ -27,7 +27,8 @@ import static org.junit.Assert.assertTrue;
 public class MarpScreeningWordingTest {
     private static final String VAGYW_NONE = "not_applicable";
     private static final List<String> VAGYW_CRITERIA = List.of(
-            "sex_for_material", "sexually_abused", "sex_last_three_months", "infected_with_sexual_disease");
+            "sex_for_material", "partner_self_injects_drugs", "sexually_abused",
+            "infected_with_sexual_disease", "unprotected_sex_last_three_months");
 
     @Test
     public void rendersEveryEnrollmentOutcomeInEnglish() throws IOException {
@@ -109,7 +110,7 @@ public class MarpScreeningWordingTest {
     }
 
     @Test
-    public void bothScreeningFormsUseLocalizedNoneWithoutChangingVagywAnswerCodes() throws IOException {
+    public void vagywUsesTheBilingualChecklistAndDistinctObservationCodes() throws IOException {
         Locale originalLocale = Locale.getDefault();
         try {
             for (Locale locale : List.of(Locale.ENGLISH, new Locale("sw"))) {
@@ -123,18 +124,38 @@ public class MarpScreeningWordingTest {
 
                 JsonObject page = female.getAsJsonObject("step6");
                 assertEquals("step7", page.get("next").getAsString());
+                assertEquals("vAGYW", page.get("title").getAsString());
+                boolean sw = "sw".equals(locale.getLanguage());
+                JsonObject school = page.getAsJsonArray("fields").get(0).getAsJsonObject();
+                assertEquals(sw ? "Je, kwa sasa upo shule?" : "Is the client currently in school?",
+                        school.get("label").getAsString());
                 JsonObject checklist = page.getAsJsonArray("fields").get(1).getAsJsonObject();
+                assertEquals(sw ? "Athari na mazingira hatarishi"
+                                : "Impact and vulnerability of living in a risky environment",
+                        checklist.get("label").getAsString());
+                assertTrue(checklist.getAsJsonObject("v_required").get("value").getAsBoolean());
+                assertEquals(sw ? "Chagua angalau chaguo moja" : "Select at least one option",
+                        checklist.getAsJsonObject("v_required").get("err").getAsString());
+                List<String> labels = sw
+                        ? List.of("Ndani ya miezi 6 iliyopita, amefanya ngono ili apate vitu au fedha",
+                                "Ana mahusiano ya kingono na mtu anayejidunga dawa za kulevya",
+                                "Mhanga anayeendelea kufanyiwa ukatili wa kingono",
+                                "Amepata magonjwa ya ngono ndani ya miezi 3",
+                                "Amefanya ngono bila kinga ndani ya miezi 3")
+                        : List.of("In the last 6 months, she has had sex to get things or money",
+                                "She has a sexual relationship with a person who self-injects drugs",
+                                "A victim who continues to be sexually abused",
+                                "Had STI within 3 months", "Has had unprotected sex within 3 months");
                 assertEquals("harsh_condition_impact", checklist.get("key").getAsString());
                 assertEquals("check_box", checklist.get("type").getAsString());
                 assertEquals("[\"not_applicable\"]", checklist.getAsJsonArray("exclusive").toString());
-                assertEquals("equalTo(., \"no\")", checklist.getAsJsonObject("relevance")
-                        .getAsJsonObject("step6:client_in_school").get("ex").getAsString());
                 JsonArray options = checklist.getAsJsonArray("options");
                 assertEquals(VAGYW_CRITERIA.size() + 1, options.size());
                 for (int i = 0; i < VAGYW_CRITERIA.size(); i++) {
                     JsonObject option = options.get(i).getAsJsonObject();
                     assertEquals(VAGYW_CRITERIA.get(i), option.get("key").getAsString());
                     assertEquals(VAGYW_CRITERIA.get(i), option.get("openmrs_entity_id").getAsString());
+                    assertEquals(labels.get(i), option.get("text").getAsString());
                 }
                 assertAnswer(options.get(VAGYW_CRITERIA.size()).getAsJsonObject(), VAGYW_NONE,
                         "sw".equals(locale.getLanguage()) ? "Hakuna" : "None");
@@ -145,33 +166,62 @@ public class MarpScreeningWordingTest {
     }
 
     @Test
-    public void vagywRetainsVisibilityAndQualifiesOnlyWithAnOrdinaryCriterion() throws Exception {
-        Rule visibility = loadVagywRule("relevance", "step6_client_in_school");
+    public void vagywChecklistIsRelevantOnlyForTheApplicableOutOfSchoolRoute() throws Exception {
+        Rule school = loadVagywRule("relevance", "step6_client_in_school");
+        Rule checklist = loadVagywRule("relevance", "step6_harsh_condition_impact");
         Facts client = new Facts();
         client.put("step5_is_fsw", "no");
+        client.put("step3_sexual_intercourse", "yes");
+        client.put("step6_client_in_school", "");
         client.put("global_age", 19);
-        assertTrue(visibility.evaluate(client));
-        client.put("global_age", 24);
-        assertTrue(visibility.evaluate(client));
-        client.put("global_age", 25);
-        assertFalse(visibility.evaluate(client));
+        assertTrue(school.evaluate(client));
+        assertFalse(checklist.evaluate(client));
+        client.put("step6_client_in_school", "yes");
+        assertFalse(checklist.evaluate(client));
+        client.put("step6_client_in_school", "no");
+        for (int age : List.of(15, 19, 24)) {
+            client.put("global_age", age);
+            assertTrue(school.evaluate(client));
+            assertTrue(checklist.evaluate(client));
+        }
+        for (int age : List.of(14, 25, 36)) {
+            client.put("global_age", age);
+            assertFalse(school.evaluate(client));
+            assertFalse(checklist.evaluate(client));
+        }
         client.put("global_age", 19);
         client.put("step5_is_fsw", "yes");
-        assertFalse(visibility.evaluate(client));
+        assertFalse(checklist.evaluate(client));
+        client.put("step5_is_fsw", "no");
+        client.put("step3_sexual_intercourse", "no");
+        assertFalse(checklist.evaluate(client));
+    }
 
-        Rule eligibility = loadVagywRule("calculation", "step6_is_agyw");
-        Facts answers = new Facts();
-        answers.put("step6_harsh_condition_impact", List.of());
-        eligibility.execute(answers);
-        assertEquals("no", answers.get("calculation"));
-        answers.put("step6_harsh_condition_impact", List.of(VAGYW_NONE));
-        eligibility.execute(answers);
-        assertEquals("no", answers.get("calculation"));
-        for (String criterion : VAGYW_CRITERIA) {
-            answers.put("step6_harsh_condition_impact", List.of(criterion));
-            eligibility.execute(answers);
-            assertEquals("yes", answers.get("calculation"));
-        }
+    @Test
+    public void vagywAloneEnablesEnrollmentAndUsesTheExistingGroupCode() throws Exception {
+        Rule enrollment = loadVagywRule("calculation", "step9_should_enroll");
+        Rule groups = loadVagywRule("calculation", "step9_other_screened_client_group");
+        Facts client = new Facts();
+        client.put("step1_is_pwud", "no");
+        client.put("step2_is_pwid", "no");
+        client.put("step4_is_sdc", "no");
+        client.put("step5_is_fsw", "no");
+        client.put("step6_is_agyw", "yes");
+        client.put("step7_eligible_other_marp_groups", "none");
+        enrollment.execute(client);
+        assertEquals("yes", client.get("calculation"));
+        Facts revised = new Facts();
+        revised.asMap().putAll(client.asMap());
+        groups.execute(client);
+        assertEquals("[agyw]", client.get("calculation"));
+        revised.put("step6_is_agyw", "no");
+        enrollment.execute(revised);
+        assertEquals("no", revised.get("calculation"));
+        revised.put("step7_eligible_other_marp_groups", "fisherfolk");
+        enrollment.execute(revised);
+        assertEquals("yes", revised.get("calculation"));
+        groups.execute(revised);
+        assertEquals("[fisherfolk]", revised.get("calculation"));
     }
 
     private static Rule loadVagywRule(String type, String name) throws Exception {

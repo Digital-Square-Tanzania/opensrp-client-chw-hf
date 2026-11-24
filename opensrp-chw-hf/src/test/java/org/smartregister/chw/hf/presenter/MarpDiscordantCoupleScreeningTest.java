@@ -9,6 +9,7 @@ import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.doCallRealMethod;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -276,7 +277,21 @@ public class MarpDiscordantCoupleScreeningTest {
         }
     }
 
+    @Test
+    public void vagywShowsRequiredFeedbackAndAdvancesAfterCorrectionInBothLanguages() throws Exception {
+        for (Locale locale : List.of(Locale.ENGLISH, KISWAHILI)) {
+            assertRequiredChecklistFeedback(loadForm("female", locale), "step6",
+                    "harsh_condition_impact", "not_applicable", "partner_self_injects_drugs");
+        }
+    }
+
     private static void assertRequiredChecklistFeedback(JSONObject form, String step, String key) throws Exception {
+        assertRequiredChecklistFeedback(form, step, key, "none",
+                PARAMETERS.equals(key) ? "not_started_art" : "fisherfolk");
+    }
+
+    private static void assertRequiredChecklistFeedback(JSONObject form, String step, String key,
+                                                        String exclusive, String criterion) throws Exception {
         String address = step + ":" + key;
         String error = org.smartregister.util.JsonFormUtils.getFieldJSONObject(
                 form.getJSONObject(step).getJSONArray("fields"), key).getJSONObject("v_required").getString("err");
@@ -344,10 +359,10 @@ public class MarpDiscordantCoupleScreeningTest {
         verify(fragment).scrollToView(checklist);
 
         when(first.getTag(R.id.key)).thenReturn(key);
-        when(first.getTag(R.id.childKey)).thenReturn("none");
+        when(first.getTag(R.id.childKey)).thenReturn(exclusive);
         when(first.isChecked()).thenReturn(true);
         presenter.onCheckedChanged(first, true);
-        verify(fragment).unCheckAllExcept(key, "none", first);
+        verify(fragment).unCheckAllExcept(key, exclusive, first);
         verify(fragment).dismissChecklistError();
         uiTasks.remove().run();
         // The queued retry must not render or scroll after the checklist is corrected.
@@ -356,15 +371,26 @@ public class MarpDiscordantCoupleScreeningTest {
         assertTrue(CheckBoxFactory.isValid(checklist));
 
         when(second.getTag(R.id.key)).thenReturn(key);
-        when(second.getTag(R.id.childKey)).thenReturn(PARAMETERS.equals(key) ? "not_started_art" : "fisherfolk");
+        when(second.getTag(R.id.childKey)).thenReturn(criterion);
         when(second.isChecked()).thenReturn(true);
         presenter.onCheckedChanged(second, true);
-        verify(fragment).unCheck(key, "none", second);
+        verify(fragment).unCheck(key, exclusive, second);
 
         presenter.onNextClick(mock(LinearLayout.class));
         verify(interactor).fetchFormElements(eq(next), eq(fragment), eq(form.getJSONObject(next)),
                 any(), eq(false));
         verify(fragment).transactThis(any(KvpScreeningJsonFormFragment.class));
+
+        if ("harsh_condition_impact".equals(key)) {
+            // School Yes hides and disables the native checklist.
+            when(checklist.isShown()).thenReturn(false);
+            when(checklist.isEnabled()).thenReturn(false);
+            when(first.isChecked()).thenReturn(false);
+            when(second.isChecked()).thenReturn(false);
+            presenter.onNextClick(mock(LinearLayout.class));
+            verify(fragment, times(2)).transactThis(any(KvpScreeningJsonFormFragment.class));
+            assertTrue(uiTasks.isEmpty());
+        }
     }
 
     private static void assertCopy(JSONObject form, String title, List<String> labels, List<String> choices,
