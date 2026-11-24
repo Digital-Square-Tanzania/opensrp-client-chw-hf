@@ -14,6 +14,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
+- Show None in English and Hakuna in Kiswahili for the exclusive, non-qualifying vAGYW screening answer in Kituoni ([#230](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/230)).
+- Replace Kituoni MARP Other Groups with a bilingual checklist and add enrollment groups for long-distance truck drivers, fisherfolk, miners, and other key and vulnerable populations. Keep legacy enrollment codes and labels available ([#233](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/233)).
 - Move bilingual Discordant Couple screening after Sexual Behaviour in Kituoni and offer the Discordant partner group when a qualifying partner parameter is selected ([#228](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/228)).
 - Use bilingual Drug Use screening wording and show the matching dominant enrollment option for injecting or non-injecting drug use in Kituoni ([#227](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/227)).
 - Hide MARP/PrEP Enrollment before age 15. From All Clients, open the client profile for MARP clients so eligible clients can use the overflow action to reopen their saved MARP profile with a localized enrollment message ([#224](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/224)).
@@ -32,4 +34,5 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Removed
 
+- Remove the separate Mobile Population question and retire its group for new Kituoni MARP screening and enrollment while preserving existing enrollments ([#230](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/230)).
 - Remove the prisoner/inmate question and retire Prisoners and Rumandee as choices for new Kituoni MARP screening and enrollment while preserving existing enrollments ([#229](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/229)).

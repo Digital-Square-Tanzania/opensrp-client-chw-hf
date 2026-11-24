@@ -381,6 +381,10 @@
     <string name="kvp_fsw">WHR</string>
     <string name="kvp_pregnant_breastfeeding_high_risk">Wajawazito na wanaonyonyesha walio katika hatari</string>
     <string name="marp_enrollment_result_invalid">Kagua majibu ya uchunguzi kisha ujaribu kuhifadhi tena.</string>
+    <string name="kvp_long_distance_truck_drivers">Madereva wa masafa marefu</string>
+    <string name="kvp_fisherfolk">Wavuvi</string>
+    <string name="kvp_miners">Wachimba madini</string>
+    <string name="kvp_other_key_and_vulnerable_populations">Makundi mengine hatarishi</string>
     <string name="kvp_msm">MHR</string>
     <string name="marp_mhr_option">Mwanaume aliye katika hatari zaidi (MHR)</string>
     <string name="marp_whr_option">Mwanamke aliye katika hatari zaidi (WHR)</string>

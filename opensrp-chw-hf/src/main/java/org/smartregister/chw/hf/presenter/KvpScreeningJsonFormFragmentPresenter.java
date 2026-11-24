@@ -30,6 +30,7 @@ import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.fragment.KvpScreeningJsonFormFragment;
 import org.smartregister.chw.hf.utils.MarpDiscordantCoupleScreening;
 import org.smartregister.chw.hf.utils.MarpGroupLabels;
+import org.smartregister.chw.hf.utils.MarpOtherGroupsScreening;
 import org.smartregister.chw.hf.utils.MarpPregnancyScreening;
 import org.smartregister.chw.kvp.util.Constants;
 import org.smartregister.family.util.JsonFormUtils;
@@ -40,6 +41,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
 import timber.log.Timber;
 
@@ -95,6 +97,10 @@ public class KvpScreeningJsonFormFragmentPresenter extends JsonWizardFormFragmen
                     updateDrugGroupOptions(currentJsonState, clientGroupArray);
                     updateGroupOption(clientGroupArray, MarpDiscordantCoupleScreening.GROUP_CODE,
                             R.string.marp_discordant_partner_option, MarpDiscordantCoupleScreening.isEligible(currentJsonState));
+                    Set<MarpOtherGroupsScreening.Group> otherGroups = MarpOtherGroupsScreening.eligibleGroups(currentJsonState);
+                    for (MarpOtherGroupsScreening.Group group : MarpOtherGroupsScreening.Group.values()) {
+                        updateGroupOption(clientGroupArray, group.code, group.label, otherGroups.contains(group));
+                    }
 
                     //Male KVP Screening Form
                     if (mStepName.equals("step8")) {
@@ -109,32 +115,6 @@ public class KvpScreeningJsonFormFragmentPresenter extends JsonWizardFormFragmen
                         } else if (!containsKey(clientGroupArray, "msm")) {
                             clientGroupArray.put(new JSONObject("{\"key\":\"msm\",\"text\":\"MHR\",\"openmrs_entity_parent\":\"\",\"openmrs_entity\":\"concept\",\"openmrs_entity_id\":\"msm\"}"));
                         }
-
-                        JSONObject isMobilePopulation = JsonFormUtils.getFieldJSONObject(currentJsonState.getJSONObject("step6").getJSONArray(FIELDS), "is_mobile_population");
-                        if (!isMobilePopulation.has(OpdConstants.JSON_FORM_KEY.VALUE) || !isMobilePopulation.getString(VALUE).equals("yes")) {
-                            for (int i = 0; i < clientGroupArray.length(); i++) {
-                                if (clientGroupArray.getJSONObject(i).getString(KEY).equals("mobile_population")) {
-                                    clientGroupArray.remove(i);
-                                    break;
-                                }
-                            }
-                        } else if (!containsKey(clientGroupArray, "mobile_population")) {
-                            clientGroupArray.put(new JSONObject("{\"key\":\"mobile_population\",\"text\":\"Mobile population\",\"openmrs_entity_parent\":\"\",\"openmrs_entity\":\"concept\",\"openmrs_entity_id\":\"mobile_population\"}"));
-                        }
-
-
-                        JSONObject isOtherGroupAtRisk = JsonFormUtils.getFieldJSONObject(currentJsonState.getJSONObject("step6").getJSONArray(FIELDS), "is_ovp_kvp");
-                        if (!isOtherGroupAtRisk.has(OpdConstants.JSON_FORM_KEY.VALUE) || !isOtherGroupAtRisk.getString(VALUE).equals("yes")) {
-                            for (int i = 0; i < clientGroupArray.length(); i++) {
-                                if (clientGroupArray.getJSONObject(i).getString(KEY).equals("other_vulnerable_population")) {
-                                    clientGroupArray.remove(i);
-                                    break;
-                                }
-                            }
-                        } else if (!containsKey(clientGroupArray, "other_vulnerable_population")) {
-                            clientGroupArray.put(new JSONObject("{\"key\":\"other_vulnerable_population\",\"text\":\"Other vulnerable population\",\"openmrs_entity_parent\":\"\",\"openmrs_entity\":\"concept\",\"openmrs_entity_id\":\"other_vulnerable_population\"}"));
-                        }
-
                     } else if (mStepName.equals("step9")) {  //Female KVP Screening Form
 
                         JSONObject isFsw = JsonFormUtils.getFieldJSONObject(currentJsonState.getJSONObject("step5").getJSONArray(FIELDS), "is_fsw");
@@ -160,31 +140,6 @@ public class KvpScreeningJsonFormFragmentPresenter extends JsonWizardFormFragmen
                         } else if (!containsKey(clientGroupArray, "agyw")) {
                             clientGroupArray.put(new JSONObject("{\"key\":\"agyw\",\"text\":\"vAGYW\",\"openmrs_entity_parent\":\"\",\"openmrs_entity\":\"concept\",\"openmrs_entity_id\":\"agyw\"}"));
                         }
-
-                        JSONObject isMobilePopulation = JsonFormUtils.getFieldJSONObject(currentJsonState.getJSONObject("step7").getJSONArray(FIELDS), "is_mobile_population");
-                        if (!isMobilePopulation.has(OpdConstants.JSON_FORM_KEY.VALUE) || !isMobilePopulation.getString(VALUE).equals("yes")) {
-                            for (int i = 0; i < clientGroupArray.length(); i++) {
-                                if (clientGroupArray.getJSONObject(i).getString(KEY).equals("mobile_population")) {
-                                    clientGroupArray.remove(i);
-                                    break;
-                                }
-                            }
-                        } else if (!containsKey(clientGroupArray, "mobile_population")) {
-                            clientGroupArray.put(new JSONObject("{\"key\":\"mobile_population\",\"text\":\"Mobile population\",\"openmrs_entity_parent\":\"\",\"openmrs_entity\":\"concept\",\"openmrs_entity_id\":\"mobile_population\"}"));
-                        }
-
-                        JSONObject isOtherGroupAtRisk = JsonFormUtils.getFieldJSONObject(currentJsonState.getJSONObject("step7").getJSONArray(FIELDS), "is_ovp_kvp");
-                        if (!isOtherGroupAtRisk.has(OpdConstants.JSON_FORM_KEY.VALUE) || !isOtherGroupAtRisk.getString(VALUE).equals("yes")) {
-                            for (int i = 0; i < clientGroupArray.length(); i++) {
-                                if (clientGroupArray.getJSONObject(i).getString(KEY).equals("other_vulnerable_population")) {
-                                    clientGroupArray.remove(i);
-                                    break;
-                                }
-                            }
-                        } else if (!containsKey(clientGroupArray, "other_vulnerable_population")) {
-                            clientGroupArray.put(new JSONObject("{\"key\":\"other_vulnerable_population\",\"text\":\"Other vulnerable population\",\"openmrs_entity_parent\":\"\",\"openmrs_entity\":\"concept\",\"openmrs_entity_id\":\"other_vulnerable_population\"}"));
-                        }
-
                     }
                     MarpGroupLabels.applyLongLabels(formFragment.getContext().getResources(), clientGroupArray);
                     preselectRiskGroup(clientGroup, clientGroupArray);
@@ -306,13 +261,13 @@ public class KvpScreeningJsonFormFragmentPresenter extends JsonWizardFormFragmen
                 }
             }
         }
-        JsonApi api = formFragment.getJsonApi();
-        if (MarpDiscordantCoupleScreening.isScreeningStep(api.getmJSONObject(), mStepName)) {
-            View checklist = api.getFormDataView(mStepName + ":" + MarpDiscordantCoupleScreening.PARTNER_PARAMETERS);
+        String checklistKey = getRequiredChecklistKey();
+        if (checklistKey != null) {
+            View checklist = formFragment.getJsonApi().getFormDataView(mStepName + ":" + checklistKey);
             if (checklist instanceof LinearLayout && checklist.isShown()) {
                 ValidationStatus status = validate(formFragment, checklist, false);
                 if (!status.isValid()) {
-                    formFragment.showDiscordantChecklistError((LinearLayout) checklist, status.getErrorMessage());
+                    formFragment.showChecklistError((LinearLayout) checklist, status.getErrorMessage());
                     return false;
                 }
             }
@@ -323,14 +278,25 @@ public class KvpScreeningJsonFormFragmentPresenter extends JsonWizardFormFragmen
     @Override
     public void onCheckedChanged(CompoundButton button, boolean isChecked) {
         super.onCheckedChanged(button, isChecked);
-        if (isChecked && MarpDiscordantCoupleScreening.isScreeningStep(formFragment.getJsonApi().getmJSONObject(),
-                mStepName)) {
-            formFragment.dismissDiscordantChecklistError();
+        String checklistKey = getRequiredChecklistKey();
+        if (isChecked && checklistKey != null && checklistKey.equals(button.getTag(com.vijay.jsonwizard.R.id.key))) {
+            formFragment.dismissChecklistError();
         }
         if (MarpPregnancyScreening.HIGH_RISK_STEP.equals(mStepName) && isChecked
                 && MarpPregnancyScreening.CHECKLIST_FIELD.equals(button.getTag(com.vijay.jsonwizard.R.id.key))) {
             formFragment.dismissHighRiskChecklistError();
         }
+    }
+
+    private String getRequiredChecklistKey() {
+        JSONObject form = formFragment.getJsonApi().getmJSONObject();
+        if (MarpOtherGroupsScreening.isScreeningStep(form, mStepName)) {
+            return MarpOtherGroupsScreening.CHECKLIST_FIELD;
+        }
+        if (MarpDiscordantCoupleScreening.isScreeningStep(form, mStepName)) {
+            return MarpDiscordantCoupleScreening.PARTNER_PARAMETERS;
+        }
+        return null;
     }
 
     @Override
@@ -401,14 +367,13 @@ public class KvpScreeningJsonFormFragmentPresenter extends JsonWizardFormFragmen
         if (containsKey(options, selectedKey)) {
             return;
         }
-        if ("msm".equals(selectedKey) || "fsw".equals(selectedKey)
-                || "pwud".equals(selectedKey) || "pwid".equals(selectedKey)
-                || MarpDiscordantCoupleScreening.GROUP_CODE.equals(selectedKey)) {
+        if (!selectedKey.isEmpty()) {
             clearFormValue(formFragment.getJsonApi(), mStepName, clientGroup);
         }
         if (options.length() == 1) {
             String onlyKey = options.getJSONObject(0).getString(KEY);
-            if ("msm".equals(onlyKey) || "fsw".equals(onlyKey)) {
+            if ("msm".equals(onlyKey) || "fsw".equals(onlyKey)
+                    || MarpOtherGroupsScreening.Group.fromCode(onlyKey) != null) {
                 clientGroup.put(VALUE, onlyKey);
             }
         }

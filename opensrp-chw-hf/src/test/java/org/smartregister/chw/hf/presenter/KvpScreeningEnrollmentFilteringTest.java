@@ -23,6 +23,7 @@ import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.activity.KvpJsonWizardFormActivity;
 import org.smartregister.chw.hf.fragment.KvpScreeningJsonFormFragment;
 import org.smartregister.chw.hf.utils.MarpDiscordantCoupleScreening;
+import org.smartregister.chw.hf.utils.MarpOtherGroupsScreening;
 import org.smartregister.chw.hf.utils.MarpPregnancyScreening;
 import org.mockito.ArgumentCaptor;
 import org.smartregister.chw.kvp.util.KvpJsonFormUtils;
@@ -65,6 +66,8 @@ public class KvpScreeningEnrollmentFilteringTest {
     private static final String PWID_SW = "Wajidunga dawa za kulevya";
     private static final String PWUD_EN = "People who use drugs through non-injecting routes";
     private static final String PWUD_SW = "Watumiaji wa dawa za kulevya kwa njia nyingine";
+    private static final String OTHER_GROUP = "other_key_and_vulnerable_populations";
+    private static final String TRUCK_DRIVERS = "long_distance_truck_drivers";
 
     @Test
     public void drugUseOutcomesInEnglish() throws Exception {
@@ -109,7 +112,7 @@ public class KvpScreeningEnrollmentFilteringTest {
     }
 
     @Test
-    public void saveSerializesReselectedPwidAfterBacktrackingWithMobilePopulation() throws Exception {
+    public void saveSerializesReselectedPwidAfterBacktrackingWithAnotherEligibleGroup() throws Exception {
         String step = "step8";
         JSONObject form = loadScreeningForm("kvp_screening_male", Locale.ENGLISH);
         KvpJsonWizardFormActivity activity = formActivity(form);
@@ -117,14 +120,14 @@ public class KvpScreeningEnrollmentFilteringTest {
         writeAnswer(activity, "step1", "is_pwud", "yes");
         writeAnswer(activity, "step2", "drug_injection", "yes");
         writeAnswer(activity, "step2", "is_pwid", "yes");
-        writeAnswer(activity, "step6", "is_mobile_population", "yes");
+        checkOtherGroup(activity, "step6", "disabled", true);
         writeAnswer(activity, step, "client_group", "pwid");
 
         writeAnswer(activity, "step1", "drug_use", "no");
         writeAnswer(activity, "step1", "is_pwud", "no");
         JSONObject group = field(renderEnrollment(form, step, Locale.ENGLISH, activity), "client_group");
-        assertFalse(group.has("value"));
-        assertEquals("mobile_population", group.getJSONArray("options").getJSONObject(0).getString("key"));
+        assertEquals(OTHER_GROUP, group.getString("value"));
+        assertEquals(OTHER_GROUP, group.getJSONArray("options").getJSONObject(0).getString("key"));
         assertEquals(1, group.getJSONArray("options").length());
 
         writeAnswer(activity, "step1", "drug_use", "yes");
@@ -147,24 +150,27 @@ public class KvpScreeningEnrollmentFilteringTest {
             String otherGroupsStep = "male".equals(sex) ? "step6" : "step7";
             String enrollmentStep = "male".equals(sex) ? "step8" : "step9";
             for (Locale locale : List.of(Locale.ENGLISH, KISWAHILI)) {
-                for (String retiredGroup : List.of("prisoner", "rumandee")) {
+                for (String retiredGroup : List.of("prisoner", "rumandee", "mobile_population")) {
                     JSONObject form = loadScreeningForm("kvp_screening_" + sex, locale);
                     JSONObject otherGroups = form.getJSONObject(otherGroupsStep);
                     JSONObject enrollment = form.getJSONObject(enrollmentStep);
+                    boolean mobilePopulation = "mobile_population".equals(retiredGroup);
+                    String question = mobilePopulation ? "mobile_population" : "prisoner_or_rumandee";
+                    String answer = mobilePopulation ? "long_distance_drivers" : retiredGroup;
+                    String promptGroup = "prisoner".equals(retiredGroup) ? "prisoners" : retiredGroup;
+                    String prompt = "prompt_for_" + promptGroup + "_kvp";
                     otherGroups.getJSONArray("fields")
-                            .put(carriedField("prisoner_or_rumandee", retiredGroup))
+                            .put(carriedField(question, answer))
                             .put(carriedField("is_" + retiredGroup, "yes"));
-                    enrollment.getJSONArray("fields").put(carriedField(
-                            "prisoner".equals(retiredGroup) ? "prompt_for_prisoners_kvp" : "prompt_for_rumandee_kvp", ""));
+                    enrollment.getJSONArray("fields").put(carriedField(prompt, ""));
                     JSONObject group = field(enrollment, "client_group");
-                    group.getJSONArray("options")
-                            .put(carriedField("prisoner", ""))
-                            .put(carriedField("rumandee", ""));
+                    group.getJSONArray("options").put(carriedField(retiredGroup, ""));
                     group.put("value", retiredGroup);
                     field(enrollment, "should_enroll").put("value", "yes");
                     field(enrollment, "other_screened_client_group").put("value", "[" + retiredGroup + "]");
 
                     KvpJsonWizardFormActivity activity = formActivity(form);
+                    assertFalse(form.toString().contains(retiredGroup));
                     assertFalse(field(enrollment, "should_enroll").has("value"));
                     assertFalse(field(enrollment, "other_screened_client_group").has("value"));
                     JSONObject renderedGroup = field(renderEnrollment(form, enrollmentStep, locale, activity), "client_group");
@@ -172,23 +178,41 @@ public class KvpScreeningEnrollmentFilteringTest {
                     assertEquals(0, renderedGroup.getJSONArray("options").length());
 
                     // Represent a valid answer on returning to Other Groups and reenabling enrollment.
-                    writeAnswer(activity, otherGroupsStep, "is_mobile_population", "yes");
+                    checkOtherGroup(activity, otherGroupsStep, "disabled", true);
                     renderedGroup = field(renderEnrollment(form, enrollmentStep, locale, activity), "client_group");
                     assertEquals(1, renderedGroup.getJSONArray("options").length());
-                    assertEquals("mobile_population", renderedGroup.getJSONArray("options")
+                    assertEquals(OTHER_GROUP, renderedGroup.getJSONArray("options")
                             .getJSONObject(0).getString("key"));
                     writeAnswer(activity, enrollmentStep, "should_enroll", "yes");
                     writeAnswer(activity, enrollmentStep, "birth_region", "Tanga");
-                    writeAnswer(activity, enrollmentStep, "client_group", "mobile_population");
-                    writeAnswer(activity, enrollmentStep, "other_screened_client_group", "[mobile_population]");
+                    writeAnswer(activity, enrollmentStep, "client_group", OTHER_GROUP);
+                    writeAnswer(activity, enrollmentStep, "other_screened_client_group", "[" + OTHER_GROUP + "]");
 
                     JSONObject submitted = saveEnrollment(activity, enrollmentStep);
-                    assertFalse(submitted.toString().contains("prisoner"));
-                    assertFalse(submitted.toString().contains("rumandee"));
-                    assertEnrollmentEvent(submitted, "mobile_population");
+                    assertFalse(submitted.toString().contains(retiredGroup));
+                    assertEnrollmentEvent(submitted, OTHER_GROUP);
                 }
             }
         }
+    }
+
+    @Test
+    public void clearsCarriedMobilePopulationFromSecondaryGroupsAndKeepsSupportedDominantChoice() throws Exception {
+        String enrollmentStep = "step8";
+        JSONObject form = loadScreeningForm("kvp_screening_male", Locale.ENGLISH);
+        JSONObject enrollment = form.getJSONObject(enrollmentStep);
+        field(form.getJSONObject("step5"), "is_msm").put("value", "yes");
+        field(enrollment, "client_group").put("value", "msm");
+        field(enrollment, "should_enroll").put("value", "yes");
+        JSONObject secondaryGroups = field(enrollment, "other_screened_client_group");
+        secondaryGroups.put("value", "[msm,mobile_population]");
+
+        KvpJsonWizardFormActivity activity = formActivity(form);
+
+        assertFalse(secondaryGroups.has("value"));
+        JSONObject rendered = field(renderEnrollment(form, enrollmentStep, Locale.ENGLISH, activity), "client_group");
+        assertEquals("msm", rendered.getString("value"));
+        assertEquals(1, rendered.getJSONArray("options").length());
     }
 
     private static JSONObject carriedField(String key, String value) throws JSONException {
@@ -278,35 +302,35 @@ public class KvpScreeningEnrollmentFilteringTest {
         KvpJsonWizardFormActivity activity = formActivity(form);
         answerDiscordantQuestions(activity);
         checkParameter(activity, "not_started_art", true);
-        writeAnswer(activity, "step6", "is_mobile_population", "yes");
+        checkOtherGroup(activity, "step6", "disabled", true);
         writeAnswer(activity, enrollmentStep, "client_group", DISCORDANT_GROUP);
 
         // Native Forms unchecks the old choices before writing the exclusive choice.
         checkParameter(activity, "not_started_art", false);
         checkParameter(activity, "none", true);
         JSONObject group = field(renderEnrollment(form, enrollmentStep, Locale.ENGLISH, activity), "client_group");
-        assertFalse(group.has("value"));
+        assertEquals(OTHER_GROUP, group.getString("value"));
         assertEquals(1, group.getJSONArray("options").length());
-        assertEquals("mobile_population", group.getJSONArray("options").getJSONObject(0).getString("key"));
+        assertEquals(OTHER_GROUP, group.getJSONArray("options").getJSONObject(0).getString("key"));
         assertEquals("no", field(form.getJSONObject(DISCORDANT_STEP), "is_sdc").getString("value"));
 
-        writeAnswer(activity, enrollmentStep, "client_group", "mobile_population");
+        writeAnswer(activity, enrollmentStep, "client_group", OTHER_GROUP);
         checkParameter(activity, "none", false);
         checkParameter(activity, "art_adherence_doubt", true);
         group = field(renderEnrollment(form, enrollmentStep, Locale.ENGLISH, activity), "client_group");
-        assertEquals("mobile_population", group.getString("value"));
+        assertEquals(OTHER_GROUP, group.getString("value"));
         assertEquals(2, group.getJSONArray("options").length());
 
         checkParameter(activity, "art_adherence_doubt", false);
         checkParameter(activity, "none", true);
         group = field(renderEnrollment(form, enrollmentStep, Locale.ENGLISH, activity), "client_group");
-        assertEquals("mobile_population", group.getString("value"));
+        assertEquals(OTHER_GROUP, group.getString("value"));
 
         checkParameter(activity, "none", false);
         checkParameter(activity, "not_started_art", true);
         group = field(renderEnrollment(form, enrollmentStep, Locale.ENGLISH, activity), "client_group");
         assertEquals(2, group.getJSONArray("options").length());
-        assertEquals("mobile_population", group.getString("value"));
+        assertEquals(OTHER_GROUP, group.getString("value"));
         writeAnswer(activity, enrollmentStep, "should_enroll", "yes");
         writeAnswer(activity, enrollmentStep, "birth_region", "Tanga");
         writeAnswer(activity, enrollmentStep, "client_group", DISCORDANT_GROUP);
@@ -326,24 +350,117 @@ public class KvpScreeningEnrollmentFilteringTest {
                 "", "concept", key, false);
     }
 
+    private static void checkOtherGroup(KvpJsonWizardFormActivity activity, String step, String key, boolean checked)
+            throws Exception {
+        activity.writeValue(step, MarpOtherGroupsScreening.CHECKLIST_FIELD, "options", key,
+                String.valueOf(checked), "", "concept", key, false);
+    }
+
+    @Test
+    public void otherGroupsRecomputeFromCurrentSelectionsAndKeepEarlierEligibility() throws Exception {
+        for (Locale locale : List.of(Locale.ENGLISH, KISWAHILI)) {
+            for (String sex : List.of("male", "female")) {
+                JSONObject form = loadScreeningForm("kvp_screening_" + sex, locale);
+                String otherStep = MarpOtherGroupsScreening.checklistStep(form);
+                String enrollment = "male".equals(sex) ? "step8" : "step9";
+                KvpJsonWizardFormActivity activity = formActivity(form);
+                checkOtherGroup(activity, otherStep, "fisherfolk", true);
+                checkOtherGroup(activity, otherStep, "miners", true);
+                JSONObject fact = field(form.getJSONObject(otherStep), "eligible_other_marp_groups");
+                assertEquals("fisherfolk,miners", fact.getString("value"));
+                JSONObject group = field(renderEnrollment(form, enrollment, locale, activity), "client_group");
+                assertEquals(2, group.getJSONArray("options").length());
+                assertGroupOption(group, 0, "fisherfolk", KISWAHILI.equals(locale) ? "Wavuvi" : "Fisherfolk");
+                assertGroupOption(group, 1, "miners", KISWAHILI.equals(locale) ? "Wachimba madini" : "Miners");
+                assertFalse(group.has("value"));
+                writeAnswer(activity, enrollment, "client_group", "miners");
+
+                checkOtherGroup(activity, otherStep, "miners", false);
+                assertFalse(field(form.getJSONObject(enrollment), "client_group").has("value"));
+                checkOtherGroup(activity, otherStep, "fisherfolk", false);
+                checkOtherGroup(activity, otherStep, "none", true);
+                assertEquals("none", fact.getString("value"));
+                group = field(renderEnrollment(form, enrollment, locale, activity), "client_group");
+                assertEquals(0, group.getJSONArray("options").length());
+                assertFalse(group.has("value"));
+
+                // A checked qualifying choice replaces None. Each of the three choices contributes the same group.
+                checkOtherGroup(activity, otherStep, "none", false);
+                for (String choice : List.of("disabled", "farmers_on_large_farms", "construction_workers")) {
+                    checkOtherGroup(activity, otherStep, choice, true);
+                    assertEquals(OTHER_GROUP, fact.getString("value"));
+                }
+                assertEnrollmentOptions(form, enrollment, locale,
+                        KISWAHILI.equals(locale) ? "Usajili wa MARP" : "MARP Enrollment", OTHER_GROUP,
+                        KISWAHILI.equals(locale) ? "Makundi mengine hatarishi" : "Other key and vulnerable populations",
+                        OTHER_GROUP);
+
+                writeAnswer(activity, "step1", "is_pwud", "yes");
+                writeAnswer(activity, enrollment, "client_group", "pwud");
+                for (String choice : List.of("disabled", "farmers_on_large_farms", "construction_workers")) {
+                    checkOtherGroup(activity, otherStep, choice, false);
+                }
+                checkOtherGroup(activity, otherStep, "none", true);
+                group = field(renderEnrollment(form, enrollment, locale, activity), "client_group");
+                assertEquals(1, group.getJSONArray("options").length());
+                assertEquals("pwud", group.getString("value"));
+            }
+        }
+    }
+
+    @Test
+    public void savesTruckDriverEnrollmentWithTheChecklistAnswerInBothForms() throws Exception {
+        for (String sex : List.of("male", "female")) {
+            for (Locale locale : List.of(Locale.ENGLISH, KISWAHILI)) {
+                JSONObject form = loadScreeningForm("kvp_screening_" + sex, locale);
+                KvpJsonWizardFormActivity activity = formActivity(form);
+                String otherStep = MarpOtherGroupsScreening.checklistStep(form);
+                String enrollment = "male".equals(sex) ? "step8" : "step9";
+                checkOtherGroup(activity, otherStep, TRUCK_DRIVERS, true);
+                JSONObject group = field(renderEnrollment(form, enrollment, locale, activity), "client_group");
+                assertEquals(1, group.getJSONArray("options").length());
+                assertGroupOption(group, 0, TRUCK_DRIVERS,
+                        KISWAHILI.equals(locale) ? "Madereva wa masafa marefu" : "Long-distance truck drivers");
+                assertEquals(TRUCK_DRIVERS, group.getString("value"));
+                writeAnswer(activity, enrollment, "should_enroll", "yes");
+                writeAnswer(activity, enrollment, "birth_region", "Tanga");
+
+                JSONObject submitted = saveEnrollment(activity, enrollment);
+                Event event = assertEnrollmentEvent(submitted, TRUCK_DRIVERS);
+                Obs checklist = event.getObs().stream()
+                        .filter(obs -> MarpOtherGroupsScreening.CHECKLIST_FIELD.equals(obs.getFieldCode()))
+                        .findFirst().orElseThrow();
+                assertEquals(List.of(TRUCK_DRIVERS), checklist.getValues());
+            }
+        }
+    }
+
+    private static void assertGroupOption(JSONObject group, int index, String key, String label) throws Exception {
+        JSONObject option = group.getJSONArray("options").getJSONObject(index);
+        assertEquals(key, option.getString("key"));
+        assertEquals(key, option.getString("openmrs_entity_id"));
+        assertEquals(label, option.getString("text"));
+    }
+
     private static String discordantLabel(Locale locale) {
         return KISWAHILI.equals(locale) ? "Mwenza mwenye majibu kinzani" : "Discordant partner";
     }
 
     private static KvpJsonWizardFormActivity formActivity(JSONObject form) throws Exception {
-        JSONArray discordantFields = form.getJSONObject(DISCORDANT_STEP).getJSONArray("fields");
-        for (int i = 0; i < discordantFields.length(); i++) {
-            JSONObject field = discordantFields.getJSONObject(i);
-            if (PARTNER_PARAMETERS.equals(field.getString("key"))) {
-                // Android's JSONObject.getString coerces JSONArray, unlike the test runtime's org.json.
-                discordantFields.put(i, new JSONObject(field.toString()) {
-                    @Override
-                    public String getString(String name) throws JSONException {
-                        Object value = get(name);
-                        return value instanceof JSONArray ? value.toString() : super.getString(name);
-                    }
-                });
-                break;
+        // Android's JSONObject.getString coerces JSONArray, unlike the test runtime's org.json.
+        for (String step : List.of(DISCORDANT_STEP, MarpOtherGroupsScreening.checklistStep(form))) {
+            JSONArray fields = form.getJSONObject(step).getJSONArray("fields");
+            for (int i = 0; i < fields.length(); i++) {
+                JSONObject field = fields.getJSONObject(i);
+                if ("check_box".equals(field.optString("type"))) {
+                    fields.put(i, new JSONObject(field.toString()) {
+                        @Override
+                        public String getString(String name) throws JSONException {
+                            Object value = get(name);
+                            return value instanceof JSONArray ? value.toString() : super.getString(name);
+                        }
+                    });
+                }
             }
         }
 
@@ -515,7 +632,7 @@ public class KvpScreeningEnrollmentFilteringTest {
         assertFalse(noDrugGroup.has("value"));
     }
 
-    private static void assertEnrollmentEvent(JSONObject form, String group) throws Exception {
+    private static Event assertEnrollmentEvent(JSONObject form, String group) throws Exception {
         assertTrue(KvpUtil.isClientToBeRegistered(form.toString()));
 
         Event event = JsonFormUtils.createEvent(KvpJsonFormUtils.kvpFormFields(form), form.getJSONObject("metadata"),
@@ -524,6 +641,7 @@ public class KvpScreeningEnrollmentFilteringTest {
                 .filter(obs -> "client_group".equals(obs.getFieldCode()))
                 .findFirst().orElseThrow();
         assertEquals(List.of(group), groupObservation.getValues());
+        return event;
     }
 
     private static void assertOnlyMaleMhr(Locale locale, String title) throws Exception {
@@ -588,6 +706,13 @@ public class KvpScreeningEnrollmentFilteringTest {
         when(context.getString(R.string.marp_pwud_enrollment_option))
                 .thenReturn(KISWAHILI.equals(locale) ? PWUD_SW : PWUD_EN);
         when(context.getString(R.string.marp_discordant_partner_option)).thenReturn(discordantLabel(locale));
+        boolean swahili = KISWAHILI.equals(locale);
+        when(resources.getString(R.string.kvp_long_distance_truck_drivers))
+                .thenReturn(swahili ? "Madereva wa masafa marefu" : "Long-distance truck drivers");
+        when(resources.getString(R.string.kvp_fisherfolk)).thenReturn(swahili ? "Wavuvi" : "Fisherfolk");
+        when(resources.getString(R.string.kvp_miners)).thenReturn(swahili ? "Wachimba madini" : "Miners");
+        when(resources.getString(R.string.kvp_other_key_and_vulnerable_populations))
+                .thenReturn(swahili ? "Makundi mengine hatarishi" : "Other key and vulnerable populations");
         when(context.getResources()).thenReturn(resources);
         when(fragment.getContext()).thenReturn(context);
         when(fragment.getStep(stepName)).thenReturn(form.getJSONObject(stepName));

@@ -48,7 +48,22 @@ public class KvpClientStatusRoundTripTest {
 
     @Test
     public void reopensSavedLegacyGroupsWithTheirExistingLabels() throws Exception {
-        for (String code : List.of("prisoner", "rumandee")) {
+        Map<String, String> labels = Map.of(
+                "prisoner", "Prisoners", "rumandee", "Rumandee", "mobile_population", "Mobile population",
+                "other_vulnerable_population", "Other vulnerable population");
+        assertGroupRoundTrip(labels);
+    }
+
+    @Test
+    public void reopensNewGroupsByTheirSavedCodes() throws Exception {
+        assertGroupRoundTrip(Map.of("long_distance_truck_drivers", "Long-distance truck drivers",
+                "fisherfolk", "Fisherfolk", "miners", "Miners",
+                "other_key_and_vulnerable_populations", "Other key and vulnerable populations"));
+    }
+
+    private static void assertGroupRoundTrip(Map<String, String> labels) throws Exception {
+        for (Map.Entry<String, String> label : labels.entrySet()) {
+            String code = label.getKey();
             JSONObject original = form();
             JSONObject savedCategory = category(original);
             option(savedCategory, code).put("value", true);
@@ -60,7 +75,7 @@ public class KvpClientStatusRoundTripTest {
             JSONObject reopened = category(open(form(), details));
             JSONObject group = option(reopened, code);
             assertTrue(group.getBoolean("value"));
-            assertEquals("prisoner".equals(code) ? "Prisoners" : "Rumandee", group.getString("text"));
+            assertEquals(label.getValue(), group.getString("text"));
             assertEquals(code, reopened.getJSONArray("value").getString(0));
         }
     }
