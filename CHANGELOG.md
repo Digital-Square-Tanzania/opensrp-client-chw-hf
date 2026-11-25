@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
+- Use the bilingual register wording for Kituoni MARP Health Education. Record PrEP and PEP as separate topics or select None when no education was given ([#252](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/252), UCSW-51). No version or dependency changes.
 - Show the shared Kituoni MARP PEP Assessment in Structural Services after GBV Screening records Sexual violence. Flag an earlier No PEP needed answer for provider review in both cards ([#250](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/250), UCSW-50). No version or dependency changes.
 - Use the bilingual register wording and checklist for Kituoni MARP GBV Screening. Record None and Not assessed distinctly, allow multiple types of violence, and restore saved answers in Visit History ([#255](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/255), UCSW-55). No version or dependency changes.
 - Ask whether the client requires PEP before recording a PEP service in Kituoni MARP Biomedical Services. Display historical answers in Visit History and preserve their original observations on resave ([#249](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/249), UCSW-53). No version or dependency changes.

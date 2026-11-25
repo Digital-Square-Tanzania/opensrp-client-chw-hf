@@ -1,6 +1,7 @@
 {
   "count": "1",
   "encounter_type": "KVP Health Education",
+  "properties_file_name": "kvp_health_education",
   "entity_id": "",
   "metadata": {
     "start": {
@@ -43,7 +44,7 @@
   },
   "global": {},
   "step1": {
-    "title": "Health Education",
+    "title": "{{kvp_health_education}}",
     "fields": [
       {
         "key": "health_education_provided",
@@ -51,7 +52,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "health_education_provided",
         "type": "check_box",
-        "label": "Health education provided to the client",
+        "label": "{{education_topics}}",
         "combine_checkbox_option_values": "true",
         "label_text_style": "normal",
         "text_color": "#C0C0C0",
@@ -61,78 +62,92 @@
         "options": [
           {
             "key": "sti",
-            "text": "STI",
+            "text": "{{education_sti}}",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "sti"
           },
           {
             "key": "hbv_hcv",
-            "text": "HBV and HCV",
+            "text": "{{education_hbv_hcv}}",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "hbv_hcv"
           },
           {
             "key": "tb",
-            "text": "TB",
+            "text": "{{education_tb}}",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "tb"
           },
           {
             "key": "gbv",
-            "text": "GBV",
+            "text": "{{education_gbv}}",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "gbv"
           },
           {
+            "key": "prep",
+            "text": "{{education_prep}}",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "prep"
+          },
+          {
             "key": "pep",
-            "text": "PEP",
+            "text": "{{education_pep}}",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "pep"
           },
           {
             "key": "vmmc",
-            "text": "VMMC",
+            "text": "{{education_vmmc}}",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "vmmc"
           },
           {
             "key": "cacx",
-            "text": "CaCx",
+            "text": "{{education_cacx}}",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "cacx"
           },
           {
             "key": "drug_disorder",
-            "text": "Drug use disorder",
+            "text": "{{education_drug_disorder}}",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "drug_disorder"
           },
           {
             "key": "hiv_aids",
-            "text": "HIV and AIDS",
+            "text": "{{education_hiv_aids}}",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "hiv_aids"
           },
           {
             "key": "other",
-            "text": "Other(Please specify)",
+            "text": "{{education_other}}",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "other"
+          },
+          {
+            "key": "none",
+            "text": "{{education_none}}",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "none"
           }
         ],
         "v_required": {
           "value": "true",
-          "err": "Please pick at least one"
+          "err": "{{education_topic_required}}"
         }
       },
       {
@@ -141,10 +156,10 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "others_health_education_provided",
         "type": "edit_text",
-        "hint": "Other",
+        "hint": "{{education_specify_other}}",
         "v_required": {
           "value": "true",
-          "err": "Please specify"
+          "err": "{{education_other_required}}"
         },
         "relevance": {
           "step1:health_education_provided": {
