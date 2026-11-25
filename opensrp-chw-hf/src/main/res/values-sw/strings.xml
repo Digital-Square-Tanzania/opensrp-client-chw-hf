@@ -365,7 +365,15 @@
     <string name="marp_behavioral_service_visit">Ziara ya huduma za kitabia za MARP</string>
     <string name="marp_structural_service_visit">Ziara ya huduma za kimuundo za MARP</string>
     <string name="marp_other_service_visit">Ziara ya huduma nyingine za MARP</string>
-    <string name="kvp_client_status">Hali ya Mteja</string>
+    <string name="kvp_client_status">Hali ya mteja</string>
+    <string name="marp_visit_type">Aina ya hudhurio</string>
+    <string name="marp_visit_type_new">Mpya</string>
+    <string name="marp_visit_type_transfer_in">Amehamia</string>
+    <string name="marp_visit_type_return">Marudio</string>
+    <string name="marp_visit_programme_enrolment_date">Tarehe mteja alipoandikishwa kwenye programu</string>
+    <string name="marp_visit_type_required">Tafadhali chagua moja</string>
+    <string name="marp_visit_enrolment_date_required">Tafadhali jibu swali hili</string>
+    <string name="marp_profile_enrolment_date">Tarehe ya kuandikishwa kwenye MARP: %1$s</string>
     <string name="kvp_hts">Ushauri Nasaha na Upimaji</string>
     <string name="kvp_pep_assesment">PEP assesment</string>
     <string name="kvp_condom_provision">Ugawaji Kondomu</string>

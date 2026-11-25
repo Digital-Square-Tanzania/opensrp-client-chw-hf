@@ -50,20 +50,20 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "client_status",
-        "label": "Type of visit",
+        "label": "Visit Type",
         "text_color": "#000000",
         "type": "native_radio",
         "options": [
           {
             "key": "new_client",
-            "text": "New client",
+            "text": "New",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "new_visit"
           },
           {
             "key": "transfer_in",
-            "text": "Transfer-in",
+            "text": "Transfer in",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "transfer_in"
@@ -87,9 +87,8 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "enrollment_date",
         "type": "date_picker",
-        "hint": "Enrollment date",
+        "hint": "Date the client was enrolled in the program",
         "expanded": false,
-        "min_date": "01-05-2018",
         "max_date": "today",
         "v_required": {
           "value": "true",
@@ -99,13 +98,6 @@
           "rules-engine": {
             "ex-rules": {
               "rules-file": "kvp_client_status_relevance.yml"
-            }
-          }
-        },
-        "calculation": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "kvp_client_status_calculation.yml"
             }
           }
         }

@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
+- Use the bilingual Visit Type labels in Kituoni MARP Client Status. Save a first Transfer in or Return programme date as the MARP enrolment date, show it on the profile and retain it when re-saving the same visit type through Visit History. Use the register date for monthly enrolment reporting and backfill missing system dates from registration events in database version 32 ([#238](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/238)).
 - Keep partial Kituoni MARP visits available from the profile. Return to the profile and hide the visit actions after all four service cards are submitted, then restore the follow-up action on the next device calendar day ([#237](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/237)).
 - Use the bilingual MARPS register group names and eligibility rules for the dominant group at Kituoni enrollment. Save the selected group and the remaining eligible groups under their existing codes ([#235](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/235)).
 - Update the Kituoni vAGYW checklist and make it required when shown. Offer the localized enrollment option for qualifying answers and clear stale criteria after backtracking ([#232](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/232)).

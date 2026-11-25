@@ -478,6 +478,14 @@
     <string name="marp_structural_service_visit">MARP Structural Service Visit</string>
     <string name="marp_other_service_visit">MARP Other Service Visit</string>
     <string name="kvp_client_status">Client Status</string>
+    <string name="marp_visit_type">Visit Type</string>
+    <string name="marp_visit_type_new">New</string>
+    <string name="marp_visit_type_transfer_in">Transfer in</string>
+    <string name="marp_visit_type_return">Return</string>
+    <string name="marp_visit_programme_enrolment_date">Date the client was enrolled in the program</string>
+    <string name="marp_visit_type_required">Please select one</string>
+    <string name="marp_visit_enrolment_date_required">Please answer this question</string>
+    <string name="marp_profile_enrolment_date">MARP enrolment date: %1$s</string>
     <string name="kvp_hts">HTS</string>
     <string name="kvp_pep_assesment">PEP assesment</string>
     <string name="kvp_condom_provision">Condom Provision</string>

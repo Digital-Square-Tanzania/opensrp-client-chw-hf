@@ -7954,8 +7954,7 @@
           "column_name": "enrollment_date",
           "type": "Event",
           "json_mapping": {
-            "field": "obs.fieldCode",
-            "concept": "enrollment_date"
+            "field": "details.marp_enrollment_date"
           }
         },
         {

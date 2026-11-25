@@ -1,6 +1,18 @@
 package org.smartregister.chw.hf.dao;
 
+import static org.smartregister.chw.hf.utils.MarpEnrollmentDate.CLIENT_STATUS;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonParseException;
+
+import org.apache.commons.lang3.StringUtils;
+import org.smartregister.chw.hf.utils.MarpEnrollmentDate;
+import org.smartregister.chw.hf.utils.MarpVisitStatus;
+import org.smartregister.chw.kvp.KvpLibrary;
 import org.smartregister.chw.kvp.dao.KvpDao;
+import org.smartregister.chw.kvp.domain.Visit;
+import org.smartregister.chw.kvp.util.Constants;
+import org.smartregister.clientandeventmodel.Event;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -14,7 +26,7 @@ public class HfKvpDao extends KvpDao {
 
     public static String getClientStatus(String baseEntityId) {
         String sql = "SELECT client_status FROM ec_kvp_bio_medical_services p " +
-                " WHERE p.entity_id = '" + baseEntityId + "'";
+                " WHERE p.entity_id = '" + baseEntityId + "' AND trim(p.client_status) <> '' LIMIT 1";
 
         DataMap<String> dataMap = cursor -> getCursorValue(cursor, "client_status");
 
@@ -22,7 +34,37 @@ public class HfKvpDao extends KvpDao {
         if (res != null && !res.isEmpty() && res.get(0) != null) {
             return res.get(0);
         }
-        return "";
+        Event local = findLocalClientStatus(baseEntityId);
+        return local == null ? "" : MarpEnrollmentDate.observation(local, CLIENT_STATUS);
+    }
+
+    private static Event findLocalClientStatus(String baseEntityId) {
+        return findLocalClientStatus(KvpLibrary.getInstance().visitRepository()
+                .getVisits(baseEntityId, Constants.EVENT_TYPE.KVP_BIO_MEDICAL_SERVICE_VISIT));
+    }
+
+    static Event findLocalClientStatus(List<Visit> visits) {
+        // The submitted event is available before the sync processor projects it into the register.
+        for (Visit visit : visits) {
+            Event event = readSubmittedBiomedicalEvent(visit);
+            if (StringUtils.isNotBlank(MarpEnrollmentDate.observation(event, CLIENT_STATUS))) {
+                return event;
+            }
+        }
+        return null;
+    }
+
+    public static Event readSubmittedBiomedicalEvent(Visit visit) {
+        if (visit == null || MarpVisitStatus.isDraft(visit)) {
+            return null;
+        }
+        String payload = StringUtils.defaultIfBlank(visit.getPreProcessedJson(), visit.getJson());
+        try {
+            return new Gson().fromJson(payload, Event.class);
+        } catch (JsonParseException e) {
+            Timber.e(e);
+            return null;
+        }
     }
 
     public static String getVmmcServices(String baseEntityId) {
@@ -39,6 +81,17 @@ public class HfKvpDao extends KvpDao {
     }
 
     public static String getClientEnrollmentDate(String baseEntityId) {
+        Event local = findLocalClientStatus(baseEntityId);
+        if (local != null && local.getDetails() != null) {
+            String date = local.getDetails().get(MarpEnrollmentDate.EVENT_DETAIL);
+            if (StringUtils.isNotBlank(date)) {
+                return date;
+            }
+        }
+        return getStoredEnrollmentDate(baseEntityId);
+    }
+
+    public static String getStoredEnrollmentDate(String baseEntityId) {
         String sql = "SELECT enrollment_date FROM ec_kvp_register p " +
                 " WHERE p.base_entity_id = '" + baseEntityId + "'";
 
