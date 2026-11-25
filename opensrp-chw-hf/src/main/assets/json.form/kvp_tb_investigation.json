@@ -1,7 +1,7 @@
 {
   "count": "1",
   "encounter_type": "KVP TB Investigation",
-  "properties_file_name": "marp_biomedical",
+  "properties_file_name": "kvp_tb_investigation",
   "entity_id": "",
   "metadata": {
     "start": {
@@ -44,7 +44,7 @@
   },
   "global": {},
   "step1": {
-    "title": "TB Investigation",
+    "title": "{{title}}",
     "fields": [
       {
         "key": "tb_screening",
