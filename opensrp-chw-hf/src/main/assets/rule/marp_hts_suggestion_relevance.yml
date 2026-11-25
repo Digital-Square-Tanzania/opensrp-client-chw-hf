@@ -1,0 +1,21 @@
+---
+name: step1_hiv_status
+description: Show the suggestion while the testing facts are blank and on the reportable testing path.
+priority: 1
+condition: "!step1_tested_hiv.equals('no') && !step1_previous_hiv_testing_method.equals('hivst') && !step1_previous_hiv_testing_method.equals('not_tested')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_verify_marp_hts_suggestion
+description: Ask for verification only when the provider reports a Negative result on the testing path.
+priority: 1
+condition: "step1_hiv_status.equals('negative') && step1_tested_hiv.equals('yes') && !step1_previous_hiv_testing_method.isEmpty() && !step1_previous_hiv_testing_method.equals('hivst') && !step1_previous_hiv_testing_method.equals('not_tested')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_prompt_for_hiv_negative
+description: Show the existing clinical prompt after verification of the suggested result.
+priority: 1
+condition: "step1_hiv_status.equals('negative') && step1_verify_marp_hts_suggestion.equals('yes') && !step1_testing_site.isEmpty() && !step1_kits_distributed.isEmpty() && (!step1_previous_hiv_testing_method.equals('other_method') || !step1_other_previous_hiv_testing_method.trim().isEmpty())"
+actions:
+  - "isRelevant = true"

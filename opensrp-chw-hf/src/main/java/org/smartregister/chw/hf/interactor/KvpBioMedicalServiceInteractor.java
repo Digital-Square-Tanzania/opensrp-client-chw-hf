@@ -25,8 +25,10 @@ import org.smartregister.chw.hf.actionhelper.kvp.KvpVmmcActionHelper;
 import org.smartregister.chw.hf.dao.HfKvpDao;
 import org.smartregister.chw.hf.utils.MarpEnrollmentDate;
 import org.smartregister.chw.hf.utils.MarpHts;
+import org.smartregister.chw.hf.utils.MarpHtsSuggestion;
 import org.smartregister.chw.hf.utils.MarpPregnancyStatus;
 import org.smartregister.chw.hf.utils.MarpVisitCategories;
+import org.smartregister.chw.hf.utils.MarpVisitStatus;
 import org.smartregister.chw.kvp.contract.BaseKvpVisitContract;
 import org.smartregister.chw.kvp.dao.KvpDao;
 import org.smartregister.chw.kvp.domain.MemberObject;
@@ -34,11 +36,13 @@ import org.smartregister.chw.kvp.domain.Visit;
 import org.smartregister.chw.kvp.domain.VisitDetail;
 import org.smartregister.chw.kvp.interactor.BaseKvpVisitInteractor;
 import org.smartregister.chw.kvp.model.BaseKvpVisitAction;
+import org.smartregister.chw.kvp.repository.VisitRepository;
 import org.smartregister.chw.kvp.util.Constants;
 import org.smartregister.chw.kvp.util.KvpJsonFormUtils;
 import org.smartregister.chw.referral.util.JsonFormConstants;
 import org.smartregister.clientandeventmodel.Event;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
@@ -49,21 +53,14 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
     private static final String NEW_VISIT_TYPE = "new_client";
 
     protected BaseKvpVisitContract.InteractorCallBack callBack;
-    private String visitType;
+    private final boolean editingVisit;
+    private boolean offerHtsSuggestion;
     private Event replacedBiomedicalEvent;
     private KvpClientStatusActionHelper clientStatusActionHelper;
 
-    public KvpBioMedicalServiceInteractor(String visitType) {
-        this.visitType = visitType;
-    }
-
-    @Override
-    protected String getCurrentVisitType() {
-        if (StringUtils.isNotBlank(visitType)) {
-            return visitType;
-        }
-
-        return super.getCurrentVisitType();
+    public KvpBioMedicalServiceInteractor(boolean editingVisit) {
+        super(Constants.EVENT_TYPE.KVP_BIO_MEDICAL_SERVICE_VISIT);
+        this.editingVisit = editingVisit;
     }
 
     @Override
@@ -194,7 +191,14 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
 
     private void evaluateHts(Map<String, List<VisitDetail>> details) throws BaseKvpVisitAction.ValidationException {
 
-        KvpHtsActionHelper actionHelper = new KvpHtsActionHelper(HfKvpDao.getHivStatus(memberObject.getBaseEntityId()));
+        String memberId = memberObject.getBaseEntityId();
+        String lastHivStatus = HfKvpDao.getHivStatus(memberId);
+        Calendar today = Calendar.getInstance();
+        offerHtsSuggestion = canOfferHtsSuggestion(editingVisit, lastHivStatus, visitRepository(), memberId, today)
+                && !HfKvpDao.hasRecordedMarpVisitForHts(memberId, today)
+                && MarpHtsSuggestion.isEligible(KvpDao.getDominantKVPGroup(memberId),
+                        HfKvpDao.getLatestPregnancyBreastfeedingStatus(memberId));
+        KvpHtsActionHelper actionHelper = new KvpHtsActionHelper(lastHivStatus);
         BaseKvpVisitAction action = getBuilder(context.getString(R.string.kvp_hts))
                 .withOptional(true)
                 .withDetails(details)
@@ -203,6 +207,20 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
                 .build();
 
         actionList.put(context.getString(R.string.kvp_hts), action);
+    }
+
+    public JSONObject prepareHtsForm(JSONObject form) throws JSONException {
+        return offerHtsSuggestion ? MarpHtsSuggestion.forDisplay(form, context) : form;
+    }
+
+    static boolean canOfferHtsSuggestion(boolean editingVisit, String lastHivStatus,
+                                         VisitRepository repository, String memberId, Calendar today) {
+        if (editingVisit || StringUtils.isNotBlank(lastHivStatus)) {
+            return false;
+        }
+        Visit latest = repository.getLatestVisit(memberId, Constants.EVENT_TYPE.KVP_BIO_MEDICAL_SERVICE_VISIT);
+        return (latest == null || MarpVisitStatus.isDraft(latest))
+                && !MarpVisitStatus.hasSubmittedVisitBeforeToday(repository, memberId, today);
     }
 
     private void evaluatePrepPep(Map<String, List<VisitDetail>> details) throws BaseKvpVisitAction.ValidationException {
@@ -374,6 +392,10 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
 
         @Override
         public String postProcess(String s) {
+            if (!hasAssessmentInput()) {
+                actionList.remove(context.getString(R.string.kvp_pep_assesment));
+                return super.postProcess(s);
+            }
             if (!MarpHts.isPositiveResult(hiv_status)) {
                 try {
                     if (KvpDao.getPrEPMember(memberObject.getBaseEntityId()) == null)

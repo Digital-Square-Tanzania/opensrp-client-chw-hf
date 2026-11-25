@@ -3,6 +3,7 @@ package org.smartregister.chw.hf.actionhelper.kvp;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
@@ -23,6 +24,9 @@ import org.json.JSONObject;
 import org.junit.Test;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.utils.MarpHts;
+import org.smartregister.chw.hf.utils.MarpHtsSuggestion;
+import org.smartregister.chw.hf.utils.MarpPregnancyScreening;
+import org.smartregister.chw.hf.utils.MarpPregnancyStatus;
 import org.smartregister.chw.kvp.domain.VisitDetail;
 import org.smartregister.chw.kvp.model.BaseKvpVisitAction;
 import org.smartregister.chw.kvp.util.NCUtil;
@@ -52,6 +56,156 @@ public class MarpHtsTest {
     private static final List<String> CTC_ANSWERS = List.of("enrolled_but_not_on_arv", "enrolled_and_on_arv");
     private static final List<String> RESULTS = List.of("negative", "positive", "inconclusive", REFUSED_RESULTS, "known_positive");
     private static final List<String> METHODS = List.of("hivst", "hiv_cv_test", "hivst_and_hiv_cv_test", "other_method");
+    private static final String VERIFY_SUGGESTION = "verify_marp_hts_suggestion";
+    private static final String REVIEW_SUGGESTION = "review_marp_hts_suggestion";
+
+    @Test
+    public void visit7CohortRequiresMaternalGroupOrCurrentPregnancy() {
+        assertTrue(MarpHtsSuggestion.isEligible(MarpPregnancyScreening.GROUP_CODE, ""));
+        assertTrue(MarpHtsSuggestion.isEligible("fsw", MarpPregnancyStatus.PREGNANT));
+        assertFalse(MarpHtsSuggestion.isEligible("fsw", MarpPregnancyStatus.BREASTFEEDING));
+        assertFalse(MarpHtsSuggestion.isEligible("fsw", MarpPregnancyStatus.NEITHER));
+    }
+
+    @Test
+    public void visit7OffersOnlyAnEditableResultWithLocalizedReviewAndKeepsTheActionBlank() throws Exception {
+        Context english = localizedContext("values");
+        BaseKvpVisitAction action = open("", Map.of(), english);
+        JSONObject launch = MarpHtsSuggestion.forDisplay(payload(action), english);
+        Context swahiliContext = localizedContext("values-sw");
+        JSONObject swahili = MarpHtsSuggestion.forDisplay(payload(open("", Map.of(), swahiliContext)), swahiliContext);
+        assertEquals("negative", field(launch, "hiv_status").getString(VALUE));
+        assertEquals("native_radio", field(launch, "hiv_status").getString("type"));
+        assertEquals("Hasi", field(swahili, "hiv_status").getJSONArray("options").getJSONObject(0).getString("text"));
+        assertEquals(REVIEW_SUGGESTION, launch.getJSONObject("step1").getJSONArray("fields")
+                .getJSONObject(0).getString("key"));
+        assertTrue(field(launch, REVIEW_SUGGESTION).getString("text").contains("unsaved suggestion"));
+        assertTrue(field(swahili, REVIEW_SUGGESTION).getString("text").contains("bado halijahifadhiwa"));
+        assertEquals("Hapana, acha jibu wazi", field(swahili, VERIFY_SUGGESTION).getJSONArray("options")
+                .getJSONObject(1).getString("text"));
+        for (String key : List.of("tested_hiv", "previous_hiv_testing_method", "testing_site",
+                "kits_distributed", VERIFY_SUGGESTION)) {
+            assertFalse(field(launch, key).has(VALUE));
+        }
+        assertFalse(MarpHtsSuggestion.isShown(payload(action)));
+        assertNull(observation(eventFrom(action), "hiv_status"));
+        assertFalse(((KvpHtsActionHelper) action.getKvpVisitActionHelper()).hasAssessmentInput());
+    }
+
+    @Test
+    public void visit7UnconfirmedResultStaysBlankAfterSaveAndReopen() throws Exception {
+        Context context = localizedContext("values");
+        BaseKvpVisitAction action = open("", Map.of(), context);
+        JSONObject launch = MarpHtsSuggestion.forDisplay(payload(action), context);
+        completeTestingFacts(launch);
+        field(launch, VERIFY_SUGGESTION).put(VALUE, "no");
+        action.setJsonPayload(launch.toString());
+
+        JSONObject saved = payload(action);
+        Event event = eventFrom(action);
+        assertNull(observation(event, "hiv_status"));
+        assertEquals(List.of("yes"), observation(event, "tested_hiv").getValues());
+        assertFalse(((KvpHtsActionHelper) action.getKvpVisitActionHelper()).hasAssessmentInput());
+        assertFalse(MarpHtsSuggestion.isShown(saved));
+        assertNull(field(saved, REVIEW_SUGGESTION));
+        assertNull(field(saved, VERIFY_SUGGESTION));
+        assertFalse(MarpHtsSuggestion.isShown(MarpHtsSuggestion.forDisplay(saved, context)));
+
+        BaseKvpVisitAction reopened = open("", details(event), context);
+        assertFalse(field(payload(reopened), "hiv_status").has(VALUE));
+        assertFalse(((KvpHtsActionHelper) reopened.getKvpVisitActionHelper()).hasAssessmentInput());
+    }
+
+    @Test
+    public void visit7RequiresVerificationAndEachActualFactToRecordNegative() throws Exception {
+        Context context = localizedContext("values");
+        BaseKvpVisitAction action = open("", Map.of(), context);
+        JSONObject launch = MarpHtsSuggestion.forDisplay(payload(action), context);
+        completeTestingFacts(launch);
+        assertEquals("", MarpHtsSuggestion.verifiedResult(launch));
+        field(launch, VERIFY_SUGGESTION).put(VALUE, "yes");
+        for (String key : List.of("tested_hiv", "previous_hiv_testing_method", "testing_site", "kits_distributed")) {
+            JSONObject field = field(launch, key);
+            String value = field.getString(VALUE);
+            field.remove(VALUE);
+            assertEquals(key, "", MarpHtsSuggestion.verifiedResult(launch));
+            field.put(VALUE, value);
+        }
+        field(launch, "previous_hiv_testing_method").put(VALUE, "other_method");
+        assertEquals("", MarpHtsSuggestion.verifiedResult(launch));
+        field(launch, "other_previous_hiv_testing_method").put(VALUE, "Synthetic method");
+        action.setJsonPayload(launch.toString());
+
+        assertEquals(List.of("negative"), observation(eventFrom(action), "hiv_status").getValues());
+        assertTrue(((KvpHtsActionHelper) action.getKvpVisitActionHelper()).hasAssessmentInput());
+        assertNull(field(payload(action), VERIFY_SUGGESTION));
+    }
+
+    @Test
+    public void visit7CanReplaceNegativeWithPositiveAndPreservesExistingResults() throws Exception {
+        Context context = localizedContext("values");
+        BaseKvpVisitAction action = open("", Map.of(), context);
+        JSONObject launch = MarpHtsSuggestion.forDisplay(payload(action), context);
+        field(launch, "hiv_status").put(VALUE, "positive");
+        assertEquals("", MarpHtsSuggestion.verifiedResult(launch));
+        completeTestingFacts(launch);
+        field(launch, CTC_SERVICES).put(VALUE, CTC_ANSWERS.get(0));
+        field(launch, CTC_NUMBER).put(VALUE, RAW_ID);
+        action.setJsonPayload(launch.toString());
+
+        Event event = eventFrom(action);
+        assertEquals(List.of("positive"), observation(event, "hiv_status").getValues());
+        assertEquals(List.of(CTC_ID), observation(event, CTC_NUMBER).getValues());
+        JSONObject existing = payload(open("positive", details(event), context));
+        assertSame(existing, MarpHtsSuggestion.forDisplay(existing, context));
+        field(existing, "tested_hiv").remove(VALUE);
+        assertSame(existing, MarpHtsSuggestion.forDisplay(existing, context));
+    }
+
+    @Test
+    public void visit7RulesShowTheSuggestionWithoutRoutingItAsAnActualResult() throws Exception {
+        Rules rules = relevanceRules("marp_hts_suggestion_relevance.yml");
+        Facts facts = new Facts();
+        facts.put("step1_tested_hiv", "");
+        facts.put("step1_previous_hiv_testing_method", "");
+        facts.put("step1_other_previous_hiv_testing_method", "");
+        facts.put("step1_hiv_status", "negative");
+        facts.put("step1_verify_marp_hts_suggestion", "");
+        facts.put("step1_testing_site", "");
+        facts.put("step1_kits_distributed", "");
+        assertTrue(relevant(rules, "hiv_status", facts));
+        assertFalse(relevant(rules, VERIFY_SUGGESTION, facts));
+        assertFalse(relevant(rules, "prompt_for_hiv_negative", facts));
+        assertFalse(relevant(relevanceRules(), "testing_site", facts));
+
+        facts.put("step1_tested_hiv", "yes");
+        facts.put("step1_previous_hiv_testing_method", "hiv_cv_test");
+        assertTrue(relevant(rules, VERIFY_SUGGESTION, facts));
+        assertFalse(relevant(rules, "prompt_for_hiv_negative", facts));
+        facts.put("step1_verify_marp_hts_suggestion", "yes");
+        facts.put("step1_testing_site", "facility");
+        facts.put("step1_kits_distributed", "no");
+        assertTrue(relevant(rules, "prompt_for_hiv_negative", facts));
+        facts.put("step1_previous_hiv_testing_method", "other_method");
+        assertFalse(relevant(rules, "prompt_for_hiv_negative", facts));
+        facts.put("step1_other_previous_hiv_testing_method", "Synthetic method");
+        assertTrue(relevant(rules, "prompt_for_hiv_negative", facts));
+        facts.put("step1_hiv_status", "positive");
+        assertFalse(relevant(rules, VERIFY_SUGGESTION, facts));
+        assertTrue(relevant(relevanceRules(), CTC_SERVICES, facts));
+
+        facts.put("step1_previous_hiv_testing_method", "hivst");
+        assertFalse(relevant(rules, "hiv_status", facts));
+        facts.put("step1_tested_hiv", "no");
+        assertFalse(relevant(rules, "hiv_status", facts));
+    }
+
+    private static void completeTestingFacts(JSONObject form) throws Exception {
+        field(form, "tested_hiv").put(VALUE, "yes");
+        field(form, "previous_hiv_testing_method").put(VALUE, "hiv_cv_test");
+        field(form, "testing_site").put(VALUE, "facility");
+        field(form, "kits_distributed").put(VALUE, "no");
+    }
 
     @Test
     public void usesRegisterLabelsAndResultOrderInBothLanguages() throws Exception {
@@ -337,11 +491,17 @@ public class MarpHtsTest {
     }
 
     private static Obs observation(Event event, String key) {
-        return event.getObs().stream().filter(obs -> key.equals(obs.getFormSubmissionField())).findFirst().orElse(null);
+        List<Obs> observations = event.getObs();
+        return observations == null ? null : observations.stream()
+                .filter(obs -> key.equals(obs.getFormSubmissionField())).findFirst().orElse(null);
     }
 
     private static Rules relevanceRules() throws Exception {
-        try (Reader reader = Files.newBufferedReader(ASSETS.resolve("rule/kvp_hts_relevance.yml"))) {
+        return relevanceRules("kvp_hts_relevance.yml");
+    }
+
+    private static Rules relevanceRules(String filename) throws Exception {
+        try (Reader reader = Files.newBufferedReader(ASSETS.resolve("rule").resolve(filename))) {
             return new MVELRuleFactory(new YamlRuleDefinitionReader()).createRules(reader);
         }
     }

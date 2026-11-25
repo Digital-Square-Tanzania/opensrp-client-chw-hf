@@ -13,6 +13,7 @@ import org.json.JSONObject;
 import org.smartregister.chw.core.utils.CoreJsonFormUtils;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.utils.MarpHts;
+import org.smartregister.chw.hf.utils.MarpHtsSuggestion;
 import org.smartregister.chw.kvp.domain.VisitDetail;
 import org.smartregister.chw.kvp.model.BaseKvpVisitAction;
 import org.smartregister.util.JsonFormUtils;
@@ -27,9 +28,11 @@ public class KvpHtsActionHelper implements BaseKvpVisitAction.KvpVisitActionHelp
     private final String lastHivStatus;
     protected String hiv_status;
     private String testedHiv;
+    private String testingMethod;
     private String jsonPayload;
     private Context context;
     private boolean editingSavedHts;
+    private boolean savingSuggestion;
 
     public KvpHtsActionHelper(String lastHivStatus) {
         this.lastHivStatus = lastHivStatus;
@@ -112,10 +115,19 @@ public class KvpHtsActionHelper implements BaseKvpVisitAction.KvpVisitActionHelp
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
             testedHiv = CoreJsonFormUtils.getValue(jsonObject, "tested_hiv");
-            hiv_status = CoreJsonFormUtils.getValue(jsonObject, "hiv_status");
+            testingMethod = CoreJsonFormUtils.getValue(jsonObject, "previous_hiv_testing_method");
+            savingSuggestion = MarpHtsSuggestion.isShown(jsonObject);
+            hiv_status = savingSuggestion ? MarpHtsSuggestion.verifiedResult(jsonObject)
+                    : CoreJsonFormUtils.getValue(jsonObject, "hiv_status");
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    protected boolean hasAssessmentInput() {
+        // These testing paths can inform assessment without a reportable result.
+        return StringUtils.isNotBlank(hiv_status) || "no".equals(testedHiv)
+                || ("yes".equals(testedHiv) && ("hivst".equals(testingMethod) || "not_tested".equals(testingMethod)));
     }
 
     @Override
@@ -151,6 +163,9 @@ public class KvpHtsActionHelper implements BaseKvpVisitAction.KvpVisitActionHelp
     public void onPayloadReceived(BaseKvpVisitAction baseKvpVisitAction) {
         try {
             JSONObject form = new JSONObject(baseKvpVisitAction.getJsonPayload());
+            if (savingSuggestion) {
+                MarpHtsSuggestion.removeFromPayload(form, hiv_status);
+            }
             JSONArray fields = form.getJSONObject("step1").getJSONArray("fields");
             JSONObject ctcServices = JsonFormUtils.getFieldJSONObject(fields, CTC_SERVICES);
             JSONObject ctcNumber = JsonFormUtils.getFieldJSONObject(fields, CTC_NUMBER);
