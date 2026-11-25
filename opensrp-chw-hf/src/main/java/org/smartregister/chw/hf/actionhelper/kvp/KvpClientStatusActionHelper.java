@@ -52,7 +52,6 @@ public class KvpClientStatusActionHelper implements BaseKvpVisitAction.KvpVisitA
     private final Set<String> eligibleCategories = new HashSet<>();
     private final Set<String> savedCategories = new HashSet<>();
     private boolean restoreMixedNone;
-    private boolean hasDrugUseCategory;
 
     public KvpClientStatusActionHelper(MemberObject memberObject) {
         this(memberObject, false);
@@ -175,7 +174,6 @@ public class KvpClientStatusActionHelper implements BaseKvpVisitAction.KvpVisitA
     @Override
     public void onPayloadReceived(String jsonPayload) {
         complete = false;
-        hasDrugUseCategory = false;
         restoreMixedNone = false;
         savedPregnancyStatus = "";
         if (StringUtils.isBlank(jsonPayload)) {
@@ -194,7 +192,6 @@ public class KvpClientStatusActionHelper implements BaseKvpVisitAction.KvpVisitA
             restoreMixedNone = mixedNone && !savedCategories.isEmpty();
             savedCategories.clear();
             boolean validSelection = !selected.isEmpty() && !mixedNone && eligibleCategories.containsAll(selected);
-            hasDrugUseCategory = validSelection && (selected.contains("pwud") || selected.contains("pwid"));
             complete = validSelection && !needsCategoryReview && StringUtils.isNotBlank(clientStatus)
                     && (!requiresEnrollmentDate(clientStatus)
                     || MarpEnrollmentDate.isValid(CoreJsonFormUtils.getValue(jsonObject, ENROLLMENT_DATE)))
@@ -205,10 +202,6 @@ public class KvpClientStatusActionHelper implements BaseKvpVisitAction.KvpVisitA
         } catch (JSONException e) {
             Timber.e(e);
         }
-    }
-
-    protected boolean hasDrugUseCategory() {
-        return hasDrugUseCategory;
     }
 
     private boolean requiresEnrollmentDate(String clientStatus) {

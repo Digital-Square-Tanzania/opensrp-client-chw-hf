@@ -17,7 +17,6 @@ import org.smartregister.chw.hf.actionhelper.kvp.KvpCervicalCancerScreeningActio
 import org.smartregister.chw.hf.actionhelper.kvp.KvpCondomProvisionActionHelper;
 import org.smartregister.chw.hf.actionhelper.kvp.KvpFamilyPlanningActionHelper;
 import org.smartregister.chw.hf.actionhelper.kvp.KvpHepatitisActionHelper;
-import org.smartregister.chw.hf.actionhelper.kvp.KvpMatActionHelper;
 import org.smartregister.chw.hf.actionhelper.kvp.KvpPrepPepActionHelper;
 import org.smartregister.chw.hf.actionhelper.kvp.KvpStiScreeningActionHelper;
 import org.smartregister.chw.hf.actionhelper.kvp.KvpTbScreeningActionHelper;
@@ -84,8 +83,6 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
                     evaluateVmmc(details);
                 }
                 updateCervicalScreening();
-                if (shouldShowMat())
-                    evaluateMat(details);
             } catch (Exception e) {
                 Timber.e(e);
             }
@@ -185,6 +182,7 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
         super.prepareEvent(event);
         MarpHts.retainRemovedAnswers(replacedBiomedicalEvent, event);
         retainHiddenFamilyPlanningAnswers(replacedBiomedicalEvent, event);
+        retainHistoricalMatAnswers(replacedBiomedicalEvent, event);
         // The shared history save replaces the event and rebuilds its visit details from the observations.
         if (replacedBiomedicalEvent != null && replacedBiomedicalEvent.getObs() != null
                 && !actionList.containsKey(context.getString(R.string.kvp_cervical_screening))) {
@@ -200,6 +198,21 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
         } else if (MarpEnrollmentDate.isTransferOrReturn(visitType)
                 && StringUtils.isBlank(HfKvpDao.getClientStatus(event.getBaseEntityId()))) {
             MarpEnrollmentDate.recordFirstVisitDate(event);
+        }
+    }
+
+    private static void retainHistoricalMatAnswers(Event original, Event replacement) {
+        if (original == null || original.getObs() == null || replacement == null) {
+            return;
+        }
+        // History resave replaces the event and its visit details, including fields with no editable form.
+        for (Obs obs : original.getObs()) {
+            String field = StringUtils.defaultIfBlank(obs.getFormSubmissionField(), obs.getFieldCode());
+            if ("mat_provided".equals(field) || "ost_provided".equals(field)
+                    || "needle_syringe_distributed".equals(field)
+                    || "number_needle_syringe_distributed".equals(field)) {
+                replacement.addObs(obs);
+            }
         }
     }
 
@@ -398,26 +411,7 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
                     .build();
         }
 
-        // Restore the action before MAT and keep its in-progress answer across status changes.
-        String matTitle = context.getString(R.string.kvp_mat);
-        BaseKvpVisitAction matAction = actionList.remove(matTitle);
         actionList.put(title, cervicalScreeningAction);
-        if (matAction != null) {
-            actionList.put(matTitle, matAction);
-        }
-    }
-
-    private void evaluateMat(Map<String, List<VisitDetail>> details) throws BaseKvpVisitAction.ValidationException {
-
-        KvpMatActionHelper actionHelper = new KvpMatActionHelper();
-        BaseKvpVisitAction action = getBuilder(context.getString(R.string.kvp_mat))
-                .withOptional(true)
-                .withDetails(details)
-                .withHelper(actionHelper)
-                .withFormName(Constants.KVP_BIO_MEDICAL_SERVICE_FORMS.KVP_MAT)
-                .build();
-
-        actionList.put(context.getString(R.string.kvp_mat), action);
     }
 
     @Override
@@ -428,11 +422,6 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
     @Override
     protected String getTableName() {
         return Constants.TABLES.KVP_FOLLOW_UP;
-    }
-
-    private boolean shouldShowMat() {
-        return KvpDao.getDominantKVPGroup(memberObject.getBaseEntityId()).equalsIgnoreCase("pwud") ||
-                KvpDao.getDominantKVPGroup(memberObject.getBaseEntityId()).equalsIgnoreCase("pwid");
     }
 
     private class KvpHtsActionHelper extends org.smartregister.chw.hf.actionhelper.kvp.KvpHtsActionHelper {
@@ -477,16 +466,6 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
                     Timber.e(e);
                 }
             }
-            if (hasDrugUseCategory() && !shouldShowMat()) {
-                try {
-                    evaluateMat(details);
-                } catch (Exception e) {
-                    Timber.e(e);
-                }
-            } else if (!shouldShowMat()) {
-                actionList.remove(context.getString(R.string.kvp_mat));
-            }
-
             new AppExecutors().mainThread().execute(() -> callBack.preloadActions(actionList));
 
             return super.postProcess(payload);

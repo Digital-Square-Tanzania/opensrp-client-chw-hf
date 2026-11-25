@@ -120,9 +120,6 @@ public class KvpMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
                     String[] htsParams = {"previous_hiv_testing_method", "other_previous_hiv_testing_method", "testing_site", "testing_approach", "tested_hiv", "hiv_status", "ctc_services", "ctc_number", "kits_distributed"};
                     extractVisitDetails(visits, htsParams, visitDetails, x, context);
 
-                    String[] matServicesParams = {"mat_provided"};
-                    extractVisitDetails(visits, matServicesParams, visitDetails, x, context);
-
                     String[] otherServicesParams = {"other_services_referrals_provided", "other_other_services_referrals_provided"};
                     extractVisitDetails(visits, otherServicesParams, visitDetails, x, context);
 

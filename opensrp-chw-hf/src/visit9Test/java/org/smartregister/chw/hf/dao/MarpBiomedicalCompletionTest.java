@@ -373,6 +373,78 @@ public class MarpBiomedicalCompletionTest {
                 CERVICAL).getString("value"));
     }
 
+    @Test
+    public void matIsAbsentForDominantAndSecondaryDrugUseGroups() throws Exception {
+        MemberData.gender = Constants.MALE;
+        for (String group : List.of("pwud", "pwid")) {
+            MemberData.group = group;
+            Checklist dominantGroup = new Checklist(null);
+            assertFalse(dominantGroup.showsMat());
+            dominantGroup.saveClientStatus("", "none");
+            assertFalse(dominantGroup.showsMat());
+
+            MemberData.group = "fisherfolk";
+            Checklist secondaryGroup = new Checklist(null);
+            secondaryGroup.saveClientStatus("", group);
+            assertFalse(secondaryGroup.showsMat());
+        }
+    }
+
+    @Test
+    public void matIsHiddenFromRestoredActionsAndSurvivesRepeatedHistoryResaves() throws Exception {
+        MemberData.gender = Constants.MALE;
+        MemberData.group = "pwud";
+        Event original = event("original", EARLIER, BIOMEDICAL);
+        add(original, "mat_provided", "yes");
+        add(original, "ost_provided", "no");
+        add(original, "needle_syringe_distributed", "yes");
+        add(original, "number_needle_syringe_distributed", "12");
+        List<Obs> expected = new ArrayList<>(original.getObs());
+        add(original, "client_status", "new_client");
+        add(original, OTHER_CATEGORY, "none");
+
+        for (String submission : List.of("first-edit", "second-edit")) {
+            Checklist reopened = new Checklist(NCUtil.eventsObsToDetails(
+                    original.getObs(), original.getFormSubmissionId(), PATIENT));
+            assertFalse(reopened.showsMat());
+            reopened.saveClientStatus("", "none");
+            assertFalse(reopened.showsMat());
+
+            Event replacement = event(submission, VISIT_DATE, BIOMEDICAL);
+            add(replacement, "client_status", "new_client");
+            add(replacement, OTHER_CATEGORY, "none");
+            ReflectionHelpers.setField(reopened, "replacedBiomedicalEvent", original);
+            reopened.prepareEvent(replacement);
+            List<Obs> retained = new ArrayList<>(replacement.getObs());
+            retained.removeIf(obs -> expected.stream().noneMatch(
+                    saved -> saved.getFormSubmissionField().equals(obs.getFormSubmissionField())));
+            assertEquals(GSON.toJson(expected), GSON.toJson(retained));
+            original = replacement;
+        }
+    }
+
+    @Test
+    public void matIsNotRequiredForBiomedicalCompletion() {
+        MemberData.gender = Constants.MALE;
+        for (String group : List.of("pwud", "pwid")) {
+            MemberData.group = group;
+            assertEquals(KvpVisitsUtil.Complete, KvpVisitsUtil.getBioMedicalStatus(
+                    biomedical("complete", VISIT_DATE, "", true, true, null)));
+            assertEquals(KvpVisitsUtil.Ongoing, KvpVisitsUtil.getBioMedicalStatus(
+                    biomedical("missing-tb", VISIT_DATE, "", true, false, null)));
+        }
+    }
+
+    @Test
+    public void matRemainsAnOtherServicesReferralOption() throws Exception {
+        JSONObject form = FormUtils.getFormUtils().getFormJson(
+                Constants.KVP_STRUCTURAL_AND_OTHER_SERVICES_FORMS.KVP_OTHER_SERVICES_REFERRALS);
+        JSONObject option = JsonFormUtils.getFieldJSONObject(
+                field(form, "other_services_referrals_provided").getJSONArray("options"), "mat");
+        assertEquals("MAT", option.getString("text"));
+        assertEquals("mat", option.getString("openmrs_entity_id"));
+    }
+
     private static JSONObject field(JSONObject form, String key) throws Exception {
         return JsonFormUtils.getFieldJSONObject(form.getJSONObject("step1").getJSONArray("fields"), key);
     }
@@ -411,12 +483,23 @@ public class MarpBiomedicalCompletionTest {
             return actionList.get(context.getString(R.string.kvp_cervical_screening));
         }
 
+        boolean showsMat() {
+            return actionList.values().stream().anyMatch(action ->
+                    Constants.KVP_BIO_MEDICAL_SERVICE_FORMS.KVP_MAT.equals(action.getFormName()));
+        }
+
         void saveClientStatus(String status) throws Exception {
+            saveClientStatus(status, "none");
+        }
+
+        void saveClientStatus(String status, String category) throws Exception {
             BaseKvpVisitAction action = actionList.get(context.getString(R.string.kvp_client_status));
             JSONObject form = new JSONObject(action.getJsonPayload());
             field(form, "client_status").put("value", "new_client");
-            field(form, OTHER_CATEGORY).put("value", "none");
-            field(form, MarpPregnancyStatus.FIELD).put("value", status);
+            field(form, OTHER_CATEGORY).put("value", category);
+            if (!status.isEmpty()) {
+                field(form, MarpPregnancyStatus.FIELD).put("value", status);
+            }
             clearInvocations(callback);
             action.setJsonPayload(form.toString());
             shadowOf(Looper.getMainLooper()).idle();
