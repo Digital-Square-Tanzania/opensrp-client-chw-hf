@@ -551,6 +551,18 @@ public class HfChwRepository extends CoreChwRepository {
         }
     }
 
+    private static void upgradeToVersion32(SQLiteDatabase db) {
+        // Older registration forms did not save an enrolment observation. Fill only missing dates.
+        db.execSQL("UPDATE ec_kvp_register SET enrollment_date = ("
+                + "SELECT strftime('%d-%m-%Y', substr(min(eventDate), 1, 10)) FROM event "
+                + "WHERE event.baseEntityId = ec_kvp_register.base_entity_id AND eventType = 'KVP Registration') "
+                + "WHERE NULLIF(TRIM(enrollment_date), '') IS NULL");
+        // Use the same enrolment month as the bundled new-enrolment indicators.
+        db.execSQL("UPDATE indicator_queries SET indicator_query = replace(indicator_query, "
+                + "'substr(ekbms.kvp_visit_date,', 'substr(COALESCE(NULLIF(ekr.enrollment_date, ''''), ekbms.kvp_visit_date),') "
+                + "WHERE indicator_code LIKE 'kvp-1-%'");
+    }
+
 
     private static void upgradeToVersion10ForBaSouth(SQLiteDatabase db) {
         try {
@@ -711,6 +723,9 @@ public class HfChwRepository extends CoreChwRepository {
                     break;
                 case 31:
                     upgradeToVersion31(db);
+                    break;
+                case 32:
+                    upgradeToVersion32(db);
                     break;
                 default:
                     break;

@@ -5,6 +5,8 @@ import static org.smartregister.client.utils.constants.JsonFormConstants.FIELDS;
 import static org.smartregister.client.utils.constants.JsonFormConstants.KEY;
 import static org.smartregister.client.utils.constants.JsonFormConstants.STEP1;
 import static org.smartregister.client.utils.constants.JsonFormConstants.VALUE;
+import static org.smartregister.chw.hf.utils.MarpEnrollmentDate.CLIENT_STATUS;
+import static org.smartregister.chw.hf.utils.MarpEnrollmentDate.ENROLLMENT_DATE;
 
 import android.content.Context;
 
@@ -14,6 +16,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.core.utils.CoreJsonFormUtils;
 import org.smartregister.chw.hf.dao.HfKvpDao;
+import org.smartregister.chw.hf.utils.MarpEnrollmentDate;
 import org.smartregister.chw.kvp.domain.MemberObject;
 import org.smartregister.chw.kvp.domain.VisitDetail;
 import org.smartregister.chw.kvp.model.BaseKvpVisitAction;
@@ -28,9 +31,10 @@ public class KvpClientStatusActionHelper implements BaseKvpVisitAction.KvpVisitA
     public static final String OTHER_CATEGORY = "other_kvp_category";
 
     protected MemberObject memberObject;
-    private String client_status;
     private String jsonPayload;
     private boolean editingVisit;
+    private boolean firstClientStatus;
+    private boolean complete;
 
     public KvpClientStatusActionHelper(MemberObject memberObject) {
         this.memberObject = memberObject;
@@ -62,7 +66,8 @@ public class KvpClientStatusActionHelper implements BaseKvpVisitAction.KvpVisitA
                 }
             }
 
-            global.put("first_visit_done", hasPreviousClientStatus() ? "yes" : "no");
+            firstClientStatus = !hasPreviousClientStatus();
+            global.put("first_visit_done", firstClientStatus ? "no" : "yes");
 
             return jsonObject.toString();
         } catch (JSONException e) {
@@ -82,12 +87,23 @@ public class KvpClientStatusActionHelper implements BaseKvpVisitAction.KvpVisitA
 
     @Override
     public void onPayloadReceived(String jsonPayload) {
+        complete = false;
+        if (StringUtils.isBlank(jsonPayload)) {
+            return;
+        }
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
-            client_status = CoreJsonFormUtils.getValue(jsonObject, "client_status");
+            String clientStatus = CoreJsonFormUtils.getValue(jsonObject, CLIENT_STATUS);
+            complete = StringUtils.isNotBlank(clientStatus)
+                    && (!requiresEnrollmentDate(clientStatus)
+                    || MarpEnrollmentDate.isValid(CoreJsonFormUtils.getValue(jsonObject, ENROLLMENT_DATE)));
         } catch (JSONException e) {
-            e.printStackTrace();
+            Timber.e(e);
         }
+    }
+
+    private boolean requiresEnrollmentDate(String clientStatus) {
+        return firstClientStatus && MarpEnrollmentDate.isTransferOrReturn(clientStatus);
     }
 
     @Override
@@ -101,7 +117,24 @@ public class KvpClientStatusActionHelper implements BaseKvpVisitAction.KvpVisitA
     }
 
     @Override
-    public String postProcess(String s) {
+    public String postProcess(String payload) {
+        if (StringUtils.isBlank(payload)) {
+            return null;
+        }
+        try {
+            JSONObject form = new JSONObject(payload);
+            if (!requiresEnrollmentDate(CoreJsonFormUtils.getValue(form, CLIENT_STATUS))) {
+                // Hidden widgets can retain answers after a user changes Visit Type.
+                JSONArray fields = form.getJSONObject(STEP1).getJSONArray(FIELDS);
+                JSONObject date = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, ENROLLMENT_DATE);
+                if (date != null && date.has(VALUE)) {
+                    date.remove(VALUE);
+                    return form.toString();
+                }
+            }
+        } catch (JSONException e) {
+            Timber.e(e);
+        }
         return null;
     }
 
@@ -112,11 +145,7 @@ public class KvpClientStatusActionHelper implements BaseKvpVisitAction.KvpVisitA
 
     @Override
     public BaseKvpVisitAction.Status evaluateStatusOnPayload() {
-        if (StringUtils.isBlank(client_status))
-            return BaseKvpVisitAction.Status.PENDING;
-        else {
-            return BaseKvpVisitAction.Status.COMPLETED;
-        }
+        return complete ? BaseKvpVisitAction.Status.COMPLETED : BaseKvpVisitAction.Status.PENDING;
     }
 
     @Override

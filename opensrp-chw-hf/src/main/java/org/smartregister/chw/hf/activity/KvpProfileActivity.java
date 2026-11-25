@@ -12,6 +12,7 @@ import android.content.IntentFilter;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
@@ -53,6 +54,7 @@ import timber.log.Timber;
 public class KvpProfileActivity extends CoreKvpProfileActivity {
 
     private static final String EXTRA_OPENED_FROM_ENROLLMENT = "opened_from_marp_enrollment";
+    private TextView enrollmentDateView;
     private final BroadcastReceiver deviceDateReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -399,6 +401,7 @@ public class KvpProfileActivity extends CoreKvpProfileActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        refreshMarpEnrollmentDate();
         fetchProfileData();
         profilePresenter.refreshProfileBottom();
         if (KvpDao.hasTestResults(memberObject.getBaseEntityId())) {
@@ -408,6 +411,17 @@ public class KvpProfileActivity extends CoreKvpProfileActivity {
             rlTestResults.setVisibility(View.GONE);
             viewSeparator1.setVisibility(View.GONE);
         }
+    }
+
+    private void refreshMarpEnrollmentDate() {
+        if (enrollmentDateView == null) {
+            ViewGroup header = (ViewGroup) textViewOtherKvpGroups.getParent();
+            enrollmentDateView = (TextView) getLayoutInflater().inflate(R.layout.marp_profile_enrolment_date, header, false);
+            header.addView(enrollmentDateView);
+        }
+        String date = HfKvpDao.getClientEnrollmentDate(memberObject.getBaseEntityId());
+        enrollmentDateView.setVisibility(StringUtils.isBlank(date) ? View.GONE : View.VISIBLE);
+        enrollmentDateView.setText(getString(R.string.marp_profile_enrolment_date, date));
     }
 
     @Override

@@ -2,6 +2,8 @@ package org.smartregister.chw.hf.interactor;
 
 import static org.smartregister.AllConstants.OPTIONS;
 import static org.smartregister.chw.hf.actionhelper.kvp.KvpClientStatusActionHelper.OTHER_CATEGORY;
+import static org.smartregister.chw.hf.utils.MarpEnrollmentDate.CLIENT_STATUS;
+import static org.smartregister.chw.hf.utils.MarpEnrollmentDate.ENROLLMENT_DATE;
 import static org.smartregister.util.JsonFormUtils.VALUE;
 
 import org.apache.commons.lang3.StringUtils;
@@ -22,21 +24,21 @@ import org.smartregister.chw.hf.actionhelper.kvp.KvpStiScreeningActionHelper;
 import org.smartregister.chw.hf.actionhelper.kvp.KvpTbScreeningActionHelper;
 import org.smartregister.chw.hf.actionhelper.kvp.KvpVmmcActionHelper;
 import org.smartregister.chw.hf.dao.HfKvpDao;
+import org.smartregister.chw.hf.utils.MarpEnrollmentDate;
 import org.smartregister.chw.hf.utils.MarpGroupLabels;
 import org.smartregister.chw.kvp.contract.BaseKvpVisitContract;
 import org.smartregister.chw.kvp.dao.KvpDao;
 import org.smartregister.chw.kvp.domain.MemberObject;
+import org.smartregister.chw.kvp.domain.Visit;
 import org.smartregister.chw.kvp.domain.VisitDetail;
 import org.smartregister.chw.kvp.interactor.BaseKvpVisitInteractor;
 import org.smartregister.chw.kvp.model.BaseKvpVisitAction;
 import org.smartregister.chw.kvp.util.Constants;
 import org.smartregister.chw.kvp.util.KvpJsonFormUtils;
 import org.smartregister.chw.referral.util.JsonFormConstants;
+import org.smartregister.clientandeventmodel.Event;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import timber.log.Timber;
@@ -45,6 +47,7 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
 
     protected BaseKvpVisitContract.InteractorCallBack callBack;
     private String visitType;
+    private Event replacedBiomedicalEvent;
 
     public KvpBioMedicalServiceInteractor(String visitType) {
         this.visitType = visitType;
@@ -93,30 +96,13 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
         JSONObject clientStatusForm = FormUtils.getFormUtils().getFormJson(Constants.KVP_BIO_MEDICAL_SERVICE_FORMS.KVP_CLIENT_STATUS);
         JSONArray fields = clientStatusForm.getJSONObject(org.smartregister.chw.hf.utils.Constants.JsonFormConstants.STEP1).getJSONArray(JsonFormConstants.FIELDS);
 
-        //update client status
-        JSONObject client_status_object = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "client_status");
+        clientStatusForm.getJSONObject(org.smartregister.chw.hf.utils.Constants.JsonFormConstants.STEP1)
+                .put("title", context.getString(R.string.kvp_client_status));
+        JSONObject clientStatus = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, CLIENT_STATUS);
+        JSONObject enrollmentDate = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, ENROLLMENT_DATE);
+        localizeClientStatus(clientStatus, enrollmentDate);
         if (StringUtils.isNotBlank(HfKvpDao.getClientStatus(memberObject.getBaseEntityId()))) {
-            KvpJsonFormUtils.removeOptionFromCheckboxListWithKey(client_status_object, "new_client");
-        } else {
-            try {
-                String enrollmentDateString = HfKvpDao.getClientEnrollmentDate(memberObject.getBaseEntityId());
-                if (StringUtils.isNotBlank(enrollmentDateString)) {
-                    Date enrollmentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).parse(enrollmentDateString);
-
-                    Date currentDate = new Date();
-                    long cutoffTime = currentDate.getTime() - (28L * 24L * 60L * 60L * 1000L);
-                    Date cutoffDate = new Date(cutoffTime);
-
-
-                    if (enrollmentDate != null && !enrollmentDate.before(cutoffDate)) {
-                        KvpJsonFormUtils.removeOptionFromCheckboxListWithKey(client_status_object, "return");
-                    }
-                }
-            } catch (Exception e) {
-                Timber.e(e);
-                KvpJsonFormUtils.removeOptionFromCheckboxListWithKey(client_status_object, "return");
-            }
-
+            KvpJsonFormUtils.removeOptionFromCheckboxListWithKey(clientStatus, "new_client");
         }
 
         //update other_kvp_category
@@ -154,6 +140,47 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
                 .build();
 
         actionList.put(context.getString(R.string.kvp_client_status), action);
+    }
+
+    private void localizeClientStatus(JSONObject clientStatus, JSONObject enrollmentDate) throws JSONException {
+        clientStatus.put("label", context.getString(R.string.marp_visit_type));
+        clientStatus.getJSONObject("v_required").put("err", context.getString(R.string.marp_visit_type_required));
+        JSONArray options = clientStatus.getJSONArray(OPTIONS);
+        org.smartregister.util.JsonFormUtils.getFieldJSONObject(options, "new_client")
+                .put("text", context.getString(R.string.marp_visit_type_new));
+        org.smartregister.util.JsonFormUtils.getFieldJSONObject(options, "transfer_in")
+                .put("text", context.getString(R.string.marp_visit_type_transfer_in));
+        org.smartregister.util.JsonFormUtils.getFieldJSONObject(options, "return")
+                .put("text", context.getString(R.string.marp_visit_type_return));
+        enrollmentDate.put("hint", context.getString(R.string.marp_visit_programme_enrolment_date));
+        enrollmentDate.getJSONObject("v_required").put("err", context.getString(R.string.marp_visit_enrolment_date_required));
+    }
+
+    @Override
+    protected Visit saveVisit(boolean editMode, String memberId, String encounterType, Map<String, String> payloads,
+                              String parentEventType) throws Exception {
+        if (editMode) {
+            // The shared save path replaces the latest Biomedical visit after preparing its new event.
+            Visit visit = visitRepository().getLatestVisit(memberId, getEncounterType());
+            replacedBiomedicalEvent = HfKvpDao.readSubmittedBiomedicalEvent(visit);
+        }
+        try {
+            return super.saveVisit(editMode, memberId, encounterType, payloads, parentEventType);
+        } finally {
+            replacedBiomedicalEvent = null;
+        }
+    }
+
+    @Override
+    protected void prepareEvent(Event event) {
+        super.prepareEvent(event);
+        String visitType = MarpEnrollmentDate.observation(event, CLIENT_STATUS);
+        if (StringUtils.isNotBlank(MarpEnrollmentDate.observation(replacedBiomedicalEvent, CLIENT_STATUS))) {
+            MarpEnrollmentDate.retainOnResave(replacedBiomedicalEvent, event);
+        } else if (MarpEnrollmentDate.isTransferOrReturn(visitType)
+                && StringUtils.isBlank(HfKvpDao.getClientStatus(event.getBaseEntityId()))) {
+            MarpEnrollmentDate.recordFirstVisitDate(event);
+        }
     }
 
     private void evaluateHts(Map<String, List<VisitDetail>> details) throws BaseKvpVisitAction.ValidationException {
