@@ -124,7 +124,7 @@ public class HfKvpDao extends KvpDao {
         return latestPregnancyStatus(visits, rows);
     }
 
-    public static boolean isFamilyPlanningExempt(Visit visit, String gender) {
+    public static boolean isPregnantForBiomedicalVisit(Visit visit, String gender) {
         String baseEntityId = visit.getBaseEntityId();
         if (!Constants.FEMALE.equalsIgnoreCase(gender)
                 || !MarpPregnancyStatus.appliesTo(gender, KvpDao.getDominantKVPGroup(baseEntityId))) {

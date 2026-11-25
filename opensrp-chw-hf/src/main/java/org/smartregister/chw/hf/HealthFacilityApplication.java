@@ -312,7 +312,7 @@ public class HealthFacilityApplication extends CoreChwApplication implements Cor
 
         if (flavor.hasKvpPrEP()) {
             KvpLibrary.init(context, getRepository(), BuildConfig.VERSION_CODE, BuildConfig.DATABASE_VERSION,
-                    HfKvpDao::isFamilyPlanningExempt);
+                    HfKvpDao::isPregnantForBiomedicalVisit, HfKvpDao::isPregnantForBiomedicalVisit);
         }
 
         try {

@@ -52,6 +52,7 @@ import timber.log.Timber;
 public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
 
     private static final String NEW_VISIT_TYPE = "new_client";
+    private static final String CERVICAL_SCREENING_FIELD = "cervical_cancer_screening";
 
     protected BaseKvpVisitContract.InteractorCallBack callBack;
     private final boolean editingVisit;
@@ -59,6 +60,7 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
     private Event replacedBiomedicalEvent;
     private KvpClientStatusActionHelper clientStatusActionHelper;
     private BaseKvpVisitAction familyPlanningAction;
+    private BaseKvpVisitAction cervicalScreeningAction;
     private String wasCondomGiven;
 
     public KvpBioMedicalServiceInteractor(boolean editingVisit) {
@@ -78,11 +80,10 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
                 evaluateTbScreening(details);
                 evaluateStiScreening(details);
                 evaluateHepatitis(details);
-                if (memberObject.getGender().equalsIgnoreCase(Constants.MALE)) {
+                if (Constants.MALE.equalsIgnoreCase(memberObject.getGender())) {
                     evaluateVmmc(details);
-                } else {
-                    evaluateCervicalScreening(details);
                 }
+                updateCervicalScreening();
                 if (shouldShowMat())
                     evaluateMat(details);
             } catch (Exception e) {
@@ -184,6 +185,15 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
         super.prepareEvent(event);
         MarpHts.retainRemovedAnswers(replacedBiomedicalEvent, event);
         retainHiddenFamilyPlanningAnswers(replacedBiomedicalEvent, event);
+        // The shared history save replaces the event and rebuilds its visit details from the observations.
+        if (replacedBiomedicalEvent != null && replacedBiomedicalEvent.getObs() != null
+                && !actionList.containsKey(context.getString(R.string.kvp_cervical_screening))) {
+            for (Obs obs : replacedBiomedicalEvent.getObs()) {
+                if (CERVICAL_SCREENING_FIELD.equals(obs.getFormSubmissionField())) {
+                    event.addObs(obs);
+                }
+            }
+        }
         String visitType = MarpEnrollmentDate.observation(event, CLIENT_STATUS);
         if (StringUtils.isNotBlank(MarpEnrollmentDate.observation(replacedBiomedicalEvent, CLIENT_STATUS))) {
             MarpEnrollmentDate.retainOnResave(replacedBiomedicalEvent, event);
@@ -296,7 +306,7 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
 
     private void updateFamilyPlanning() throws BaseKvpVisitAction.ValidationException {
         String title = context.getString(R.string.kvp_family_planning);
-        if (clientStatusActionHelper.isPregnantForFamilyPlanning()) {
+        if (clientStatusActionHelper.isPregnantForBiomedicalServices()) {
             actionList.remove(title);
             return;
         }
@@ -369,17 +379,32 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
             actionList.put(context.getString(R.string.kvp_vmmc), action);
     }
 
-    private void evaluateCervicalScreening(Map<String, List<VisitDetail>> details) throws BaseKvpVisitAction.ValidationException {
+    private void updateCervicalScreening() throws BaseKvpVisitAction.ValidationException {
+        String title = context.getString(R.string.kvp_cervical_screening);
+        if (!Constants.FEMALE.equalsIgnoreCase(memberObject.getGender())
+                || clientStatusActionHelper.isPregnantForBiomedicalServices()) {
+            actionList.remove(title);
+            return;
+        }
+        if (actionList.containsKey(title)) {
+            return;
+        }
+        if (cervicalScreeningAction == null) {
+            cervicalScreeningAction = getBuilder(title)
+                    .withOptional(true)
+                    .withDetails(details)
+                    .withHelper(new KvpCervicalCancerScreeningActionHelper())
+                    .withFormName(Constants.KVP_BIO_MEDICAL_SERVICE_FORMS.KVP_CERVICAL_CANCER_SCREENING)
+                    .build();
+        }
 
-        KvpCervicalCancerScreeningActionHelper actionHelper = new KvpCervicalCancerScreeningActionHelper();
-        BaseKvpVisitAction action = getBuilder(context.getString(R.string.kvp_cervical_screening))
-                .withOptional(true)
-                .withDetails(details)
-                .withHelper(actionHelper)
-                .withFormName(Constants.KVP_BIO_MEDICAL_SERVICE_FORMS.KVP_CERVICAL_CANCER_SCREENING)
-                .build();
-
-        actionList.put(context.getString(R.string.kvp_cervical_screening), action);
+        // Restore the action before MAT and keep its in-progress answer across status changes.
+        String matTitle = context.getString(R.string.kvp_mat);
+        BaseKvpVisitAction matAction = actionList.remove(matTitle);
+        actionList.put(title, cervicalScreeningAction);
+        if (matAction != null) {
+            actionList.put(matTitle, matAction);
+        }
     }
 
     private void evaluateMat(Map<String, List<VisitDetail>> details) throws BaseKvpVisitAction.ValidationException {
@@ -447,6 +472,7 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
             if (actionList.containsKey(context.getString(R.string.kvp_client_status))) {
                 try {
                     updateFamilyPlanning();
+                    updateCervicalScreening();
                 } catch (BaseKvpVisitAction.ValidationException e) {
                     Timber.e(e);
                 }

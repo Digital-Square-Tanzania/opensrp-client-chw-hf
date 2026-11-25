@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
+- Show Kituoni MARP Cervical Cancer Screening in Biomedical Services for nonpregnant female clients, including breastfeeding clients. Refresh the checklist after Client Status saves and preserve previously recorded screening answers ([#247](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/247), UCSW-47). No version or dependency changes.
 - Hide Family Planning in Kituoni MARP Biomedical Services while the client is pregnant, allow submission without it, and restore it in the same visit after saving a breastfeeding or non-pregnant status ([#246](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/246), UCSW-48).
 - Classify and process otherwise complete pregnant Biomedical visits without a Family Planning answer. Use Core `2.2.0-KITUONI-UCSW-48-VISIT-9-SNAPSHOT`, which exports the KVP completion repair. The facility app version remains 1.4.0 (67) (UCSW-48).
 
@@ -41,6 +42,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Use MHR and WHR in Kituoni screening, enrollment, Client Status, and MARP profiles, with bilingual enrollment and Client Status options and the existing group codes ([#223](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/223)).
 
 ### Fixed
+
+- Classify and process otherwise complete pregnant Biomedical visits with Cervical Cancer Screening hidden. Use Core `2.2.1-KITUONI-UCSW-47-VISIT-10-SNAPSHOT`, which exports the KVP completion change. The facility app stays at 1.4.0 (67) ([#247](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/247), UCSW-47).
 
 - Preserve a first Kituoni MARP visit’s New type across repeated Biomedical Visit History edits ([#242](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/242), UCSW-41). No version or dependency changes.
 - Show the localized Discordant Couple checklist error when either Next control is tapped and allow the user to continue after selecting parameters ([#228](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/228)).
