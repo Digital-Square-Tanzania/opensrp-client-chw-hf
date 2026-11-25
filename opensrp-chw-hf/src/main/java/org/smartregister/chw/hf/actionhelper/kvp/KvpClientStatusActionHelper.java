@@ -47,6 +47,7 @@ public class KvpClientStatusActionHelper implements BaseKvpVisitAction.KvpVisitA
     private final boolean requiresPregnancyStatus;
     private Context context;
     private String savedPregnancyStatus = "";
+    private String firstVisitScreeningStatus = "";
     private boolean complete;
     private final Set<String> eligibleCategories = new HashSet<>();
     private final Set<String> savedCategories = new HashSet<>();
@@ -68,6 +69,7 @@ public class KvpClientStatusActionHelper implements BaseKvpVisitAction.KvpVisitA
         this.context = context;
         editingVisit = map != null;
         savedPregnancyStatus = "";
+        firstVisitScreeningStatus = "";
         eligibleCategories.clear();
         savedCategories.clear();
         if (map != null && map.get(OTHER_CATEGORY) != null) {
@@ -97,10 +99,10 @@ public class KvpClientStatusActionHelper implements BaseKvpVisitAction.KvpVisitA
 
             firstClientStatus = !hasPreviousClientStatus();
             global.put("first_visit_done", firstClientStatus ? "no" : "yes");
-            if (pregnancyStatus != null && firstClientStatus && !editingVisit && !hasEarlierMarpVisit()) {
-                String screeningStatus = getScreeningPregnancyStatus();
-                if (MarpPregnancyStatus.isAnswer(screeningStatus)) {
-                    pregnancyStatus.put(VALUE, screeningStatus);
+            if (pregnancyStatus != null && firstClientStatus && !hasEarlierMarpVisit()) {
+                firstVisitScreeningStatus = getScreeningPregnancyStatus();
+                if (!editingVisit && MarpPregnancyStatus.isAnswer(firstVisitScreeningStatus)) {
+                    pregnancyStatus.put(VALUE, firstVisitScreeningStatus);
                 }
             }
 
@@ -158,6 +160,12 @@ public class KvpClientStatusActionHelper implements BaseKvpVisitAction.KvpVisitA
             return "";
         }
         return MarpPregnancyStatus.isAnswer(savedPregnancyStatus) ? savedPregnancyStatus : getLatestPregnancyStatus();
+    }
+
+    public boolean isPregnantForFamilyPlanning() {
+        String status = getPregnancyBreastfeedingStatus();
+        return MarpPregnancyStatus.PREGNANT.equals(
+                MarpPregnancyStatus.isAnswer(status) ? status : firstVisitScreeningStatus);
     }
 
     protected String getLatestPregnancyStatus() {

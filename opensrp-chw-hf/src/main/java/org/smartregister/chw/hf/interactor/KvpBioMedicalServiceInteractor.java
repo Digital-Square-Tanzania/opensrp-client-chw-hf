@@ -41,6 +41,7 @@ import org.smartregister.chw.kvp.util.Constants;
 import org.smartregister.chw.kvp.util.KvpJsonFormUtils;
 import org.smartregister.chw.referral.util.JsonFormConstants;
 import org.smartregister.clientandeventmodel.Event;
+import org.smartregister.clientandeventmodel.Obs;
 
 import java.util.Calendar;
 import java.util.List;
@@ -57,6 +58,8 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
     private boolean offerHtsSuggestion;
     private Event replacedBiomedicalEvent;
     private KvpClientStatusActionHelper clientStatusActionHelper;
+    private BaseKvpVisitAction familyPlanningAction;
+    private String wasCondomGiven;
 
     public KvpBioMedicalServiceInteractor(boolean editingVisit) {
         super(Constants.EVENT_TYPE.KVP_BIO_MEDICAL_SERVICE_VISIT);
@@ -71,7 +74,7 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
                 evaluateClientStatus(details);
                 evaluateHts(details);
                 evaluateCondomProvision(details);
-                evaluateFamilyPlanning(details, null);
+                updateFamilyPlanning();
                 evaluateTbScreening(details);
                 evaluateStiScreening(details);
                 evaluateHepatitis(details);
@@ -180,12 +183,28 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
     protected void prepareEvent(Event event) {
         super.prepareEvent(event);
         MarpHts.retainRemovedAnswers(replacedBiomedicalEvent, event);
+        retainHiddenFamilyPlanningAnswers(replacedBiomedicalEvent, event);
         String visitType = MarpEnrollmentDate.observation(event, CLIENT_STATUS);
         if (StringUtils.isNotBlank(MarpEnrollmentDate.observation(replacedBiomedicalEvent, CLIENT_STATUS))) {
             MarpEnrollmentDate.retainOnResave(replacedBiomedicalEvent, event);
         } else if (MarpEnrollmentDate.isTransferOrReturn(visitType)
                 && StringUtils.isBlank(HfKvpDao.getClientStatus(event.getBaseEntityId()))) {
             MarpEnrollmentDate.recordFirstVisitDate(event);
+        }
+    }
+
+    static void retainHiddenFamilyPlanningAnswers(Event original, Event replacement) {
+        if (original == null || original.getObs() == null
+                || !MarpPregnancyStatus.PREGNANT.equals(
+                        MarpEnrollmentDate.observation(replacement, MarpPregnancyStatus.FIELD))) {
+            return;
+        }
+        // A history edit replaces the event. Preserve Family Planning answers hidden from this edit.
+        for (Obs obs : original.getObs()) {
+            String field = obs.getFormSubmissionField();
+            if ("family_planning_service".equals(field) || "condom_provided".equals(field)) {
+                replacement.addObs(obs);
+            }
         }
     }
 
@@ -250,10 +269,14 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
 
         KvpCondomProvisionActionHelper actionHelper = new KvpCondomProvisionActionHelper() {
             @Override
-            public void processCondomsResults(String wasCondomGiven) {
-                actionList.remove(context.getString(R.string.kvp_family_planning));
+            public void processCondomsResults(String answer) {
+                wasCondomGiven = answer;
+                if (familyPlanningAction == null) {
+                    return;
+                }
+                familyPlanningAction = null;
                 try {
-                    evaluateFamilyPlanning(details, wasCondomGiven);
+                    updateFamilyPlanning();
                 } catch (BaseKvpVisitAction.ValidationException e) {
                     Timber.e(e);
                 }
@@ -271,22 +294,25 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
         actionList.put(context.getString(R.string.kvp_condom_provision), action);
     }
 
-    private void evaluateFamilyPlanning(Map<String, List<VisitDetail>> details, String wasCondomGiven) throws BaseKvpVisitAction.ValidationException {
-
-        String formName;
-        if (memberObject.getGender().equalsIgnoreCase("male"))
-            formName = Constants.KVP_BIO_MEDICAL_SERVICE_FORMS.KVP_MALE_FAMILY_PLANNING_SERVICES;
-        else
-            formName = Constants.KVP_BIO_MEDICAL_SERVICE_FORMS.KVP_FEMALE_FAMILY_PLANNING_SERVICES;
-        KvpFamilyPlanningActionHelper actionHelper = new KvpFamilyPlanningActionHelper(wasCondomGiven);
-        BaseKvpVisitAction action = getBuilder(context.getString(R.string.kvp_family_planning))
-                .withOptional(true)
-                .withDetails(details)
-                .withHelper(actionHelper)
-                .withFormName(formName)
-                .build();
-
-        actionList.put(context.getString(R.string.kvp_family_planning), action);
+    private void updateFamilyPlanning() throws BaseKvpVisitAction.ValidationException {
+        String title = context.getString(R.string.kvp_family_planning);
+        if (clientStatusActionHelper.isPregnantForFamilyPlanning()) {
+            actionList.remove(title);
+            return;
+        }
+        // Keep the form in memory when only Client Status changes, so restoring it keeps its answers.
+        if (familyPlanningAction == null) {
+            String formName = Constants.MALE.equalsIgnoreCase(memberObject.getGender())
+                    ? Constants.KVP_BIO_MEDICAL_SERVICE_FORMS.KVP_MALE_FAMILY_PLANNING_SERVICES
+                    : Constants.KVP_BIO_MEDICAL_SERVICE_FORMS.KVP_FEMALE_FAMILY_PLANNING_SERVICES;
+            familyPlanningAction = getBuilder(title)
+                    .withOptional(true)
+                    .withDetails(details)
+                    .withHelper(new KvpFamilyPlanningActionHelper(wasCondomGiven))
+                    .withFormName(formName)
+                    .build();
+        }
+        actionList.put(title, familyPlanningAction);
     }
 
     private void evaluateTbScreening(Map<String, List<VisitDetail>> details) throws BaseKvpVisitAction.ValidationException {
@@ -418,6 +444,13 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
 
         @Override
         public String postProcess(String payload) {
+            if (actionList.containsKey(context.getString(R.string.kvp_client_status))) {
+                try {
+                    updateFamilyPlanning();
+                } catch (BaseKvpVisitAction.ValidationException e) {
+                    Timber.e(e);
+                }
+            }
             if (hasDrugUseCategory() && !shouldShowMat()) {
                 try {
                     evaluateMat(details);

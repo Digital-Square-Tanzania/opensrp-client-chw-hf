@@ -16,6 +16,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
+- Hide Family Planning in Kituoni MARP Biomedical Services while the client is pregnant, allow submission without it, and restore it in the same visit after saving a breastfeeding or non-pregnant status ([#246](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/246), UCSW-48).
+- Classify and process otherwise complete pregnant Biomedical visits without a Family Planning answer. Use Core `2.2.0-KITUONI-UCSW-48-VISIT-9-SNAPSHOT`, which exports the KVP completion repair. The facility app version remains 1.4.0 (67) (UCSW-48).
+
 - Apply English and Kiswahili register wording to Kituoni MARP Biomedical visit forms and list Negative before Positive for HBV and HCV ([#245](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/245), UCSW-49). No version or dependency changes.
 
 - Use the bilingual register wording and result order for Kituoni MARP HTS. Record refusal to receive results as a distinct outcome without requiring CTC data ([#242](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/242)). No version or dependency changes.

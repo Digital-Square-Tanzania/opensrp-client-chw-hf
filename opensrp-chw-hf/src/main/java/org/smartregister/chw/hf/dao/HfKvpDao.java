@@ -12,6 +12,7 @@ import org.smartregister.chw.hf.utils.MarpVisitStatus;
 import org.smartregister.chw.kvp.KvpLibrary;
 import org.smartregister.chw.kvp.dao.KvpDao;
 import org.smartregister.chw.kvp.domain.Visit;
+import org.smartregister.chw.kvp.repository.VisitRepository;
 import org.smartregister.chw.kvp.util.Constants;
 import org.smartregister.clientandeventmodel.Event;
 
@@ -47,8 +48,15 @@ public class HfKvpDao extends KvpDao {
     }
 
     static Event findLocalClientStatus(List<Visit> visits) {
+        return findLocalClientStatus(visits, null);
+    }
+
+    private static Event findLocalClientStatus(List<Visit> visits, Date before) {
         // The submitted event is available before the sync processor projects it into the register.
         for (Visit visit : visits) {
+            if (!isBefore(visit.getDate(), before)) {
+                continue;
+            }
             Event event = readSubmittedBiomedicalEvent(visit);
             if (StringUtils.isNotBlank(MarpEnrollmentDate.observation(event, CLIENT_STATUS))) {
                 return event;
@@ -116,14 +124,73 @@ public class HfKvpDao extends KvpDao {
         return latestPregnancyStatus(visits, rows);
     }
 
+    public static boolean isFamilyPlanningExempt(Visit visit, String gender) {
+        String baseEntityId = visit.getBaseEntityId();
+        if (!Constants.FEMALE.equalsIgnoreCase(gender)
+                || !MarpPregnancyStatus.appliesTo(gender, KvpDao.getDominantKVPGroup(baseEntityId))) {
+            return false;
+        }
+
+        Event currentEvent = readSubmittedBiomedicalEvent(visit);
+        if (currentEvent == null) {
+            return false;
+        }
+        String currentStatus = MarpEnrollmentDate.observation(currentEvent, MarpPregnancyStatus.FIELD);
+        if (MarpPregnancyStatus.isAnswer(currentStatus)) {
+            return MarpPregnancyStatus.PREGNANT.equals(currentStatus);
+        }
+
+        Date visitDate = visit.getDate();
+        if (visitDate == null) {
+            return false;
+        }
+        String eventType = Constants.EVENT_TYPE.KVP_BIO_MEDICAL_SERVICE_VISIT;
+        VisitRepository repository = KvpLibrary.getInstance().visitRepository();
+        List<Visit> visits = repository.getVisits(baseEntityId, eventType);
+        List<Map<String, Object>> rows = readData(
+                "SELECT json FROM event WHERE baseEntityId = ? AND eventType = ? "
+                        + "ORDER BY eventDate DESC, dateCreated DESC",
+                new String[]{baseEntityId, eventType});
+        // Processing can run days after submission. Resolve the fallback as of this visit.
+        String previousStatus = latestPregnancyStatus(visits, rows, visitDate);
+        if (MarpPregnancyStatus.isAnswer(previousStatus)) {
+            return MarpPregnancyStatus.PREGNANT.equals(previousStatus);
+        }
+
+        Calendar visitDay = Calendar.getInstance();
+        visitDay.setTime(visitDate);
+        return findLocalClientStatus(visits, visitDate) == null
+                && !hasPriorSyncedClientStatus(rows, visitDate)
+                && !MarpVisitStatus.hasSubmittedVisitBeforeToday(repository, baseEntityId, visitDay)
+                && MarpPregnancyStatus.PREGNANT.equals(getScreeningPregnancyStatus(baseEntityId));
+    }
+
+    private static boolean hasPriorSyncedClientStatus(List<Map<String, Object>> rows, Date before) {
+        if (rows != null) {
+            for (Map<String, Object> row : rows) {
+                Event event = readEvent((String) row.get("json"));
+                if (event != null && isBefore(event.getEventDate(), before)
+                        && StringUtils.isNotBlank(MarpEnrollmentDate.observation(event, CLIENT_STATUS))) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     static String latestPregnancyStatus(List<Visit> visits, List<Map<String, Object>> eventRows) {
+        return latestPregnancyStatus(visits, eventRows, null);
+    }
+
+    private static String latestPregnancyStatus(List<Visit> visits, List<Map<String, Object>> eventRows, Date before) {
         String status = "";
         Date latestDate = null;
         // The repository returns visits in creation order. Prefer the most recent clinical date.
         for (Visit visit : visits) {
             String value = MarpEnrollmentDate.observation(readSubmittedBiomedicalEvent(visit), MarpPregnancyStatus.FIELD);
             Date date = visit.getDate();
-            if (MarpPregnancyStatus.isAnswer(value) && date != null && (latestDate == null || !date.before(latestDate))) {
+            if (MarpPregnancyStatus.isAnswer(value) && date != null && isBefore(date, before)
+                    && (latestDate == null || !date.before(latestDate))) {
                 status = value;
                 latestDate = date;
             }
@@ -133,6 +200,7 @@ public class HfKvpDao extends KvpDao {
                 Event event = readEvent((String) row.get("json"));
                 String value = MarpEnrollmentDate.observation(event, MarpPregnancyStatus.FIELD);
                 if (MarpPregnancyStatus.isAnswer(value) && event.getEventDate() != null
+                        && isBefore(event.getEventDate(), before)
                         && (latestDate == null || event.getEventDate().after(latestDate))) {
                     status = value;
                     latestDate = event.getEventDate();
@@ -140,6 +208,10 @@ public class HfKvpDao extends KvpDao {
             }
         }
         return status;
+    }
+
+    private static boolean isBefore(Date date, Date before) {
+        return before == null || (date != null && date.before(before));
     }
 
     private static Event readEvent(String payload) {

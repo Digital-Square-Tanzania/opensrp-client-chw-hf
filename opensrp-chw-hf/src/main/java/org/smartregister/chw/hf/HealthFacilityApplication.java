@@ -56,6 +56,7 @@ import org.smartregister.chw.hf.activity.VmmcRegisterActivity;
 import org.smartregister.chw.hf.configs.AllClientsRegisterRowOptions;
 import org.smartregister.chw.hf.custom_view.FacilityMenu;
 import org.smartregister.chw.hf.custom_view.HfNavigationMenu;
+import org.smartregister.chw.hf.dao.HfKvpDao;
 import org.smartregister.chw.hf.job.HfJobCreator;
 import org.smartregister.chw.hf.model.NavigationModel;
 import org.smartregister.chw.hf.provider.HfAllClientsRegisterQueryProvider;
@@ -310,7 +311,8 @@ public class HealthFacilityApplication extends CoreChwApplication implements Cor
         }
 
         if (flavor.hasKvpPrEP()) {
-            KvpLibrary.init(context, getRepository(), BuildConfig.VERSION_CODE, BuildConfig.DATABASE_VERSION);
+            KvpLibrary.init(context, getRepository(), BuildConfig.VERSION_CODE, BuildConfig.DATABASE_VERSION,
+                    HfKvpDao::isFamilyPlanningExempt);
         }
 
         try {
