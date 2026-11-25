@@ -143,7 +143,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "other_kvp_category",
         "type": "check_box",
-        "label": "Other client's MARP category",
+        "label": "Other MARP categories",
         "combine_checkbox_option_values": "true",
         "label_text_style": "normal",
         "text_color": "#C0C0C0",
@@ -153,73 +153,45 @@
         "options": [
           {
             "key": "pwud",
-            "text": "PWUD",
+            "text": "People who use drugs through non-injecting routes",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "pwud"
           },
           {
             "key": "pwid",
-            "text": "PWID",
+            "text": "People who inject drugs",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "pwid"
           },
           {
-            "key": "fsw",
-            "text": "WHR",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "fsw"
-          },
-          {
             "key": "msm",
-            "text": "MHR",
+            "text": "Men at High Risk (MHR)",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "msm"
           },
           {
+            "key": "fsw",
+            "text": "Most-at-risk women (WHR)",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "fsw"
+          },
+          {
             "key": "agyw",
-            "text": "vAGYW",
+            "text": "Adolescent girls and young women",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "agyw"
           },
           {
-            "key": "prisoner",
-            "text": "Prisoners",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "prisoner"
-          },
-          {
-            "key": "rumandee",
-            "text": "Rumandee",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "rumandee"
-          },
-          {
-            "key": "mobile_population",
-            "text": "Mobile population",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "mobile_population"
-          },
-          {
             "key": "serodiscordant_couple",
-            "text": "Serodiscordant couple",
+            "text": "Discordant partner",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "serodiscordant_couple"
-          },
-          {
-            "key": "other_vulnerable_population",
-            "text": "Other vulnerable population",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "other_vulnerable_population"
           },
           {
             "key": "long_distance_truck_drivers",

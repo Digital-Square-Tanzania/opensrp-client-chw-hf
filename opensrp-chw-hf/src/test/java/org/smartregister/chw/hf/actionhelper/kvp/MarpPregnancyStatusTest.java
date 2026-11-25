@@ -78,10 +78,13 @@ public class MarpPregnancyStatusTest {
         JSONObject submitted = form(action);
         JsonFormUtils.addObservation(saved, field(submitted, MarpEnrollmentDate.CLIENT_STATUS));
         JsonFormUtils.addObservation(saved, field(submitted, FIELD));
+        JsonFormUtils.addObservation(saved, field(submitted, KvpClientStatusActionHelper.OTHER_CATEGORY));
         assertEquals(NEITHER, MarpEnrollmentDate.observation(saved, FIELD));
         Map<String, List<VisitDetail>> details = NCUtil.eventsObsToDetails(saved.getObs(), "visit", "synthetic-client");
         KvpClientStatusActionHelper reopened = helper("female", GROUP, screening("yes", null), NEITHER);
-        assertEquals(NEITHER, field(form(open(reopened, details)), FIELD).getString("value"));
+        BaseKvpVisitAction restored = open(reopened, details);
+        assertEquals(NEITHER, field(form(restored), FIELD).getString("value"));
+        assertEquals(BaseKvpVisitAction.Status.COMPLETED, restored.getActionStatus());
         assertEquals(NEITHER, reopened.getPregnancyBreastfeedingStatus());
     }
 

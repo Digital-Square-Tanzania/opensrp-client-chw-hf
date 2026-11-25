@@ -360,7 +360,9 @@
     <string name="kvp_positive">MARP chanya</string>
     <string name="view_kvp_test_result">Angalia majibu ya kipimo cha MARP</string>
     <string name="kvp_friendly_services">Huduma rafiki za MARP</string>
-    <string name="marp_other_client_category">Kundi lingine la MARP la mteja</string>
+    <string name="marp_other_client_category">Makundi mengine yaliyo katika hatari ya kupata maambukizi ya VVU</string>
+    <string name="marp_other_category_none">Hakuna</string>
+    <string name="marp_other_category_required">Tafadhali chagua angalau moja</string>
     <string name="marp_biomedical_service_visit">Ziara ya huduma za kitabibu za MARP</string>
     <string name="marp_behavioral_service_visit">Ziara ya huduma za kitabia za MARP</string>
     <string name="marp_structural_service_visit">Ziara ya huduma za kimuundo za MARP</string>

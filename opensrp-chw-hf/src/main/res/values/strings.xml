@@ -472,7 +472,9 @@
     <string name="kvp_positive">MARP positive</string>
     <string name="view_kvp_test_result">View MARP test results</string>
     <string name="kvp_friendly_services">MARP Friendly Services</string>
-    <string name="marp_other_client_category">Other client\'s MARP category</string>
+    <string name="marp_other_client_category">Other MARP categories</string>
+    <string name="marp_other_category_none">None</string>
+    <string name="marp_other_category_required">Please pick at least one</string>
     <string name="marp_biomedical_service_visit">MARP Biomedical Service Visit</string>
     <string name="marp_behavioral_service_visit">MARP Behavioral Service Visit</string>
     <string name="marp_structural_service_visit">MARP Structural Service Visit</string>

@@ -11,7 +11,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.anc.util.AppExecutors;
-import org.smartregister.chw.core.utils.CoreJsonFormUtils;
 import org.smartregister.chw.core.utils.FormUtils;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.actionhelper.kvp.KvpCervicalCancerScreeningActionHelper;
@@ -25,8 +24,8 @@ import org.smartregister.chw.hf.actionhelper.kvp.KvpTbScreeningActionHelper;
 import org.smartregister.chw.hf.actionhelper.kvp.KvpVmmcActionHelper;
 import org.smartregister.chw.hf.dao.HfKvpDao;
 import org.smartregister.chw.hf.utils.MarpEnrollmentDate;
-import org.smartregister.chw.hf.utils.MarpGroupLabels;
 import org.smartregister.chw.hf.utils.MarpPregnancyStatus;
+import org.smartregister.chw.hf.utils.MarpVisitCategories;
 import org.smartregister.chw.kvp.contract.BaseKvpVisitContract;
 import org.smartregister.chw.kvp.dao.KvpDao;
 import org.smartregister.chw.kvp.domain.MemberObject;
@@ -108,30 +107,10 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
             KvpJsonFormUtils.removeOptionFromCheckboxListWithKey(clientStatus, "new_client");
         }
 
-        //update other_kvp_category
-        JSONObject other_kvp_category = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, OTHER_CATEGORY);
-        if (other_kvp_category != null) {
-            other_kvp_category.put("label", context.getString(R.string.marp_other_client_category));
-            MarpGroupLabels.applyLongLabels(context.getResources(), other_kvp_category.getJSONArray(OPTIONS));
-        }
-        KvpJsonFormUtils.removeOptionFromCheckboxListWithKey(other_kvp_category, dominantGroup);
-        if (memberObject.getGender().equalsIgnoreCase(Constants.MALE)) {
-            //remove FSW, AGYW
-            //TODO: extract keys to constant
-            KvpJsonFormUtils.removeOptionFromCheckboxListWithKey(other_kvp_category, "fsw");
-            KvpJsonFormUtils.removeOptionFromCheckboxListWithKey(other_kvp_category, "agyw");
-        }
-        if (memberObject.getGender().equalsIgnoreCase(Constants.FEMALE)) {
-            //remove MSM
-            //TODO: extract keys to constant
-            KvpJsonFormUtils.removeOptionFromCheckboxListWithKey(other_kvp_category, "msm");
-
-            if (memberObject.getAge() > 24) {
-                //remove AGYW
-                KvpJsonFormUtils.removeOptionFromCheckboxListWithKey(other_kvp_category, "agyw");
-            }
-        }
-
+        JSONObject otherCategories = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, OTHER_CATEGORY);
+        String gender = memberObject.getGender();
+        int age = Constants.FEMALE.equalsIgnoreCase(gender) ? getAgeForCategoryEligibility() : 0;
+        MarpVisitCategories.configure(otherCategories, context, dominantGroup, gender, age);
 
         clientStatusActionHelper = new KvpClientStatusActionHelper(memberObject,
                 MarpPregnancyStatus.appliesTo(memberObject.getGender(), dominantGroup));
@@ -144,6 +123,14 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
                 .build();
 
         actionList.put(context.getString(R.string.kvp_client_status), action);
+    }
+
+    private int getAgeForCategoryEligibility() {
+        try {
+            return memberObject.getAge();
+        } catch (IllegalArgumentException e) {
+            return 0;
+        }
     }
 
     /** Resolves the answer saved in Client Status, including before Biomedical submission. */
@@ -390,26 +377,13 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
     }
 
     private class KvpClientStatusActionHelper extends org.smartregister.chw.hf.actionhelper.kvp.KvpClientStatusActionHelper {
-        private String other_kvp_category;
-
         public KvpClientStatusActionHelper(MemberObject memberObject, boolean requiresPregnancyStatus) {
             super(memberObject, requiresPregnancyStatus);
         }
 
         @Override
-        public void onPayloadReceived(String jsonPayload) {
-            try {
-                JSONObject jsonObject = new JSONObject(jsonPayload);
-                other_kvp_category = CoreJsonFormUtils.getValue(jsonObject, OTHER_CATEGORY);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            super.onPayloadReceived(jsonPayload);
-        }
-
-        @Override
-        public String postProcess(String s) {
-            if ((other_kvp_category.contains("pwud") || other_kvp_category.contains("pwid")) && !shouldShowMat()) {
+        public String postProcess(String payload) {
+            if (hasDrugUseCategory() && !shouldShowMat()) {
                 try {
                     evaluateMat(details);
                 } catch (Exception e) {
@@ -421,7 +395,7 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
 
             new AppExecutors().mainThread().execute(() -> callBack.preloadActions(actionList));
 
-            return super.postProcess(s);
+            return super.postProcess(payload);
         }
     }
 }

@@ -1,13 +1,16 @@
 package org.smartregister.chw.hf.resources;
 
-import android.content.res.Resources;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+import android.content.Context;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.Test;
 import org.smartregister.chw.hf.R;
-import org.smartregister.chw.hf.utils.MarpGroupLabels;
-import org.smartregister.chw.hf.utils.MarpOtherGroupsScreening.Group;
+import org.smartregister.chw.hf.utils.MarpVisitCategories;
 import org.smartregister.util.JsonFormUtils;
 import org.w3c.dom.Document;
 
@@ -15,100 +18,81 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.xpath.XPathFactory;
 
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
 public class MarpRiskGroupWordingTest {
     private static final Path MAIN = Paths.get("src", "main");
 
     @Test
-    public void englishClientStatusAndProfileUseLegacyCodes() throws Exception {
-        assertLabels("values", "A man at higher risk (MHR)", "A woman at high risk (WHR)");
+    public void englishClientStatusUsesRegisterLabelsAndStableCodes() throws Exception {
+        assertLabels("values", "Other MARP categories", "Please pick at least one", List.of(
+                "People who use drugs through non-injecting routes", "People who inject drugs",
+                "Men at High Risk (MHR)", "Most-at-risk women (WHR)", "Adolescent girls and young women",
+                "Discordant partner", "Long-distance truck drivers", "Fisherfolk", "Miners",
+                "Other key and vulnerable populations", "None"));
     }
 
     @Test
-    public void kiswahiliClientStatusAndProfileUseLegacyCodes() throws Exception {
-        assertLabels("values-sw", "Mwanaume aliye katika hatari zaidi (MHR)",
-                "Mwanamke aliye katika hatari zaidi (WHR)");
+    public void kiswahiliClientStatusUsesRegisterLabelsAndStableCodes() throws Exception {
+        assertLabels("values-sw", "Makundi mengine yaliyo katika hatari ya kupata maambukizi ya VVU",
+                "Tafadhali chagua angalau moja", List.of(
+                        "Watumiaji wa dawa za kulevya kwa njia nyingine", "Wajidunga dawa za kulevya",
+                        "Mwanaume aliye katika hatari zaidi (MHR)", "Mwanamke aliye katika hatari zaidi (WHR)",
+                        "Msichana rika balehe na mwanamke kijana", "Mwenza mwenye majibu kinzani",
+                        "Madereva wa masafa marefu", "Wavuvi", "Wachimba madini", "Makundi mengine hatarishi", "Hakuna"));
     }
 
-    @Test
-    public void newOtherGroupsUseTheSameLocalizedLabelsInClientStatusAndProfile() throws Exception {
-        assertOtherGroupLabels("values", Map.of(
-                "long_distance_truck_drivers", "Long-distance truck drivers", "fisherfolk", "Fisherfolk",
-                "miners", "Miners", "other_key_and_vulnerable_populations", "Other key and vulnerable populations"));
-        assertOtherGroupLabels("values-sw", Map.of(
-                "long_distance_truck_drivers", "Madereva wa masafa marefu", "fisherfolk", "Wavuvi",
-                "miners", "Wachimba madini", "other_key_and_vulnerable_populations", "Makundi mengine hatarishi"));
-    }
-
-    private static void assertOtherGroupLabels(String resourceFolder, Map<String, String> expected) throws Exception {
-        Document strings = loadStrings(resourceFolder);
-        Resources resources = mock(Resources.class);
-        JSONArray options = readClientStatusOptions();
-        for (Group group : Group.values()) {
-            String profileLabel = string(strings, "kvp_" + group.code);
-            assertEquals(expected.get(group.code), profileLabel);
-            when(resources.getString(group.label)).thenReturn(profileLabel);
-            JsonFormUtils.getFieldJSONObject(options, group.code).put("value", true);
+    private static void assertLabels(String folder, String question, String required, List<String> labels) throws Exception {
+        Context context = mock(Context.class);
+        Document strings = DocumentBuilderFactory.newInstance().newDocumentBuilder()
+                .parse(MAIN.resolve("res").resolve(folder).resolve("strings.xml").toFile());
+        for (String name : List.of(
+                "marp_other_client_category", "marp_other_category_required", "marp_other_category_none",
+                "marp_pwud_enrollment_option", "marp_pwid_enrollment_option", "marp_mhr_enrollment_option",
+                "marp_whr_enrollment_option", "marp_agyw_option", "marp_discordant_partner_option",
+                "kvp_long_distance_truck_drivers", "kvp_fisherfolk", "kvp_miners",
+                "kvp_other_key_and_vulnerable_populations")) {
+            when(context.getString(R.string.class.getField(name).getInt(null))).thenReturn(string(strings, name));
         }
-        MarpGroupLabels.applyLongLabels(resources, options);
-        for (Map.Entry<String, String> group : expected.entrySet()) {
-            assertOption(JsonFormUtils.getFieldJSONObject(options, group.getKey()), group.getKey(), group.getValue());
-        }
-        assertEquals("Mobile population", JsonFormUtils.getFieldJSONObject(options, "mobile_population").getString("text"));
-        assertEquals("Other vulnerable population",
-                JsonFormUtils.getFieldJSONObject(options, "other_vulnerable_population").getString("text"));
-    }
-
-    private static void assertLabels(String resourceFolder, String mhrLabel, String whrLabel) throws Exception {
-        Document strings = loadStrings(resourceFolder);
-        Resources resources = mock(Resources.class);
-        when(resources.getString(R.string.marp_mhr_option)).thenReturn(string(strings, "marp_mhr_option"));
-        when(resources.getString(R.string.marp_whr_option)).thenReturn(string(strings, "marp_whr_option"));
-
-        JSONArray options = readClientStatusOptions();
-        JSONObject mhr = JsonFormUtils.getFieldJSONObject(options, "msm");
-        JSONObject whr = JsonFormUtils.getFieldJSONObject(options, "fsw");
-        JSONObject pwud = JsonFormUtils.getFieldJSONObject(options, "pwud");
-        mhr.put("value", true);
-        whr.put("value", true);
-
-        MarpGroupLabels.applyLongLabels(resources, options);
-
-        assertOption(mhr, "msm", mhrLabel);
-        assertOption(whr, "fsw", whrLabel);
-        assertEquals("PWUD", pwud.getString("text"));
-        // The profile resolves both dominant and other groups using "kvp_" + the stored key.
-        assertEquals("MHR", string(strings, "kvp_" + mhr.getString("key")));
-        assertEquals("WHR", string(strings, "kvp_" + whr.getString("key")));
-        assertEquals("AGYW", string(strings, "kvp_agyw"));
-    }
-
-    private static Document loadStrings(String resourceFolder) throws Exception {
-        return DocumentBuilderFactory.newInstance().newDocumentBuilder()
-                .parse(MAIN.resolve("res").resolve(resourceFolder).resolve("strings.xml").toFile());
-    }
-
-    private static JSONArray readClientStatusOptions() throws Exception {
         byte[] json = Files.readAllBytes(MAIN.resolve("assets/json.form/kvp_client_status.json"));
         JSONObject form = new JSONObject(new String(json, StandardCharsets.UTF_8));
-        assertEquals("KVP Client Status", form.getString("encounter_type"));
         JSONArray fields = form.getJSONObject("step1").getJSONArray("fields");
-        return JsonFormUtils.getFieldJSONObject(fields, "other_kvp_category").getJSONArray("options");
-    }
+        JSONObject category = JsonFormUtils.getFieldJSONObject(fields, "other_kvp_category");
+        assertEquals("other_kvp_category", category.getString("openmrs_entity_id"));
+        assertEquals("none", category.getJSONArray("exclusive").getString(0));
+        assertEquals(1, category.getJSONArray("exclusive").length());
+        assertEquals(true, category.getJSONObject("v_required").getBoolean("value"));
 
-    private static void assertOption(JSONObject option, String key, String label) throws Exception {
-        assertEquals(key, option.getString("key"));
-        assertEquals(key, option.getString("openmrs_entity_id"));
-        assertEquals(label, option.getString("text"));
-        assertEquals(true, option.getBoolean("value"));
+        List<String> codes = List.of("pwud", "pwid", "msm", "fsw", "agyw", "serodiscordant_couple",
+                "long_distance_truck_drivers", "fisherfolk", "miners", "other_key_and_vulnerable_populations", "none");
+        Map<String, String> displayed = new LinkedHashMap<>();
+        for (String sex : List.of("male", "female")) {
+            JSONObject localized = new JSONObject(category.toString());
+            MarpVisitCategories.configure(localized, context, "", sex, 24);
+            assertEquals(question, localized.getString("label"));
+            assertEquals(required, localized.getJSONObject("v_required").getString("err"));
+            JSONArray options = localized.getJSONArray("options");
+            for (int i = 0; i < options.length(); i++) {
+                JSONObject option = options.getJSONObject(i);
+                String code = option.getString("key");
+                assertEquals(code, option.getString("openmrs_entity_id"));
+                displayed.put(code, option.getString("text"));
+            }
+        }
+        assertEquals(codes.size(), displayed.size());
+        for (int i = 0; i < codes.size(); i++) {
+            assertEquals(labels.get(i), displayed.get(codes.get(i)));
+        }
+
+        // Existing profile and history readers still resolve the stored codes.
+        assertEquals("MHR", string(strings, "kvp_msm"));
+        assertEquals("WHR", string(strings, "kvp_fsw"));
+        assertEquals("AGYW", string(strings, "kvp_agyw"));
     }
 
     private static String string(Document strings, String name) throws Exception {
