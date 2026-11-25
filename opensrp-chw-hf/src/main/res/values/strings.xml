@@ -539,7 +539,7 @@
     <string name="kvp_cervical_screening">Cervical Screening</string>
     <string name="kvp_iec_sbcc">IEC/SBCC</string>
     <string name="kvp_health_education">Health Education</string>
-    <string name="kvp_gbv_analysis">GBV Analysis</string>
+    <string name="kvp_gbv_analysis">GBV Screening</string>
     <string name="kvp_other_services_referrals">Other Services and Referrals</string>
     <string name="prep_visit_type">Visit Type</string>
     <string name="prep_initiation">PrEP Initiation</string>

@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 
 - Ask whether the client requires PEP before recording a PEP service in Kituoni MARP Biomedical Services. Display historical answers in Visit History and preserve their original observations on resave ([#249](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/249), UCSW-53). No version or dependency changes.
+- Rename the Kituoni MARP Structural Services checklist item and form title to GBV Screening in English and Uchunguzi wa Ukatili wa kijinsia in Kiswahili ([#254](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/254), UCSW-57). No version or dependency changes.
 
 - Show Kituoni MARP Cervical Cancer Screening in Biomedical Services for nonpregnant female clients, including breastfeeding clients. Refresh the checklist after Client Status saves and preserve previously recorded screening answers ([#247](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/247), UCSW-47). No version or dependency changes.
 - Hide Family Planning in Kituoni MARP Biomedical Services while the client is pregnant, allow submission without it, and restore it in the same visit after saving a breastfeeding or non-pregnant status ([#246](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/246), UCSW-48).
