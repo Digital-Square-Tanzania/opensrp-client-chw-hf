@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
+- Use Core `2.2.2-KITUONI-UCSW-186-VISIT-14-SNAPSHOT` to complete and queue Kituoni MARP Behavioral visits with valid saved Health Education, including None. The app version stays at 1.4.0 (67) ([#251](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/251), UCSW-186).
 - Use the bilingual register wording for Kituoni MARP Health Education. Record PrEP and PEP as separate topics or select None when no education was given ([#252](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/252), UCSW-51). No version or dependency changes.
 - Show the shared Kituoni MARP PEP Assessment in Structural Services after GBV Screening records Sexual violence. Flag an earlier No PEP needed answer for provider review in both cards ([#250](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/250), UCSW-50). No version or dependency changes.
 - Use the bilingual register wording and checklist for Kituoni MARP GBV Screening. Record None and Not assessed distinctly, allow multiple types of violence, and restore saved answers in Visit History ([#255](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/255), UCSW-55). No version or dependency changes.
@@ -63,6 +64,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Removed
 
+- Remove the IEC/SBCC count form from Kituoni MARP Behavioral Services and hide it in Visit History. Complete the card with Health Education and retain historical count observations on edit ([#251](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/251), UCSW-52). No version or dependency changes in the facility checkpoint.
 - Remove the MAT form from Kituoni MARP Biomedical Services and Visit History display while keeping MAT referrals and preserving historical MAT observations on resave ([#248](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/248), UCSW-46). No version or dependency changes.
 - Remove the PrEP Assessment page and its two questions from male and female Kituoni MARP screening. Continue directly from Other Groups to MARP Enrollment ([#234](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/234)).
 - Remove the separate Mobile Population question and retire its group for new Kituoni MARP screening and enrollment while preserving existing enrollments ([#230](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/230)).

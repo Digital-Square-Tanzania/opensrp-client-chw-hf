@@ -152,9 +152,6 @@ public class KvpMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
                     String[] familyPlanningServiceParams = {"family_planning_service"};
                     extractVisitDetails(visits, familyPlanningServiceParams, visitDetails, x, context);
 
-                    String[] eicServiceParams = {"iec_sbcc_materials"};
-                    extractVisitDetails(visits, eicServiceParams, visitDetails, x, context);
-
                     String[] gbvServiceParams = {"gbv_screening"};
                     extractVisitDetails(visits, gbvServiceParams, visitDetails, x, context);
 
@@ -239,7 +236,9 @@ public class KvpMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
                             } else if (visits.get(position).getVisitType().equalsIgnoreCase("KVP Other Service Visit")) {
                                 KvpOtherServiceActivity.startKvpOtherServiceActivity((Activity) context, visits.get(position).getBaseEntityId(), true);
                             } else if (visits.get(position).getVisitType().equalsIgnoreCase("KVP Behavioral Service Visit")) {
-                                KvpBehavioralServiceActivity.startKvpBehavioralServiceActivity((Activity) context, visits.get(position).getBaseEntityId(), true);
+                                Visit selected = visits.get(position);
+                                KvpBehavioralServiceActivity.startKvpBehavioralServiceActivity((Activity) context,
+                                        selected.getBaseEntityId(), true, selected.getVisitId());
                             }
                         });
                     }
