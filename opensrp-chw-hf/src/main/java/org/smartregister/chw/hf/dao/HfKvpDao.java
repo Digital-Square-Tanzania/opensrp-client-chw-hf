@@ -7,6 +7,7 @@ import com.google.gson.JsonParseException;
 
 import org.apache.commons.lang3.StringUtils;
 import org.smartregister.chw.hf.utils.MarpEnrollmentDate;
+import org.smartregister.chw.hf.utils.MarpPregnancyStatus;
 import org.smartregister.chw.hf.utils.MarpVisitStatus;
 import org.smartregister.chw.kvp.KvpLibrary;
 import org.smartregister.chw.kvp.dao.KvpDao;
@@ -19,6 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import timber.log.Timber;
 
@@ -58,7 +60,56 @@ public class HfKvpDao extends KvpDao {
         if (visit == null || MarpVisitStatus.isDraft(visit)) {
             return null;
         }
-        String payload = StringUtils.defaultIfBlank(visit.getPreProcessedJson(), visit.getJson());
+        return readEvent(StringUtils.defaultIfBlank(visit.getPreProcessedJson(), visit.getJson()));
+    }
+
+    public static String getScreeningPregnancyStatus(String baseEntityId) {
+        List<Map<String, Object>> rows = readData(
+                "SELECT json FROM event WHERE baseEntityId = ? AND eventType = ? "
+                        + "ORDER BY eventDate DESC, dateCreated DESC LIMIT 1",
+                new String[]{baseEntityId, Constants.EVENT_TYPE.KVP_REGISTRATION});
+        Event screening = rows == null || rows.isEmpty() ? null : readEvent((String) rows.get(0).get("json"));
+        return MarpPregnancyStatus.fromScreening(screening);
+    }
+
+    public static String getLatestPregnancyBreastfeedingStatus(String baseEntityId) {
+        String eventType = Constants.EVENT_TYPE.KVP_BIO_MEDICAL_SERVICE_VISIT;
+        List<Visit> visits = KvpLibrary.getInstance().visitRepository().getVisits(baseEntityId, eventType);
+        // Server-restored events may not have a row in the local visit repository.
+        List<Map<String, Object>> rows = readData(
+                "SELECT json FROM event WHERE baseEntityId = ? AND eventType = ? AND json LIKE ? "
+                        + "ORDER BY eventDate DESC, dateCreated DESC",
+                new String[]{baseEntityId, eventType, "%" + MarpPregnancyStatus.FIELD + "%"});
+        return latestPregnancyStatus(visits, rows);
+    }
+
+    static String latestPregnancyStatus(List<Visit> visits, List<Map<String, Object>> eventRows) {
+        String status = "";
+        Date latestDate = null;
+        // The repository returns visits in creation order. Prefer the most recent clinical date.
+        for (Visit visit : visits) {
+            String value = MarpEnrollmentDate.observation(readSubmittedBiomedicalEvent(visit), MarpPregnancyStatus.FIELD);
+            Date date = visit.getDate();
+            if (MarpPregnancyStatus.isAnswer(value) && date != null && (latestDate == null || !date.before(latestDate))) {
+                status = value;
+                latestDate = date;
+            }
+        }
+        if (eventRows != null) {
+            for (Map<String, Object> row : eventRows) {
+                Event event = readEvent((String) row.get("json"));
+                String value = MarpEnrollmentDate.observation(event, MarpPregnancyStatus.FIELD);
+                if (MarpPregnancyStatus.isAnswer(value) && event.getEventDate() != null
+                        && (latestDate == null || event.getEventDate().after(latestDate))) {
+                    status = value;
+                    latestDate = event.getEventDate();
+                }
+            }
+        }
+        return status;
+    }
+
+    private static Event readEvent(String payload) {
         try {
             return new Gson().fromJson(payload, Event.class);
         } catch (JsonParseException e) {

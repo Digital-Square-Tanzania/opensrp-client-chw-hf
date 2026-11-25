@@ -479,6 +479,10 @@
     <string name="marp_other_service_visit">MARP Other Service Visit</string>
     <string name="kvp_client_status">Client Status</string>
     <string name="marp_visit_type">Visit Type</string>
+    <string name="marp_pregnancy_breastfeeding_status">Pregnancy/Breastfeeding Status</string>
+    <string name="marp_status_pregnant">Pregnant</string>
+    <string name="marp_status_neither">Not pregnant/Not breastfeeding</string>
+    <string name="marp_status_breastfeeding">Breastfeeding</string>
     <string name="marp_visit_type_new">New</string>
     <string name="marp_visit_type_transfer_in">Transfer in</string>
     <string name="marp_visit_type_return">Return</string>

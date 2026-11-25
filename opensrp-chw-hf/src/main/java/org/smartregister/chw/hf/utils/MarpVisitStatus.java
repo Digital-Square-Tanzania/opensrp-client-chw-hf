@@ -63,6 +63,19 @@ public final class MarpVisitStatus {
         return visit != null && !isSubmitted(visit);
     }
 
+    public static boolean hasSubmittedVisitBeforeToday(VisitRepository repository, String baseEntityId, Calendar today) {
+        Date now = today.getTime();
+        for (String visitType : SERVICE_VISIT_TYPES) {
+            for (Visit visit : repository.getVisits(baseEntityId, visitType)) {
+                Date date = visit.getDate();
+                if (isSubmitted(visit) && date != null && date.before(now) && !isOnDate(date, today)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     private static boolean isSubmitted(Visit visit) {
         // Submit assigns the form submission ID before the event is processed.
         return Boolean.TRUE.equals(visit.getProcessed()) || StringUtils.isNotBlank(visit.getFormSubmissionId());

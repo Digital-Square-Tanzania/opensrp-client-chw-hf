@@ -103,6 +103,41 @@
         }
       },
       {
+        "key": "pregnancy_breastfeeding_status",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "pregnancy_breastfeeding_status",
+        "label": "Pregnancy/Breastfeeding Status",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "pregnant",
+            "text": "Pregnant",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "pregnant"
+          },
+          {
+            "key": "not_pregnant_not_breastfeeding",
+            "text": "Not pregnant/Not breastfeeding",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "not_pregnant_not_breastfeeding"
+          },
+          {
+            "key": "breastfeeding",
+            "text": "Breastfeeding",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "breastfeeding"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select one"
+        }
+      },
+      {
         "key": "other_kvp_category",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
