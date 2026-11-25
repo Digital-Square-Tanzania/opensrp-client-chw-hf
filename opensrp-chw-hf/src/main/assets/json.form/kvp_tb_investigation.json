@@ -1,6 +1,7 @@
 {
   "count": "1",
   "encounter_type": "KVP TB Investigation",
+  "properties_file_name": "marp_biomedical",
   "entity_id": "",
   "metadata": {
     "start": {
@@ -51,23 +52,23 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "tb_screening",
         "type": "native_radio",
-        "label": "TB screening conducted on client",
+        "label": "{{tb_screening_label}}",
         "options": [
           {
             "key": "presumptive",
-            "text": "Presumptive",
+            "text": "{{tb_screening_presumptive}}",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "presumptive"
           },
           {
             "key": "not_presumptive",
-            "text": "Not presumptive",
+            "text": "{{tb_screening_not_presumptive}}",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "not_presumptive"
           },
           {
             "key": "not_screened",
-            "text": "Not screened",
+            "text": "{{tb_screening_not_screened}}",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "not_screened"
           }

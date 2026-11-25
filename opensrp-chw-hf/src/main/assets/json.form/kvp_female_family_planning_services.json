@@ -1,6 +1,7 @@
 {
   "count": "1",
   "encounter_type": "KVP Family Planning",
+  "properties_file_name": "marp_biomedical",
   "entity_id": "",
   "metadata": {
     "start": {
@@ -51,59 +52,59 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "family_planning_service",
         "type": "native_radio",
-        "label": "Family planning service provided",
+        "label": "{{family_planning_method_label}}",
         "options": [
           {
             "key": "pill",
-            "text": "Pill",
+            "text": "{{family_planning_pills}}",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "pill"
           },
           {
             "key": "injectable",
-            "text": "Injectables",
+            "text": "{{family_planning_injection}}",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "injectable"
           },
           {
             "key": "implanon",
-            "text": "Implanon",
+            "text": "{{family_planning_implanon}}",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "implanon"
           },
           {
             "key": "jadelle",
-            "text": "Jadelle",
+            "text": "{{family_planning_jadelle}}",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "jadelle"
           },
           {
             "key": "iucd",
-            "text": "IUCD",
+            "text": "{{family_planning_iucd}}",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "iucd"
           },
           {
-            "key": "traditional",
-            "text": "Traditional",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "traditional"
-          },
-          {
             "key": "tube_ligation",
-            "text": "Tube Ligation/Vasectomy",
+            "text": "{{family_planning_tubal_ligation}}",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "tube_ligation"
           },
           {
+            "key": "traditional",
+            "text": "{{family_planning_traditional}}",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "traditional"
+          },
+          {
             "key": "refused",
-            "text": "Refused",
+            "text": "{{family_planning_refused}}",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "refused"
           },
           {
             "key": "none",
-            "text": "None",
+            "text": "{{family_planning_none}}",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "none"
           }

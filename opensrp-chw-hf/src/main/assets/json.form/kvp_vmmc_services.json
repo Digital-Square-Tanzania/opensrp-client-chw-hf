@@ -1,6 +1,7 @@
 {
   "count": "1",
   "encounter_type": "KVP VMMC",
+  "properties_file_name": "marp_biomedical",
   "entity_id": "",
   "metadata": {
     "start": {
@@ -51,23 +52,23 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "vmcc_provided",
         "type": "native_radio",
-        "label": "Was the client provided with VMMC services?",
+        "label": "{{vmmc_service_label}}",
         "options": [
           {
             "key": "provided",
-            "text": "Provided",
+            "text": "{{vmmc_service_received}}",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "provided"
           },
           {
             "key": "not_provided",
-            "text": "Not provided",
+            "text": "{{vmmc_service_not_received}}",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "not_provided"
           },
           {
             "key": "circumcised",
-            "text": "Circumcised",
+            "text": "{{vmmc_service_circumcised}}",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "circumcised"
           }

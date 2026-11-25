@@ -1,6 +1,7 @@
 {
   "count": "1",
   "encounter_type": "KVP STI",
+  "properties_file_name": "marp_biomedical",
   "entity_id": "",
   "metadata": {
     "start": {
@@ -51,23 +52,23 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "sti_screening",
         "type": "native_radio",
-        "label": "Sexual Transmitted Infection (STI) screening",
+        "label": "{{sti_screening_label}}",
         "options": [
           {
             "key": "positive",
-            "text": "Positive",
+            "text": "{{sti_screening_positive}}",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "positive"
           },
           {
             "key": "negative",
-            "text": "Negative",
+            "text": "{{sti_screening_negative}}",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "negative"
           },
           {
             "key": "screening_not_conducted",
-            "text": "Not Screened",
+            "text": "{{sti_screening_not_screened}}",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "screening_not_conducted"
           }
@@ -83,17 +84,17 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "treatment_provided",
         "type": "native_radio",
-        "label": "Select the treatment provided to the client",
+        "label": "{{sti_treatment_label}}",
         "options": [
           {
             "key": "treated",
-            "text": "Treated",
+            "text": "{{sti_treatment_treated}}",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "treated"
           },
           {
             "key": "not_treated",
-            "text": "Not Treated",
+            "text": "{{sti_treatment_not_treated}}",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "not_treated"
           }
