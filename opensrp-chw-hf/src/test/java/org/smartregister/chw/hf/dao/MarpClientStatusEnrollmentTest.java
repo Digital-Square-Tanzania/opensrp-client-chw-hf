@@ -8,6 +8,7 @@ import static org.mockito.Mockito.CALLS_REAL_METHODS;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoInteractions;
+import static org.smartregister.chw.hf.actionhelper.kvp.KvpClientStatusActionHelper.OTHER_CATEGORY;
 import static org.smartregister.chw.hf.utils.MarpEnrollmentDate.CLIENT_STATUS;
 import static org.smartregister.chw.hf.utils.MarpEnrollmentDate.ENROLLMENT_DATE;
 import static org.smartregister.chw.hf.utils.MarpEnrollmentDate.EVENT_DETAIL;
@@ -233,6 +234,7 @@ public class MarpClientStatusEnrollmentTest {
         JSONObject form = form();
         field(form, CLIENT_STATUS).put("value", visitType);
         field(form, ENROLLMENT_DATE).put("value", date);
+        field(form, OTHER_CATEGORY).put("value", new JSONArray(List.of("none")));
         return form;
     }
 

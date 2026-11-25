@@ -7,6 +7,8 @@ import static org.smartregister.client.utils.constants.JsonFormConstants.STEP1;
 import static org.smartregister.client.utils.constants.JsonFormConstants.VALUE;
 import static org.smartregister.chw.hf.utils.MarpEnrollmentDate.CLIENT_STATUS;
 import static org.smartregister.chw.hf.utils.MarpEnrollmentDate.ENROLLMENT_DATE;
+import static org.smartregister.chw.hf.utils.MarpVisitCategories.NONE;
+import static org.smartregister.util.JsonFormUtils.getFieldJSONObject;
 
 import android.content.Context;
 
@@ -19,6 +21,7 @@ import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.dao.HfKvpDao;
 import org.smartregister.chw.hf.utils.MarpEnrollmentDate;
 import org.smartregister.chw.hf.utils.MarpPregnancyStatus;
+import org.smartregister.chw.hf.utils.MarpVisitCategories;
 import org.smartregister.chw.hf.utils.MarpVisitStatus;
 import org.smartregister.chw.kvp.KvpLibrary;
 import org.smartregister.chw.kvp.domain.MemberObject;
@@ -26,8 +29,10 @@ import org.smartregister.chw.kvp.domain.VisitDetail;
 import org.smartregister.chw.kvp.model.BaseKvpVisitAction;
 
 import java.util.Calendar;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import timber.log.Timber;
 
@@ -43,6 +48,10 @@ public class KvpClientStatusActionHelper implements BaseKvpVisitAction.KvpVisitA
     private Context context;
     private String savedPregnancyStatus = "";
     private boolean complete;
+    private final Set<String> eligibleCategories = new HashSet<>();
+    private final Set<String> savedCategories = new HashSet<>();
+    private boolean restoreMixedNone;
+    private boolean hasDrugUseCategory;
 
     public KvpClientStatusActionHelper(MemberObject memberObject) {
         this(memberObject, false);
@@ -59,6 +68,13 @@ public class KvpClientStatusActionHelper implements BaseKvpVisitAction.KvpVisitA
         this.context = context;
         editingVisit = map != null;
         savedPregnancyStatus = "";
+        eligibleCategories.clear();
+        savedCategories.clear();
+        if (map != null && map.get(OTHER_CATEGORY) != null) {
+            for (VisitDetail detail : map.get(OTHER_CATEGORY)) {
+                savedCategories.addAll(MarpVisitCategories.codes(detail.getDetails()));
+            }
+        }
     }
 
     @Override
@@ -69,17 +85,14 @@ public class KvpClientStatusActionHelper implements BaseKvpVisitAction.KvpVisitA
             JSONArray fields = jsonObject.getJSONObject(STEP1).getJSONArray(FIELDS);
             JSONObject pregnancyStatus = configurePregnancyStatus(fields);
 
-            // The visit action restores saved selections after preprocessing, including an empty selection.
+            JSONObject category = getFieldJSONObject(fields, OTHER_CATEGORY);
+            JSONArray options = category.getJSONArray(OPTIONS);
+            for (int i = 0; i < options.length(); i++) {
+                eligibleCategories.add(options.getJSONObject(i).getString(KEY));
+            }
+            // The visit action restores saved selections after preprocessing.
             if (!editingVisit) {
-                JSONObject category = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, OTHER_CATEGORY);
-                JSONArray options = category.getJSONArray(OPTIONS);
-                String otherScreenedGroups = getScreeningDefaults();
-                for (int i = 0; i < options.length(); i++) {
-                    JSONObject option = options.getJSONObject(i);
-                    if (otherScreenedGroups.contains(option.getString(KEY))) {
-                        option.put(VALUE, true);
-                    }
-                }
+                MarpVisitCategories.applyScreeningDefaults(category, getScreeningDefaults());
             }
 
             firstClientStatus = !hasPreviousClientStatus();
@@ -154,6 +167,8 @@ public class KvpClientStatusActionHelper implements BaseKvpVisitAction.KvpVisitA
     @Override
     public void onPayloadReceived(String jsonPayload) {
         complete = false;
+        hasDrugUseCategory = false;
+        restoreMixedNone = false;
         savedPregnancyStatus = "";
         if (StringUtils.isBlank(jsonPayload)) {
             return;
@@ -162,7 +177,17 @@ public class KvpClientStatusActionHelper implements BaseKvpVisitAction.KvpVisitA
             JSONObject jsonObject = new JSONObject(jsonPayload);
             String clientStatus = CoreJsonFormUtils.getValue(jsonObject, CLIENT_STATUS);
             String pregnancyStatus = CoreJsonFormUtils.getValue(jsonObject, MarpPregnancyStatus.FIELD);
-            complete = StringUtils.isNotBlank(clientStatus)
+            JSONArray fields = jsonObject.getJSONObject(STEP1).getJSONArray(FIELDS);
+            JSONObject category = getFieldJSONObject(fields, OTHER_CATEGORY);
+            Set<String> selected = MarpVisitCategories.codes(category == null ? "" : category.optString(VALUE));
+            boolean mixedNone = selected.size() > 1 && selected.contains(NONE);
+            // If removing old choices changes the answer, require the provider to review and save it.
+            boolean needsCategoryReview = !selected.containsAll(savedCategories);
+            restoreMixedNone = mixedNone && !savedCategories.isEmpty();
+            savedCategories.clear();
+            boolean validSelection = !selected.isEmpty() && !mixedNone && eligibleCategories.containsAll(selected);
+            hasDrugUseCategory = validSelection && (selected.contains("pwud") || selected.contains("pwid"));
+            complete = validSelection && !needsCategoryReview && StringUtils.isNotBlank(clientStatus)
                     && (!requiresEnrollmentDate(clientStatus)
                     || MarpEnrollmentDate.isValid(CoreJsonFormUtils.getValue(jsonObject, ENROLLMENT_DATE)))
                     && (!requiresPregnancyStatus || MarpPregnancyStatus.isAnswer(pregnancyStatus));
@@ -172,6 +197,10 @@ public class KvpClientStatusActionHelper implements BaseKvpVisitAction.KvpVisitA
         } catch (JSONException e) {
             Timber.e(e);
         }
+    }
+
+    protected boolean hasDrugUseCategory() {
+        return hasDrugUseCategory;
     }
 
     private boolean requiresEnrollmentDate(String clientStatus) {
@@ -195,14 +224,23 @@ public class KvpClientStatusActionHelper implements BaseKvpVisitAction.KvpVisitA
         }
         try {
             JSONObject form = new JSONObject(payload);
+            JSONArray fields = form.getJSONObject(STEP1).getJSONArray(FIELDS);
+            if (restoreMixedNone) {
+                JSONObject category = getFieldJSONObject(fields, OTHER_CATEGORY);
+                Set<String> selected = MarpVisitCategories.codes(category.optString(VALUE));
+                selected.remove(NONE);
+                MarpVisitCategories.setSelection(category, selected);
+            }
             if (!requiresEnrollmentDate(CoreJsonFormUtils.getValue(form, CLIENT_STATUS))) {
                 // Hidden widgets can retain answers after a user changes Visit Type.
-                JSONArray fields = form.getJSONObject(STEP1).getJSONArray(FIELDS);
-                JSONObject date = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, ENROLLMENT_DATE);
+                JSONObject date = getFieldJSONObject(fields, ENROLLMENT_DATE);
                 if (date != null && date.has(VALUE)) {
                     date.remove(VALUE);
                     return form.toString();
                 }
+            }
+            if (restoreMixedNone) {
+                return form.toString();
             }
         } catch (JSONException e) {
             Timber.e(e);
