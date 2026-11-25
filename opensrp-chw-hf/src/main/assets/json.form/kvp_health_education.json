@@ -172,6 +172,875 @@
             ]
           }
         }
+      },
+      {
+        "key": "health_education_delivery_modes_sti",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "health_education_delivery_modes_sti",
+        "type": "check_box",
+        "label": "{{education_delivery_title}}: {{education_sti}}",
+        "combine_checkbox_option_values": "true",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "options": [
+          {
+            "key": "leaflets",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "leaflets",
+            "text": "{{education_delivery_leaflets}}"
+          },
+          {
+            "key": "health_care_provider",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "health_care_provider",
+            "text": "{{education_delivery_health_care_provider}}"
+          },
+          {
+            "key": "television",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "television",
+            "text": "{{education_delivery_television}}"
+          },
+          {
+            "key": "other",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "other",
+            "text": "{{education_delivery_other}}"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{education_topic_required}}"
+        },
+        "relevance": {
+          "step1:health_education_provided": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "sti"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "health_education_delivery_other_sti",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "health_education_delivery_other_sti",
+        "type": "edit_text",
+        "hint": "{{education_delivery_specify_channel}}",
+        "v_required": {
+          "value": "true",
+          "err": "{{education_other_required}}"
+        },
+        "relevance": {
+          "step1:health_education_delivery_modes_sti": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "other"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "health_education_delivery_modes_hbv_hcv",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "health_education_delivery_modes_hbv_hcv",
+        "type": "check_box",
+        "label": "{{education_delivery_title}}: {{education_hbv_hcv}}",
+        "combine_checkbox_option_values": "true",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "options": [
+          {
+            "key": "leaflets",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "leaflets",
+            "text": "{{education_delivery_leaflets}}"
+          },
+          {
+            "key": "health_care_provider",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "health_care_provider",
+            "text": "{{education_delivery_health_care_provider}}"
+          },
+          {
+            "key": "television",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "television",
+            "text": "{{education_delivery_television}}"
+          },
+          {
+            "key": "other",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "other",
+            "text": "{{education_delivery_other}}"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{education_topic_required}}"
+        },
+        "relevance": {
+          "step1:health_education_provided": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "hbv_hcv"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "health_education_delivery_other_hbv_hcv",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "health_education_delivery_other_hbv_hcv",
+        "type": "edit_text",
+        "hint": "{{education_delivery_specify_channel}}",
+        "v_required": {
+          "value": "true",
+          "err": "{{education_other_required}}"
+        },
+        "relevance": {
+          "step1:health_education_delivery_modes_hbv_hcv": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "other"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "health_education_delivery_modes_tb",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "health_education_delivery_modes_tb",
+        "type": "check_box",
+        "label": "{{education_delivery_title}}: {{education_tb}}",
+        "combine_checkbox_option_values": "true",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "options": [
+          {
+            "key": "leaflets",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "leaflets",
+            "text": "{{education_delivery_leaflets}}"
+          },
+          {
+            "key": "health_care_provider",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "health_care_provider",
+            "text": "{{education_delivery_health_care_provider}}"
+          },
+          {
+            "key": "television",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "television",
+            "text": "{{education_delivery_television}}"
+          },
+          {
+            "key": "other",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "other",
+            "text": "{{education_delivery_other}}"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{education_topic_required}}"
+        },
+        "relevance": {
+          "step1:health_education_provided": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "tb"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "health_education_delivery_other_tb",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "health_education_delivery_other_tb",
+        "type": "edit_text",
+        "hint": "{{education_delivery_specify_channel}}",
+        "v_required": {
+          "value": "true",
+          "err": "{{education_other_required}}"
+        },
+        "relevance": {
+          "step1:health_education_delivery_modes_tb": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "other"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "health_education_delivery_modes_gbv",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "health_education_delivery_modes_gbv",
+        "type": "check_box",
+        "label": "{{education_delivery_title}}: {{education_gbv}}",
+        "combine_checkbox_option_values": "true",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "options": [
+          {
+            "key": "leaflets",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "leaflets",
+            "text": "{{education_delivery_leaflets}}"
+          },
+          {
+            "key": "health_care_provider",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "health_care_provider",
+            "text": "{{education_delivery_health_care_provider}}"
+          },
+          {
+            "key": "television",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "television",
+            "text": "{{education_delivery_television}}"
+          },
+          {
+            "key": "other",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "other",
+            "text": "{{education_delivery_other}}"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{education_topic_required}}"
+        },
+        "relevance": {
+          "step1:health_education_provided": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "gbv"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "health_education_delivery_other_gbv",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "health_education_delivery_other_gbv",
+        "type": "edit_text",
+        "hint": "{{education_delivery_specify_channel}}",
+        "v_required": {
+          "value": "true",
+          "err": "{{education_other_required}}"
+        },
+        "relevance": {
+          "step1:health_education_delivery_modes_gbv": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "other"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "health_education_delivery_modes_prep",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "health_education_delivery_modes_prep",
+        "type": "check_box",
+        "label": "{{education_delivery_title}}: {{education_prep}}",
+        "combine_checkbox_option_values": "true",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "options": [
+          {
+            "key": "leaflets",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "leaflets",
+            "text": "{{education_delivery_leaflets}}"
+          },
+          {
+            "key": "health_care_provider",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "health_care_provider",
+            "text": "{{education_delivery_health_care_provider}}"
+          },
+          {
+            "key": "television",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "television",
+            "text": "{{education_delivery_television}}"
+          },
+          {
+            "key": "other",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "other",
+            "text": "{{education_delivery_other}}"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{education_topic_required}}"
+        },
+        "relevance": {
+          "step1:health_education_provided": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "prep"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "health_education_delivery_other_prep",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "health_education_delivery_other_prep",
+        "type": "edit_text",
+        "hint": "{{education_delivery_specify_channel}}",
+        "v_required": {
+          "value": "true",
+          "err": "{{education_other_required}}"
+        },
+        "relevance": {
+          "step1:health_education_delivery_modes_prep": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "other"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "health_education_delivery_modes_pep",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "health_education_delivery_modes_pep",
+        "type": "check_box",
+        "label": "{{education_delivery_title}}: {{education_pep}}",
+        "combine_checkbox_option_values": "true",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "options": [
+          {
+            "key": "leaflets",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "leaflets",
+            "text": "{{education_delivery_leaflets}}"
+          },
+          {
+            "key": "health_care_provider",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "health_care_provider",
+            "text": "{{education_delivery_health_care_provider}}"
+          },
+          {
+            "key": "television",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "television",
+            "text": "{{education_delivery_television}}"
+          },
+          {
+            "key": "other",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "other",
+            "text": "{{education_delivery_other}}"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{education_topic_required}}"
+        },
+        "relevance": {
+          "step1:health_education_provided": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "pep"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "health_education_delivery_other_pep",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "health_education_delivery_other_pep",
+        "type": "edit_text",
+        "hint": "{{education_delivery_specify_channel}}",
+        "v_required": {
+          "value": "true",
+          "err": "{{education_other_required}}"
+        },
+        "relevance": {
+          "step1:health_education_delivery_modes_pep": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "other"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "health_education_delivery_modes_vmmc",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "health_education_delivery_modes_vmmc",
+        "type": "check_box",
+        "label": "{{education_delivery_title}}: {{education_vmmc}}",
+        "combine_checkbox_option_values": "true",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "options": [
+          {
+            "key": "leaflets",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "leaflets",
+            "text": "{{education_delivery_leaflets}}"
+          },
+          {
+            "key": "health_care_provider",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "health_care_provider",
+            "text": "{{education_delivery_health_care_provider}}"
+          },
+          {
+            "key": "television",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "television",
+            "text": "{{education_delivery_television}}"
+          },
+          {
+            "key": "other",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "other",
+            "text": "{{education_delivery_other}}"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{education_topic_required}}"
+        },
+        "relevance": {
+          "step1:health_education_provided": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "vmmc"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "health_education_delivery_other_vmmc",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "health_education_delivery_other_vmmc",
+        "type": "edit_text",
+        "hint": "{{education_delivery_specify_channel}}",
+        "v_required": {
+          "value": "true",
+          "err": "{{education_other_required}}"
+        },
+        "relevance": {
+          "step1:health_education_delivery_modes_vmmc": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "other"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "health_education_delivery_modes_cacx",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "health_education_delivery_modes_cacx",
+        "type": "check_box",
+        "label": "{{education_delivery_title}}: {{education_cacx}}",
+        "combine_checkbox_option_values": "true",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "options": [
+          {
+            "key": "leaflets",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "leaflets",
+            "text": "{{education_delivery_leaflets}}"
+          },
+          {
+            "key": "health_care_provider",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "health_care_provider",
+            "text": "{{education_delivery_health_care_provider}}"
+          },
+          {
+            "key": "television",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "television",
+            "text": "{{education_delivery_television}}"
+          },
+          {
+            "key": "other",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "other",
+            "text": "{{education_delivery_other}}"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{education_topic_required}}"
+        },
+        "relevance": {
+          "step1:health_education_provided": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "cacx"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "health_education_delivery_other_cacx",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "health_education_delivery_other_cacx",
+        "type": "edit_text",
+        "hint": "{{education_delivery_specify_channel}}",
+        "v_required": {
+          "value": "true",
+          "err": "{{education_other_required}}"
+        },
+        "relevance": {
+          "step1:health_education_delivery_modes_cacx": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "other"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "health_education_delivery_modes_drug_disorder",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "health_education_delivery_modes_drug_disorder",
+        "type": "check_box",
+        "label": "{{education_delivery_title}}: {{education_drug_disorder}}",
+        "combine_checkbox_option_values": "true",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "options": [
+          {
+            "key": "leaflets",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "leaflets",
+            "text": "{{education_delivery_leaflets}}"
+          },
+          {
+            "key": "health_care_provider",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "health_care_provider",
+            "text": "{{education_delivery_health_care_provider}}"
+          },
+          {
+            "key": "television",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "television",
+            "text": "{{education_delivery_television}}"
+          },
+          {
+            "key": "other",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "other",
+            "text": "{{education_delivery_other}}"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{education_topic_required}}"
+        },
+        "relevance": {
+          "step1:health_education_provided": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "drug_disorder"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "health_education_delivery_other_drug_disorder",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "health_education_delivery_other_drug_disorder",
+        "type": "edit_text",
+        "hint": "{{education_delivery_specify_channel}}",
+        "v_required": {
+          "value": "true",
+          "err": "{{education_other_required}}"
+        },
+        "relevance": {
+          "step1:health_education_delivery_modes_drug_disorder": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "other"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "health_education_delivery_modes_hiv_aids",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "health_education_delivery_modes_hiv_aids",
+        "type": "check_box",
+        "label": "{{education_delivery_title}}: {{education_hiv_aids}}",
+        "combine_checkbox_option_values": "true",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "options": [
+          {
+            "key": "leaflets",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "leaflets",
+            "text": "{{education_delivery_leaflets}}"
+          },
+          {
+            "key": "health_care_provider",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "health_care_provider",
+            "text": "{{education_delivery_health_care_provider}}"
+          },
+          {
+            "key": "television",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "television",
+            "text": "{{education_delivery_television}}"
+          },
+          {
+            "key": "other",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "other",
+            "text": "{{education_delivery_other}}"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{education_topic_required}}"
+        },
+        "relevance": {
+          "step1:health_education_provided": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "hiv_aids"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "health_education_delivery_other_hiv_aids",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "health_education_delivery_other_hiv_aids",
+        "type": "edit_text",
+        "hint": "{{education_delivery_specify_channel}}",
+        "v_required": {
+          "value": "true",
+          "err": "{{education_other_required}}"
+        },
+        "relevance": {
+          "step1:health_education_delivery_modes_hiv_aids": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "other"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "health_education_delivery_modes_other",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "health_education_delivery_modes_other",
+        "type": "check_box",
+        "label": "{{education_delivery_title}}: {{education_delivery_other_topic}}",
+        "combine_checkbox_option_values": "true",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "options": [
+          {
+            "key": "leaflets",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "leaflets",
+            "text": "{{education_delivery_leaflets}}"
+          },
+          {
+            "key": "health_care_provider",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "health_care_provider",
+            "text": "{{education_delivery_health_care_provider}}"
+          },
+          {
+            "key": "television",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "television",
+            "text": "{{education_delivery_television}}"
+          },
+          {
+            "key": "other",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "other",
+            "text": "{{education_delivery_other}}"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{education_topic_required}}"
+        },
+        "relevance": {
+          "step1:health_education_provided": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "other"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "health_education_delivery_other_other",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "health_education_delivery_other_other",
+        "type": "edit_text",
+        "hint": "{{education_delivery_specify_channel}}",
+        "v_required": {
+          "value": "true",
+          "err": "{{education_other_required}}"
+        },
+        "relevance": {
+          "step1:health_education_delivery_modes_other": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "other"
+                ]
+              }
+            ]
+          }
+        }
       }
     ]
   }

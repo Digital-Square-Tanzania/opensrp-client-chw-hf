@@ -54,14 +54,14 @@ import javax.xml.xpath.XPathFactory;
 
 public class MarpHealthEducationTest {
     private static final String FORM = Constants.KVP_BEHAVIORAL_SERVICE_FORMS.KVP_HEALTH_EDUCATION;
-    private static final String TOPICS = "health_education_provided";
-    private static final String OTHER_TEXT = "others_health_education_provided";
+    static final String TOPICS = "health_education_provided";
+    static final String OTHER_TEXT = "others_health_education_provided";
     private static final String NONE = "none";
     private static final String OTHER = "other";
     private static final String SYNTHETIC_TEXT = "Education on a synthetic topic, with a follow-up";
     private static final List<String> LEGACY_TOPICS = List.of("sti", "hbv_hcv", "tb", "gbv", "pep", "vmmc",
             "cacx", "drug_disorder", "hiv_aids", OTHER);
-    private static final List<String> TOPIC_ORDER = List.of("sti", "hbv_hcv", "tb", "gbv", "prep", "pep", "vmmc",
+    static final List<String> TOPIC_ORDER = List.of("sti", "hbv_hcv", "tb", "gbv", "prep", "pep", "vmmc",
             "cacx", "drug_disorder", "hiv_aids", OTHER, NONE);
 
     @Test
@@ -129,7 +129,6 @@ public class MarpHealthEducationTest {
     @Test
     public void nativeFormShowsTheRequiredTextOnlyForOther() throws Exception {
         JSONObject form = form(Locale.ENGLISH);
-        assertEquals(2, form.getJSONObject("step1").getJSONArray("fields").length());
         JSONObject text = field(form, OTHER_TEXT);
         assertTrue(text.getJSONObject("v_required").getBoolean("value"));
         JSONObject relevance = text.getJSONObject("relevance").getJSONObject("step1:" + TOPICS);
@@ -170,6 +169,10 @@ public class MarpHealthEducationTest {
     @Test
     public void legacyCombinedTopicsAndOtherTextSurviveHistoryAndResaveInAnotherLanguage() throws Exception {
         JSONObject legacy = form(Locale.ENGLISH);
+        JSONArray fields = legacy.getJSONObject("step1").getJSONArray("fields");
+        for (int i = fields.length() - 1; i >= 2; i--) {
+            fields.remove(i);
+        }
         JSONArray options = field(legacy, TOPICS).getJSONArray("options");
         options.remove(TOPIC_ORDER.indexOf(NONE));
         options.remove(TOPIC_ORDER.indexOf("prep"));
@@ -245,17 +248,26 @@ public class MarpHealthEducationTest {
     }
 
     private static JSONObject answer(JSONObject form, List<String> selection, String otherText) throws JSONException {
-        JSONObject topics = field(form, TOPICS).put("value", new JSONArray(selection));
-        JSONArray options = topics.getJSONArray("options");
+        answerChecklist(field(form, TOPICS), selection);
+        field(form, OTHER_TEXT).put("value", otherText);
+        for (String topic : selection) {
+            JSONObject modes = field(form, "health_education_delivery_modes_" + topic);
+            if (modes.has("options")) {
+                answerChecklist(modes, List.of("leaflets"));
+            }
+        }
+        return form;
+    }
+
+    static void answerChecklist(JSONObject checklist, List<String> selection) throws JSONException {
+        JSONArray options = checklist.put("value", new JSONArray(selection)).getJSONArray("options");
         for (int i = 0; i < options.length(); i++) {
             JSONObject option = options.getJSONObject(i);
             option.put("value", String.valueOf(selection.contains(option.getString("key"))));
         }
-        field(form, OTHER_TEXT).put("value", otherText);
-        return form;
     }
 
-    private static BaseKvpVisitAction open(Map<String, List<VisitDetail>> details, Locale locale) throws Exception {
+    static BaseKvpVisitAction open(Map<String, List<VisitDetail>> details, Locale locale) throws Exception {
         JSONObject form = form(locale);
         KvpJsonFormUtils.populateForm(form, details);
         return new BaseKvpVisitAction.Builder(mock(Context.class), "Health Education")
@@ -282,7 +294,7 @@ public class MarpHealthEducationTest {
         return restored;
     }
 
-    private static Event event(String payload) {
+    static Event event(String payload) {
         KvpLibrary.init(mock(org.smartregister.Context.class), null, 67, 32);
         return KvpJsonFormUtils.processVisitJsonForm(mock(AllSharedPreferences.class), "synthetic-client",
                 Constants.EVENT_TYPE.KVP_BEHAVIORAL_SERVICE_VISIT, Map.of("Health Education", payload), Constants.TABLES.KVP_FOLLOW_UP);
@@ -301,11 +313,11 @@ public class MarpHealthEducationTest {
         }
     }
 
-    private static Obs observation(Event event, String key) {
+    static Obs observation(Event event, String key) {
         return event.getObs().stream().filter(obs -> key.equals(obs.getFormSubmissionField())).findFirst().orElse(null);
     }
 
-    private static JSONObject form(Locale locale) throws Exception {
+    static JSONObject form(Locale locale) throws Exception {
         String json = new String(Files.readAllBytes(Paths.get("src/main/assets/json.form", FORM + ".json")),
                 StandardCharsets.UTF_8);
         Locale original = Locale.getDefault();
@@ -317,7 +329,7 @@ public class MarpHealthEducationTest {
         }
     }
 
-    private static JSONObject field(JSONObject form, String key) throws JSONException {
+    static JSONObject field(JSONObject form, String key) throws JSONException {
         return FormUtils.getFieldFromForm(form, key);
     }
 }

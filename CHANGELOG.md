@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
+- Record the mode of delivery for each Kituoni MARP Health Education topic in English and Kiswahili, including topic-specific Other channels, and restore the answers in Visit History ([#253](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/253), UCSW-54). No version or dependency changes.
 - Suggest an editable Negative HIV result for the eligible first Kituoni MARP visit and require provider verification before recording it ([#244](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/244)). No version or dependency changes.
 - Record pregnancy or breastfeeding status in Kituoni MARP Client Status for women in the maternal high-risk group. Prefill the first visit from screening and make the saved current or latest status available to other visit forms ([#239](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/239)).
 - Start Kituoni MARP screening for female clients with required pregnancy and breastfeeding questions in English and Kiswahili. Route applicable Yes answers to the dedicated High Risk branch ([#225](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/225)).
