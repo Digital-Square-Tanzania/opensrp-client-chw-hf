@@ -17,7 +17,6 @@ import org.smartregister.chw.hf.actionhelper.kvp.KvpCervicalCancerScreeningActio
 import org.smartregister.chw.hf.actionhelper.kvp.KvpCondomProvisionActionHelper;
 import org.smartregister.chw.hf.actionhelper.kvp.KvpFamilyPlanningActionHelper;
 import org.smartregister.chw.hf.actionhelper.kvp.KvpHepatitisActionHelper;
-import org.smartregister.chw.hf.actionhelper.kvp.KvpPrepPepActionHelper;
 import org.smartregister.chw.hf.actionhelper.kvp.KvpStiScreeningActionHelper;
 import org.smartregister.chw.hf.actionhelper.kvp.KvpTbScreeningActionHelper;
 import org.smartregister.chw.hf.actionhelper.kvp.KvpVmmcActionHelper;
@@ -34,7 +33,6 @@ import org.smartregister.chw.kvp.dao.KvpDao;
 import org.smartregister.chw.kvp.domain.MemberObject;
 import org.smartregister.chw.kvp.domain.Visit;
 import org.smartregister.chw.kvp.domain.VisitDetail;
-import org.smartregister.chw.kvp.interactor.BaseKvpVisitInteractor;
 import org.smartregister.chw.kvp.model.BaseKvpVisitAction;
 import org.smartregister.chw.kvp.repository.VisitRepository;
 import org.smartregister.chw.kvp.util.Constants;
@@ -49,7 +47,7 @@ import java.util.Map;
 
 import timber.log.Timber;
 
-public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
+public class KvpBioMedicalServiceInteractor extends MarpPepVisitInteractor {
 
     private static final String NEW_VISIT_TYPE = "new_client";
     private static final String CERVICAL_SCREENING_FIELD = "cervical_cancer_screening";
@@ -57,15 +55,14 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
     protected BaseKvpVisitContract.InteractorCallBack callBack;
     private final boolean editingVisit;
     private boolean offerHtsSuggestion;
-    private Event replacedBiomedicalEvent;
+    private boolean sexualViolence;
     private KvpClientStatusActionHelper clientStatusActionHelper;
     private BaseKvpVisitAction familyPlanningAction;
     private BaseKvpVisitAction cervicalScreeningAction;
-    private BaseKvpVisitAction pepAction;
     private String wasCondomGiven;
 
     public KvpBioMedicalServiceInteractor(boolean editingVisit) {
-        super(Constants.EVENT_TYPE.KVP_BIO_MEDICAL_SERVICE_VISIT);
+        super(BIOMEDICAL, STRUCTURAL);
         this.editingVisit = editingVisit;
     }
 
@@ -74,6 +71,9 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
         this.callBack = callBack;
         final Runnable runnable = () -> {
             try {
+                sexualViolence = MarpPep.hasSexualViolence(peerEvent);
+                reviewTrigger = sexualViolence ? MarpPep.eventDetail(peerEvent, MarpPep.REVIEW_TRIGGER) : null;
+                reviewedTrigger = MarpPep.eventDetail(originalEvent, MarpPep.REVIEWED_TRIGGER);
                 evaluateClientStatus(details);
                 evaluateHts(details);
                 evaluateCondomProvision(details);
@@ -165,39 +165,34 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
     }
 
     @Override
-    protected Visit saveVisit(boolean editMode, String memberId, String encounterType, Map<String, String> payloads,
-                              String parentEventType) throws Exception {
-        if (editMode) {
-            // The shared save path replaces the latest Biomedical visit after preparing its new event.
-            Visit visit = visitRepository().getLatestVisit(memberId, getEncounterType());
-            replacedBiomedicalEvent = HfKvpDao.readSubmittedBiomedicalEvent(visit);
-        }
-        try {
-            return super.saveVisit(editMode, memberId, encounterType, payloads, parentEventType);
-        } finally {
-            replacedBiomedicalEvent = null;
-        }
-    }
-
-    @Override
     protected void prepareEvent(Event event) {
         super.prepareEvent(event);
-        MarpHts.retainRemovedAnswers(replacedBiomedicalEvent, event);
-        retainHiddenFamilyPlanningAnswers(replacedBiomedicalEvent, event);
-        retainHistoricalMatAnswers(replacedBiomedicalEvent, event);
-        MarpPep.retainUneditedAnswers(replacedBiomedicalEvent, event);
+        if (event == null) {
+            return;
+        }
+        MarpHts.retainRemovedAnswers(originalEvent, event);
+        retainHiddenFamilyPlanningAnswers(originalEvent, event);
+        retainHistoricalMatAnswers(originalEvent, event);
+        boolean editedPep = pepSaved && actionList.containsKey(context.getString(R.string.kvp_pep_assesment));
+        if (editedPep) {
+            MarpPep.retainPrepAnswer(originalEvent, event);
+        } else {
+            MarpPep.retainUneditedAnswers(originalEvent, event);
+        }
+        MarpPep.setEventDetail(event, MarpPep.REVIEWED_TRIGGER, editedPep ? reviewedTrigger
+                : MarpPep.eventDetail(originalEvent, MarpPep.REVIEWED_TRIGGER));
         // The shared history save replaces the event and rebuilds its visit details from the observations.
-        if (replacedBiomedicalEvent != null && replacedBiomedicalEvent.getObs() != null
+        if (originalEvent != null && originalEvent.getObs() != null
                 && !actionList.containsKey(context.getString(R.string.kvp_cervical_screening))) {
-            for (Obs obs : replacedBiomedicalEvent.getObs()) {
+            for (Obs obs : originalEvent.getObs()) {
                 if (CERVICAL_SCREENING_FIELD.equals(obs.getFormSubmissionField())) {
                     event.addObs(obs);
                 }
             }
         }
         String visitType = MarpEnrollmentDate.observation(event, CLIENT_STATUS);
-        if (StringUtils.isNotBlank(MarpEnrollmentDate.observation(replacedBiomedicalEvent, CLIENT_STATUS))) {
-            MarpEnrollmentDate.retainOnResave(replacedBiomedicalEvent, event);
+        if (StringUtils.isNotBlank(MarpEnrollmentDate.observation(originalEvent, CLIENT_STATUS))) {
+            MarpEnrollmentDate.retainOnResave(originalEvent, event);
         } else if (MarpEnrollmentDate.isTransferOrReturn(visitType)
                 && StringUtils.isBlank(HfKvpDao.getClientStatus(event.getBaseEntityId()))) {
             MarpEnrollmentDate.recordFirstVisitDate(event);
@@ -243,7 +238,7 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
                 && !HfKvpDao.hasRecordedMarpVisitForHts(memberId, today)
                 && MarpHtsSuggestion.isEligible(KvpDao.getDominantKVPGroup(memberId),
                         HfKvpDao.getLatestPregnancyBreastfeedingStatus(memberId));
-        KvpHtsActionHelper actionHelper = new KvpHtsActionHelper(lastHivStatus);
+        KvpHtsActionHelper actionHelper = new KvpHtsActionHelper(lastHivStatus, knownHivStatus(memberId, lastHivStatus));
         BaseKvpVisitAction action = getBuilder(context.getString(R.string.kvp_hts))
                 .withOptional(true)
                 .withDetails(details)
@@ -252,6 +247,7 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
                 .build();
 
         actionList.put(context.getString(R.string.kvp_hts), action);
+        actionHelper.updatePepAction();
     }
 
     public JSONObject prepareHtsForm(JSONObject form) throws JSONException {
@@ -266,25 +262,6 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
         Visit latest = repository.getLatestVisit(memberId, Constants.EVENT_TYPE.KVP_BIO_MEDICAL_SERVICE_VISIT);
         return (latest == null || MarpVisitStatus.isDraft(latest))
                 && !MarpVisitStatus.hasSubmittedVisitBeforeToday(repository, memberId, today);
-    }
-
-    private BaseKvpVisitAction buildPepAction() throws BaseKvpVisitAction.ValidationException, JSONException {
-        String formName = Constants.KVP_BIO_MEDICAL_SERVICE_FORMS.KVP_PrEP_PEP;
-        JSONObject form = FormUtils.getFormUtils().getFormJson(formName);
-        JSONArray fields = form.getJSONObject("step1").getJSONArray(JsonFormConstants.FIELDS);
-        org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, MarpPep.PREP_ENROLMENT).put(VALUE, false);
-        return getBuilder(context.getString(R.string.kvp_pep_assesment))
-                .withOptional(true)
-                .withDetails(details)
-                .withHelper(new KvpPrepPepActionHelper())
-                .withJsonPayload(form.toString())
-                .withFormName(formName)
-                .build();
-    }
-
-    public JSONObject preparePepForm(JSONObject form) throws JSONException {
-        return pepAction == null ? form
-                : ((KvpPrepPepActionHelper) pepAction.getKvpVisitActionHelper()).forDisplay(form);
     }
 
     private void evaluateCondomProvision(Map<String, List<VisitDetail>> details) throws BaseKvpVisitAction.ValidationException {
@@ -425,31 +402,38 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
 
     private class KvpHtsActionHelper extends org.smartregister.chw.hf.actionhelper.kvp.KvpHtsActionHelper {
 
-        private final boolean knownHivPositive;
+        private final String knownHivStatus;
 
-        public KvpHtsActionHelper(String lastHivStatus) {
+        public KvpHtsActionHelper(String lastHivStatus, String knownHivStatus) {
             super(lastHivStatus);
-            knownHivPositive = MarpHts.isPositiveResult(lastHivStatus);
+            this.knownHivStatus = knownHivStatus;
         }
 
         @Override
         public String postProcess(String s) {
+            updatePepAction();
+            appExecutors.mainThread().execute(() -> callBack.preloadActions(actionList));
+            return super.postProcess(s);
+        }
+
+        private void updatePepAction() {
             String title = context.getString(R.string.kvp_pep_assesment);
-            if (!hasAssessmentInput() || knownHivPositive || MarpHts.isPositiveResult(hiv_status)
-                    || KvpDao.getPrEPMember(memberObject.getBaseEntityId()) != null) {
+            boolean hasSavedAssessment = MarpPep.isServiceAnswer(MarpPep.answer(details, MarpPep.SERVICE))
+                    || StringUtils.isNotBlank(MarpPep.answer(details, MarpPep.NEED));
+            if ((!hasAssessmentInput() && !sexualViolence && !hasSavedAssessment)
+                    || !MarpPep.eligible(knownHivStatus, hiv_status,
+                            KvpDao.getPrEPMember(memberObject.getBaseEntityId()) != null)) {
                 actionList.remove(title);
             } else {
                 try {
                     if (pepAction == null) {
-                        pepAction = buildPepAction();
+                        buildPepAction(details);
                     }
                     actionList.put(title, pepAction);
                 } catch (BaseKvpVisitAction.ValidationException | JSONException e) {
                     Timber.e(e, "Unable to load the MARP PEP assessment");
                 }
             }
-            new AppExecutors().mainThread().execute(() -> callBack.preloadActions(actionList));
-            return super.postProcess(s);
         }
     }
 

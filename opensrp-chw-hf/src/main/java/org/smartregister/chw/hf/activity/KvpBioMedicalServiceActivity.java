@@ -78,6 +78,16 @@ public class KvpBioMedicalServiceActivity extends BaseKvpVisitActivity {
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == Constants.REQUEST_CODE_GET_JSON && resultCode == RESULT_OK && data != null
+                && getString(R.string.kvp_pep_assesment).equals(current_action)) {
+            biomedicalInteractor.onPepFormSaved();
+            redrawVisitUI();
+        }
+    }
+
+    @Override
     public void submittedAndClose() {
         Runnable runnable = () -> HfScheduleTaskExecutor.getInstance().execute(memberObject.getBaseEntityId(), Constants.EVENT_TYPE.KVP_BIO_MEDICAL_SERVICE_VISIT, new Date());
         Utils.startAsyncTask(new RunnableTask(runnable), null);
@@ -142,5 +152,6 @@ public class KvpBioMedicalServiceActivity extends BaseKvpVisitActivity {
             mAdapter.notifyDataSetChanged();
         }
         displayProgressBar(false);
+        redrawVisitUI();
     }
 }

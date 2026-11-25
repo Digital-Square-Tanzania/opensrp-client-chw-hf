@@ -81,7 +81,7 @@ public final class MarpVisitStatus {
         return Boolean.TRUE.equals(visit.getProcessed()) || StringUtils.isNotBlank(visit.getFormSubmissionId());
     }
 
-    private static boolean isOnDate(Date date, Calendar today) {
+    public static boolean isOnDate(Date date, Calendar today) {
         if (date == null) {
             return false;
         }

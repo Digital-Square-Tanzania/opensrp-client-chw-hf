@@ -9,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.smartregister.chw.hf.utils.MarpPep;
 import org.smartregister.chw.kvp.domain.VisitDetail;
 import org.smartregister.chw.kvp.model.BaseKvpVisitAction;
 
@@ -26,6 +27,11 @@ public class KvpGbvAnalysisActionHelper implements BaseKvpVisitAction.KvpVisitAc
 
     private boolean screeningComplete;
     private boolean violenceReported;
+    private boolean sexualViolence;
+
+    public boolean hasSexualViolence() {
+        return sexualViolence;
+    }
 
     @Override
     public void onJsonFormLoaded(String jsonPayload, Context context, Map<String, List<VisitDetail>> map) {
@@ -40,6 +46,7 @@ public class KvpGbvAnalysisActionHelper implements BaseKvpVisitAction.KvpVisitAc
     public void onPayloadReceived(String jsonPayload) {
         screeningComplete = false;
         violenceReported = false;
+        sexualViolence = false;
         if (StringUtils.isBlank(jsonPayload)) {
             return;
         }
@@ -59,6 +66,7 @@ public class KvpGbvAnalysisActionHelper implements BaseKvpVisitAction.KvpVisitAc
             boolean exclusive = selected.contains("none") || selected.contains("not_assessed");
             screeningComplete = exclusive ? selected.size() == 1 : !selected.isEmpty();
             violenceReported = screeningComplete && !exclusive;
+            sexualViolence = violenceReported && selected.contains(MarpPep.SEXUAL_VIOLENCE);
         } catch (JSONException e) {
             Timber.e(e);
         }
