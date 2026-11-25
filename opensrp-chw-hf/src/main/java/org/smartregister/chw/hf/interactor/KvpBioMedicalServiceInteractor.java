@@ -26,6 +26,7 @@ import org.smartregister.chw.hf.actionhelper.kvp.KvpVmmcActionHelper;
 import org.smartregister.chw.hf.dao.HfKvpDao;
 import org.smartregister.chw.hf.utils.MarpEnrollmentDate;
 import org.smartregister.chw.hf.utils.MarpGroupLabels;
+import org.smartregister.chw.hf.utils.MarpPregnancyStatus;
 import org.smartregister.chw.kvp.contract.BaseKvpVisitContract;
 import org.smartregister.chw.kvp.dao.KvpDao;
 import org.smartregister.chw.kvp.domain.MemberObject;
@@ -48,6 +49,7 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
     protected BaseKvpVisitContract.InteractorCallBack callBack;
     private String visitType;
     private Event replacedBiomedicalEvent;
+    private KvpClientStatusActionHelper clientStatusActionHelper;
 
     public KvpBioMedicalServiceInteractor(String visitType) {
         this.visitType = visitType;
@@ -101,6 +103,7 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
         JSONObject clientStatus = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, CLIENT_STATUS);
         JSONObject enrollmentDate = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, ENROLLMENT_DATE);
         localizeClientStatus(clientStatus, enrollmentDate);
+        String dominantGroup = KvpDao.getDominantKVPGroup(memberObject.getBaseEntityId());
         if (StringUtils.isNotBlank(HfKvpDao.getClientStatus(memberObject.getBaseEntityId()))) {
             KvpJsonFormUtils.removeOptionFromCheckboxListWithKey(clientStatus, "new_client");
         }
@@ -111,7 +114,7 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
             other_kvp_category.put("label", context.getString(R.string.marp_other_client_category));
             MarpGroupLabels.applyLongLabels(context.getResources(), other_kvp_category.getJSONArray(OPTIONS));
         }
-        KvpJsonFormUtils.removeOptionFromCheckboxListWithKey(other_kvp_category, KvpDao.getDominantKVPGroup(memberObject.getBaseEntityId()));
+        KvpJsonFormUtils.removeOptionFromCheckboxListWithKey(other_kvp_category, dominantGroup);
         if (memberObject.getGender().equalsIgnoreCase(Constants.MALE)) {
             //remove FSW, AGYW
             //TODO: extract keys to constant
@@ -130,16 +133,22 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
         }
 
 
-        KvpClientStatusActionHelper actionHelper = new KvpClientStatusActionHelper(memberObject);
+        clientStatusActionHelper = new KvpClientStatusActionHelper(memberObject,
+                MarpPregnancyStatus.appliesTo(memberObject.getGender(), dominantGroup));
         BaseKvpVisitAction action = getBuilder(context.getString(R.string.kvp_client_status))
                 .withOptional(false)
                 .withDetails(details)
-                .withHelper(actionHelper)
+                .withHelper(clientStatusActionHelper)
                 .withFormName(Constants.KVP_BIO_MEDICAL_SERVICE_FORMS.KVP_CLIENT_STATUS)
                 .withJsonPayload(clientStatusForm.toString())
                 .build();
 
         actionList.put(context.getString(R.string.kvp_client_status), action);
+    }
+
+    /** Resolves the answer saved in Client Status, including before Biomedical submission. */
+    public String getPregnancyBreastfeedingStatus() {
+        return clientStatusActionHelper == null ? "" : clientStatusActionHelper.getPregnancyBreastfeedingStatus();
     }
 
     private void localizeClientStatus(JSONObject clientStatus, JSONObject enrollmentDate) throws JSONException {
@@ -383,8 +392,8 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
     private class KvpClientStatusActionHelper extends org.smartregister.chw.hf.actionhelper.kvp.KvpClientStatusActionHelper {
         private String other_kvp_category;
 
-        public KvpClientStatusActionHelper(MemberObject memberObject) {
-            super(memberObject);
+        public KvpClientStatusActionHelper(MemberObject memberObject, boolean requiresPregnancyStatus) {
+            super(memberObject, requiresPregnancyStatus);
         }
 
         @Override

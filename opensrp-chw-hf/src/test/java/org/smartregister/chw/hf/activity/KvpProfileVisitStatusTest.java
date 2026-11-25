@@ -94,6 +94,16 @@ public class KvpProfileVisitStatusTest {
     }
 
     @Test
+    public void earlierVisitCanHaveOnlyAnotherCardSubmitted() {
+        setVisits(BEHAVIORAL, submittedAt(23));
+        setVisits(STRUCTURAL, visitAt(22, 9, 0, false, null));
+        assertFalse(MarpVisitStatus.hasSubmittedVisitBeforeToday(repository, CLIENT, now));
+
+        setVisits(OTHER, submittedAt(22));
+        assertTrue(MarpVisitStatus.hasSubmittedVisitBeforeToday(repository, CLIENT, now));
+    }
+
+    @Test
     public void threeSubmittedCardsAndAnUnsubmittedFourthKeepTheVisitOpen() {
         setVisits(BIOMEDICAL, submittedAt(23));
         setVisits(BEHAVIORAL, submittedAt(23));

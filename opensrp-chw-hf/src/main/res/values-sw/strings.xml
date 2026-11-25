@@ -367,6 +367,10 @@
     <string name="marp_other_service_visit">Ziara ya huduma nyingine za MARP</string>
     <string name="kvp_client_status">Hali ya mteja</string>
     <string name="marp_visit_type">Aina ya hudhurio</string>
+    <string name="marp_pregnancy_breastfeeding_status">Hali ya ujauzito/Unyonyeshaji</string>
+    <string name="marp_status_pregnant">Mjamzito</string>
+    <string name="marp_status_neither">Hana ujauzito/Hanyonyeshi</string>
+    <string name="marp_status_breastfeeding">Ananyonyesha</string>
     <string name="marp_visit_type_new">Mpya</string>
     <string name="marp_visit_type_transfer_in">Amehamia</string>
     <string name="marp_visit_type_return">Marudio</string>
