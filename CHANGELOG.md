@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
+- Resolve the existing OpenSRP Plan Evaluator `0.0.19-SNAPSHOT` from a repository restricted to that exact coordinate, with the upstream Apache-2.0 attribution and license (UCSW-48).
 - Hide Family Planning in Kituoni MARP Biomedical Services while the client is pregnant, allow submission without it, and restore it in the same visit after saving a breastfeeding or non-pregnant status ([#246](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/246), UCSW-48).
 - Classify and process otherwise complete pregnant Biomedical visits without a Family Planning answer. Use Core `2.2.0-KITUONI-UCSW-48-VISIT-9-SNAPSHOT`, which exports the KVP completion repair. The facility app version remains 1.4.0 (67) (UCSW-48).
 
