@@ -46,6 +46,8 @@ import timber.log.Timber;
 
 public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
 
+    private static final String NEW_VISIT_TYPE = "new_client";
+
     protected BaseKvpVisitContract.InteractorCallBack callBack;
     private String visitType;
     private Event replacedBiomedicalEvent;
@@ -104,9 +106,7 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
         JSONObject enrollmentDate = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, ENROLLMENT_DATE);
         localizeClientStatus(clientStatus, enrollmentDate);
         String dominantGroup = KvpDao.getDominantKVPGroup(memberObject.getBaseEntityId());
-        if (StringUtils.isNotBlank(HfKvpDao.getClientStatus(memberObject.getBaseEntityId()))) {
-            KvpJsonFormUtils.removeOptionFromCheckboxListWithKey(clientStatus, "new_client");
-        }
+        filterVisitTypeOptions(clientStatus, HfKvpDao.getClientStatus(memberObject.getBaseEntityId()), details);
 
         JSONObject otherCategories = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, OTHER_CATEGORY);
         String gender = memberObject.getGender();
@@ -126,6 +126,17 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
         actionList.put(context.getString(R.string.kvp_client_status), action);
     }
 
+    static void filterVisitTypeOptions(JSONObject clientStatus, String previousClientStatus,
+                                       Map<String, List<VisitDetail>> details) throws Exception {
+        List<VisitDetail> savedStatus = details == null ? null : details.get(CLIENT_STATUS);
+        boolean savedAsNew = savedStatus != null && !savedStatus.isEmpty()
+                && NEW_VISIT_TYPE.equals(KvpJsonFormUtils.getValue(savedStatus.get(0)));
+        // The radio option is needed to serialize the restored answer when saving a history edit.
+        if (StringUtils.isNotBlank(previousClientStatus) && !savedAsNew) {
+            KvpJsonFormUtils.removeOptionFromCheckboxListWithKey(clientStatus, NEW_VISIT_TYPE);
+        }
+    }
+
     private int getAgeForCategoryEligibility() {
         try {
             return memberObject.getAge();
@@ -143,7 +154,7 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
         clientStatus.put("label", context.getString(R.string.marp_visit_type));
         clientStatus.getJSONObject("v_required").put("err", context.getString(R.string.marp_visit_type_required));
         JSONArray options = clientStatus.getJSONArray(OPTIONS);
-        org.smartregister.util.JsonFormUtils.getFieldJSONObject(options, "new_client")
+        org.smartregister.util.JsonFormUtils.getFieldJSONObject(options, NEW_VISIT_TYPE)
                 .put("text", context.getString(R.string.marp_visit_type_new));
         org.smartregister.util.JsonFormUtils.getFieldJSONObject(options, "transfer_in")
                 .put("text", context.getString(R.string.marp_visit_type_transfer_in));

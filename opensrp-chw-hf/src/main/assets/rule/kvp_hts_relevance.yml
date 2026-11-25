@@ -52,6 +52,6 @@ actions:
 name: step1_tested_hiv
 description: tested_hiv relevance
 priority: 1
-condition: "global_editing_saved_hts.equals('yes') || global_hiv_status.equalsIgnoreCase('') || global_hiv_status.equalsIgnoreCase('negative') || global_hiv_status.equalsIgnoreCase('inconclusive')"
+condition: "global_editing_saved_hts.equals('yes') || global_hiv_status.equalsIgnoreCase('') || global_hiv_status.equalsIgnoreCase('negative') || global_hiv_status.equalsIgnoreCase('inconclusive') || global_hiv_status.equalsIgnoreCase('refused_results')"
 actions:
   - "isRelevant = true"

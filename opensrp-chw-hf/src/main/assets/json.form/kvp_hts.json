@@ -50,7 +50,7 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "tested_hiv",
-        "label": "Has the client tested for HIV?",
+        "label": "Has the client tested for HIV",
         "text_color": "#000000",
         "type": "native_radio",
         "options": [
@@ -154,7 +154,7 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "testing_site",
-        "label": "Client's testing site",
+        "label": "HIV Testing Site",
         "text_color": "#000000",
         "type": "native_radio",
         "options": [
@@ -167,7 +167,7 @@
           },
           {
             "key": "facility",
-            "text": " Facility",
+            "text": "Facility",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "facility"
@@ -195,13 +195,6 @@
         "type": "native_radio",
         "options": [
           {
-            "key": "positive",
-            "text": "Positive",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "positive"
-          },
-          {
             "key": "negative",
             "text": "Negative",
             "openmrs_entity_parent": "",
@@ -209,11 +202,11 @@
             "openmrs_entity_id": "negative"
           },
           {
-            "key": "known_positive",
-            "text": "Known Positive",
+            "key": "positive",
+            "text": "Positive",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "known_positive"
+            "openmrs_entity_id": "positive"
           },
           {
             "key": "inconclusive",
@@ -221,6 +214,20 @@
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "inconclusive"
+          },
+          {
+            "key": "refused_results",
+            "text": "Refuse to receive the results",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "refused_results"
+          },
+          {
+            "key": "known_positive",
+            "text": "Known positive",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "known_positive"
           }
         ],
         "v_required": {
@@ -329,7 +336,7 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "kits_distributed",
-        "label": "HIVST kits distributed",
+        "label": "Received HIV Self-Testing (HIVST) Kit",
         "text_color": "#000000",
         "type": "native_radio",
         "options": [
