@@ -15,6 +15,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
+- Simplify Kituoni MARP HTS by removing Client Type and the post-test counselling question. Require a bilingual CTC ID for either CTC enrolment option on Positive and Known positive results, and format pasted 14-digit IDs with leading zeros preserved ([#241](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/241)). No version or dependency changes.
+
 - Use the bilingual Other MARP categories checklist in Kituoni Client Status. Filter register groups by dominant group, sex and age, preserve eligible screening defaults and require an exclusive None or at least one group ([#240](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/240)). No version or dependency changes.
 
 - Use the bilingual Visit Type labels in Kituoni MARP Client Status. Save a first Transfer in or Return programme date as the MARP enrolment date, show it on the profile and retain it when re-saving the same visit type through Visit History. Use the register date for monthly enrolment reporting and backfill missing system dates from registration events in database version 32 ([#238](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/238)).

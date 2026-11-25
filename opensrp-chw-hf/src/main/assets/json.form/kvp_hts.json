@@ -186,85 +186,6 @@
         }
       },
       {
-        "key": "client_type",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "client_type",
-        "label": "Client Type",
-        "text_color": "#000000",
-        "type": "native_radio",
-        "options": [
-          {
-            "key": "sns_client",
-            "text": "SNS",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "sns_client"
-          },
-          {
-            "key": "index_client",
-            "text": " Index",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "index_client"
-          },
-          {
-            "key": "normal_client",
-            "text": "Normal Client",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "normal_client"
-          }
-        ],
-        "v_required": {
-          "value": "true",
-          "err": "Please select one"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "kvp_hts_relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "received_test_results",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "received_test_results",
-        "label": "Has the client received post-test counseling and results?",
-        "text_color": "#000000",
-        "type": "native_radio",
-        "options": [
-          {
-            "key": "yes",
-            "text": "Yes",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "yes"
-          },
-          {
-            "key": "no",
-            "text": "No",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "no"
-          }
-        ],
-        "v_required": {
-          "value": "true",
-          "err": "Please select one"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "kvp_hts_relevance.yml"
-            }
-          }
-        }
-      },
-      {
         "key": "hiv_status",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -349,7 +270,7 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "ctc_services",
-        "label": "Enrollment to CTC services",
+        "label": "CTC services",
         "text_color": "#000000",
         "type": "native_radio",
         "options": [
@@ -385,20 +306,15 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "ctc_number",
-        "type": "mask_edit_text",
-        "mask": "##-##-####-######",
-        "mask_hint": "12345678912345",
-        "allowed_chars": "0123456789",
-        "hint": "CTC Number",
-        "edit_type": "number",
-        "v_regex": {
-          "value": "(\\d{2}-\\d{2}-\\d{4}-\\d{6})?",
-          "err": "CTC number should be of the format (XX-XX-XXXX-XXXXXX)"
+        "type": "edit_text",
+        "hint": "CTC ID #",
+        "v_required": {
+          "value": "true",
+          "err": "Enter a CTC ID #"
         },
-        "v_max_length": {
-          "value": "17",
-          "is_fixed_size": "true",
-          "err": "Please enter a valid CTC Number"
+        "v_regex": {
+          "value": "\\A(?:[0-9]{14}|[0-9]{2}-[0-9]{2}-[0-9]{4}-[0-9]{6})\\z",
+          "err": "Enter 14 digits in the format NN-NN-NNNN-NNNNNN"
         },
         "relevance": {
           "rules-engine": {

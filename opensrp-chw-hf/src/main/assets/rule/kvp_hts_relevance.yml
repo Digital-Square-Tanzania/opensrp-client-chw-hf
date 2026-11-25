@@ -2,28 +2,14 @@
 name: step1_testing_site
 description: testing_site relevance
 priority: 1
-condition: "!step1_previous_hiv_testing_method.isEmpty() && !step1_previous_hiv_testing_method.equals('not_tested') && !step1_previous_hiv_testing_method.equals('hivst')"
-actions:
-  - "isRelevant = true"
----
-name: step1_received_test_results
-description: received_test_results relevance
-priority: 1
-condition: "!step1_previous_hiv_testing_method.isEmpty() && !step1_previous_hiv_testing_method.equals('hivst')"
+condition: "step1_tested_hiv.equals('yes') && !step1_previous_hiv_testing_method.isEmpty() && !step1_previous_hiv_testing_method.equals('not_tested') && !step1_previous_hiv_testing_method.equals('hivst')"
 actions:
   - "isRelevant = true"
 ---
 name: step1_hiv_status
 description: hiv_testing_results relevance
 priority: 1
-condition: "!step1_previous_hiv_testing_method.isEmpty() && !step1_previous_hiv_testing_method.equals('hivst')"
-actions:
-  - "isRelevant = true"
----
-name: step1_client_type
-description: client_type relevance
-priority: 1
-condition: "!step1_previous_hiv_testing_method.isEmpty() && !step1_previous_hiv_testing_method.equals('not_tested') && !step1_previous_hiv_testing_method.equals('hivst')"
+condition: "step1_tested_hiv.equals('yes') && !step1_previous_hiv_testing_method.isEmpty() && !step1_previous_hiv_testing_method.equals('not_tested') && !step1_previous_hiv_testing_method.equals('hivst')"
 actions:
   - "isRelevant = true"
 ---
@@ -31,13 +17,6 @@ name: step1_testing_approach
 description: testing_approach relevance
 priority: 1
 condition: "!step1_tested_hiv.isEmpty() && step1_tested_hiv.equals('yes')"
-actions:
-  - "isRelevant = true"
----
-name: step1_hiv_status
-description: hiv_status relevance
-priority: 1
-condition: "step1_tested_hiv.equals('yes')"
 actions:
   - "isRelevant = true"
 ---
@@ -58,7 +37,7 @@ actions:
 name: step1_ctc_number
 description: ctc_number relevance
 priority: 1
-condition: "step1_ctc_services.equals('enrolled_but_not_on_arv') || step1_ctc_services.equals('enrolled_and_on_arv')"
+condition: "(step1_hiv_status.equals('positive') || step1_hiv_status.equals('known_positive')) && (step1_ctc_services.equals('enrolled_but_not_on_arv') || step1_ctc_services.equals('enrolled_and_on_arv'))"
 actions:
   - "isRelevant = true"
 
@@ -73,6 +52,6 @@ actions:
 name: step1_tested_hiv
 description: tested_hiv relevance
 priority: 1
-condition: "global_hiv_status.equalsIgnoreCase('') || global_hiv_status.equalsIgnoreCase('negative') || global_hiv_status.equalsIgnoreCase('inconclusive')"
+condition: "global_editing_saved_hts.equals('yes') || global_hiv_status.equalsIgnoreCase('') || global_hiv_status.equalsIgnoreCase('negative') || global_hiv_status.equalsIgnoreCase('inconclusive')"
 actions:
   - "isRelevant = true"

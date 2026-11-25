@@ -24,6 +24,7 @@ import org.smartregister.chw.hf.actionhelper.kvp.KvpTbScreeningActionHelper;
 import org.smartregister.chw.hf.actionhelper.kvp.KvpVmmcActionHelper;
 import org.smartregister.chw.hf.dao.HfKvpDao;
 import org.smartregister.chw.hf.utils.MarpEnrollmentDate;
+import org.smartregister.chw.hf.utils.MarpHts;
 import org.smartregister.chw.hf.utils.MarpPregnancyStatus;
 import org.smartregister.chw.hf.utils.MarpVisitCategories;
 import org.smartregister.chw.kvp.contract.BaseKvpVisitContract;
@@ -170,6 +171,7 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
     @Override
     protected void prepareEvent(Event event) {
         super.prepareEvent(event);
+        MarpHts.retainRemovedAnswers(replacedBiomedicalEvent, event);
         String visitType = MarpEnrollmentDate.observation(event, CLIENT_STATUS);
         if (StringUtils.isNotBlank(MarpEnrollmentDate.observation(replacedBiomedicalEvent, CLIENT_STATUS))) {
             MarpEnrollmentDate.retainOnResave(replacedBiomedicalEvent, event);
@@ -181,7 +183,7 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
 
     private void evaluateHts(Map<String, List<VisitDetail>> details) throws BaseKvpVisitAction.ValidationException {
 
-        KvpHtsActionHelper actionHelper = new KvpHtsActionHelper(memberObject);
+        KvpHtsActionHelper actionHelper = new KvpHtsActionHelper(HfKvpDao.getHivStatus(memberObject.getBaseEntityId()));
         BaseKvpVisitAction action = getBuilder(context.getString(R.string.kvp_hts))
                 .withOptional(true)
                 .withDetails(details)
@@ -355,13 +357,13 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
 
     private class KvpHtsActionHelper extends org.smartregister.chw.hf.actionhelper.kvp.KvpHtsActionHelper {
 
-        public KvpHtsActionHelper(MemberObject memberObject) {
-            super(memberObject);
+        public KvpHtsActionHelper(String lastHivStatus) {
+            super(lastHivStatus);
         }
 
         @Override
         public String postProcess(String s) {
-            if (StringUtils.isBlank(hiv_status) || !(hiv_status.equalsIgnoreCase("positive") || hiv_status.equalsIgnoreCase("known_positive"))) {
+            if (!MarpHts.isPositiveResult(hiv_status)) {
                 try {
                     if (KvpDao.getPrEPMember(memberObject.getBaseEntityId()) == null)
                         evaluatePrepPep(details);

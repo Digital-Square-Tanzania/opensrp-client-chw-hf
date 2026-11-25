@@ -65,6 +65,11 @@
             android:name=".activity.KvpBioMedicalServiceActivity"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity
+            android:name=".activity.MarpHtsFormActivity"
+            android:exported="false"
+            android:theme="@style/HFTheme.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+        <activity
             android:name=".activity.KvpBehavioralServiceActivity"
             android:theme="@style/HFTheme.NoActionBar" />
         <activity

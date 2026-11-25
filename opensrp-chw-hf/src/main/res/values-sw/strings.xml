@@ -381,6 +381,13 @@
     <string name="marp_visit_enrolment_date_required">Tafadhali jibu swali hili</string>
     <string name="marp_profile_enrolment_date">Tarehe ya kuandikishwa kwenye MARP: %1$s</string>
     <string name="kvp_hts">Ushauri Nasaha na Upimaji</string>
+    <string name="marp_hts_ctc_services">Huduma za CTC</string>
+    <string name="marp_hts_ctc_services_required">Chagua hali ya kuandikishwa katika huduma za CTC</string>
+    <string name="marp_hts_ctc_enrolled_without_art">Ameandikishwa lakini hajaanza ART</string>
+    <string name="marp_hts_ctc_enrolled_on_art">Ameandikishwa na ameanza ART</string>
+    <string name="marp_hts_ctc_id">Namba ya CTC (CTC ID #)</string>
+    <string name="marp_hts_ctc_id_required">Weka namba ya CTC</string>
+    <string name="marp_hts_ctc_id_invalid">Weka tarakimu 14 kwa muundo NN-NN-NNNN-NNNNNN</string>
     <string name="kvp_pep_assesment">PEP assesment</string>
     <string name="kvp_condom_provision">Ugawaji Kondomu</string>
     <string name="kvp_family_planning">Uzazi wa Mpango</string>
