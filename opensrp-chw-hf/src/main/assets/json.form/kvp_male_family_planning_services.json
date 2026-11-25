@@ -1,6 +1,7 @@
 {
   "count": "1",
   "encounter_type": "KVP Family Planning",
+  "properties_file_name": "marp_biomedical",
   "entity_id": "",
   "metadata": {
     "start": {
@@ -51,29 +52,29 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "family_planning_service",
         "type": "native_radio",
-        "label": "Family planning service provided",
+        "label": "{{family_planning_method_label}}",
         "options": [
           {
             "key": "vasectomy",
-            "text": "Vasectomy",
+            "text": "{{family_planning_vasectomy}}",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "vasectomy"
           },
           {
             "key": "traditional",
-            "text": "Traditional",
+            "text": "{{family_planning_traditional}}",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "traditional"
           },
           {
             "key": "refused",
-            "text": "Refused",
+            "text": "{{family_planning_refused}}",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "refused"
           },
           {
             "key": "none",
-            "text": "None",
+            "text": "{{family_planning_none}}",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "none"
           }

@@ -16,6 +16,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
+- Apply English and Kiswahili register wording to Kituoni MARP Biomedical visit forms and list Negative before Positive for HBV and HCV ([#245](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/245), UCSW-49). No version or dependency changes.
+
 - Use the bilingual register wording and result order for Kituoni MARP HTS. Record refusal to receive results as a distinct outcome without requiring CTC data ([#242](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/242)). No version or dependency changes.
 
 - Simplify Kituoni MARP HTS by removing Client Type and the post-test counselling question. Require a bilingual CTC ID for either CTC enrolment option on Positive and Known positive results, and format pasted 14-digit IDs with leading zeros preserved ([#241](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/241)). No version or dependency changes.

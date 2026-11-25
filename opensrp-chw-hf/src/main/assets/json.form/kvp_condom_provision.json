@@ -1,6 +1,7 @@
 {
   "count": "1",
   "encounter_type": "KVP Condom Provision",
+  "properties_file_name": "marp_biomedical",
   "entity_id": "",
   "metadata": {
     "start": {
@@ -50,7 +51,7 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "condoms_given",
-        "label": "Was the client given condoms?",
+        "label": "{{condoms_given_label}}",
         "text_color": "#000000",
         "type": "native_radio",
         "options": [
@@ -81,7 +82,7 @@
         "openmrs_entity_id": "type_of_issued_condoms",
         "type": "check_box",
         "combine_checkbox_option_values": "true",
-        "label": "Select the type of condoms issued",
+        "label": "{{condoms_issued_type_label}}",
         "label_text_style": "normal",
         "text_color": "#C0C0C0",
         "options": [

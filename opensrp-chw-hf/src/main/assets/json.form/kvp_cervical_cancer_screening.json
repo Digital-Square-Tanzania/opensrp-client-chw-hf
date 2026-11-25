@@ -1,6 +1,7 @@
 {
   "count": "1",
   "encounter_type": "KVP Cervical Cancer Screening",
+  "properties_file_name": "marp_biomedical",
   "entity_id": "",
   "metadata": {
     "start": {
@@ -51,17 +52,17 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "cervical_cancer_screening",
         "type": "native_radio",
-        "label": "Was the client screened for Cervical Cancer?",
+        "label": "{{cervical_screening_label}}",
         "options": [
           {
             "key": "screened",
-            "text": "Screened",
+            "text": "{{cervical_screening_screened}}",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "screened"
           },
           {
             "key": "not_screened",
-            "text": "Not screened",
+            "text": "{{cervical_screening_not_screened}}",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "not_provided"
           }

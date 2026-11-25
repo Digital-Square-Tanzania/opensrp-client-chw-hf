@@ -1,6 +1,7 @@
 {
   "count": "1",
   "encounter_type": "KVP Hepatitis",
+  "properties_file_name": "marp_biomedical",
   "entity_id": "",
   "metadata": {
     "start": {
@@ -112,20 +113,19 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "hep_b_result",
         "type": "native_radio",
-        "label": "Client HBV test result",
+        "label": "{{hbv_test_result_label}}",
         "options": [
           {
-            "key": "positive",
-            "text": "Positive",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "positive"
-          },
-
-          {
             "key": "negative",
-            "text": "Negative",
+            "text": "{{hepatitis_negative}}",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "negative"
+          },
+          {
+            "key": "positive",
+            "text": "{{hepatitis_positive}}",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "positive"
           }
         ],
         "v_required": {
@@ -207,20 +207,19 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "hep_c_result",
         "type": "native_radio",
-        "label": "Client HCV test result",
+        "label": "{{hcv_test_result_label}}",
         "options": [
           {
-            "key": "positive",
-            "text": "Positive",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "positive"
-          },
-
-          {
             "key": "negative",
-            "text": "Negative",
+            "text": "{{hepatitis_negative}}",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "negative"
+          },
+          {
+            "key": "positive",
+            "text": "{{hepatitis_positive}}",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "positive"
           }
         ],
         "v_required": {
