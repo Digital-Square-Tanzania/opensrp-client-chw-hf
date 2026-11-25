@@ -8,6 +8,7 @@ import android.os.Build;
 import com.vijay.jsonwizard.constants.JsonFormConstants;
 import com.vijay.jsonwizard.domain.Form;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.core.task.RunnableTask;
 import org.smartregister.chw.hf.R;
@@ -27,7 +28,11 @@ import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import timber.log.Timber;
+
 public class KvpBioMedicalServiceActivity extends BaseKvpVisitActivity {
+
+    private KvpBioMedicalServiceInteractor biomedicalInteractor;
 
     public static void startKvpBioMedicalServiceActivity(Activity activity, String baseEntityId, Boolean editMode) {
         Intent intent = new Intent(activity, KvpBioMedicalServiceActivity.class);
@@ -39,7 +44,8 @@ public class KvpBioMedicalServiceActivity extends BaseKvpVisitActivity {
 
     @Override
     protected void registerPresenter() {
-        presenter = new BaseKvpVisitPresenter(memberObject, this, new KvpBioMedicalServiceInteractor(Constants.EVENT_TYPE.KVP_BIO_MEDICAL_SERVICE_VISIT));
+        biomedicalInteractor = new KvpBioMedicalServiceInteractor(getEditMode());
+        presenter = new BaseKvpVisitPresenter(memberObject, this, biomedicalInteractor);
     }
 
     @Override
@@ -48,8 +54,15 @@ public class KvpBioMedicalServiceActivity extends BaseKvpVisitActivity {
         form.setActionBarBackground(org.smartregister.chw.core.R.color.family_actionbar);
         form.setWizard(false);
 
-        Class<?> formActivity = MarpHts.ENCOUNTER_TYPE.equals(jsonForm.optString("encounter_type"))
-                ? MarpHtsFormActivity.class : Utils.metadata().familyMemberFormActivity;
+        boolean isHts = MarpHts.ENCOUNTER_TYPE.equals(jsonForm.optString("encounter_type"));
+        if (isHts) {
+            try {
+                jsonForm = biomedicalInteractor.prepareHtsForm(jsonForm);
+            } catch (JSONException e) {
+                Timber.e(e, "Unable to display the MARP HTS suggestion");
+            }
+        }
+        Class<?> formActivity = isHts ? MarpHtsFormActivity.class : Utils.metadata().familyMemberFormActivity;
         Intent intent = new Intent(this, formActivity);
         intent.putExtra(org.smartregister.family.util.Constants.JSON_FORM_EXTRA.JSON, jsonForm.toString());
         intent.putExtra(org.smartregister.family.util.Constants.WizardFormActivity.EnableOnCloseDialog, false);

@@ -17,6 +17,7 @@ import org.smartregister.clientandeventmodel.Event;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -61,6 +62,38 @@ public class HfKvpDao extends KvpDao {
             return null;
         }
         return readEvent(StringUtils.defaultIfBlank(visit.getPreProcessedJson(), visit.getJson()));
+    }
+
+    public static boolean hasRecordedMarpVisitForHts(String baseEntityId, Calendar today) {
+        // Synced visits may be in the event store without a row in the local visit repository.
+        List<Map<String, Object>> rows = readData(
+                "SELECT eventType, json FROM event WHERE baseEntityId = ? AND eventType IN (?, ?, ?, ?)",
+                new String[]{baseEntityId, Constants.EVENT_TYPE.KVP_BIO_MEDICAL_SERVICE_VISIT,
+                        Constants.EVENT_TYPE.KVP_BEHAVIORAL_SERVICE_VISIT,
+                        Constants.EVENT_TYPE.KVP_STRUCTURAL_SERVICE_VISIT,
+                        Constants.EVENT_TYPE.KVP_OTHER_SERVICE_VISIT});
+        return hasPriorMarpServiceEvent(rows, today) || StringUtils.isNotBlank(getClientStatus(baseEntityId));
+    }
+
+    static boolean hasPriorMarpServiceEvent(List<Map<String, Object>> rows, Calendar today) {
+        if (rows == null) {
+            return false;
+        }
+        Calendar startOfDay = (Calendar) today.clone();
+        startOfDay.set(Calendar.HOUR_OF_DAY, 0);
+        startOfDay.set(Calendar.MINUTE, 0);
+        startOfDay.set(Calendar.SECOND, 0);
+        startOfDay.set(Calendar.MILLISECOND, 0);
+        for (Map<String, Object> row : rows) {
+            if (Constants.EVENT_TYPE.KVP_BIO_MEDICAL_SERVICE_VISIT.equals(row.get("eventType"))) {
+                return true;
+            }
+            Event event = readEvent((String) row.get("json"));
+            if (event != null && event.getEventDate() != null && event.getEventDate().before(startOfDay.getTime())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public static String getScreeningPregnancyStatus(String baseEntityId) {
