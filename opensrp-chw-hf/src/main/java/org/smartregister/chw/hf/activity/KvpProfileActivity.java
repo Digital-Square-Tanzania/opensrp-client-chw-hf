@@ -5,11 +5,16 @@ import static org.smartregister.chw.hf.utils.Constants.JsonForm.HIV_REGISTRATION
 import static org.smartregister.util.Utils.getName;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.core.content.ContextCompat;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.vijay.jsonwizard.utils.FormUtils;
@@ -21,11 +26,13 @@ import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.dao.HfKvpDao;
 import org.smartregister.chw.hf.utils.AllClientsUtils;
+import org.smartregister.chw.hf.utils.MarpVisitStatus;
 import org.smartregister.chw.hivst.dao.HivstDao;
 import org.smartregister.chw.kvp.KvpLibrary;
 import org.smartregister.chw.kvp.dao.KvpDao;
 import org.smartregister.chw.kvp.domain.Visit;
 import org.smartregister.chw.kvp.domain.VisitDetail;
+import org.smartregister.chw.kvp.repository.VisitRepository;
 import org.smartregister.chw.kvp.util.Constants;
 import org.smartregister.chw.kvp.util.DBConstants;
 import org.smartregister.commonregistry.CommonPersonObject;
@@ -46,6 +53,12 @@ import timber.log.Timber;
 public class KvpProfileActivity extends CoreKvpProfileActivity {
 
     private static final String EXTRA_OPENED_FROM_ENROLLMENT = "opened_from_marp_enrollment";
+    private final BroadcastReceiver deviceDateReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            setupViews();
+        }
+    };
 
     public static void startProfile(Activity activity, String baseEntityId) {
         activity.startActivity(profileIntent(activity, baseEntityId));
@@ -125,6 +138,15 @@ public class KvpProfileActivity extends CoreKvpProfileActivity {
                 imageViewCross.setImageResource(org.smartregister.chw.core.R.drawable.activityrow_notvisited);
             }
         }
+        refreshMedicalHistory(true);
+    }
+
+    @Override
+    protected boolean isVisitOnProgress(String profileType) {
+        VisitRepository repository = KvpLibrary.getInstance().visitRepository();
+        String baseEntityId = memberObject.getBaseEntityId();
+        return MarpVisitStatus.read(repository, baseEntityId, Calendar.getInstance())
+                .isInProgress(repository, baseEntityId);
     }
 
     private Date truncateTimeFromDate(Date date) {
@@ -150,21 +172,23 @@ public class KvpProfileActivity extends CoreKvpProfileActivity {
 
     @Override
     public void refreshMedicalHistory(boolean hasHistory) {
-        Visit kvpBehavioralServices = getVisit(org.smartregister.chw.kvp.util.Constants.EVENT_TYPE.KVP_BEHAVIORAL_SERVICE_VISIT);
-        Visit kvpBioMedicalServices = getVisit(org.smartregister.chw.kvp.util.Constants.EVENT_TYPE.KVP_BIO_MEDICAL_SERVICE_VISIT);
-        Visit kvpStructuralServices = getVisit(org.smartregister.chw.kvp.util.Constants.EVENT_TYPE.KVP_STRUCTURAL_SERVICE_VISIT);
-        Visit kvpOtherServicesVisit = getVisit(org.smartregister.chw.kvp.util.Constants.EVENT_TYPE.KVP_OTHER_SERVICE_VISIT);
+        renderMarpVisitStatus(MarpVisitStatus.read(KvpLibrary.getInstance().visitRepository(),
+                memberObject.getBaseEntityId(), Calendar.getInstance()));
+    }
 
-
-        if (kvpBehavioralServices != null || kvpBioMedicalServices != null || kvpOtherServicesVisit != null || kvpStructuralServices != null) {
+    void renderMarpVisitStatus(MarpVisitStatus status) {
+        if (status.hasVisitHistory()) {
             rlLastVisit.setVisibility(View.VISIBLE);
             findViewById(R.id.view_notification_and_referral_row).setVisibility(View.VISIBLE);
             ((TextView) findViewById(R.id.vViewHistory)).setText(R.string.visits_history);
             ((TextView) findViewById(R.id.ivViewHistoryArrow)).setText(getString(R.string.view_visits_history));
-            textViewRecordKvp.setText(R.string.record_kvp_followup_visit);
         } else {
             rlLastVisit.setVisibility(View.GONE);
-            textViewRecordKvp.setText(R.string.record_kvp);
+        }
+        textViewRecordKvp.setText(status.hasSubmittedVisit() ? R.string.record_kvp_followup_visit : R.string.record_kvp);
+        if (status.isCompleteToday()) {
+            textViewRecordKvp.setVisibility(View.GONE);
+            visitInProgress.setVisibility(View.GONE);
         }
     }
 
@@ -358,9 +382,23 @@ public class KvpProfileActivity extends CoreKvpProfileActivity {
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        IntentFilter filter = new IntentFilter(Intent.ACTION_DATE_CHANGED);
+        filter.addAction(Intent.ACTION_TIME_CHANGED);
+        filter.addAction(Intent.ACTION_TIMEZONE_CHANGED);
+        ContextCompat.registerReceiver(this, deviceDateReceiver, filter, ContextCompat.RECEIVER_NOT_EXPORTED);
+    }
+
+    @Override
+    protected void onStop() {
+        unregisterReceiver(deviceDateReceiver);
+        super.onStop();
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
-        setupViews();
         fetchProfileData();
         profilePresenter.refreshProfileBottom();
         if (KvpDao.hasTestResults(memberObject.getBaseEntityId())) {

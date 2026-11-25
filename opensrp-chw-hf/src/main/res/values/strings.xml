@@ -463,6 +463,7 @@
     <string name="return_to_kvp_clients">Return to all MARP Clients</string>
     <string name="return_to_kvp_prep_clients">Return to all MARP/PrEP Clients</string>
     <string name="record_kvp">Provide MARP Service</string>
+    <string name="marp_card_submitted">Submitted</string>
     <string name="dominant_kvp_group">Dominant MARP Group: %s</string>
     <string name="other_kvp_groups">Other MARP Groups: %s</string>
     <string name="kvp">MARP</string>

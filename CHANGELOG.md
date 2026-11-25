@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
+- Keep partial Kituoni MARP visits available from the profile. Return to the profile and hide the visit actions after all four service cards are submitted, then restore the follow-up action on the next device calendar day ([#237](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/237)).
 - Use the bilingual MARPS register group names and eligibility rules for the dominant group at Kituoni enrollment. Save the selected group and the remaining eligible groups under their existing codes ([#235](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/235)).
 - Update the Kituoni vAGYW checklist and make it required when shown. Offer the localized enrollment option for qualifying answers and clear stale criteria after backtracking ([#232](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/232)).
 - Ask a single bilingual sexual intercourse question in Kituoni MARP screening. Route No directly to Other Groups and Yes to Discordant Couple ([#231](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/231)).
