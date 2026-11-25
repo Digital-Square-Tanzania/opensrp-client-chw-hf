@@ -52,14 +52,31 @@ public class KvpHtsActionHelper implements BaseKvpVisitAction.KvpVisitActionHelp
             global.put("editing_saved_hts", editingSavedHts ? "yes" : "no");
 
             JSONArray fields = jsonObject.getJSONObject("step1").getJSONArray("fields");
+            localizeYesNo(fields, "tested_hiv", R.string.marp_hts_tested_hiv);
+            localizeYesNo(fields, "kits_distributed", R.string.marp_hts_kits_distributed);
+
+            JSONArray methods = localizeRadio(fields, "previous_hiv_testing_method", R.string.marp_hts_testing_method);
+            localizeChoice(methods, "hiv_cv_test", R.string.marp_hts_conventional_test);
+            localizeChoice(methods, "hivst_and_hiv_cv_test", R.string.marp_hts_hivst_and_conventional_test);
+            localizeChoice(methods, "other_method", R.string.marp_hts_other_method);
+
+            JSONArray sites = localizeRadio(fields, "testing_site", R.string.marp_hts_testing_site);
+            localizeChoice(sites, "community", R.string.marp_hts_community);
+            localizeChoice(sites, "facility", R.string.marp_hts_facility);
+
+            JSONArray results = localizeRadio(fields, "hiv_status", R.string.marp_hts_testing_results);
+            localizeChoice(results, "negative", R.string.marp_hts_negative);
+            localizeChoice(results, "positive", R.string.marp_hts_positive);
+            localizeChoice(results, "inconclusive", R.string.marp_hts_inconclusive);
+            localizeChoice(results, "refused_results", R.string.refused_results);
+            localizeChoice(results, "known_positive", R.string.marp_hts_known_positive);
+
             JSONObject ctcServices = JsonFormUtils.getFieldJSONObject(fields, CTC_SERVICES);
             ctcServices.put("label", context.getString(R.string.marp_hts_ctc_services));
             ctcServices.getJSONObject("v_required").put("err", context.getString(R.string.marp_hts_ctc_services_required));
-            JSONArray options = ctcServices.getJSONArray("options");
-            JsonFormUtils.getFieldJSONObject(options, "enrolled_but_not_on_arv")
-                    .put("text", context.getString(R.string.marp_hts_ctc_enrolled_without_art));
-            JsonFormUtils.getFieldJSONObject(options, "enrolled_and_on_arv")
-                    .put("text", context.getString(R.string.marp_hts_ctc_enrolled_on_art));
+            JSONArray ctcOptions = ctcServices.getJSONArray("options");
+            localizeChoice(ctcOptions, "enrolled_but_not_on_arv", R.string.marp_hts_ctc_enrolled_without_art);
+            localizeChoice(ctcOptions, "enrolled_and_on_arv", R.string.marp_hts_ctc_enrolled_on_art);
 
             JSONObject ctcNumber = JsonFormUtils.getFieldJSONObject(fields, CTC_NUMBER);
             ctcNumber.put("hint", context.getString(R.string.marp_hts_ctc_id));
@@ -72,6 +89,22 @@ public class KvpHtsActionHelper implements BaseKvpVisitAction.KvpVisitActionHelp
         }
 
         return null;
+    }
+
+    private JSONArray localizeRadio(JSONArray fields, String key, int label) throws JSONException {
+        JSONObject field = JsonFormUtils.getFieldJSONObject(fields, key);
+        field.put("label", context.getString(label));
+        return field.getJSONArray("options");
+    }
+
+    private void localizeYesNo(JSONArray fields, String key, int label) throws JSONException {
+        JSONArray options = localizeRadio(fields, key, label);
+        localizeChoice(options, "yes", R.string.marp_hts_yes);
+        localizeChoice(options, "no", R.string.marp_hts_no);
+    }
+
+    private void localizeChoice(JSONArray options, String key, int text) throws JSONException {
+        JsonFormUtils.getFieldJSONObject(options, key).put("text", context.getString(text));
     }
 
     @Override

@@ -15,6 +15,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
+- Use the bilingual register wording and result order for Kituoni MARP HTS. Record refusal to receive results as a distinct outcome without requiring CTC data ([#242](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/242)). No version or dependency changes.
+
 - Simplify Kituoni MARP HTS by removing Client Type and the post-test counselling question. Require a bilingual CTC ID for either CTC enrolment option on Positive and Known positive results, and format pasted 14-digit IDs with leading zeros preserved ([#241](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/241)). No version or dependency changes.
 
 - Use the bilingual Other MARP categories checklist in Kituoni Client Status. Filter register groups by dominant group, sex and age, preserve eligible screening defaults and require an exclusive None or at least one group ([#240](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/240)). No version or dependency changes.
@@ -34,6 +36,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
+- Preserve a first Kituoni MARP visit’s New type across repeated Biomedical Visit History edits ([#242](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/242), UCSW-41). No version or dependency changes.
 - Show the localized Discordant Couple checklist error when either Next control is tapped and allow the user to continue after selecting parameters ([#228](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/228)).
 - Clear a skipped injecting answer and keep the reselected dominant MARP group when saving after Drug Use backtracking ([#227](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/227)).
 - Show the localized required-field prompt when Next is tapped with an empty pregnancy and breastfeeding High Risk checklist, and clear the prompt after a selection ([#226](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/226)).
