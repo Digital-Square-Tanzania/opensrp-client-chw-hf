@@ -493,6 +493,13 @@
     <string name="marp_visit_enrolment_date_required">Please answer this question</string>
     <string name="marp_profile_enrolment_date">MARP enrolment date: %1$s</string>
     <string name="kvp_hts">HTS</string>
+    <string name="marp_hts_ctc_services">CTC services</string>
+    <string name="marp_hts_ctc_services_required">Select a CTC enrolment option</string>
+    <string name="marp_hts_ctc_enrolled_without_art">Enrolled but not initiated on ART</string>
+    <string name="marp_hts_ctc_enrolled_on_art">Enrolled and initiated on ART</string>
+    <string name="marp_hts_ctc_id">CTC ID #</string>
+    <string name="marp_hts_ctc_id_required">Enter a CTC ID #</string>
+    <string name="marp_hts_ctc_id_invalid">Enter 14 digits in the format NN-NN-NNNN-NNNNNN</string>
     <string name="kvp_pep_assesment">PEP assesment</string>
     <string name="kvp_condom_provision">Condom Provision</string>
     <string name="kvp_family_planning">Family Planning</string>

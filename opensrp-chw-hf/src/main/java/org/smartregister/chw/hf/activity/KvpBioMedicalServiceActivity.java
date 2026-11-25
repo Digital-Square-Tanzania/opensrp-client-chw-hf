@@ -13,6 +13,7 @@ import org.smartregister.chw.core.task.RunnableTask;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.interactor.KvpBioMedicalServiceInteractor;
 import org.smartregister.chw.hf.schedulers.HfScheduleTaskExecutor;
+import org.smartregister.chw.hf.utils.MarpHts;
 import org.smartregister.chw.kvp.activity.BaseKvpVisitActivity;
 import org.smartregister.chw.kvp.domain.MemberObject;
 import org.smartregister.chw.kvp.model.BaseKvpVisitAction;
@@ -47,7 +48,9 @@ public class KvpBioMedicalServiceActivity extends BaseKvpVisitActivity {
         form.setActionBarBackground(org.smartregister.chw.core.R.color.family_actionbar);
         form.setWizard(false);
 
-        Intent intent = new Intent(this, Utils.metadata().familyMemberFormActivity);
+        Class<?> formActivity = MarpHts.ENCOUNTER_TYPE.equals(jsonForm.optString("encounter_type"))
+                ? MarpHtsFormActivity.class : Utils.metadata().familyMemberFormActivity;
+        Intent intent = new Intent(this, formActivity);
         intent.putExtra(org.smartregister.family.util.Constants.JSON_FORM_EXTRA.JSON, jsonForm.toString());
         intent.putExtra(org.smartregister.family.util.Constants.WizardFormActivity.EnableOnCloseDialog, false);
         intent.putExtra(JsonFormConstants.JSON_FORM_KEY.FORM, form);
