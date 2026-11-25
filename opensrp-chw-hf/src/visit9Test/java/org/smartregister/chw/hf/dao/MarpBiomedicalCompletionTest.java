@@ -2,6 +2,7 @@ package org.smartregister.chw.hf.dao;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.atLeastOnce;
@@ -38,6 +39,7 @@ import org.smartregister.CoreLibrary;
 import org.smartregister.chw.core.utils.FormUtils;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.interactor.KvpBioMedicalServiceInteractor;
+import org.smartregister.chw.hf.utils.MarpPep;
 import org.smartregister.chw.hf.utils.MarpPregnancyScreening;
 import org.smartregister.chw.hf.utils.MarpPregnancyStatus;
 import org.smartregister.chw.kvp.KvpLibrary;
@@ -61,6 +63,7 @@ import org.smartregister.util.JsonFormUtils;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -445,6 +448,135 @@ public class MarpBiomedicalCompletionTest {
         assertEquals("mat", option.getString("openmrs_entity_id"));
     }
 
+    @Test
+    public void pepRequiresNeedAndOnlyKeepsAServiceAnswerForYes() throws Exception {
+        Checklist checklist = new Checklist(null);
+        assertNull(checklist.pep());
+        checklist.saveHts("negative");
+        BaseKvpVisitAction pep = checklist.pep();
+        assertEquals(BaseKvpVisitAction.Status.PENDING, pep.getActionStatus());
+        JSONObject form = new JSONObject(pep.getJsonPayload());
+        assertEquals("true", field(form, MarpPep.NEED).getJSONObject("v_required").getString("value"));
+        assertEquals("true", field(form, MarpPep.SERVICE).getJSONObject("v_required").getString("value"));
+        assertEquals("equalTo(., \"yes\")", field(form, MarpPep.SERVICE).getJSONObject("relevance")
+                .getJSONObject("step1:" + MarpPep.NEED).getString("ex"));
+
+        field(form, MarpPep.NEED).put("value", MarpPep.YES);
+        pep.setJsonPayload(form.toString());
+        assertEquals(BaseKvpVisitAction.Status.PENDING, pep.getActionStatus());
+
+        for (String service : List.of(MarpPep.PROVIDED, MarpPep.NOT_PROVIDED)) {
+            field(form, MarpPep.SERVICE).put("value", service);
+            pep.setJsonPayload(form.toString());
+            assertEquals(BaseKvpVisitAction.Status.COMPLETED, pep.getActionStatus());
+            assertEquals(service, field(new JSONObject(pep.getJsonPayload()), MarpPep.SERVICE).getString("value"));
+        }
+
+        field(form, MarpPep.NEED).put("value", MarpPep.NO);
+        pep.setJsonPayload(form.toString());
+        checklist.saveHts("negative");
+        assertSame(pep, checklist.pep());
+        assertEquals(BaseKvpVisitAction.Status.COMPLETED, pep.getActionStatus());
+        JSONObject saved = new JSONObject(pep.getJsonPayload());
+        assertEquals(MarpPep.NO, field(saved, MarpPep.NEED).getString("value"));
+        assertFalse(field(saved, MarpPep.SERVICE).has("value"));
+    }
+
+    @Test
+    public void pepIsHiddenForBothPositiveHtsResults() throws Exception {
+        Checklist checklist = new Checklist(null);
+        checklist.saveHts("negative");
+        for (String result : List.of("positive", "known_positive")) {
+            checklist.saveHts(result);
+            assertNull(checklist.pep());
+        }
+    }
+
+    @Test
+    public void pepHistoryRestoresExplicitNeedAndTheApplicableService() throws Exception {
+        for (Map<String, String> answers : List.of(
+                Map.of(MarpPep.NEED, MarpPep.NO),
+                Map.of(MarpPep.NEED, MarpPep.YES, MarpPep.SERVICE, MarpPep.PROVIDED),
+                Map.of(MarpPep.NEED, MarpPep.YES, MarpPep.SERVICE, MarpPep.NOT_PROVIDED))) {
+            Event saved = event("explicit", EARLIER, BIOMEDICAL);
+            add(saved, "tested_hiv", "yes");
+            add(saved, "hiv_status", "negative");
+            answers.forEach((key, value) -> add(saved, key, value));
+            Map<String, List<VisitDetail>> details = NCUtil.eventsObsToDetails(saved.getObs(), "explicit", PATIENT);
+            Map<String, String> history = new LinkedHashMap<>();
+            MarpPep.addHistoryAnswers(MarpPep.answer(details, MarpPep.NEED),
+                    MarpPep.answer(details, MarpPep.SERVICE), history);
+            assertEquals(answers, history);
+
+            Checklist checklist = new Checklist(details);
+            assertEquals(BaseKvpVisitAction.Status.COMPLETED, checklist.pep().getActionStatus());
+            JSONObject form = checklist.preparePepForm(new JSONObject(checklist.pep().getJsonPayload()));
+            assertEquals(answers.get(MarpPep.NEED), field(form, MarpPep.NEED).getString("value"));
+            assertEquals(answers.getOrDefault(MarpPep.SERVICE, ""),
+                    field(form, MarpPep.SERVICE).optString("value"));
+        }
+    }
+
+    @Test
+    public void pepHistoryProjectsLegacyAnswersWithoutRecordingInferredNeed() throws Exception {
+        for (String service : List.of(MarpPep.PROVIDED, MarpPep.NOT_PROVIDED)) {
+            Event original = event("original", EARLIER, BIOMEDICAL);
+            add(original, "tested_hiv", "yes");
+            add(original, "hiv_status", "negative");
+            add(original, MarpPep.SERVICE, service);
+            add(original, MarpPep.PREP_ENROLMENT, "false");
+            List<Obs> expected = new ArrayList<>(original.getObs().subList(2, 4));
+
+            for (String submission : List.of("first-edit", "second-edit")) {
+                Map<String, List<VisitDetail>> details = NCUtil.eventsObsToDetails(
+                        original.getObs(), original.getFormSubmissionId(), PATIENT);
+                Map<String, String> history = new LinkedHashMap<>();
+                MarpPep.addHistoryAnswers(MarpPep.answer(details, MarpPep.NEED),
+                        MarpPep.answer(details, MarpPep.SERVICE), history);
+
+                Checklist checklist = new Checklist(details);
+                BaseKvpVisitAction pep = checklist.pep();
+                assertEquals(BaseKvpVisitAction.Status.COMPLETED, pep.getActionStatus());
+                JSONObject display = checklist.preparePepForm(new JSONObject(pep.getJsonPayload()));
+                if (MarpPep.PROVIDED.equals(service)) {
+                    assertEquals(Map.of(MarpPep.NEED, MarpPep.YES, MarpPep.SERVICE, service), history);
+                    assertEquals(MarpPep.YES, field(display, MarpPep.NEED).getString("value"));
+                    assertEquals(service, field(display, MarpPep.SERVICE).getString("value"));
+                    pep.setJsonPayload(display.toString());
+                } else {
+                    assertEquals(Map.of(MarpPep.SERVICE, "legacy_not_provided"), history);
+                    assertFalse(field(display, MarpPep.NEED).has("value"));
+                    assertFalse(field(display, MarpPep.SERVICE).has("value"));
+                }
+                JSONObject payload = new JSONObject(pep.getJsonPayload());
+                assertFalse(field(payload, MarpPep.NEED).has("value"));
+                assertFalse(field(payload, MarpPep.SERVICE).has("value"));
+
+                Event replacement = event(submission, VISIT_DATE, BIOMEDICAL);
+                add(replacement, "tested_hiv", "yes");
+                add(replacement, "hiv_status", "negative");
+                add(replacement, MarpPep.PREP_ENROLMENT, "new payload value");
+                ReflectionHelpers.setField(checklist, "replacedBiomedicalEvent", original);
+                checklist.prepareEvent(replacement);
+                List<Obs> retained = new ArrayList<>(replacement.getObs());
+                retained.removeIf(obs -> !List.of(MarpPep.NEED, MarpPep.SERVICE, MarpPep.PREP_ENROLMENT)
+                        .contains(obs.getFormSubmissionField()));
+                assertEquals(GSON.toJson(expected), GSON.toJson(retained));
+                original = replacement;
+            }
+        }
+    }
+
+    @Test
+    public void pepNoKeepsBiomedicalCompleteWithoutAServiceObservation() {
+        MemberData.gender = Constants.MALE;
+        Visit visit = biomedical("complete", VISIT_DATE, "", true, true, null);
+        Event event = GSON.fromJson(visit.getJson(), Event.class);
+        add(event, MarpPep.NEED, MarpPep.NO);
+        visit.setJson(GSON.toJson(event));
+        assertEquals(KvpVisitsUtil.Complete, KvpVisitsUtil.getBioMedicalStatus(visit));
+    }
+
     private static JSONObject field(JSONObject form, String key) throws Exception {
         return JsonFormUtils.getFieldJSONObject(form.getJSONObject("step1").getJSONArray("fields"), key);
     }
@@ -481,6 +613,19 @@ public class MarpBiomedicalCompletionTest {
 
         BaseKvpVisitAction cervicalScreening() {
             return actionList.get(context.getString(R.string.kvp_cervical_screening));
+        }
+
+        BaseKvpVisitAction pep() {
+            return actionList.get(context.getString(R.string.kvp_pep_assesment));
+        }
+
+        void saveHts(String result) throws Exception {
+            BaseKvpVisitAction action = actionList.get(context.getString(R.string.kvp_hts));
+            JSONObject form = new JSONObject(action.getJsonPayload());
+            field(form, "tested_hiv").put("value", "yes");
+            field(form, "hiv_status").put("value", result);
+            action.setJsonPayload(form.toString());
+            shadowOf(Looper.getMainLooper()).idle();
         }
 
         boolean showsMat() {
@@ -599,6 +744,11 @@ public class MarpBiomedicalCompletionTest {
         @Implementation
         protected static String getDominantKVPGroup(String baseEntityId) {
             return group;
+        }
+
+        @Implementation
+        protected static MemberObject getPrEPMember(String baseEntityId) {
+            return null;
         }
 
         @Implementation

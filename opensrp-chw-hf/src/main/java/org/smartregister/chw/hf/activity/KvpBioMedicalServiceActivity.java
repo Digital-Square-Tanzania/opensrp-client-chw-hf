@@ -15,6 +15,7 @@ import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.interactor.KvpBioMedicalServiceInteractor;
 import org.smartregister.chw.hf.schedulers.HfScheduleTaskExecutor;
 import org.smartregister.chw.hf.utils.MarpHts;
+import org.smartregister.chw.hf.utils.MarpPep;
 import org.smartregister.chw.kvp.activity.BaseKvpVisitActivity;
 import org.smartregister.chw.kvp.domain.MemberObject;
 import org.smartregister.chw.kvp.model.BaseKvpVisitAction;
@@ -60,6 +61,12 @@ public class KvpBioMedicalServiceActivity extends BaseKvpVisitActivity {
                 jsonForm = biomedicalInteractor.prepareHtsForm(jsonForm);
             } catch (JSONException e) {
                 Timber.e(e, "Unable to display the MARP HTS suggestion");
+            }
+        } else if (MarpPep.ENCOUNTER_TYPE.equals(jsonForm.optString("encounter_type"))) {
+            try {
+                jsonForm = biomedicalInteractor.preparePepForm(jsonForm);
+            } catch (JSONException e) {
+                Timber.e(e, "Unable to display the saved MARP PEP assessment");
             }
         }
         Class<?> formActivity = isHts ? MarpHtsFormActivity.class : Utils.metadata().familyMemberFormActivity;
