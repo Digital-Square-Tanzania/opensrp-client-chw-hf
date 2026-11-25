@@ -11,14 +11,21 @@ import static org.mockito.Mockito.when;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
+import android.widget.RadioGroup;
+
+import androidx.arch.core.executor.ArchTaskExecutor;
+import androidx.arch.core.executor.TaskExecutor;
 
 import com.google.gson.Gson;
 import com.vijay.jsonwizard.R;
+import com.vijay.jsonwizard.activities.JsonFormActivity;
 import com.vijay.jsonwizard.fragments.JsonFormFragment;
 import com.vijay.jsonwizard.interactors.JsonFormInteractor;
 import com.vijay.jsonwizard.interfaces.JsonApi;
+import com.vijay.jsonwizard.interfaces.OnFieldsInvalid;
 import com.vijay.jsonwizard.presenters.JsonFormFragmentPresenter;
 import com.vijay.jsonwizard.utils.FormUtils;
 import com.vijay.jsonwizard.widgets.CheckBoxFactory;
@@ -112,18 +119,98 @@ public class MarpGbvScreeningTest {
 
     @Test
     public void postGbvCareIsRelevantOnlyForReportedViolence() throws Exception {
-        String filename = field(form(), CARE).getJSONObject("relevance").getJSONObject("rules-engine")
-                .getJSONObject("ex-rules").getString("rules-file");
-        try (Reader reader = Files.newBufferedReader(ASSETS.resolve("rule").resolve(filename))) {
-            Rule rule = new MVELRuleFactory(new YamlRuleDefinitionReader()).createRules(reader).iterator().next();
-            assertEquals("step1_" + CARE, rule.getName());
-            for (List<String> selection : List.of(List.of(NONE), List.of(NOT_ASSESSED), List.<String>of())) {
-                assertFalse(rule.evaluate(factsFor(selection)));
+        Rule rule = careRelevance(field(form(), CARE));
+        assertEquals("step1_" + CARE, rule.getName());
+        for (List<String> selection : List.of(List.of(NONE), List.of(NOT_ASSESSED), List.<String>of())) {
+            assertFalse(rule.evaluate(factsFor(selection)));
+        }
+        for (List<String> selection : List.of(List.of(PHYSICAL), List.of(SEXUAL), List.of(EMOTIONAL),
+                List.of(PHYSICAL, SEXUAL))) {
+            assertTrue(rule.evaluate(factsFor(selection)));
+        }
+    }
+
+    @Test
+    public void blankCareFailsNativeSaveValidationForEmotionalViolence() throws Exception {
+        JSONObject form = form();
+        JSONObject care = field(form, CARE);
+        JSONObject required = care.getJSONObject("v_required");
+        assertEquals("native_radio", care.getString("type"));
+        assertTrue(required.getBoolean("value"));
+
+        RadioGroup radio = mock(RadioGroup.class);
+        LinearLayout canvas = mock(LinearLayout.class);
+        when(radio.getTag(R.id.key)).thenReturn(CARE);
+        when(radio.getTag(R.id.address)).thenReturn("step1:" + CARE);
+        when(radio.getTag(R.id.error)).thenReturn(required.getString("err"));
+        when(radio.isEnabled()).thenReturn(true);
+        when(radio.getParent()).thenReturn(canvas);
+        when(canvas.isShown()).thenReturn(careRelevance(care).evaluate(factsFor(List.of(EMOTIONAL))));
+
+        JsonFormFragment fragment = mock(JsonFormFragment.class);
+        JsonApi api = mock(JsonApi.class);
+        when(fragment.getContext()).thenReturn(mock(JsonFormActivity.class));
+        when(fragment.getJsonApi()).thenReturn(api);
+        when(fragment.getOnFieldsInvalidCallback()).thenReturn(mock(OnFieldsInvalid.class));
+        when(api.getFormDataViews()).thenReturn(List.of(radio));
+        when(api.getInvalidFields()).thenReturn(new HashMap<>());
+        JsonFormFragmentPresenter presenter = new JsonFormFragmentPresenter(fragment, mock(JsonFormInteractor.class)) {
+            {
+                mStepName = "step1";
+                mStepDetails = form.optJSONObject(mStepName);
             }
-            for (List<String> selection : List.of(List.of(PHYSICAL), List.of(SEXUAL), List.of(EMOTIONAL),
-                    List.of(PHYSICAL, SEXUAL))) {
-                assertTrue(rule.evaluate(factsFor(selection)));
+        };
+        presenter.attachView(fragment);
+
+        presenter.validateAndWriteValues();
+        assertFalse(presenter.isFormValid());
+        assertEquals(required.getString("err"), presenter.getInvalidFields().values().iterator().next().getErrorMessage());
+    }
+
+    @Test
+    public void nativeRelevanceRetainsCareUntilTheLastViolenceTypeIsRemoved() throws Exception {
+        JSONObject editedForm = form();
+        JSONObject care = field(editedForm, CARE);
+        Rule rule = careRelevance(care);
+        class CareFormActivity extends JsonFormActivity {
+            @Override
+            public JSONObject getObjectUsingAddress(String[] address, boolean popup) {
+                return care;
             }
+
+            void updateSelection(View view, List<String> selection) throws JSONException {
+                setSelection(editedForm, selection);
+                toggleViewVisibility(view, rule.evaluate(factsFor(selection)), false);
+            }
+        }
+        TaskExecutor mainThread = mock(TaskExecutor.class);
+        when(mainThread.isMainThread()).thenReturn(true);
+        ArchTaskExecutor executor = ArchTaskExecutor.getInstance();
+        executor.setDelegate(mainThread);
+        CareFormActivity wizard;
+        try {
+            wizard = new CareFormActivity();
+        } finally {
+            executor.setDelegate(null);
+        }
+        RadioGroup radio = mock(RadioGroup.class);
+        LinearLayout canvas = mock(LinearLayout.class);
+        when(radio.getTag(R.id.address)).thenReturn("step1:" + CARE);
+        when(radio.getTag(R.id.canvas_ids)).thenReturn("[1]");
+        when(radio.getRootView()).thenReturn(canvas);
+        when(canvas.findViewById(1)).thenReturn(canvas);
+
+        for (List<String> hidden : List.of(List.<String>of(), List.of(NONE), List.of(NOT_ASSESSED))) {
+            wizard.updateSelection(radio, List.of(PHYSICAL, EMOTIONAL));
+            care.put("value", "yes");
+            wizard.updateSelection(radio, List.of(EMOTIONAL));
+            assertTrue(care.getBoolean("is_visible"));
+            assertEquals(List.of("yes"), observation(event(editedForm), CARE).getValues());
+
+            wizard.updateSelection(radio, hidden);
+            assertFalse(care.getBoolean("is_visible"));
+            assertFalse(care.has("value"));
+            assertNull(observation(event(editedForm), CARE));
         }
     }
 
@@ -198,6 +285,14 @@ public class MarpGbvScreeningTest {
         }
     }
 
+    private static Rule careRelevance(JSONObject care) throws Exception {
+        String filename = care.getJSONObject("relevance").getJSONObject("rules-engine")
+                .getJSONObject("ex-rules").getString("rules-file");
+        try (Reader reader = Files.newBufferedReader(ASSETS.resolve("rule").resolve(filename))) {
+            return new MVELRuleFactory(new YamlRuleDefinitionReader()).createRules(reader).iterator().next();
+        }
+    }
+
     private static Facts factsFor(List<String> selection) {
         Facts facts = new Facts();
         facts.put("step1_" + SCREENING, selection);
@@ -214,14 +309,18 @@ public class MarpGbvScreeningTest {
 
     private static void save(BaseKvpVisitAction action, List<String> selection, String care) throws Exception {
         JSONObject form = form();
+        setSelection(form, selection);
+        field(form, CARE).put("value", care);
+        action.setJsonPayload(form.toString());
+    }
+
+    private static void setSelection(JSONObject form, List<String> selection) throws JSONException {
         JSONObject screening = field(form, SCREENING).put("value", new JSONArray(selection));
         JSONArray options = screening.getJSONArray("options");
         for (int i = 0; i < options.length(); i++) {
             JSONObject option = options.getJSONObject(i);
             option.put("value", selection.contains(option.getString("key")));
         }
-        field(form, CARE).put("value", care);
-        action.setJsonPayload(form.toString());
     }
 
     private static BaseKvpVisitAction open(Map<String, List<VisitDetail>> details) throws Exception {
@@ -258,7 +357,9 @@ public class MarpGbvScreeningTest {
     }
 
     private static Obs observation(Event event, String key) {
-        return event.getObs().stream().filter(obs -> key.equals(obs.getFormSubmissionField())).findFirst().orElse(null);
+        List<Obs> observations = event.getObs();
+        return observations == null ? null : observations.stream()
+                .filter(obs -> key.equals(obs.getFormSubmissionField())).findFirst().orElse(null);
     }
 
     private static JSONObject form() throws Exception {

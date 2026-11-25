@@ -101,24 +101,24 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "post_gbv_care_provision",
         "type": "native_radio",
-        "label": "Was Post GBV Care Provided?",
+        "label": "{{gbv_post_care_provision}}",
         "options": [
           {
             "key": "yes",
-            "text": "Yes.",
+            "text": "{{gbv_post_care_yes}}",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "yes"
           },
           {
             "key": "no",
-            "text": "No.",
+            "text": "{{gbv_post_care_no}}",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "no"
           }
         ],
         "v_required": {
           "value": "true",
-          "err": "Please select an answer"
+          "err": "{{gbv_answer_required}}"
         },
         "relevance": {
           "rules-engine": {
