@@ -1,6 +1,7 @@
 package org.smartregister.chw.hf.listener;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.widget.Toast;
 
@@ -15,10 +16,69 @@ import org.smartregister.chw.kvp.domain.Visit;
 import org.smartregister.chw.kvp.handlers.BaseServiceActionHandler;
 import org.smartregister.chw.kvp.repository.VisitRepository;
 import org.smartregister.chw.kvp.util.Constants;
+import org.smartregister.chw.kvp.util.KvpVisitsUtil;
+import org.smartregister.chw.kvp.util.MarpVisitProcessing;
 
 import java.util.Calendar;
 
+import timber.log.Timber;
+
 public class KvpServiceActionHandler extends BaseServiceActionHandler {
+    public boolean canOfferProcessVisit(Visit candidate) {
+        return candidate != null && canEnqueue(localOutcome(candidate));
+    }
+
+    static boolean canEnqueue(MarpVisitProcessing.Outcome outcome) {
+        return outcome == MarpVisitProcessing.Outcome.NOT_ENQUEUED
+                || outcome == MarpVisitProcessing.Outcome.ENQUEUE_INCOMPLETE;
+    }
+
+    public void confirmProcessVisit(Activity activity, String baseEntityId, Visit selected,
+                                    Calendar displayedDay, boolean sameDayOnly) {
+        new AlertDialog.Builder(activity)
+                .setTitle(org.smartregister.chw.kvp.R.string.process_visit_title)
+                .setMessage(org.smartregister.chw.kvp.R.string.process_visit_message)
+                .setPositiveButton(org.smartregister.chw.kvp.R.string.yes, (dialog, which) -> {
+                    if (activity.isFinishing() || activity.isDestroyed()) {
+                        return;
+                    }
+                    try {
+                        processSelectedCard(KvpLibrary.getInstance().visitRepository(), baseEntityId,
+                                selected, displayedDay, Calendar.getInstance(), sameDayOnly);
+                    } catch (Exception exception) {
+                        Timber.e(exception, "Unable to process MARP service card");
+                    }
+                    activity.finish();
+                })
+                .setNegativeButton(org.smartregister.chw.kvp.R.string.cancel, null)
+                .show();
+    }
+
+    void processSelectedCard(VisitRepository repository, String baseEntityId, Visit selected,
+                             Calendar displayedDay, Calendar now, boolean sameDayOnly) throws Exception {
+        if (!MarpVisitStatus.isOnDate(displayedDay.getTime(), now)) {
+            return;
+        }
+        Visit current = MarpVisitStatus.findProcessableCard(repository, baseEntityId,
+                selected.getVisitType(), sameDayOnly ? now : null);
+        if (current == null || !current.getBaseEntityId().equals(selected.getBaseEntityId())
+                || !current.getVisitId().equals(selected.getVisitId())
+                || !current.getFormSubmissionId().equals(selected.getFormSubmissionId())
+                || !current.getDate().equals(selected.getDate())
+                || !canOfferProcessVisit(current)) {
+            return;
+        }
+        processCard(current);
+    }
+
+    MarpVisitProcessing.Outcome localOutcome(Visit visit) {
+        return MarpVisitProcessing.getLocalOutcome(visit);
+    }
+
+    void processCard(Visit visit) throws Exception {
+        KvpVisitsUtil.manualProcessVisit(visit);
+    }
+
     @Override
     protected void startVisitActivity(Context context, ServiceCard serviceCard, String baseEntityId) {
         String eventName = serviceCard.getServiceEventName();
