@@ -33,18 +33,6 @@ allprojects {
     }
 
     repositories {
-        exclusiveContent {
-            forRepository {
-                maven {
-                    name = 'PlanEvaluatorSnapshot'
-                    url = rootProject.uri('local-maven')
-                }
-            }
-            filter {
-                includeVersion('org.smartregister', 'opensrp-plan-evaluator', '0.0.19-SNAPSHOT')
-            }
-        }
-
         google()
         mavenCentral()
         mavenLocal()
