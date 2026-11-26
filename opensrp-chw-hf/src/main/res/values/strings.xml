@@ -541,6 +541,8 @@
     <string name="kvp_health_education">Health Education</string>
     <string name="kvp_gbv_analysis">GBV Screening</string>
     <string name="kvp_other_services_referrals">Other Services and Referrals</string>
+    <string name="covid_vaccination">COVID vaccination</string>
+    <string name="vaccine_type">Previous vaccination</string>
     <string name="prep_visit_type">Visit Type</string>
     <string name="prep_initiation">PrEP Initiation</string>
     <string name="prep_screening">PrEP Screening</string>
