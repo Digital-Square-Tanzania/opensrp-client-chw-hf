@@ -365,7 +365,7 @@ public class MarpBiomedicalCompletionTest {
         add(replacement, MarpPregnancyStatus.FIELD, PREGNANT);
         add(replacement, "client_status", "new_client");
         add(replacement, OTHER_CATEGORY, "none");
-        ReflectionHelpers.setField(history, "replacedBiomedicalEvent", original);
+        ReflectionHelpers.setField(history, "originalEvent", original);
         history.prepareEvent(replacement);
         assertEquals("not_screened", observation(replacement, CERVICAL));
 
@@ -416,7 +416,7 @@ public class MarpBiomedicalCompletionTest {
             Event replacement = event(submission, VISIT_DATE, BIOMEDICAL);
             add(replacement, "client_status", "new_client");
             add(replacement, OTHER_CATEGORY, "none");
-            ReflectionHelpers.setField(reopened, "replacedBiomedicalEvent", original);
+            ReflectionHelpers.setField(reopened, "originalEvent", original);
             reopened.prepareEvent(replacement);
             List<Obs> retained = new ArrayList<>(replacement.getObs());
             retained.removeIf(obs -> expected.stream().noneMatch(
@@ -556,7 +556,7 @@ public class MarpBiomedicalCompletionTest {
                 add(replacement, "tested_hiv", "yes");
                 add(replacement, "hiv_status", "negative");
                 add(replacement, MarpPep.PREP_ENROLMENT, "new payload value");
-                ReflectionHelpers.setField(checklist, "replacedBiomedicalEvent", original);
+                ReflectionHelpers.setField(checklist, "originalEvent", original);
                 checklist.prepareEvent(replacement);
                 List<Obs> retained = new ArrayList<>(replacement.getObs());
                 retained.removeIf(obs -> !List.of(MarpPep.NEED, MarpPep.SERVICE, MarpPep.PREP_ENROLMENT)

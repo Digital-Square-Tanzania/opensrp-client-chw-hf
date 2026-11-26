@@ -411,6 +411,7 @@
     <string name="marp_hts_suggestion_unverified">Hapana, acha jibu wazi</string>
     <string name="marp_hts_suggestion_verify_required">Onyesha kama umethibitisha jibu la Hasi</string>
     <string name="kvp_pep_assesment">Tathmini ya PEP</string>
+    <string name="marp_pep_review_needed">Inahitaji uhakiki</string>
     <string name="kvp_pep_required">Je, mteja anahitaji PEP?</string>
     <string name="marp_pep_yes">Ndio</string>
     <string name="marp_pep_no">Hapana</string>

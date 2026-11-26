@@ -31,6 +31,13 @@ public class KvpPrepPepActionHelper implements BaseKvpVisitAction.KvpVisitAction
     private Context context;
     private JSONObject form;
     private boolean complete;
+    private boolean reviewNeeded;
+
+    public void setReviewNeeded(boolean reviewNeeded, BaseKvpVisitAction action) {
+        this.reviewNeeded = reviewNeeded;
+        action.setSubTitle(reviewNeeded ? context.getString(R.string.marp_pep_review_needed) : null);
+        action.evaluateStatus();
+    }
 
     @Override
     public void onJsonFormLoaded(String jsonPayload, Context context, Map<String, List<VisitDetail>> details) {
@@ -111,6 +118,9 @@ public class KvpPrepPepActionHelper implements BaseKvpVisitAction.KvpVisitAction
 
     @Override
     public BaseKvpVisitAction.Status evaluateStatusOnPayload() {
+        if (reviewNeeded) {
+            return BaseKvpVisitAction.Status.PARTIALLY_COMPLETED;
+        }
         return complete ? BaseKvpVisitAction.Status.COMPLETED : BaseKvpVisitAction.Status.PENDING;
     }
 

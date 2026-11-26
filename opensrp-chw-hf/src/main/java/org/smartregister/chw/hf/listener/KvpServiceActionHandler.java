@@ -11,6 +11,7 @@ import org.smartregister.chw.hf.activity.KvpStructuralServiceActivity;
 import org.smartregister.chw.hf.utils.MarpVisitStatus;
 import org.smartregister.chw.kvp.KvpLibrary;
 import org.smartregister.chw.kvp.domain.ServiceCard;
+import org.smartregister.chw.kvp.domain.Visit;
 import org.smartregister.chw.kvp.handlers.BaseServiceActionHandler;
 import org.smartregister.chw.kvp.repository.VisitRepository;
 import org.smartregister.chw.kvp.util.Constants;
@@ -25,7 +26,12 @@ public class KvpServiceActionHandler extends BaseServiceActionHandler {
         if (MarpVisitStatus.read(repository, baseEntityId, Calendar.getInstance()).hasSubmittedCardToday(eventName)) {
             return;
         }
-        boolean isEditMode = MarpVisitStatus.isDraft(repository.getLatestVisit(baseEntityId, eventName));
+        Visit latest = repository.getLatestVisit(baseEntityId, eventName);
+        boolean isEditMode = MarpVisitStatus.isDraft(latest);
+        if (isEditMode && (Constants.EVENT_TYPE.KVP_BIO_MEDICAL_SERVICE_VISIT.equals(eventName)
+                || Constants.EVENT_TYPE.KVP_STRUCTURAL_SERVICE_VISIT.equals(eventName))) {
+            isEditMode = MarpVisitStatus.isOnDate(latest.getDate(), Calendar.getInstance());
+        }
         if (serviceCard.getServiceId().equals(Constants.SERVICES.KVP_BIO_MEDICAL)) {
             KvpBioMedicalServiceActivity.startKvpBioMedicalServiceActivity((Activity) context, baseEntityId, isEditMode);
             return;
