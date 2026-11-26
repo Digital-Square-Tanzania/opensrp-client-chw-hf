@@ -25,6 +25,7 @@ import org.smartregister.chw.hf.dao.HfKvpDao;
 import org.smartregister.chw.hf.utils.MarpEnrollmentDate;
 import org.smartregister.chw.hf.utils.MarpHts;
 import org.smartregister.chw.hf.utils.MarpHtsSuggestion;
+import org.smartregister.chw.hf.utils.MarpPep;
 import org.smartregister.chw.hf.utils.MarpPregnancyStatus;
 import org.smartregister.chw.hf.utils.MarpVisitCategories;
 import org.smartregister.chw.hf.utils.MarpVisitStatus;
@@ -60,6 +61,7 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
     private KvpClientStatusActionHelper clientStatusActionHelper;
     private BaseKvpVisitAction familyPlanningAction;
     private BaseKvpVisitAction cervicalScreeningAction;
+    private BaseKvpVisitAction pepAction;
     private String wasCondomGiven;
 
     public KvpBioMedicalServiceInteractor(boolean editingVisit) {
@@ -183,6 +185,7 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
         MarpHts.retainRemovedAnswers(replacedBiomedicalEvent, event);
         retainHiddenFamilyPlanningAnswers(replacedBiomedicalEvent, event);
         retainHistoricalMatAnswers(replacedBiomedicalEvent, event);
+        MarpPep.retainUneditedAnswers(replacedBiomedicalEvent, event);
         // The shared history save replaces the event and rebuilds its visit details from the observations.
         if (replacedBiomedicalEvent != null && replacedBiomedicalEvent.getObs() != null
                 && !actionList.containsKey(context.getString(R.string.kvp_cervical_screening))) {
@@ -265,27 +268,23 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
                 && !MarpVisitStatus.hasSubmittedVisitBeforeToday(repository, memberId, today);
     }
 
-    private void evaluatePrepPep(Map<String, List<VisitDetail>> details) throws BaseKvpVisitAction.ValidationException {
-        JSONObject kvpPrepPepJson = FormUtils.getFormUtils().getFormJson(Constants.KVP_BIO_MEDICAL_SERVICE_FORMS.KVP_PrEP_PEP);
-        try {
-            JSONArray fields = kvpPrepPepJson.getJSONObject(org.smartregister.chw.hf.utils.Constants.JsonFormConstants.STEP1).getJSONArray(JsonFormConstants.FIELDS);
-            //update enrolled_to_prep
-            JSONObject enrolled_to_prep_object = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "enrolled_to_prep");
-            enrolled_to_prep_object.put(VALUE, KvpDao.getPrEPMember(memberObject.getBaseEntityId()) != null);
-        } catch (Exception e) {
-            Timber.e(e);
-        }
-
-        KvpPrepPepActionHelper actionHelper = new KvpPrepPepActionHelper();
-        BaseKvpVisitAction action = getBuilder(context.getString(R.string.kvp_pep_assesment))
+    private BaseKvpVisitAction buildPepAction() throws BaseKvpVisitAction.ValidationException, JSONException {
+        String formName = Constants.KVP_BIO_MEDICAL_SERVICE_FORMS.KVP_PrEP_PEP;
+        JSONObject form = FormUtils.getFormUtils().getFormJson(formName);
+        JSONArray fields = form.getJSONObject("step1").getJSONArray(JsonFormConstants.FIELDS);
+        org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, MarpPep.PREP_ENROLMENT).put(VALUE, false);
+        return getBuilder(context.getString(R.string.kvp_pep_assesment))
                 .withOptional(true)
                 .withDetails(details)
-                .withHelper(actionHelper)
-                .withJsonPayload(kvpPrepPepJson.toString())
-                .withFormName(Constants.KVP_BIO_MEDICAL_SERVICE_FORMS.KVP_PrEP_PEP)
+                .withHelper(new KvpPrepPepActionHelper())
+                .withJsonPayload(form.toString())
+                .withFormName(formName)
                 .build();
+    }
 
-        actionList.put(context.getString(R.string.kvp_pep_assesment), action);
+    public JSONObject preparePepForm(JSONObject form) throws JSONException {
+        return pepAction == null ? form
+                : ((KvpPrepPepActionHelper) pepAction.getKvpVisitActionHelper()).forDisplay(form);
     }
 
     private void evaluateCondomProvision(Map<String, List<VisitDetail>> details) throws BaseKvpVisitAction.ValidationException {
@@ -426,25 +425,28 @@ public class KvpBioMedicalServiceInteractor extends BaseKvpVisitInteractor {
 
     private class KvpHtsActionHelper extends org.smartregister.chw.hf.actionhelper.kvp.KvpHtsActionHelper {
 
+        private final boolean knownHivPositive;
+
         public KvpHtsActionHelper(String lastHivStatus) {
             super(lastHivStatus);
+            knownHivPositive = MarpHts.isPositiveResult(lastHivStatus);
         }
 
         @Override
         public String postProcess(String s) {
-            if (!hasAssessmentInput()) {
-                actionList.remove(context.getString(R.string.kvp_pep_assesment));
-                return super.postProcess(s);
-            }
-            if (!MarpHts.isPositiveResult(hiv_status)) {
-                try {
-                    if (KvpDao.getPrEPMember(memberObject.getBaseEntityId()) == null)
-                        evaluatePrepPep(details);
-                } catch (BaseKvpVisitAction.ValidationException e) {
-                    e.printStackTrace();
-                }
+            String title = context.getString(R.string.kvp_pep_assesment);
+            if (!hasAssessmentInput() || knownHivPositive || MarpHts.isPositiveResult(hiv_status)
+                    || KvpDao.getPrEPMember(memberObject.getBaseEntityId()) != null) {
+                actionList.remove(title);
             } else {
-                actionList.remove(context.getString(R.string.kvp_pep_assesment));
+                try {
+                    if (pepAction == null) {
+                        pepAction = buildPepAction();
+                    }
+                    actionList.put(title, pepAction);
+                } catch (BaseKvpVisitAction.ValidationException | JSONException e) {
+                    Timber.e(e, "Unable to load the MARP PEP assessment");
+                }
             }
             new AppExecutors().mainThread().execute(() -> callBack.preloadActions(actionList));
             return super.postProcess(s);

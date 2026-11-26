@@ -521,7 +521,15 @@
     <string name="marp_hts_suggestion_verified">Yes, I verified the result</string>
     <string name="marp_hts_suggestion_unverified">No, leave the result blank</string>
     <string name="marp_hts_suggestion_verify_required">Indicate whether you verified the Negative result</string>
-    <string name="kvp_pep_assesment">PEP assesment</string>
+    <string name="kvp_pep_assesment">PEP Assessment</string>
+    <string name="kvp_pep_required">Does the client require PEP?</string>
+    <string name="marp_pep_yes">Yes</string>
+    <string name="marp_pep_no">No</string>
+    <string name="kvp_pep_provision">PEP service</string>
+    <string name="marp_pep_provided">Received PEP</string>
+    <string name="marp_pep_not_provided">Not Received</string>
+    <string name="marp_pep_legacy_not_provided">Not provided</string>
+    <string name="marp_pep_answer_required">Please select one</string>
     <string name="kvp_condom_provision">Condom Provision</string>
     <string name="kvp_family_planning">Family Planning</string>
     <string name="kvp_tb_screening">TB Screening</string>
@@ -849,7 +857,6 @@
     <string name="kvp_other_services_referrals_provided">Other services/referrals provided to the client:</string>
     <string name="kvp_other_other_services_referrals_provided">Other services/referrals provided to the client:</string>
     <string name="kvp_enrolled_to_prep">Was the client enrolled in PrEP services:</string>
-    <string name="kvp_pep_provision">PEP provision after the client was at risk of contracting HIV:</string>
     <string name="kvp_condoms_given">Was the client given condoms:</string>
     <string name="kvp_type_of_issued_condoms">Types of condoms issued:</string>
     <string name="kvp_number_of_male_condoms_issued">Number of Male condoms issued:</string>

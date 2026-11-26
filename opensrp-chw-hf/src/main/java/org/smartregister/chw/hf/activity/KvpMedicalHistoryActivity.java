@@ -27,6 +27,7 @@ import org.smartregister.chw.core.activity.CoreAncMedicalHistoryActivity;
 import org.smartregister.chw.core.activity.DefaultAncMedicalHistoryActivityFlv;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.interactor.KvpMedicalHistoryInteractor;
+import org.smartregister.chw.hf.utils.MarpPep;
 import org.smartregister.chw.kvp.domain.MemberObject;
 import org.smartregister.chw.kvp.repository.VisitRepository;
 import org.smartregister.chw.kvp.util.Constants.EVENT_TYPE;
@@ -123,8 +124,12 @@ public class KvpMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
                     String[] otherServicesParams = {"other_services_referrals_provided", "other_other_services_referrals_provided"};
                     extractVisitDetails(visits, otherServicesParams, visitDetails, x, context);
 
-                    String[] prepPepServicesParams = {"enrolled_to_prep", "pep_provision"};
-                    extractVisitDetails(visits, prepPepServicesParams, visitDetails, x, context);
+                    extractVisitDetails(visits, new String[]{MarpPep.PREP_ENROLMENT}, visitDetails, x, context);
+                    Map<String, List<VisitDetail>> saved = visits.get(x).getVisitDetails();
+                    if (saved != null) {
+                        MarpPep.addHistoryAnswers(getTexts(context, saved.get(MarpPep.NEED)),
+                                getTexts(context, saved.get(MarpPep.SERVICE)), visitDetails);
+                    }
 
                     String[] stiScreeningServicesParams = {"sti_screening", "treatment_provided"};
                     extractVisitDetails(visits, stiScreeningServicesParams, visitDetails, x, context);
@@ -250,7 +255,11 @@ public class KvpMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
                             boolean otherCategory = OTHER_CATEGORY.equals(key);
                             int resource = otherCategory ? R.string.marp_other_client_category
                                     : context.getResources().getIdentifier("kvp_" + key, "string", context.getPackageName());
-                            evaluateView(context, vals, visitDetailTv, key, resource, otherCategory ? "kvp_" : "");
+                            String valuePrefix = otherCategory ? "kvp_" : "";
+                            if (MarpPep.NEED.equals(key) || MarpPep.SERVICE.equals(key)) {
+                                valuePrefix = "marp_pep_";
+                            }
+                            evaluateView(context, vals, visitDetailTv, key, resource, valuePrefix);
                         } catch (Exception e) {
                             Timber.e(e);
                         }

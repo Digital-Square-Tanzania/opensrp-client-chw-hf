@@ -410,7 +410,15 @@
     <string name="marp_hts_suggestion_verified">Ndiyo, nimethibitisha jibu</string>
     <string name="marp_hts_suggestion_unverified">Hapana, acha jibu wazi</string>
     <string name="marp_hts_suggestion_verify_required">Onyesha kama umethibitisha jibu la Hasi</string>
-    <string name="kvp_pep_assesment">PEP assesment</string>
+    <string name="kvp_pep_assesment">Tathmini ya PEP</string>
+    <string name="kvp_pep_required">Je, mteja anahitaji PEP?</string>
+    <string name="marp_pep_yes">Ndio</string>
+    <string name="marp_pep_no">Hapana</string>
+    <string name="kvp_pep_provision">Huduma ya dawa kinga baada ya kuwa katika hatari ya kupata VVU (PEP)</string>
+    <string name="marp_pep_provided">Amepewa PEP</string>
+    <string name="marp_pep_not_provided">Hajapewa PEP</string>
+    <string name="marp_pep_legacy_not_provided">Hajapewa PEP</string>
+    <string name="marp_pep_answer_required">Tafadhali chagua jibu moja</string>
     <string name="kvp_condom_provision">Ugawaji Kondomu</string>
     <string name="kvp_family_planning">Uzazi wa Mpango</string>
     <string name="kvp_tb_screening">Uchunguzi wa Kifua Kikuu</string>
