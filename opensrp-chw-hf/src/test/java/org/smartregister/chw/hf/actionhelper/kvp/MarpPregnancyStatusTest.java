@@ -48,7 +48,7 @@ public class MarpPregnancyStatusTest {
         KvpClientStatusActionHelper helper = helper("female", GROUP, screening("yes", "yes"), "");
         assertEquals(PREGNANT, field(form(open(helper, null)), FIELD).getString("value"));
         assertEquals("", helper.getPregnancyBreastfeedingStatus());
-        assertTrue(helper.isPregnantForFamilyPlanning());
+        assertTrue(helper.isPregnantForBiomedicalServices());
     }
 
     @Test
@@ -62,7 +62,7 @@ public class MarpPregnancyStatusTest {
     public void earlierMarpVisitWithoutBiomedicalStillRequiresAFreshAnswer() throws Exception {
         KvpClientStatusActionHelper helper = helper("female", GROUP, screening("yes", null), "", true);
         assertFalse(field(form(open(helper, null)), FIELD).has("value"));
-        assertFalse(helper.isPregnantForFamilyPlanning());
+        assertFalse(helper.isPregnantForBiomedicalServices());
     }
 
     @Test
@@ -75,7 +75,7 @@ public class MarpPregnancyStatusTest {
         action.setJsonPayload(form.toString());
         assertEquals(BaseKvpVisitAction.Status.COMPLETED, action.getActionStatus());
         assertEquals(NEITHER, helper.getPregnancyBreastfeedingStatus());
-        assertFalse(helper.isPregnantForFamilyPlanning());
+        assertFalse(helper.isPregnantForBiomedicalServices());
 
         Event saved = new Event();
         JSONObject submitted = form(action);
@@ -99,7 +99,7 @@ public class MarpPregnancyStatusTest {
         JSONObject status = field(form, FIELD);
         assertFalse(status.has("value"));
         assertEquals(PREGNANT, helper.getPregnancyBreastfeedingStatus());
-        assertTrue(helper.isPregnantForFamilyPlanning());
+        assertTrue(helper.isPregnantForBiomedicalServices());
 
         field(form, MarpEnrollmentDate.CLIENT_STATUS).put("value", "return");
         action.setJsonPayload(form.toString());
@@ -110,14 +110,14 @@ public class MarpPregnancyStatusTest {
         action.setJsonPayload(form.toString());
         assertEquals(BaseKvpVisitAction.Status.COMPLETED, action.getActionStatus());
         assertEquals(BREASTFEEDING, helper.getPregnancyBreastfeedingStatus());
-        assertFalse(helper.isPregnantForFamilyPlanning());
+        assertFalse(helper.isPregnantForBiomedicalServices());
     }
 
     @Test
     public void familyPlanningUsesLatestAnswerAheadOfScreeningAndRespondsToSameVisitSaves() throws Exception {
         KvpClientStatusActionHelper helper = helper("female", GROUP, screening("yes", null), NEITHER);
         BaseKvpVisitAction action = open(helper, null);
-        assertFalse(helper.isPregnantForFamilyPlanning());
+        assertFalse(helper.isPregnantForBiomedicalServices());
 
         JSONObject form = form(action);
         field(form, MarpEnrollmentDate.CLIENT_STATUS).put("value", "return");
@@ -125,12 +125,12 @@ public class MarpPregnancyStatusTest {
             field(form, FIELD).put("value", PREGNANT);
             action.setJsonPayload(form.toString());
             assertEquals(BaseKvpVisitAction.Status.COMPLETED, action.getActionStatus());
-            assertTrue(helper.isPregnantForFamilyPlanning());
+            assertTrue(helper.isPregnantForBiomedicalServices());
 
             field(form, FIELD).put("value", status);
             action.setJsonPayload(form.toString());
             assertEquals(BaseKvpVisitAction.Status.COMPLETED, action.getActionStatus());
-            assertFalse(helper.isPregnantForFamilyPlanning());
+            assertFalse(helper.isPregnantForBiomedicalServices());
         }
     }
 
@@ -141,7 +141,7 @@ public class MarpPregnancyStatusTest {
         KvpClientStatusActionHelper breastfeeding = helper("female", GROUP, screening("no", "yes"), "");
         for (KvpClientStatusActionHelper helper : List.of(male, female, breastfeeding)) {
             open(helper, null);
-            assertFalse(helper.isPregnantForFamilyPlanning());
+            assertFalse(helper.isPregnantForBiomedicalServices());
         }
     }
 

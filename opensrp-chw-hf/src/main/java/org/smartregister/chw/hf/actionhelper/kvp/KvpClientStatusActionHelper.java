@@ -162,7 +162,7 @@ public class KvpClientStatusActionHelper implements BaseKvpVisitAction.KvpVisitA
         return MarpPregnancyStatus.isAnswer(savedPregnancyStatus) ? savedPregnancyStatus : getLatestPregnancyStatus();
     }
 
-    public boolean isPregnantForFamilyPlanning() {
+    public boolean isPregnantForBiomedicalServices() {
         String status = getPregnancyBreastfeedingStatus();
         return MarpPregnancyStatus.PREGNANT.equals(
                 MarpPregnancyStatus.isAnswer(status) ? status : firstVisitScreeningStatus);
