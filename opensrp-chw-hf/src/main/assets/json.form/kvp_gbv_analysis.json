@@ -1,6 +1,7 @@
 {
   "count": "1",
   "encounter_type": "KVP GBV Analysis",
+  "properties_file_name": "kvp_gbv_analysis",
   "entity_id": "",
   "metadata": {
     "start": {
@@ -43,7 +44,7 @@
   },
   "global": {},
   "step1": {
-    "title": "GBV Analysis",
+    "title": "{{kvp_gbv_analysis}}",
     "fields": [
       {
         "key": "gbv_screening",
