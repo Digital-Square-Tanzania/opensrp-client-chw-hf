@@ -57,6 +57,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Removed
 
+- Remove the MAT form from Kituoni MARP Biomedical Services and Visit History display while keeping MAT referrals and preserving historical MAT observations on resave ([#248](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/248), UCSW-46). No version or dependency changes.
 - Remove the PrEP Assessment page and its two questions from male and female Kituoni MARP screening. Continue directly from Other Groups to MARP Enrollment ([#234](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/234)).
 - Remove the separate Mobile Population question and retire its group for new Kituoni MARP screening and enrollment while preserving existing enrollments ([#230](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/230)).
 - Remove the prisoner/inmate question and retire Prisoners and Rumandee as choices for new Kituoni MARP screening and enrollment while preserving existing enrollments ([#229](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/229)).
