@@ -18,6 +18,7 @@ import org.junit.runners.Parameterized;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -43,7 +44,8 @@ public class MarpPrepRegistrationEntryTest {
 
     @Before
     public void loadLocalizedHtsFixture() throws Exception {
-        JSONObject form = new JSONObject(Files.readString(MAIN.resolve("assets/json.form/kvp_hts.json")));
+        byte[] fixture = Files.readAllBytes(MAIN.resolve("assets/json.form/kvp_hts.json"));
+        JSONObject form = new JSONObject(new String(fixture, StandardCharsets.UTF_8));
         JSONArray fields = form.getJSONObject("step1").getJSONArray("fields");
         htsOptions = findByKey(fields, "hiv_status").getJSONArray("options");
 
