@@ -538,7 +538,6 @@
     <string name="kvp_heptitis_test">Hepatitis Test</string>
     <string name="kvp_vmmc">VMMC</string>
     <string name="kvp_cervical_screening">Cervical Screening</string>
-    <string name="kvp_iec_sbcc">IEC/SBCC</string>
     <string name="kvp_health_education">Health Education</string>
     <string name="kvp_gbv_analysis">GBV Screening</string>
     <string name="kvp_other_services_referrals">Other Services and Referrals</string>
@@ -854,7 +853,6 @@
     <string name="kvp_kits_distributed">HIVST kits distributed:</string>
     <string name="kvp_vmcc_provided">VMMC services provided:</string>
     <string name="kvp_treatment_provided">Treatment provided to the client:</string>
-    <string name="kvp_iec_sbcc_materials">Number of IEC/SBCC materials provided:</string>
     <string name="kvp_other_services_referrals_provided">Other services/referrals provided to the client:</string>
     <string name="kvp_other_other_services_referrals_provided">Other services/referrals provided to the client:</string>
     <string name="kvp_enrolled_to_prep">Was the client enrolled in PrEP services:</string>

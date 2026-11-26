@@ -14,6 +14,7 @@ import org.smartregister.chw.hf.interactor.KvpBehavioralServiceInteractor;
 import org.smartregister.chw.hf.schedulers.HfScheduleTaskExecutor;
 import org.smartregister.chw.kvp.activity.BaseKvpVisitActivity;
 import org.smartregister.chw.kvp.domain.MemberObject;
+import org.smartregister.chw.kvp.model.BaseKvpVisitAction;
 import org.smartregister.chw.kvp.presenter.BaseKvpVisitPresenter;
 import org.smartregister.chw.kvp.util.Constants;
 import org.smartregister.family.util.JsonFormUtils;
@@ -21,20 +22,34 @@ import org.smartregister.family.util.Utils;
 import org.smartregister.util.LangUtils;
 
 import java.util.Date;
+import java.util.LinkedHashMap;
 
 public class KvpBehavioralServiceActivity extends BaseKvpVisitActivity {
+    private static final String HISTORY_VISIT_ID = "behavioral_history_visit_id";
 
     public static void startKvpBehavioralServiceActivity(Activity activity, String baseEntityId, Boolean editMode) {
+        startKvpBehavioralServiceActivity(activity, baseEntityId, editMode, null);
+    }
+
+    static void startKvpBehavioralServiceActivity(Activity activity, String baseEntityId, Boolean editMode, String visitId) {
         Intent intent = new Intent(activity, KvpBehavioralServiceActivity.class);
         intent.putExtra(Constants.ACTIVITY_PAYLOAD.BASE_ENTITY_ID, baseEntityId);
         intent.putExtra(Constants.ACTIVITY_PAYLOAD.EDIT_MODE, editMode);
         intent.putExtra(Constants.ACTIVITY_PAYLOAD.PROFILE_TYPE, Constants.PROFILE_TYPES.KVP_PROFILE);
+        intent.putExtra(HISTORY_VISIT_ID, visitId);
         activity.startActivity(intent);
     }
 
     @Override
     protected void registerPresenter() {
-        presenter = new BaseKvpVisitPresenter(memberObject, this, new KvpBehavioralServiceInteractor(Constants.EVENT_TYPE.KVP_BEHAVIORAL_SERVICE_VISIT));
+        presenter = new BaseKvpVisitPresenter(memberObject, this,
+                new KvpBehavioralServiceInteractor(getIntent().getStringExtra(HISTORY_VISIT_ID)));
+    }
+
+    @Override
+    public void initializeActions(LinkedHashMap<String, BaseKvpVisitAction> actions) {
+        super.initializeActions(actions);
+        redrawVisitUI();
     }
 
     @Override

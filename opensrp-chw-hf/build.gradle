@@ -299,7 +299,7 @@ flavors.each { productFlavorName ->
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation('org.smartregister:opensrp-client-chw-core:2.2.1-KITUONI-UCSW-47-VISIT-10-SNAPSHOT@aar') {
+    implementation('org.smartregister:opensrp-client-chw-core:2.2.2-KITUONI-UCSW-186-VISIT-14-SNAPSHOT@aar') {
 //    implementation(project(":opensrp-chw-core")) {
         transitive = true
         exclude group: 'com.android.support', module: 'appcompat-v7'
@@ -402,15 +402,15 @@ dependencies {
     // Use real JSON objects in local presenter tests.
     testImplementation 'org.json:json:20180813'
     testImplementation 'org.mockito:mockito-core:3.1.0'
-    testImplementation 'org.robolectric:robolectric:4.3.1'
-    testImplementation 'org.robolectric:shadows-multidex:4.3.1'
-    testImplementation 'org.robolectric:shadows-support-v4:3.4-rc2'
+    testImplementation 'org.robolectric:robolectric:4.13'
     testImplementation 'androidx.test:core:1.2.0'
 }
 
 
-tasks.withType(Test) {
+tasks.withType(Test).configureEach {
     jacoco.includeNoLocationClasses = true
+    // The Java 17 test worker needs its generated reflection accessors before JUnit starts.
+    jacoco.excludes += ['jdk.internal.*']
 }
 
 // Workaround for D8 NullPointerException during dexing by stripping debug info from class files
@@ -443,11 +443,6 @@ task jacocoTestReport(type: JacocoReport, dependsOn: [
             'jacoco/testBaDebugUnitTest.exec', 'outputs/code-coverage/connected/*coverage.ec'
     ]))
 }
-
-tasks.withType(Test) {
-    jacoco.includeNoLocationClasses = true
-}
-
 
 tasks.coveralls {
     dependsOn 'jacocoTestReport'

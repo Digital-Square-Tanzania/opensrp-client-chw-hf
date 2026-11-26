@@ -27,6 +27,7 @@ import org.smartregister.chw.core.utils.ChwDBConstants;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.core.utils.FormUtils;
 import org.smartregister.chw.fp.FpLibrary;
+import org.smartregister.chw.hf.actionhelper.kvp.KvpHealthEducationHelper;
 import org.smartregister.chw.hf.activity.AllClientsRegisterActivity;
 import org.smartregister.chw.hf.activity.AncRegisterActivity;
 import org.smartregister.chw.hf.activity.CdpRegisterActivity;
@@ -312,7 +313,8 @@ public class HealthFacilityApplication extends CoreChwApplication implements Cor
 
         if (flavor.hasKvpPrEP()) {
             KvpLibrary.init(context, getRepository(), BuildConfig.VERSION_CODE, BuildConfig.DATABASE_VERSION,
-                    HfKvpDao::isPregnantForBiomedicalVisit, HfKvpDao::isPregnantForBiomedicalVisit);
+                    HfKvpDao::isPregnantForBiomedicalVisit, HfKvpDao::isPregnantForBiomedicalVisit,
+                    KvpHealthEducationHelper::isSavedEducationComplete);
         }
 
         try {

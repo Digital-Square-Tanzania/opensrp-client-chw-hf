@@ -36,6 +36,7 @@ import org.robolectric.annotation.Implements;
 import org.robolectric.util.ReflectionHelpers;
 import org.smartregister.Context;
 import org.smartregister.CoreLibrary;
+import org.smartregister.chw.hf.actionhelper.kvp.KvpHealthEducationHelper;
 import org.smartregister.chw.core.utils.FormUtils;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.interactor.KvpBioMedicalServiceInteractor;
@@ -100,7 +101,8 @@ public class MarpBiomedicalCompletionTest {
         Context appContext = mock(Context.class);
         CoreLibrary.init(appContext);
         KvpLibrary.init(appContext, null, 67, 32,
-                HfKvpDao::isPregnantForBiomedicalVisit, HfKvpDao::isPregnantForBiomedicalVisit);
+                HfKvpDao::isPregnantForBiomedicalVisit, HfKvpDao::isPregnantForBiomedicalVisit,
+                KvpHealthEducationHelper::isSavedEducationComplete);
         ReflectionHelpers.setField(KvpLibrary.getInstance(), "visitRepository", visits);
     }
 
