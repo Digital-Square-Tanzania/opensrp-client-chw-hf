@@ -12,8 +12,10 @@ import org.json.JSONObject;
 import org.smartregister.chw.kvp.domain.VisitDetail;
 import org.smartregister.chw.kvp.model.BaseKvpVisitAction;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import timber.log.Timber;
 
@@ -22,11 +24,20 @@ public class KvpHealthEducationHelper implements BaseKvpVisitAction.KvpVisitActi
     private static final String TOPICS = "health_education_provided";
     private static final String OTHER_TEXT = "others_health_education_provided";
 
+    private static final String DELIVERY_MODES = "health_education_delivery_modes_";
+    private static final String DELIVERY_OTHER = "health_education_delivery_other_";
+    private static final String OTHER = "other";
+    private static final String NONE = "none";
+
     private boolean complete;
-    private boolean otherSelected;
+    private boolean restoringLegacy;
+    private String processedPayload;
 
     @Override
-    public void onJsonFormLoaded(String jsonPayload, Context context, Map<String, List<VisitDetail>> map) {
+    public void onJsonFormLoaded(String jsonPayload, Context context, Map<String, List<VisitDetail>> details) {
+        // KVP evaluates the restored payload before the provider opens the form.
+        restoringLegacy = details != null && details.containsKey(TOPICS)
+                && details.keySet().stream().noneMatch(key -> key.startsWith(DELIVERY_MODES) || key.startsWith(DELIVERY_OTHER));
     }
 
     @Override
@@ -37,7 +48,9 @@ public class KvpHealthEducationHelper implements BaseKvpVisitAction.KvpVisitActi
     @Override
     public void onPayloadReceived(String jsonPayload) {
         complete = false;
-        otherSelected = false;
+        processedPayload = null;
+        boolean restoredLegacy = restoringLegacy;
+        restoringLegacy = false;
         if (StringUtils.isBlank(jsonPayload)) {
             return;
         }
@@ -45,30 +58,73 @@ public class KvpHealthEducationHelper implements BaseKvpVisitAction.KvpVisitActi
         try {
             JSONObject form = new JSONObject(jsonPayload);
             JSONObject topics = FormUtils.getFieldFromForm(form, TOPICS);
-            if (topics == null) {
+            JSONArray topicOptions = topics.optJSONArray(JsonFormConstants.OPTIONS_FIELD_NAME);
+            if (topicOptions == null) {
                 return;
             }
-            JSONArray options = topics.getJSONArray(JsonFormConstants.OPTIONS_FIELD_NAME);
-            int selectedCount = 0;
-            boolean noneSelected = false;
-            for (int i = 0; i < options.length(); i++) {
-                JSONObject option = options.getJSONObject(i);
-                if (option.optBoolean(JsonFormConstants.VALUE)) {
-                    selectedCount++;
-                    String key = option.getString(JsonFormConstants.KEY);
-                    noneSelected |= "none".equals(key);
-                    otherSelected |= "other".equals(key);
+
+            Set<String> selectedTopics = selectedOptions(topicOptions);
+            boolean noneSelected = selectedTopics.contains(NONE);
+            boolean valid = !selectedTopics.isEmpty() && (!noneSelected || selectedTopics.size() == 1);
+            JSONObject topicText = FormUtils.getFieldFromForm(form, OTHER_TEXT);
+            valid &= validateText(topicText, !noneSelected && selectedTopics.contains(OTHER));
+
+            for (int i = 0; i < topicOptions.length(); i++) {
+                String topic = topicOptions.getJSONObject(i).getString(JsonFormConstants.KEY);
+                if (NONE.equals(topic)) {
+                    continue;
+                }
+
+                JSONObject modes = FormUtils.getFieldFromForm(form, DELIVERY_MODES + topic);
+                boolean topicSelected = !noneSelected && selectedTopics.contains(topic);
+                JSONArray modeOptions = modes.optJSONArray(JsonFormConstants.OPTIONS_FIELD_NAME);
+                if (!topicSelected && modeOptions != null) {
+                    clearChecklist(modes, modeOptions);
+                }
+                Set<String> selectedModes = selectedOptions(modeOptions);
+                JSONObject channelText = FormUtils.getFieldFromForm(form, DELIVERY_OTHER + topic);
+                valid &= validateText(channelText, topicSelected && selectedModes.contains(OTHER));
+                if (topicSelected && !restoredLegacy) {
+                    valid &= !selectedModes.isEmpty();
                 }
             }
 
-            complete = selectedCount > 0 && (!noneSelected || selectedCount == 1);
-            if (complete && otherSelected) {
-                JSONObject otherText = FormUtils.getFieldFromForm(form, OTHER_TEXT);
-                complete = otherText != null && StringUtils.isNotBlank(otherText.optString(JsonFormConstants.VALUE));
-            }
+            processedPayload = form.toString();
+            complete = valid;
         } catch (JSONException e) {
             Timber.e(e);
         }
+    }
+
+    private static Set<String> selectedOptions(JSONArray options) throws JSONException {
+        Set<String> selected = new HashSet<>();
+        if (options != null) {
+            for (int i = 0; i < options.length(); i++) {
+                JSONObject option = options.getJSONObject(i);
+                if (option.optBoolean(JsonFormConstants.VALUE)) {
+                    selected.add(option.getString(JsonFormConstants.KEY));
+                }
+            }
+        }
+        return selected;
+    }
+
+    private static void clearChecklist(JSONObject checklist, JSONArray options) throws JSONException {
+        checklist.remove(JsonFormConstants.VALUE);
+        for (int i = 0; i < options.length(); i++) {
+            options.getJSONObject(i).remove(JsonFormConstants.VALUE);
+        }
+    }
+
+    private static boolean validateText(JSONObject field, boolean required) {
+        if (required) {
+            return field != null && !field.isNull(JsonFormConstants.VALUE)
+                    && StringUtils.isNotBlank(field.optString(JsonFormConstants.VALUE));
+        }
+        if (field != null) {
+            field.remove(JsonFormConstants.VALUE);
+        }
+        return true;
     }
 
     @Override
@@ -83,18 +139,7 @@ public class KvpHealthEducationHelper implements BaseKvpVisitAction.KvpVisitActi
 
     @Override
     public String postProcess(String jsonPayload) {
-        if (!otherSelected && StringUtils.isNotBlank(jsonPayload)) {
-            try {
-                JSONObject form = new JSONObject(jsonPayload);
-                JSONObject otherText = FormUtils.getFieldFromForm(form, OTHER_TEXT);
-                if (otherText != null && otherText.remove(JsonFormConstants.VALUE) != null) {
-                    return form.toString();
-                }
-            } catch (JSONException e) {
-                Timber.e(e);
-            }
-        }
-        return null;
+        return processedPayload;
     }
 
     @Override
