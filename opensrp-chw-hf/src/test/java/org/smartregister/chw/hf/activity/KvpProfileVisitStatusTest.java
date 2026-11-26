@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InOrder;
 import org.smartregister.chw.hf.R;
+import org.smartregister.chw.hf.utils.MarpPrepRegistrationEntry;
 import org.smartregister.chw.hf.utils.MarpVisitStatus;
 import org.smartregister.chw.kvp.domain.Visit;
 import org.smartregister.chw.kvp.repository.VisitRepository;
@@ -50,6 +51,7 @@ public class KvpProfileVisitStatusTest {
         doCallRealMethod().when(profile).bindViews(record, continueVisit);
         doCallRealMethod().when(profile).setupButtons();
         doCallRealMethod().when(profile).renderMarpVisitStatus(any(MarpVisitStatus.class));
+        doCallRealMethod().when(profile).historyRow();
         when(profile.findViewById(anyInt())).thenAnswer(invocation -> mock(TextView.class));
         when(profile.isVisitOnProgress(Constants.PROFILE_TYPES.KVP_PROFILE))
                 .thenAnswer(invocation -> readStatus().isInProgress(repository, CLIENT));
@@ -142,6 +144,59 @@ public class KvpProfileVisitStatusTest {
         for (String card : CARDS) {
             assertTrue(readStatus().hasSubmittedCardToday(card));
         }
+    }
+
+    @Test
+    public void processedClosureStillLocksSameDayAndReleasesNextDayAndOtherClient() {
+        for (String card : CARDS) {
+            setVisits(card, visitAt(23, 8, 0, true, "processed-" + card));
+        }
+        assertTrue(readStatus().isCompleteToday());
+        assertFalse(MarpVisitStatus.read(repository, "another-synthetic-client", now).isCompleteToday());
+        renderProfile();
+        now = localTime(24, 0, 1);
+        assertFalse(readStatus().isCompleteToday());
+        renderProfile();
+
+        InOrder order = inOrder(record);
+        order.verify(record).setVisibility(View.GONE);
+        order.verify(record).setVisibility(View.VISIBLE);
+    }
+
+    @Test
+    public void processedClosureKeepsTheHistoryRowAvailable() {
+        for (String card : CARDS) {
+            setVisits(card, visitAt(23, 8, 0, true, "processed-" + card));
+        }
+
+        renderProfile();
+
+        verify(profile.historyRow()).setVisibility(View.VISIBLE);
+        verify(record).setVisibility(View.GONE);
+    }
+
+    @Test
+    public void registerTapRefreshesTheDecisionAfterAnAllowedRowBecomesIneligible() {
+        RelativeLayout registrationRow = mock(RelativeLayout.class);
+        TextView register = mock(TextView.class);
+        TextView label = mock(TextView.class);
+        when(registrationRow.findViewById(org.smartregister.chw.kvp.R.id.textview_pending_registration))
+                .thenReturn(label);
+        doCallRealMethod().when(profile).bindRegistrationViews(registrationRow, register);
+        doCallRealMethod().when(profile).renderPrEPRegistration(any(MarpPrepRegistrationEntry.class));
+        doCallRealMethod().when(profile).startPrEPRegistration();
+        when(profile.readPrEPRegistration()).thenReturn(MarpPrepRegistrationEntry.HIDDEN);
+        profile.bindRegistrationViews(registrationRow, register);
+        profile.renderPrEPRegistration(MarpPrepRegistrationEntry.CONSENT_DECLINED);
+
+        profile.startPrEPRegistration();
+
+        verify(profile).readPrEPRegistration();
+        InOrder order = inOrder(registrationRow, register);
+        order.verify(registrationRow).setVisibility(View.VISIBLE);
+        order.verify(register).setVisibility(View.VISIBLE);
+        order.verify(registrationRow).setVisibility(View.GONE);
+        order.verify(register).setVisibility(View.GONE);
     }
 
     @Test
@@ -263,6 +318,15 @@ public class KvpProfileVisitStatusTest {
             textViewRecordKvp = record;
             visitInProgress = continueVisit;
             rlLastVisit = mock(RelativeLayout.class);
+        }
+
+        RelativeLayout historyRow() {
+            return rlLastVisit;
+        }
+
+        void bindRegistrationViews(RelativeLayout row, TextView register) {
+            pendingPrEPRegistration = row;
+            textview_register = register;
         }
     }
 

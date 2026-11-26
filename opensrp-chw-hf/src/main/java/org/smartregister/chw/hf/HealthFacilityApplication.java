@@ -93,6 +93,7 @@ import org.smartregister.repository.AllSharedPreferences;
 import org.smartregister.repository.Repository;
 import org.smartregister.repository.TaskNotesRepository;
 import org.smartregister.repository.TaskRepository;
+import org.smartregister.sync.ClientProcessorForJava;
 import org.smartregister.util.LangUtils;
 import org.smartregister.util.Utils;
 
@@ -353,7 +354,11 @@ public class HealthFacilityApplication extends CoreChwApplication implements Cor
         setOpenSRPUrl();
 
         // set up processor
-        FamilyLibrary.getInstance().setClientProcessorForJava(HfClientProcessor.getInstance(getApplicationContext()));
+        ClientProcessorForJava facilityProcessor = HfClientProcessor.getInstance(getApplicationContext());
+        FamilyLibrary.getInstance().setClientProcessorForJava(facilityProcessor);
+        if (flavor.hasKvpPrEP()) {
+            KvpLibrary.getInstance().setClientProcessorForJava(facilityProcessor);
+        }
 
         //initialize Map
         if (getApplicationFlavor().hasMap()) {

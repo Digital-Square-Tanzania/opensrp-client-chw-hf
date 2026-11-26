@@ -351,6 +351,9 @@
     <string name="return_to_kvp_prep_clients">Rudi kwa wateja wote wa MARP/PrEP</string>
     <string name="record_kvp">Toa huduma ya MARP</string>
     <string name="marp_card_submitted">Imewasilishwa</string>
+    <string name="marp_prep_registration_pending">Usajili wa PrEP unasubiri</string>
+    <string name="marp_prep_registration_declined">Mteja hajaridhia PrEP</string>
+    <string name="marp_prep_registered">Amesajiliwa PrEP ✓</string>
     <string name="record_kvp_followup_visit">Rekodi ziara ya ufuatiliaji</string>
     <string name="dominant_kvp_group">Kundi kuu la MARP: %s</string>
     <string name="other_kvp_groups">Makundi mengine ya MARP: %s</string>
