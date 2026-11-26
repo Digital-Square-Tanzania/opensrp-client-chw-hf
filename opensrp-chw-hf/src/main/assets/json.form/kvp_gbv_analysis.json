@@ -51,37 +51,48 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "gbv_screening",
-        "type": "native_radio",
-        "label": "Gender Based Violence (GBV) case reported",
+        "type": "check_box",
+        "label": "{{gbv_case_reported}}",
+        "combine_checkbox_option_values": true,
+        "exclusive": [
+          "none",
+          "not_assessed"
+        ],
         "options": [
           {
             "key": "physical_violence",
-            "text": "Physical violence.",
+            "text": "{{gbv_physical_violence}}",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "physical_violence"
           },
           {
-            "key": "emotional_violence",
-            "text": "Emotional violence.",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "emotional_violence"
-          },
-          {
             "key": "sexual_violence",
-            "text": "Sexual violence.",
+            "text": "{{gbv_sexual_violence}}",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "sexual_violence"
           },
           {
+            "key": "emotional_violence",
+            "text": "{{gbv_emotional_violence}}",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "emotional_violence"
+          },
+          {
             "key": "none",
-            "text": "None",
+            "text": "{{gbv_none}}",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "none"
+          },
+          {
+            "key": "not_assessed",
+            "text": "{{gbv_not_assessed}}",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "not_assessed"
           }
         ],
         "v_required": {
           "value": "true",
-          "err": "Please select an answer"
+          "err": "{{gbv_answer_required}}"
         }
       },
       {

@@ -25,15 +25,18 @@ public class MarpGbvWordingTest {
 
     @Test
     public void showsScreeningInEnglishWithNewAndRestoredAnswers() throws Exception {
-        assertGbvWording(Locale.ENGLISH, "values", "GBV Screening");
+        assertGbvWording(Locale.ENGLISH, "values", "GBV Screening", "GBV Case Reported",
+                List.of("Physical violence", "Sexual violence", "Emotional violence", "None", "Not assessed"));
     }
 
     @Test
     public void showsScreeningInKiswahiliWithNewAndRestoredAnswers() throws Exception {
-        assertGbvWording(new Locale("sw"), "values-sw", "Uchunguzi wa Ukatili wa kijinsia");
+        assertGbvWording(new Locale("sw"), "values-sw", "Uchunguzi wa Ukatili wa kijinsia", "Ukatili aliofanyiwa",
+                List.of("Ukatili wa kimwili", "Ukatili wa kingono", "Ukatili wa kihisia", "Hajafanyiwa ukatili", "Hajachunguzwa"));
     }
 
-    private void assertGbvWording(Locale locale, String valuesDirectory, String title) throws Exception {
+    private void assertGbvWording(Locale locale, String valuesDirectory, String title, String label,
+                                  List<String> optionLabels) throws Exception {
         Path strings = Paths.get("src/main/res", valuesDirectory, "strings.xml");
         assertEquals(title, XPathFactory.newInstance().newXPath().evaluate(
                 "/resources/string[@name='kvp_gbv_analysis']",
@@ -53,6 +56,17 @@ public class MarpGbvWordingTest {
         JSONObject step = form.getJSONObject("step1");
         assertEquals(title, step.getString("title"));
         assertEquals("KVP GBV Analysis", form.getString("encounter_type"));
+        JSONObject question = step.getJSONArray("fields").getJSONObject(0);
+        assertEquals(label, question.getString("label"));
+        JSONArray options = question.getJSONArray("options");
+        List<String> codes = List.of("physical_violence", "sexual_violence", "emotional_violence", "none", "not_assessed");
+        assertEquals(codes.size(), options.length());
+        for (int i = 0; i < codes.size(); i++) {
+            JSONObject option = options.getJSONObject(i);
+            assertEquals(codes.get(i), option.getString("key"));
+            assertEquals(codes.get(i), option.getString("openmrs_entity_id"));
+            assertEquals(optionLabels.get(i), option.getString("text"));
+        }
 
         VisitDetail screening = new VisitDetail();
         screening.setDetails("physical_violence");
@@ -64,7 +78,7 @@ public class MarpGbvWordingTest {
 
         assertEquals(title, step.getString("title"));
         JSONArray fields = step.getJSONArray("fields");
-        assertEquals("physical_violence", fields.getJSONObject(0).getString("value"));
+        assertEquals("[\"physical_violence\"]", fields.getJSONObject(0).getJSONArray("value").toString());
         assertEquals("yes", fields.getJSONObject(1).getString("value"));
     }
 }

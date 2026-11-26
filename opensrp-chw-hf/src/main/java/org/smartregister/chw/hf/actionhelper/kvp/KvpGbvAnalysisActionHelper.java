@@ -2,45 +2,65 @@ package org.smartregister.chw.hf.actionhelper.kvp;
 
 import android.content.Context;
 
+import com.vijay.jsonwizard.constants.JsonFormConstants;
+import com.vijay.jsonwizard.utils.FormUtils;
+
 import org.apache.commons.lang3.StringUtils;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.smartregister.chw.core.utils.CoreJsonFormUtils;
 import org.smartregister.chw.kvp.domain.VisitDetail;
 import org.smartregister.chw.kvp.model.BaseKvpVisitAction;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
+import timber.log.Timber;
 
 public class KvpGbvAnalysisActionHelper implements BaseKvpVisitAction.KvpVisitActionHelper {
 
-    private String gbv_screening;
-    private String jsonPayload;
+    private static final String SCREENING = "gbv_screening";
+    private static final String POST_GBV_CARE = "post_gbv_care_provision";
+
+    private boolean screeningComplete;
+    private boolean violenceReported;
 
     @Override
     public void onJsonFormLoaded(String jsonPayload, Context context, Map<String, List<VisitDetail>> map) {
-        this.jsonPayload = jsonPayload;
     }
 
     @Override
     public String getPreProcessed() {
-        try {
-            JSONObject jsonObject = new JSONObject(jsonPayload);
-            return jsonObject.toString();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
         return null;
     }
 
     @Override
     public void onPayloadReceived(String jsonPayload) {
+        screeningComplete = false;
+        violenceReported = false;
+        if (StringUtils.isBlank(jsonPayload)) {
+            return;
+        }
         try {
-            JSONObject jsonObject = new JSONObject(jsonPayload);
-            gbv_screening = CoreJsonFormUtils.getValue(jsonObject, "gbv_screening");
+            JSONObject screening = FormUtils.getFieldFromForm(new JSONObject(jsonPayload), SCREENING);
+            if (screening == null) {
+                return;
+            }
+            JSONArray options = screening.getJSONArray(JsonFormConstants.OPTIONS_FIELD_NAME);
+            Set<String> selected = new HashSet<>();
+            for (int i = 0; i < options.length(); i++) {
+                JSONObject option = options.getJSONObject(i);
+                if (option.optBoolean(JsonFormConstants.VALUE)) {
+                    selected.add(option.getString(JsonFormConstants.KEY));
+                }
+            }
+            boolean exclusive = selected.contains("none") || selected.contains("not_assessed");
+            screeningComplete = exclusive ? selected.size() == 1 : !selected.isEmpty();
+            violenceReported = screeningComplete && !exclusive;
         } catch (JSONException e) {
-            e.printStackTrace();
+            Timber.e(e);
         }
     }
 
@@ -55,7 +75,18 @@ public class KvpGbvAnalysisActionHelper implements BaseKvpVisitAction.KvpVisitAc
     }
 
     @Override
-    public String postProcess(String s) {
+    public String postProcess(String jsonPayload) {
+        if (screeningComplete && !violenceReported) {
+            try {
+                JSONObject form = new JSONObject(jsonPayload);
+                JSONObject care = FormUtils.getFieldFromForm(form, POST_GBV_CARE);
+                if (care != null && care.remove(JsonFormConstants.VALUE) != null) {
+                    return form.toString();
+                }
+            } catch (JSONException e) {
+                Timber.e(e);
+            }
+        }
         return null;
     }
 
@@ -66,11 +97,7 @@ public class KvpGbvAnalysisActionHelper implements BaseKvpVisitAction.KvpVisitAc
 
     @Override
     public BaseKvpVisitAction.Status evaluateStatusOnPayload() {
-        if (StringUtils.isBlank(gbv_screening))
-            return BaseKvpVisitAction.Status.PENDING;
-        else {
-            return BaseKvpVisitAction.Status.COMPLETED;
-        }
+        return screeningComplete ? BaseKvpVisitAction.Status.COMPLETED : BaseKvpVisitAction.Status.PENDING;
     }
 
     @Override
