@@ -1,7 +1,7 @@
 {
   "count": "1",
   "encounter_type": "KVP STI",
-  "properties_file_name": "marp_biomedical",
+  "properties_file_name": "kvp_sti_screening",
   "entity_id": "",
   "metadata": {
     "start": {
@@ -44,7 +44,7 @@
   },
   "global": {},
   "step1": {
-    "title": "STI",
+    "title": "{{title}}",
     "fields": [
       {
         "key": "sti_screening",

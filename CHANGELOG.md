@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
+- Use the bilingual TB Screening and STI Screening titles in the Kituoni MARP forms ([#257](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/257)).
 - Use Core `2.2.2-KITUONI-UCSW-186-VISIT-14-SNAPSHOT` to complete and queue Kituoni MARP Behavioral visits with valid saved Health Education, including None. The app version stays at 1.4.0 (67) ([#251](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/251), UCSW-186).
 - Use the bilingual register wording for Kituoni MARP Health Education. Record PrEP and PEP as separate topics or select None when no education was given ([#252](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/252), UCSW-51). No version or dependency changes.
 - Show the shared Kituoni MARP PEP Assessment in Structural Services after GBV Screening records Sexual violence. Flag an earlier No PEP needed answer for provider review in both cards ([#250](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/250), UCSW-50). No version or dependency changes.
