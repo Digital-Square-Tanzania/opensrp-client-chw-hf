@@ -54,6 +54,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
+- Offer same-day Process Visit after all four MARP cards are submitted. Read the exact successful local projections before showing PrEP Registration Pending or Register, and preserve the same-day lock, next-day route, existing PrEP registration status and eligibility exclusions. Consume Core `2.2.4-KITUONI-UCSW-200-VISIT-23-SNAPSHOT`. The app version stays at 1.4.0 (67) ([#260](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/260), UCSW-200).
 - Classify and process otherwise complete pregnant Biomedical visits with Cervical Cancer Screening hidden. Use Core `2.2.1-KITUONI-UCSW-47-VISIT-10-SNAPSHOT`, which exports the KVP completion change. The facility app stays at 1.4.0 (67) ([#247](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/247), UCSW-47).
 
 - Preserve a first Kituoni MARP visit’s New type across repeated Biomedical Visit History edits ([#242](https://github.com/Digital-Square-Tanzania/opensrp-client-chw-hf/issues/242), UCSW-41). No version or dependency changes.
