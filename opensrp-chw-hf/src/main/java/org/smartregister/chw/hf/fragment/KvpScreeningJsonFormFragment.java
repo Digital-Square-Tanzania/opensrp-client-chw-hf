@@ -1,19 +1,40 @@
 package org.smartregister.chw.hf.fragment;
 
-import android.os.Bundle;
+import static com.vijay.jsonwizard.constants.JsonFormConstants.STEPNAME;
+import static org.smartregister.family.util.Constants.JSON_FORM_EXTRA.JSON;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
+
+import com.google.android.material.snackbar.Snackbar;
 import com.vijay.jsonwizard.fragments.JsonWizardFormFragment;
 import com.vijay.jsonwizard.interactors.JsonFormInteractor;
 import com.vijay.jsonwizard.presenters.JsonFormFragmentPresenter;
+import com.vijay.jsonwizard.widgets.CheckBoxFactory;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.presenter.KvpScreeningJsonFormFragmentPresenter;
+import org.smartregister.chw.hf.utils.MarpEnrollmentScreening;
+import org.smartregister.chw.hf.utils.MarpPregnancyScreening;
+
+import timber.log.Timber;
 
 public class KvpScreeningJsonFormFragment extends JsonWizardFormFragment {
+    private Snackbar highRiskChecklistError;
+    private TextView checklistError;
 
     public static KvpScreeningJsonFormFragment getFormFragment(String stepName) {
         KvpScreeningJsonFormFragment jsonFormFragment = new KvpScreeningJsonFormFragment();
         Bundle bundle = new Bundle();
-        bundle.putString("stepName", stepName);
+        bundle.putString(STEPNAME, stepName);
         jsonFormFragment.setArguments(bundle);
         return jsonFormFragment;
     }
@@ -21,5 +42,92 @@ public class KvpScreeningJsonFormFragment extends JsonWizardFormFragment {
     @Override
     protected JsonFormFragmentPresenter createPresenter() {
         return new KvpScreeningJsonFormFragmentPresenter(this, JsonFormInteractor.getInstance());
+    }
+
+    public void showHighRiskChecklistError(LinearLayout checklist, String message) {
+        getJsonApi().getAppExecutors().mainThread().execute(() -> {
+            if (getView() == null || !checklist.isAttachedToWindow() || CheckBoxFactory.isValid(checklist)) {
+                return;
+            }
+            if (highRiskChecklistError == null || !highRiskChecklistError.isShownOrQueued()) {
+                highRiskChecklistError = Snackbar.make(getMainView(), message, Snackbar.LENGTH_LONG);
+                highRiskChecklistError.show();
+            }
+        });
+    }
+
+    public void showChecklistError(LinearLayout checklist, String message) {
+        // Bottom Next validates on a Native Forms worker. Recheck the checklist on the UI thread.
+        getJsonApi().getAppExecutors().mainThread().execute(() -> {
+            if (getView() == null || !checklist.isAttachedToWindow() || !checklist.isShown()
+                    || CheckBoxFactory.isValid(checklist)
+                    || !(checklist.getChildAt(0) instanceof ConstraintLayout)) {
+                return;
+            }
+            // Native Forms expects every child after the heading to be a checkbox row.
+            ConstraintLayout heading = (ConstraintLayout) checklist.getChildAt(0);
+            if (checklistError == null || checklistError.getParent() != heading) {
+                checklistError = new TextView(heading.getContext());
+                checklistError.setTextColor(ContextCompat.getColor(heading.getContext(),
+                        com.vijay.jsonwizard.R.color.toaster_note_red_icon));
+                checklistError.setAccessibilityLiveRegion(View.ACCESSIBILITY_LIVE_REGION_POLITE);
+                ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(0,
+                        ConstraintLayout.LayoutParams.WRAP_CONTENT);
+                params.topToBottom = com.vijay.jsonwizard.R.id.label_text;
+                params.startToStart = com.vijay.jsonwizard.R.id.label_text;
+                params.endToEnd = ConstraintLayout.LayoutParams.PARENT_ID;
+                heading.addView(checklistError, params);
+            }
+            checklistError.setText(message);
+            checklistError.setVisibility(View.VISIBLE);
+            scrollToView(checklist);
+        });
+    }
+
+    public void dismissChecklistError() {
+        if (checklistError != null) {
+            checklistError.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void onDestroyView() {
+        checklistError = null;
+        dismissHighRiskChecklistError();
+        super.onDestroyView();
+    }
+
+    public void dismissHighRiskChecklistError() {
+        if (highRiskChecklistError != null) {
+            highRiskChecklistError.dismiss();
+            highRiskChecklistError = null;
+        }
+    }
+
+    @Override
+    public void finishWithResult(Intent result) {
+        String step = requireArguments().getString(STEPNAME);
+        boolean isHighRiskOutcome = MarpPregnancyScreening.ENROLLMENT_STEP.equals(step)
+                || MarpPregnancyScreening.NO_GROUP_STEP.equals(step);
+        JSONObject currentForm = getJsonApi().getmJSONObject();
+        boolean maternity = isHighRiskOutcome
+                && MarpPregnancyScreening.isIntakeStep(currentForm, MarpPregnancyScreening.INTAKE_STEP);
+        if (maternity || MarpEnrollmentScreening.isEnrollmentStep(currentForm, step)) {
+            try {
+                JSONObject form = new JSONObject(result.getStringExtra(JSON));
+                boolean valid = maternity ? MarpPregnancyScreening.prepareEnrollmentResult(form, step)
+                        : MarpEnrollmentScreening.prepareEnrollmentResult(form, step);
+                if (!valid) {
+                    showSnackBar(getString(R.string.marp_enrollment_result_invalid));
+                    return;
+                }
+                result.putExtra(JSON, form.toString());
+            } catch (JSONException e) {
+                Timber.e("Unable to prepare the MARP enrollment result");
+                showSnackBar(getString(R.string.marp_enrollment_result_invalid));
+                return;
+            }
+        }
+        super.finishWithResult(result);
     }
 }

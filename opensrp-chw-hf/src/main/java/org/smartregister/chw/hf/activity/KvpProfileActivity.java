@@ -1,48 +1,99 @@
 package org.smartregister.chw.hf.activity;
 
+import static org.smartregister.chw.hf.actionhelper.kvp.KvpClientStatusActionHelper.OTHER_CATEGORY;
 import static org.smartregister.chw.hf.utils.Constants.JsonForm.HIV_REGISTRATION;
 import static org.smartregister.util.Utils.getName;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
+
+import com.google.android.material.snackbar.Snackbar;
 import com.vijay.jsonwizard.utils.FormUtils;
 
+import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
 import org.smartregister.chw.core.activity.CoreKvpProfileActivity;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.dao.HfKvpDao;
+import org.smartregister.chw.hf.listener.KvpServiceActionHandler;
 import org.smartregister.chw.hf.utils.AllClientsUtils;
+import org.smartregister.chw.hf.utils.MarpPrepRegistrationEntry;
+import org.smartregister.chw.hf.utils.MarpPrepRegistrationReadback;
+import org.smartregister.chw.hf.utils.MarpVisitStatus;
 import org.smartregister.chw.hivst.dao.HivstDao;
 import org.smartregister.chw.kvp.KvpLibrary;
 import org.smartregister.chw.kvp.dao.KvpDao;
 import org.smartregister.chw.kvp.domain.Visit;
+import org.smartregister.chw.kvp.domain.VisitDetail;
+import org.smartregister.chw.kvp.repository.VisitRepository;
 import org.smartregister.chw.kvp.util.Constants;
 import org.smartregister.chw.kvp.util.DBConstants;
+import org.smartregister.chw.kvp.util.KvpVisitsUtil;
 import org.smartregister.commonregistry.CommonPersonObject;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.commonregistry.CommonRepository;
 import org.smartregister.family.util.Utils;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import timber.log.Timber;
 
 public class KvpProfileActivity extends CoreKvpProfileActivity {
 
+    private static final String EXTRA_OPENED_FROM_ENROLLMENT = "opened_from_marp_enrollment";
+    private TextView enrollmentDateView;
+    private final BroadcastReceiver deviceDateReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            setupViews();
+        }
+    };
+
     public static void startProfile(Activity activity, String baseEntityId) {
+        activity.startActivity(profileIntent(activity, baseEntityId));
+    }
+
+    static void startProfileFromEnrollment(Activity activity, String baseEntityId) {
+        Intent intent = profileIntent(activity, baseEntityId);
+        intent.putExtra(EXTRA_OPENED_FROM_ENROLLMENT, true);
+        activity.startActivity(intent);
+    }
+
+    private static Intent profileIntent(Activity activity, String baseEntityId) {
         Intent intent = new Intent(activity, KvpProfileActivity.class);
         intent.putExtra(Constants.ACTIVITY_PAYLOAD.BASE_ENTITY_ID, baseEntityId);
         intent.putExtra(Constants.ACTIVITY_PAYLOAD.PROFILE_TYPE, Constants.PROFILE_TYPES.KVP_PROFILE);
-        activity.startActivity(intent);
+        return intent;
+    }
+
+    @Override
+    protected void onCreation() {
+        super.onCreation();
+        if (getIntent().getBooleanExtra(EXTRA_OPENED_FROM_ENROLLMENT, false)) {
+            getIntent().removeExtra(EXTRA_OPENED_FROM_ENROLLMENT);
+            Snackbar message = Snackbar.make(findViewById(android.R.id.content),
+                    R.string.marp_enrollment_already_enrolled, Snackbar.LENGTH_LONG);
+            TextView text = message.getView().findViewById(com.google.android.material.R.id.snackbar_text);
+            text.setMaxLines(Integer.MAX_VALUE);
+            message.show();
+        }
     }
 
     @Override
@@ -93,6 +144,15 @@ public class KvpProfileActivity extends CoreKvpProfileActivity {
                 imageViewCross.setImageResource(org.smartregister.chw.core.R.drawable.activityrow_notvisited);
             }
         }
+        refreshMedicalHistory(true);
+    }
+
+    @Override
+    protected boolean isVisitOnProgress(String profileType) {
+        VisitRepository repository = KvpLibrary.getInstance().visitRepository();
+        String baseEntityId = memberObject.getBaseEntityId();
+        return MarpVisitStatus.read(repository, baseEntityId, Calendar.getInstance())
+                .isInProgress(repository, baseEntityId);
     }
 
     private Date truncateTimeFromDate(Date date) {
@@ -107,32 +167,94 @@ public class KvpProfileActivity extends CoreKvpProfileActivity {
 
     @Override
     public void openFollowupVisit() {
-        KvpServiceActivity.startMe(this, memberObject.getBaseEntityId());
+        String baseEntityId = memberObject.getBaseEntityId();
+        VisitRepository repository = KvpLibrary.getInstance().visitRepository();
+        if (!MarpVisitStatus.read(repository, baseEntityId, Calendar.getInstance()).isCompleteToday()) {
+            KvpServiceActivity.startMe(this, baseEntityId);
+        }
+    }
+
+    @Override
+    protected void setupKvpProfile() {
+        if (!Constants.PROFILE_TYPES.KVP_PROFILE.equalsIgnoreCase(profileType)) {
+            super.setupKvpProfile();
+            return;
+        }
+        try {
+            KvpVisitsUtil.processVisits();
+        } catch (Exception exception) {
+            Timber.e(exception);
+        }
+        renderPrEPRegistration(readPrEPRegistration());
+    }
+
+    MarpPrepRegistrationEntry readPrEPRegistration() {
+        return MarpPrepRegistrationReadback.read(KvpLibrary.getInstance().visitRepository(),
+                memberObject.getBaseEntityId(), memberObject.getAge(), Calendar.getInstance());
+    }
+
+    void renderPrEPRegistration(MarpPrepRegistrationEntry entry) {
+        pendingPrEPRegistration.setVisibility(entry == MarpPrepRegistrationEntry.HIDDEN ? View.GONE : View.VISIBLE);
+        textview_register.setVisibility(entry.canRegister() ? View.VISIBLE : View.GONE);
+        TextView label = pendingPrEPRegistration.findViewById(org.smartregister.chw.kvp.R.id.textview_pending_registration);
+        switch (entry) {
+            case PENDING:
+                label.setText(R.string.marp_prep_registration_pending);
+                break;
+            case CONSENT_DECLINED:
+                label.setText(R.string.marp_prep_registration_declined);
+                break;
+            case REGISTERED:
+                label.setText(R.string.marp_prep_registered);
+                break;
+            default:
+                break;
+        }
     }
 
     @Override
     protected void startPrEPRegistration() {
+        if (Constants.PROFILE_TYPES.KVP_PROFILE.equalsIgnoreCase(profileType)) {
+            MarpPrepRegistrationEntry entry = readPrEPRegistration();
+            renderPrEPRegistration(entry);
+            if (!entry.canRegister()) {
+                return;
+            }
+        }
         PrEPRegisterActivity.startMe(this, memberObject.getBaseEntityId(), memberObject.getGender(), memberObject.getAge());
     }
 
 
     @Override
     public void refreshMedicalHistory(boolean hasHistory) {
-        Visit kvpBehavioralServices = getVisit(org.smartregister.chw.kvp.util.Constants.EVENT_TYPE.KVP_BEHAVIORAL_SERVICE_VISIT);
-        Visit kvpBioMedicalServices = getVisit(org.smartregister.chw.kvp.util.Constants.EVENT_TYPE.KVP_BIO_MEDICAL_SERVICE_VISIT);
-        Visit kvpStructuralServices = getVisit(org.smartregister.chw.kvp.util.Constants.EVENT_TYPE.KVP_STRUCTURAL_SERVICE_VISIT);
-        Visit kvpOtherServicesVisit = getVisit(org.smartregister.chw.kvp.util.Constants.EVENT_TYPE.KVP_OTHER_SERVICE_VISIT);
+        VisitRepository repository = KvpLibrary.getInstance().visitRepository();
+        String baseEntityId = memberObject.getBaseEntityId();
+        Calendar today = Calendar.getInstance();
+        MarpVisitStatus status = MarpVisitStatus.read(repository, baseEntityId, today);
+        renderMarpVisitStatus(status);
+        if (Constants.PROFILE_TYPES.KVP_PROFILE.equalsIgnoreCase(profileType)) {
+            boolean offerProcessing = status.isCompleteToday()
+                    && MarpVisitStatus.findProcessableCardsToday(repository, baseEntityId, today).stream()
+                            .anyMatch(new KvpServiceActionHandler()::canOfferProcessVisit);
+            manualProcessVisit.setVisibility(offerProcessing ? View.VISIBLE : View.GONE);
+            manualProcessVisit.setOnClickListener(offerProcessing
+                    ? view -> KvpServiceActivity.startProcessing(this, baseEntityId) : null);
+        }
+    }
 
-
-        if (kvpBehavioralServices != null || kvpBioMedicalServices != null || kvpOtherServicesVisit != null || kvpStructuralServices != null) {
+    void renderMarpVisitStatus(MarpVisitStatus status) {
+        if (status.hasVisitHistory()) {
             rlLastVisit.setVisibility(View.VISIBLE);
             findViewById(R.id.view_notification_and_referral_row).setVisibility(View.VISIBLE);
             ((TextView) findViewById(R.id.vViewHistory)).setText(R.string.visits_history);
             ((TextView) findViewById(R.id.ivViewHistoryArrow)).setText(getString(R.string.view_visits_history));
-            textViewRecordKvp.setText(R.string.record_kvp_followup_visit);
         } else {
             rlLastVisit.setVisibility(View.GONE);
-            textViewRecordKvp.setText(R.string.record_kvp);
+        }
+        textViewRecordKvp.setText(status.hasSubmittedVisit() ? R.string.record_kvp_followup_visit : R.string.record_kvp);
+        if (status.isCompleteToday()) {
+            textViewRecordKvp.setVisibility(View.GONE);
+            visitInProgress.setVisibility(View.GONE);
         }
     }
 
@@ -196,6 +318,7 @@ public class KvpProfileActivity extends CoreKvpProfileActivity {
             return true;
         } else if (i == org.smartregister.chw.core.R.id.action_prep_registration) {
             startPrEPRegistration();
+            return true;
         } else if (i == org.smartregister.chw.core.R.id.action_sbc_registration) {
             startSbcRegistration();
         } else if (i == org.smartregister.chw.core.R.id.action_gbv_registration) {
@@ -297,14 +420,53 @@ public class KvpProfileActivity extends CoreKvpProfileActivity {
         KvpMedicalHistoryActivity.startMe(this, memberObject);
     }
 
+    @Override
+    protected void showKvpGroups(String baseEntityId) {
+        super.showKvpGroups(baseEntityId);
+        KvpLibrary library = KvpLibrary.getInstance();
+        Visit visit = library.visitRepository().getLatestVisit(baseEntityId, Constants.EVENT_TYPE.KVP_BIO_MEDICAL_SERVICE_VISIT);
+        if (visit == null || Boolean.TRUE.equals(visit.getProcessed())) {
+            return;
+        }
+
+        // A submitted visit has local details before its event reaches the processed profile table.
+        List<VisitDetail> details = library.visitDetailsRepository().getVisits(visit.getVisitId());
+        List<String> groups = new ArrayList<>();
+        for (VisitDetail detail : details) {
+            if (OTHER_CATEGORY.equals(detail.getVisitKey()) && StringUtils.isNotBlank(detail.getDetails())) {
+                groups.addAll(Arrays.asList(detail.getDetails().trim().split(",\\s*")));
+            }
+        }
+
+        String labels = groups.size() == 1 && "none".equalsIgnoreCase(groups.get(0))
+                ? "" : readStringResourcesWithPrefix(groups, "kvp_");
+        textViewOtherKvpGroups.setVisibility(labels.isEmpty() ? View.GONE : View.VISIBLE);
+        textViewOtherKvpGroups.setText(getString(R.string.other_kvp_groups, labels));
+    }
+
     private Visit getVisit(String eventType) {
         return KvpLibrary.getInstance().visitRepository().getLatestVisit(memberObject.getBaseEntityId(), eventType);
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        IntentFilter filter = new IntentFilter(Intent.ACTION_DATE_CHANGED);
+        filter.addAction(Intent.ACTION_TIME_CHANGED);
+        filter.addAction(Intent.ACTION_TIMEZONE_CHANGED);
+        ContextCompat.registerReceiver(this, deviceDateReceiver, filter, ContextCompat.RECEIVER_NOT_EXPORTED);
+    }
+
+    @Override
+    protected void onStop() {
+        unregisterReceiver(deviceDateReceiver);
+        super.onStop();
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
-        setupViews();
+        refreshMarpEnrollmentDate();
         fetchProfileData();
         profilePresenter.refreshProfileBottom();
         if (KvpDao.hasTestResults(memberObject.getBaseEntityId())) {
@@ -314,6 +476,17 @@ public class KvpProfileActivity extends CoreKvpProfileActivity {
             rlTestResults.setVisibility(View.GONE);
             viewSeparator1.setVisibility(View.GONE);
         }
+    }
+
+    private void refreshMarpEnrollmentDate() {
+        if (enrollmentDateView == null) {
+            ViewGroup header = (ViewGroup) textViewOtherKvpGroups.getParent();
+            enrollmentDateView = (TextView) getLayoutInflater().inflate(R.layout.marp_profile_enrolment_date, header, false);
+            header.addView(enrollmentDateView);
+        }
+        String date = HfKvpDao.getClientEnrollmentDate(memberObject.getBaseEntityId());
+        enrollmentDateView.setVisibility(StringUtils.isBlank(date) ? View.GONE : View.VISIBLE);
+        enrollmentDateView.setText(getString(R.string.marp_profile_enrolment_date, date));
     }
 
     @Override

@@ -1,6 +1,7 @@
 {
   "count": "8",
   "skip_blank_steps": true,
+  "properties_file_name": "marp_screening",
   "encounter_type": "KVP Registration",
   "entity_id": "",
   "metadata": {
@@ -44,7 +45,7 @@
   },
   "global": {},
   "step1": {
-    "title": "PWUD",
+    "title": "{{drug_use_title}}",
     "next": "step2",
     "fields": [
       {
@@ -52,20 +53,20 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "drug_use",
-        "label": "Has the client used illegal drugs in the past 12 months?",
+        "label": "{{drug_use_label}}",
         "text_color": "#000000",
         "type": "native_radio",
         "options": [
           {
             "key": "yes",
-            "text": "Yes",
+            "text": "{{drug_use_yes}}",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "yes"
           },
           {
             "key": "no",
-            "text": "No",
+            "text": "{{drug_use_no}}",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "no"
@@ -93,7 +94,7 @@
     ]
   },
   "step2": {
-    "title": "PWID",
+    "title": "{{drug_use_title}}",
     "next": "step3",
     "fields": [
       {
@@ -101,20 +102,20 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "drug_injection",
-        "label": "Has the client ever injected him or herself with drugs?",
+        "label": "{{drug_injection_label}}",
         "text_color": "#000000",
         "type": "native_radio",
         "options": [
           {
             "key": "yes",
-            "text": "Yes",
+            "text": "{{drug_use_yes}}",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "yes"
           },
           {
             "key": "no",
-            "text": "No",
+            "text": "{{drug_use_no}}",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "no"
@@ -149,7 +150,7 @@
     ]
   },
   "step3": {
-    "title": "Sexual Behavior",
+    "title": "{{sexual_behaviour_title}}",
     "next": "step4",
     "fields": [
       {
@@ -157,20 +158,20 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "sexual_intercourse",
-        "label": "Have you ever engaged in sexual activity, do you think about engaging in sexual activity, or are you at risk of engaging in sexual activity?",
+        "label": "{{sexual_intercourse_label}}",
         "text_color": "#000000",
         "type": "native_radio",
         "options": [
           {
             "key": "yes",
-            "text": "Yes",
+            "text": "{{intake_yes}}",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "yes"
           },
           {
             "key": "no",
-            "text": "No",
+            "text": "{{intake_no}}",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "no"
@@ -178,14 +179,193 @@
         ],
         "v_required": {
           "value": "true",
-          "err": "Please select an answer"
+          "err": "{{intake_answer_required}}"
         }
       }
     ]
   },
   "step4": {
-    "title": "Men at High Risk(MHR)",
+    "title": "{{discordant_couple_title}}",
     "next": "step5",
+    "fields": [
+      {
+        "key": "client_knows_hiv_status",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "client_knows_hiv_status",
+        "label": "{{discordant_knows_status}}",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "yes",
+            "text": "{{intake_yes}}",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "yes"
+          },
+          {
+            "key": "no",
+            "text": "{{intake_no}}",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "no"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{intake_answer_required}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kvp_screening_male_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "hiv_status_on_screening",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "hiv_status_on_screening",
+        "label": "{{discordant_client_status}}",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "positive",
+            "text": "{{discordant_positive}}",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "positive"
+          },
+          {
+            "key": "negative",
+            "text": "{{discordant_negative}}",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "negative"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{intake_answer_required}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kvp_screening_male_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "hiv_positive_partner",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "hiv_positive_partner",
+        "label": "{{discordant_positive_partner}}",
+        "text_color": "#000000",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "yes",
+            "text": "{{intake_yes}}",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "yes"
+          },
+          {
+            "key": "no",
+            "text": "{{intake_no}}",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "no"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{intake_answer_required}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kvp_screening_male_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "partner_hiv_care_status",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "partner_hiv_care_status",
+        "label": "{{discordant_partner_parameters}}",
+        "text_color": "#000000",
+        "type": "check_box",
+        "exclusive": [
+          "none"
+        ],
+        "options": [
+          {
+            "key": "not_started_art",
+            "text": "{{discordant_not_started_art}}",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "not_started_art"
+          },
+          {
+            "key": "art_less_than_six_months",
+            "text": "{{discordant_art_under_six_months}}",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "art_less_than_six_months"
+          },
+          {
+            "key": "art_adherence_doubt",
+            "text": "{{discordant_art_adherence_doubt}}",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "art_adherence_doubt"
+          },
+          {
+            "key": "no_evidence_viral_suppression",
+            "text": "{{discordant_no_viral_suppression_evidence}}",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "no_evidence_viral_suppression"
+          },
+          {
+            "key": "none",
+            "text": "{{high_risk_none}}",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "none"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kvp_screening_male_relevance.yml"
+            }
+          }
+        },
+        "v_required": {
+          "value": "true",
+          "err": "{{discordant_parameters_required}}"
+        }
+      },
+      {
+        "key": "is_sdc",
+        "type": "hidden",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "is_sdc",
+        "openmrs_entity_parent": ""
+      }
+    ]
+  },
+  "step5": {
+    "title": "MHR",
+    "next": "step6",
     "fields": [
       {
         "key": "sexual_intercourse_with",
@@ -246,295 +426,68 @@
       }
     ]
   },
-  "step5": {
-    "title": "Serodiscordant Couple",
-    "next": "step6",
-    "fields": [
-      {
-        "key": "hiv_status_on_screening",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "hiv_status_on_screening",
-        "label": "What is the client's HIV status?",
-        "text_color": "#000000",
-        "type": "native_radio",
-        "options": [
-          {
-            "key": "positive",
-            "text": "Positive",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "positive"
-          },
-          {
-            "key": "negative",
-            "text": "Negative",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "negative"
-          },
-          {
-            "key": "unknown",
-            "text": "Unknown",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "unknown"
-          }
-        ],
-        "v_required": {
-          "value": "true",
-          "err": "Please select an answer"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "kvp_screening_male_relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "hiv_positive_partner",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "hiv_positive_partner",
-        "label": "Is the client in a sexual relationship with a partner who is HIV positive?",
-        "text_color": "#000000",
-        "type": "native_radio",
-        "options": [
-          {
-            "key": "yes",
-            "text": "Yes",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "yes"
-          },
-          {
-            "key": "no",
-            "text": "No",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "no"
-          }
-        ],
-        "v_required": {
-          "value": "true",
-          "err": "Please select an answer"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "kvp_screening_male_relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "partner_hiv_care_status",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "partner_hiv_care_status",
-        "label": "Select the partner's criteria of HIV care status",
-        "text_color": "#000000",
-        "type": "check_box",
-        "exclusive": [
-          "not_started_art"
-        ],
-        "options": [
-          {
-            "key": "not_started_art",
-            "text": "Has not started ART",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "not_started_art"
-          },
-          {
-            "key": "art_more_than_six_months_unused",
-            "text": "Has not taken ART for more than six months",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "art_more_than_six_months_unused"
-          },
-          {
-            "key": "art_adherence_doubt",
-            "text": "Doubt about adherence/use of ART",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "art_adherence_doubt"
-          },
-          {
-            "key": "no_evidence_low_vl",
-            "text": "The partner has no evidence of low viral load count",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "no_evidence_low_vl"
-          }
-        ],
-        "relevance": {
-          "step5:hiv_positive_partner": {
-            "type": "string",
-            "ex": "equalTo(., \"yes\")"
-          }
-        }
-      },
-      {
-        "key": "prompt_counsel_for_testing",
-        "type": "toaster_notes",
-        "text": "Counsel for HIV testing",
-        "openmrs_entity_id": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_parent": "",
-        "toaster_type": "warning",
-        "relevance": {
-          "step5:hiv_status": {
-            "type": "string",
-            "ex": "equalTo(., \"unknown\")"
-          }
-        }
-      },
-      {
-        "key": "is_sdc",
-        "type": "hidden",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "is_sdc",
-        "openmrs_entity_parent": "",
-        "calculation": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "kvp_screening_male_calculation.yml"
-            }
-          }
-        }
-      }
-    ]
-  },
   "step6": {
-    "title": "Other Vulnerable Population",
-    "next": "step7",
+    "title": "{{other_groups_title}}",
+    "next": "step8",
     "fields": [
-      {
-        "key": "prisoner_or_rumandee",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "prisoner_or_rumandee",
-        "label": "Is the client a prisoner or a rumandee?",
-        "text_color": "#000000",
-        "type": "native_radio",
-        "options": [
-          {
-            "key": "prisoner",
-            "text": "Prisoner",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "prisoner"
-          },
-          {
-            "key": "rumandee",
-            "text": "Rumandee",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "rumandee"
-          },
-          {
-            "key": "none",
-            "text": "None",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "none"
-          }
-        ],
-        "v_required": {
-          "value": "true",
-          "err": "Please select an answer"
-        }
-      },
-      {
-        "key": "mobile_population",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "mobile_population",
-        "label": "Mobile population",
-        "text_color": "#000000",
-        "type": "native_radio",
-        "options": [
-          {
-            "key": "long_distance_drivers",
-            "text": "Long distance drivers",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "long_distance_drivers"
-          },
-          {
-            "key": "fishermen",
-            "text": "Fishermen",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "fishermen"
-          },
-          {
-            "key": "mining_workers",
-            "text": "Mining workers",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "mining_workers"
-          },
-          {
-            "key": "large_farm_farmers",
-            "text": "Farmers in large farms",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "large_farm_farmers"
-          },
-          {
-            "key": "road_builders",
-            "text": "Road builders",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "road_builders"
-          },
-          {
-            "key": "none",
-            "text": "None",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "none"
-          }
-        ],
-        "v_required": {
-          "value": "true",
-          "err": "Please select an answer"
-        }
-      },
       {
         "key": "other_groups_at_risk",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "other_groups_at_risk",
-        "label": "Other groups at risk of HIV infection",
+        "label": "{{other_groups_question}}",
         "text_color": "#000000",
-        "type": "native_radio",
+        "type": "check_box",
+        "combine_checkbox_option_values": "true",
+        "exclusive": [
+          "none"
+        ],
         "options": [
           {
+            "key": "long_distance_truck_drivers",
+            "text": "{{other_groups_long_distance_truck_drivers}}",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "long_distance_truck_drivers"
+          },
+          {
+            "key": "fisherfolk",
+            "text": "{{other_groups_fisherfolk}}",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "fisherfolk"
+          },
+          {
+            "key": "miners",
+            "text": "{{other_groups_miners}}",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "miners"
+          },
+          {
+            "key": "farmers_on_large_farms",
+            "text": "{{other_groups_farmers_on_large_farms}}",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "farmers_on_large_farms"
+          },
+          {
+            "key": "construction_workers",
+            "text": "{{other_groups_construction_workers}}",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "construction_workers"
+          },
+          {
             "key": "disabled",
-            "text": "Disabled",
+            "text": "{{other_groups_disabled}}",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "disabled"
           },
           {
-            "key": "street_children_or_orphans",
-            "text": "Street children or orphans",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "street_children_or_orphans"
-          },
-          {
-            "key": "street_working_children",
-            "text": "Young working children on the streets",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "street_working_children"
-          },
-          {
             "key": "none",
-            "text": "None",
+            "text": "{{other_groups_none}}",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "none"
@@ -542,166 +495,31 @@
         ],
         "v_required": {
           "value": "true",
-          "err": "Please select an answer"
+          "err": "{{other_groups_answer_required}}"
         }
       },
       {
-        "key": "is_prisoner",
+        "key": "eligible_other_marp_groups",
         "type": "hidden",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "is_prisoner_or_rumandee",
-        "openmrs_entity_parent": "",
-        "calculation": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "kvp_screening_male_calculation.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "is_rumandee",
-        "type": "hidden",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "is_prisoner_or_rumandee",
-        "openmrs_entity_parent": "",
-        "calculation": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "kvp_screening_male_calculation.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "is_mobile_population",
-        "type": "hidden",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "is_mobile_population",
-        "openmrs_entity_parent": "",
-        "calculation": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "kvp_screening_male_calculation.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "is_ovp_kvp",
-        "type": "hidden",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "is_ovp_kvp",
-        "openmrs_entity_parent": "",
-        "calculation": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "kvp_screening_male_calculation.yml"
-            }
-          }
-        }
-      }
-    ]
-  },
-  "step7": {
-    "title": "PrEP Assessment",
-    "next": "step8",
-    "fields": [
-      {
-        "key": "prep_assessment",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "prep_assessment",
-        "label": "Has the client been assessed for the use of PrEP?",
-        "text_color": "#000000",
-        "type": "native_radio",
-        "options": [
-          {
-            "key": "yes",
-            "text": "Yes",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "yes"
-          },
-          {
-            "key": "no",
-            "text": "No",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "no"
-          }
-        ],
-        "v_required": {
-          "value": "true",
-          "err": "Please select an answer"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "kvp_screening_male_relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "prep_qualified",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "prep_qualified",
-        "label": "Is the client eligible to receive PrEP?",
-        "text_color": "#000000",
-        "type": "native_radio",
-        "options": [
-          {
-            "key": "yes",
-            "text": "Yes",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "yes"
-          },
-          {
-            "key": "no",
-            "text": "No",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "no"
-          }
-        ],
-        "v_required": {
-          "value": "true",
-          "err": "Please select an answer"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "kvp_screening_male_relevance.yml"
-            }
-          }
-        }
+        "disabled": true,
+        "value": "none"
       }
     ]
   },
   "step8": {
-    "title": "KVP Enrollment",
+    "title": "{{enrollment_title}}",
     "fields": [
       {
         "key": "should_enroll",
         "type": "hidden",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "should_enroll",
-        "openmrs_entity_parent": "",
-        "calculation": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "kvp_screening_male_calculation.yml"
-            }
-          }
-        }
+        "openmrs_entity_parent": ""
       },
       {
         "key": "prompt_for_sdc_kvp",
         "type": "toaster_notes",
-        "text": "The client falls in SDC KVP group\nThe client should be enrolled to KVP friendly services",
+        "text": "{{prompt_for_sdc_kvp}}",
         "openmrs_entity_id": "",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
@@ -717,7 +535,7 @@
       {
         "key": "prompt_for_msm_kvp",
         "type": "toaster_notes",
-        "text": "The client falls in MHR KVP group\nThe client should be enrolled to KVP friendly services",
+        "text": "{{prompt_for_msm_kvp}}",
         "openmrs_entity_id": "",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
@@ -733,7 +551,7 @@
       {
         "key": "prompt_for_pwud_kvp",
         "type": "toaster_notes",
-        "text": "The client falls in PWUD KVP group\nThe client should be enrolled to KVP friendly services",
+        "text": "{{prompt_for_pwud_kvp}}",
         "openmrs_entity_id": "",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
@@ -749,56 +567,7 @@
       {
         "key": "prompt_for_pwid_kvp",
         "type": "toaster_notes",
-        "text": "The client falls in PWID KVP group\nThe client should be enrolled to KVP friendly services",
-        "openmrs_entity_id": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_parent": "",
-        "toaster_type": "problem",
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "kvp_screening_male_relevance.yml"
-            }
-          }
-        }
-      },
-
-      {
-        "key": "prompt_for_prisoners_kvp",
-        "type": "toaster_notes",
-        "text": "The client falls in PRISONERS KVP group\nThe client should be enrolled to KVP friendly services",
-        "openmrs_entity_id": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_parent": "",
-        "toaster_type": "problem",
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "kvp_screening_male_relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "prompt_for_rumandee_kvp",
-        "type": "toaster_notes",
-        "text": "The client falls in RUMANDEE KVP group\nThe client should be enrolled to KVP friendly services",
-        "openmrs_entity_id": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_parent": "",
-        "toaster_type": "problem",
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "kvp_screening_male_relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "prompt_for_mobile_population_kvp",
-        "type": "toaster_notes",
-        "text": "The client falls in MOBILE POPULATION KVP group\nThe client should be enrolled to KVP friendly services",
+        "text": "{{prompt_for_pwid_kvp}}",
         "openmrs_entity_id": "",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
@@ -815,7 +584,7 @@
       {
         "key": "prompt_no_group",
         "type": "toaster_notes",
-        "text": "The client does not fall in any of the KVP groups and won't be enrolled to KVP friendly services",
+        "text": "{{prompt_no_group}}",
         "openmrs_entity_id": "",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
@@ -831,7 +600,7 @@
       {
         "key": "prompt_for_ovp_kvp",
         "type": "toaster_notes",
-        "text": "The client falls in Other vulnerable population KVP group\nThe client should be enrolled to KVP friendly services",
+        "text": "{{prompt_for_ovp_kvp}}",
         "openmrs_entity_id": "",
         "openmrs_entity": "concept",
         "openmrs_entity_parent": "",
@@ -851,9 +620,9 @@
         "openmrs_entity_id": "birth_region",
         "openmrs_data_type": "select one",
         "type": "spinner",
-        "label_info_title": "Client's Region of Birth",
+        "label_info_title": "{{high_risk_birth_region_title}}",
         "label_info_text": "",
-        "hint": "Select the client's Region of Birth",
+        "hint": "{{high_risk_birth_region_hint}}",
         "values": [
           "Arusha",
           "Dar es Salaam",
@@ -912,7 +681,7 @@
         ],
         "v_required": {
           "value": "true",
-          "err": "Please select the region"
+          "err": "{{high_risk_birth_region_required}}"
         },
         "relevance": {
           "rules-engine": {
@@ -927,70 +696,13 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "client_group",
-        "label": "Select the client group as screened by the health care provider",
+        "label": "{{enrollment_dominant_group}}",
         "text_color": "#000000",
         "type": "native_radio",
-        "options": [
-          {
-            "key": "msm",
-            "text": "MHR",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "msm"
-          },
-          {
-            "key": "pwud",
-            "text": "PWUD",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "pwud"
-          },
-          {
-            "key": "pwid",
-            "text": "PWID",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "pwid"
-          },
-          {
-            "key": "prisoner",
-            "text": "Prisoners",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "prisoner"
-          },
-          {
-            "key": "rumandee",
-            "text": "Rumandee",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "rumandee"
-          },
-          {
-            "key": "serodiscordant_couple",
-            "text": "Serodiscordant couple",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "serodiscordant_couple"
-          },
-          {
-            "key": "mobile_population",
-            "text": "Mobile population",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "mobile_population"
-          },
-          {
-            "key": "other_vulnerable_population",
-            "text": "Other vulnerable population",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "other_vulnerable_population"
-          }
-        ],
+        "options": [],
         "v_required": {
           "value": "true",
-          "err": "Please select an answer"
+          "err": "{{intake_answer_required}}"
         },
         "relevance": {
           "rules-engine": {
@@ -1005,14 +717,7 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "other_screened_client_group",
-        "type": "hidden",
-        "calculation": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "kvp_screening_male_calculation.yml"
-            }
-          }
-        }
+        "type": "hidden"
       }
     ]
   }

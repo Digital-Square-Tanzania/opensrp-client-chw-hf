@@ -12,8 +12,10 @@ import android.os.Looper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
+import androidx.annotation.StringRes;
 import androidx.viewpager.widget.ViewPager;
 
 import com.vijay.jsonwizard.utils.FormUtils;
@@ -59,6 +61,8 @@ import org.smartregister.view.contract.BaseProfileContract;
 import timber.log.Timber;
 
 public class AllClientsMemberProfileActivity extends CoreAllClientsMemberProfileActivity {
+
+    private static final int MIN_MARP_SCREENING_AGE = 15;
 
     private FamilyMemberFloatingMenu familyFloatingMenu;
     private CoreAllClientsMemberContract.Presenter allClientsMemberPresenter;
@@ -118,11 +122,8 @@ public class AllClientsMemberProfileActivity extends CoreAllClientsMemberProfile
             int age = Utils.getAgeFromDate(dob);
             menu.findItem(R.id.action_hivst_registration).setVisible(!HivstDao.isRegisteredForHivst(baseEntityId) && age >= 15);
         }
-        if (HealthFacilityApplication.getApplicationFlavor().hasKvpPrEP()) {
-            String dob = Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.DOB, false);
-            int age = Utils.getAgeFromDate(dob);
-            menu.findItem(R.id.action_kvp_registration).setVisible(!KvpDao.isRegisteredForKvp(baseEntityId) && age >= 15);
-        }
+        updateMarpEnrollmentVisibility(menu.findItem(R.id.action_kvp_registration),
+                HealthFacilityApplication.getApplicationFlavor().hasKvpPrEP());
         if (HealthFacilityApplication.getApplicationFlavor().hasSbc()) {
             String dob = Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.DOB, false);
             int age = Utils.getAgeFromDate(dob);
@@ -169,6 +170,9 @@ public class AllClientsMemberProfileActivity extends CoreAllClientsMemberProfile
             return true;
         } else if (itemId == org.smartregister.chw.core.R.id.action_malaria_diagnosis) {
             startHfMalariaFollowupForm();
+            return true;
+        } else if (itemId == R.id.action_kvp_registration) {
+            startKvpRegistration();
             return true;
         }
 
@@ -360,17 +364,49 @@ public class AllClientsMemberProfileActivity extends CoreAllClientsMemberProfile
         //do nothing--> this is for chw
     }
 
+    void updateMarpEnrollmentVisibility(MenuItem item, boolean hasMarpEnrollment) {
+        item.setVisible(hasMarpEnrollment && getMarpScreeningAge() >= MIN_MARP_SCREENING_AGE);
+    }
+
     @Override
     protected void startKvpRegistration() {
-        String gender = AllClientsUtils.getClientGender(baseEntityId);
+        int age = getMarpScreeningAge();
+        if (age < MIN_MARP_SCREENING_AGE) {
+            showMarpEnrollmentMessage(R.string.marp_enrollment_minimum_age);
+            return;
+        }
+        if (isMarpEnrolled()) {
+            KvpProfileActivity.startProfileFromEnrollment(this, baseEntityId);
+            return;
+        }
+        startMarpScreening(age);
+    }
+
+    private int getMarpScreeningAge() {
         String dob = Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.DOB, false);
-        int age = Utils.getAgeFromDate(dob);
+        try {
+            return Utils.getAgeFromDate(dob);
+        } catch (IllegalArgumentException e) {
+            return 0;
+        }
+    }
+
+    void startMarpScreening(int age) {
+        String gender = AllClientsUtils.getClientGender(baseEntityId);
         if (gender.equalsIgnoreCase(Constants.GENDER.MALE)) {
             KvpRegisterActivity.startKvpScreeningMale(AllClientsMemberProfileActivity.this, baseEntityId, gender, age);
         }
         if (gender.equalsIgnoreCase(Constants.GENDER.FEMALE)) {
             KvpRegisterActivity.startKvpScreeningFemale(AllClientsMemberProfileActivity.this, baseEntityId, gender, age);
         }
+    }
+
+    boolean isMarpEnrolled() {
+        return KvpDao.isRegisteredForKvp(baseEntityId);
+    }
+
+    void showMarpEnrollmentMessage(@StringRes int message) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -433,6 +469,16 @@ public class AllClientsMemberProfileActivity extends CoreAllClientsMemberProfile
 
     @Override
     protected void startAypOutSchoolEnrollment() {
+        //Not Required in HF
+    }
+
+    @Override
+    protected void startMotherMentorEnrollment() {
+        //Not Required in HF
+    }
+
+    @Override
+    protected void startMotherMentorEnrollIit() {
         //Not Required in HF
     }
 

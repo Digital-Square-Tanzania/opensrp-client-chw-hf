@@ -1,5 +1,7 @@
 package org.smartregister.chw.hf.activity;
 
+import static org.smartregister.chw.hf.actionhelper.kvp.KvpClientStatusActionHelper.OTHER_CATEGORY;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -25,8 +27,10 @@ import org.smartregister.chw.core.activity.CoreAncMedicalHistoryActivity;
 import org.smartregister.chw.core.activity.DefaultAncMedicalHistoryActivityFlv;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.interactor.KvpMedicalHistoryInteractor;
+import org.smartregister.chw.hf.utils.MarpPep;
 import org.smartregister.chw.kvp.domain.MemberObject;
 import org.smartregister.chw.kvp.repository.VisitRepository;
+import org.smartregister.chw.kvp.util.Constants.EVENT_TYPE;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -117,14 +121,15 @@ public class KvpMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
                     String[] htsParams = {"previous_hiv_testing_method", "other_previous_hiv_testing_method", "testing_site", "testing_approach", "tested_hiv", "hiv_status", "ctc_services", "ctc_number", "kits_distributed"};
                     extractVisitDetails(visits, htsParams, visitDetails, x, context);
 
-                    String[] matServicesParams = {"mat_provided"};
-                    extractVisitDetails(visits, matServicesParams, visitDetails, x, context);
-
                     String[] otherServicesParams = {"other_services_referrals_provided", "other_other_services_referrals_provided"};
                     extractVisitDetails(visits, otherServicesParams, visitDetails, x, context);
 
-                    String[] prepPepServicesParams = {"enrolled_to_prep", "pep_provision"};
-                    extractVisitDetails(visits, prepPepServicesParams, visitDetails, x, context);
+                    extractVisitDetails(visits, new String[]{MarpPep.PREP_ENROLMENT}, visitDetails, x, context);
+                    Map<String, List<VisitDetail>> saved = visits.get(x).getVisitDetails();
+                    if (saved != null) {
+                        MarpPep.addHistoryAnswers(getTexts(context, saved.get(MarpPep.NEED)),
+                                getTexts(context, saved.get(MarpPep.SERVICE)), visitDetails);
+                    }
 
                     String[] stiScreeningServicesParams = {"sti_screening", "treatment_provided"};
                     extractVisitDetails(visits, stiScreeningServicesParams, visitDetails, x, context);
@@ -138,7 +143,7 @@ public class KvpMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
                     String[] cervicalCancerScreeningServicesParams = {"cervical_cancer_screening"};
                     extractVisitDetails(visits, cervicalCancerScreeningServicesParams, visitDetails, x, context);
 
-                    String[] clientStatusServicesParams = {"client_status", "other_kvp_category"};
+                    String[] clientStatusServicesParams = {"client_status", OTHER_CATEGORY};
                     extractVisitDetails(visits, clientStatusServicesParams, visitDetails, x, context);
 
                     String[] condomProvisionParams = {"condoms_given", "type_of_issued_condoms", "number_of_male_condoms_issued", "number_of_female_condoms_issued"};
@@ -146,9 +151,6 @@ public class KvpMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
 
                     String[] familyPlanningServiceParams = {"family_planning_service"};
                     extractVisitDetails(visits, familyPlanningServiceParams, visitDetails, x, context);
-
-                    String[] eicServiceParams = {"iec_sbcc_materials"};
-                    extractVisitDetails(visits, eicServiceParams, visitDetails, x, context);
 
                     String[] gbvServiceParams = {"gbv_screening"};
                     extractVisitDetails(visits, gbvServiceParams, visitDetails, x, context);
@@ -189,6 +191,24 @@ public class KvpMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
         }
 
 
+        private String getVisitTitle(Context context, String visitType) {
+            if (visitType == null) {
+                return null;
+            }
+            switch (visitType) {
+                case EVENT_TYPE.KVP_BIO_MEDICAL_SERVICE_VISIT:
+                    return context.getString(R.string.marp_biomedical_service_visit);
+                case EVENT_TYPE.KVP_BEHAVIORAL_SERVICE_VISIT:
+                    return context.getString(R.string.marp_behavioral_service_visit);
+                case EVENT_TYPE.KVP_STRUCTURAL_SERVICE_VISIT:
+                    return context.getString(R.string.marp_structural_service_visit);
+                case EVENT_TYPE.KVP_OTHER_SERVICE_VISIT:
+                    return context.getString(R.string.marp_other_service_visit);
+                default:
+                    return visitType;
+            }
+        }
+
         protected void processVisit(List<LinkedHashMap<String, String>> community_visits, Context context, List<Visit> visits) {
             VisitRepository visitRepository = new VisitRepository();
             if (community_visits != null && !community_visits.isEmpty()) {
@@ -201,7 +221,8 @@ public class KvpMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
                     View edit = view.findViewById(R.id.textview_edit);
                     LinearLayout visitDetailsLayout = view.findViewById(R.id.visit_details_layout);
 
-                    tvTitle.setText(visits.get(x).getVisitType() + " " + visits.get(x).getDate());
+                    Visit visit = visits.get(x);
+                    tvTitle.setText(getVisitTitle(context, visit.getVisitType()) + " " + visit.getDate());
 
                     if (shouldShowEditButton(visits.get(x).getDate()) &&
                             Objects.equals(visits.get(x).getVisitId(), visitRepository.getLatestVisit(visits.get(x).getBaseEntityId(), visits.get(x).getVisitType()).getVisitId())) {
@@ -215,7 +236,9 @@ public class KvpMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
                             } else if (visits.get(position).getVisitType().equalsIgnoreCase("KVP Other Service Visit")) {
                                 KvpOtherServiceActivity.startKvpOtherServiceActivity((Activity) context, visits.get(position).getBaseEntityId(), true);
                             } else if (visits.get(position).getVisitType().equalsIgnoreCase("KVP Behavioral Service Visit")) {
-                                KvpBehavioralServiceActivity.startKvpBehavioralServiceActivity((Activity) context, visits.get(position).getBaseEntityId(), true);
+                                Visit selected = visits.get(position);
+                                KvpBehavioralServiceActivity.startKvpBehavioralServiceActivity((Activity) context,
+                                        selected.getBaseEntityId(), true, selected.getVisitId());
                             }
                         });
                     }
@@ -227,8 +250,15 @@ public class KvpMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
 
 
                         try {
-                            int resource = context.getResources().getIdentifier("kvp_" + entry.getKey(), "string", context.getPackageName());
-                            evaluateView(context, vals, visitDetailTv, entry.getKey(), resource, "");
+                            String key = entry.getKey();
+                            boolean otherCategory = OTHER_CATEGORY.equals(key);
+                            int resource = otherCategory ? R.string.marp_other_client_category
+                                    : context.getResources().getIdentifier("kvp_" + key, "string", context.getPackageName());
+                            String valuePrefix = otherCategory ? "kvp_" : "";
+                            if (MarpPep.NEED.equals(key) || MarpPep.SERVICE.equals(key)) {
+                                valuePrefix = "marp_pep_";
+                            }
+                            evaluateView(context, vals, visitDetailTv, key, resource, valuePrefix);
                         } catch (Exception e) {
                             Timber.e(e);
                         }
@@ -313,7 +343,7 @@ public class KvpMedicalHistoryActivity extends CoreAncMedicalHistoryActivity {
                 return context.getString(resourceId);
             } catch (Exception e) {
                 Timber.e(e);
-                return prefix + resourceName;
+                return resourceName;
             }
         }
     }

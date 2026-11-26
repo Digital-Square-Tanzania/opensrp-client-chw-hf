@@ -231,6 +231,8 @@ android {
             force 'androidx.appcompat:appcompat:1.0.0'
             force 'com.google.android.material:material:1.0.0'
             force 'com.google.guava:guava:31.1-android'
+            // Match CHW because Rhino 1.7.14 references javax.lang.model.SourceVersion on Android.
+            force 'org.mozilla:rhino:1.7.13'
             // Keep all Kotlin stdlib variants on the same version to avoid duplicate classes
             force 'org.jetbrains.kotlin:kotlin-stdlib:1.8.10'
             force 'org.jetbrains.kotlin:kotlin-stdlib-common:1.8.10'
@@ -253,7 +255,7 @@ android {
             buildConfigField "String", 'opensrp_url', '"https://ucs.moh.go.tz/opensrp/"'
             buildConfigField "String", 'opensrp_url_debug', '"http://170.187.199.69:8082/opensrp/"'
             buildConfigField "boolean", 'SUPPORT_QR', 'true'
-            buildConfigField "int", "DATABASE_VERSION", '31'
+            buildConfigField "int", "DATABASE_VERSION", '32'
             buildConfigField "int", "DATA_SYNC_DURATION_MINUTES", '15'
             buildConfigField "long", "MAX_SERVER_TIME_DIFFERENCE", "1800000l"
             buildConfigField "boolean", "TIME_CHECK", "false"
@@ -282,7 +284,7 @@ android {
             enableSplit = false
         }
     }
-    ndkVersion '21.1.6352462'
+    ndkVersion '28.0.12433566'
 
 }
 
@@ -297,7 +299,7 @@ flavors.each { productFlavorName ->
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation('org.smartregister:opensrp-client-chw-core:2.1.6-MOH-SNAPSHOT@aar') {
+    implementation('org.smartregister:opensrp-client-chw-core:2.2.4-KITUONI-UCSW-200-VISIT-23-SNAPSHOT@aar') {
 //    implementation(project(":opensrp-chw-core")) {
         transitive = true
         exclude group: 'com.android.support', module: 'appcompat-v7'
@@ -342,13 +344,12 @@ dependencies {
         exclude group: "org.jetbrains.kotlin", module: "kotlin-stdlib-jdk8"
         exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib-jdk7'
     }
-    implementation 'org.mozilla:rhino:1.7.13' // or a newer stable version
+    implementation 'org.mozilla:rhino:1.7.13'
 
     implementation 'net.zetetic:sqlcipher-android:4.10.0'
 
     implementation group: 'io.realm', name: 'realm-android-library', version: '10.19.0'
     implementation group: 'io.realm', name: 'realm-annotations', version: '10.19.0'
-    implementation 'org.mozilla:rhino:1.7.13' // or a newer stable version
     implementation 'com.facebook.soloader:soloader:0.12.1'
     implementation('org.smartregister:opensrp-client-chw-ld:1.0.31-NACP-SNAPSHOT@aar') {
         transitive = true
@@ -398,16 +399,18 @@ dependencies {
     implementation 'com.github.lecho:hellocharts-library:1.5.8@aar'
 
     testImplementation 'junit:junit:4.13'
+    // Use real JSON objects in local presenter tests.
+    testImplementation 'org.json:json:20180813'
     testImplementation 'org.mockito:mockito-core:3.1.0'
-    testImplementation 'org.robolectric:robolectric:4.3.1'
-    testImplementation 'org.robolectric:shadows-multidex:4.3.1'
-    testImplementation 'org.robolectric:shadows-support-v4:3.4-rc2'
+    testImplementation 'org.robolectric:robolectric:4.13'
     testImplementation 'androidx.test:core:1.2.0'
 }
 
 
-tasks.withType(Test) {
+tasks.withType(Test).configureEach {
     jacoco.includeNoLocationClasses = true
+    // The Java 17 test worker needs its generated reflection accessors before JUnit starts.
+    jacoco.excludes += ['jdk.internal.*']
 }
 
 // Workaround for D8 NullPointerException during dexing by stripping debug info from class files
@@ -440,11 +443,6 @@ task jacocoTestReport(type: JacocoReport, dependsOn: [
             'jacoco/testBaDebugUnitTest.exec', 'outputs/code-coverage/connected/*coverage.ec'
     ]))
 }
-
-tasks.withType(Test) {
-    jacoco.includeNoLocationClasses = true
-}
-
 
 tasks.coveralls {
     dependsOn 'jacocoTestReport'

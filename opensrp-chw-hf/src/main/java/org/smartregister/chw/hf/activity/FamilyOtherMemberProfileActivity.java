@@ -278,6 +278,16 @@ public class FamilyOtherMemberProfileActivity extends CoreFamilyOtherMemberProfi
     }
 
     @Override
+    protected void startMotherMentorEnrollment() {
+        //Not Required in HF
+    }
+
+    @Override
+    protected void startMotherMentorEnrollIit() {
+        //Not Required in HF
+    }
+
+    @Override
     protected void setIndependentClient(boolean b) {
         this.isIndependent = false;
     }

@@ -27,6 +27,7 @@ import org.smartregister.chw.core.utils.ChwDBConstants;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.core.utils.FormUtils;
 import org.smartregister.chw.fp.FpLibrary;
+import org.smartregister.chw.hf.actionhelper.kvp.KvpHealthEducationHelper;
 import org.smartregister.chw.hf.activity.AllClientsRegisterActivity;
 import org.smartregister.chw.hf.activity.AncRegisterActivity;
 import org.smartregister.chw.hf.activity.CdpRegisterActivity;
@@ -56,6 +57,7 @@ import org.smartregister.chw.hf.activity.VmmcRegisterActivity;
 import org.smartregister.chw.hf.configs.AllClientsRegisterRowOptions;
 import org.smartregister.chw.hf.custom_view.FacilityMenu;
 import org.smartregister.chw.hf.custom_view.HfNavigationMenu;
+import org.smartregister.chw.hf.dao.HfKvpDao;
 import org.smartregister.chw.hf.job.HfJobCreator;
 import org.smartregister.chw.hf.model.NavigationModel;
 import org.smartregister.chw.hf.provider.HfAllClientsRegisterQueryProvider;
@@ -91,6 +93,8 @@ import org.smartregister.repository.AllSharedPreferences;
 import org.smartregister.repository.Repository;
 import org.smartregister.repository.TaskNotesRepository;
 import org.smartregister.repository.TaskRepository;
+import org.smartregister.sync.ClientProcessorForJava;
+import org.smartregister.util.LangUtils;
 import org.smartregister.util.Utils;
 
 import java.util.ArrayList;
@@ -235,8 +239,8 @@ public class HealthFacilityApplication extends CoreChwApplication implements Cor
         JobManager.create(this).addJobCreator(new HfJobCreator());
 
         //Necessary to determine the right form to pick from assets
-        CoreConstants.JSON_FORM.setLocaleAndAssetManager(HealthFacilityApplication.getCurrentLocale(),
-                HealthFacilityApplication.getInstance().getApplicationContext().getAssets());
+        CoreConstants.JSON_FORM.setLocaleAndAssetManager(
+                new Locale(LangUtils.getLanguage(this)), getAssets());
 
         //Setup Navigation menu. Done only once when app is created
         FacilityMenu.setupNavigationMenu(this, new HfNavigationMenu(), new NavigationModel(),
@@ -255,7 +259,7 @@ public class HealthFacilityApplication extends CoreChwApplication implements Cor
         this.jsonSpecHelper = new JsonSpecHelper(this);
 
         //Initialize Peer to peer modules
-        P2POptions p2POptions = new P2POptions(true);
+        P2POptions p2POptions = new TeamP2POptions(context.allSharedPreferences());
         p2POptions.setAuthorizationService(new CoreAuthorizationService());
 
         // init libraries
@@ -309,7 +313,9 @@ public class HealthFacilityApplication extends CoreChwApplication implements Cor
         }
 
         if (flavor.hasKvpPrEP()) {
-            KvpLibrary.init(context, getRepository(), BuildConfig.VERSION_CODE, BuildConfig.DATABASE_VERSION);
+            KvpLibrary.init(context, getRepository(), BuildConfig.VERSION_CODE, BuildConfig.DATABASE_VERSION,
+                    HfKvpDao::isPregnantForBiomedicalVisit, HfKvpDao::isPregnantForBiomedicalVisit,
+                    KvpHealthEducationHelper::isSavedEducationComplete);
         }
 
         try {
@@ -347,21 +353,12 @@ public class HealthFacilityApplication extends CoreChwApplication implements Cor
         );
         setOpenSRPUrl();
 
-//        Disabled changing language on HF application
-//        Configuration configuration = getApplicationContext().getResources().getConfiguration();
-//        String language;
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-//            language = configuration.getLocales().get(0).getLanguage();
-//        } else {
-//            language = configuration.locale.getLanguage();
-//        }
-//
-//        if (language.equals(Locale.FRENCH.getLanguage())) {
-//            saveLanguage(Locale.FRENCH.getLanguage());
-//        }
-        saveLanguage(Locale.ENGLISH.getLanguage());
         // set up processor
-        FamilyLibrary.getInstance().setClientProcessorForJava(HfClientProcessor.getInstance(getApplicationContext()));
+        ClientProcessorForJava facilityProcessor = HfClientProcessor.getInstance(getApplicationContext());
+        FamilyLibrary.getInstance().setClientProcessorForJava(facilityProcessor);
+        if (flavor.hasKvpPrEP()) {
+            KvpLibrary.getInstance().setClientProcessorForJava(facilityProcessor);
+        }
 
         //initialize Map
         if (getApplicationFlavor().hasMap()) {

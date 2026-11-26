@@ -33,6 +33,7 @@ import org.smartregister.view.contract.BaseLoginContract;
 import org.smartregister.worker.ProvidersSyncServiceWorker;
 import org.smartregister.worker.SyncServiceWorker;
 
+import java.lang.ref.WeakReference;
 import java.util.concurrent.TimeUnit;
 
 public class LoginInteractor extends BaseLoginInteractor implements BaseLoginContract.Interactor {
@@ -51,6 +52,19 @@ public class LoginInteractor extends BaseLoginInteractor implements BaseLoginCon
     @Override
     public Context getApplicationContext() {
         return applicationContext;
+    }
+
+    @Override
+    public void loginWithLocalFlag(WeakReference<BaseLoginContract.View> view, boolean localLogin,
+                                   String username, String password) {
+        // Local login accepts different casing, but Core looks up the P2P team by the exact username.
+        if (localLogin) {
+            String registeredUsername = getSharedPreferences().fetchRegisteredANM();
+            if (username.equalsIgnoreCase(registeredUsername)) {
+                username = registeredUsername;
+            }
+        }
+        super.loginWithLocalFlag(view, localLogin, username, password);
     }
 
     @Override

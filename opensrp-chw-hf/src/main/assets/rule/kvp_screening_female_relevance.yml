@@ -1,18 +1,4 @@
 ---
-name: step8_prep_assessment
-description: is the client eligible for prep
-priority: 1
-condition: "!step4_hiv_status_on_screening.equals('positive')"
-actions:
-  - "isRelevant = true"
----
-name: step8_prep_qualified
-description: is the client eligible for prep
-priority: 1
-condition: "step8_prep_assessment.equals('yes')  && !step4_hiv_status_on_screening.equals('positive')"
-actions:
-  - "isRelevant = true"
----
 name: step2_drug_injection
 description: drug_injection relevance
 priority: 1
@@ -20,38 +6,52 @@ condition: "step1_drug_use.equals('yes')"
 actions:
   - "isRelevant = true"
 ---
-name: step3_risk_of_having_sexual_intercourse
-description: risk_of_having_sexual_intercourse relevance
+name: step4_client_knows_hiv_status
+description: client_knows_hiv_status relevance
 priority: 1
-condition: "step3_sexual_intercourse.equals('no') && (global_age >= 10 && global_age <= 24)"
+condition: "step3_sexual_intercourse.equals('yes')"
 actions:
   - "isRelevant = true"
 ---
 name: step4_hiv_status_on_screening
 description: hiv_status_on_screening relevance
 priority: 1
-condition: "step3_sexual_intercourse.equals('yes')"
+condition: "step3_sexual_intercourse.equals('yes') && step4_client_knows_hiv_status.equals('yes')"
 actions:
   - "isRelevant = true"
 ---
 name: step4_hiv_positive_partner
 description: hiv_positive_partner relevance
 priority: 1
-condition: "step4_hiv_status_on_screening.equals('negative')"
+condition: "step3_sexual_intercourse.equals('yes') && step4_client_knows_hiv_status.equals('yes') && step4_hiv_status_on_screening.equals('negative')"
+actions:
+  - "isRelevant = true"
+---
+name: step4_partner_hiv_care_status
+description: partner_hiv_care_status relevance
+priority: 1
+condition: "step3_sexual_intercourse.equals('yes') && step4_client_knows_hiv_status.equals('yes') && step4_hiv_status_on_screening.equals('negative') && step4_hiv_positive_partner.equals('yes')"
 actions:
   - "isRelevant = true"
 ---
 name: step5_sex_for_money
 description: sex_for_money relevance
 priority: 1
-condition: "!step4_hiv_status_on_screening.isEmpty()"
+condition: "step3_sexual_intercourse.equals('yes')"
 actions:
   - "isRelevant = true"
 ---
 name: step6_client_in_school
 description: client_in_school relevance
 priority: 1
-condition: "(step5_is_fsw.equals('no') && global_age >= 10 && global_age <= 24)"
+condition: "global_age >= 15 && global_age <= 24 && step3_sexual_intercourse.equals('yes') && step5_is_fsw.equals('no')"
+actions:
+  - "isRelevant = true"
+---
+name: step6_harsh_condition_impact
+description: vAGYW checklist relevance
+priority: 1
+condition: "global_age >= 15 && global_age <= 24 && step3_sexual_intercourse.equals('yes') && step5_is_fsw.equals('no') && step6_client_in_school.equals('no')"
 actions:
   - "isRelevant = true"
 ---
@@ -72,7 +72,7 @@ actions:
 name: step9_prompt_for_ovp_kvp
 description: prompt_for_ovp_kvp relevance
 priority: 1
-condition: "step7_is_ovp_kvp.equals('yes')"
+condition: "step7_eligible_other_marp_groups.contains('other_key_and_vulnerable_populations')"
 actions:
   - "isRelevant = true"
 ---
@@ -83,48 +83,20 @@ condition: "step6_is_agyw.equals('yes')"
 actions:
   - "isRelevant = true"
 ---
-name: step8_prep_assessment
-description: prep_assessment relevance
-priority: 1
-condition: "step4_hiv_status_on_screening.equals('negative') && step4_hiv_status_on_screening.equals('unknown')"
-actions:
-  - "isRelevant = true"
----
 name: step9_prompt_for_pwud_kvp
 description: prompt_for_pwud_kvp relevance
 priority: 1
-condition: "step1_is_pwud.equals('yes')"
+condition: "step1_drug_use.equals('yes') && step2_drug_injection.equals('no')"
 actions:
   - "isRelevant = true"
 ---
 name: step9_prompt_for_pwid_kvp
 description: prompt_for_pwid_kvp relevance
 priority: 1
-condition: "step2_is_pwid.equals('yes')"
+condition: "step1_drug_use.equals('yes') && step2_drug_injection.equals('yes')"
 actions:
   - "isRelevant = true"
 
----
-name: step9_prompt_for_prisoners_kvp
-description: prompt_for_prisoners_kvp relevance
-priority: 1
-condition: "step7_is_prisoner.equals('yes')"
-actions:
-  - "isRelevant = true"
----
-name: step9_prompt_for_rumandee_kvp
-description: prompt_for_rumandee_kvp relevance
-priority: 1
-condition: "step7_is_rumandee.equals('yes')"
-actions:
-  - "isRelevant = true"
----
-name: step9_prompt_for_mobile_population_kvp
-description: prompt_for_mobile_population_kvp relevance
-priority: 1
-condition: "step7_is_mobile_population.equals('yes')"
-actions:
-  - "isRelevant = true"
 ---
 name: step9_prompt_no_group
 description: prompt_no_group

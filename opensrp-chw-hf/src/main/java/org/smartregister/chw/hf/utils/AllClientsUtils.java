@@ -71,16 +71,8 @@ public class AllClientsUtils {
     public static void goToClientProfile(Activity activity, @NonNull CommonPersonObjectClient commonPersonObjectClient) {
         String registerType = commonPersonObjectClient.getDetails().get(REGISTER_TYPE);
 
-        Bundle bundle = new Bundle();
         FamilyDetailsModel familyDetailsModel = FamilyDao.getFamilyDetail(commonPersonObjectClient.entityId());
-
-        if (familyDetailsModel != null) {
-            bundle.putString(Constants.INTENT_KEY.FAMILY_BASE_ENTITY_ID, familyDetailsModel.getBaseEntityId());
-            bundle.putString(Constants.INTENT_KEY.FAMILY_HEAD, familyDetailsModel.getFamilyHead());
-            bundle.putString(Constants.INTENT_KEY.PRIMARY_CAREGIVER, familyDetailsModel.getPrimaryCareGiver());
-            bundle.putString(Constants.INTENT_KEY.FAMILY_NAME, familyDetailsModel.getFamilyName());
-            bundle.putString(Constants.INTENT_KEY.VILLAGE_TOWN, commonPersonObjectClient.getDetails().get(OpdDbConstants.KEY.HOME_ADDRESS));
-        }
+        Bundle bundle = getFamilyProfileExtras(commonPersonObjectClient, familyDetailsModel);
 
         if (registerType != null) {
             switch (registerType) {
@@ -122,6 +114,28 @@ public class AllClientsUtils {
                         familyDetailsModel.getFamilyHead(), familyDetailsModel.getPrimaryCareGiver());
             }
         }
+    }
+
+    public static void goToGeneralProfileForMarpClient(Activity activity, CommonPersonObjectClient client) {
+        FamilyDetailsModel family = FamilyDao.getFamilyDetail(client.entityId());
+        if (family == null) {
+            goToKVPProfile(activity, client);
+            return;
+        }
+        startMemberProfile(activity, client, getFamilyProfileExtras(client, family),
+                AllClientsMemberProfileActivity.class);
+    }
+
+    private static Bundle getFamilyProfileExtras(CommonPersonObjectClient client, FamilyDetailsModel family) {
+        Bundle bundle = new Bundle();
+        if (family != null) {
+            bundle.putString(Constants.INTENT_KEY.FAMILY_BASE_ENTITY_ID, family.getBaseEntityId());
+            bundle.putString(Constants.INTENT_KEY.FAMILY_HEAD, family.getFamilyHead());
+            bundle.putString(Constants.INTENT_KEY.PRIMARY_CAREGIVER, family.getPrimaryCareGiver());
+            bundle.putString(Constants.INTENT_KEY.FAMILY_NAME, family.getFamilyName());
+            bundle.putString(Constants.INTENT_KEY.VILLAGE_TOWN, client.getDetails().get(OpdDbConstants.KEY.HOME_ADDRESS));
+        }
+        return bundle;
     }
 
     public static void goToChildProfile(Activity activity, CommonPersonObjectClient patient, Bundle bundle) {
@@ -193,23 +207,26 @@ public class AllClientsUtils {
             showShortToast(activity, activity.getString(R.string.error_opening_profile));
         } else {
             String registerType = patient.getDetails().get(REGISTER_TYPE);
-            Intent intent;
-            if (CoreConstants.REGISTER_TYPE.INDEPENDENT.equals(registerType)) {
-                intent = new Intent(activity, AllClientsMemberProfileActivity.class);
-            } else {
-                intent = new Intent(activity, FamilyOtherMemberProfileActivity.class);
-            }
-            intent.putExtras(bundle != null ? bundle : new Bundle());
-            intent.putExtra(Constants.INTENT_KEY.BASE_ENTITY_ID, patient.getCaseId());
-            intent.putExtra(CoreConstants.INTENT_KEY.CHILD_COMMON_PERSON, patient);
-            intent.putExtra(Constants.INTENT_KEY.FAMILY_HEAD, familyHead);
-            intent.putExtra(Constants.INTENT_KEY.PRIMARY_CAREGIVER, primaryCaregiver);
-            intent.putExtra(Constants.INTENT_KEY.VILLAGE_TOWN, patient.getDetails().get(OpdDbConstants.KEY.HOME_ADDRESS));
-            passToolbarTitle(activity, intent);
-            activity.startActivity(intent);
+            Class<? extends Activity> profile = CoreConstants.REGISTER_TYPE.INDEPENDENT.equals(registerType)
+                    ? AllClientsMemberProfileActivity.class : FamilyOtherMemberProfileActivity.class;
+            Bundle extras = bundle != null ? new Bundle(bundle) : new Bundle();
+            extras.putString(Constants.INTENT_KEY.FAMILY_HEAD, familyHead);
+            extras.putString(Constants.INTENT_KEY.PRIMARY_CAREGIVER, primaryCaregiver);
+            startMemberProfile(activity, patient, extras, profile);
         }
     }
 
+
+    private static void startMemberProfile(Activity activity, CommonPersonObjectClient client,
+                                           Bundle extras, Class<? extends Activity> profile) {
+        Intent intent = new Intent(activity, profile);
+        intent.putExtras(extras);
+        intent.putExtra(Constants.INTENT_KEY.BASE_ENTITY_ID, client.getCaseId());
+        intent.putExtra(CoreConstants.INTENT_KEY.CHILD_COMMON_PERSON, client);
+        intent.putExtra(Constants.INTENT_KEY.VILLAGE_TOWN, client.getDetails().get(OpdDbConstants.KEY.HOME_ADDRESS));
+        passToolbarTitle(activity, intent);
+        activity.startActivity(intent);
+    }
 
     @NotNull
     public static List<OpdEventClient> getOpdEventClients(String jsonString) {

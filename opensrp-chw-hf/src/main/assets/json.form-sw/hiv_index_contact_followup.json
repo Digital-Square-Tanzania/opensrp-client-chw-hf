@@ -349,8 +349,8 @@
           "properties": {
             "notification_type": "info",
             "dismissible": "no",
-            "title": "Mteja anatakiwa kusajiliwa kwenye KVP/PrEP",
-            "text": "Mteja ni mshirika wa kingono wa mteja wa VVU, anatakiwa kusajiliwa kwenye huduma ya KVP/PrEP",
+            "title": "Mteja anatakiwa kusajiliwa kwenye MARP/PrEP",
+            "text": "Mteja ni mshirika wa kingono wa mteja wa VVU, anatakiwa kusajiliwa kwenye huduma ya MARP/PrEP",
             "background_color": "#082455",
             "text_color": "#EBEE2F"
           },

@@ -8,11 +8,14 @@ import android.os.Build;
 import com.vijay.jsonwizard.constants.JsonFormConstants;
 import com.vijay.jsonwizard.domain.Form;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.core.task.RunnableTask;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.interactor.KvpBioMedicalServiceInteractor;
 import org.smartregister.chw.hf.schedulers.HfScheduleTaskExecutor;
+import org.smartregister.chw.hf.utils.MarpHts;
+import org.smartregister.chw.hf.utils.MarpPep;
 import org.smartregister.chw.kvp.activity.BaseKvpVisitActivity;
 import org.smartregister.chw.kvp.domain.MemberObject;
 import org.smartregister.chw.kvp.model.BaseKvpVisitAction;
@@ -26,7 +29,11 @@ import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import timber.log.Timber;
+
 public class KvpBioMedicalServiceActivity extends BaseKvpVisitActivity {
+
+    private KvpBioMedicalServiceInteractor biomedicalInteractor;
 
     public static void startKvpBioMedicalServiceActivity(Activity activity, String baseEntityId, Boolean editMode) {
         Intent intent = new Intent(activity, KvpBioMedicalServiceActivity.class);
@@ -38,7 +45,8 @@ public class KvpBioMedicalServiceActivity extends BaseKvpVisitActivity {
 
     @Override
     protected void registerPresenter() {
-        presenter = new BaseKvpVisitPresenter(memberObject, this, new KvpBioMedicalServiceInteractor(Constants.EVENT_TYPE.KVP_BIO_MEDICAL_SERVICE_VISIT));
+        biomedicalInteractor = new KvpBioMedicalServiceInteractor(getEditMode());
+        presenter = new BaseKvpVisitPresenter(memberObject, this, biomedicalInteractor);
     }
 
     @Override
@@ -47,11 +55,36 @@ public class KvpBioMedicalServiceActivity extends BaseKvpVisitActivity {
         form.setActionBarBackground(org.smartregister.chw.core.R.color.family_actionbar);
         form.setWizard(false);
 
-        Intent intent = new Intent(this, Utils.metadata().familyMemberFormActivity);
+        boolean isHts = MarpHts.ENCOUNTER_TYPE.equals(jsonForm.optString("encounter_type"));
+        if (isHts) {
+            try {
+                jsonForm = biomedicalInteractor.prepareHtsForm(jsonForm);
+            } catch (JSONException e) {
+                Timber.e(e, "Unable to display the MARP HTS suggestion");
+            }
+        } else if (MarpPep.ENCOUNTER_TYPE.equals(jsonForm.optString("encounter_type"))) {
+            try {
+                jsonForm = biomedicalInteractor.preparePepForm(jsonForm);
+            } catch (JSONException e) {
+                Timber.e(e, "Unable to display the saved MARP PEP assessment");
+            }
+        }
+        Class<?> formActivity = isHts ? MarpHtsFormActivity.class : Utils.metadata().familyMemberFormActivity;
+        Intent intent = new Intent(this, formActivity);
         intent.putExtra(org.smartregister.family.util.Constants.JSON_FORM_EXTRA.JSON, jsonForm.toString());
         intent.putExtra(org.smartregister.family.util.Constants.WizardFormActivity.EnableOnCloseDialog, false);
         intent.putExtra(JsonFormConstants.JSON_FORM_KEY.FORM, form);
         startActivityForResult(intent, JsonFormUtils.REQUEST_CODE_GET_JSON);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == Constants.REQUEST_CODE_GET_JSON && resultCode == RESULT_OK && data != null
+                && getString(R.string.kvp_pep_assesment).equals(current_action)) {
+            biomedicalInteractor.onPepFormSaved();
+            redrawVisitUI();
+        }
     }
 
     @Override
@@ -119,5 +152,6 @@ public class KvpBioMedicalServiceActivity extends BaseKvpVisitActivity {
             mAdapter.notifyDataSetChanged();
         }
         displayProgressBar(false);
+        redrawVisitUI();
     }
 }

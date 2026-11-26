@@ -212,8 +212,8 @@
           "properties": {
             "notification_type": "info",
             "dismissible": "no",
-            "title": "Mteja anatakiwa anzishiwe KVP/PREP",
-            "text": "Mteja ni mshiriki wa kingono wa muathirika wa ukimwi, Anatakiwa kuanzishiwa KVP/PREP",
+            "title": "Mteja anatakiwa anzishiwe MARP/PrEP",
+            "text": "Mteja ni mshiriki wa kingono wa muathirika wa ukimwi, Anatakiwa kuanzishiwa MARP/PrEP",
             "background_color": "#082455",
             "text_color": "#EBEE2F"
           },

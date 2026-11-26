@@ -21,6 +21,7 @@ import static org.smartregister.chw.hf.utils.Constants.FormConstants.FormSubmiss
 import static org.smartregister.chw.hf.utils.Constants.FormConstants.FormSubmissionFields.HIV_TEST_RESULT;
 import static org.smartregister.chw.hf.utils.Constants.FormConstants.FormSubmissionFields.HIV_TEST_RESULT_DATE;
 import static org.smartregister.chw.hf.utils.Constants.FormConstants.FormSubmissionFields.TYPE_OF_HIV_TEST;
+import static org.smartregister.chw.kvp.util.Constants.EVENT_TYPE.KVP_REGISTRATION;
 
 import android.content.Context;
 
@@ -31,10 +32,13 @@ import org.smartregister.chw.core.sync.CoreClientProcessor;
 import org.smartregister.chw.fp.util.FamilyPlanningConstants;
 import org.smartregister.chw.hf.dao.FamilyDao;
 import org.smartregister.chw.hf.dao.HeiDao;
+import org.smartregister.chw.hf.dao.HfKvpDao;
 import org.smartregister.chw.hf.dao.HfPmtctDao;
 import org.smartregister.chw.hf.domain.hps_reports.HpsAnnualCensusRegister;
 import org.smartregister.chw.hf.repository.HpsAnnualCensorReportsRepository;
+import org.smartregister.chw.hf.utils.MarpEnrollmentDate;
 import org.smartregister.chw.pmtct.util.Constants;
+import org.smartregister.domain.Client;
 import org.smartregister.domain.Event;
 import org.smartregister.domain.Obs;
 import org.smartregister.domain.db.EventClient;
@@ -69,6 +73,29 @@ public class HfClientProcessor extends CoreClientProcessor {
     @Override
     public boolean saveReportDateSent() {
         return false;
+    }
+
+    @Override
+    public Boolean processEvent(Event event, Client client, ClientClassification classification) throws Exception {
+        if (KVP_REGISTRATION.equals(event.getEventType()) && event.getEventDate() != null
+                && StringUtils.isBlank(HfKvpDao.getStoredEnrollmentDate(event.getBaseEntityId()))) {
+            event.addDetails(MarpEnrollmentDate.EVENT_DETAIL, registrationDate(event));
+        }
+        return super.processEvent(event, client, classification);
+    }
+
+    private String registrationDate(Event event) {
+        if (event.getObs() != null) {
+            for (Obs obs : event.getObs()) {
+                if (MarpEnrollmentDate.ENROLLMENT_DATE.equals(obs.getFieldCode())) {
+                    String storedDate = String.valueOf(obs.getValue());
+                    if (MarpEnrollmentDate.isValid(storedDate)) {
+                        return storedDate;
+                    }
+                }
+            }
+        }
+        return MarpEnrollmentDate.fromTimestamp(event.getEventDate().getMillis());
     }
 
     @Override

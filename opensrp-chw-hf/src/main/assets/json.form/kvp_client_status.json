@@ -50,20 +50,20 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "client_status",
-        "label": "Type of visit",
+        "label": "Visit Type",
         "text_color": "#000000",
         "type": "native_radio",
         "options": [
           {
             "key": "new_client",
-            "text": "New client",
+            "text": "New",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "new_visit"
           },
           {
             "key": "transfer_in",
-            "text": "Transfer-in",
+            "text": "Transfer in",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "transfer_in"
@@ -87,9 +87,8 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "enrollment_date",
         "type": "date_picker",
-        "hint": "Enrollment date",
+        "hint": "Date the client was enrolled in the program",
         "expanded": false,
-        "min_date": "01-05-2018",
         "max_date": "today",
         "v_required": {
           "value": "true",
@@ -101,13 +100,41 @@
               "rules-file": "kvp_client_status_relevance.yml"
             }
           }
-        },
-        "calculation": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "kvp_client_status_calculation.yml"
-            }
+        }
+      },
+      {
+        "key": "pregnancy_breastfeeding_status",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "pregnancy_breastfeeding_status",
+        "label": "Pregnancy/Breastfeeding Status",
+        "type": "native_radio",
+        "options": [
+          {
+            "key": "pregnant",
+            "text": "Pregnant",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "pregnant"
+          },
+          {
+            "key": "not_pregnant_not_breastfeeding",
+            "text": "Not pregnant/Not breastfeeding",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "not_pregnant_not_breastfeeding"
+          },
+          {
+            "key": "breastfeeding",
+            "text": "Breastfeeding",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "breastfeeding"
           }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "Please select one"
         }
       },
       {
@@ -116,7 +143,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "other_kvp_category",
         "type": "check_box",
-        "label": "Other client's KVP category",
+        "label": "Other MARP categories",
         "combine_checkbox_option_values": "true",
         "label_text_style": "normal",
         "text_color": "#C0C0C0",
@@ -126,73 +153,73 @@
         "options": [
           {
             "key": "pwud",
-            "text": "PWUD",
+            "text": "People who use drugs through non-injecting routes",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "pwud"
           },
           {
             "key": "pwid",
-            "text": "PWID",
+            "text": "People who inject drugs",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "pwid"
           },
           {
-            "key": "fsw",
-            "text": "WHR",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "fsw"
-          },
-          {
             "key": "msm",
-            "text": "MHR",
+            "text": "Men at High Risk (MHR)",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "msm"
           },
           {
+            "key": "fsw",
+            "text": "Most-at-risk women (WHR)",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "fsw"
+          },
+          {
             "key": "agyw",
-            "text": "vAGYW",
+            "text": "Adolescent girls and young women",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "agyw"
           },
           {
-            "key": "prisoner",
-            "text": "Prisoners",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "prisoner"
-          },
-          {
-            "key": "rumandee",
-            "text": "Rumandee",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "rumandee"
-          },
-          {
-            "key": "mobile_population",
-            "text": "Mobile population",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "mobile_population"
-          },
-          {
             "key": "serodiscordant_couple",
-            "text": "Serodiscordant couple",
+            "text": "Discordant partner",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "serodiscordant_couple"
           },
           {
-            "key": "other_vulnerable_population",
-            "text": "Other vulnerable population",
+            "key": "long_distance_truck_drivers",
+            "text": "Long-distance truck drivers",
             "openmrs_entity_parent": "",
             "openmrs_entity": "concept",
-            "openmrs_entity_id": "other_vulnerable_population"
+            "openmrs_entity_id": "long_distance_truck_drivers"
+          },
+          {
+            "key": "fisherfolk",
+            "text": "Fisherfolk",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "fisherfolk"
+          },
+          {
+            "key": "miners",
+            "text": "Miners",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "miners"
+          },
+          {
+            "key": "other_key_and_vulnerable_populations",
+            "text": "Other key and vulnerable populations",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "other_key_and_vulnerable_populations"
           },
           {
             "key": "none",

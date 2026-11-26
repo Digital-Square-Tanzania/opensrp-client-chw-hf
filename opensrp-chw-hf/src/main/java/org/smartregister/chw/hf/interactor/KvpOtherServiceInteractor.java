@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.smartregister.chw.hf.R;
 import org.smartregister.chw.hf.actionhelper.kvp.KvpOtherServicesActionHelper;
 import org.smartregister.chw.kvp.contract.BaseKvpVisitContract;
+import org.smartregister.chw.kvp.domain.MemberObject;
 import org.smartregister.chw.kvp.domain.VisitDetail;
 import org.smartregister.chw.kvp.interactor.BaseKvpVisitInteractor;
 import org.smartregister.chw.kvp.model.BaseKvpVisitAction;
@@ -31,6 +32,13 @@ public class KvpOtherServiceInteractor extends BaseKvpVisitInteractor {
     }
 
     @Override
+    public void calculateActions(BaseKvpVisitContract.View view, MemberObject member,
+                                 BaseKvpVisitContract.InteractorCallBack callBack) {
+        memberObject = member;
+        super.calculateActions(view, member, callBack);
+    }
+
+    @Override
     protected void populateActionList(BaseKvpVisitContract.InteractorCallBack callBack) {
         final Runnable runnable = () -> {
             try {
@@ -47,7 +55,7 @@ public class KvpOtherServiceInteractor extends BaseKvpVisitInteractor {
 
     private void evaluateOtherServices(Map<String, List<VisitDetail>> details) throws BaseKvpVisitAction.ValidationException {
 
-        KvpOtherServicesActionHelper actionHelper = new KvpOtherServicesActionHelper();
+        KvpOtherServicesActionHelper actionHelper = new KvpOtherServicesActionHelper(memberObject.getGender());
         BaseKvpVisitAction action = getBuilder(context.getString(R.string.kvp_other_services_referrals))
                 .withOptional(false)
                 .withDetails(details)

@@ -38,6 +38,9 @@ public class AllClientsRegisterFragment extends CoreAllClientsRegisterFragment {
                 case CoreConstants.REGISTER_TYPE.TB:
                     AllClientsUtils.goToTbProfile(this.getActivity(),commonPersonObjectClient);
                     break;
+                case CoreConstants.REGISTER_TYPE.KVP:
+                    openGeneralProfileForMarpClient(commonPersonObjectClient);
+                    break;
                 default:
                     AllClientsUtils.goToClientProfile(this.getActivity(),commonPersonObjectClient);
                     break;
@@ -45,6 +48,10 @@ public class AllClientsRegisterFragment extends CoreAllClientsRegisterFragment {
         }else {
             AllClientsUtils.goToClientProfile(this.getActivity(), commonPersonObjectClient);
         }
+    }
+
+    void openGeneralProfileForMarpClient(CommonPersonObjectClient client) {
+        AllClientsUtils.goToGeneralProfileForMarpClient(getActivity(), client);
     }
 
     @Override
